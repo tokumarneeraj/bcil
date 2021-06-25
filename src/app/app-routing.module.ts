@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BcilComponent } from './bcil/bcil.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [{ path: 'bcil', component:BcilComponent, loadChildren: () => import('./bcil/bcil.module').then(m => m.BcilModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

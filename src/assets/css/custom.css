@@ -1,0 +1,449 @@
+.blackMenu,
+.userName{
+    color: #000;
+}
+.header-navbar .navbar-wrapper .navbar-container .badge.shadowColor::before{
+    -webkit-box-shadow: inset 0 0 20px 5px rgb(113 62 62 / 40%);
+    box-shadow: inset 0 0 20px 5px rgb(113 62 62 / 40%);
+}
+.header-navbar .navbar-wrapper .navbar-container .nav-right li > a.userName{
+    color: #000;
+}
+.pcoded .pcoded-header[header-theme="theme1"] {
+    background: #ffffff;
+}
+.pcoded .pcoded-navbar[navbar-theme="themelight1"] .pcoded-item li.pcoded-hasmenu .pcoded-submenu.fontWeight li > a{
+    font-weight: 400;
+}
+.categoryList h4 {
+    font-size: 15px;
+    min-height: 40px;
+    line-height: 18px;
+}
+.bg-c-purple{
+    background: #b300d4;
+}
+.bg-c-yellow{
+    background: #aab500;
+}
+.bg-c-dark-orange{
+    background: #b54b00;
+}
+.bg-c-dark-green{
+    background: #00562f;
+}
+.bg-c-dark-pink{
+    background: #c20287;
+}
+.bg-c-dark-blue{
+    background: #346a8a;
+}
+.text-c-purple{
+    color: #b300d4;
+}
+.text-c-yellow{
+    color: #aab500;
+}
+.text-c-dark-orange{
+    color: #b54b00;
+}
+.text-c-dark-green{
+    color: #00562f;
+}
+.text-c-dark-pink{
+    color: #c20287;
+}
+.text-c-dark-blue{
+    color: #346a8a;
+}
+.header-navbar .navbar-wrapper .navbar-container .header-notification.active:before{
+    display: none;
+}
+.pcoded[fream-type="theme1"] .page-header:before, 
+.pcoded[fream-type="theme1"] .main-menu .main-menu-header:before {
+    background: rgb(59 181 74 / 50%);
+}
+.pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item > li.active > a{
+    background: #3bb54a;
+}
+.pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li:hover > a .pcoded-micon,
+.pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li:hover > a,
+.pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a, 
+.pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a{
+    color: #3bb54a !important;
+}
+.pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li.active:hover > a .pcoded-micon,
+.pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li.active:hover > a{
+    color: #fff !important;
+}
+
+.pcoded .pcoded-navbar .pcoded-item > li > a > .pcoded-micon{
+    margin-right: 2px;
+}
+/*-- Login design start --*/
+
+.headerMain,
+.loginSection{
+    background: #fff;
+    
+}
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0 20px;
+}
+.logo {
+    display: inline-flex;
+    align-items: flex-end;
+}
+/* .site-branding__text {
+    padding: 10px 0 0 10px;
+} */
+.site-branding__text {
+    padding: 2px 0 0 10px;
+}
+.site-branding__name a {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 2px;
+    display: block;
+    line-height: 22px;
+    color: #015f13;
+}
+.site-branding__slogan {
+    font-size: 14px;
+    font-weight: 200 !important;
+}
+.loginSection {
+    border-top: 1px solid #f1f1f1;
+    padding: 40px 0 40px;
+}
+.loginCard {
+    /* margin: 60px auto 60px; */
+    /* max-width: 600px; */
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 0px 3px 2px rgb(0 0 0 / 6%);
+    -webkit-box-shadow: 0px 0px 3px 2px rgb(0 0 0 / 6%);
+    -moz-box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.06);
+    border: 1px solid #ddd;
+}
+.loginCard h2 {
+    text-align: center;
+    font-size: 18px;
+    padding: 15px 0;
+    background: #3bb54a;
+    border-radius: 6px 6px 0 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.loginForm {
+    padding: 15px 15px 30px;
+}
+.loginCard .form-group {
+    display: flex;
+    align-items: center;
+    margin: 0 0 20px;
+}
+.loginCard label {
+    line-height: 18px;
+    font-weight: 500;
+    min-height: 20px;
+    font-size: 14px;
+    margin: 0 !important;
+    min-width: 43.5%;
+    text-align: left;
+}
+.loginCard .input-group{
+    margin: 0;
+}
+.loginCard .input-group i {
+    position: absolute;
+    background: #d2d2d2;
+    width: 44px;
+    height: 43px;
+    text-align: center;
+    z-index: 9;
+    line-height: 42px;
+    border-radius: .25rem 0 0 .25rem;
+    color: #fff;
+    font-size: 16px;
+}
+.loginCard input, 
+.loginCard select {
+    box-shadow: inherit !important;
+    border-color: #e4e4e4;
+    padding: 0 8px 0 52px;
+    line-height: 42px;
+    border-radius: 6px !important;
+}
+.actionBtn {
+    text-align: center;
+}
+.btn {
+    font-size: 13px;
+    text-transform: uppercase;
+    line-height: 34px !important;
+    padding: 0 15px;
+    margin: 0 !important;
+    border: none;
+    box-shadow: inherit !important;
+    font-family: 'Roboto', sans-serif !important;
+    letter-spacing: 1px;
+    background: #3bb54a;
+    border-radius: 6px;
+}
+.ttoContent{
+    padding: 15px;
+}
+.ttoContent p {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 0 15px;
+}
+.ttoContent p .bold {
+    font-weight: 600;
+}
+.ttoContent ul {
+    margin: 0 0 30px 15px;
+}
+.ttoContent li {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 0 5px;
+    list-style-type: disc;
+}
+.ttoLogoContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto 30px;
+    max-width: 440px;
+}
+.ttoLogoContent h4 {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0 8px 4px;
+    position: relative;
+    border-bottom: 2px solid #455a64;
+    display: inline-block;
+}
+.ttoLogoContent h4:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 25px;
+    background: #455a64;
+    width: 2px;
+    height: 20px;
+}
+.ttoLogoContent h4:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25px;
+    background: #455a64;
+    width: 2px;
+    height: 20px;
+}
+.ttoLogoImg {
+    margin: 20px 0 0;
+    max-width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 440px;
+}
+.ttoLogoImg img {
+    border: 2px solid #455a64;
+    padding: 4px 6px;
+}
+.ttoFooter {
+    padding: 15px 0 0;
+    border-top: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+.ttoFooter p{
+    margin: 0 0 10px;
+    font-size: 12px;
+    line-height: 14px;
+}
+.ttoFooter p a {
+    color: #3bb54a;
+    text-decoration: underline;
+}
+.ttoContact p {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+}
+.ttoContact p a:first-child {
+    margin: 0 10px 0 10px;
+}
+.ttoFooter a:hover{
+    opacity: .8;
+}
+.loginCard.ttoCard {
+    /* box-shadow: none; */
+    border: 1px solid #ddd;
+}
+.loginCard.ttoCard h2 {
+    background: transparent;
+    border-radius: 0;
+    color: #455a64;
+    border-bottom: 1px solid #ddd;
+}
+/*-- Login design end --*/
+
+/*-- Footer design start --*/
+.footerElement {
+    background-color: #202426;
+    padding: 40px 0 0;
+}
+.footerContent {
+    margin: 11px 0 10px;
+    padding: 0 0 40px;
+}
+.footerContent h3 {
+    color: #ddd;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    font-family: "Roboto", sans-serif;
+}
+.footerContent ul {
+    margin: 1em 0 0;
+}
+.footerContent li a {
+    margin-bottom: 16px;
+    display: block;
+    font-family: "Roboto", sans-serif;
+    color: #bababa;
+    font-size: 1em;
+    font-weight: 400;
+}
+.footerContent li:last-child a,
+.footerContent .address li:last-child{
+    margin-bottom: 0;
+}
+.footerContent .address li {
+    margin-bottom: 16px;
+    display: block;
+    font-family: "Roboto", sans-serif;
+    color: #bababa !important;
+    font-size: 1em;
+}
+.bottomFooter {
+    background-color: #202426;
+    border-top: 1px solid #333 !important;
+    padding: 10px 0;
+}
+.bottomFooter h6,
+.bottomFooter p{
+    margin: 0;
+    color: #ddd;
+    font-size: .85em;
+    font-weight: 400;
+}
+
+.borderRight{
+    border-right: 1px dotted #fff;
+}
+.textCenter {
+    text-align: center;
+}
+.textRight {
+    text-align: right;
+}
+@media screen and (max-width: 767px) {
+    .secLogo{
+        display: none;
+    }
+    .headerContent {       
+        justify-content: center;
+    }
+    .headerContent .logo {
+        flex-direction: column;
+        align-items: center;
+    }
+    .site-branding__text {
+        text-align: center;
+        padding: 7px 0 0;
+    }
+    .headerContent .logo img {
+        max-height: 56px;
+        width: auto;
+    }
+
+}
+@media screen and (max-width: 575px){
+    .bottomFooter .col-sm-4{
+        text-align: center;
+        margin: 3px 0;
+    }
+    .footerElement{
+        padding: 10px 0;
+    }
+    .footerContent ul{
+        margin: 1em 0 2em;
+    }
+    .footerContent ul.address{
+        margin: 1em 0 0;
+    }
+    .footerContent{
+        padding: 0 0 15px;
+    }
+}
+
+/*-- Footer design end --*/
+
+/*-- Inner Header design start --*/
+.headerMain.innerHeader {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+.pcoded[theme-layout="vertical"] .pcoded-main-container{
+    margin-top: 141px !important;
+}
+.pcoded[theme-layout="vertical"] .pcoded-header[pcoded-header-position="fixed"]{
+    top: 85px;
+}
+.pcoded[theme-layout="vertical"] .pcoded-navbar[pcoded-navbar-position="fixed"] {
+    top: 141px;
+}
+.dummyHeight{
+    height: 150px;
+}
+/* .categoryList.mouList h4{
+    font-size: 14px;
+} */
+.addMou {
+    margin: 0 0 1.8rem;
+}
+.addMou a {
+    font-size: 14px;
+    text-transform: uppercase;
+    border: 1px solid #3bb54a;
+    padding: 0 15px;
+    border-radius: 4px;
+    height: 34px;
+    line-height: 34px;
+    display: inline-block;
+    background: #3bb54a;
+    color: #fff;
+}
+.mt--40{
+    margin-top: 40px;
+}
+textarea{
+    resize: none;
+}
+/*-- Inner Header design end --*/
