@@ -18,4 +18,6 @@ export class mouModel{
     public  nodal_Mobile_No :string;
     public  nodal_Email :string;
     public  nodal_Designation :string;
+
+    public app_status:string;
 } 

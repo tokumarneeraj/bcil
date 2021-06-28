@@ -116,7 +116,7 @@
             </div>
         </nav>
 
-        <div class="pcoded-main-container">
+        <div class="pcoded-main-container" *ngIf="showpage">
             <div class="pcoded-wrapper">
                 <nav class="pcoded-navbar">
                     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
@@ -355,13 +355,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-blue">INIT</h4>
-                                                                      <h6 class="text-muted m-b-0">394049</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S101')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-bar-chart f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'init'}">
                                                           <div class="card-footer bg-c-blue">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -372,6 +373,7 @@
                                                                   </div>
                                                               </div>            
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -382,7 +384,7 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-green">MOU Pending</h4>
-                                                                      <h6 class="text-muted m-b-0">5345324</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S102')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-file-text-o f-28"></i>
@@ -409,7 +411,7 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-red">MOU Change Req by Admin</h4>
-                                                                      <h6 class="text-muted m-b-0">44325435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S103')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-registered f-28"></i>

@@ -8,6 +8,7 @@ import {environment} from '../../environments/environment'
 export class Bdoservice
 {
     get addmouurl() { return environment.baseUrl + '/api/bdo/addmou'; }
+    get getmouurl() { return environment.baseUrl + '/api/bdo/getmou'; }
     constructor(private http: HttpClient ){
 
     }
@@ -21,6 +22,15 @@ export class Bdoservice
           });
       
           return this.http.post<mouModel>(this.addmouurl, JSON.stringify(mou),{headers:headers});
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+
+         public  GetMou<T>(): Observable<mouModel[]> {
+        
+          return this.http.get<mouModel[]>(this.getmouurl);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

@@ -10,9 +10,10 @@ import { MouAddComponent } from './mou-add/mou-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { BcilInitComponent } from './bcil-init/bcil-init.component';
 
 @NgModule({
-  declarations: [BcilComponent, LoginComponent, BcilDashboardComponent, MouAddComponent],
+  declarations: [BcilComponent, LoginComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent],
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
