@@ -11,14 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BcilInitComponent } from './bcil-init/bcil-init.component';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [BcilComponent, LoginComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent],
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
-  
+    ModalModule,
     BcilRoutingModule,
     SharedModule
   ]

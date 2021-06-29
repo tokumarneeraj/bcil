@@ -21,8 +21,8 @@ export class BcilDashboardComponent implements OnInit {
   }
 
 moulistfilter(data){
-
- return this.mouModel?.filter(x=>x.app_status==data).length;
+  console.log(this.mouModel?.filter(x=>x.app_Status==data).length)
+ return this.mouModel?.filter(x=>x.app_Status==data).length;
 }
 
 }

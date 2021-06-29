@@ -280,14 +280,17 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Inistution</th>
+                                                          
                                                             <th>Action</th>
+                                                           
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let item of mouModel;let i=index;">
-                                                            <th scope="row">{{i}}</th>
+                                                            <th scope="row">{{i+1}}</th>
                                                             <td>{{item.int_Uni_Name}}</td>
-                                                            <td><button >Forword</button></td>
+                                                           
+                                                            <td><button    class="btn btn-success" (click)="onmodalclick(item)">Forword</button></td>
                                                      </tr>
                                                     </tbody>
                                                 </table>
@@ -313,3 +316,64 @@
     </div>
 </div>
 
+<div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Application Forword</h4>
+                <button type="button" class="close float-right" title="Close" (click)="editorModal1.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="ForwardForm">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label
+                                class="col-form-label">Subject</label>
+                            <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }"/>
+                              
+                        
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label
+                                class="col-form-label">Remarks</label>
+                            <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
+                                </textarea>
+                        
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label
+                                class="col-form-label">Upload</label>
+                            <input type="file" class="form-control"   (change)="fileChangeEvent($event)"/>
+                              
+                        
+                        </div>
+                        </div>
+                        <div class="form-group row">
+                        <div class="col-sm-6">
+                            <button
+                            type="submit"
+                            class="btn btn-success"
+                            (click)="uploadFile()"
+                          
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                    </div>
+               
+
+                    </form>
+                <!-- <ul class="list-unstyled">
+                    <li *ngFor="let role of rows"><input type="checkbox" name="checkbox-{{role.name}}" [disabled]="!canManageRoles" [(ngModel)]="selectedValues1[role.id+uservalue]" />{{role.name}}</li>
+                </ul>
+                <button type="button" [ngClass]="!canManageRoles ? 'd-none': ''" [disabled]="!canManageRoles" (click)="addrolepermissionsubmit()" class="btn btn-sm btn-outline-primary"><i class="fa fa-save"></i> Submit</button> -->
+
+            </div>
+        </div>
+    </div>

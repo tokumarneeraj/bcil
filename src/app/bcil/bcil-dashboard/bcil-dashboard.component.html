@@ -391,6 +391,7 @@
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_pending'}">
                                                           <div class="card-footer bg-c-green">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -401,6 +402,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -418,6 +420,7 @@
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_change_by_admin'}">
                                                           <div class="card-footer bg-c-red">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -428,6 +431,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -438,13 +442,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-purple">MOU Proposed by LM</h4>
-                                                                      <h6 class="text-muted m-b-0">45435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S104')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-paint-brush f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_porposed_by_lm'}">
                                                           <div class="card-footer bg-c-purple">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -455,6 +460,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -465,13 +471,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-yellow">Agreement Signed</h4>
-                                                                      <h6 class="text-muted m-b-0">4578435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S105')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-copyright f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'agreementsigned'}">
                                                           <div class="card-footer bg-c-yellow">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -482,6 +489,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -492,13 +500,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-orange">MOU Accepted by Client</h4>
-                                                                      <h6 class="text-muted m-b-0">4545435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S106')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-pagelines f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_accepted_by_client'}">
                                                           <div class="card-footer bg-c-dark-orange">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -509,6 +518,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -519,13 +529,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-pink">BDO Assigned</h4>
-                                                                      <h6 class="text-muted m-b-0">4545435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S107')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-cogs f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'bodassigned'}">
                                                           <div class="card-footer bg-c-dark-pink">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -536,6 +547,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -546,13 +558,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-green">TTO Req Approved</h4>
-                                                                      <h6 class="text-muted m-b-0">7787885</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S108')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-file-excel-o f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'tto_req_approved'}">
                                                           <div class="card-footer bg-c-dark-green">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -563,6 +576,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>                                           
@@ -573,13 +587,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-blue">IPM Assigned</h4>
-                                                                      <h6 class="text-muted m-b-0">3761885</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S109')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-file-excel-o f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'ipm_assigned'}">
                                                           <div class="card-footer bg-c-dark-blue">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -590,6 +605,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>                                           
