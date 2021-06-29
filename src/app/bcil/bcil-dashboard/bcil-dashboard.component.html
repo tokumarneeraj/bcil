@@ -92,7 +92,7 @@
                         <li class="user-profile header-notification">
                             <a href="#!" class="waves-effect waves-light userName">
                                 <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>IPM/BDO</span>
+                                <span>{{usertype}}</span>
                                 <i class="ti-angle-down"></i>
                             </a>
                             <ul class="show-notification profile-notification">
@@ -125,7 +125,7 @@
                             <div class="main-menu-header">
                                 <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
                                 <div class="user-details">
-                                    <span id="more-details">Name<i class="fa fa-caret-down"></i></span>
+                                    <span id="more-details">{{UserName}}<i class="fa fa-caret-down"></i></span>
                                 </div>
                             </div>
       
@@ -149,85 +149,85 @@
                         </div> -->
                         <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
                         <ul class="pcoded-item pcoded-left-item">
-                          <li class="active index.html">
-                              <a href="index.html" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-home"></i></span>
-                                  <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Dashboard</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>                                  
-                          </li>
-                            <li class="pcoded-hasmenu">
-                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Technology Transfer</span>
+                            <li class="active index.html">
+                                <a href="index.html" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-home"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Dashboard</span>
                                     <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu fontWeight">
-                                  <li class=" ">
-                                      <a href="form-elements-component.html" class="waves-effect waves-dark">
-                                          <span class="pcoded-micon"><i class="ti-layers"></i></span>
-                                          <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Milestones</span>
-                                          <span class="pcoded-mcaret"></span>
-                                      </a>
-                                  </li>
-                                  <li class=" ">
-                                      <a href="bs-basic-table.html" class="waves-effect waves-dark">
-                                          <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                          <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Assignments</span>
-                                          <span class="pcoded-mcaret"></span>
-                                      </a>
-                                  </li>
-                                </ul>
+                                </a>                                  
                             </li>
-                            <!-- <li class=""> -->
-                                <!-- <a href="#" class="waves-effect waves-dark"> -->
-                                    <!-- <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span> -->
-                                    <!-- <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Patent</span> -->
-                                    <!-- <span class="pcoded-mcaret"></span> -->
-                                <!-- </a>                                   -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="#" class="waves-effect waves-dark"> -->
-                                    <!-- <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span> -->
-                                    <!-- <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Trademark</span> -->
-                                    <!-- <span class="pcoded-mcaret"></span> -->
-                                <!-- </a>                                   -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="#" class="waves-effect waves-dark"> -->
-                                    <!-- <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span> -->
-                                    <!-- <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Design</span> -->
-                                    <!-- <span class="pcoded-mcaret"></span> -->
-                                <!-- </a>                                   -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="#" class="waves-effect waves-dark"> -->
-                                    <!-- <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span> -->
-                                    <!-- <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Copyright</span> -->
-                                    <!-- <span class="pcoded-mcaret"></span> -->
-                                <!-- </a>                                   -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                                <!-- <a href="#" class="waves-effect waves-dark"> -->
-                                    <!-- <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span> -->
-                                    <!-- <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Plant Variety</span> -->
-                                    <!-- <span class="pcoded-mcaret"></span> -->
-                                <!-- </a>                                   -->
-                            <!-- </li> -->
-                            <!-- <li class=""> -->
-                              <!-- <a href="#" class="waves-effect waves-dark"> -->
-                                  <!-- <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span> -->
-                                  <!-- <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Other Services</span> -->
-                                  <!-- <span class="pcoded-mcaret"></span> -->
-                              <!-- </a>                                   -->
-                          <!-- </li> -->
-                            <li class="">
-                              <a href="#" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                  <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Reports</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>                                  
-                          </li>
+                              <li class="pcoded-hasmenu" *ngIf="usertype=='BDM' || usertype=='ADMIN'">
+                                  <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
+                                      <span class="pcoded-mtext" data-i18n="nav.dash.main">Technology Transfer</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>
+                                  <ul class="pcoded-submenu fontWeight">
+                                    <li class=" ">
+                                        <a href="form-elements-component.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layers"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Milestones</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class=" ">
+                                        <a href="bs-basic-table.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Assignments</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                  </ul>
+                              </li>
+                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                                  <a href="#" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                      <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Patent</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>                                  
+                              </li>
+                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                                  <a href="#" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                      <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Trademark</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>                                  
+                              </li>
+                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                                  <a href="#" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                      <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Design</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>                                  
+                              </li>
+                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                                  <a href="#" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                      <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Copyright</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>                                  
+                              </li>
+                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                                  <a href="#" class="waves-effect waves-dark">
+                                      <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                      <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Plant Variety</span>
+                                      <span class="pcoded-mcaret"></span>
+                                  </a>                                  
+                              </li>
+                              <li class="" *ngIf="usertype=='ADMIN'">
+                                <a href="#" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Other Services</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>                                  
+                            </li>
+                              <li class="">
+                                <a href="#" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Reports</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>                                  
+                            </li>
                             <li class="pcoded-hasmenu">
                                 <a href="javascript:void(0)" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
@@ -301,7 +301,8 @@
                                   
                                 </ul>
                             </li>
-                        </ul> 
+                              
+                          </ul> 
                         <div class="dummyHeight"></div>                        
                     </div>
                 </nav>
@@ -391,6 +392,7 @@
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_pending'}">
                                                           <div class="card-footer bg-c-green">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -401,9 +403,40 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
+
+                                              <div class="col-xl-3 col-md-6">
+                                                <a href="#">
+                                                    <div class="card">
+                                                        <div class="card-block">
+                                                            <div class="row align-items-top">
+                                                                <div class="col-12">
+                                                                    <h4 class="text-c-green">MOU Proposed by Admin</h4>
+                                                                    <h6 class="text-muted m-b-0">{{moulistfilter('S110')}}</h6>
+                                                                </div>
+                                                                <!-- <div class="col-4 text-right">
+                                                                    <i class="fa fa-file-text-o f-28"></i>
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                        <a routerLink='../bcil-table'  [queryParams]="{type:'mou_proposed_by_admin'}">
+                                                        <div class="card-footer bg-c-green">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-9">
+                                                                    <p class="text-white m-b-0">View</p>
+                                                                </div>
+                                                                <div class="col-3 text-right">
+                                                                    <i class="fa fa-arrow-right text-white f-16"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                      </a>
+                                                    </div>
+                                                </a>                                                
+                                            </div>
                                               <div class="col-xl-3 col-md-6">
                                                   <a href="#">
                                                       <div class="card">
@@ -418,6 +451,7 @@
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_change_by_admin'}">
                                                           <div class="card-footer bg-c-red">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -428,6 +462,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -438,13 +473,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-purple">MOU Proposed by LM</h4>
-                                                                      <h6 class="text-muted m-b-0">45435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S104')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-paint-brush f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_porposed_by_lm'}">
                                                           <div class="card-footer bg-c-purple">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -455,6 +491,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -465,13 +502,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-yellow">Agreement Signed</h4>
-                                                                      <h6 class="text-muted m-b-0">4578435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S105')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-copyright f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'agreementsigned'}">
                                                           <div class="card-footer bg-c-yellow">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -482,6 +520,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -492,13 +531,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-orange">MOU Accepted by Client</h4>
-                                                                      <h6 class="text-muted m-b-0">4545435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S106')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-pagelines f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_accepted_by_client'}">
                                                           <div class="card-footer bg-c-dark-orange">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -509,6 +549,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                        </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -519,13 +560,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-pink">BDO Assigned</h4>
-                                                                      <h6 class="text-muted m-b-0">4545435</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S107')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-cogs f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'bodassigned'}">
                                                           <div class="card-footer bg-c-dark-pink">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -536,6 +578,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>
@@ -546,13 +589,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-green">TTO Req Approved</h4>
-                                                                      <h6 class="text-muted m-b-0">7787885</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S108')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-file-excel-o f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'tto_req_approved'}">
                                                           <div class="card-footer bg-c-dark-green">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -563,6 +607,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>                                           
@@ -573,13 +618,14 @@
                                                               <div class="row align-items-top">
                                                                   <div class="col-12">
                                                                       <h4 class="text-c-dark-blue">IPM Assigned</h4>
-                                                                      <h6 class="text-muted m-b-0">3761885</h6>
+                                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S109')}}</h6>
                                                                   </div>
                                                                   <!-- <div class="col-4 text-right">
                                                                       <i class="fa fa-file-excel-o f-28"></i>
                                                                   </div> -->
                                                               </div>
                                                           </div>
+                                                          <a routerLink='../bcil-table'  [queryParams]="{type:'ipm_assigned'}">
                                                           <div class="card-footer bg-c-dark-blue">
                                                               <div class="row align-items-center">
                                                                   <div class="col-9">
@@ -590,6 +636,7 @@
                                                                   </div>
                                                               </div>
                                                           </div>
+                                                          </a>
                                                       </div>
                                                   </a>                                                
                                               </div>                                           

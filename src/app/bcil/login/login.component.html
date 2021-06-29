@@ -34,29 +34,36 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-5">
-                    <div class="loginCard">
+                    <div class="loginCard" [formGroup]="LoginForm">
                         <h2>Login</h2>            
                         <div class="loginForm">
                             <div class="form-group">
                                 <label>Your Email Address</label>
                                 <div class="input-group">
                                     <i class="fa fa-user"></i>
-                                    <input class="form-control" id="userid" type="password" maxLength="20" size="12" name="userid" runat="server" required />
+                                    <input class="form-control" id="userid" maxLength="20" formControlName="email" size="12" name="userid" runat="server"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    
+                                                            
+                                                           
                                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                 </div>
                             </div>
+                            <p *ngIf="submitted && f.email.errors" class="invalid-feedback">required</p>
                             <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group">
                                     <i class="fa fa-key"></i>
-                                    <input class="form-control" id="pwd" type="password" maxLength="15" size="12" name="pwd" runat="server" required />
+                                    <input class="form-control" id="pwd" type="password" maxLength="15" formControlName="password" size="12" name="pwd" runat="server" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                    
                                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                 </div>
                                 
-                            </div>                   
+                            </div>    
+                            <p *ngIf="submitted && f.password.errors" class="invalid-feedback">required</p>
+               
                             <div class="actionBtn">
                                 <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button (click)="loginSubmit()" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </div>

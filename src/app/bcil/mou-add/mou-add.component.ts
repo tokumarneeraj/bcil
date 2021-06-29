@@ -41,10 +41,12 @@ nodal_Designation:['', Validators.required]
   onSubmit() {
     this.submitted = true;
 
-  // if (this.AddMouForm.invalid) {
-  //       return;
-  //   }
+  if (this.AddMouForm.invalid) {
+        return;
+    }
     this.Bdoservice.AddMou(this.AddMouForm.value).subscribe(data=>{
+      alert("data save Successfully");
+      this.router.navigateByUrl("bcil/bcil-dashboard");
       console.log(data)
     })
   }

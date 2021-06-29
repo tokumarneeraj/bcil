@@ -1,4 +1,5 @@
 export class mouModel{
+    public  refid :string;
     public  int_Uni_Name :string;
     public  dept_Name :string;
 
@@ -19,5 +20,5 @@ export class mouModel{
     public  nodal_Email :string;
     public  nodal_Designation :string;
 
-    public app_status:string;
+    public app_Status:string;
 } 
