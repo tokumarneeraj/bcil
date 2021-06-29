@@ -11,9 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BcilInitComponent } from './bcil-init/bcil-init.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [BcilComponent, LoginComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent],
+  declarations: [BcilComponent, LoginComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent],
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
