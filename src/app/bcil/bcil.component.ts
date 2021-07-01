@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-bcil',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BcilComponent implements OnInit {
 
-  constructor() { }
+  usertype:string;
+  UserName:string;
+  constructor(private _cookieService: CookieService) {
+    this.usertype=this._cookieService.get("UserType");
+    this.UserName=this._cookieService.get("UserName");
+  }
 
   ngOnInit(): void {
   }

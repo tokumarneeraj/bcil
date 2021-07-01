@@ -1,4 +1,4 @@
-<div id="pcoded" class="pcoded">
+<!--<div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
     <div class="pcoded-container navbar-wrapper">
         <nav class="navbar header-navbar pcoded-header">
@@ -18,9 +18,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <a href="index.html">
-                        <img class="img-fluid" src="assets/images/bcil-logo.png" alt="Theme-Logo" />
-                    </a> -->
+                   
                     <a class="mobile-options waves-effect waves-light">
                         <i class="ti-more"></i>
                     </a>
@@ -31,15 +29,7 @@
                         <li>
                             <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
                         </li>
-                        <!-- <li class="header-search">
-                            <div class="main-search morphsearch-search">
-                                <div class="input-group">
-                                    <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon search-btn"><i class="ti-search blackMenu"></i></span>
-                                </div>
-                            </div>
-                        </li> -->
+                       
                         <li>
                             <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
                                 <i class="ti-fullscreen blackMenu"></i>
@@ -52,43 +42,8 @@
                                 <i class="ti-bell blackMenu"></i>
                                 <span class="badge bg-c-red shadowColor"></span>
                             </a>
-                            <!-- <ul class="show-notification">
-                                <li>
-                                    <h6>Notifications</h6>
-                                    <label class="label label-danger">New</label>
-                                </li>
-                                <li class="waves-effect waves-light">
-                                    <div class="media">
-                                        <img class="d-flex align-self-center img-radius" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h5 class="notification-user">John Doe</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="waves-effect waves-light">
-                                    <div class="media">
-                                        <img class="d-flex align-self-center img-radius" src="assets/images/avatar-4.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h5 class="notification-user">Joseph William</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="waves-effect waves-light">
-                                    <div class="media">
-                                        <img class="d-flex align-self-center img-radius" src="assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h5 class="notification-user">Sara Soudein</h5>
-                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                            <span class="notification-time">30 minutes ago</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul> -->
-                        </li>
+                            
+                         </li>
                         <li class="user-profile header-notification">
                             <a href="#!" class="waves-effect waves-light userName">
                                 <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
@@ -224,7 +179,7 @@
                       </ul> 
                       <div class="dummyHeight"></div>  
                     </div>
-                </nav>
+                </nav> -->
                 <div class="pcoded-content">
                     <!-- Page-header start -->
                     <div class="page-header">
@@ -232,8 +187,8 @@
                             <div class="row align-items-center">
                                 <div class="col-md-8">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Technology Transfer</h5>
-                                        <p class="m-b-0">Assignments</p>
+                                        <h5 class="m-b-10">MOU</h5>
+                                        <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -241,10 +196,10 @@
                                         <li class="breadcrumb-item">
                                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="#!">Technology Transfer</a>
+                                        <li class="breadcrumb-item"><a href="#!">MOU</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="#!">Assignments</a>
-                                        </li>
+                                        <!-- <li class="breadcrumb-item"><a href="#!">Assignments</a>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -286,6 +241,7 @@
                                                             <th>Director Mobile</th>
                                                           
                                                             <th>Action</th>
+                                                            <th>History</th>
                                                            
                                                         </tr>
                                                     </thead>
@@ -300,6 +256,8 @@
                                                            
                                                             <td><button value="back" *ngIf="isbackbutton"   class="btn btn-success" (click)="onmodalclick($event.target.value,item)">Change Req</button>
                                                                 <button value="forword"   class="btn btn-success" (click)="onmodalclick($event.target.value,item)">Forword</button></td>
+                                                                <td><a class="btn btn-success" routerLink='../file-history'  [queryParams]="{refid:item.refid}">View</a></td>
+
                                                      </tr>
                                                     </tbody>
                                                 </table>
@@ -320,10 +278,10 @@
                     </div>
                     <app-footer></app-footer>
                 </div>
-            </div>
+            <!-- </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
     <div class="modal-dialog modal-lg">

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BcilRoutingModule } from './bcil-routing.module';
 import { BcilComponent } from './bcil.component';
-import { LoginComponent } from './login/login.component';
+// import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../shared.module';
 import { BcilDashboardComponent } from './bcil-dashboard/bcil-dashboard.component';
 import { MouAddComponent } from './mou-add/mou-add.component';
@@ -14,8 +14,9 @@ import { BcilInitComponent } from './bcil-init/bcil-init.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ViewfileComponent } from './viewfile/viewfile.component';
 @NgModule({
-  declarations: [BcilComponent, LoginComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent],
+  declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent],
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,

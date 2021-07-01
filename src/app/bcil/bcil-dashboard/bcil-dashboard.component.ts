@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Bdoservice} from '../../services/bdo.service'
 import {mouModel} from '../../model/mou.model';
-import { CookieService } from 'ngx-cookie-service';
+//import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-bcil-dashboard',
   templateUrl: './bcil-dashboard.component.html',
@@ -11,11 +11,11 @@ export class BcilDashboardComponent implements OnInit {
 
   mouModel:mouModel[];
   showpage=false;
-  usertype:string;
-  UserName:string;
-  constructor(private Bdoservice:Bdoservice,private _cookieService: CookieService) {
-    this.usertype=this._cookieService.get("UserType");
-    this.UserName=this._cookieService.get("UserName");
+  // usertype:string;
+  // UserName:string;
+  constructor(private Bdoservice:Bdoservice) {
+    // this.usertype=this._cookieService.get("UserType");
+    // this.UserName=this._cookieService.get("UserName");
    }
 
   ngOnInit(): void {

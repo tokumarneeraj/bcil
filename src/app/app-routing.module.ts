@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BcilComponent } from './bcil/bcil.component';
+import { LoginComponent } from './bcil/login/login.component';
 
 
 const routes: Routes = [
-  { path: '',redirectTo: 'bcil', pathMatch: 'full'},
+   { path: '',redirectTo: 'Login', pathMatch: 'full'},
+  {path:"Login",component:LoginComponent},
   { path: 'bcil', component:BcilComponent, loadChildren: () => import('./bcil/bcil.module').then(m => m.BcilModule) }
 ];
 
