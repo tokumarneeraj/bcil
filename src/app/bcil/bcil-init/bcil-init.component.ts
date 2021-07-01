@@ -22,19 +22,22 @@ createdBy="";
 UploadFileViewModel = new UploadFileViewModel();
 @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
-  isbackbutton=false;
-array=[{name:'init',value:'S101',createdBy:"Test1",forward:"S102",back:false},
-{name:'mou_pending',value:'S102',createdBy:"Tes2" ,forward:"S104",back:false},
-{name:'mou_change_by_admin',value:'S103',createdBy:"Tes3",forward:"S104",back:false},
-{name:'mou_porposed_by_lm',value:'S104',createdBy:"Tes4",forward:"S110",back:true,backStatus:"S103"},
-{name:'agreementsigned',value:'S105',createdBy:"Tes5",forward:"S106",back:false},
-{name:'mou_accepted_by_client',value:'S106',createdBy:"Tes6",forward:"S107",back:false},
-{name:'bodassigned',value:'S107',createdBy:"Tes4",forward:"S108",back:false},
-{name:'tto_req_approved',value:'S108',createdBy:"Tes5",forward:"S109",back:false},
-{name:'ipm_assigned',value:'S109',createdBy:"Tes6",forward:"S110",back:false},
-{name:'mou_proposed_by_admin',value:'S110',createdBy:"Tes6",forward:"S111",back:false},
+  
 
+array=[{name:'init',value:'S101',createdBy:"Test1",forward:"S102",forwardCheck:true,forwardText:'Forword',back:false},
+{name:'mou_pending',value:'S102',createdBy:"Tes2" ,forward:"S104",forwardCheck:true,forwardText:'Forword',back:false},
+{name:'mou_change_by_admin',value:'S103',createdBy:"Tes3",forward:"S104",forwardCheck:true,forwardText:'Forword',back:true},
+{name:'mou_porposed_by_lm',value:'S104',createdBy:"Tes4",forward:"S110",forwardCheck:true,forwardText:'Forword',back:true,backStatus:"S103",backbuttonText:'Change Req'},
+{name:'agreementsigned',value:'S105',createdBy:"Tes5",forward:"S107",forwardCheck:true,forwardText:'Forword',back:false,type:true},
+{name:'mou_accepted_by_client',value:'S106',createdBy:"Tes6",forward:"S105",forwardCheck:true,forwardText:'Forword',back:false},
+{name:'bodassigned',value:'S107',createdBy:"Tes4",forward:"S108",forwardCheck:true,forwardText:'Forword',back:false},
+{name:'tto_req_approved',value:'S108',createdBy:"Tes5",forward:"S109",forwardCheck:true,forwardText:'Forword',back:false},
+{name:'ipm_assigned',value:'S109',createdBy:"Tes6",forward:"S110",forwardCheck:true,forwardText:'Forword',back:false},
+{name:'mou_proposed_by_admin',value:'S110',createdBy:"Tes6",forward:"S111",forwardCheck:true,forwardText:'Client request Change',approvedvalue:'S112',approved:true,approvedText:"Approved",back:false,backStatus:"S112",backbuttonText:'Mou Change By Client'},
+{name:'mou_change_by_client',value:'S111',createdBy:"Tes3",forward:"S103",forwardCheck:true,forwardText:'Forword',back:false},
+{name:'mou_approved_by_admin',value:'S112',createdBy:"Tes3",forward:"S106",forwardCheck:true,forwardText:'Forword',back:false},
 ]
+activearray=this.array[0];
 
   constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice,private formbuilder: FormBuilder) { }
 
@@ -42,8 +45,10 @@ array=[{name:'init',value:'S101',createdBy:"Test1",forward:"S102",back:false},
 
     this.route.queryParams.subscribe((params)=>{
 this.type=this.array.find(x=>x.name==params.type).value;
+this.activearray=this.array.find(x=>x.name==params.type);
 this.createdBy=this.array.find(x=>x.name==params.type).createdBy;
-this.isbackbutton=this.array.find(x=>x.name==params.type).back;
+
+
     })
     this.Bdoservice.GetMou().subscribe(data=>{console.log(data)
       debugger
@@ -54,6 +59,7 @@ this.isbackbutton=this.array.find(x=>x.name==params.type).back;
           
         subject: ['', Validators.required],
         remarks:[''],
+        type:['']
       });
   }
   get f() { return this.ForwardForm.controls; }
@@ -82,6 +88,7 @@ this.isbackbutton=this.array.find(x=>x.name==params.type).back;
       this.submitted=true;
       this.UploadFileViewModel.subject=this.ForwardForm.get('subject').value;
       this.UploadFileViewModel.remarks=this.ForwardForm.get('remarks').value;
+      this.UploadFileViewModel.type=this.ForwardForm.get('type').value;
      
       this.UploadFileViewModel.createdBy=this.createdBy;
       this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
@@ -93,10 +100,23 @@ this.isbackbutton=this.array.find(x=>x.name==params.type).back;
     
 
   }
+  
   onmodalclick(e:string,data:mouModel){
-    this.UploadFileViewModel.app_Status=e=="forword"?this.array.find(x=>x.value==this.type).forward:this.array.find(x=>x.value==this.type).backStatus;
+    this.UploadFileViewModel.app_Status=e=="approve"?this.array.find(x=>x.value==this.type).approvedvalue:
+    "forword"?this.array.find(x=>x.value==this.type).forward:this.array.find(x=>x.value==this.type).backStatus;
     this.UploadFileViewModel.app_ref_id=data.refid;
+    if(e=="forword"||e=="back"){
     this.editorModal1.show();
+    }
+    else if("approve"){
+      this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
+
+        alert("Application Approved Successfully")
+        //this.editorModal1.hide();
+        this.ngOnInit();    
+      })
+    
+    }
   }
 
 }

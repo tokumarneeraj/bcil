@@ -9,4 +9,5 @@ export class UploadFileViewModel {
     public app_Status: string;
     public createdBy:string;
     public app_ref_id:string;
+    public type: string;
   }
