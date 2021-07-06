@@ -90,9 +90,18 @@ export class MouAddComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+
+    this.AddMouForm.controls.nodal_Name.enable();
+    this.AddMouForm.controls.nodal_Phone_No.enable();
+    this.AddMouForm.controls.nodal_Mobile_No.enable();
+    this.AddMouForm.controls.nodal_Email.enable();
+    this.AddMouForm.controls.nodal_Designation_Drop.enable();
+    this.AddMouForm.controls.nodal_Designation.enable();
+
     if (this.AddMouForm.invalid) {
       return;
     }
+
     this.Bdoservice.AddMou(this.AddMouForm.value).subscribe(data => {
       alert("data save Successfully");
       this.router.navigateByUrl("bcil/bcil-dashboard");
