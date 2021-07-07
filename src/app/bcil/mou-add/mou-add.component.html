@@ -390,15 +390,17 @@
 
                               <div class="col-sm-6">
                                 <label class="col-form-label">Phone No.</label>
-                                <input type="text" class="form-control" formControlName="phoneNo" [ngClass]="{ 'is-invalid': submitted && f.phoneNo.errors }"
+                                <input type="text" class="form-control" formControlName="phoneNo" [pattern]="mobNumberPattern" [ngClass]="{ 'is-invalid': submitted && f.phoneNo.errors }"
                                        placeholder="">
-                                <p *ngIf="submitted && f.phoneNo.errors" class="invalid-feedback">Phone No. is required</p>
+                                <p *ngIf="submitted && f.phoneNo.errors" class="invalid-feedback">Enter valid Phone No.</p>
+                                <!--<p *ngIf="f.phoneNo.errors.pattern" class="invalid-feedback">Please, Enter 10 digit Mobile Number.</p>-->
                               </div>
 
                               <div class="col-sm-6">
                                 <label class="col-form-label">Email Id</label>
                                 <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                                <p *ngIf="submitted && f.email.errors" class="invalid-feedback">Email is required</p>
+                               
+                                <p *ngIf="submitted && f.email.errors" class="invalid-feedback">Valid Email is required</p>
                               </div>
                             </div>
                             <div class="form-group row">
@@ -422,9 +424,10 @@
                               </div>
                               <div class="col-sm-6">
                                 <label class="col-form-label">Phone No.</label>
-                                <input type="text" class="form-control" formControlName="dir_Phone_No" [ngClass]="{ 'is-invalid': submitted && f.dir_Phone_No.errors }"
+                                <input type="text" class="form-control" formControlName="dir_Phone_No" [pattern]="mobNumberPattern"  [ngClass]="{ 'is-invalid': submitted && f.dir_Phone_No.errors }"
                                        placeholder="">
-                                <p *ngIf="submitted && f.dir_Phone_No.errors" class="invalid-feedback">Phone No is required</p>
+                                <p *ngIf="submitted && f.dir_Phone_No.errors" class="invalid-feedback">Enter valid Phone No </p>
+                                
                               </div>
 
                             </div>
@@ -433,7 +436,7 @@
 
                               <div class="col-sm-6">
                                 <label class="col-form-label">Mobile No.</label>
-                                <input type="text" class="form-control" formControlName="dir_Mobile_No" [ngClass]="{ 'is-invalid': submitted && f.dir_Mobile_No.errors }">
+                                <input type="text" class="form-control" formControlName="dir_Mobile_No" [pattern]="mobNumberPattern" [ngClass]="{ 'is-invalid': submitted && f.dir_Mobile_No.errors }">
                                 <p *ngIf="submitted && f.dir_Mobile_No.errors" class="invalid-feedback">Mobile No is required</p>
                               </div>
                               <div class="col-sm-6">
@@ -493,15 +496,15 @@
 
                               <div class="col-sm-6">
                                 <label class="col-form-label">Phone No.</label>
-                                <input type="text" class="form-control" formControlName="nodal_Phone_No" [ngClass]="{ 'is-invalid': submitted && f.nodal_Phone_No.errors }"
+                                <input type="text" class="form-control" [pattern]="mobNumberPattern" formControlName="nodal_Phone_No" [ngClass]="{ 'is-invalid': submitted && f.nodal_Phone_No.errors }"
                                        placeholder="">
-                                <p *ngIf="submitted && f.nodal_Phone_No.errors" class="invalid-feedback">Nodal Officer Phone No is required</p>
+                                <p *ngIf="submitted && f.nodal_Phone_No.errors" class="invalid-feedback">Enter valid Phone No</p>
                               </div>
                             </div>
                             <div class="form-group row">
                               <div class="col-sm-6">
                                 <label class="col-form-label">Mobile No.</label>
-                                <input type="text" class="form-control" formControlName="nodal_Mobile_No" [ngClass]="{ 'is-invalid': submitted && f.nodal_Mobile_No.errors }">
+                                <input type="text" class="form-control" formControlName="nodal_Mobile_No" [pattern]="mobNumberPattern" [ngClass]="{ 'is-invalid': submitted && f.nodal_Mobile_No.errors }">
                                 <p *ngIf="submitted && f.nodal_Mobile_No.errors" class="invalid-feedback">Nodal Officer Mobile No is required</p>
                               </div>
 
@@ -509,7 +512,7 @@
                                 <label class="col-form-label">Email Id</label>
                                 <input type="text" class="form-control" formControlName="nodal_Email" [ngClass]="{ 'is-invalid': submitted && f.nodal_Email.errors }"
                                        placeholder="">
-                                <p *ngIf="submitted && f.nodal_Email.errors" class="invalid-feedback">Nodal Officer Mobile No is required</p>
+                                <p *ngIf="submitted && f.nodal_Email.errors" class="invalid-feedback">Nodal Officer Email Id is required</p>
                               </div>
                             </div>
                             <div class="form-group row">

@@ -13,6 +13,8 @@ export class MouAddComponent implements OnInit {
   loading = false;
   dir_des_Value = '';
   nodal_des_Value = '';
+  mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
+
 
   constructor(private formbuilder: FormBuilder, private router: Router, private Bdoservice: Bdoservice) { }
   get f() { return this.AddMouForm.controls; }
@@ -22,17 +24,17 @@ export class MouAddComponent implements OnInit {
       int_Uni_Name: ['', Validators.required],
       dept_Name: ['', Validators.required],
       address: ['', Validators.required],
-      phoneNo: ['', Validators.required],
-      email: ['', Validators.required],
+      phoneNo: ['', Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")],
+      email: ['', [Validators.required, Validators.email]],
       gstNo: ['', Validators.required],
       dir_Head_Name: ['', Validators.required],
-      dir_Phone_No: ['', Validators.required],
+      dir_Phone_No: [''],
       dir_Mobile_No: ['', Validators.required],
-      dir_Email: ['', Validators.required],
+      dir_Email: ['', [Validators.required, Validators.email]],
       nodal_Name: ['', Validators.required],
-      nodal_Phone_No: ['', Validators.required],
+      nodal_Phone_No: [''],
       nodal_Mobile_No: ['', Validators.required],
-      nodal_Email: ['', Validators.required],
+      nodal_Email: ['', [Validators.required, Validators.email]],
       nodal_Designation: [''],
       dir_Designation: [''],
       int_Uni_Drop: ['', Validators.required],

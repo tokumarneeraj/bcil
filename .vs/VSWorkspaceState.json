@@ -4,8 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\bcil",
-    "\\src\\app\\bcil\\bcil-dashboard"
+    "\\src\\app\\bcil\\bcil-dashboard",
+    "\\src\\app\\bcil\\login",
+    "\\src\\app\\bcil\\mou-add",
+    "\\src\\app\\model",
+    "\\src\\app\\services",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\bcil\\bcil-dashboard\\bcil-dashboard.component.html",
+  "SelectedNode": "\\src\\app\\bcil\\mou-add\\mou-add.component.ts",
   "PreviewInSolutionExplorer": false
 }
