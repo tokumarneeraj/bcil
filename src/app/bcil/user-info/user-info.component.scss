@@ -1,0 +1,128 @@
+
+  
+  .separator-hr {
+    margin: 0 5px;
+    border-top-style: dashed;
+  }
+  
+  .edit-separator-hr {
+    margin: 10px 5px;
+    border-top-style: dashed;
+  }
+  
+  .last-separator-hr {
+    margin-top: 5px;
+  }
+  
+  .edit-last-separator-hr {
+    margin-top: 15px;
+  }
+  
+  .password-separator-hr {
+    margin: 5px;
+    border-style: none;
+  }
+  
+  
+  .form-group {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  input.form-control {
+    border-left-width: 5px;
+  }
+  
+  .invalid-feedback {
+    display: block;
+  }
+  
+  .password-well {
+    padding: 0.5rem;
+  }
+  
+  .hint-sm {
+    display: block;
+  }
+  
+  .form-check.user-enabled {
+    display: inline-block;
+  }
+  
+  .unblock-user {
+    margin-left: 34px;
+  }
+  .btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+  color:#fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    user-select: none;
+
+    border: 1px solid transparent;
+   
+    font-size: 1rem;
+    line-height: 1.5;
+   
+    
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.ng-dropdown-panel.ng-select-top {
+  bottom: 100%;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-color: #e6e6e6;
+  margin-bottom: -1px;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items {
+  box-sizing: border-box;
+  display: block;
+  height: auto;
+  max-height: 240px;
+  overflow-y: auto;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  background-color: #fff;
+  color: rgba(0,0,0,.87);
+  padding: 8px 10px;
+}
+.ng-dropdown-panel {
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1050;
+}
+.ng-dropdown-panel {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 6%);
+  left: 0;
+}
+  @media (min-width: 992px) {
+    .user-enabled {
+      margin-left: 40px;
+    }
+  }
+  

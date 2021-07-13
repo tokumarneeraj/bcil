@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Bdoservice} from '../../services/bdo.service'
 import {mouModel} from '../../model/mou.model';
+import { AccountService } from 'src/app/services/account.service';
+import { Permission } from 'src/app/model/permission.model';
 //import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-bcil-dashboard',
@@ -11,9 +13,41 @@ export class BcilDashboardComponent implements OnInit {
 
   mouModel:mouModel[];
   showpage=false;
+  
+  get canViewDesign() {
+    return this.accountService.userHasPermission(Permission.viewDesignPermission);
+  }
+
+  get canViewCopyright() {
+    return this.accountService.userHasPermission(Permission.viewCopyrightPermission);
+  }
+  get canViewTrademark() {
+    return this.accountService.userHasPermission(Permission.viewTrademarkPermission);
+  }
+
+  get canViewPatent() {
+    return this.accountService.userHasPermission(Permission.viewPatentPermission);
+  }
+  get canViewPlantvarity() {
+    return this.accountService.userHasPermission(Permission.viewPlantvarityPermission);
+  }
+
+  get canViewOtherservices() {
+    return this.accountService.userHasPermission(Permission.viewOtherservicesPermission);
+  }
+  get canViewReport() {
+    return this.accountService.userHasPermission(Permission.viewReportPermission);
+  }
+
+  get canViewTechnologytransfer() {
+    return this.accountService.userHasPermission(Permission.viewTechnologyTransferPermission);
+  }
+  get canViewMou() {
+    return this.accountService.userHasPermission(Permission.viewMouPermission);
+  }
   // usertype:string;
   // UserName:string;
-  constructor(private Bdoservice:Bdoservice) {
+  constructor(private Bdoservice:Bdoservice, private accountService: AccountService) {
     // this.usertype=this._cookieService.get("UserType");
     // this.UserName=this._cookieService.get("UserName");
    }

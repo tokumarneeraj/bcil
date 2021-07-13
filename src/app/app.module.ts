@@ -8,6 +8,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginComponent } from './bcil/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertService } from './services/alert.service';
+import { ThemeManager } from './services/theme-manager';
+import { ConfigurationService } from './services/configuration.service';
+import { AppTranslationService, TranslateLanguageLoader } from './services/app-translation.service';
+import { AccountService } from './services/account.service';
+import { OidcHelperService } from './services/oidc-helper.service';
+import { LocalStoreManager } from './services/local-store-manager.service';
+import { AccountEndpoint } from './services/account-endpoint.service';
+import { AuthService } from './services/auth.service';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
+import { AuthGuard } from './services/auth-guard.service';
+import { ToastaModule } from 'ngx-toasta';
+
+
 
 // import { HeaderComponent } from './header/header.component';
 // import { FooterComponent } from './footer/footer.component';
@@ -15,7 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+   
     // HeaderComponent,
     // FooterComponent
   ],
@@ -24,11 +41,29 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
+    ToastaModule.forRoot(),
     AppRoutingModule,
-
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: TranslateLanguageLoader,
+      },
+    }),
+    OAuthModule.forRoot(),
     ModalModule.forRoot(),
   ],
-  providers: [Bdoservice],
+  providers: [Bdoservice,
+    DatePipe,
+    AlertService,
+    ThemeManager,
+    ConfigurationService,
+    AuthGuard,
+    AppTranslationService,
+   AuthService,
+    AccountService,
+    AccountEndpoint,
+    LocalStoreManager,
+    OidcHelperService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
