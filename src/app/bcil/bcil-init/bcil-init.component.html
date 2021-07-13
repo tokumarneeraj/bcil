@@ -265,6 +265,8 @@
                                                 </tr>
                                               </tbody>
                                             </table>
+
+
                                             <!--table for client start-->
                                             <table class="table table-hover" *ngIf="showClientPage">
                                               <thead>
@@ -275,7 +277,7 @@
                                                   <th>Phone No.</th>
                                                   <th>Director Name</th>
                                                   <th>Director Mobile</th>
-                                                  <th>App. Status</th>
+                                                  
 
                                                   <th>Action</th>
                                                   <th>History</th>
@@ -290,13 +292,14 @@
                                                   <td>{{item.phoneNo}}</td>
                                                   <td>{{item.dir_Head_Name}}</td>
                                                   <td>{{item.dir_Mobile_No}}</td>
-                                                  <td>{{item.app_Status}}</td>
+                                                  
 
                                                   <td>
                                                     <button value="back" *ngIf="activearray?.back" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
-                                                    <button class="btn btn-info" *ngIf='item.app_Status === "S108" || item.app_Status ==="S109"' (click)="onClientClick(item)">Upload</button>
-                                                    <button value="approve" *ngIf="activearray?.approved" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
-
+                                                    <button class="btn btn-info" *ngIf='item.app_Status === "S108"' (click)="onClientClick(item,'S113')">Upload</button>
+                                                    <button value="assign" *ngIf='isAdmin && item.app_Status==="S113"' class="btn btn-success" (click)="onClientClick(item,'S114')">Assign</button>
+                                                    <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S104"' (click)="onClientClick(item,'S115')">Upload</button>
+                                                    
                                                   </td>
                                                   <td><a class="btn btn-success" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>
 
@@ -407,7 +410,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>Assignment and Tech. Disclosure Form</h4>
+        <h4>{{formHeader}}</h4>
         <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
           <span aria-hidden="true">&times;</span>
         </button>

@@ -3,7 +3,7 @@ import {Bdoservice} from '../../services/bdo.service'
 import { mouModel } from '../../model/mou.model';
 import { CookieService } from 'ngx-cookie-service';
 
-import {mouModel} from '../../model/mou.model';
+
 import { AccountService } from 'src/app/services/account.service';
 import { Permission } from 'src/app/model/permission.model';
 //import { CookieService } from 'ngx-cookie-service';
@@ -20,9 +20,11 @@ export class BcilDashboardComponent implements OnInit {
   UserName: string;
   mouModelFinal: mouModel[];
 
-  constructor(private Bdoservice: Bdoservice, private _cookieService: CookieService) {
-    this.usertype=this._cookieService.get("UserType");
-    this.UserName=this._cookieService.get("UserName");
+  //constructor(private Bdoservice: Bdoservice, private _cookieService: CookieService) {
+  //  this.usertype = this._cookieService.get("UserType");
+  //  this.UserName = this._cookieService.get("UserName");
+  //}
+  
   
   get canViewDesign() {
     return this.accountService.userHasPermission(Permission.viewDesignPermission);

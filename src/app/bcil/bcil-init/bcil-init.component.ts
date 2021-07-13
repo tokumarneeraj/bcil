@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { mouModel } from '../../model/mou.model';
+import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-bcil-init',
@@ -29,6 +31,12 @@ export class BcilInitComponent implements OnInit {
   showClientPage = false;
   @ViewChild('editorModal2', { static: true })
   editorModal2: ModalDirective;
+  UserEmail: string;
+  UserId: string;
+  userRoles: string[];
+  isAdmin: boolean;
+  formHeader: string;
+  isBdm: boolean;
 
   array = [{ name: 'init', value: 'S101', createdBy: "Test1", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false },
   { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: false },
@@ -41,32 +49,44 @@ export class BcilInitComponent implements OnInit {
   { name: 'ipm_assigned', value: 'S109', createdBy: "Tes6", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: false },
   { name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S111", forwardCheck: true, forwardText: 'Client request Change', approvedvalue: 'S112', approved: true, approvedText: "Approved", back: false, backStatus: "S112", backbuttonText: 'Mou Change By Client' },
   { name: 'mou_change_by_client', value: 'S111', createdBy: "Tes3", forward: "S103", forwardCheck: true, forwardText: 'Forword', back: false },
-    { name: 'mou_approved_by_admin', value: 'S112', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
-    { name: 'tta_init', value: 'S113', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
+  { name: 'mou_approved_by_admin', value: 'S112', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
+  { name: 'tta_init', value: 'S113', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
   ]
   activearray = this.array[0];
 
-  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService)
-  {
-    this.usertype = this._cookieService.get("UserType");
-    this.UserName = this._cookieService.get("UserName");
+  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
+
+
+    this.UserEmail = this.accountService.currentUser.email;
+    this.UserId = this.accountService.currentUser.id;
+    this.userRoles = this.accountService.currentUser.roles;
+
+    
   }
 
   ngOnInit(): void {
 
+    this.isAdmin = this.userRoles.includes('Super Admin');
+    this.isBdm = this.userRoles.includes('BDM');
+
     this.route.queryParams.subscribe((params) => {
+      this.createdBy = this.UserId;
+
       if (params.type == "ViewMouAll") {
         this.type = "ViewMouAll";
-        this.createdBy = this.UserName;
+
       }
-      else if(params.type == "tta_init"){
+      else if (params.type == "tta_init") {
         this.type = "tta_init";
-        this.createdBy = this.UserName;
+
+      }
+      else if (params.type == "tta_evaluation_assigned") {
+        this.type = "tta_evaluation_assigned";
       }
       else {
-      this.type = this.array.find(x => x.name == params.type).value;
-      this.activearray = this.array.find(x => x.name == params.type);
-      this.createdBy = this.array.find(x => x.name == params.type).createdBy;
+        this.type = this.array.find(x => x.name == params.type).value;
+        this.activearray = this.array.find(x => x.name == params.type);
+        this.createdBy = this.array.find(x => x.name == params.type).createdBy;
       }
 
     })
@@ -74,19 +94,47 @@ export class BcilInitComponent implements OnInit {
       console.log(data)
       debugger
       if (this.type == "ViewMouAll") {
-        this.mouModel = data.filter(x => x.nodal_Name == this.UserName);
+        this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S108");
         this.showClientPage = true;
+        this.formHeader = "Assignment and Tech. Disclosure Form";
       }
 
       else if (this.type == "tta_init") {
-        this.mouModel = data.filter(x => x.nodal_Name == this.UserName && x.app_Status=="S113");
+
+        this.formHeader = "Assign to BDM";
         this.showClientPage = true;
+
+        if (this.isAdmin == true) {
+          this.mouModel = data.filter(x => x.app_Status == "S113");
+        }
+        else {
+          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S113");
+        }
+
       }
+      else if (this.type == "tta_evaluation_assigned") {
+
+        this.formHeader = "Upload Evaluation Report";
+        this.showClientPage = true;
+
+        if (this.isAdmin == true) {
+          this.mouModel = data.filter(x => x.app_Status == "S114");
+        }
+
+        else if (this.isBdm == true) {
+
+          this.mouModel = data.filter(x => x.app_Status == "S114");
+        }
+        else {
+          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S114");
+        }
+      }
+
       else {
         this.mouModel = data.filter(x => x.app_Status == this.type);
         this.showpage = true;
       }
-      
+
 
     })
     this.ForwardForm = this.formbuilder.group({
@@ -130,6 +178,7 @@ export class BcilInitComponent implements OnInit {
       alert("Application Forward Successfully")
       this.editorModal1.hide();
       this.ngOnInit();
+
     })
 
 
@@ -154,9 +203,9 @@ export class BcilInitComponent implements OnInit {
   }
 
   //for client start
-  onClientClick(data: mouModel) {
+  onClientClick(data: mouModel,status) {
     this.UploadFileViewModel.app_ref_id = data.refid;
-    this.UploadFileViewModel.app_Status = "S113"
+    this.UploadFileViewModel.app_Status = status;
     this.editorModal2.show();
 
   }
@@ -191,9 +240,10 @@ export class BcilInitComponent implements OnInit {
     this.UploadFileViewModel.createdBy = this.createdBy;
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
 
-      alert("Assignment/Tech. Disclosure form uploaded successfully")
+      alert("Submitted Successfully")
       this.editorModal2.hide();
-      this.ngOnInit();
+      //this.ngOnInit();
+      this.router.navigateByUrl('bcil/tta-dashboard')
     })
   }
   //for client end
