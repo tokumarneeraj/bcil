@@ -2,6 +2,7 @@ import { NgModule} from '@angular/core';
 //import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { GroupByPipe } from './pipes/group-by.pipe';
 // import { ComplaintDetailsComponent } from './complaint-details/complaint-details.component';
 // import { RouterModule } from '@angular/router';
 // import { ReactiveFormsModule } from '@angular/forms';
@@ -22,10 +23,12 @@ import { FooterComponent } from './footer/footer.component';
   //  NgxSpinnerModule
   ],
   declarations: [
+    GroupByPipe,
     HeaderComponent,
     FooterComponent
   ],
   exports: [
+    GroupByPipe,
     HeaderComponent,
    FooterComponent
     // ComplaintDetailsComponent,

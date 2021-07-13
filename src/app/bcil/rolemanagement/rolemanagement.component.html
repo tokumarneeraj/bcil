@@ -1,0 +1,123 @@
+<div class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+    <app-header></app-header>
+        <div class="pcoded-content">
+            <!-- Page-header start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Roles</h5>
+                                <!-- <p class="m-b-0">MOU Form</p> -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="breadcrumb-title">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html"> <i class="fa fa-home"></i> </a>
+                                </li>
+                                <!-- <li class="breadcrumb-item"><a href="#!">MOU</a>
+                                </li> -->
+                                <li class="breadcrumb-item"><a href="#!">Roles</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page-header end -->
+            <div class="pcoded-inner-content">
+                <!-- Main-body start -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+
+                        <!-- Page body start -->
+                        <div class="page-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- Basic Form Inputs card start -->
+                                    <div class="card">
+                                        <div class="card-header">
+                                          
+                                            <div class="row">
+                                                <div class="col-md-12 text-left">
+                                                    <div class="addMou">
+                                                        <a class="text-white" (click)="newRole()" >New Roles</a>
+                                                    </div>                                            
+                                                </div>
+                                            </div>          
+                                            <!-- <span>use class <code>table-hover</code> inside table element</span> -->
+                                            <div class="card-header-right">
+                                                <ul class="list-unstyled card-option">
+                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                                    <li><i class="fa fa-trash close-card"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="card-block table-border-style">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                            <th>Description</th>
+                                                            <th>Users</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let row of rows;let i=index;">
+                                                            <th scope="row">{{i+1}}</th>
+                                                            <td>{{row.name}}</td>
+                                                            <td>{{row.description}}</td>
+                                                            <td>{{row.usersCount}}</td>
+                                                            <td>
+                                                                <a class="mr-3" (click)="editRole(row)"><i class="fa fa-edit fa-lg"></i></a>
+                                                                <a (click)="deleteRole(row)"><i class="fa fa-trash fa-lg"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                 
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Hover table card end -->
+                             
+                                    <!-- Basic Form Inputs card end -->
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Page body end -->
+                    </div>
+                </div>
+                <!-- Main-body end -->
+                <!-- <div id="styleSelector">
+
+                </div> -->
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+<div class="modal fade" bsModal #editorModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4> <i _ngcontent-vnn-c102="" class="fa fa-shield"></i>New Role</h4>
+                <button type="button" class="close float-right" title="Close" (click)="editorModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <app-role-editor #roleEditor></app-role-editor>
+            </div>
+        </div>
+    </div>

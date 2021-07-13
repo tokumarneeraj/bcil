@@ -93,7 +93,7 @@
                   </ul> -->
               </li>
                 <li class="user-profile header-notification">
-                    <a href="#!" class="waves-effect waves-light userName">
+                    <a href="javascript:void(0)" class="waves-effect waves-light userName">
                         <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                         <span>{{usertype}}</span>
                         <i class="ti-angle-down"></i>
@@ -101,14 +101,14 @@
                     <ul class="show-notification profile-notification">
                         
                         <li class="waves-effect waves-light">
-                            <a href="user-profile.html">
+                            <a routerLink="./user-profile">
                                 <i class="ti-user"></i> Profile
                             </a>
                         </li>
                        
                        
                         <li class="waves-effect waves-light">
-                            <a href="auth-normal-sign-in.html">
+                            <a href="javascript:void(0)" (click)="logout()">
                                 <i class="ti-layout-sidebar-left"></i> Logout
                             </a>
                         </li>
@@ -123,7 +123,7 @@
 <div class="pcoded-main-container">
     <div class="pcoded-wrapper">
         <nav class="pcoded-navbar">
-                    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                    <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="icon-close icons"></i></a></div>
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
@@ -136,8 +136,8 @@
                             <div class="main-menu-content">
                                 <ul>
                                     <li class="more-details">
-                                        <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>                                          
-                                        <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                        <a routerLink="./user-profile"><i class="ti-user"></i>View Profile</a>                                          
+                                        <a (click)="logout()" class="btn-link"><i class="ti-layout-sidebar-left"></i>Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -183,6 +183,20 @@
                                     </li>
                                   </ul>
                               </li>
+                              <li class="" >
+                                <a routerLink="./users" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">User</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>                                  
+                            </li>
+                            <li class="">
+                                <a routerLink="./roles" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Role</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>                                  
+                            </li>
                               <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
                                   <a href="#" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>

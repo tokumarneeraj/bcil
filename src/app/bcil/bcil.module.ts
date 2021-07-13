@@ -15,14 +15,40 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ViewfileComponent } from './viewfile/viewfile.component';
+import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
+import { UsermanagementComponent } from './usermanagement/usermanagement.component';
+import { RoleEditorComponent } from './role-editor/role-editor.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLanguageLoader } from '../services/app-translation.service';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastaModule } from 'ngx-toasta';
+import { ProfileComponent } from './profile/profile.component';
+import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
+
 @NgModule({
-  declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent],
+  declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
+    RolemanagementComponent,
+    UsermanagementComponent,
+    RoleEditorComponent,
+    UserInfoComponent,
+    ProfileComponent,
+    MouDashboardComponent],
   imports: [
     CommonModule,
+    ToastaModule.forRoot(),
+    NgSelectModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     ModalModule,
     BcilRoutingModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useClass: TranslateLanguageLoader,
+      },
+    }),
+   
     SharedModule
   ]
 })
