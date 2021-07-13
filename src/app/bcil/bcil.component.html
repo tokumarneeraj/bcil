@@ -93,7 +93,7 @@
                   </ul> -->
               </li>
                 <li class="user-profile header-notification">
-                    <a href="#!" class="waves-effect waves-light userName">
+                    <a href="javascript:void(0)" class="waves-effect waves-light userName">
                         <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                         <span>{{usertype}}</span>
                         <i class="ti-angle-down"></i>
@@ -101,14 +101,14 @@
                     <ul class="show-notification profile-notification">
                         
                         <li class="waves-effect waves-light">
-                            <a href="user-profile.html">
+                            <a routerLink="./user-profile">
                                 <i class="ti-user"></i> Profile
                             </a>
                         </li>
                        
                        
                         <li class="waves-effect waves-light">
-                            <a href="auth-normal-sign-in.html">
+                            <a href="javascript:void(0)" (click)="logout()">
                                 <i class="ti-layout-sidebar-left"></i> Logout
                             </a>
                         </li>
@@ -123,7 +123,7 @@
 <div class="pcoded-main-container">
     <div class="pcoded-wrapper">
         <nav class="pcoded-navbar">
-                    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                    <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="icon-close icons"></i></a></div>
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
@@ -136,8 +136,8 @@
                             <div class="main-menu-content">
                                 <ul>
                                     <li class="more-details">
-                                        <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>                                          
-                                        <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                        <a routerLink="./user-profile"><i class="ti-user"></i>View Profile</a>                                          
+                                        <a (click)="logout()" class="btn-link"><i class="ti-layout-sidebar-left"></i>Logout</a>
                                     </li>
                                 </ul>
                             </div>
@@ -160,7 +160,7 @@
                                     <span class="pcoded-mcaret"></span>
                                 </a>                                  
                             </li>
-                              <li class="pcoded-hasmenu" *ngIf="usertype=='BDM' || usertype=='ADMIN'">
+                              <li class="pcoded-hasmenu" *ngIf="canViewTechnologytransfer">
                                   <a href="javascript:void(0)" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
                                       <span class="pcoded-mtext" data-i18n="nav.dash.main">Technology Transfer</span>
@@ -183,56 +183,70 @@
                                     </li>
                                   </ul>
                               </li>
-                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                              <li class="" *ngIf="canViewusers">
+                                <a routerLink="./users" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Users</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>                                  
+                            </li>
+                            <li class="" *ngIf="canViewRoles">
+                                <a routerLink="./roles" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                                    <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Roles</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>                                  
+                            </li>
+                              <li class="" *ngIf="canViewPatent">
                                   <a href="#" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                       <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Patent</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>                                  
                               </li>
-                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                              <li class="" *ngIf="canViewTrademark">
                                   <a href="#" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                       <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Trademark</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>                                  
                               </li>
-                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                              <li class="" *ngIf="canViewDesign">
                                   <a href="#" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                       <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Design</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>                                  
                               </li>
-                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                              <li class="" *ngIf="canViewCopyright">
                                   <a href="#" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                       <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Copyright</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>                                  
                               </li>
-                              <li class="" *ngIf="usertype=='IPM' || usertype=='ADMIN'">
+                              <li class="" *ngIf="canViewPlantvarity">
                                   <a href="#" class="waves-effect waves-dark">
                                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                       <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Plant Variety</span>
                                       <span class="pcoded-mcaret"></span>
                                   </a>                                  
                               </li>
-                              <li class="" *ngIf="usertype=='ADMIN'">
+                              <li class="" *ngIf="canViewOtherservices">
                                 <a href="#" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Other Services</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>                                  
                             </li>
-                              <li class="">
+                              <li class="" *ngIf="canViewReport">
                                 <a href="#" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Reports</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>                                  
                             </li>
-                            <li class="pcoded-hasmenu">
+                            <li class="pcoded-hasmenu" *ngIf="canViewMou">
                                 <a href="javascript:void(0)" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.dash.main">MOU</span>
