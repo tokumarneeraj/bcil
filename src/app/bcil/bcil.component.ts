@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastaConfig, ToastaService, ToastData, ToastOptions } from 'ngx-toasta';
+import { Permission } from '../model/permission.model';
 import { AccountService } from '../services/account.service';
 import { AlertCommand, AlertDialog, AlertService, DialogType, MessageSeverity } from '../services/alert.service';
 import { AppTranslationService } from '../services/app-translation.service';
@@ -149,5 +150,43 @@ export class BcilComponent implements OnInit {
       case MessageSeverity.wait: this.toastaService.wait(toastOptions); break;
     }
   }
+  get canViewRoles() {
+    return this.accountService.userHasPermission(Permission.viewRolesPermission);
+  }
 
+  get canViewusers() {
+    return this.accountService.userHasPermission(Permission.viewUsersPermission);
+  }
+
+  get canViewDesign() {
+    return this.accountService.userHasPermission(Permission.viewDesignPermission);
+  }
+
+  get canViewCopyright() {
+    return this.accountService.userHasPermission(Permission.viewCopyrightPermission);
+  }
+  get canViewTrademark() {
+    return this.accountService.userHasPermission(Permission.viewTrademarkPermission);
+  }
+
+  get canViewPatent() {
+    return this.accountService.userHasPermission(Permission.viewPatentPermission);
+  }
+  get canViewPlantvarity() {
+    return this.accountService.userHasPermission(Permission.viewPlantvarityPermission);
+  }
+
+  get canViewOtherservices() {
+    return this.accountService.userHasPermission(Permission.viewOtherservicesPermission);
+  }
+  get canViewReport() {
+    return this.accountService.userHasPermission(Permission.viewReportPermission);
+  }
+
+  get canViewTechnologytransfer() {
+    return this.accountService.userHasPermission(Permission.viewTechnologyTransferPermission);
+  }
+  get canViewMou() {
+    return this.accountService.userHasPermission(Permission.viewMouPermission);
+  }
 }
