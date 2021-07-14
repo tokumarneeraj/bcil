@@ -298,7 +298,7 @@
                                                     <button value="back" *ngIf="activearray?.back" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
                                                     <button class="btn btn-info" *ngIf='item.app_Status === "S108"' (click)="onClientClick(item,'S113')">Upload</button>
                                                     <button value="assign" *ngIf='isAdmin && item.app_Status==="S113"' class="btn btn-success" (click)="onClientClick(item,'S114')">Assign</button>
-                                                    <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S104"' (click)="onClientClick(item,'S115')">Upload</button>
+                                                    <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S114"' (click)="onClientClick(item,'S115')">Upload</button>
                                                     
                                                   </td>
                                                   <td><a class="btn btn-success" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>
