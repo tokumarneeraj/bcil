@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Bdoservice} from '../../services/bdo.service'
-import {mouModel} from '../../model/mou.model';
+import { mouModel } from '../../model/mou.model';
+import { CookieService } from 'ngx-cookie-service';
+
+
 import { AccountService } from 'src/app/services/account.service';
 import { Permission } from 'src/app/model/permission.model';
 //import { CookieService } from 'ngx-cookie-service';
@@ -13,6 +16,15 @@ export class BcilDashboardComponent implements OnInit {
 
   mouModel:mouModel[];
   showpage=false;
+  usertype:string;
+  UserName: string;
+  mouModelFinal: mouModel[];
+
+  //constructor(private Bdoservice: Bdoservice, private _cookieService: CookieService) {
+  //  this.usertype = this._cookieService.get("UserType");
+  //  this.UserName = this._cookieService.get("UserName");
+  //}
+  
   
   get canViewDesign() {
     return this.accountService.userHasPermission(Permission.viewDesignPermission);
@@ -64,6 +76,19 @@ export class BcilDashboardComponent implements OnInit {
 moulistfilter(data){
   console.log(this.mouModel?.filter(x=>x.app_Status==data).length)
  return this.mouModel?.filter(x=>x.app_Status==data).length;
-}
+  }
+
+
+  // for client
+  clientMouListFilter(data) {
+    
+    return this.mouModel?.filter(x => x.nodal_Email == data).length;
+
+  }
+  moufilter(data,email) {
+
+    return this.mouModel?.filter(x => x.app_Status == data && x.nodal_Email==email).length;
+  }
+  //-------
 
 }
