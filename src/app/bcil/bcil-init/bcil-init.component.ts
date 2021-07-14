@@ -83,6 +83,11 @@ export class BcilInitComponent implements OnInit {
       else if (params.type == "tta_evaluation_assigned") {
         this.type = "tta_evaluation_assigned";
       }
+
+      else if (params.type == "tta_evaluation_uploaded_by_bdm") {
+
+        this.type = "tta_evaluation_uploaded_by_bdm";
+      }
       else {
         this.type = this.array.find(x => x.name == params.type).value;
         this.activearray = this.array.find(x => x.name == params.type);
@@ -112,6 +117,7 @@ export class BcilInitComponent implements OnInit {
         }
 
       }
+
       else if (this.type == "tta_evaluation_assigned") {
 
         this.formHeader = "Upload Evaluation Report";
@@ -127,6 +133,25 @@ export class BcilInitComponent implements OnInit {
         }
         else {
           this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S114");
+        }
+      }
+
+
+      else if (this.type == "tta_evaluation_uploaded_by_bdm") {
+
+        this.formHeader = "Application Forward";
+        this.showClientPage = true;
+
+        if (this.isAdmin == true) {
+          this.mouModel = data.filter(x => x.app_Status == "S115");
+        }
+
+        else if (this.isBdm == true) {
+
+          this.mouModel = data.filter(x => x.app_Status == "S115");
+        }
+        else {
+          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S115");
         }
       }
 
