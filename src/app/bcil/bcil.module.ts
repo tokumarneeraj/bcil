@@ -25,6 +25,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastaModule } from 'ngx-toasta';
 import { ProfileComponent } from './profile/profile.component';
 import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -37,6 +39,9 @@ import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
   imports: [
     CommonModule,
     ToastaModule.forRoot(),
+  
+    TooltipModule.forRoot(),
+    PopoverModule.forRoot(),
     NgSelectModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
