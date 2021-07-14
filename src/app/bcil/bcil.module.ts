@@ -27,6 +27,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -35,7 +36,8 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     RoleEditorComponent,
     UserInfoComponent,
     ProfileComponent,
-    MouDashboardComponent],
+    MouDashboardComponent,
+    TtaDashboardComponent],
   imports: [
     CommonModule,
     ToastaModule.forRoot(),

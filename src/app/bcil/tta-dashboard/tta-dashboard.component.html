@@ -1,0 +1,167 @@
+<div class="pcoded-content">
+  <!-- Page-header start -->
+  <div class="page-header">
+    <div class="page-block">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="page-header-title">
+            <h5 class="m-b-10">MOU</h5>
+            <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb-title">
+            <li class="breadcrumb-item">
+              <a href="index.html"> <i class="fa fa-home"></i> </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#!">MOU</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page-header end -->
+  <div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+      <div class="page-wrapper">
+
+        <!-- Page body start -->
+        <div class="page-body">
+
+          <div class="row categoryList mouList">
+            <div class="col-sm-12">
+              <!-- Basic Form Inputs card start -->
+              <div class="row">
+                <!-- task, page, download counter  start -->
+                <div class="col-xl-3 col-md-6" *ngIf="isNodal">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-blue">Upload Assignment/Tech. disclosure form</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S108')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-table' [queryParams]="{type:'ViewMouAll'}">
+                        <div class="card-footer bg-c-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-green">TTA INIT</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S113')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-table' [queryParams]="{type:'tta_init'}">
+                        <div class="card-footer bg-c-green">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-yellow">TTA Evaluation Assigned</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S114')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-table' [queryParams]="{type:'tta_evaluation_assigned'}">
+                        <div class="card-footer bg-c-yellow">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-purple">TTA Evaluation Uploaded by BDM</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S115')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-table' [queryParams]="{type:'tta_evaluation_uploaded_by_bdm'}">
+                        <div class="card-footer bg-c-purple">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+              </div>
+              <!-- Basic Form Inputs card end -->
+            </div>
+          </div>
+        </div>
+        <!-- Page body end -->
+      </div>
+    </div>
+    <!-- Main-body end -->
+    <!-- <div id="styleSelector">
+
+    </div> -->
+  </div>
+  <app-footer></app-footer>
+</div>

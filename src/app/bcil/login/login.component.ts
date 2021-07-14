@@ -13,7 +13,7 @@ import { Utilities } from 'src/app/services/utilities';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  submitted=false;
+  submitted = false;
   LoginForm: FormGroup;
   userLogin = new UserLogin();
   isLoading = false;

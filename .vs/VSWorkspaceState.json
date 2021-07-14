@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\bcil",
+    "\\src\\app\\bcil\\bcil-dashboard",
+    "\\src\\app\\bcil\\bcil-init",
+    "\\src\\app\\bcil\\login",
+    "\\src\\app\\bcil\\mou-add",
+    "\\src\\app\\bcil\\mou-dashboard",
+    "\\src\\app\\bcil\\tta-dashboard"
+  ],
+  "SelectedNode": "\\src\\app\\bcil\\bcil-init\\bcil-init.component.html",
+  "PreviewInSolutionExplorer": false
+}
