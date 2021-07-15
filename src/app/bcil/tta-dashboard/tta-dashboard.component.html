@@ -50,7 +50,7 @@
             </div> -->
                         </div>
                       </div>
-                      <a routerLink='../bcil-table' [queryParams]="{type:'ViewMouAll'}">
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'ViewMouAll'}">
                         <div class="card-footer bg-c-blue">
                           <div class="row align-items-center">
                             <div class="col-9">
@@ -79,7 +79,7 @@
             </div> -->
                         </div>
                       </div>
-                      <a routerLink='../bcil-table' [queryParams]="{type:'tta_init'}">
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_init'}">
                         <div class="card-footer bg-c-green">
                           <div class="row align-items-center">
                             <div class="col-9">
@@ -106,7 +106,7 @@
 
                         </div>
                       </div>
-                      <a routerLink='../bcil-table' [queryParams]="{type:'tta_evaluation_assigned'}">
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_evaluation_assigned'}">
                         <div class="card-footer bg-c-yellow">
                           <div class="row align-items-center">
                             <div class="col-9">
@@ -133,7 +133,7 @@
 
                         </div>
                       </div>
-                      <a routerLink='../bcil-table' [queryParams]="{type:'tta_evaluation_uploaded_by_bdm'}">
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_evaluation_uploaded_by_bdm'}">
                         <div class="card-footer bg-c-purple">
                           <div class="row align-items-center">
                             <div class="col-9">
@@ -148,7 +148,256 @@
                     </div>
                   </a>
                 </div>
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-red">TTA Evaluation Closure by Admin</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S116')}}</h6>
+                          </div>
 
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_evaluation_closure_by_admin'}">
+                        <div class="card-footer bg-c-red">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-green">TTA Evaluation Approved by Admin</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S117')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_evaluation_approved_by_admin'}">
+                        <div class="card-footer bg-c-dark-green">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-blue">TTA Evaluation Change Request by Admin</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S118')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_evaluation_change_req_by_admin'}">
+                        <div class="card-footer bg-c-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-orange">TTA Closure Requested by BDM</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S119')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_closure_requested_by_bdm'}">
+                        <div class="card-footer bg-c-dark-orange">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-red">TTA Closed</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S120')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_closed'}">
+                        <div class="card-footer bg-c-red">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-blue">TTA Evaluation Change Request by Client </h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S121')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_evaluation_change_req_by_client'}">
+                        <div class="card-footer bg-c-dark-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-green">TTA Evaluation Accepted by Client</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S122')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_evaluation_accepted_by_client'}">
+                        <div class="card-footer bg-c-dark-green">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-pink">TTA Strategy Assigned</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S123')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_strategy_assigned'}">
+                        <div class="card-footer bg-c-dark-pink">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-yellow">TTA Strategy Uploaded by BDM</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S124')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_strategy_uploaded_by_bdm'}">
+                        <div class="card-footer bg-c-yellow">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
 
               </div>
               <!-- Basic Form Inputs card end -->

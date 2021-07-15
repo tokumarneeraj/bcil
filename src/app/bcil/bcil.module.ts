@@ -26,6 +26,7 @@ import { ToastaModule } from 'ngx-toasta';
 import { ProfileComponent } from './profile/profile.component';
 import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
 import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
+import { TtaMainComponent } from './tta-main/tta-main.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -35,7 +36,8 @@ import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
     UserInfoComponent,
     ProfileComponent,
     MouDashboardComponent,
-    TtaDashboardComponent],
+    TtaDashboardComponent,
+    TtaMainComponent],
   imports: [
     CommonModule,
     ToastaModule.forRoot(),

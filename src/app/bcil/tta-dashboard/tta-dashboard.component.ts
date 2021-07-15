@@ -33,7 +33,7 @@ export class TtaDashboardComponent implements OnInit {
 
 
 
-  // for client
+  
   clientMouListFilter(data) {
 
     if (this.isNodal == true) {
@@ -44,6 +44,6 @@ export class TtaDashboardComponent implements OnInit {
     }
   }
  
-  //-------
+  
 
 }

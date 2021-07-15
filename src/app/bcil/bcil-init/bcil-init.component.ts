@@ -70,95 +70,21 @@ export class BcilInitComponent implements OnInit {
     this.isBdm = this.userRoles.includes('BDM');
 
     this.route.queryParams.subscribe((params) => {
-      this.createdBy = this.UserId;
+       //this.createdBy = this.UserId;
 
-      if (params.type == "ViewMouAll") {
-        this.type = "ViewMouAll";
-
-      }
-      else if (params.type == "tta_init") {
-        this.type = "tta_init";
-
-      }
-      else if (params.type == "tta_evaluation_assigned") {
-        this.type = "tta_evaluation_assigned";
-      }
-
-      else if (params.type == "tta_evaluation_uploaded_by_bdm") {
-
-        this.type = "tta_evaluation_uploaded_by_bdm";
-      }
-      else {
         this.type = this.array.find(x => x.name == params.type).value;
         this.activearray = this.array.find(x => x.name == params.type);
         this.createdBy = this.array.find(x => x.name == params.type).createdBy;
-      }
+      
 
     })
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       debugger
-      if (this.type == "ViewMouAll") {
-        this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S108");
-        this.showClientPage = true;
-        this.formHeader = "Assignment and Tech. Disclosure Form";
-      }
 
-      else if (this.type == "tta_init") {
-
-        this.formHeader = "Assign to BDM";
-        this.showClientPage = true;
-
-        if (this.isAdmin == true) {
-          this.mouModel = data.filter(x => x.app_Status == "S113");
-        }
-        else {
-          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S113");
-        }
-
-      }
-
-      else if (this.type == "tta_evaluation_assigned") {
-
-        this.formHeader = "Upload Evaluation Report";
-        this.showClientPage = true;
-
-        if (this.isAdmin == true) {
-          this.mouModel = data.filter(x => x.app_Status == "S114");
-        }
-
-        else if (this.isBdm == true) {
-
-          this.mouModel = data.filter(x => x.app_Status == "S114");
-        }
-        else {
-          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S114");
-        }
-      }
-
-
-      else if (this.type == "tta_evaluation_uploaded_by_bdm") {
-
-        this.formHeader = "Application Forward";
-        this.showClientPage = true;
-
-        if (this.isAdmin == true) {
-          this.mouModel = data.filter(x => x.app_Status == "S115");
-        }
-
-        else if (this.isBdm == true) {
-
-          this.mouModel = data.filter(x => x.app_Status == "S115");
-        }
-        else {
-          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S115");
-        }
-      }
-
-      else {
-        this.mouModel = data.filter(x => x.app_Status == this.type);
+      this.mouModel = data.filter(x => x.app_Status == this.type);
         this.showpage = true;
-      }
+      
 
 
     })
@@ -227,50 +153,6 @@ export class BcilInitComponent implements OnInit {
     }
   }
 
-  //for client start
-  onClientClick(data: mouModel,status) {
-    this.UploadFileViewModel.app_ref_id = data.refid;
-    this.UploadFileViewModel.app_Status = status;
-    this.editorModal2.show();
-
-  }
-
-  ClientfileChangeEvent(event) {
-    if (event.target.files && event.target.files[0]) {
-      const fileUpload = event.target.files[0];
-      const filee = fileUpload.files;
-      this.UploadFileViewModel.fileFullName = fileUpload.name;
-
-      const sFileExtension = fileUpload.name
-        .split('.')
-      [fileUpload.name.split('.').length - 1].toLowerCase();
-      Utilities.getBase64(event.target.files[0]).then((data) => {
-        console.log(data);
-        this.UploadFileViewModel.fileType = '.' + sFileExtension;
-
-        let data1: any = data;
-        let contentType = data1?.split(',')[1];
-
-        this.UploadFileViewModel.file64 = contentType;
-      });
-    }
-  }
-  uploadClientFile() {
-
-    this.submitted = true;
-    this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
-    this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
-    this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
-
-    this.UploadFileViewModel.createdBy = this.createdBy;
-    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
-      alert("Submitted Successfully")
-      this.editorModal2.hide();
-      //this.ngOnInit();
-      this.router.navigateByUrl('bcil/tta-dashboard')
-    })
-  }
-  //for client end
+ 
 
 }
