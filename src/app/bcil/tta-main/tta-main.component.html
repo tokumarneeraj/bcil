@@ -65,9 +65,9 @@
 
 
                       <th>Action</th>
+                      <th *ngIf='isAdmin && (type=="S115" ||type=="S121" ||type=="S124")'></th>
                       <th *ngIf='isAdmin && (type=="S115" ||type=="S121")'></th>
-                      <th *ngIf='isAdmin && (type=="S115" ||type=="S121")'></th>
-                      <th *ngIf='isNodal && type=== "S117"'></th>
+                      <th *ngIf='isNodal && type=== "S117"|| type=="126"'></th>
                       <th>History</th>
 
                     </tr>
@@ -99,8 +99,20 @@
                         <button value="assign" *ngIf='isAdmin && item.app_Status==="S122"' class="btn btn-info" (click)="onClientClick(item,'S123')">Assign</button>
                         <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S123"' (click)="onClientClick(item,'S124')">Upload</button>
 
+                        <button value="assign" *ngIf='isAdmin && item.app_Status==="S124"' class="btn btn-success" (click)="onClientClick(item,'S126')">Approve</button>
+
+                        <button value="assign" *ngIf='isBdm && item.app_Status==="S125"' class="btn btn-info" (click)="onClientClick(item,'S124')">Update</button>
+
+                        <button value="assign" *ngIf='isNodal && item.app_Status==="S126"' class="btn btn-success" (click)="onClientClick(item,'S127')">Approve</button>
+
+                        <button value="assign" *ngIf='isAdmin && item.app_Status==="S128"' class="btn btn-success" (click)="onClientClick(item,'S125')">Forward</button>
+
+                        <button value="assign" *ngIf='isBdm && item.app_Status==="S127"' class="btn btn-success" (click)="onClientClick(item,'S129')">Submit</button>
+
+                        <button value="assign" *ngIf='isBdm && item.app_Status==="S129"' class="btn btn-success" (click)="onClientClick(item,'S130')">Submit</button>
 
                       </td>
+
                       <td *ngIf='isAdmin && item.app_Status==="S115"'><button value="assign" *ngIf='isAdmin && item.app_Status==="S115"' class="btn btn-success" (click)="onClientClick(item,'S117')">Forward</button></td>
                       <td *ngIf='isAdmin && item.app_Status==="S115"'><button value="assign" *ngIf='isAdmin && item.app_Status==="S115"' class="btn btn-info" (click)="onClientClick(item,'S118')">Change Request</button></td>
 
@@ -112,8 +124,11 @@
                       <td *ngIf='isAdmin && item.app_Status==="S121"'><button value="assign" *ngIf='isAdmin && item.app_Status==="S121"' class="btn btn-success" (click)="onClientClick(item,'S117')">Reject</button></td>
                       <td *ngIf='isAdmin && item.app_Status==="S121"'><button value="assign" *ngIf='isAdmin && item.app_Status==="S121"' class="btn btn-info" (click)="onClientClick(item,'S118')">Change Request</button></td>
 
+                      
+                      <td *ngIf='isAdmin && item.app_Status==="S124"'><button value="assign" *ngIf='isAdmin && item.app_Status==="S124"' class="btn btn-info" (click)="onClientClick(item,'S125')">Change Request</button></td>
 
 
+                      <td *ngIf='isNodal && item.app_Status==="S126"'><button value="assign" *ngIf='isNodal && item.app_Status==="S126"' class="btn btn-success" (click)="onClientClick(item,'S128')">Change Request</button></td>
 
 
                       <td><a class="btn btn-success" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>

@@ -57,6 +57,16 @@ export class TtaMainComponent implements OnInit {
     { name: 'tta_evaluation_accepted_by_client', value: 'S122', formHeader: 'Application Forward' },
     { name: 'tta_strategy_assigned', value: 'S123', formHeader: 'Application Forward' },
     { name: 'tta_strategy_uploaded_by_bdm', value: 'S124', formHeader: 'Application Forward' },
+    { name: 'tta_strategy_change_req_by_admin', value: 'S125', formHeader: 'Update Strategy' },
+    { name: 'tta_techb_and_flier_approved_by_admin', value: 'S126', formHeader: 'Application Forward' },
+    { name: 'tta_techb_and_flier_approved_by_scientist', value: 'S127', formHeader: 'Application Forward' },
+    { name: 'tta_change_req_by_scientist', value: 'S128', formHeader: 'Application Forward' },
+    { name: 'strategy_implemented', value: 'S129', formHeader: 'Application Forward' },
+    { name: 'tta_interest_received', value: 'S130', formHeader: 'Application Forward' },
+    { name: 'no_interest_received', value: 'S131', formHeader: 'Application Forward' },
+
+
+
   ]
   activearray = this.array[0];
 
