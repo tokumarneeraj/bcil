@@ -300,63 +300,74 @@
         </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="ForwardForm">
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Subject</label>
-                            <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }"/>
-                              
-                        
-                        </div>
-                    </div>
-                    <div class="form-group row" *ngIf="activearray?.type">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Type</label>
-                            <select type="text" class="form-control" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
-                                <option value="">Choose</option>
-                                <option value="MOU">MOU</option>
-                                <option value="NDA">NDA</option>
-                                <option value="Work Order">Work Order</option>
-                            </select>
-                              
-                        
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Remarks</label>
-                            <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
-                                </textarea>
-                        
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Upload</label>
-                            <input type="file" class="form-control"   (change)="fileChangeEvent($event)"/>
-                              
-                        
-                        </div>
-                        </div>
-                        <div class="form-group row">
-                        <div class="col-sm-6">
-                            <button
-                            type="submit"
-                            class="btn btn-success"
-                            (click)="uploadFile()"
-                          
-                          >
-                            Upload File
-                          </button>
-                        </div>
-                    </div>
-               
+              <form [formGroup]="ForwardForm">
 
-                    </form>
+                <div class="form-group row" *ngIf="type=='S101' && isAdmin">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Assign To</label>
+
+                    <select type="text" class="form-control" formControlName="assignto" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                      <option value="" selected>--select--</option>
+                      <option *ngFor="let data of rows" value="{{data.id}}">{{data.fullName}}</option>
+
+                    </select>
+
+
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Subject</label>
+                    <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
+
+
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="activearray?.type">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Type</label>
+                    <select type="text" class="form-control" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                      <option value="">Choose</option>
+                      <option value="MOU">MOU</option>
+                      <option value="NDA">NDA</option>
+                      <option value="Work Order">Work Order</option>
+                    </select>
+
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Remarks</label>
+                    <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
+                                </textarea>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Upload</label>
+                    <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <button type="submit"
+                            class="btn btn-success"
+                            (click)="uploadFile()">
+                      Upload File
+                    </button>
+                  </div>
+                  
+
+                </div>
+
+
+              </form>
                 <!-- <ul class="list-unstyled">
                     <li *ngFor="let role of rows"><input type="checkbox" name="checkbox-{{role.name}}" [disabled]="!canManageRoles" [(ngModel)]="selectedValues1[role.id+uservalue]" />{{role.name}}</li>
                 </ul>

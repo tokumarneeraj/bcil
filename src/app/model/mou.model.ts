@@ -26,4 +26,5 @@ export class mouModel {
   public nodal_Designation_Drop: string;
 
   public app_Status: string;
+  public assignto: string;
 } 

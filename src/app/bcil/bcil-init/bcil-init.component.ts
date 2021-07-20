@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { mouModel } from '../../model/mou.model';
+import { Role } from 'src/app/model/role.model';
+import { UserEdit } from 'src/app/model/user-edit.model';
+import { User } from 'src/app/model/user.model';
 import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
@@ -9,6 +12,8 @@ import { UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
+import { Departments } from 'src/app/model/department';
+import { AlertService, DialogType, MessageSeverity } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-bcil-init',
@@ -37,6 +42,20 @@ export class BcilInitComponent implements OnInit {
   isAdmin: boolean;
   formHeader: string;
   isBdm: boolean;
+  isLM: boolean;
+  rows: User[] = [];
+  rowsCache: User[] = [];
+  departments: Departments[] = [];
+  editedUser: UserEdit;
+  userview: any[] = [];
+  usermanage: any[] = [];
+  roleassign: any[] = [];
+  allRoles: Role[] = [];
+  loadingIndicator: boolean;
+  user: any;
+
+
+
 
   array = [{ name: 'init', value: 'S101', createdBy: "Test1", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false },
   { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: false },
@@ -54,12 +73,14 @@ export class BcilInitComponent implements OnInit {
   ]
   activearray = this.array[0];
 
-  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
+  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router, private alertService: AlertService) {
 
 
     this.UserEmail = this.accountService.currentUser.email;
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
+
+    this.accountService.getUsersAndRoles().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
 
     
   }
@@ -70,11 +91,12 @@ export class BcilInitComponent implements OnInit {
     this.isBdm = this.userRoles.includes('BDM');
 
     this.route.queryParams.subscribe((params) => {
-       //this.createdBy = this.UserId;
+
+        this.createdBy = this.UserId;
 
         this.type = this.array.find(x => x.name == params.type).value;
         this.activearray = this.array.find(x => x.name == params.type);
-        this.createdBy = this.array.find(x => x.name == params.type).createdBy;
+        //this.createdBy = this.array.find(x => x.name == params.type).createdBy;
       
 
     })
@@ -92,7 +114,8 @@ export class BcilInitComponent implements OnInit {
 
       subject: ['', Validators.required],
       remarks: [''],
-      type: ['']
+      type: [''],
+      assignto:[''],
     });
   }
   get f() { return this.ForwardForm.controls; }
@@ -122,6 +145,7 @@ export class BcilInitComponent implements OnInit {
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
+    this.UploadFileViewModel.assignto = this.ForwardForm.get('assignto').value;
 
     this.UploadFileViewModel.createdBy = this.createdBy;
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
@@ -153,6 +177,38 @@ export class BcilInitComponent implements OnInit {
     }
   }
 
- 
+  onDataLoadSuccessful(users: User[], roles: Role[]) {
+
+    this.accountService.getRoles(0, 0).subscribe(data => { })
+    console.log(users, roles)
+    this.alertService.stopLoadingMessage();
+    this.loadingIndicator = false;
+    let rol = [];
+    let rol1 = [];
+    debugger;
+
+    
+    this.allRoles = roles;
+
+    users.forEach((user, index) => {
+      (user as any).index = index + 1;
+    });
+
+    console.log(rol, this.userview, 'i', this.roleassign, this.usermanage)
+    this.rowsCache = [...users];
+
+    this.rows = users.filter(x => x.roles.includes('LM'));
+
+
+
+  }
+
+  onDataLoadFailed(error: any) {
+    this.alertService.stopLoadingMessage();
+    this.loadingIndicator = false;
+
+    this.alertService.showStickyMessage('Load Error', `Unable to retrieve users from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
+      MessageSeverity.error, error);
+  }
 
 }
