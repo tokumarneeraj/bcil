@@ -25,6 +25,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ToastaModule } from 'ngx-toasta';
 import { ProfileComponent } from './profile/profile.component';
 import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
 import { TtaMainComponent } from './tta-main/tta-main.component';
 
@@ -41,6 +43,9 @@ import { TtaMainComponent } from './tta-main/tta-main.component';
   imports: [
     CommonModule,
     ToastaModule.forRoot(),
+  
+    TooltipModule.forRoot(),
+    PopoverModule.forRoot(),
     NgSelectModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
