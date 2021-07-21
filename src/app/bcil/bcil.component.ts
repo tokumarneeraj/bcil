@@ -73,6 +73,14 @@ export class BcilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.notify_call();
+
+
+
+  }
+
+  notify_call() {
     this.Bdoservice.GetMou().subscribe(data => {
 
       this.mouModel = data.filter(x => x.assignto == this.UserId && x.app_Status == "S102");
@@ -122,10 +130,6 @@ export class BcilComponent implements OnInit {
 
       }
     })
-
-
-
-
   }
 
   calculateDiff(dateSent) {
