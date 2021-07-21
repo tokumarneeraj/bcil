@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { mouModel } from '../../model/mou.model';
+import { Role } from 'src/app/model/role.model';
+import { UserEdit } from 'src/app/model/user-edit.model';
+import { User } from 'src/app/model/user.model';
 import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
@@ -9,6 +12,8 @@ import { UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
+import { Departments } from 'src/app/model/department';
+import { AlertService, DialogType, MessageSeverity } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-bcil-init',
@@ -37,6 +42,20 @@ export class BcilInitComponent implements OnInit {
   isAdmin: boolean;
   formHeader: string;
   isBdm: boolean;
+  isLM: boolean;
+  rows: User[] = [];
+  rowsCache: User[] = [];
+  departments: Departments[] = [];
+  editedUser: UserEdit;
+  userview: any[] = [];
+  usermanage: any[] = [];
+  roleassign: any[] = [];
+  allRoles: Role[] = [];
+  loadingIndicator: boolean;
+  user: any;
+
+
+
 
   array = [{ name: 'init', value: 'S101', createdBy: "Test1", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false },
   { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: false },
@@ -54,12 +73,14 @@ export class BcilInitComponent implements OnInit {
   ]
   activearray = this.array[0];
 
-  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
+  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router, private alertService: AlertService) {
 
 
     this.UserEmail = this.accountService.currentUser.email;
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
+
+    this.accountService.getUsersAndRoles().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
 
     
   }
@@ -70,95 +91,22 @@ export class BcilInitComponent implements OnInit {
     this.isBdm = this.userRoles.includes('BDM');
 
     this.route.queryParams.subscribe((params) => {
-      this.createdBy = this.UserId;
 
-      if (params.type == "ViewMouAll") {
-        this.type = "ViewMouAll";
+        this.createdBy = this.UserId;
 
-      }
-      else if (params.type == "tta_init") {
-        this.type = "tta_init";
-
-      }
-      else if (params.type == "tta_evaluation_assigned") {
-        this.type = "tta_evaluation_assigned";
-      }
-
-      else if (params.type == "tta_evaluation_uploaded_by_bdm") {
-
-        this.type = "tta_evaluation_uploaded_by_bdm";
-      }
-      else {
         this.type = this.array.find(x => x.name == params.type).value;
         this.activearray = this.array.find(x => x.name == params.type);
-        this.createdBy = this.array.find(x => x.name == params.type).createdBy;
-      }
+        //this.createdBy = this.array.find(x => x.name == params.type).createdBy;
+      
 
     })
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       debugger
-      if (this.type == "ViewMouAll") {
-        this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S108");
-        this.showClientPage = true;
-        this.formHeader = "Assignment and Tech. Disclosure Form";
-      }
 
-      else if (this.type == "tta_init") {
-
-        this.formHeader = "Assign to BDM";
-        this.showClientPage = true;
-
-        if (this.isAdmin == true) {
-          this.mouModel = data.filter(x => x.app_Status == "S113");
-        }
-        else {
-          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S113");
-        }
-
-      }
-
-      else if (this.type == "tta_evaluation_assigned") {
-
-        this.formHeader = "Upload Evaluation Report";
-        this.showClientPage = true;
-
-        if (this.isAdmin == true) {
-          this.mouModel = data.filter(x => x.app_Status == "S114");
-        }
-
-        else if (this.isBdm == true) {
-
-          this.mouModel = data.filter(x => x.app_Status == "S114");
-        }
-        else {
-          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S114");
-        }
-      }
-
-
-      else if (this.type == "tta_evaluation_uploaded_by_bdm") {
-
-        this.formHeader = "Application Forward";
-        this.showClientPage = true;
-
-        if (this.isAdmin == true) {
-          this.mouModel = data.filter(x => x.app_Status == "S115");
-        }
-
-        else if (this.isBdm == true) {
-
-          this.mouModel = data.filter(x => x.app_Status == "S115");
-        }
-        else {
-          this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == "S115");
-        }
-      }
-
-      else {
-        this.mouModel = data.filter(x => x.app_Status == this.type);
+      this.mouModel = data.filter(x => x.app_Status == this.type);
         this.showpage = true;
-      }
+      
 
 
     })
@@ -166,7 +114,8 @@ export class BcilInitComponent implements OnInit {
 
       subject: ['', Validators.required],
       remarks: [''],
-      type: ['']
+      type: [''],
+      assignto:[''],
     });
   }
   get f() { return this.ForwardForm.controls; }
@@ -196,6 +145,7 @@ export class BcilInitComponent implements OnInit {
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
+    this.UploadFileViewModel.assignto = this.ForwardForm.get('assignto').value;
 
     this.UploadFileViewModel.createdBy = this.createdBy;
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
@@ -227,50 +177,38 @@ export class BcilInitComponent implements OnInit {
     }
   }
 
-  //for client start
-  onClientClick(data: mouModel,status) {
-    this.UploadFileViewModel.app_ref_id = data.refid;
-    this.UploadFileViewModel.app_Status = status;
-    this.editorModal2.show();
+  onDataLoadSuccessful(users: User[], roles: Role[]) {
+
+    this.accountService.getRoles(0, 0).subscribe(data => { })
+    console.log(users, roles)
+    this.alertService.stopLoadingMessage();
+    this.loadingIndicator = false;
+    let rol = [];
+    let rol1 = [];
+    debugger;
+
+    
+    this.allRoles = roles;
+
+    users.forEach((user, index) => {
+      (user as any).index = index + 1;
+    });
+
+    console.log(rol, this.userview, 'i', this.roleassign, this.usermanage)
+    this.rowsCache = [...users];
+
+    this.rows = users.filter(x => x.roles.includes('LM'));
+
+
 
   }
 
-  ClientfileChangeEvent(event) {
-    if (event.target.files && event.target.files[0]) {
-      const fileUpload = event.target.files[0];
-      const filee = fileUpload.files;
-      this.UploadFileViewModel.fileFullName = fileUpload.name;
+  onDataLoadFailed(error: any) {
+    this.alertService.stopLoadingMessage();
+    this.loadingIndicator = false;
 
-      const sFileExtension = fileUpload.name
-        .split('.')
-      [fileUpload.name.split('.').length - 1].toLowerCase();
-      Utilities.getBase64(event.target.files[0]).then((data) => {
-        console.log(data);
-        this.UploadFileViewModel.fileType = '.' + sFileExtension;
-
-        let data1: any = data;
-        let contentType = data1?.split(',')[1];
-
-        this.UploadFileViewModel.file64 = contentType;
-      });
-    }
+    this.alertService.showStickyMessage('Load Error', `Unable to retrieve users from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
+      MessageSeverity.error, error);
   }
-  uploadClientFile() {
-
-    this.submitted = true;
-    this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
-    this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
-    this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
-
-    this.UploadFileViewModel.createdBy = this.createdBy;
-    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
-      alert("Submitted Successfully")
-      this.editorModal2.hide();
-      //this.ngOnInit();
-      this.router.navigateByUrl('bcil/tta-dashboard')
-    })
-  }
-  //for client end
 
 }

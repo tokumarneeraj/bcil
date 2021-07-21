@@ -267,46 +267,7 @@
                                             </table>
 
 
-                                            <!--table for client start-->
-                                            <table class="table table-hover" *ngIf="showClientPage">
-                                              <thead>
-                                                <tr>
-                                                  <th>#</th>
-                                                  <th>Institute</th>
-                                                  <th>Dept. Name</th>
-                                                  <th>Phone No.</th>
-                                                  <th>Director Name</th>
-                                                  <th>Director Mobile</th>
-                                                  
-
-                                                  <th>Action</th>
-                                                  <th>History</th>
-
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr *ngFor="let item of mouModel;let i=index;">
-                                                  <th scope="row">{{i+1}}</th>
-                                                  <td>{{item.int_Uni_Name}}</td>
-                                                  <td>{{item.dept_Name}}</td>
-                                                  <td>{{item.phoneNo}}</td>
-                                                  <td>{{item.dir_Head_Name}}</td>
-                                                  <td>{{item.dir_Mobile_No}}</td>
-                                                  
-
-                                                  <td>
-                                                    <button value="back" *ngIf="activearray?.back" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
-                                                    <button class="btn btn-info" *ngIf='item.app_Status === "S108"' (click)="onClientClick(item,'S113')">Upload</button>
-                                                    <button value="assign" *ngIf='isAdmin && item.app_Status==="S113"' class="btn btn-success" (click)="onClientClick(item,'S114')">Assign</button>
-                                                    <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S114"' (click)="onClientClick(item,'S115')">Upload</button>
-                                                    
-                                                  </td>
-                                                  <td><a class="btn btn-success" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>
-
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                            <!--table for client end-->
+                                            
                                           </div>
                                         </div>
                                     </div>
@@ -339,63 +300,74 @@
         </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="ForwardForm">
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Subject</label>
-                            <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }"/>
-                              
-                        
-                        </div>
-                    </div>
-                    <div class="form-group row" *ngIf="activearray?.type">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Type</label>
-                            <select type="text" class="form-control" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
-                                <option value="">Choose</option>
-                                <option value="MOU">MOU</option>
-                                <option value="NDA">NDA</option>
-                                <option value="Work Order">Work Order</option>
-                            </select>
-                              
-                        
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Remarks</label>
-                            <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
-                                </textarea>
-                        
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label
-                                class="col-form-label">Upload</label>
-                            <input type="file" class="form-control"   (change)="fileChangeEvent($event)"/>
-                              
-                        
-                        </div>
-                        </div>
-                        <div class="form-group row">
-                        <div class="col-sm-6">
-                            <button
-                            type="submit"
-                            class="btn btn-success"
-                            (click)="uploadFile()"
-                          
-                          >
-                            Upload File
-                          </button>
-                        </div>
-                    </div>
-               
+              <form [formGroup]="ForwardForm">
 
-                    </form>
+                <div class="form-group row" *ngIf="type=='S101' && isAdmin">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Assign To</label>
+
+                    <select type="text" class="form-control" formControlName="assignto" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                      <option value="" selected>--select--</option>
+                      <option *ngFor="let data of rows" value="{{data.id}}">{{data.fullName}}</option>
+
+                    </select>
+
+
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Subject</label>
+                    <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
+
+
+                  </div>
+                </div>
+                <div class="form-group row" *ngIf="activearray?.type">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Type</label>
+                    <select type="text" class="form-control" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                      <option value="">Choose</option>
+                      <option value="MOU">MOU</option>
+                      <option value="NDA">NDA</option>
+                      <option value="Work Order">Work Order</option>
+                    </select>
+
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Remarks</label>
+                    <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
+                                </textarea>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">Upload</label>
+                    <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <button type="submit"
+                            class="btn btn-success"
+                            (click)="uploadFile()">
+                      Upload File
+                    </button>
+                  </div>
+                  
+
+                </div>
+
+
+              </form>
                 <!-- <ul class="list-unstyled">
                     <li *ngFor="let role of rows"><input type="checkbox" name="checkbox-{{role.name}}" [disabled]="!canManageRoles" [(ngModel)]="selectedValues1[role.id+uservalue]" />{{role.name}}</li>
                 </ul>
@@ -406,61 +378,4 @@
     </div>
   </div>
 
-<div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>{{formHeader}}</h4>
-        <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="ForwardForm">
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <label class="col-form-label">Subject</label>
-              <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
 
-
-            </div>
-          </div>
-          
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <label class="col-form-label">Remarks</label>
-              <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
-                                </textarea>
-
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-12">
-              <label class="col-form-label">Upload</label>
-              <input type="file" class="form-control" accept="application/msword,
-  application/vnd.openxmlformats-officedocument.wordprocessingml.document" (change)="ClientfileChangeEvent($event)" />
-
-
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-6">
-              <button type="submit"
-                      class="btn btn-success"
-                      (click)="uploadClientFile()">
-                Upload File
-              </button>
-            </div>
-          </div>
-
-
-        </form>
-        <!-- <ul class="list-unstyled">
-            <li *ngFor="let role of rows"><input type="checkbox" name="checkbox-{{role.name}}" [disabled]="!canManageRoles" [(ngModel)]="selectedValues1[role.id+uservalue]" />{{role.name}}</li>
-        </ul>
-        <button type="button" [ngClass]="!canManageRoles ? 'd-none': ''" [disabled]="!canManageRoles" (click)="addrolepermissionsubmit()" class="btn btn-sm btn-outline-primary"><i class="fa fa-save"></i> Submit</button> -->
-
-      </div>
-    </div>
-  </div>
-</div>
