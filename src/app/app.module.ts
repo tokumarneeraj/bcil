@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { ThemeManager } from './services/theme-manager';
 import { ConfigurationService } from './services/configuration.service';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 import { AppTranslationService, TranslateLanguageLoader } from './services/app-translation.service';
 import { AccountService } from './services/account.service';
 import { OidcHelperService } from './services/oidc-helper.service';
@@ -42,6 +44,8 @@ import { ToastaModule } from 'ngx-toasta';
     HttpClientModule,
     BrowserModule,
     ToastaModule.forRoot(),
+    TooltipModule.forRoot(),
+    PopoverModule.forRoot(),
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {

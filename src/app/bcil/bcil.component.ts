@@ -52,7 +52,9 @@ export class BcilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+    this.alertService.getDialogEvent().subscribe(alert => this.showDialog(alert));
+    this.alertService.getMessageEvent().subscribe(message => this.showToast(message));
+
   }
   showDialog(dialog: AlertDialog) {
 
