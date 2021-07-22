@@ -23,68 +23,98 @@
     </div>
     <!-- Page-header end -->
     <div class="pcoded-inner-content">
-      <!-- Main-body start -->
-      <div class="main-body">
-          <div class="page-wrapper">
-            
-              <!-- Page body start -->
-              <div class="page-body">  
-                  <div class="row">
-                      <div class="col-md-12 text-center">
-                          <div class="addMou">
-                              <a routerLink="../mou-add">Add MOU</a>
-                          </div>                                            
-                      </div>
-                  </div>                                      
-                  <div class="row categoryList mouList">
-                      <div class="col-sm-12">
-                      <!-- Basic Form Inputs card start -->
-                          <div class="row">
-                          <!-- task, page, download counter  start -->
-                              <div class="col-xl-3 col-md-6">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+              
+                <!-- Page body start -->
+                <div class="page-body">  
+                    <div class="row" *ngIf="CanaddMouPermission">
+                        <div class="col-md-12 text-center">
+                            <div class="addMou">
+                                <a routerLink="../mou-add">Add MOU</a>
+                            </div>                                            
+                        </div>
+                    </div>                                      
+                    <div class="row categoryList mouList">
+                        <div class="col-sm-12">
+                        <!-- Basic Form Inputs card start -->
+                            <div class="row">
+                            <!-- task, page, download counter  start -->
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                      <h4 class="text-c-blue">Initiation- to be suggested by client</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S101')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'init'}">
+                                            <div class="card-footer bg-c-blue">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>                                                              
+                                                    </div>
+                                                </div>            
+                                            </div>
+                                          </a>
+                                        </div>
+                                    </a>                                                
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                        <h4 class="text-c-green">MOU Pending</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S102')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-file-text-o f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'mou_pending'}">
+                                            <div class="card-footer bg-c-green">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </a>
+                                        </div>
+                                    </a>                                                
+                                </div>
+
+                                <div class="col-xl-3 col-md-6">
                                   <a href="#">
                                       <div class="card">
                                           <div class="card-block">
                                               <div class="row align-items-top">
                                                   <div class="col-12">
-                                                      <h4 class="text-c-blue">INIT</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S101')}}</h6>
-                                                  </div>
-                                                  <!-- <div class="col-4 text-right">
-                                                      <i class="fa fa-bar-chart f-28"></i>
-                                                  </div> -->
-                                              </div>
-                                          </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'init'}">
-                                          <div class="card-footer bg-c-blue">
-                                              <div class="row align-items-center">
-                                                  <div class="col-9">
-                                                      <p class="text-white m-b-0">View</p>
-                                                  </div>
-                                                  <div class="col-3 text-right">
-                                                      <i class="fa fa-arrow-right text-white f-16"></i>                                                              
-                                                  </div>
-                                              </div>            
-                                          </div>
-                                        </a>
-                                      </div>
-                                  </a>                                                
-                              </div>
-                              <div class="col-xl-3 col-md-6">
-                                  <a href="#">
-                                      <div class="card">
-                                          <div class="card-block">
-                                              <div class="row align-items-top">
-                                                  <div class="col-12">
-                                                      <h4 class="text-c-green">MOU Pending</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S102')}}</h6>
+                                                      <h4 class="text-c-green">MOU Proposed by Admin</h4>
+                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S110')}}</h6>
                                                   </div>
                                                   <!-- <div class="col-4 text-right">
                                                       <i class="fa fa-file-text-o f-28"></i>
                                                   </div> -->
                                               </div>
                                           </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_pending'}">
+                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_proposed_by_admin'}">
                                           <div class="card-footer bg-c-green">
                                               <div class="row align-items-center">
                                                   <div class="col-9">
@@ -99,51 +129,52 @@
                                       </div>
                                   </a>                                                
                               </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                      <h4 class="text-c-red">MOU Change Required By Admin</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S103')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-registered f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'mou_change_by_admin'}">
+                                            <div class="card-footer bg-c-red">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </a>
+                                        </div>
+                                    </a>                                                
+                                </div>
 
-                              <div class="col-xl-3 col-md-6">
-                                <a href="#">
-                                    <div class="card">
-                                        <div class="card-block">
-                                            <div class="row align-items-top">
-                                                <div class="col-12">
-                                                    <h4 class="text-c-green">MOU Proposed by Admin</h4>
-                                                    <h6 class="text-muted m-b-0">{{moulistfilter('S110')}}</h6>
-                                                </div>
-                                                <!-- <div class="col-4 text-right">
-                                                    <i class="fa fa-file-text-o f-28"></i>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <a routerLink='../bcil-table'  [queryParams]="{type:'mou_proposed_by_admin'}">
-                                        <div class="card-footer bg-c-green">
-                                            <div class="row align-items-center">
-                                                <div class="col-9">
-                                                    <p class="text-white m-b-0">View</p>
-                                                </div>
-                                                <div class="col-3 text-right">
-                                                    <i class="fa fa-arrow-right text-white f-16"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </a>
-                                    </div>
-                                </a>                                                
-                            </div>
-                              <div class="col-xl-3 col-md-6">
+
+                                <div class="col-xl-3 col-md-6">
                                   <a href="#">
                                       <div class="card">
                                           <div class="card-block">
                                               <div class="row align-items-top">
                                                   <div class="col-12">
-                                                      <h4 class="text-c-red">MOU Change Required by Admin</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S103')}}</h6>
+                                                      <h4 class="text-c-red">MOU Change By Client</h4>
+                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S111')}}</h6>
                                                   </div>
                                                   <!-- <div class="col-4 text-right">
                                                       <i class="fa fa-registered f-28"></i>
                                                   </div> -->
                                               </div>
                                           </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_change_by_admin'}">
+                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_change_by_client'}">
                                           <div class="card-footer bg-c-red">
                                               <div class="row align-items-center">
                                                   <div class="col-9">
@@ -158,256 +189,191 @@
                                       </div>
                                   </a>                                                
                               </div>
+                                
 
-
-                              <div class="col-xl-3 col-md-6">
-                                <a href="#">
-                                    <div class="card">
-                                        <div class="card-block">
-                                            <div class="row align-items-top">
-                                                <div class="col-12">
-                                                    <h4 class="text-c-red">MOU Change By Client</h4>
-                                                    <h6 class="text-muted m-b-0">{{moulistfilter('S111')}}</h6>
-                                                </div>
-                                                <!-- <div class="col-4 text-right">
-                                                    <i class="fa fa-registered f-28"></i>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <a routerLink='../bcil-table'  [queryParams]="{type:'mou_change_by_client'}">
-                                        <div class="card-footer bg-c-red">
-                                            <div class="row align-items-center">
-                                                <div class="col-9">
-                                                    <p class="text-white m-b-0">View</p>
-                                                </div>
-                                                <div class="col-3 text-right">
-                                                    <i class="fa fa-arrow-right text-white f-16"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </a>
-                                    </div>
-                                </a>                                                
-                            </div>
+                           
                               
-
-                            <div class="col-xl-3 col-md-6">
-                                <a href="#">
-                                    <div class="card">
-                                        <div class="card-block">
-                                            <div class="row align-items-top">
-                                                <div class="col-12">
-                                                    <h4 class="text-c-red">MOU Approved By admin</h4>
-                                                    <h6 class="text-muted m-b-0">{{moulistfilter('S112')}}</h6>
-                                                </div>
-                                                <!-- <div class="col-4 text-right">
-                                                    <i class="fa fa-registered f-28"></i>
-                                                </div> -->
-                                            </div>
-                                        </div>
-                                        <a routerLink='../bcil-table'  [queryParams]="{type:'mou_approved_by_admin'}">
-                                        <div class="card-footer bg-c-red">
-                                            <div class="row align-items-center">
-                                                <div class="col-9">
-                                                    <p class="text-white m-b-0">View</p>
-                                                </div>
-                                                <div class="col-3 text-right">
-                                                    <i class="fa fa-arrow-right text-white f-16"></i>
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                      <h4 class="text-c-purple">MOU Proposed By Legal Manager</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S104')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-paint-brush f-28"></i>
+                                                    </div> -->
                                                 </div>
                                             </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'mou_porposed_by_lm'}">
+                                            <div class="card-footer bg-c-purple">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </a>
                                         </div>
-                                      </a>
-                                    </div>
-                                </a>                                                
+                                    </a>                                                
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                        <h4 class="text-c-yellow">Agreement Signed</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S105')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-copyright f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'agreementsigned'}">
+                                            <div class="card-footer bg-c-yellow">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </a>                                                
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                        <h4 class="text-c-dark-orange">MOU Accepted by Client</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S106')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-pagelines f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'mou_accepted_by_client'}">
+                                            <div class="card-footer bg-c-dark-orange">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </a>
+                                        </div>
+                                    </a>                                                
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                      <h4 class="text-c-dark-pink">Business Development Manager Assiged</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S107')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-cogs f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'bodassigned'}">
+                                            <div class="card-footer bg-c-dark-pink">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </a>                                                
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                        <h4 class="text-c-dark-green">TTO Req Approved</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S108')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-file-excel-o f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'tto_req_approved'}">
+                                            <div class="card-footer bg-c-dark-green">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </a>                                                
+                                </div>                                           
+                                <div class="col-xl-3 col-md-6">
+                                    <a href="#">
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                      <h4 class="text-c-dark-blue">IP Manager Assigned</h4>
+                                                        <h6 class="text-muted m-b-0">{{moulistfilter('S109')}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-file-excel-o f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a routerLink='../bcil-table'  [queryParams]="{type:'ipm_assigned'}">
+                                            <div class="card-footer bg-c-dark-blue">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    </a>                                                
+                                </div>                                           
                             </div>
-
-                            
-                              <div class="col-xl-3 col-md-6">
-                                  <a href="#">
-                                      <div class="card">
-                                          <div class="card-block">
-                                              <div class="row align-items-top">
-                                                  <div class="col-12">
-                                                      <h4 class="text-c-purple">MOU Proposed by LM</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S104')}}</h6>
-                                                  </div>
-                                                  <!-- <div class="col-4 text-right">
-                                                      <i class="fa fa-paint-brush f-28"></i>
-                                                  </div> -->
-                                              </div>
-                                          </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_porposed_by_lm'}">
-                                          <div class="card-footer bg-c-purple">
-                                              <div class="row align-items-center">
-                                                  <div class="col-9">
-                                                      <p class="text-white m-b-0">View</p>
-                                                  </div>
-                                                  <div class="col-3 text-right">
-                                                      <i class="fa fa-arrow-right text-white f-16"></i>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                        </a>
-                                      </div>
-                                  </a>                                                
-                              </div>
-                              <div class="col-xl-3 col-md-6">
-                                  <a href="#">
-                                      <div class="card">
-                                          <div class="card-block">
-                                              <div class="row align-items-top">
-                                                  <div class="col-12">
-                                                      <h4 class="text-c-yellow">Agreement Signed</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S105')}}</h6>
-                                                  </div>
-                                                  <!-- <div class="col-4 text-right">
-                                                      <i class="fa fa-copyright f-28"></i>
-                                                  </div> -->
-                                              </div>
-                                          </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'agreementsigned'}">
-                                          <div class="card-footer bg-c-yellow">
-                                              <div class="row align-items-center">
-                                                  <div class="col-9">
-                                                      <p class="text-white m-b-0">View</p>
-                                                  </div>
-                                                  <div class="col-3 text-right">
-                                                      <i class="fa fa-arrow-right text-white f-16"></i>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          </a>
-                                      </div>
-                                  </a>                                                
-                              </div>
-                              <div class="col-xl-3 col-md-6">
-                                  <a href="#">
-                                      <div class="card">
-                                          <div class="card-block">
-                                              <div class="row align-items-top">
-                                                  <div class="col-12">
-                                                      <h4 class="text-c-dark-orange">MOU Accepted by Client</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S106')}}</h6>
-                                                  </div>
-                                                  <!-- <div class="col-4 text-right">
-                                                      <i class="fa fa-pagelines f-28"></i>
-                                                  </div> -->
-                                              </div>
-                                          </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'mou_accepted_by_client'}">
-                                          <div class="card-footer bg-c-dark-orange">
-                                              <div class="row align-items-center">
-                                                  <div class="col-9">
-                                                      <p class="text-white m-b-0">View</p>
-                                                  </div>
-                                                  <div class="col-3 text-right">
-                                                      <i class="fa fa-arrow-right text-white f-16"></i>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                        </a>
-                                      </div>
-                                  </a>                                                
-                              </div>
-                              <div class="col-xl-3 col-md-6">
-                                  <a href="#">
-                                      <div class="card">
-                                          <div class="card-block">
-                                              <div class="row align-items-top">
-                                                  <div class="col-12">
-                                                      <h4 class="text-c-dark-pink">BDO Assigned</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S107')}}</h6>
-                                                  </div>
-                                                  <!-- <div class="col-4 text-right">
-                                                      <i class="fa fa-cogs f-28"></i>
-                                                  </div> -->
-                                              </div>
-                                          </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'bodassigned'}">
-                                          <div class="card-footer bg-c-dark-pink">
-                                              <div class="row align-items-center">
-                                                  <div class="col-9">
-                                                      <p class="text-white m-b-0">View</p>
-                                                  </div>
-                                                  <div class="col-3 text-right">
-                                                      <i class="fa fa-arrow-right text-white f-16"></i>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          </a>
-                                      </div>
-                                  </a>                                                
-                              </div>
-                              <div class="col-xl-3 col-md-6">
-                                  <a href="#">
-                                      <div class="card">
-                                          <div class="card-block">
-                                              <div class="row align-items-top">
-                                                  <div class="col-12">
-                                                      <h4 class="text-c-dark-green">TTO Require Approved</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S108')}}</h6>
-                                                  </div>
-                                                  <!-- <div class="col-4 text-right">
-                                                      <i class="fa fa-file-excel-o f-28"></i>
-                                                  </div> -->
-                                              </div>
-                                          </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'tto_req_approved'}">
-                                          <div class="card-footer bg-c-dark-green">
-                                              <div class="row align-items-center">
-                                                  <div class="col-9">
-                                                      <p class="text-white m-b-0">View</p>
-                                                  </div>
-                                                  <div class="col-3 text-right">
-                                                      <i class="fa fa-arrow-right text-white f-16"></i>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          </a>
-                                      </div>
-                                  </a>                                                
-                              </div>                                           
-                              <div class="col-xl-3 col-md-6">
-                                  <a href="#">
-                                      <div class="card">
-                                          <div class="card-block">
-                                              <div class="row align-items-top">
-                                                  <div class="col-12">
-                                                      <h4 class="text-c-dark-blue">IPM Assigned</h4>
-                                                      <h6 class="text-muted m-b-0">{{moulistfilter('S109')}}</h6>
-                                                  </div>
-                                                  <!-- <div class="col-4 text-right">
-                                                      <i class="fa fa-file-excel-o f-28"></i>
-                                                  </div> -->
-                                              </div>
-                                          </div>
-                                          <a routerLink='../bcil-table'  [queryParams]="{type:'ipm_assigned'}">
-                                          <div class="card-footer bg-c-dark-blue">
-                                              <div class="row align-items-center">
-                                                  <div class="col-9">
-                                                      <p class="text-white m-b-0">View</p>
-                                                  </div>
-                                                  <div class="col-3 text-right">
-                                                      <i class="fa fa-arrow-right text-white f-16"></i>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          </a>
-                                      </div>
-                                  </a>                                                
-                              </div>                                           
-                          </div>
-                      <!-- Basic Form Inputs card end -->
-                      </div>
-                  </div>
-              </div>
-          <!-- Page body end -->
-          </div>
-      </div>
-      <!-- Main-body end -->
-      <!-- <div id="styleSelector">
-
-      </div> -->
-</div>
+                        <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+            <!-- Page body end -->
+            </div>
+        </div>
 <app-footer></app-footer>
   </div>

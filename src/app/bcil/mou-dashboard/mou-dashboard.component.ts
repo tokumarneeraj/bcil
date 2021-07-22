@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { mouModel } from 'src/app/model/mou.model';
 import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
+import { Permission } from 'src/app/model/permission.model';
 
 @Component({
   selector: 'app-mou-dashboard',
@@ -35,7 +36,9 @@ export class MouDashboardComponent implements OnInit {
       this.showpage = true;
     })
   }
-
+  get CanaddMouPermission() {
+    return this.accountService.userHasPermission(Permission.addMouPermission);
+  }
   moulistfilter(data) {
     if (this.isLM) {
 
