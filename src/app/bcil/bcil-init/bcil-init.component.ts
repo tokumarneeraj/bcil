@@ -54,24 +54,27 @@ export class BcilInitComponent implements OnInit {
   allRoles: Role[] = [];
   loadingIndicator: boolean;
   user: any;
+permission:boolean;
 
 
 
-
-  array = [{ name: 'init', value: 'S101', createdBy: "Test1", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'mou_change_by_admin', value: 'S103', createdBy: "Tes3", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: true },
-  { name: 'mou_porposed_by_lm', value: 'S104', createdBy: "Tes4", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: true, backStatus: "S103", backbuttonText: 'Change Req' },
-  { name: 'agreementsigned', value: 'S105', createdBy: "Tes5", forward: "S107", forwardCheck: true, forwardText: 'Forword', back: false, type: true },
-  { name: 'mou_accepted_by_client', value: 'S106', createdBy: "Tes6", forward: "S105", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'bodassigned', value: 'S107', createdBy: "Tes4", forward: "S108", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'tto_req_approved', value: 'S108', createdBy: "Tes5", forward: "S109", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'ipm_assigned', value: 'S109', createdBy: "Tes6", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: false },
- { name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S111", forwardCheck: true, forwardText: 'Client request Change', approvedvalue: 'S106', approved: true, approvedText: "Approved", back: false, backStatus: "S112", backbuttonText: 'Mou Change By Client' },
-  { name: 'mou_change_by_client', value: 'S111', createdBy: "Tes3", forward: "S103", forwardCheck: true, forwardText: 'Forword', back: false },
+  array = [{ name: 'init', value: 'S101', createdBy: "Test1", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_init_forword_button_Permission },
+  { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_pending_forword_buttonPermission },
+  { name: 'mou_change_by_admin', value: 'S103', createdBy: "Tes3", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: true,permissionforword:this.CanviewMou_change_by_admin_forword_buttonPermission },
+  { name: 'mou_porposed_by_lm', value: 'S104', createdBy: "Tes4", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: true, backStatus: "S103", backbuttonText: 'Change Req',permissionforword:this.CanviewMou_proposed_by_lm_forword_buttonPermission },
+  { name: 'agreementsigned', value: 'S105', createdBy: "Tes5", forward: "S107", forwardCheck: true, forwardText: 'Forword', back: false, type: true,permissionforword:this.CanviewAgreementsigned_forwprd_buttonPermission },
+  { name: 'mou_accepted_by_client', value: 'S106', createdBy: "Tes6", forward: "S105", forwardCheck: true, forwardText: 'Forword', back: false ,permissionforword:this.CanviewMou_accepted_by_client_forword_buttonPermission},
+  { name: 'bodassigned', value: 'S107', createdBy: "Tes4", forward: "S108", forwardCheck: true, forwardText: 'Forword', back: false ,permissionforword:this.Canviewbdoassigned_forword_buttonPermission},
+  { name: 'tto_req_approved', value: 'S108', createdBy: "Tes5", forward: "S109", forwardCheck: true, forwardText: 'Forword', back: false ,permissionforword:this.Canviewtto_req_approved_forword_buttonPermission},
+  { name: 'ipm_assigned', value: 'S109', createdBy: "Tes6", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.Canviewip_manager_assigned_forword_buttonPermission },
+ { name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S111", forwardCheck: true, forwardText: 'Client request Change', approvedvalue: 'S106', approved: true, approvedText: "Approved", back: false, backStatus: "S112", backbuttonText: 'Mou Change By Client',permissionforword:this.CanviewMou_proposed_by_admin_client_request_changePermissionPermission },
+  { name: 'mou_change_by_client', value: 'S111', createdBy: "Tes3", forward: "S103", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.Canviewbdoassigned_forword_buttonPermission },
   //{ name: 'mou_approved_by_admin', value: 'S112', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'tta_init', value: 'S113', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
+  { name: 'tta_init', value: 'S113', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false ,permissionforword:this.Canviewbdoassigned_forword_buttonPermission},
   ]
+
+
+  
   activearray = this.array[0];
 
   constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router, private alertService: AlertService) {
@@ -138,6 +141,7 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
 
         this.type = this.array.find(x => x.name == params.type).value;
         this.activearray = this.array.find(x => x.name == params.type);
+        this.permission=this.array.find(x => x.name == params.type).permissionforword;
         //this.createdBy = this.array.find(x => x.name == params.type).createdBy;
       
 
