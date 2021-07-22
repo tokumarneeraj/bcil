@@ -14,6 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
 import { Departments } from 'src/app/model/department';
 import { AlertService, DialogType, MessageSeverity } from 'src/app/services/alert.service';
+import { Permission } from 'src/app/model/permission.model';
 
 @Component({
   selector: 'app-bcil-init',
@@ -66,9 +67,9 @@ export class BcilInitComponent implements OnInit {
   { name: 'bodassigned', value: 'S107', createdBy: "Tes4", forward: "S108", forwardCheck: true, forwardText: 'Forword', back: false },
   { name: 'tto_req_approved', value: 'S108', createdBy: "Tes5", forward: "S109", forwardCheck: true, forwardText: 'Forword', back: false },
   { name: 'ipm_assigned', value: 'S109', createdBy: "Tes6", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S111", forwardCheck: true, forwardText: 'Client request Change', approvedvalue: 'S112', approved: true, approvedText: "Approved", back: false, backStatus: "S112", backbuttonText: 'Mou Change By Client' },
+ { name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S111", forwardCheck: true, forwardText: 'Client request Change', approvedvalue: 'S106', approved: true, approvedText: "Approved", back: false, backStatus: "S112", backbuttonText: 'Mou Change By Client' },
   { name: 'mou_change_by_client', value: 'S111', createdBy: "Tes3", forward: "S103", forwardCheck: true, forwardText: 'Forword', back: false },
-  { name: 'mou_approved_by_admin', value: 'S112', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
+  //{ name: 'mou_approved_by_admin', value: 'S112', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
   { name: 'tta_init', value: 'S113', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
   ]
   activearray = this.array[0];
@@ -84,6 +85,46 @@ export class BcilInitComponent implements OnInit {
 
     
   }
+  
+get CanviewMou_init_forword_button_Permission() {
+  return this.accountService.userHasPermission(Permission.viewMou_init_forword_button_Permission);
+}
+get CanviewMou_pending_forword_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewMou_pending_forword_buttonPermission);
+}
+
+get CanviewMou_proposed_by_admin_client_request_changePermissionPermission() {
+  return this.accountService.userHasPermission(Permission.viewMou_proposed_by_admin_client_request_changePermission);
+}
+
+get CanviewMou_proposed_by_admin_client_approvedPermission() {
+  return this.accountService.userHasPermission(Permission.viewMou_proposed_by_admin_client_approvedPermission);
+}
+
+get CanviewMou_change_by_admin_forword_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewMou_change_by_admin_forword_buttonPermission);
+}
+
+get CanviewMou_proposed_by_lm_forword_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewMou_proposed_by_lm_forword_buttonPermission);
+}
+get CanviewMou_accepted_by_client_forword_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewMou_accepted_by_client_forword_buttonPermission);
+}
+get CanviewAgreementsigned_forwprd_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewAgreementsigned_forword_buttonPermission);
+}
+get Canviewbdoassigned_forword_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewbdoassigned_forword_buttonPermission);
+}
+get Canviewtto_req_approved_forword_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewtto_req_approved_forword_buttonPermission);
+}
+get Canviewip_manager_assigned_forword_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewip_manager_assigned_forword_buttonPermission);
+}
+
+
 
   ngOnInit(): void {
 
