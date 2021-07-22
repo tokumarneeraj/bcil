@@ -256,12 +256,7 @@
 
                                                   <td>
                                                     <button value="back" *ngIf="activearray?.back" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
-                                                    <button value="forword" *ngIf="activearray?.forwardCheck && (CanviewMou_init_forword_button_Permission || CanviewMou_pending_forword_buttonPermission
-                                                    ||CanviewMou_proposed_by_admin_client_request_changePermissionPermission||
-                                                    CanviewMou_change_by_admin_forword_buttonPermission||Canviewip_manager_assigned_forword_buttonPermission
-                                                  ||Canviewtto_req_approved_forword_buttonPermission||Canviewbdoassigned_forword_buttonPermission
-                                                  ||CanviewAgreementsigned_forwprd_buttonPermission||CanviewMou_accepted_by_client_forword_buttonPermission
-                                                    )" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
+                                                    <button value="forword" *ngIf="activearray?.forwardCheck && permission" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
                                                     <button value="approve" *ngIf="activearray?.approved &&(CanviewMou_proposed_by_admin_client_approvedPermission)" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 
                                                   </td>
