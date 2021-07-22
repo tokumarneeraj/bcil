@@ -35,6 +35,14 @@ export class AccountService {
       this.accountEndpoint.getUserEndpoint<User>(userId),
       this.accountEndpoint.getRolesEndpoint<Role[]>()]);
   }
+
+  getUserandRolesForDropdown(userId?: string) {
+    return forkJoin([
+      this.accountEndpoint.getAllUserEndpoint<User>(userId),
+      this.accountEndpoint.getRolesEndpoint<Role[]>()]);
+
+  }
+
   GetUserpermissiontoAdduserbyrole(role: string) {
     return this.accountEndpoint.GetUserpermissiontoAdduserbyrole<any>(role);
   }
@@ -58,6 +66,14 @@ export class AccountService {
       this.accountEndpoint.getUsersEndpoint<User[]>(page, pageSize),
       this.accountEndpoint.getRolesEndpoint<Role[]>()]);
   }
+
+  getUsersandRolesForDropdown(page?: number, pageSize?: number) {
+
+    return forkJoin([
+      this.accountEndpoint.getAllUsersEndpoint<User[]>(page, pageSize),
+      this.accountEndpoint.getRolesEndpoint<Role[]>()]);
+  }
+
   updateUser(user: UserEdit) {
     if (user.id) {
       return this.accountEndpoint.getUpdateUserEndpoint(user, user.id);
