@@ -19,6 +19,7 @@ export class AccountEndpoint extends EndpointBase {
   get departmentUrl() { return this.configurations.baseUrl + '/api/account/department'; }
   get currentDepartmentUrl() { return this.configurations.baseUrl + '/api/account/department/me'; }
   get usersUrl() { return this.configurations.baseUrl + '/api/account/users'; }
+  get allusersUrl() { return this.configurations.baseUrl + '/api/account/allusers'; }
   get userByUserNameUrl() { return this.configurations.baseUrl + '/api/account/users/username'; }
   get currentUserUrl() { return this.configurations.baseUrl + '/api/account/users/me'; }
   get currentUserPreferencesUrl() { return this.configurations.baseUrl + '/api/account/users/me/preferences'; }
@@ -75,6 +76,14 @@ export class AccountEndpoint extends EndpointBase {
       }));
   }
 
+  getAllUserEndpoint<T>(userId?: string): Observable<T> {
+    const endpointUrl = userId ? `${this.allusersUrl}/${userId}` : this.currentUserUrl;
+
+    return this.http.get<T>(endpointUrl, this.requestHeaders).pipe<T>(
+      catchError(error => {
+        return this.handleError(error, () => this.getAllUserEndpoint(userId));
+      }));
+  }
 
   getUserByUserNameEndpoint<T>(userName: string): Observable<T> {
     const endpointUrl = `${this.userByUserNameUrl}/${userName}`;
@@ -123,6 +132,15 @@ export class AccountEndpoint extends EndpointBase {
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe<T>(
       catchError(error => {
         return this.handleError(error, () => this.getUsersEndpoint(page, pageSize));
+      }));
+  }
+
+  getAllUsersEndpoint<T>(page?: number, pageSize?: number): Observable<T> {
+    const endpointUrl = page && pageSize ? `${this.allusersUrl}/${page}/${pageSize}` : this.allusersUrl;
+
+    return this.http.get<T>(endpointUrl, this.requestHeaders).pipe<T>(
+      catchError(error => {
+        return this.handleError(error, () => this.getAllUsersEndpoint(page, pageSize));
       }));
   }
 

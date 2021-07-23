@@ -84,7 +84,8 @@ permission:boolean;
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
 
-    this.accountService.getUsersAndRoles().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+    this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+    
 
     
   }
@@ -131,7 +132,7 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
 
   ngOnInit(): void {
 
-    this.isAdmin = this.userRoles.includes('Super Admin');
+    this.isAdmin = this.userRoles.includes('Admin');
     this.isBdm = this.userRoles.includes('BDM');
 
     this.route.queryParams.subscribe((params) => {
@@ -155,6 +156,9 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
 
 
     })
+
+    
+
     this.ForwardForm = this.formbuilder.group({
 
       subject: ['', Validators.required],

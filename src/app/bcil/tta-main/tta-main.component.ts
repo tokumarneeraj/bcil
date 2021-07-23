@@ -82,7 +82,7 @@ export class TtaMainComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.isAdmin = this.userRoles.includes('Super Admin');
+    this.isAdmin = this.userRoles.includes('Admin');
     this.isBdm = this.userRoles.includes('BDM');
     this.isNodal = this.userRoles.includes('Nodal'); 
 
