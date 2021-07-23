@@ -65,7 +65,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_initPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -94,7 +94,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_evaluation_assignedPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -121,7 +121,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_evaluation_upload_by_bdmPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -148,7 +148,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_evaluation_closure_by_adminPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -175,7 +175,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_evaluation_approved_by_adminPermission"> 
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -202,7 +202,7 @@
                     </div>
                   </a>
                 </div>
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6"  *ngIf="canviewTta_evaluation_change_request_by_adminPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -230,7 +230,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_Closure_request_by_bdmPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -258,7 +258,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_closePermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -287,7 +287,7 @@
                 </div>
 
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_evaluation_change_request_by_clientPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -315,7 +315,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_evaluation_accepted_by_clientPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -343,7 +343,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_strategy_assignedPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -371,7 +371,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_strategy_uploaded_by_bdmPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -400,7 +400,7 @@
                 </div>
 
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewtta_strategy_change_request_by_adminPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -428,7 +428,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_techb_and_flier_approved_by_adminPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -456,7 +456,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_techb_and_flier_approved_by_scientistPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -485,7 +485,7 @@
                 </div>
 
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_chnage_req_by_scientistPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -513,7 +513,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewstartegy_implementedPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -542,7 +542,7 @@
                 </div>
 
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_interest_receivedPermission">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">

@@ -19,7 +19,8 @@ export class BcilDashboardComponent implements OnInit {
   usertype:string;
   UserName: string;
   mouModelFinal: mouModel[];
-
+moustatus=['S101','S102','S103','S104','S105','S106','S107','S108','S019','S110','S111','S112'];
+ttostatus=['S113','S114','S115','S116','S117','S118','S119','S120','S121','S122','S123','S124','S125','S126','S127','S128','S129','S130','S131'];
   //constructor(private Bdoservice: Bdoservice, private _cookieService: CookieService) {
   //  this.usertype = this._cookieService.get("UserType");
   //  this.UserName = this._cookieService.get("UserName");
@@ -73,10 +74,14 @@ export class BcilDashboardComponent implements OnInit {
     })
   }
 
-moulistfilter(data){
-  console.log(this.mouModel?.filter(x=>x.app_Status==data).length)
- return this.mouModel?.filter(x=>x.app_Status==data).length;
+moulist(){
+  console.log(this.mouModel?.filter(x=>!this.moustatus.includes(x.app_Status)).length)
+ return this.mouModel?.filter(x=>this.moustatus.includes(x.app_Status)).length;
   }
+  ttolist(){
+    console.log(this.mouModel?.filter(x=>!this.ttostatus.includes(x.app_Status)).length)
+   return this.mouModel?.filter(x=>this.ttostatus.includes(x.app_Status)).length;
+    }
 
 
   // for client
