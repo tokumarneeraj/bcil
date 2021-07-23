@@ -27,6 +27,44 @@ export class MouDashboardComponent implements OnInit {
     this.isLM = this.userRoles.includes('LM');
   }
 
+ 
+
+  get canviewMou_initPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_initPermission);
+  }
+  get canviewMou_pendingPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_pendingPermission);
+  }
+  get canviewMou_proposed_by_adminPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_proposed_by_adminPermission);
+  }
+  get canviewMou_change_by_adminPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_change_req_by_adminPermission);
+  }
+
+  get canviewMou_change_by_clientPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_change_req_by_clientPermission);
+  }
+  get canviewMou_proposed_by_lmPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_proposed_by_lmPermission);
+  }
+  get canviewMou_accepted_by_clientPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_accepted_by_clientPermission);
+  }
+  get canviewagreementsignedPermission() {
+    return this.accountService.userHasPermission(Permission.viewagreementsignedPermission);
+  }
+  get canviewbdoassignedPermission() {
+    return this.accountService.userHasPermission(Permission.viewbdoassignedPermission);
+  }
+  get canviewtto_required_aproved_Permission() {
+    return this.accountService.userHasPermission(Permission.viewtto_required_aproved_Permission);
+  }
+  get canviewip_manager_assignedPermission() {
+    return this.accountService.userHasPermission(Permission.viewip_manager_assignedPermission);
+  }
+
+
   ngOnInit(): void {
     debugger;
 

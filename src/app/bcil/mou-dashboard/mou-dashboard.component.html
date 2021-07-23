@@ -41,7 +41,7 @@
                         <!-- Basic Form Inputs card start -->
                             <div class="row">
                             <!-- task, page, download counter  start -->
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewMou_initPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -70,7 +70,7 @@
                                         </div>
                                     </a>                                                
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewMou_pendingPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -100,7 +100,7 @@
                                     </a>                                                
                                 </div>
 
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewMou_proposed_by_adminPermission">
                                   <a href="#">
                                       <div class="card">
                                           <div class="card-block">
@@ -129,7 +129,7 @@
                                       </div>
                                   </a>                                                
                               </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngif="canviewMou_change_by_adminPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -160,7 +160,7 @@
                                 </div>
 
 
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngif="canviewMou_change_by_clientPermission">
                                   <a href="#">
                                       <div class="card">
                                           <div class="card-block">
@@ -193,7 +193,7 @@
 
                            
                               
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewMou_proposed_by_lmPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -222,7 +222,7 @@
                                         </div>
                                     </a>                                                
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewagreementsignedPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -251,7 +251,7 @@
                                         </div>
                                     </a>                                                
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewMou_accepted_by_clientPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -280,7 +280,7 @@
                                         </div>
                                     </a>                                                
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewagreementsignedPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -309,7 +309,7 @@
                                         </div>
                                     </a>                                                
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewtto_required_aproved_Permission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
@@ -338,7 +338,7 @@
                                         </div>
                                     </a>                                                
                                 </div>                                           
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-3 col-md-6" *ngIf="canviewip_manager_assignedPermission">
                                     <a href="#">
                                         <div class="card">
                                             <div class="card-block">
