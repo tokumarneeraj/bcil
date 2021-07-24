@@ -58,7 +58,7 @@ permission:boolean;
 
 
 
-  array = [{ name: 'init', value: 'S101', createdBy: "Test1", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_init_forword_button_Permission },
+  array = [{ name: 'init', value: 'S101', createdBy: "Test1",forwordtitle:"Forword to LM", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_init_forword_button_Permission },
   { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_pending_forword_buttonPermission },
   { name: 'mou_change_by_admin', value: 'S103', createdBy: "Tes3", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: true,permissionforword:this.CanviewMou_change_by_admin_forword_buttonPermission },
   { name: 'mou_porposed_by_lm', value: 'S104', createdBy: "Tes4", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: true, backStatus: "S103", backbuttonText: 'Change Req',permissionforword:this.CanviewMou_proposed_by_lm_forword_buttonPermission },

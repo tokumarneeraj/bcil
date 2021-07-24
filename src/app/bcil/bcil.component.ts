@@ -94,7 +94,7 @@ export class BcilComponent implements OnInit {
 
           for (let j = 0; j < this.fileshistory.length; j++) {
 
-            if (this.fileshistory[i].status == "S102") {
+            if (this.fileshistory[i]?.status == "S102") {
 
               var splitted = this.fileshistory[i].createdondate.split(" ", 2);
 
