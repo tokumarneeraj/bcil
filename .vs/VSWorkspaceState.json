@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\bcil",
-    "\\src\\app\\bcil\\bcil-init",
-    "\\src\\app\\bcil\\viewfile",
-    "\\src\\app\\header",
-    "\\src\\app\\model",
+    "\\src\\app\\bcil\\tta-dashboard",
+    "\\src\\app\\bcil\\tta-main",
+    "\\src\\app\\bcil\\usermanagement",
+    "\\src\\app\\services",
     "\\src\\assets",
     "\\src\\assets\\css"
   ],
-  "SelectedNode": "\\src\\app\\bcil\\bcil.component.ts",
+  "SelectedNode": "\\src\\app\\bcil\\tta-dashboard\\tta-dashboard.component.ts",
   "PreviewInSolutionExplorer": false
 }
