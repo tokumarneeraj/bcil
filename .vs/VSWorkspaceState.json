@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\bcil",
-    "\\src\\app\\bcil\\bcil-init",
-    "\\src\\app\\bcil\\usermanagement",
-    "\\src\\app\\model",
-    "\\src\\app\\services",
+    "\\src\\app\\bcil\\bcil-dashboard",
+    "\\src\\app\\bcil\\mou-dashboard",
+    "\\src\\app\\bcil\\tta-dashboard",
+    "\\src\\app\\bcil\\tta-main",
     "\\src\\assets",
     "\\src\\assets\\css"
   ],
-  "SelectedNode": "\\src\\app\\bcil\\bcil-init\\bcil-init.component.ts",
+  "SelectedNode": "\\src\\app\\bcil\\tta-main\\tta-main.component.ts",
   "PreviewInSolutionExplorer": false
 }
