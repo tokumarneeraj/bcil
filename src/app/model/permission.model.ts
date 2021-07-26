@@ -10,7 +10,7 @@ export type PermissionValues =
   'mou_pending_forword_button.view'|'mou_proposed_by_admin_client_request_change.view'|'mou_proposed_by_admin_client_approved.view'|
   'mou_change_by_admin_forword_button.view'|
   'mou_proposed_by_lm_forword_button.view'|'mou_proposed_by_lm_change_requird.view'|'mou_accepted_by_client_forword_button.view'|'agreementsigned_forword_button.view'|
-  'bdoassigned_forword_button.view'|'tto_req_approved_forword_button.view'|'ip_manager_assigned_forword_button.view'|
+  'bdoassigned_forword_button.view'|'tto_req_approved_forword_button.view'|'ip_manager_assigned_forword_button.view'|'agreement_not_needed_forword_button.view'|
   'mou_init.view'|'mou_pending.view'|'mou_proposed_by_admin_client.view'|'mou_change_req_by_admin.view'|'mou_change_req_by_client.view'|'mou_proposed_by_lm.view'|'mou_accepted_by_client.view'|
   'agreementsigned.view'|'bdoassigned.view'|'tto_req_approved.view'|'ip_manager_assigned.view'|
   'technologytransfer.view'|'tta_init.view'|'tta_evaluation_assigned.view'|'tta_evaluation_upload_by_bdm.view'|
@@ -107,6 +107,7 @@ export class Permission {
   public static readonly viewbdoassigned_forword_buttonPermission: PermissionValues = 'bdoassigned_forword_button.view';
   public static readonly viewtto_req_approved_forword_buttonPermission: PermissionValues = 'tto_req_approved_forword_button.view';
   public static readonly viewip_manager_assigned_forword_buttonPermission: PermissionValues = 'ip_manager_assigned_forword_button.view';
+  public static readonly viewagreement_not_needed_forword_buttonPermission: PermissionValues = 'agreement_not_needed_forword_button.view';
   
   
   

@@ -80,7 +80,7 @@ export class MouDashboardComponent implements OnInit {
   moulistfilter(data) {
     if (this.isLM) {
 
-      return this.mouModel?.filter(x => x.app_Status == data && x.assignto==this.UserId).length;
+      return this.mouModel?.filter(x => x.app_Status == data ).length;//&& x.assignto==this.UserId
 
     }
     else {
