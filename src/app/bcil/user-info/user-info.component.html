@@ -245,7 +245,7 @@
       <div class="col-sm-7">
         <div ngPreserveWhitespaces class="float-right">
           <button *ngIf="!isEditMode && isGeneralEditor" type="button" (click)="close()" class="btn btn-sm btn-outline-secondary"><i class='fa fa-close'></i> Close</button>
-          <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-sm btn-outline-secondary"><i class='fa fa-edit'></i> Edit</button>
+          <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-sm btn-success"><i class='fa fa-edit'></i> Edit</button>
           <button *ngIf="isEditMode" type="button" (click)="cancel()" class="btn btn-sm btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> Cancel</button>
           <button *ngIf="isEditMode" type="submit" class="btn btn-sm btn-primary" [disabled]="isSaving">
             <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('Saving') : ('Save')}}
