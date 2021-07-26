@@ -55,13 +55,14 @@ export class BcilInitComponent implements OnInit {
   loadingIndicator: boolean;
   user: any;
 permission:boolean;
-
+permissionbutton1:boolean;
+permissionbutton2:boolean;
 
 
   array = [{ name: 'init', value: 'S101', createdBy: "Test1",forwordtitle:"Forword to LM", forward: "S102", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_init_forword_button_Permission },
-  { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_pending_forword_buttonPermission },
+  { name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104",forwordtitle:"Forword to Admin", forwardCheck: true, forwardText: 'Forword', back: false,permissionforword:this.CanviewMou_pending_forword_buttonPermission },
   { name: 'mou_change_by_admin', value: 'S103', createdBy: "Tes3", forward: "S104", forwardCheck: true, forwardText: 'Forword', back: true,permissionforword:this.CanviewMou_change_by_admin_forword_buttonPermission },
-  { name: 'mou_porposed_by_lm', value: 'S104', createdBy: "Tes4", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: true, backStatus: "S103", backbuttonText: 'Change Req',permissionforword:this.CanviewMou_proposed_by_lm_forword_buttonPermission },
+  { name: 'mou_porposed_by_lm', value: 'S104', createdBy: "Tes4",forwordtitle:"Forword to BDM/IPM",backtitle:"Forword to LM", forward: "S110", forwardCheck: true, forwardText: 'Forword', back: true, backStatus: "S103", backbuttonText: 'Change Req',permissionforword:this.CanviewMou_proposed_by_lm_forword_buttonPermission ,permissionbutton1:this.CanviewMou_proposed_by_lm_change_required_buttonPermission},
   { name: 'agreementsigned', value: 'S105', createdBy: "Tes5", forward: "S107", forwardCheck: true, forwardText: 'Forword', back: false, type: true,permissionforword:this.CanviewAgreementsigned_forwprd_buttonPermission },
   { name: 'mou_accepted_by_client', value: 'S106', createdBy: "Tes6", forward: "S105", forwardCheck: true, forwardText: 'Forword', back: false ,permissionforword:this.CanviewMou_accepted_by_client_forword_buttonPermission},
   { name: 'bodassigned', value: 'S107', createdBy: "Tes4", forward: "S108", forwardCheck: true, forwardText: 'Forword', back: false ,permissionforword:this.Canviewbdoassigned_forword_buttonPermission},
@@ -112,6 +113,9 @@ get CanviewMou_change_by_admin_forword_buttonPermission() {
 get CanviewMou_proposed_by_lm_forword_buttonPermission() {
   return this.accountService.userHasPermission(Permission.viewMou_proposed_by_lm_forword_buttonPermission);
 }
+get CanviewMou_proposed_by_lm_change_required_buttonPermission() {
+  return this.accountService.userHasPermission(Permission.viewMou_proposed_by_lm_change_required_buttonPermission);
+}
 get CanviewMou_accepted_by_client_forword_buttonPermission() {
   return this.accountService.userHasPermission(Permission.viewMou_accepted_by_client_forword_buttonPermission);
 }
@@ -142,6 +146,7 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
         this.type = this.array.find(x => x.name == params.type).value;
         this.activearray = this.array.find(x => x.name == params.type);
         this.permission=this.array.find(x => x.name == params.type).permissionforword;
+        this.permissionbutton1=this.array.find(x => x.name == params.type).permissionbutton1;
         //this.createdBy = this.array.find(x => x.name == params.type).createdBy;
       
 

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,8 @@ import { DatePipe } from '@angular/common';
 import { AuthGuard } from './services/auth-guard.service';
 import { ToastaModule } from 'ngx-toasta';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppErrorHandler } from './app-error.handler';
 
 
 // import { HeaderComponent } from './header/header.component';
@@ -43,6 +45,7 @@ import { ToastaModule } from 'ngx-toasta';
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
     ToastaModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
@@ -56,7 +59,9 @@ import { ToastaModule } from 'ngx-toasta';
     OAuthModule.forRoot(),
     ModalModule.forRoot(),
   ],
-  providers: [Bdoservice,
+  providers: [
+    { provide: ErrorHandler, useClass: AppErrorHandler },
+  Bdoservice,
     DatePipe,
     AlertService,
     ThemeManager,

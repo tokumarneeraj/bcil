@@ -52,14 +52,7 @@ export class BcilComponent implements OnInit {
     public router: Router,
     private Bdoservice: Bdoservice,
     private datePipe: DatePipe) {
-    storageManager.initialiseStorageSyncListener();
-
-    this.toastaConfig.theme = 'bootstrap';
-    this.toastaConfig.position = 'top-right';
-    this.toastaConfig.limit = 100;
-    this.toastaConfig.showClose = true;
-    this.toastaConfig.showDuration = false;
-
+   
 
     this.usertype = this.accountService.currentUser.roles.join(',');
     this.UserName = this.accountService.currentUser.userName;
@@ -139,102 +132,7 @@ export class BcilComponent implements OnInit {
     return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate())) / (1000 * 60 * 60 * 24));
   }
 
-  showDialog(dialog: AlertDialog) {
-
-    alertify.set({
-      labels: {
-        ok: dialog.okLabel || 'OK',
-        cancel: dialog.cancelLabel || 'Cancel'
-      }
-    });
-
-    switch (dialog.type) {
-      case DialogType.alert:
-        alertify.alert(dialog.message);
-
-        break;
-      case DialogType.confirm:
-        alertify
-          .confirm(dialog.message, (e) => {
-            if (e) {
-              dialog.okCallback();
-            } else {
-              if (dialog.cancelCallback) {
-                dialog.cancelCallback();
-              }
-            }
-          });
-
-        break;
-      case DialogType.prompt:
-        alertify
-          .prompt(dialog.message, (e, val) => {
-            if (e) {
-              dialog.okCallback(val);
-            } else {
-              if (dialog.cancelCallback) {
-                dialog.cancelCallback();
-              }
-            }
-          }, dialog.defaultValue);
-
-        break;
-    }
-  }
-
-
-
-  showToast(alert: AlertCommand) {
-
-    if (alert.operation === 'clear') {
-      for (const id of this.stickyToasties.slice(0)) {
-        this.toastaService.clear(id);
-      }
-
-      return;
-    }
-
-    const toastOptions: ToastOptions = {
-      title: alert.message.summary,
-      msg: alert.message.detail,
-    };
-
-
-    if (alert.operation === 'add_sticky') {
-      toastOptions.timeout = 0;
-
-      toastOptions.onAdd = (toast: ToastData) => {
-        this.stickyToasties.push(toast.id);
-      };
-
-      toastOptions.onRemove = (toast: ToastData) => {
-        const index = this.stickyToasties.indexOf(toast.id, 0);
-
-        if (index > -1) {
-          this.stickyToasties.splice(index, 1);
-        }
-
-        if (alert.onRemove) {
-          alert.onRemove();
-        }
-
-        toast.onAdd = null;
-        toast.onRemove = null;
-      };
-    } else {
-      toastOptions.timeout = 4000;
-    }
-
-
-    switch (alert.message.severity) {
-      case MessageSeverity.default: this.toastaService.default(toastOptions); break;
-      case MessageSeverity.info: this.toastaService.info(toastOptions); break;
-      case MessageSeverity.success: this.toastaService.success(toastOptions); break;
-      case MessageSeverity.error: this.toastaService.error(toastOptions); break;
-      case MessageSeverity.warn: this.toastaService.warning(toastOptions); break;
-      case MessageSeverity.wait: this.toastaService.wait(toastOptions); break;
-    }
-  }
+ 
   get canViewRoles() {
     return this.accountService.userHasPermission(Permission.viewRolesPermission);
   }

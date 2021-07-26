@@ -9,7 +9,7 @@ export type PermissionValues =
   'department.view' | 'department.manage' |'mou.view'|'mou.add'|'mou_init_forword_button.view'|
   'mou_pending_forword_button.view'|'mou_proposed_by_admin_client_request_change.view'|'mou_proposed_by_admin_client_approved.view'|
   'mou_change_by_admin_forword_button.view'|
-  'mou_proposed_by_lm_forword_button.view'|'mou_accepted_by_client_forword_button.view'|'agreementsigned_forword_button.view'|
+  'mou_proposed_by_lm_forword_button.view'|'mou_proposed_by_lm_change_requird.view'|'mou_accepted_by_client_forword_button.view'|'agreementsigned_forword_button.view'|
   'bdoassigned_forword_button.view'|'tto_req_approved_forword_button.view'|'ip_manager_assigned_forword_button.view'|
   'mou_init.view'|'mou_pending.view'|'mou_proposed_by_admin_client.view'|'mou_change_req_by_admin.view'|'mou_change_req_by_client.view'|'mou_proposed_by_lm.view'|'mou_accepted_by_client.view'|
   'agreementsigned.view'|'bdoassigned.view'|'tto_req_approved.view'|'ip_manager_assigned.view'|
@@ -101,7 +101,7 @@ export class Permission {
   public static readonly viewMou_proposed_by_admin_client_approvedPermission: PermissionValues = 'mou_proposed_by_admin_client_approved.view';
   public static readonly viewMou_change_by_admin_forword_buttonPermission: PermissionValues = 'mou_change_by_admin_forword_button.view';
   public static readonly viewMou_proposed_by_lm_forword_buttonPermission: PermissionValues = 'mou_proposed_by_lm_forword_button.view';
-
+  public static readonly viewMou_proposed_by_lm_change_required_buttonPermission: PermissionValues ='mou_proposed_by_lm_change_requird.view'
   public static readonly viewMou_accepted_by_client_forword_buttonPermission: PermissionValues = 'mou_accepted_by_client_forword_button.view';
   public static readonly viewAgreementsigned_forword_buttonPermission: PermissionValues = 'agreementsigned_forword_button.view';
   public static readonly viewbdoassigned_forword_buttonPermission: PermissionValues = 'bdoassigned_forword_button.view';
