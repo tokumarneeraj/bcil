@@ -220,6 +220,7 @@ export class UsermanagementComponent implements OnInit {
 
 
   deleteUser(row: UserEdit) {
+  debugger;
     this.alertService.showDialog('Are you sure you want to delete \"' + row.userName + '\"?', DialogType.confirm, () => this.deleteUserHelper(row));
   }
 

@@ -11,5 +11,16 @@ export class UploadFileViewModel {
   public app_ref_id: string;
   public type: string;
   public assignto: string;
+  public nodalofficer: string;
+  public assigntoadmin:string;
   public createdon: string; 
+  public nodal:nodalOfficer;
+}
+
+
+export class nodalOfficer{
+
+  public nodal_name:string;
+  public nodal_email:string;
+  public nodal_mobile:string;
 }

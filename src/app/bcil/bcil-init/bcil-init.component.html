@@ -255,9 +255,9 @@
                                                   <td>{{item.dir_Mobile_No}}</td>
 
                                                   <td>
-                                                    <button value="back" *ngIf="activearray?.back" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
+                                                    <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
                                                     <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
-                                                    <button value="approve" *ngIf="activearray?.approved &&(CanviewMou_proposed_by_admin_client_approvedPermission)" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
+                                                    <button value="approve" *ngIf="activearray?.approved" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 
                                                   </td>
                                                   <td><a class="btn btn-success" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>
@@ -302,7 +302,7 @@
             <div class="modal-body">
               <form [formGroup]="ForwardForm">
 
-                <div class="form-group row" *ngIf="type=='S101' && isAdmin">
+                <div class="form-group row" *ngIf="type=='S101' && isAdmin && forword">
                   <div class="col-sm-12">
                     <label class="col-form-label">Assign To</label>
 

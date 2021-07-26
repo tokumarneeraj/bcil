@@ -1,10 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+
+@import "app/assets/styles/styles-vendor.css";
+
 .invalid-feedback {
     display: none;
     width: 100%;
     margin-top: .25rem;
     font-size: 80%;
     color: #dc3545;
+}
+.alertify {
+  top: 75px;
+}
+
+.alertify-message {
+  font-size: 1.1rem;
+}
+
+#toasta.toasta-position-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+#toasta .toast.toasta-theme-bootstrap {
+  font-size: 0.9em;
+}
+
+#toasta .toast.toasta-theme-bootstrap .toast-text .toast-title {
+  font-size: 1.02em;
+}
+
+#toasta .toast-text .toast-msg {
+  max-width: 1000px;
+  max-height: 800px;
+  display: inline-block;
+  overflow: auto;
 }
 
 
