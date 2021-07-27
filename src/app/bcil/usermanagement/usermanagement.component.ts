@@ -58,9 +58,16 @@ export class UsermanagementComponent implements OnInit {
 
   @ViewChild('userEditor', { static: true })
   userEditor: UserInfoComponent;
+  isNodal: boolean;
+  userRoles: string[];
+  UserId: string;
+
 
   constructor(private localStorage: LocalStoreManager, private alertService: AlertService, private authService: AuthService, private translationService: AppTranslationService, private accountService: AccountService) {
     this.user = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
+    this.userRoles = this.accountService.currentUser.roles;
+    this.isNodal = this.userRoles.includes('Nodal');
+    this.UserId = this.accountService.currentUser.id;
   }
   async ngOnInit() {
     const gT = (key: string) => this.translationService.getTranslation(key);
@@ -136,7 +143,13 @@ export class UsermanagementComponent implements OnInit {
 
     if (this.canViewRoles) {
       this.accountService.getUsersAndRoles().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
-    } else {
+    }
+    else if (this.isNodal) {
+      this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+
+    }
+
+    else {
 
       this.accountService.getUsers().subscribe(users => this.onDataLoadSuccessful(users, this.accountService.currentUser.roles.map(x => new Role(x))), error => this.onDataLoadFailed(error));
     }
@@ -186,7 +199,14 @@ export class UsermanagementComponent implements OnInit {
       console.log(rol, this.userview, 'i', this.roleassign, this.usermanage)
       this.rowsCache = [...users];
 
+
+    if (this.isNodal) {
+      this.rows = users.filter(x => x.roles.includes('Scientist') && x.createdBy == this.UserId);
+    }
+    else {
       this.rows = users;
+    }
+    console.log(this.rows);
 
 
      

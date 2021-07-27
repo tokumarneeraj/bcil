@@ -37,5 +37,6 @@ export class User {
   public isEnabled: boolean;
   public isLockedOut: boolean;
   public roles: string[];
-  public isLastPasswordChanged:string;
+  public isLastPasswordChanged: string;
+  public createdBy: string;
 }

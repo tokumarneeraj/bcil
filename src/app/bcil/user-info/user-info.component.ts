@@ -74,10 +74,15 @@ export class UserInfoComponent implements OnInit {
   public roles;
   @ViewChild('department')
   public department;
-user1:any;
+  user1: any;
+  isNodal: boolean;
+  userRoles: string[];
+
 
   constructor(private localStorage: LocalStoreManager,private alertService: AlertService, private accountService: AccountService) {
     this.user1 = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
+    this.userRoles = this.accountService.currentUser.roles;
+    this.isNodal = this.userRoles.includes('Nodal'); 
   }
 
   ngOnInit() {
@@ -93,6 +98,7 @@ user1:any;
     //   }
 
     // });
+    debugger;
 
     if (!this.isGeneralEditor) {
       console.log(this.roleArray);
@@ -110,7 +116,13 @@ user1:any;
 
     if (this.canViewAllRoles) {
       this.accountService.getUserAndRoles().subscribe(results => this.onCurrentUserDataLoadSuccessful(results[0], results[1]), error => this.onCurrentUserDataLoadFailed(error));
-    } else {
+    }
+
+    else if (this.isNodal) {
+      this.accountService.getUserandRolesForDropdown().subscribe(results => this.onCurrentUserDataLoadSuccessful(results[0], results[1]), error => this.onCurrentUserDataLoadFailed(error));
+      
+    }
+    else {
       this.accountService.getUser().subscribe(user => this.onCurrentUserDataLoadSuccessful(user, user.roles.map(x => new Role(x))), error => this.onCurrentUserDataLoadFailed(error));
     }
   }
@@ -121,8 +133,13 @@ user1:any;
 
     this.user = user;
     this.allDepartment = this.allDepartment.filter(x => x.id === this.user.department);
-    this.allRoles = roles;
 
+    if (this.isNodal) {
+      this.allRoles = roles.filter(r => r.name === 'Scientist');
+    }
+    else {
+    this.allRoles = roles;
+    }
 
 
   }
@@ -138,7 +155,14 @@ user1:any;
 
 
   getRoleByName(name: string) {
-    return this.allRoles.find((r) => r.name === name);
+
+    if (this.isNodal) {
+      return this.allRoles.filter((r) => r.name === 'Scientist');
+    }
+    else {
+      return this.allRoles.find((r) => r.name === name);
+    }
+   
   }
 
 
@@ -350,7 +374,14 @@ this.allDepartment=this.allDepartment1;
     this.isGeneralEditor = true;
     this.isNewUser = true;
 
-    this.allRoles = [...allRoles];
+    if (this.isNodal) {
+      this.allRoles = allRoles.filter(x => x.name.includes ('Scientist'));
+
+    }
+    else {
+      this.allRoles = [...allRoles];
+
+    }
     this.allDepartment = this.departments;
 
     this.user = this.userEdit = new UserEdit();
