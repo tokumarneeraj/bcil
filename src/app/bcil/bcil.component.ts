@@ -100,7 +100,7 @@ export class BcilComponent implements OnInit {
 
 
               this.date_diff = this.calculateDiff(this.app_date);
-              if (this.date_diff == 3) {
+              if (this.date_diff >= 3) {
 
                 this.notify = true;
 
