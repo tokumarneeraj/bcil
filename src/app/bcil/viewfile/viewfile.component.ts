@@ -17,7 +17,7 @@ export class ViewfileComponent implements OnInit {
   fileshistory:filehistoryModel[];
   showpage= false;
   rows: User[] = [];
-  moustatus=['S101','S102','S103','S104','S105','S106','S107','S108','S019','S110','S111','S112'];
+  moustatus=['S101','S102','S103','S104','S105','S106','S107','S108','S109','S110','S111','S112'];
 ttostatus=['S113','S114','S115','S116','S117','S118','S119','S120','S121','S122','S123','S124','S125','S126','S127','S128','S129','S130','S131'];
 
   getbaseurl=environment.baseUrl;
@@ -35,7 +35,7 @@ ttostatus=['S113','S114','S115','S116','S117','S118','S119','S120','S121','S122'
 
       this.Bdoservice.Getfile(this.refid).subscribe(data=>{console.log(data)
         data.map((x,i)=>{
-x.createdby=this.rows.find(y=>y.id==x.createdby).userName+"("+this.rows.find(y=>y.id==x.createdby).roles+")"
+x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=>y.id==x.createdby)?.roles+")"
         })
 
        data= this.stage=="mou"?data.filter(x=>this.moustatus.includes(x.status)):

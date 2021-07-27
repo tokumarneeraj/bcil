@@ -84,27 +84,27 @@ export class MouDashboardComponent implements OnInit {
     return this.accountService.userHasPermission(Permission.addMouPermission);
   }
   moulistfilter(data) {
-    if (this.isLM) {
-
-      return this.mouModel?.filter(x => x.app_Status == data &&  x.assignto==this.UserId).length;//&& x.assignto==this.UserId
-
-    }
-    else if(this.isAdmin){
+ 
+    // else if(this.isAdmin){
      
 
-        return this.mouModel?.filter(x => x.app_Status == data &&  x.assigntoadmin==this.UserId).length;//&& x.assignto==this.UserId
+    //     return this.mouModel?.filter(x => x.app_Status == data &&  x.assigntoadmin==this.UserId).length;//&& x.assignto==this.UserId
   
       
-    }
-    // else if(this.isBDM ||this.isIPM){
-    //   return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;//&& x.assignto==this.UserId
-  
     // }
-    else {
-      console.log(this.mouModel?.filter(x => x.app_Status == data).length)
-      return this.mouModel?.filter(x => x.app_Status == data).length;
+     if(this.isBDM ||this.isIPM){
+      return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;//&& x.assignto==this.UserId
+  
     }
+   else {
+
+      console.log(this.mouModel?.filter(x => x.app_Status == data).length)
+      return this.mouModel?.filter(x => (x.app_Status == data) && (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
+        x.assignto==this.UserId || x.app_Status=='S101'
+        )).length;
+    //}
 
   }
+}
 
 }
