@@ -34,7 +34,7 @@
                                     <!-- Hover table card start -->
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Hover Table</h5>
+                                            <h5>Summary</h5>
                                             <!-- <span>use class <code>table-hover</code> inside table element</span> -->
                                             <div class="card-header-right">
                                                 <ul class="list-unstyled card-option">
@@ -54,6 +54,7 @@
                                                             <th>#</th>
                                                             <th>File Name</th>
                                                             <th>From</th>
+                                                            <th>Created On</th>
                                                             
                                                            
                                                         </tr>
@@ -63,6 +64,7 @@
                                                             <th scope="row">{{i+1}}</th>
                                                             <td><a href="{{getbaseurl}}/{{item.url}}" target="_blank">{{item.filename}}</a></td>
                                                             <td>{{item.createdby}}</td>
+                                                            <td>{{item.createdon}}</td>
                                                             
                                                      </tr>
                                                     </tbody>

@@ -14,6 +14,9 @@ export class MouDashboardComponent implements OnInit {
   mouModel: mouModel[];
   showpage = false;
   isLM: boolean;
+  isAdmin:boolean;
+  isBDM: boolean;
+  isIPM:boolean;
   userRoles: string[];
   UserId: string;
 
@@ -25,6 +28,9 @@ export class MouDashboardComponent implements OnInit {
     this.userRoles = this.accountService.currentUser.roles;
 
     this.isLM = this.userRoles.includes('LM');
+    this.isAdmin = this.userRoles.includes('admin');
+    this.isBDM = this.userRoles.includes('BDM');
+    this.isIPM = this.userRoles.includes('IPM');
   }
 
  
@@ -80,9 +86,20 @@ export class MouDashboardComponent implements OnInit {
   moulistfilter(data) {
     if (this.isLM) {
 
-      return this.mouModel?.filter(x => x.app_Status == data ).length;//&& x.assignto==this.UserId
+      return this.mouModel?.filter(x => x.app_Status == data &&  x.assignto==this.UserId).length;//&& x.assignto==this.UserId
 
     }
+    else if(this.isAdmin){
+     
+
+        return this.mouModel?.filter(x => x.app_Status == data &&  x.assigntoadmin==this.UserId).length;//&& x.assignto==this.UserId
+  
+      
+    }
+    // else if(this.isBDM ||this.isIPM){
+    //   return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;//&& x.assignto==this.UserId
+  
+    // }
     else {
       console.log(this.mouModel?.filter(x => x.app_Status == data).length)
       return this.mouModel?.filter(x => x.app_Status == data).length;

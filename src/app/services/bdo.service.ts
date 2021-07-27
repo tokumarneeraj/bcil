@@ -6,6 +6,7 @@ import {mouModel} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
+import { AccountService } from './account.service';
 @Injectable()
 export class Bdoservice
 {
@@ -14,8 +15,9 @@ export class Bdoservice
 
     get fileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddFile'; }
     get filehistory() { return environment.baseUrl + '/api/bdo/getfile'; }
-    constructor(private http: HttpClient ){
-
+    UserId:string;
+    constructor(private http: HttpClient ,private accountService: AccountService,){
+      this.UserId = this.accountService.currentUser.id;
     }
    public uploadfile<T>(upload:UploadFileViewModel):Observable<UploadFileViewModel>{
     const headers = new HttpHeaders({
@@ -29,6 +31,7 @@ export class Bdoservice
    }
 
     public  AddMou<T>(mou:mouModel): Observable<mouModel> {
+      mou.createdBy=this.UserId;
         const headers = new HttpHeaders({
             
             'Content-Type': 'application/json',

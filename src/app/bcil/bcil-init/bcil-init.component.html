@@ -216,7 +216,7 @@
                                     <!-- Hover table card start -->
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Hover Table</h5>
+                                            <h5>{{activearray?.tabelname}}</h5>
                                             <!-- <span>use class <code>table-hover</code> inside table element</span> -->
                                             <div class="card-header-right">
                                                 <ul class="list-unstyled card-option">
@@ -255,12 +255,12 @@
                                                   <td>{{item.dir_Mobile_No}}</td>
 
                                                   <td>
-                                                    <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
-                                                    <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
-                                                    <button value="approve" *ngIf="activearray?.approved" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-success" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
+                                                    <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-info" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
+                                                    <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
+                                                    <button value="approve" *ngIf="activearray?.approved" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 
                                                   </td>
-                                                  <td><a class="btn btn-success" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>
+                                                  <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mou',refid:item.refid}">View</a></td>
 
                                                 </tr>
                                               </tbody>
@@ -294,7 +294,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Application Forword</h4>
+                <h4>Application Forward</h4>
                 <button type="button" class="close float-right" title="Close" (click)="editorModal1.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -304,7 +304,7 @@
 
                 <div class="form-group row" *ngIf="type=='S101' && isAdmin && forword">
                   <div class="col-sm-12">
-                    <label class="col-form-label">Assign To</label>
+                    <label class="col-form-label">Select Legal Manager</label>
 
                     <select type="text" class="form-control" formControlName="assignto" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
                       <option value="" selected>--select--</option>

@@ -29,6 +29,7 @@ export class AccountService {
     return this.accountEndpoint.getUserEndpoint<User>(userId);
   }
 
+  
   getUserAndRoles(userId?: string) {
 
     return forkJoin([
@@ -58,6 +59,9 @@ export class AccountService {
   getUsers(page?: number, pageSize?: number) {
 
     return this.accountEndpoint.getUsersEndpoint<User[]>(page, pageSize);
+  }
+  getAllUser(page?: number, pageSize?: number){
+    return this.accountEndpoint.getAllUsersEndpoint<User[]>(page, pageSize);
   }
 
   getUsersAndRoles(page?: number, pageSize?: number) {
