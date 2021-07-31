@@ -27,5 +27,8 @@ export class mouModel {
 
   public app_Status: string;
   public assignto: string;
+  public assigntoadmin: string;
   public createdBy:string;
+
+  public createdOn:Date;
 } 

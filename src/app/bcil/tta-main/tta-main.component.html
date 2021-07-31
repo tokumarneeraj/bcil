@@ -131,7 +131,7 @@
                       <td *ngIf='isNodal && item.app_Status==="S126"'><button value="assign" *ngIf='isNodal && item.app_Status==="S126"' class="btn btn-success" (click)="onClientClick(item,'S128')">Change Request</button></td>
 
 
-                      <td><a class="btn btn-success" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>
+                      <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{refid:item.refid}">View</a></td>
 
                     </tr>
                   </tbody>
