@@ -29,6 +29,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
 import { TtaMainComponent } from './tta-main/tta-main.component';
+import { ReminderComponent } from './reminder/reminder.component';
+import { ReminderInfoComponent } from './reminder-info/reminder-info.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -39,7 +41,9 @@ import { TtaMainComponent } from './tta-main/tta-main.component';
     ProfileComponent,
     MouDashboardComponent,
     TtaDashboardComponent,
-    TtaMainComponent],
+    TtaMainComponent,
+    ReminderComponent,
+    ReminderInfoComponent],
   imports: [
     
     CommonModule,
