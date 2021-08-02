@@ -91,10 +91,11 @@ export class MouDashboardComponent implements OnInit {
     //     return this.mouModel?.filter(x => x.app_Status == data &&  x.assigntoadmin==this.UserId).length;//&& x.assignto==this.UserId
   
       
-    // }
+
      if(this.isBDM ||this.isIPM){
       return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;//&& x.assignto==this.UserId
   
+
     }
    else {
 

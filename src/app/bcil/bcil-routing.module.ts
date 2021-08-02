@@ -15,7 +15,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
 import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
 import { TtaMainComponent } from './tta-main/tta-main.component';
+
+import { TlpDashboardComponent } from './tlp-dashboard/tlp-dashboard.component';
+import { TlpMainComponent } from './tlp-main/tlp-main.component';
+
 import { ReminderComponent } from './reminder/reminder.component';
+
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
   // {path:"Login",component:LoginComponent},
@@ -32,7 +37,9 @@ const routes: Routes = [
   { path: "mou-dashboard", canActivate: [AuthGuard], component: MouDashboardComponent },
   { path: "tta-dashboard", canActivate: [AuthGuard], component: TtaDashboardComponent },
   { path: "bcil-tta-table", canActivate: [AuthGuard], component: TtaMainComponent },
-  
+  { path: "tlp-dashboard", canActivate: [AuthGuard], component: TlpDashboardComponent },
+  { path: "bcil-tlp-table", canActivate: [AuthGuard], component: TlpMainComponent },
+
 ];
 
 @NgModule({
