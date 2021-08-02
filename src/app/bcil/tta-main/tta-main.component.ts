@@ -103,12 +103,12 @@ export class TtaMainComponent implements OnInit {
 
 
       if (this.isAdmin == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type);
+        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
       }
 
       else if (this.isBdm == true) {
 
-        this.mouModel = data.filter(x => x.app_Status == this.type);
+        this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
       }
 
       else {

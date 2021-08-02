@@ -20,7 +20,8 @@ export class BcilDashboardComponent implements OnInit {
   UserName: string;
   mouModelFinal: mouModel[];
 moustatus=['S101','S102','S103','S104','S105','S106','S107','S108','S019','S110','S111','S112'];
-ttostatus=['S113','S114','S115','S116','S117','S118','S119','S120','S121','S122','S123','S124','S125','S126','S127','S128','S129','S130','S131'];
+  ttostatus = ['S113', 'S114', 'S115', 'S116', 'S117', 'S118', 'S119', 'S120', 'S121', 'S122', 'S123', 'S124', 'S125', 'S126', 'S127', 'S128', 'S129', 'S130', 'S131'];
+  tlpstatus = ['S132', 'S133', 'S134', 'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145'];
   //constructor(private Bdoservice: Bdoservice, private _cookieService: CookieService) {
   //  this.usertype = this._cookieService.get("UserType");
   //  this.UserName = this._cookieService.get("UserName");
@@ -58,6 +59,11 @@ ttostatus=['S113','S114','S115','S116','S117','S118','S119','S120','S121','S122'
   get canViewMou() {
     return this.accountService.userHasPermission(Permission.viewMouPermission);
   }
+
+  get canViewTlp() {
+    return this.accountService.userHasPermission(Permission.viewTechnologyLeadPermission);
+  }
+
   // usertype:string;
   // UserName:string;
   constructor(private Bdoservice:Bdoservice, private accountService: AccountService) {
@@ -83,6 +89,10 @@ moulist(){
    return this.mouModel?.filter(x=>this.ttostatus.includes(x.app_Status)).length;
     }
 
+  tlplist() {
+    console.log(this.mouModel?.filter(x => !this.tlpstatus.includes(x.app_Status)).length)
+    return this.mouModel?.filter(x => this.tlpstatus.includes(x.app_Status)).length;
+  }
 
   // for client
   clientMouListFilter(data) {

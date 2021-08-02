@@ -1,0 +1,509 @@
+<div class="pcoded-content">
+  <!-- Page-header start -->
+  <div class="page-header">
+    <div class="page-block">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="page-header-title">
+            <h5 class="m-b-10">MOU</h5>
+            <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb-title">
+            <li class="breadcrumb-item">
+              <a href="index.html"> <i class="fa fa-home"></i> </a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#!">MOU</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page-header end -->
+  <div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+      <div class="page-wrapper">
+
+        <!-- Page body start -->
+        <div class="page-body">
+
+          <div class="row categoryList mouList">
+            <div class="col-sm-12">
+              <!-- Basic Form Inputs card start -->
+              <div class="row">
+                <!-- task, page, download counter  start -->
+
+                <div class="col-xl-3 col-md-6" *ngIf="canViewEnterLead">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-green">Enter Lead </h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S130')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'enter_lead'}">
+                        <div class="card-footer bg-c-green">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6" *ngIf="canViewLead_Entered_by_bdm">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-blue">Lead Entered by BDM</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S132')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'lead_entered_by_bdm'}">
+                        <div class="card-footer bg-c-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_due_deligence_done">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-yellow">Due Deligence Done</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S133')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'due_deligence_done'}">
+                        <div class="card-footer bg-c-yellow">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_due_deligence_change_req_by_admin">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-purple">Due Deligence Change Request by Admin</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S134')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'due_deligence_change_req_by_admin'}">
+                        <div class="card-footer bg-c-purple">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_lead_approved_by_admin">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-red">Lead Approved by Admin</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S135')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'lead_approved_by_admin'}">
+                        <div class="card-footer bg-c-red">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_ncp_shared">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-green">NCP Shared</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S136')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'ncp_shared'}">
+                        <div class="card-footer bg-c-dark-green">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_nda_req_by_luf">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-orange">NDA Request by LUF</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S137')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'nda_req_by_luf'}">
+                        <div class="card-footer bg-c-dark-orange">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_nda_change_req_by_Admin">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-pink">NDA Change Request by Admin</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S138')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'nda_change_req_by_Admin'}">
+                        <div class="card-footer bg-c-dark-pink">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_nda_approved_by_Admin">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-blue">NDA Approved by Admin</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S139')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'nda_approved_by_Admin'}">
+                        <div class="card-footer bg-c-dark-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_nda_change_req_by_no">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-blue">NDA Change Request by NO</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S140')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'nda_change_req_by_no'}">
+                        <div class="card-footer bg-c-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_nda_approved_by_no">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-green">NDA Approved by NO</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S141')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'nda_approved_by_no'}">
+                        <div class="card-footer bg-c-dark-green">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_nda_approved_by_company">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-green">NDA Approved by Company</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S142')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'nda_approved_by_company'}">
+                        <div class="card-footer bg-c-green">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_nda_executed">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-purple">NDA Executed</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S143')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'nda_executed'}">
+                        <div class="card-footer bg-c-purple">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_ncp_cip_shared">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-blue">NCP and CIP Shared</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S144')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'ncp_cip_shared'}">
+                        <div class="card-footer bg-c-dark-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6" *ngIf="canView_cip_shared">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-yellow">CIP Shared</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S145')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tlp-table' [queryParams]="{type:'cip_shared'}">
+                        <div class="card-footer bg-c-yellow">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+              <!-- Basic Form Inputs card end -->
+            </div>
+          </div>
+        </div>
+        <!-- Page body end -->
+      </div>
+    </div>
+    <!-- Main-body end -->
+    <!-- <div id="styleSelector">
+
+    </div> -->
+  </div>
+  <app-footer></app-footer>
+</div>

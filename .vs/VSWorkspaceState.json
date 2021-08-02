@@ -5,12 +5,12 @@
     "\\src\\app",
     "\\src\\app\\bcil",
     "\\src\\app\\bcil\\bcil-init",
-    "\\src\\app\\bcil\\tta-main",
-    "\\src\\app\\bcil\\user-info",
+    "\\src\\app\\bcil\\tlp-dashboard",
+    "\\src\\app\\bcil\\tlp-main",
     "\\src\\app\\bcil\\usermanagement",
     "\\src\\app\\model",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\bcil\\tlp-dashboard\\tlp-dashboard.component.ts",
   "PreviewInSolutionExplorer": false
 }
