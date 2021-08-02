@@ -15,7 +15,7 @@
 
           ((isChangePassword || isNewUser) && newPassword.valid && confirmPassword.errors?.required && showErrorAlert('Confirmation password is required', 'Please enter the confirmation password'));
           ((isChangePassword || isNewUser) && newPassword.valid && confirmPassword.errors?.appValidateEqual && showErrorAlert('Passwword mismatch', 'New password and confirmation password do not match'));
-          (!department.valid && showErrorAlert('Department is required', 'Please Select Department)'));
+         
           (canAssignRoles && !roles.valid && showErrorAlert('Roles is required', 'Please select a minimum of 1 role'));">
 
     <div class="form-group row">

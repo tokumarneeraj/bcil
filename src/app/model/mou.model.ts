@@ -32,3 +32,12 @@ export class mouModel {
 
   public createdOn:Date;
 } 
+
+export class StatusMaster{
+
+  public status_name:string;
+  public status_code:string;
+  public stage:string;
+  public id:string;
+
+}

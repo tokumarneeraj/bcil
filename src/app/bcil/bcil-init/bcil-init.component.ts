@@ -73,7 +73,7 @@ nodalofficer:string;
   { tabelname:"MOU Accepted by Client",name: 'mou_accepted_by_client', value: 'S106', createdBy: "Tes6", forward: "S105", forwardCheck: true, forwardText: 'Forward', back: false ,permissionforword:this.CanviewMou_accepted_by_client_forword_buttonPermission},
   { tabelname:"Business Development Manager Assiged",name: 'bodassigned', value: 'S107', createdBy: "Tes4", forward: "S108", forwardCheck: true, forwardText: 'Forward', back: false ,permissionforword:this.Canviewbdoassigned_forword_buttonPermission},
   { tabelname:"TTO Req Approved",name: 'tto_req_approved', value: 'S108', createdBy: "Tes5", forward: "S109", forwardCheck: true, forwardText: 'Forward', back: false ,permissionforword:this.Canviewtto_req_approved_forword_buttonPermission},
-  { tabelname:"IP Manager Assigned",name: 'ipm_assigned', value: 'S109', createdBy: "Tes6", forward: "S110", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:this.Canviewip_manager_assigned_forword_buttonPermission },
+  { tabelname:"IP Manager Assigned",name: 'ipm_assigned', value: 'S109', createdBy: "Tes6", forward: "S108", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:this.Canviewip_manager_assigned_forword_buttonPermission },
  { tabelname:"MOU Proposed by Admin",name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S106",forwordtitle:"Forward to LM", forwardCheck: true, forwardText: 'Forward', back: true,backtitle:'Forward to Admin', backStatus: "S112", backbuttonText: 'Mou Change By Client',permissionforword:this.CanviewMou_accepted_by_client_forword_buttonPermission,permissionbutton1:this.CanviewMou_proposed_by_admin_client_request_changePermissionPermission },
   { tabelname:"MOU Change By Client",name: 'mou_change_by_client', value: 'S111', createdBy: "Tes3", forward: "S103", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:this.Canviewbdoassigned_forword_buttonPermission },
   //{ name: 'mou_approved_by_admin', value: 'S112', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
@@ -166,11 +166,15 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       debugger
-
-      this.mouModel = data.filter(x => x.app_Status == this.type);
+      if(this.isBdm ||this.isIPM){
+        this.mouModel = data.filter(x => x.app_Status == this.type &&  x.createdBy==this.UserId);
+      }
+      else{
+      this.mouModel = data.filter(x => x.app_Status == this.type &&  (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
+        x.assignto==this.UserId || x.app_Status=='S101'));
+      }
         this.showpage = true;
-      
-
+     
 
     })
 
@@ -223,7 +227,7 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
     this.UploadFileViewModel.assignto = this.ForwardForm.get('assignto').value;
 //this.UploadFileViewModel.assigntoadmin= this.UploadFileViewModel.createdBy;
-    this.UploadFileViewModel.createdBy = this.createdBy;
+    this.UploadFileViewModel.createdBy = this.UserId;
 
     console.log(this.UploadFileViewModel);
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
