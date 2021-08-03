@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.loadscript()
+    //this.loadscript()
   }
   loadscript(){
     const dynamicScripts = [
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
       // './assets/js/pcoded.min.js',
       // './assets/js/vertical-layout.min.js',
       // './assets/pages/dashboard/custom-dashboard.js',
-    './assets/js/script.js'
+    //'./assets/js/script.js'
     
       
       

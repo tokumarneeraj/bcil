@@ -47,8 +47,9 @@ export class AccountEndpoint extends EndpointBase {
   
 
   constructor(private configurations: ConfigurationService, http: HttpClient, authService: AuthService) {
-    super(http,authService);
-    //this.configurations.baseUrl ='https://localhost:44350/';
+    super(http, authService);
+    
+    //this.configurations.baseUrl ='http://43.224.139.121';
   }
   // donation verification
   resetPassword<T>(resetPassword: ResetPassword): Observable<T> {

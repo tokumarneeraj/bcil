@@ -20,12 +20,20 @@ scripts:string;
       loadscript(){
         const dynamicScripts = [
           './assets/js/jquery/jquery.min.js',
+          './assets/js/jquery-ui/jquery-ui.min.js',
+          './assets/js/popper.js/popper.min.js',
+          './assets/js/bootstrap/js/bootstrap.min.js',
+          './assets/pages/widget/excanvas.js',
+          './assets/pages/waves/js/waves.min.js',
+          './assets/js/jquery-slimscroll/jquery.slimscroll.js',
+          './assets/js/modernizr/modernizr.js',
           './assets/js/SmoothScroll.js',
           './assets/js/jquery.mCustomScrollbar.concat.min.js ',
           './assets/js/pcoded.min.js',
           './assets/js/vertical-layout.min.js',
           './assets/pages/dashboard/custom-dashboard.js',
-        // './assets/js/script.js'
+          //'./assets/js/script.js'
+
         
           
           
