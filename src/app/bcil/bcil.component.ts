@@ -172,4 +172,103 @@ export class BcilComponent implements OnInit {
   get canViewMou() {
     return this.accountService.userHasPermission(Permission.viewMouPermission);
   }
+
+  //mou internal menu
+
+  get canviewMou_initPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_initPermission);
+  }
+  get canviewMou_pendingPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_pendingPermission);
+  }
+  get canviewMou_proposed_by_adminPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_proposed_by_adminPermission);
+  }
+  get canviewMou_change_by_adminPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_change_req_by_adminPermission);
+  }
+
+  get canviewMou_change_by_clientPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_change_req_by_clientPermission);
+  }
+  get canviewMou_proposed_by_lmPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_proposed_by_lmPermission);
+  }
+  get canviewMou_accepted_by_clientPermission() {
+    return this.accountService.userHasPermission(Permission.viewMou_accepted_by_clientPermission);
+  }
+  get canviewagreementsignedPermission() {
+    return this.accountService.userHasPermission(Permission.viewagreementsignedPermission);
+  }
+  get canviewbdoassignedPermission() {
+    return this.accountService.userHasPermission(Permission.viewbdoassignedPermission);
+  }
+  get canviewtto_required_aproved_Permission() {
+    return this.accountService.userHasPermission(Permission.viewtto_required_aproved_Permission);
+  }
+  get canviewip_manager_assignedPermission() {
+    return this.accountService.userHasPermission(Permission.viewip_manager_assignedPermission);
+  }
+
+
+//tto internal menu
+
+get canviewTta_initPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_initPermission);
+}
+get canviewTta_evaluation_assignedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_evaluation_assignedPermission);
+}
+get canviewTta_evaluation_upload_by_bdmPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_evaluation_upload_by_bdmPermission);
+}
+get canviewTta_evaluation_closure_by_adminPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_evaluation_closure_by_adminPermission);
+}
+get canviewTta_evaluation_approved_by_adminPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_evaluation_approved_by_adminPermission);
+}
+get canviewTta_evaluation_change_request_by_adminPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_evaluation_change_request_by_adminPermission);
+}
+get canviewTta_Closure_request_by_bdmPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_Closure_request_by_bdmPermission);
+}
+get canviewTta_closePermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_closePermission);
+}
+get canviewTta_evaluation_change_request_by_clientPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_evaluation_change_request_by_clientPermission);
+}
+get canviewTta_evaluation_accepted_by_clientPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_evaluation_accepted_by_clientPermission);
+}
+
+
+get canviewTta_strategy_assignedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_strategy_assignedPermission);
+}
+get canviewTta_strategy_uploaded_by_bdmPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_strategy_uploaded_by_bdmPermission);
+}
+get canviewtta_strategy_change_request_by_adminPermission() {
+  return this.accountService.userHasPermission(Permission.viewtta_strategy_change_request_by_adminPermission);
+}
+get canviewTta_techb_and_flier_approved_by_adminPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_techb_and_flier_approved_by_adminPermission);
+}
+get canviewTta_techb_and_flier_approved_by_scientistPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_techb_and_flier_approved_by_scientistPermission);
+}
+get canviewTta_chnage_req_by_scientistPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_change_req_by_scientistPermission);
+}
+get canviewstartegy_implementedPermission() {
+  return this.accountService.userHasPermission(Permission.viewstartegy_implementedPermission);
+}
+get canviewTta_interest_receivedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_interest_receivedPermission);
+}
+
+
 }

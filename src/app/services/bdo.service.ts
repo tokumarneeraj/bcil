@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {mouModel, StatusMaster} from '../model/mou.model';
+import {mouModel, Reminder, StatusMaster} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
@@ -11,6 +11,7 @@ import { AccountService } from './account.service';
 export class Bdoservice
 {
     get addmouurl() { return  environment.baseUrl+'/api/bdo/addmou'; }
+    get addreminderurl() { return  environment.baseUrl+'/api/bdo/addreminder'; }
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
     get getstatusmasterurl() { return environment.baseUrl+'/api/bdo/getstatusmaster'; }
 
@@ -54,6 +55,21 @@ export class Bdoservice
         //       return this.handleError(error, () =>{});
         //     }));
         }
+
+        public  AddReminder<T>(reminder:Reminder): Observable<Reminder> {
+          reminder.createdBy=this.UserId;
+            const headers = new HttpHeaders({
+                
+                'Content-Type': 'application/json',
+                Accept: 'application/json, text/plain, */*'
+              });
+          
+              return this.http.post<Reminder>(this.addreminderurl, JSON.stringify(reminder),{headers:headers});
+            //   .pipe<mouModel>(
+            //     catchError(error => {
+            //       return this.handleError(error, () =>{});
+            //     }));
+            }
 
         public  GetStatusMaster<T>(): Observable<StatusMaster[]> {
         
