@@ -38,6 +38,7 @@ export class BcilComponent implements OnInit {
   date_diff: number;
   d_date: string;
   noticfy_class: notificationmodel[] = [];
+  
 
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
@@ -132,6 +133,7 @@ export class BcilComponent implements OnInit {
     return Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate())) / (1000 * 60 * 60 * 24));
   }
 
+ 
  
   get canViewRoles() {
     return this.accountService.userHasPermission(Permission.viewRolesPermission);
