@@ -222,7 +222,7 @@ yx-axis
 */
 
 	.mCSB_container_wrapper{
-		position: absolute;
+		/*position: absolute;*/
 		height: auto;
 		width: auto;
 		overflow: hidden;

@@ -81,7 +81,8 @@ $(document).ready(function() {
     //
     // });
 
-    $(document).ready(function(){
+  $(document).ready(function () {
+    debugger;
         $(".header-notification").click(function(){
             $(this).find(".show-notification").slideToggle(500);
             $(this).toggleClass('active');

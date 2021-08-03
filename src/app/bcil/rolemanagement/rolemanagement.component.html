@@ -108,16 +108,17 @@
     </div>
 </div>
 <div class="modal fade" bsModal #editorModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4> <i _ngcontent-vnn-c102="" class="fa fa-shield"></i>New Role</h4>
-                <button type="button" class="close float-right" title="Close" (click)="editorModal.hide()">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4> <i _ngcontent-vnn-c102="" class="fa fa-shield"></i>New Role</h4>
+        <button type="button" class="close float-right" title="Close" (click)="editorModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
-            </div>
-            <div class="modal-body">
-                <app-role-editor #roleEditor></app-role-editor>
-            </div>
-        </div>
+      </div>
+      <div class="modal-body">
+        <app-role-editor #roleEditor></app-role-editor>
+      </div>
     </div>
+  </div>
+</div>
