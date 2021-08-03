@@ -1,19 +1,120 @@
-<!-- <div>
-    <form *ngIf="formResetToggle" name="reminderInfoForm" #f="ngForm" novalidate
-          (ngSubmit)="">
+<div>
+    <form  [formGroup]="ReminderInfoForm" >
   
-      <div class="form-group row">
-        <label [class.col-lg-3]="isViewOnly" [class.col-lg-2]="!isViewOnly" class="col-form-label" for="jobTitle-{{uniqueId}}">JobTitle</label>
-       
-        <div *ngIf="isEditMode" [class.col-lg-9]="isViewOnly" [class.col-lg-10]="!isViewOnly">
-          <input appAutofocus type="text" attr.id="jobTitle-{{uniqueId}}" name="jobTitle" placeholder="Enter Job Title" class="form-control" [(ngModel)]="userEdit.jobTitle" />
+          <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group row">
+                    <label class="col-form-label col-md-3" for="roleName">Stage Name</label>
+                    <div class="col-md-9">
+                        <select  class="form-control"  formControlName="stage" >
+                          <option value=''>Choose</option>
+                          <option *ngFor="let st of StatusMaster" value="{{st.status_code}}">{{st.status_name}}--{{st.stage}}</option>
+                        </select>
+                         
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-form-label col-md-3" for="roleName">Deadline</label>
+                  <div class="col-md-9">
+                    <input type="text" value=""  class="form-control" formControlName="deadlineinputtime"/>
+                      <select  class="form-control" formControlName="deadlinetimetype" (change)="timetype($event.target.value,'deadline')">
+                        <option>Choose</option>
+                        <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                      </select>
+                       
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-3" for="roleName">Owner</label>
+                <div class="col-md-9">
+                 
+                    <select  class="form-control" formControlName="owner">
+                      <option>Choose</option>
+                      <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                    </select>
+                     
+                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-form-label col-md-3" for="roleName">Lapse Reminder</label>
+              <div class="col-md-3">
+                <label class="col-form-label col-md-3" for="roleName">Low Reminder</label>
+                <input type="text" value=""  class="form-control" formControlName="lapselowreminputtime"/>
+                  <select  class="form-control" formControlName="lapselowremtypetime" (change)="timetype($event.target.value,'lapselowrem')">
+                    <option>Choose</option>
+                    <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                  </select>
+                   
+              </div>
+              <div class="col-md-3">
+                <label class="col-form-label col-md-3" for="roleName">Medium Reminder</label>
+                <input type="text" value=""  class="form-control" formControlName="lapsemedreminputtime"/>
+                  <select  class="form-control" formControlName="lapsemedremtypetime" (change)="timetype($event.target.value,'lapsemedrem')">
+                    <option>Choose</option>
+                    <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                  </select>
+                   
+              </div>
+              <div class="col-md-3">
+                <label class="col-form-label col-md-3" for="roleName">High Reminder</label>
+                <input type="text" value=""  class="form-control" formControlName="lapsehighreminputtime" (change)="timetype($event.target.value,'lapsehighrem')"/>
+                  <select  class="form-control" formControlName="lapsehighremtypetime">
+                    <option>Choose</option>
+                    <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                  </select>
+                   
+              </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-form-label col-md-3" for="roleName">Deadline Reminder</label>
+            <div class="col-md-3">
+              <label class="col-form-label col-md-3" for="roleName">Low Reminder</label>
+              <input type="text" value=""  class="form-control" formControlName="deadlinelowreminputtime"/>
+                <select  class="form-control" formControlName="deadlinelowremtypetime"  (change)="timetype($event.target.value,'deadlinelowrem')">
+                  <option>Choose</option>
+                  <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                </select>
+                 
+            </div>
+            <div class="col-md-3">
+              <label class="col-form-label col-md-3" for="roleName">Medium Reminder</label>
+              <input type="text" value=""  class="form-control" formControlName="deadlinemedreminputtime"/>
+                <select  class="form-control" formControlName="deadlinemedremtypetime" (change)="timetype($event.target.value,'deadlinemedrem')">
+                  <option>Choose</option>
+                  <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                </select>
+                 
+            </div>
+            <div class="col-md-3">
+              <label class="col-form-label col-md-3" for="roleName">High Reminder</label>
+              <input type="text" value=""  class="form-control" formControlName="deadlinehighreminputtime" (change)="timetype($event.target.value,'deadlinehighrem')"/>
+                <select  class="form-control" formControlName="deadlinehighremtypetime">
+                  <option>Choose</option>
+                  <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                </select>
+                 
+            </div>
         </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3" for="roleName">Repeat Reminder</label>
+          <div class="col-md-9">
+            <input type="text" value=""  class="form-control" formControlName="repeatreminputtime"/>
+              <select  class="form-control" formControlName="repeatremtypetime" (change)="timetype($event.target.value,'repeatrem')">
+                <option>Choose</option>
+                <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+              </select>
+               
+          </div>
       </div>
-  
-      <div class="row">
-        <div class="col-lg-12">
-          <hr [class.separator-hr]="!isEditMode" [class.edit-separator-hr]="isEditMode" />
-        </div>
+      <div class="col-sm-7">
+        <div ngPreserveWhitespaces class="float-right">
+            <button  type="button" (click)="cancel()" class="btn btn-outline-secondary">Close</button>
+            <button  type="submit" (click)="save()" class="btn btn-primary" [disabled]="isSaving">
+              <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('Saving' ) : ('Save' )}}
+            </button>
+            </div>
       </div>
+            </div>
+            </div>
     </form>
-</div> -->
+</div>

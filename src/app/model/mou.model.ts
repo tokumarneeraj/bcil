@@ -41,3 +41,29 @@ export class StatusMaster{
   public id:string;
 
 }
+export class Reminder{
+
+  public stage:string;
+  public deadlineinputtime:string;
+  public owner:string;
+  public lapselowreminputtime:string;
+  public lapselowremtypetime:string;
+  public lapsemedreminputtime:string;
+  public lapsemedremtypetime:string;
+  public lapsehighreminputtime:string;
+  public lapsehighremtypetime:string;
+  public deadlinelowreminputtime:string;
+  public deadlinelowremtypetime:string;
+  public deadlinemedreminputtime:string;
+
+  public deadlinemedremtypetime:string;
+  public deadlinehighreminputtime:string;
+  public deadlinehighremtypetime:string;
+
+  public repeatreminputtime:string;
+  public repeatremtypetime:string;
+  public id:string;
+  public createdBy:string;
+  public status:boolean;
+
+}
