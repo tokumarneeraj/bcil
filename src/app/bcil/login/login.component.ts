@@ -74,7 +74,7 @@ get f() {
             const errorMessage = Utilities.getHttpResponseMessage(error);
 
             if (errorMessage) {
-             // this.alertService.showStickyMessage('Unable to login', this.mapLoginErrorMessage(errorMessage), MessageSeverity.error, error);
+             this.alertService.showStickyMessage('Unable to login', this.mapLoginErrorMessage(errorMessage), MessageSeverity.error, error);
             } else {
               this.alertService.showStickyMessage('Unable to login', 'An error occured whilst logging in, please try again later.\nError: ' + Utilities.getResponseBody(error), MessageSeverity.error, error);
             }
@@ -85,7 +85,18 @@ get f() {
           }, 500);
         });
   }
+  mapLoginErrorMessage(error: string) {
 
+    if (error === 'invalid_username_or_password') {
+      return 'Invalid username or password';
+    }
+
+    if (error === 'invalid_grant') {
+      return 'This account has been disabled';
+    }
+
+    return error;
+  }
   
   reset() {
    

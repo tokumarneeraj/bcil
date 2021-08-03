@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {mouModel} from '../model/mou.model';
+import {mouModel, StatusMaster} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
@@ -12,6 +12,7 @@ export class Bdoservice
 {
     get addmouurl() { return  environment.baseUrl+'/api/bdo/addmou'; }
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
+    get getstatusmasterurl() { return environment.baseUrl+'/api/bdo/getstatusmaster'; }
 
     get fileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddFile'; }
     get filehistory() { return environment.baseUrl + '/api/bdo/getfile'; }
@@ -48,6 +49,15 @@ export class Bdoservice
          public  GetMou<T>(): Observable<mouModel[]> {
         
           return this.http.get<mouModel[]>(this.getmouurl);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+
+        public  GetStatusMaster<T>(): Observable<StatusMaster[]> {
+        
+          return this.http.get<StatusMaster[]>(this.getstatusmasterurl);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

@@ -15,14 +15,19 @@ import { ProfileComponent } from './profile/profile.component';
 import { MouDashboardComponent } from './mou-dashboard/mou-dashboard.component';
 import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
 import { TtaMainComponent } from './tta-main/tta-main.component';
+
 import { TlpDashboardComponent } from './tlp-dashboard/tlp-dashboard.component';
 import { TlpMainComponent } from './tlp-main/tlp-main.component';
+
+import { ReminderComponent } from './reminder/reminder.component';
 
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
   // {path:"Login",component:LoginComponent},
   {path:"users",canActivate:[AuthGuard],component:UsermanagementComponent},
   {path:"roles",canActivate:[AuthGuard],component:RolemanagementComponent},
+  {path:"reminder",canActivate:[AuthGuard],component:ReminderComponent},
+  
   {path:"dashboard",canActivate:[AuthGuard],component:DashboardComponent},
   {path:"bcil-dashboard",canActivate:[AuthGuard],component:BcilDashboardComponent},
   {path:"mou-add",canActivate:[AuthGuard],component:MouAddComponent},
