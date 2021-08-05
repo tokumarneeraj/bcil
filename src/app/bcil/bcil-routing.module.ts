@@ -20,6 +20,8 @@ import { TlpDashboardComponent } from './tlp-dashboard/tlp-dashboard.component';
 import { TlpMainComponent } from './tlp-main/tlp-main.component';
 
 import { ReminderComponent } from './reminder/reminder.component';
+import { NttsaDashboardComponent } from './nttsa-dashboard/nttsa-dashboard.component';
+import { NttsaMainComponent } from './nttsa-main/nttsa-main.component';
 
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
@@ -39,6 +41,10 @@ const routes: Routes = [
   { path: "bcil-tta-table", canActivate: [AuthGuard], component: TtaMainComponent },
   { path: "tlp-dashboard", canActivate: [AuthGuard], component: TlpDashboardComponent },
   { path: "bcil-tlp-table", canActivate: [AuthGuard], component: TlpMainComponent },
+  { path: "nttsa-dashboard", canActivate: [AuthGuard], component: NttsaDashboardComponent },
+  { path: "bcil-nttsa-table", canActivate: [AuthGuard], component: NttsaMainComponent },
+
+ 
 
 ];
 

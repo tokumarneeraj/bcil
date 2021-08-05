@@ -35,6 +35,8 @@ import { TlpMainComponent } from './tlp-main/tlp-main.component';
 
 import { ReminderComponent } from './reminder/reminder.component';
 import { ReminderInfoComponent } from './reminder-info/reminder-info.component';
+import { NttsaDashboardComponent } from './nttsa-dashboard/nttsa-dashboard.component';
+import { NttsaMainComponent } from './nttsa-main/nttsa-main.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { ReminderInfoComponent } from './reminder-info/reminder-info.component';
     TlpDashboardComponent,
     TlpMainComponent,
     ReminderComponent,
-    ReminderInfoComponent],
+    ReminderInfoComponent,
+    NttsaDashboardComponent,
+    NttsaMainComponent],
 
   imports: [
     

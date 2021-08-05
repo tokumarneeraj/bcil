@@ -15,9 +15,22 @@ export class TlpDashboardComponent implements OnInit {
   UserEmail: string;
   userRoles: string[];
   isNodal: boolean;
+  isLM: boolean;
+  isAdmin: boolean;
+  isBDM: boolean;
+  isIPM: boolean;
+  UserId: string;
+
   constructor(private Bdoservice: Bdoservice, private accountService: AccountService,) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
+    this.UserId = this.accountService.currentUser.id;
+
+    this.isLM = this.userRoles.includes('LM');
+    this.isAdmin = this.userRoles.includes('Admin');
+    this.isBDM = this.userRoles.includes('BDM');
+    this.isIPM = this.userRoles.includes('IPM');
+    this.isNodal = this.userRoles.includes('Nodal');
   }
 
   ngOnInit(): void {
@@ -32,6 +45,17 @@ export class TlpDashboardComponent implements OnInit {
 
     if (this.isNodal == true) {
       return this.mouModel?.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == data).length;
+    }
+    else if (this.isAdmin) {
+
+
+      return this.mouModel?.filter(x => x.app_Status == data && x.assigntoadmin == this.UserId).length;
+
+
+    }
+    else if (this.isBDM || this.isIPM) {
+      return this.mouModel?.filter(x => x.app_Status == data && x.createdBy == this.UserId).length;
+
     }
     else {
       return this.mouModel?.filter(x => x.app_Status == data).length;
