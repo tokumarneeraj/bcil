@@ -5,39 +5,55 @@
             <div class="col-sm-12">
                 <div class="form-group row">
                     <label class="col-form-label col-md-3" for="roleName">Stage Name</label>
+                    
                     <div class="col-md-9">
-                        <select  class="form-control"  formControlName="stage" >
+                      <label *ngIf="editmode" class="col-form-label col-md-3" for="roleName">{{stagetext}}</label>
+                        <select *ngIf="!editmode"  class="form-control"  formControlName="stage" >
                           <option value=''>Choose</option>
-                          <option *ngFor="let st of StatusMaster" value="{{st.status_code}}">{{st.status_name}}--{{st.stage}}</option>
+                          <option *ngFor="let st of StatusMaster" value="{{st.status_code}}">{{st.status_name}}--{{st.stagetype}}</option>
                         </select>
-                         
+                        <p   *ngIf="submitted && f.stage.errors && !editmode ||customrem==false" class="invalid-feedback">required</p>
                     </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-form-label col-md-3" for="roleName">Deadline</label>
                   <div class="col-md-9">
                     <input type="text" value=""  class="form-control" formControlName="deadlineinputtime"/>
+                    <p *ngIf="submitted && f.deadlineinputtime.errors" class="invalid-feedback">required</p>
                       <select  class="form-control" formControlName="deadlinetimetype" (change)="timetype($event.target.value,'deadline')">
                         <option>Choose</option>
                         <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
                       </select>
-                       
+                      <p *ngIf="submitted && f.deadlinetimetype.errors" class="invalid-feedback">required</p>
                   </div>
               </div>
               <div class="form-group row">
                 <label class="col-form-label col-md-3" for="roleName">Owner</label>
                 <div class="col-md-9">
-                 
-                    <select  class="form-control" formControlName="owner">
-                      <option>Choose</option>
-                      <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
+                  <label *ngIf="customrem==true" class="col-form-label col-md-3" for="roleName">{{userRoles}}</label>
+                    <select  *ngIf="customrem==false"  class="form-control" formControlName="owner">
+                      <option value="">Choose</option>
+                      <option *ngFor="let rol of Role" value="{{rol.id}}">{{rol.name}}</option>
                     </select>
-                     
+                    <p *ngIf="submitted && f.owner.errors" class="invalid-feedback">required</p>
                 </div>
             </div>
             <div class="form-group row">
-              <label class="col-form-label col-md-3" for="roleName">Lapse Reminder</label>
-              <div class="col-md-3">
+              <div class="col-md-6">
+                <input type="radio" #radio name="typereminder" value="1" formControlName="typereminder" (change)="radiochange('1')"/>
+                
+                <label class="col-form-label col-md-3" for="roleName">Lapse Reminder</label>
+              </div>
+              <div class="col-md-6">
+                <input type="radio" #radio name="typereminder" value="2" formControlName="typereminder"  (change)="radiochange('2')"/>
+                <label class="col-form-label col-md-3" for="roleName">DeadLine Reminder</label>
+              </div>
+              <p *ngIf="submitted && f.typereminder.errors" class="invalid-feedback">required</p>
+              </div>
+             
+            <div class="form-group row"  *ngIf="tempsection=='1'">
+            
+              <div class="col-md-4">
                 <label class="col-form-label col-md-3" for="roleName">Low Reminder</label>
                 <input type="text" value=""  class="form-control" formControlName="lapselowreminputtime"/>
                   <select  class="form-control" formControlName="lapselowremtypetime" (change)="timetype($event.target.value,'lapselowrem')">
@@ -46,7 +62,7 @@
                   </select>
                    
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <label class="col-form-label col-md-3" for="roleName">Medium Reminder</label>
                 <input type="text" value=""  class="form-control" formControlName="lapsemedreminputtime"/>
                   <select  class="form-control" formControlName="lapsemedremtypetime" (change)="timetype($event.target.value,'lapsemedrem')">
@@ -55,7 +71,7 @@
                   </select>
                    
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <label class="col-form-label col-md-3" for="roleName">High Reminder</label>
                 <input type="text" value=""  class="form-control" formControlName="lapsehighreminputtime" (change)="timetype($event.target.value,'lapsehighrem')"/>
                   <select  class="form-control" formControlName="lapsehighremtypetime">
@@ -65,9 +81,10 @@
                    
               </div>
           </div>
-          <div class="form-group row">
-            <label class="col-form-label col-md-3" for="roleName">Deadline Reminder</label>
-            <div class="col-md-3">
+       
+          <div class="form-group row"  *ngIf="tempsection=='2'">
+          
+            <div class="col-md-4">
               <label class="col-form-label col-md-3" for="roleName">Low Reminder</label>
               <input type="text" value=""  class="form-control" formControlName="deadlinelowreminputtime"/>
                 <select  class="form-control" formControlName="deadlinelowremtypetime"  (change)="timetype($event.target.value,'deadlinelowrem')">
@@ -76,7 +93,7 @@
                 </select>
                  
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label class="col-form-label col-md-3" for="roleName">Medium Reminder</label>
               <input type="text" value=""  class="form-control" formControlName="deadlinemedreminputtime"/>
                 <select  class="form-control" formControlName="deadlinemedremtypetime" (change)="timetype($event.target.value,'deadlinemedrem')">
@@ -85,7 +102,7 @@
                 </select>
                  
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label class="col-form-label col-md-3" for="roleName">High Reminder</label>
               <input type="text" value=""  class="form-control" formControlName="deadlinehighreminputtime" (change)="timetype($event.target.value,'deadlinehighrem')"/>
                 <select  class="form-control" formControlName="deadlinehighremtypetime">
@@ -99,17 +116,21 @@
           <label class="col-form-label col-md-3" for="roleName">Repeat Reminder</label>
           <div class="col-md-9">
             <input type="text" value=""  class="form-control" formControlName="repeatreminputtime"/>
+            <p *ngIf="submitted && f.repeatreminputtime.errors" class="invalid-feedback">required</p>
               <select  class="form-control" formControlName="repeatremtypetime" (change)="timetype($event.target.value,'repeatrem')">
                 <option>Choose</option>
                 <option *ngFor="let tm of timeing" value="{{tm}}">{{tm}}</option>
               </select>
-               
+              <p *ngIf="submitted && f.repeatremtypetime.errors" class="invalid-feedback">required</p>
           </div>
       </div>
-      <div class="col-sm-7">
+      <div class="col-sm-12">
         <div ngPreserveWhitespaces class="float-right">
             <button  type="button" (click)="cancel()" class="btn btn-outline-secondary">Close</button>
-            <button  type="submit" (click)="save()" class="btn btn-primary" [disabled]="isSaving">
+            <button *ngIf="editmode" type="submit" (click)="edit()" class="btn btn-primary" [disabled]="isSaving">
+              <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('Editing' ) : ('Edit' )}}
+            </button>
+            <button *ngIf="!editmode" type="submit" (click)="save()" class="btn btn-primary" [disabled]="isSaving">
               <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('Saving' ) : ('Save' )}}
             </button>
             </div>

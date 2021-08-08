@@ -13,6 +13,7 @@ export class UploadFileViewModel {
   public assignto: string;
   public nodalofficer: string;
   public assigntoadmin:string;
+  public  remindertype:string;
   public createdon: string; 
   public nodal:nodalOfficer;
 }

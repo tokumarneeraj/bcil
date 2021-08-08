@@ -60,16 +60,16 @@
               <ul class="show-notification" *ngIf="notify">
                 <li>
                   <h6>Notifications</h6>
-                  <label class="label label-danger">New</label>
+                  <label class="label label-danger">New <span class="badge badge-light">{{notificationcount}}</span></label>
                 </li>
 
-                <li class="waves-effect waves-light" *ngFor="let n of noticfy_class;">
-                  <div class="media">
+                <li class="waves-effect waves-light" *ngFor="let n of noticfy_class;" [ngClass]="{'disabled':n.active==false}">
+                  <div class="media" (click)="notificationseen(n.refid)">
                     <img class="d-flex align-self-center img-radius" src="assets/images/avatar-4.jpg" alt="Generic placeholder image">
                     <div class="media-body">
                       <h5 class="notification-user">{{n.user}}</h5>
-                      <p class="notification-msg">{{n.msg}}</p>
-                      <span class="notification-time">{{n.time}}</span>
+                      <p class="notification-msg">{{n.message}}</p>
+                      <span class="notification-time">{{n.createdon}}</span>
                     </div>
                   </div>
                 </li>

@@ -63,7 +63,7 @@ tablename:string;
     { tablename:'TTA Change Req by Scientist',name: 'tta_change_req_by_scientist', value: 'S128', formHeader: 'Application Forward' },
     { tablename:'Strategy Implemented',name: 'strategy_implemented', value: 'S129', formHeader: 'Application Forward' },
     { tablename:'TTA Interest Received',name: 'tta_interest_received', value: 'S130', formHeader: 'Application Forward' },
-    { tablename:'',name: 'no_interest_received', value: 'S131', formHeader: 'Application Forward' },
+    { tablename:'NO INTEREST RECEIVED',name: 'no_interest_received', value: 'S131', formHeader: 'Application Forward' },
 
 
 

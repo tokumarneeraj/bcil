@@ -38,13 +38,19 @@ export class StatusMaster{
   public status_name:string;
   public status_code:string;
   public stage:string;
+  public stagetype:string;
   public id:string;
 
 }
 export class Reminder{
 
   public stage:string;
+  public stagetype:string;
+  public typereminder:string;
+
+  public mouref:string;
   public deadlineinputtime:string;
+  public deadlinetimetype:string;
   public owner:string;
   public lapselowreminputtime:string;
   public lapselowremtypetime:string;

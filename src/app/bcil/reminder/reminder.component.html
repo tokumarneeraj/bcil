@@ -1,4 +1,4 @@
-<div class="pcoded-main-container">
+<div class="pcoded-main-container" *ngIf="!customrem">
     <div class="pcoded-wrapper">
    <app-header></app-header>
         <div class="pcoded-content">
@@ -41,12 +41,45 @@
                                             <div class="col-md-12 text-left">
                                                 <div class="addMou">
                                                     <a class="text-white" (click)="newReminder()">New Reminder</a>
+
                                                 </div>                                            
                                             </div>
+                                            <div class="card-header-right">
+                                                <ul class="list-unstyled card-option">
+                                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                                    <li><i class="fa fa-trash close-card"></i></li>
+                                                </ul>
+                                            </div>
                                             </div>
 
-                                            <div class="card-body">
-
+                                            <div class="card-block table-border-style" >
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                               
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let row of Reminder;let i=index;">
+                                                                <th scope="row">{{i+1}}</th>
+                                                                <td>{{row.stagename}}</td>
+                                                                
+                                                                <td>
+                                                                    <a class="mr-3" (click)="editReminder(row)"><i class="fa fa-edit fa-lg"></i></a>
+                                                                    <a (click)="deleteReminder(row)"><i class="fa fa-trash fa-lg"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                     
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
 
                                     </div>
@@ -61,18 +94,61 @@
 
         </div>
 </div>
-
+<table class="table table-hover" *ngIf="customrem">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Deadline</th>
+            <th></th>
+           <th >Lapse Rem</th>
+           <th>Deadline Rem</th>
+           <th>Repeat</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let row of Reminder;let i=index;">
+        <tr >
+            <td   rowspan="3" scope="row">{{i+1}}</td>
+            <td  rowspan="3">{{row.stagename}}</td>
+            <td  rowspan="3">{{row.deadlineinputtime}}-{{row.deadlinetimetype}}</td>
+            <td>Low</td>
+            <td>{{row.lapselowreminputtime}}-{{row.lapselowremtypetime}}</td>
+           
+            <td>{{row.deadlinelowreminputtime}}-{{row.deadlinelowremtypetime}}</td>
+            
+            <td  rowspan="3">{{row.repeatreminputtime}}-{{row.repeatremtypetime}}</td>
+            <td  rowspan="3">
+                <a class="mr-3" (click)="editReminder(row)"><i class="fa fa-edit fa-lg"></i></a>
+               
+            </td>
+        </tr>
+        <tr>
+            <td>Medium</td>
+            <td> {{row.lapsemedreminputtime}}-{{row.lapsemedremtypetime}}</td>
+            <td>{{row.lapsehighreminputtime}}-{{row.lapsehighremtypetime}}</td>
+        </tr>
+        <tr>
+            <td>High</td>
+            <td>{{row.lapsemedreminputtime}}-{{row.lapsemedremtypetime}}</td>
+            <td>{{row.lapsehighreminputtime}}-{{row.lapsehighremtypetime}}</td>
+        </tr>
+    </ng-container>
+    </tbody>
+</table>
 <div class="modal fade" bsModal #editorModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4><i class="fa fa-user-plus"></i>New Reminder</h4>
+                <h4 *ngIf="!editmode"><i class="fa fa-cloak-o"></i>New Reminder</h4>
+                <h4 *ngIf="editmode"><i class="fa fa-cloak-o"></i>Edit Reminder</h4>
                 <button type="button" class="close float-right" title="Close" (click)="editorModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
             </div>
             <div class="modal-body">
-              <app-reminder-info #reminderEditor [isGeneralEditor]="true" [StatusMaster]="StatusMaster"></app-reminder-info>
+              <app-reminder-info #reminderEditor [isGeneralEditor]="true" [StatusMaster]="StatusMaster" [customrem]="customrem" [Role]="Role" [mouref]="mouref" [editmode]="editmode"></app-reminder-info>
             </div>
         </div>
     </div>

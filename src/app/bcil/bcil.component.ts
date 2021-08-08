@@ -38,7 +38,7 @@ export class BcilComponent implements OnInit {
   date_diff: number;
   d_date: string;
   noticfy_class: notificationmodel[] = [];
-  
+  notificationcount=0;
 
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
@@ -66,11 +66,40 @@ export class BcilComponent implements OnInit {
     this.authService.redirectLogoutUser();
   }
 
+  notifymessage=[{stage:'S101',message:'Initiation- to be suggested by client is pending, please take necessary action'},
+  {stage:'S102',message:'MOU is pending, please take necessary action'},
+  {stage:'S103',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S104',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S105',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S106',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S107',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S108',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S109',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S110',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S111',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S112',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+]
+
+
+notificationseen(data){
+  this.Bdoservice.Notificationseen(data).subscribe(data=>{
+this.ngOnInit();
+
+  });
+}
   ngOnInit(): void {
 
-    this.notify_call();
+   // this.notify_call();
+    this.Bdoservice.GetNotification().subscribe(data=>{
+      if(data.length>0){
+        this.notificationcount=data.filter(x=>x.active==true).length;
+      this.notify = true;
+      this.noticfy_class=data.map(obj=>({...obj,message:this.notifymessage?.find(x=>x.stage==obj.stageon)?.message
+      ,user:this.UserName}));
+      }
+    })
     
-
 
   }
 
