@@ -23,7 +23,7 @@ export class ReminderInfoComponent implements OnInit {
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
-  timeing=['NA','minutes','hours','days','month','years']
+  timeing=['NA','minutes','hours','weeks','days','month','years']
 ReminderInfoForm: FormGroup;
   public isEditMode = false;
   isSaving=false;
@@ -115,11 +115,25 @@ tempsection:string;
     this.tempsection=data;
   
     switch(data){
-      case 1:
-       
+      case "1":
+        //this.ReminderInfoForm.get('deadlineinputtime').setValue('0');
+       this.ReminderInfoForm.controls.deadlineinputtime.setValue('0');
+        this.ReminderInfoForm.get("deadlineinputtime").setValue("0");
+        this.ReminderInfoForm.get("deadlinetimetype").setValue("NA");
+        this.ReminderInfoForm.get("deadlinelowreminputtime").setValue("0");
+        this.ReminderInfoForm.get("deadlinelowremtypetime").setValue("NA");
+        this.ReminderInfoForm.get("deadlinemedreminputtime").setValue("0");
+        this.ReminderInfoForm.get("deadlinemedremtypetime").setValue("NA");
+        this.ReminderInfoForm.get("deadlinehighreminputtime").setValue("0");
+        this.ReminderInfoForm.get("deadlinehighremtypetime").setValue("NA");
         break;
-        case 2:
-         
+        case "2":
+          this.ReminderInfoForm.get("lapselowreminputtime").setValue("0");
+          this.ReminderInfoForm.get("lapselowremtypetime").setValue("NA");
+          this.ReminderInfoForm.get("lapsemedreminputtime").setValue("0");
+          this.ReminderInfoForm.get("lapsemedremtypetime").setValue("NA");
+          this.ReminderInfoForm.get("lapsehighreminputtime").setValue("0");
+          this.ReminderInfoForm.get("lapsehighremtypetime").setValue("NA");
           break;
           default:
             break;
@@ -129,7 +143,7 @@ tempsection:string;
 
   ngOnInit(): void {
    
-    this.radiochange('1');
+    
     this.ReminderInfoForm = this.forms.group({
       stage: ['', Validators.required],
       typereminder:['1',Validators.required],
@@ -151,6 +165,7 @@ tempsection:string;
       repeatreminputtime:['0',Validators.required],
       repeatremtypetime:['NA',Validators.required],
     })
+    this.radiochange('1');
 
 
   // public id:string;

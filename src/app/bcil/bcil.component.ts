@@ -79,6 +79,54 @@ export class BcilComponent implements OnInit {
   {stage:'S111',message:'MOU Change By Client is pending, please take necessary action'},
   {stage:'S112',message:'MOU Proposed by Admin is pending, please take necessary action'},
 
+  {stage:'S113',message:'MOU is pending, please take necessary action'},
+  {stage:'S114',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S115',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S116',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S117',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S118',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S119',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S120',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S121',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S122',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S123',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+  {stage:'S124',message:'MOU is pending, please take necessary action'},
+  {stage:'S125',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S126',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S127',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S128',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S129',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S130',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S131',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S132',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S133',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S134',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+  {stage:'S135',message:'MOU is pending, please take necessary action'},
+  {stage:'S136',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S137',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S138',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S139',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S140',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S141',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S142',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S143',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S144',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S145',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+  {stage:'S146',message:'MOU is pending, please take necessary action'},
+  {stage:'S147',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S148',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S149',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S150',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S151',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S152',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S153',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S154',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S155',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S156',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
 ]
 
 
@@ -200,6 +248,10 @@ this.ngOnInit();
   get canViewReport() {
     return this.accountService.userHasPermission(Permission.viewReportPermission);
   }
+  get canViewReminder() {
+    return this.accountService.userHasPermission(Permission.viewReminderPermission);
+  }
+  
 
   get canViewTechnologytransfer() {
     return this.accountService.userHasPermission(Permission.viewTechnologyTransferPermission);

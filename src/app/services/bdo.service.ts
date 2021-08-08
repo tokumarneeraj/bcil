@@ -19,6 +19,8 @@ export class Bdoservice
     get editreminderurl() { return  environment.baseUrl+'/api/bdo/editreminder'; }
     get getallnotificationurl() { return  environment.baseUrl+'/api/bdo/getallnotification'; }
     get getreminderurl() { return  environment.baseUrl+'/api/bdo/getallreminder'; }
+
+    get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
     get getstatusmasterurl() { return environment.baseUrl+'/api/bdo/getstatusmaster'; }
 
@@ -99,6 +101,16 @@ export class Bdoservice
             public  GetReminder<T>(): Observable<Reminder[]> {
         
               return this.http.get<Reminder[]>(this.getreminderurl);
+            //   .pipe<mouModel>(
+            //     catchError(error => {
+            //       return this.handleError(error, () =>{});
+            //     }));
+            }
+
+            public GetCustomremiderbystage<T>(mouref:string): Observable<Reminder[]> {
+        
+              const endpointUrl = `${this.getcustomreminderbystage}/${mouref}`;
+              return this.http.get<Reminder[]>(endpointUrl);
             //   .pipe<mouModel>(
             //     catchError(error => {
             //       return this.handleError(error, () =>{});

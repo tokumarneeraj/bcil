@@ -155,7 +155,8 @@
 
 
 <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg" style="max-height: 600px;
+  overflow: auto;">
     <div class="modal-content">
       <div class="modal-header">
         <h4>{{formHeader}}</h4>
@@ -173,6 +174,23 @@
 
             </div>
           </div>
+          
+          <div class="form-group row"  *ngIf="type=='S113'">
+            <div class="col-sm-6"> 
+                <label class="col-form-label">Default Reminder</label>
+                <input type="radio" class="form-control" name="remindertype" value="default"  formControlName="remindertype" (change)="reminderchange('default')"/>
+             
+            </div>
+                <div class="col-sm-6"> 
+                    <label class="col-form-label">Custom Reminder</label>
+                    <input type="radio" class="form-control" name="remindertype" value="custom" formControlName="remindertype" (change)="reminderchange('custom')"/>
+                       
+                              </div>
+                            </div>
+                             <div class="form-group row"  *ngIf="type=='S113'">
+                                <app-reminder *ngIf="customrem" [customrem]="customrem" [mouref]="mouref" [type]="type" style="width:100%"></app-reminder>
+                             </div>
+            
 
           <div class="form-group row">
             <div class="col-sm-12">
@@ -182,6 +200,8 @@
 
             </div>
           </div>
+
+          
           <div class="form-group row">
             <div class="col-sm-12">
               <label class="col-form-label">Upload</label>

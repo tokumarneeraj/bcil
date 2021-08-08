@@ -21,8 +21,11 @@ export class ReminderComponent implements OnInit {
   editorModal: ModalDirective;
 Role:Role[];
 Reminder:Reminder[];
+customReminder:Reminder[];
 editedReminder:Reminder;
 editmode=false;
+@Input()
+type:string;
 @Input()
 customrem:boolean;
 @Input()
@@ -48,9 +51,11 @@ mouref:string;
    ngAfterViewInit() {
 
     this.reminderEditor.changesSavedCallback = () => {
-      this.ngOnInit();
+      
       //this.addNewRoleToList();
       this.editorModal.hide();
+     setTimeout(()=>{ this.ngOnInit()},500);
+    //  this.ngOnInit();
     };
   
     this.reminderEditor.changesCancelledCallback = () => {
@@ -66,15 +71,62 @@ deleteRoleHelper(row: Reminder) {
   //this.loadingIndicator = true;
 }
   ngOnInit(): void {
-   
+  
     this.bdoService.GetStatusMaster().subscribe(data=>{
 
       this.StatusMaster=data;
+
+      if(this.mouref!=undefined){
+        this.bdoService.GetCustomremiderbystage(this.mouref).subscribe(data=>{
+          if(this.type==undefined){
+            this.customReminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+            }))
+          }
+          else{
+            if(this.type=="S101"){
+              this.customReminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+              })).filter(x=>x.stagetype=="mou")
+            }
+            else if(this.type=="S113"){
+              this.customReminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+              })).filter(x=>x.stagetype=="tta" || x.stagetype=="tlp"|| x.stagetype=="nttsa")
+            }
+            else{
+    
+              this.customReminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+              }))
+            }
+        }
+        });
+      }
    
     this.bdoService.GetReminder().subscribe(data=>{
-      this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
-      }))
+      if(this.type==undefined){
+        this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+        }))
+      }
+      else{
+        if(this.type=="S101"){
+          this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+          })).filter(x=>x.stagetype=="mou")
+        }
+        else if(this.type=="S113"){
+          this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+          })).filter(x=>x.stagetype=="tta" || x.stagetype=="tlp"|| x.stagetype=="nttsa")
+        }
+        else{
+
+          this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
+          }))
+        }
      
+     
+    }
+    this.Reminder=this.Reminder.filter((item)=>!this.customReminder?.find(y=>y.stage==item.stage));
+    this.customReminder?.forEach(element => {
+      this.Reminder.splice(0,0,element)
+});
+    
     })
   })
    //if(this.customrem==false){

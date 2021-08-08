@@ -9,4 +9,6 @@ public refid:string;
   public message:string;
   public stageon:string;
   public active:boolean;
+  public remindertype:string;
+  public remindercategory:string;
 }

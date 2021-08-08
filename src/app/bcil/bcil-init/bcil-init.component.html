@@ -290,8 +290,9 @@
     </div>
 </div> -->
 
-<div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+    <div class="modal-dialog modal-lg" style="max-height: 600px;
+    overflow: auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4>Application Forward</h4>
@@ -355,7 +356,7 @@
                   </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row"  *ngIf="activearray?.value=='S101'">
 <div class="col-sm-6"> 
     <label class="col-form-label">Default Reminder</label>
     <input type="radio" class="form-control" name="remindertype" value="default"  formControlName="remindertype" (change)="reminderchange('default')"/>
@@ -367,8 +368,8 @@
            
                   </div>
                 </div>
-                 <div class="form-group row">
-                    <app-reminder *ngIf="customrem" [customrem]="customrem" [mouref]="mouref" style="width:100%"></app-reminder>
+                 <div class="form-group row"  *ngIf="activearray?.value=='S101'">
+                    <app-reminder *ngIf="customrem" [customrem]="customrem" [mouref]="mouref" [type]="type" style="width:100%"></app-reminder>
                  </div>
 
                 
