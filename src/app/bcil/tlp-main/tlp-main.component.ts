@@ -73,7 +73,7 @@ export class TlpMainComponent implements OnInit {
     { tabelname: "Due Deligence Change Request by Admin", name: 'due_deligence_change_req_by_admin', value: 'S134', forwordtitle: "Update", forward: "S133", forwardCheck: true, type: false, forwardText: 'Update Due Deligence', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_due_deligence_change_req_by_admin_forwordbutton_permission},
 
     { tabelname: "Lead Approved by Admin", name: 'lead_approved_by_admin', value: 'S135', forwordtitle: "Draft for NDA/PEA/MTA", forward: "S137", forwardCheck: true, forwardText: 'Draft for NDA/PEA/MTA', back: true, backStatus: "S136", backbuttonText: 'Share NCP', backtitle: "Share NCP", permissionforword: this.CanviewTLP_lead_approved_by_admin_forwordbutton_permission, permissionback: this.CanviewTLP_lead_approved_by_admin_forword2button_permission },
-    { tabelname: "NCP Shared", name: 'ncp_shared', value: 'S136', forwardCheck: false, type: false },
+    { tabelname: "NCP Shared", name: 'ncp_shared', value: 'S136', forwardCheck: true, type: false, forward: "S146", forwordtitle: "Enter Termsheet", forwardText: "Draft Termsheet", permissionforword: true},
 
     { tabelname: "NDA Request by LUF", name: 'nda_req_by_luf', value: 'S137', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S138", approvetitle: "Forward to N.O.", approvedvalue: 'S139', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.CanviewTLP_nda_req_by_luf_change_req_button_permission, permissionapprove: this.CanviewTLP_nda_req_by_luf_approve_button_permission },
     { tabelname: "NDA Change Request by Admin", name: 'nda_change_req_by_Admin', value: 'S138', forwordtitle: "Forward to Admin", forward: "S137", forwardCheck: true, type: false, forwardText: 'Update NDA/PEA', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_nda_change_req_by_Admin_forwordbutton_permission },
@@ -88,8 +88,8 @@ export class TlpMainComponent implements OnInit {
     { tabelname: "NDA Approved by Company", name: 'nda_approved_by_company', value: 'S142', forwordtitle: "Forward to LUF", forward: "S143", forwardCheck: true, type: false, forwardText: 'Upload Agreement', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_nda_approved_by_company_forwordbutton_permission },
 
     { tabelname: "NDA Executed", name: 'nda_executed', value: 'S143', forwordtitle: "Share NCP & CIP", forward: "S144", forwardCheck: true, forwardText: 'Share NCP & CIP', back: true, backStatus: "S145", backbuttonText: 'Share CIP', backtitle: "Share CIP", permissionforword: this.CanviewTLP_nda_executed_forwordbutton_permission, permissionback: this.CanviewTLP_nda_executed_forword2button_permission },
-    { tabelname: "NCP and CIP Shared", name: 'ncp_cip_shared', value: 'S144', forwardCheck: false, type: false },
-    { tabelname: "CIP Shared", name: 'cip_shared', value: 'S145', forwardCheck: false, type: false },
+    { tabelname: "NCP and CIP Shared", name: 'ncp_cip_shared', value: 'S144', forwardCheck: true, type: false, forward: "S146", forwordtitle: "Enter Termsheet", forwardText: "Draft Termsheet", permissionforword:true},
+    { tabelname: "CIP Shared", name: 'cip_shared', value: 'S145', forwardCheck: true, type: false, forward: "S146", forwordtitle: "Enter Termsheet", forwardText: "Draft Termsheet", permissionforword: true },
 
 
   ]
@@ -131,9 +131,21 @@ export class TlpMainComponent implements OnInit {
       console.log(data)
       debugger
 
-      this.mouModel = data.filter(x => x.app_Status == this.type);
+      //this.mouModel = data.filter(x => x.app_Status == this.type);
       this.showpage = true;
 
+      if (this.isAdmin == true) {
+        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
+      }
+
+      else if (this.isBdm == true) {
+
+        this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
+      }
+
+      else {
+        this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == this.type);
+      }
 
 
     })

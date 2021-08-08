@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\bcil",
-    "\\src\\app\\bcil\\bcil-init",
+    "\\src\\app\\bcil\\nttsa-dashboard",
     "\\src\\app\\bcil\\tlp-dashboard",
     "\\src\\app\\bcil\\tlp-main",
-    "\\src\\app\\bcil\\usermanagement",
-    "\\src\\app\\model",
-    "\\src\\app\\services"
+    "\\src\\app\\bcil\\tta-dashboard",
+    "\\src\\app\\bcil\\tta-main",
+    "\\src\\app\\bcil\\viewfile"
   ],
-  "SelectedNode": "\\src\\app\\bcil\\tlp-main\\tlp-main.component.ts",
+  "SelectedNode": "\\src\\app\\bcil\\tta-dashboard\\tta-dashboard.component.html",
   "PreviewInSolutionExplorer": false
 }
