@@ -4,12 +4,14 @@ import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
 import { Permission } from 'src/app/model/permission.model';
 
+
 @Component({
-  selector: 'app-tlp-dashboard',
-  templateUrl: './tlp-dashboard.component.html',
-  styleUrls: ['./tlp-dashboard.component.scss']
+  selector: 'app-tstl-dashboard',
+  templateUrl: './tstl-dashboard.component.html',
+  styleUrls: ['./tstl-dashboard.component.scss']
 })
-export class TlpDashboardComponent implements OnInit {
+export class TstlDashboardComponent implements OnInit {
+
   mouModel: mouModel[];
   showpage = false;
   UserEmail: string;
@@ -33,7 +35,7 @@ export class TlpDashboardComponent implements OnInit {
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
-    this.isNodal = this.userRoles.includes('Nodal');
+
     this.isLUF = this.userRoles.includes('LUF');
     this.isScientist = this.userRoles.includes('Scientist');
     this.isCompany = this.userRoles.includes('Company');
@@ -77,62 +79,8 @@ export class TlpDashboardComponent implements OnInit {
       return this.mouModel?.filter(x => x.app_Status == data).length;
     }
   }
-  get canViewEnterLead() {
-    return this.accountService.userHasPermission(Permission.viewTLP_EnterLead);
-  }
 
-  get canViewLead_Entered_by_bdm() {
-    return this.accountService.userHasPermission(Permission.viewTLP_Lead_Entered_by_bdm);
+  clientListFilter() {
+    return this.mouModel?.filter(x => x.app_Status == 'S144' || x.app_Status == 'S145' || x.app_Status == 'S136').length;
   }
-  get canView_due_deligence_done() {
-    return this.accountService.userHasPermission(Permission.viewTLP_due_deligence_done);
-  }
-
-  get canView_due_deligence_change_req_by_admin() {
-    return this.accountService.userHasPermission(Permission.viewTLP_due_deligence_change_req_by_admin);
-  }
-
-  get canView_lead_approved_by_admin() {
-    return this.accountService.userHasPermission(Permission.viewTLP_lead_approved_by_admin);
-  }
-
-  get canView_ncp_shared() {
-    return this.accountService.userHasPermission(Permission.viewTLP_ncp_shared);
-  }
-
-  get canView_nda_req_by_luf() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_req_by_luf);
-  }
-
-  get canView_nda_change_req_by_Admin() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_change_req_by_Admin);
-  }
-
-  get canView_nda_approved_by_Admin() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_Admin);
-  }
-
-  get canView_nda_change_req_by_no() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_change_req_by_no);
-  }
-
-  get canView_nda_approved_by_no() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_no);
-  }
-  get canView_nda_approved_by_company() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_company);
-  }
-
-  get canView_nda_executed() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_executed);
-  }
-
-  get canView_ncp_cip_shared() {
-    return this.accountService.userHasPermission(Permission.viewTLP_ncp_cip_shared);
-  }
-
-  get canView_cip_shared() {
-    return this.accountService.userHasPermission(Permission.viewTLP_cip_shared);
-  }
-
 }

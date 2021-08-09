@@ -28,42 +28,45 @@ export class mouModel {
   public app_Status: string;
   public assignto: string;
   public assigntoadmin: string;
-  public createdBy:string;
+  public assigntoluf: string;
+  public assigntocompany: string;
+  public assigntoscientist: string;
+  public createdBy: string;
 
-  public createdOn:Date;
-} 
+  public createdOn: Date;
+}
 
-export class StatusMaster{
+export class StatusMaster {
 
-  public status_name:string;
-  public status_code:string;
-  public stage:string;
-  public id:string;
+  public status_name: string;
+  public status_code: string;
+  public stage: string;
+  public id: string;
 
 }
-export class Reminder{
+export class Reminder {
 
-  public stage:string;
-  public deadlineinputtime:string;
-  public owner:string;
-  public lapselowreminputtime:string;
-  public lapselowremtypetime:string;
-  public lapsemedreminputtime:string;
-  public lapsemedremtypetime:string;
-  public lapsehighreminputtime:string;
-  public lapsehighremtypetime:string;
-  public deadlinelowreminputtime:string;
-  public deadlinelowremtypetime:string;
-  public deadlinemedreminputtime:string;
+  public stage: string;
+  public deadlineinputtime: string;
+  public owner: string;
+  public lapselowreminputtime: string;
+  public lapselowremtypetime: string;
+  public lapsemedreminputtime: string;
+  public lapsemedremtypetime: string;
+  public lapsehighreminputtime: string;
+  public lapsehighremtypetime: string;
+  public deadlinelowreminputtime: string;
+  public deadlinelowremtypetime: string;
+  public deadlinemedreminputtime: string;
 
-  public deadlinemedremtypetime:string;
-  public deadlinehighreminputtime:string;
-  public deadlinehighremtypetime:string;
+  public deadlinemedremtypetime: string;
+  public deadlinehighreminputtime: string;
+  public deadlinehighremtypetime: string;
 
-  public repeatreminputtime:string;
-  public repeatremtypetime:string;
-  public id:string;
-  public createdBy:string;
-  public status:boolean;
+  public repeatreminputtime: string;
+  public repeatremtypetime: string;
+  public id: string;
+  public createdBy: string;
+  public status: boolean;
 
 }

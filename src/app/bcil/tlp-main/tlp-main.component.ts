@@ -63,13 +63,15 @@ export class TlpMainComponent implements OnInit {
   permissionbutton2: boolean;
   moucreatedby_role: string;
   forword = false;
-
+  isScientist: boolean;
+  isLUF: boolean;
+  isCompany: boolean;
   array = [
 
     { tabelname: "Enter Lead", name: 'enter_lead', value: 'S130', forwordtitle: "Enter Lead", forward: "S132", forwardCheck: true, type: false, forwardText: 'Enter Lead', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_EnterLead_forwordbutton_permission},
 
     { tabelname: "Lead Entered by BDM", name: 'lead_entered_by_bdm', value: 'S132', forwordtitle: "Enter Company Profile ", forward: "S133", forwardCheck: true, type: false, forwardText: 'Enter Company Profile ', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_Lead_Entered_by_bdm_forwordbutton_permission},
-    { tabelname: "Due Deligence Done", name: 'due_deligence_done', value: 'S133', backtitle: "Forward to BDM", forwardCheck: false, back: true, backStatus: "S134", approvetitle: "Forward to Bdo/IPM", approvedvalue: 'S135', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.CanviewTLP_due_deligence_done_change_req_button_permission, permissionapprove: this.CanviewTLP_due_deligence_done_approve_button_permission},
+    { tabelname: "Due Deligence Done", name: 'due_deligence_done', value: 'S133', backtitle: "Forward to BDM", forwardCheck: true, back: true, backStatus: "S134", forwordtitle: "Forward to LUF", forward: 'S135', approved: false, forwardText: "Approved", backbuttonText: 'Change Req', permissionback: this.CanviewTLP_due_deligence_done_change_req_button_permission, permissionforword: this.CanviewTLP_due_deligence_done_approve_button_permission},
     { tabelname: "Due Deligence Change Request by Admin", name: 'due_deligence_change_req_by_admin', value: 'S134', forwordtitle: "Update", forward: "S133", forwardCheck: true, type: false, forwardText: 'Update Due Deligence', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_due_deligence_change_req_by_admin_forwordbutton_permission},
 
     { tabelname: "Lead Approved by Admin", name: 'lead_approved_by_admin', value: 'S135', forwordtitle: "Draft for NDA/PEA/MTA", forward: "S137", forwardCheck: true, forwardText: 'Draft for NDA/PEA/MTA', back: true, backStatus: "S136", backbuttonText: 'Share NCP', backtitle: "Share NCP", permissionforword: this.CanviewTLP_lead_approved_by_admin_forwordbutton_permission, permissionback: this.CanviewTLP_lead_approved_by_admin_forword2button_permission },
@@ -107,6 +109,9 @@ export class TlpMainComponent implements OnInit {
     this.UserEmail = this.accountService.currentUser.email;
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
+
+    this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+
   }
 
   ngOnInit(): void {
@@ -115,6 +120,11 @@ export class TlpMainComponent implements OnInit {
     this.isBdm = this.userRoles.includes('BDM');
 
     this.isIPM = this.userRoles.includes('IPM');
+    this.isLUF = this.userRoles.includes('LUF');
+    this.isScientist = this.userRoles.includes('Scientist');
+    this.isCompany = this.userRoles.includes('Company');
+
+
     this.route.queryParams.subscribe((params) => {
 
       this.createdBy = this.UserId;
@@ -142,6 +152,16 @@ export class TlpMainComponent implements OnInit {
 
         this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
       }
+      else if (this.isLUF == true) {
+        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoluf == this.UserId);
+      }
+      else if (this.isCompany == true) {
+        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntocompany == this.UserId);
+      }
+
+      else if (this.isScientist == true) {
+        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoscientist == this.UserId);
+      }
 
       else {
         this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == this.type);
@@ -157,7 +177,8 @@ export class TlpMainComponent implements OnInit {
       subject: ['', Validators.required],
       remarks: [''],
       type: [''],
-      assignto: [''],
+      assigntoluf: [''],
+
     });
   }
   get f() { return this.ForwardForm.controls; }
@@ -189,7 +210,7 @@ export class TlpMainComponent implements OnInit {
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
-    this.UploadFileViewModel.assignto = this.ForwardForm.get('assignto').value;
+    this.UploadFileViewModel.assigntoluf = this.ForwardForm.get('assigntoluf').value;
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
@@ -235,6 +256,43 @@ export class TlpMainComponent implements OnInit {
     }
 
   }
+
+  onDataLoadSuccessful(users: User[], roles: Role[]) {
+
+    // this.accountService.getRoles(0, 0).subscribe(data => { })
+    console.log(users, roles)
+    this.alertService.stopLoadingMessage();
+    this.loadingIndicator = false;
+    let rol = [];
+    let rol1 = [];
+    debugger;
+
+
+    this.allRoles = roles;
+
+    users.forEach((user, index) => {
+      (user as any).index = index + 1;
+    });
+
+
+    this.rowsCache = [...users];
+    this.users = users;
+
+    console.log(this.users, 'users')
+    this.rows = users.filter(x => x.roles.includes('LUF'));
+
+
+
+  }
+
+  onDataLoadFailed(error: any) {
+    this.alertService.stopLoadingMessage();
+    this.loadingIndicator = false;
+
+    this.alertService.showStickyMessage('Load Error', `Unable to retrieve users from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
+      MessageSeverity.error, error);
+  }
+
 
   get CanviewTLP_EnterLead_forwordbutton_permission() {
     return this.accountService.userHasPermission(Permission.viewTLP_EnterLead_forwordbutton_permission);

@@ -6,7 +6,7 @@
       <div class="row align-items-center">
         <div class="col-md-8">
           <div class="page-header-title">
-            <h5 class="m-b-10">MOU</h5>
+            <h5 class="m-b-10">Technology lead to package shared</h5>
             <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
           </div>
         </div>
@@ -121,11 +121,11 @@
       <div class="modal-body">
         <form [formGroup]="ForwardForm">
 
-          <div class="form-group row" *ngIf="type=='S101' && isAdmin && forword">
+          <div class="form-group row" *ngIf="type=='S133'&& forword">
             <div class="col-sm-12">
-              <label class="col-form-label">Select Legal Manager</label>
+              <label class="col-form-label">Select Law firm user</label>
 
-              <select type="text" class="form-control" formControlName="assignto" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+              <select type="text" class="form-control" formControlName="assigntoluf" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
                 <option value="" selected>--select--</option>
                 <option *ngFor="let data of rows" value="{{data.id}}">{{data.fullName}}</option>
 
