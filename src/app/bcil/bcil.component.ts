@@ -14,7 +14,7 @@ import { mouModel } from '../model/mou.model';
 import { filehistoryModel } from 'src/app/model/filehistory';
 import { DatePipe } from '@angular/common';
 import { notificationmodel } from 'src/app/model/notification.model';
-
+import {commondata} from '../model/common'
 const alertify: any = require('../../assets/scripts/alertify.js');
 @Component({
   selector: 'app-bcil',
@@ -39,7 +39,8 @@ export class BcilComponent implements OnInit {
   d_date: string;
   noticfy_class: notificationmodel[] = [];
   notificationcount=0;
-
+  commondata=new commondata();
+  doticon=false;
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -65,7 +66,9 @@ export class BcilComponent implements OnInit {
     this.authService.logout();
     this.authService.redirectLogoutUser();
   }
-
+mouleftmenu(data){
+return this.commondata.moustatus().find(x=>x.value==data)?.tabelname;
+}
   notifymessage=[{stage:'S101',message:'Initiation- to be suggested by client is pending, please take necessary action'},
   {stage:'S102',message:'MOU is pending, please take necessary action'},
   {stage:'S103',message:'MOU Change Required By Admin is pending, please take necessary action'},
@@ -141,10 +144,14 @@ this.ngOnInit();
    // this.notify_call();
     this.Bdoservice.GetNotification().subscribe(data=>{
       if(data.length>0){
+        this.doticon=data.some(x=>x.active==true);
         this.notificationcount=data.filter(x=>x.active==true).length;
       this.notify = true;
       this.noticfy_class=data.map(obj=>({...obj,message:this.notifymessage?.find(x=>x.stage==obj.stageon)?.message
       ,user:this.UserName}));
+      }
+      else{
+        this.notify = false;
       }
     })
     

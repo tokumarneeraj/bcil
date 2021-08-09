@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Bdoservice} from '../../services/bdo.service'
 import { mouModel } from '../../model/mou.model';
 import { CookieService } from 'ngx-cookie-service';
-import {moustatus,ttaarray} from '../../model/common'
+import {commondata} from '../../model/common'
 
 import { AccountService } from 'src/app/services/account.service';
 import { Permission, PermissionValues } from 'src/app/model/permission.model';
@@ -80,6 +80,7 @@ export class BcilDashboardComponent implements OnInit {
   isBDM: boolean;
   isIPM:boolean;
   userRoles: string[];
+  commondata=new commondata();
   //permission:PermissionValues[];
   constructor(private Bdoservice:Bdoservice, private accountService: AccountService) {
     // this.usertype=this._cookieService.get("UserType");
@@ -107,17 +108,17 @@ export class BcilDashboardComponent implements OnInit {
 
 moulist(){
   if(this.isBDM ||this.isIPM){
-    return this.mouModel?.filter(x=>moustatus.filter(r=>this.permission.includes(r.permission)).find(y=>y.status==x.app_Status) && x.createdBy==this.UserId ).length;
+    return this.mouModel?.filter(x=>this.commondata.moustatus().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status) && x.createdBy==this.UserId ).length;
   }
   else{
-  console.log(this.mouModel?.filter(x=>moustatus.filter(r=>this.permission.includes(r.permission)).find(y=>y.status==x.app_Status)).length)
- return this.mouModel?.filter(x=>moustatus.filter(r=>this.permission.includes(r.permission)).find(y=>y.status==x.app_Status) && (x.createdBy==this.UserId ||x.app_Status=='S101'||
+  console.log(this.mouModel?.filter(x=>this.commondata.moustatus().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status)).length)
+ return this.mouModel?.filter(x=>this.commondata.moustatus().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status) && (x.createdBy==this.UserId ||x.app_Status=='S101'||
  x.assignto==this.UserId||x.assigntoadmin==this.UserId)).length;
   }
   }
   ttolist(){
-    console.log(this.mouModel?.filter(x=>ttaarray.filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status)).length)
-   return this.mouModel?.filter(x=>ttaarray.filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status)).length;
+    console.log(this.mouModel?.filter(x=>this.commondata.ttaarray().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status)).length)
+   return this.mouModel?.filter(x=>this.commondata.ttaarray().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status)).length;
     }
 
   tlplist() {

@@ -17,7 +17,7 @@ export class AccountService {
   public static readonly roleAddedOperation: RolesChangedOperation = 'add';
   public static readonly roleDeletedOperation: RolesChangedOperation = 'delete';
   public static readonly roleModifiedOperation: RolesChangedOperation = 'modify';
-
+static instance:AccountService;
   private rolesChanged = new Subject<RolesChangedEventArg>();
 
   constructor(
@@ -25,6 +25,7 @@ export class AccountService {
     private accountEndpoint: AccountEndpoint) {
 
   }
+ 
   getUser(userId?: string) {
     return this.accountEndpoint.getUserEndpoint<User>(userId);
   }

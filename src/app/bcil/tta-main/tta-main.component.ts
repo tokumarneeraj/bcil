@@ -9,7 +9,7 @@ import { UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
-import {ttaarray as array} from '../../model/common'
+import {commondata} from '../../model/common'
 
 @Component({
   selector: 'app-tta-main',
@@ -44,9 +44,9 @@ export class TtaMainComponent implements OnInit {
   isBdm: boolean;
   isNodal: boolean;
 tablename:string;
-
-  
-  activearray = array[0];
+commondata=new commondata();
+  array=this.commondata.ttaarray();
+  activearray = this.array[0];
 
 
 
@@ -67,9 +67,9 @@ tablename:string;
     this.route.queryParams.subscribe((params) => {
       this.createdBy = this.UserId;
 
-      this.type = array.find(x => x.name == params.type).value;
-      this.formHeader = array.find(x => x.name == params.type).formHeader;
-this.tablename=array.find(x => x.name == params.type).tablename;
+      this.type = this.array.find(x => x.name == params.type).value;
+      this.formHeader = this.array.find(x => x.name == params.type).formHeader;
+this.tablename=this.array.find(x => x.name == params.type).tablename;
     })
 
 

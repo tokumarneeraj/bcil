@@ -46,7 +46,7 @@
             </li> -->
             <li>
               <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
-                <i class="ti-fullscreen blackMenu"></i>
+                <i class="ti-fullscreen blackMenu" ></i>
               </a>
             </li>
           </ul>
@@ -54,7 +54,7 @@
             <li class="header-notification">
               <a href="javascript:void(0)" class="waves-effect waves-light">
                 <i class="ti-bell blackMenu"></i>
-                <span [ngClass]="{'bg-c-red shadowColor badge':notify==true,'info':notify==false}"></span>
+                <span *ngIf="doticon" [ngClass]="{'bg-c-red shadowColor badge':notify==true,'info':notify==false}"></span>
               </a>
 
               <ul class="show-notification" *ngIf="notify">
@@ -355,7 +355,7 @@
                   <li class=" " *ngIf="canviewMou_initPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'init'}">
                       <span class="pcoded-micon"><i class="ti-layers"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">INIT</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Initiation of Assignment</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -387,17 +387,18 @@
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
-                  <li class=" " *ngIf="canviewagreementsignedPermission">
-                    <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'agreementsigned'}">
-                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Agreement Signed</span>
-                      <span class="pcoded-mcaret"></span>
-                    </a>
-                  </li>
+                 
                   <li class=" " *ngIf="canviewMou_accepted_by_clientPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'mou_accepted_by_client'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                       <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MOU Accepted by Client</span>
+                      <span class="pcoded-mcaret"></span>
+                    </a>
+                  </li>
+                  <li class=" " *ngIf="canviewagreementsignedPermission">
+                    <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'agreementsigned'}">
+                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Agreement Signed</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -411,7 +412,7 @@
                   <li class=" " *ngIf="canviewtto_required_aproved_Permission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'tto_req_approved'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTO Req Approved</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTO Request Approved</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>

@@ -3,7 +3,7 @@ import { mouModel } from 'src/app/model/mou.model';
 import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
 import { Permission } from 'src/app/model/permission.model';
-
+import {commondata} from '../../model/common'
 @Component({
   selector: 'app-mou-dashboard',
   templateUrl: './mou-dashboard.component.html',
@@ -19,7 +19,7 @@ export class MouDashboardComponent implements OnInit {
   isIPM:boolean;
   userRoles: string[];
   UserId: string;
-
+commondata=new commondata();
   // usertype:string;
   // UserName:string;
   constructor(private Bdoservice: Bdoservice, private accountService: AccountService) {
@@ -82,6 +82,10 @@ export class MouDashboardComponent implements OnInit {
   }
   get CanaddMouPermission() {
     return this.accountService.userHasPermission(Permission.addMouPermission);
+  }
+
+  cardname(data){
+return this.commondata.moustatus().find(x=>x.value==data)?.tabelname;
   }
   moulistfilter(data) {
  

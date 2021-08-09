@@ -16,6 +16,7 @@ import { Departments } from 'src/app/model/department';
 import { AlertService, DialogType, MessageSeverity } from 'src/app/services/alert.service';
 import { Permission } from 'src/app/model/permission.model';
 import { StringDecoder } from 'string_decoder';
+import {commondata} from '../../model/common'
 
 @Component({
   selector: 'app-tlp-main',
@@ -32,7 +33,7 @@ export class TlpMainComponent implements OnInit {
   submitted = false;
   createdBy = "";
   UploadFileViewModel = new UploadFileViewModel();
-
+  commondata=new commondata();
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
   usertype: string;
@@ -66,36 +67,9 @@ export class TlpMainComponent implements OnInit {
   isScientist: boolean;
   isLUF: boolean;
   isCompany: boolean;
-  array = [
 
-    { tabelname: "Enter Lead", name: 'enter_lead', value: 'S130', forwordtitle: "Enter Lead", forward: "S132", forwardCheck: true, type: false, forwardText: 'Enter Lead', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_EnterLead_forwordbutton_permission},
-
-    { tabelname: "Lead Entered by BDM", name: 'lead_entered_by_bdm', value: 'S132', forwordtitle: "Enter Company Profile ", forward: "S133", forwardCheck: true, type: false, forwardText: 'Enter Company Profile ', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_Lead_Entered_by_bdm_forwordbutton_permission},
-    { tabelname: "Due Deligence Done", name: 'due_deligence_done', value: 'S133', backtitle: "Forward to BDM", forwardCheck: true, back: true, backStatus: "S134", forwordtitle: "Forward to LUF", forward: 'S135', approved: false, forwardText: "Approved", backbuttonText: 'Change Req', permissionback: this.CanviewTLP_due_deligence_done_change_req_button_permission, permissionforword: this.CanviewTLP_due_deligence_done_approve_button_permission},
-    { tabelname: "Due Deligence Change Request by Admin", name: 'due_deligence_change_req_by_admin', value: 'S134', forwordtitle: "Update", forward: "S133", forwardCheck: true, type: false, forwardText: 'Update Due Deligence', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_due_deligence_change_req_by_admin_forwordbutton_permission},
-
-    { tabelname: "Lead Approved by Admin", name: 'lead_approved_by_admin', value: 'S135', forwordtitle: "Draft for NDA/PEA/MTA", forward: "S137", forwardCheck: true, forwardText: 'Draft for NDA/PEA/MTA', back: true, backStatus: "S136", backbuttonText: 'Share NCP', backtitle: "Share NCP", permissionforword: this.CanviewTLP_lead_approved_by_admin_forwordbutton_permission, permissionback: this.CanviewTLP_lead_approved_by_admin_forword2button_permission },
-    { tabelname: "NCP Shared", name: 'ncp_shared', value: 'S136', forwardCheck: true, type: false, forward: "S146", forwordtitle: "Enter Termsheet", forwardText: "Draft Termsheet", permissionforword: true},
-
-    { tabelname: "NDA Request by LUF", name: 'nda_req_by_luf', value: 'S137', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S138", approvetitle: "Forward to N.O.", approvedvalue: 'S139', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.CanviewTLP_nda_req_by_luf_change_req_button_permission, permissionapprove: this.CanviewTLP_nda_req_by_luf_approve_button_permission },
-    { tabelname: "NDA Change Request by Admin", name: 'nda_change_req_by_Admin', value: 'S138', forwordtitle: "Forward to Admin", forward: "S137", forwardCheck: true, type: false, forwardText: 'Update NDA/PEA', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_nda_change_req_by_Admin_forwordbutton_permission },
-
-    { tabelname: "NDA Approved by Admin", name: 'nda_approved_by_Admin', value: 'S139', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S140", approvetitle: "Forward to N.O.", approvedvalue: 'S141', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.CanviewTLP_nda_approved_by_Admin_change_req_button_permission, permissionapprove: this.CanviewTLP_nda_approved_by_Admin_approve_button_permission },
-
-    { tabelname: "NDA Change Request by NO", name: 'nda_change_req_by_no', value: 'S140', forwordtitle: "Change Request", forward: "S138", forwardCheck: true, type: false, forwardText: 'Change Request', approvedvalue: '', backStatus: '',permissionforword:this.CanviewTLP_nda_change_req_by_no_change_req_button_permission},
-
-    { tabelname: "NDA Approved by NO", name: 'nda_approved_by_no', value: 'S141', backtitle: "Change Request", forwardCheck: false, back: true, backStatus: "S138", approvetitle: "Forward to N.O.", approvedvalue: 'S142', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.CanviewTLP_nda_approved_by_no_change_req_button_permission, permissionapprove: this.CanviewTLP_nda_approved_by_no_approve_button_permission },
-
-
-    { tabelname: "NDA Approved by Company", name: 'nda_approved_by_company', value: 'S142', forwordtitle: "Forward to LUF", forward: "S143", forwardCheck: true, type: false, forwardText: 'Upload Agreement', approvedvalue: '', backStatus: '', permissionforword: this.CanviewTLP_nda_approved_by_company_forwordbutton_permission },
-
-    { tabelname: "NDA Executed", name: 'nda_executed', value: 'S143', forwordtitle: "Share NCP & CIP", forward: "S144", forwardCheck: true, forwardText: 'Share NCP & CIP', back: true, backStatus: "S145", backbuttonText: 'Share CIP', backtitle: "Share CIP", permissionforword: this.CanviewTLP_nda_executed_forwordbutton_permission, permissionback: this.CanviewTLP_nda_executed_forword2button_permission },
-    { tabelname: "NCP and CIP Shared", name: 'ncp_cip_shared', value: 'S144', forwardCheck: true, type: false, forward: "S146", forwordtitle: "Enter Termsheet", forwardText: "Draft Termsheet", permissionforword:true},
-    { tabelname: "CIP Shared", name: 'cip_shared', value: 'S145', forwardCheck: true, type: false, forward: "S146", forwordtitle: "Enter Termsheet", forwardText: "Draft Termsheet", permissionforword: true },
-
-
-  ]
-
+  array=this.commondata.ttaarray().filter(x=>x.stage=="tlp");
+  
 
 
   activearray = this.array[0];
@@ -294,73 +268,5 @@ export class TlpMainComponent implements OnInit {
   }
 
 
-  get CanviewTLP_EnterLead_forwordbutton_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_EnterLead_forwordbutton_permission);
-  }
-
-  get CanviewTLP_Lead_Entered_by_bdm_forwordbutton_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_Lead_Entered_by_bdm_forwordbutton_permission);
-  }
-
-  get CanviewTLP_due_deligence_done_change_req_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_due_deligence_done_change_req_button_permission);
-  }
-
-  get CanviewTLP_due_deligence_done_approve_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_due_deligence_done_approve_button_permission);
-  }
   
-  get CanviewTLP_due_deligence_change_req_by_admin_forwordbutton_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_due_deligence_change_req_by_admin_forwordbutton_permission);
-  }
-
-  get CanviewTLP_lead_approved_by_admin_forwordbutton_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_lead_approved_by_admin_forwordbutton_permission);
-  }
-
-  get CanviewTLP_lead_approved_by_admin_forword2button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_lead_approved_by_admin_forword2button_permission);
-  }
-
-  get CanviewTLP_nda_req_by_luf_approve_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_req_by_luf_approve_button_permission);
-  }
-
-  get CanviewTLP_nda_req_by_luf_change_req_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_req_by_luf_change_req_button_permission);
-  }
-
-  get CanviewTLP_nda_change_req_by_Admin_forwordbutton_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_change_req_by_Admin_forwordbutton_permission);
-  }
-
-  get CanviewTLP_nda_approved_by_Admin_approve_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_Admin_approve_button_permission);
-  }
-
-  get CanviewTLP_nda_approved_by_Admin_change_req_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_Admin_change_req_button_permission);
-  }
-
-  get CanviewTLP_nda_change_req_by_no_change_req_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_change_req_by_no_change_req_button_permission);
-  }
-
-  get CanviewTLP_nda_approved_by_no_approve_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_no_approve_button_permission);
-  }
-
-  get CanviewTLP_nda_approved_by_no_change_req_button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_no_change_req_button_permission);
-  }
-
-  get CanviewTLP_nda_approved_by_company_forwordbutton_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_approved_by_company_forwordbutton_permission);
-  }
-  get CanviewTLP_nda_executed_forwordbutton_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_executed_forwordbutton_permission);
-  }
-  get CanviewTLP_nda_executed_forword2button_permission() {
-    return this.accountService.userHasPermission(Permission.viewTLP_nda_executed_forword2button_permission);
-  }
 }
