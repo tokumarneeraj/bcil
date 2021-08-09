@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { notificationmodel } from 'src/app/model/notification.model';
 import {commondata} from '../model/common'
 const alertify: any = require('../../assets/scripts/alertify.js');
+declare var jQuery:any;
 @Component({
   selector: 'app-bcil',
   templateUrl: './bcil.component.html',
@@ -41,6 +42,7 @@ export class BcilComponent implements OnInit {
   notificationcount=0;
   commondata=new commondata();
   doticon=false;
+  showdiv=false;
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -363,8 +365,16 @@ get canviewstartegy_implementedPermission() {
 get canviewTta_interest_receivedPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_interest_receivedPermission);
   }
-
+  toggle(){
+    this.showdiv=!this.showdiv;
+  }
   loadscript() {
+(function($){
+  $(document).ready(function(){
+    
+console.log("jquery")
+  });
+})(jQuery);
     const dynamicScripts = [
       // './assets/js/jquery/jquery.min.js',
       // './assets/js/SmoothScroll.js',
@@ -377,9 +387,16 @@ get canviewTta_interest_receivedPermission() {
       //'./assets/js/modernizr/modernizr.js',
       //'./assets/js/SmoothScroll.js',
       //'./assets/js/jquery.mCustomScrollbar.concat.min.js ',
+      // './assets/pages/waves/js/waves.min.js',
+      // './assets/js/jquery-slimscroll/jquery.slimscroll.js',
+      // './assets/js/modernizr/modernizr.js',
+      // './assets/js/SmoothScroll.js',
+      // './assets/js/jquery.mCustomScrollbar.concat.min.js ',
+      // './assets/js/pcoded.min.js',
+      // './assets/js/vertical-layout.min.js',
+      // './assets/pages/dashboard/custom-dashboard.js',
 
-
-      './assets/js/script.js'
+     './assets/js/script.js'
 
 
 

@@ -447,3 +447,38 @@ textarea{
     resize: none;
 }
 /*-- Inner Header design end --*/
+
+/*-- Footer design 03 Aug 2021 Start --*/
+footer.footerElement.dashFooter {
+    padding: 20px 0 0;
+}
+.dashFooter .footerContent {
+    padding: 0 0 12px;
+    margin: 0;
+}
+.dashFooter h3 {
+    font-weight: 500;
+}
+.dashFooter p {
+    margin: 0;
+    line-height: 22px;
+    color: #bababa;
+    font-size: 14px;
+}
+.contactInfo h4 {
+    color: #bababa;
+    font-size: 22px;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: .5rem;
+}
+.contactInfo ul {
+    margin: 0;
+}
+.contactInfo ul.address li {
+    margin: 0 0 8px;
+}
+.contactInfo ul.address li:last-child{
+    margin: 0;
+}
+/*-- Footer design 03 Aug 2021 End --*/
+/*-- Inner Header design end --*/

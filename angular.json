@@ -28,15 +28,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/styles.scss"
               
             ],
             "scripts": [
-              "src/assets/js/jquery-slimscroll/jquery.slimscroll.js",
-              "src/assets/js/modernizr/modernizr.js",
-              "src/assets/js/SmoothScroll.js",
-              
-              "src/assets/js/jquery.mCustomScrollbar.concat.min.js",
+              "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/jquery/dist/jquery.slim.js",
               "./node_modules/popper.js/dist/umd/popper.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
