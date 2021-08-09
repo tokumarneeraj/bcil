@@ -29,7 +29,9 @@ export class mouModel {
   public assignto: string;
   public assigntoadmin: string;
   public createdBy:string;
-
+public assigntocompany:string;
+public assigntoscientist:string;
+public assigntoluf:string;
   public createdOn:Date;
 } 
 
