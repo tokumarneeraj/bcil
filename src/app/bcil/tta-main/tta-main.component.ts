@@ -9,7 +9,7 @@ import { UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
-
+import {ttaarray as array} from '../../model/common'
 
 @Component({
   selector: 'app-tta-main',
@@ -45,32 +45,8 @@ export class TtaMainComponent implements OnInit {
   isNodal: boolean;
 tablename:string;
 
-  array = [
-    {tablename:'', name: 'ViewMouAll', value: 'S108', formHeader: 'Assignment and Tech. Disclosure Form' },
-    { tablename:'TTA INIT',name: 'tta_init', value: 'S113', formHeader: 'Assign to BDM' },
-    { tablename:'TTA Evaluation Assigned',name: 'tta_evaluation_assigned', value: 'S114', formHeader: 'Upload Evaluation Report' },
-    { tablename:'TTA Evaluation Uploaded by BDM',name: 'tta_evaluation_uploaded_by_bdm', value: 'S115', formHeader: 'Application Forward' },
-    { tablename:'TTA Evaluation Closure by Admin',name: 'tta_evaluation_closure_by_admin', value: 'S116', formHeader: 'Close TTA' },
-    { tablename:'TTA Evaluation Approved by Admin',name: 'tta_evaluation_approved_by_admin', value: 'S117', formHeader: 'Application Forward' },
-    { tablename:'TTA Evaluation Change Request by Admin',name: 'tta_evaluation_change_req_by_admin', value: 'S118', formHeader: 'Upload Evaluation Report ' },
-    { tablename:'TTA Closure Requested by BDM',name: 'tta_closure_requested_by_bdm', value: 'S119', formHeader: 'Closure Request' },
-    { tablename:'TTA Closed',name: 'tta_closed', value: 'S120', formHeader: 'Close TTA ' },
-    { tablename:'TTA Evaluation Change Request by Client',name: 'tta_evaluation_change_req_by_client', value: 'S121', formHeader: 'Application Forward' },
-    { tablename:'TTA Evaluation Accepted by Client',name: 'tta_evaluation_accepted_by_client', value: 'S122', formHeader: 'Application Forward' },
-    { tablename:'TTA Strategy Assigned',name: 'tta_strategy_assigned', value: 'S123', formHeader: 'Application Forward' },
-    { tablename:'TTA Strategy Uploaded by BDM',name: 'tta_strategy_uploaded_by_bdm', value: 'S124', formHeader: 'Application Forward' },
-    { tablename:'TTA Strategy Change Request by Admin',name: 'tta_strategy_change_req_by_admin', value: 'S125', formHeader: 'Update Strategy' },
-    { tablename:'TTA Techb And Flier Approved by Admin',name: 'tta_techb_and_flier_approved_by_admin', value: 'S126', formHeader: 'Application Forward' },
-    { tablename:'TTA Techb And Flier Approved by Scientist',name: 'tta_techb_and_flier_approved_by_scientist', value: 'S127', formHeader: 'Application Forward' },
-    { tablename:'TTA Change Req by Scientist',name: 'tta_change_req_by_scientist', value: 'S128', formHeader: 'Application Forward' },
-    { tablename:'Strategy Implemented',name: 'strategy_implemented', value: 'S129', formHeader: 'Application Forward' },
-    { tablename:'TTA Interest Received',name: 'tta_interest_received', value: 'S130', formHeader: 'Application Forward' },
-    { tablename:'NO INTEREST RECEIVED',name: 'no_interest_received', value: 'S131', formHeader: 'Application Forward' },
-
-
-
-  ]
-  activearray = this.array[0];
+  
+  activearray = array[0];
 
 
 
@@ -91,9 +67,9 @@ tablename:string;
     this.route.queryParams.subscribe((params) => {
       this.createdBy = this.UserId;
 
-      this.type = this.array.find(x => x.name == params.type).value;
-      this.formHeader = this.array.find(x => x.name == params.type).formHeader;
-this.tablename=this.array.find(x => x.name == params.type).tablename;
+      this.type = array.find(x => x.name == params.type).value;
+      this.formHeader = array.find(x => x.name == params.type).formHeader;
+this.tablename=array.find(x => x.name == params.type).tablename;
     })
 
 
