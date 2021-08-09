@@ -63,8 +63,10 @@ permission:boolean;
 permissionbutton1:boolean;
 permissionbutton2:boolean;
 moucreatedby_role:string;
+mouref:string;
 forword=false;
 nodalofficer:string;
+customrem:boolean;
   array = [{tabelname:"Initiation- to be suggested by client", name: 'init', value: 'S101', createdBy: "Test1",forwordtitle:"Forward to LM", forward: "S102", forwardCheck: true, type: true,forwardText: 'Forward', back: true,backbuttonText: 'Agreement not needed',backStatus: "S107",permissionbutton1:this.Canviewagreement_not_needed_forword_buttonPermission,permissionforword:this.CanviewMou_init_forword_button_Permission },
   {tabelname:"MOU Pending", name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104",forwordtitle:"Forward to Admin", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:this.CanviewMou_pending_forword_buttonPermission },
   {tabelname:"MOU Change Required By Admin", name: 'mou_change_by_admin', value: 'S103', createdBy: "Tes3", forward: "S104", forwardCheck: true, forwardText: 'Forward', back: true,permissionforword:this.CanviewMou_change_by_admin_forword_buttonPermission },
@@ -93,10 +95,20 @@ nodalofficer:string;
 
     this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
     
-
+this.customrem=false;
     
   }
+  reminderchange(data){
+if(data=="default"){
+  this.customrem=false;
+}
 
+else if(data=="custom"){
+  this.customrem=true;
+  //this.editorModal2.show();
+
+}
+  }
   get Canviewagreement_not_needed_forword_buttonPermission() {
     return this.accountService.userHasPermission(Permission.viewagreement_not_needed_forword_buttonPermission);
   }
@@ -173,6 +185,8 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
       this.mouModel = data.filter(x => x.app_Status == this.type &&  (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
         x.assignto==this.UserId || x.app_Status=='S101'));
       }
+
+      
         this.showpage = true;
      
 
@@ -184,6 +198,7 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
 
       subject: ['', Validators.required],
       remarks: [''],
+      remindertype:['default',Validators.required],
       type: [''],
       assignto:[''],
     });
@@ -226,6 +241,7 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
     this.UploadFileViewModel.assignto = this.ForwardForm.get('assignto').value;
+    this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
 //this.UploadFileViewModel.assigntoadmin= this.UploadFileViewModel.createdBy;
     this.UploadFileViewModel.createdBy = this.UserId;
 
@@ -246,13 +262,15 @@ get Canviewip_manager_assigned_forword_buttonPermission() {
     this.UploadFileViewModel.app_Status = e == "approve" ? this.array.find(x => x.value == this.type).approvedvalue :
      e== "forword" ? this.array.find(x => x.value == this.type).forward : this.array.find(x => x.value == this.type).backStatus;
     this.UploadFileViewModel.app_ref_id = data.refid;
+    this.mouref=data.refid;
 debugger;
     this.mouModel1= this.mouModel.find(x=>x.refid==data.refid);
-    this.moucreatedby_role=this.users.find(x=>x.id==this.mouModel1.createdBy).roles[0];
+    this.moucreatedby_role=this.users.find(x=>x.id==this.mouModel1.createdBy)?.roles[0];
    this.forword=e=="forword"?true:false;
 if((this.type=="S101" &&e=="back") ||this.type=="S105"){
  this.moucreatedby_role=="IPM"?this.UploadFileViewModel.app_Status="S109":
    this.moucreatedby_role=="IBM"?this.UploadFileViewModel.app_Status="S107":null;
+  
 }
 
 

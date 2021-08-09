@@ -290,8 +290,9 @@
     </div>
 </div> -->
 
-<div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+    <div class="modal-dialog modal-lg" style="max-height: 600px;
+    overflow: auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4>Application Forward</h4>
@@ -354,6 +355,27 @@
 
                   </div>
                 </div>
+
+                <div class="form-group row"  *ngIf="activearray?.value=='S101'">
+<div class="col-sm-6"> 
+    <label class="col-form-label">Default Reminder</label>
+    <input type="radio" class="form-control" name="remindertype" value="default"  formControlName="remindertype" (change)="reminderchange('default')"/>
+ 
+</div>
+    <div class="col-sm-6"> 
+        <label class="col-form-label">Custom Reminder</label>
+        <input type="radio" class="form-control" name="remindertype" value="custom" formControlName="remindertype" (change)="reminderchange('custom')"/>
+           
+                  </div>
+                </div>
+                 <div class="form-group row"  *ngIf="activearray?.value=='S101'">
+                    <app-reminder *ngIf="customrem" [customrem]="customrem" [mouref]="mouref" [type]="type" style="width:100%"></app-reminder>
+                 </div>
+
+                
+                   
+              
+
                 <div class="form-group row">
                   <div class="col-sm-6">
                     <button type="submit"
@@ -378,4 +400,18 @@
     </div>
   </div>
 
-
+  <!-- <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" style="min-height:600px">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Application Forward</h4>
+                <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body"> -->
+ 
+            <!-- </div>
+  </div>
+  </div>
+  </div> -->

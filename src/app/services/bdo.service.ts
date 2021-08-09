@@ -7,11 +7,20 @@ import {UploadFileViewModel} from '../model/uploadFile.model';
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
 import { AccountService } from './account.service';
+import { notificationmodel } from '../model/notification.model';
 @Injectable()
 export class Bdoservice
 {
     get addmouurl() { return  environment.baseUrl+'/api/bdo/addmou'; }
+
+
+    get notificationseenurl(){return  environment.baseUrl+'/api/bdo/notificationseen';}
     get addreminderurl() { return  environment.baseUrl+'/api/bdo/addreminder'; }
+    get editreminderurl() { return  environment.baseUrl+'/api/bdo/editreminder'; }
+    get getallnotificationurl() { return  environment.baseUrl+'/api/bdo/getallnotification'; }
+    get getreminderurl() { return  environment.baseUrl+'/api/bdo/getallreminder'; }
+
+    get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
     get getstatusmasterurl() { return environment.baseUrl+'/api/bdo/getstatusmaster'; }
 
@@ -56,15 +65,72 @@ export class Bdoservice
         //     }));
         }
 
-        public  AddReminder<T>(reminder:Reminder): Observable<Reminder> {
+        public  AddReminder<T>(reminder:Reminder,mouref:string): Observable<any> {
           reminder.createdBy=this.UserId;
+          reminder.mouref=mouref;
             const headers = new HttpHeaders({
                 
                 'Content-Type': 'application/json',
                 Accept: 'application/json, text/plain, */*'
               });
           
-              return this.http.post<Reminder>(this.addreminderurl, JSON.stringify(reminder),{headers:headers});
+              return this.http.post<any>(this.addreminderurl, JSON.stringify(reminder),{headers:headers});
+            //   .pipe<mouModel>(
+            //     catchError(error => {
+            //       return this.handleError(error, () =>{});
+            //     }));
+            }
+
+            public  EditReminder<T>(reminder:Reminder,mouref:string): Observable<any> {
+              reminder.createdBy=this.UserId;
+              reminder.mouref=mouref;
+                const headers = new HttpHeaders({
+                    
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json, text/plain, */*'
+                  });
+              
+                  return this.http.post<any>(this.editreminderurl, JSON.stringify(reminder),{headers:headers});
+                //   .pipe<mouModel>(
+                //     catchError(error => {
+                //       return this.handleError(error, () =>{});
+                //     }));
+                }
+    
+
+            public  GetReminder<T>(): Observable<Reminder[]> {
+        
+              return this.http.get<Reminder[]>(this.getreminderurl);
+            //   .pipe<mouModel>(
+            //     catchError(error => {
+            //       return this.handleError(error, () =>{});
+            //     }));
+            }
+
+            public GetCustomremiderbystage<T>(mouref:string): Observable<Reminder[]> {
+        
+              const endpointUrl = `${this.getcustomreminderbystage}/${mouref}`;
+              return this.http.get<Reminder[]>(endpointUrl);
+            //   .pipe<mouModel>(
+            //     catchError(error => {
+            //       return this.handleError(error, () =>{});
+            //     }));
+            }
+
+            public  GetNotification<T>(): Observable<notificationmodel[]> {
+        
+              const endpointUrl = `${this.getallnotificationurl}/${this.UserId}`;
+              return this.http.get<notificationmodel[]>(endpointUrl);
+            //   .pipe<mouModel>(
+            //     catchError(error => {
+            //       return this.handleError(error, () =>{});
+            //     }));
+            }
+
+            public  Notificationseen<T>(data:string): Observable<notificationmodel[]> {
+        
+              const endpointUrl = `${this.notificationseenurl}/${data}`;
+              return this.http.get<notificationmodel[]>(endpointUrl);
             //   .pipe<mouModel>(
             //     catchError(error => {
             //       return this.handleError(error, () =>{});

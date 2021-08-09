@@ -108,7 +108,7 @@ editRole(row: Role) {
 }
 
 deleteRole(row: Role) {
-  alert();
+ 
   this.alertService.showDialog('Are you sure you want to delete the \"' + row.name + '\" role?', DialogType.confirm, () => this.deleteRoleHelper(row));
 }
 

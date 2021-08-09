@@ -20,8 +20,10 @@ import { AccountService } from '../../services/account.service';
 export class TtaMainComponent implements OnInit {
 
   mouModel: mouModel[];
+  mouref:string;
   showpage = false;
   type: string;
+  customrem:boolean;
   closeResult = '';
   ForwardForm: FormGroup;
   submitted = false;
@@ -63,7 +65,7 @@ tablename:string;
     { tablename:'TTA Change Req by Scientist',name: 'tta_change_req_by_scientist', value: 'S128', formHeader: 'Application Forward' },
     { tablename:'Strategy Implemented',name: 'strategy_implemented', value: 'S129', formHeader: 'Application Forward' },
     { tablename:'TTA Interest Received',name: 'tta_interest_received', value: 'S130', formHeader: 'Application Forward' },
-    { tablename:'',name: 'no_interest_received', value: 'S131', formHeader: 'Application Forward' },
+    { tablename:'NO INTEREST RECEIVED',name: 'no_interest_received', value: 'S131', formHeader: 'Application Forward' },
 
 
 
@@ -121,6 +123,7 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
 
       subject: ['', Validators.required],
       remarks: [''],
+      remindertype:['default',Validators.required],
       type: ['']
     });
   }
@@ -134,6 +137,7 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
   //for client start
   onClientClick(data: mouModel, status) {
     this.UploadFileViewModel.app_ref_id = data.refid;
+    this.mouref=data.refid;
     this.UploadFileViewModel.app_Status = status;
     this.editorModal2.show();
 
@@ -159,13 +163,24 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
       });
     }
   }
+  reminderchange(data){
+    if(data=="default"){
+      this.customrem=false;
+    }
+    
+    else if(data=="custom"){
+      this.customrem=true;
+      //this.editorModal2.show();
+    
+    }
+      }
   uploadClientFile() {
 
     this.submitted = true;
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
-
+    this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
     this.UploadFileViewModel.createdBy = this.createdBy;
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
 

@@ -1,0 +1,8 @@
+.show-notification{
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.disabled{
+    background-color:#f1f1f1;
+}

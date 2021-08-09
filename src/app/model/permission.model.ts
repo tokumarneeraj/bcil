@@ -59,7 +59,7 @@ export type PermissionValues =
 
 
   'patent.view' | 'trademark.view' | 'design.view' | 'copyright.view' | 'plantvarity.view' | 'otherservices.view'
-  | 'report.view';
+  | 'report.view'|'reminder.view';
 
 export class Permission {
 
@@ -149,6 +149,8 @@ export class Permission {
 
   public static readonly viewOtherservicesPermission: PermissionValues = 'otherservices.view';
   public static readonly viewReportPermission: PermissionValues = 'report.view';
+
+  public static readonly viewReminderPermission: PermissionValues = 'reminder.view';
 
 
 

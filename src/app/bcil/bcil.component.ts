@@ -38,7 +38,7 @@ export class BcilComponent implements OnInit {
   date_diff: number;
   d_date: string;
   noticfy_class: notificationmodel[] = [];
-  
+  notificationcount=0;
 
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
@@ -66,11 +66,88 @@ export class BcilComponent implements OnInit {
     this.authService.redirectLogoutUser();
   }
 
+  notifymessage=[{stage:'S101',message:'Initiation- to be suggested by client is pending, please take necessary action'},
+  {stage:'S102',message:'MOU is pending, please take necessary action'},
+  {stage:'S103',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S104',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S105',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S106',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S107',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S108',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S109',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S110',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S111',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S112',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+  {stage:'S113',message:'MOU is pending, please take necessary action'},
+  {stage:'S114',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S115',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S116',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S117',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S118',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S119',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S120',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S121',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S122',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S123',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+  {stage:'S124',message:'MOU is pending, please take necessary action'},
+  {stage:'S125',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S126',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S127',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S128',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S129',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S130',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S131',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S132',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S133',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S134',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+  {stage:'S135',message:'MOU is pending, please take necessary action'},
+  {stage:'S136',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S137',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S138',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S139',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S140',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S141',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S142',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S143',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S144',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S145',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+  {stage:'S146',message:'MOU is pending, please take necessary action'},
+  {stage:'S147',message:'MOU Change Required By Admin is pending, please take necessary action'},
+  {stage:'S148',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
+  {stage:'S149',message:'Agreement Signed is pending, please take necessary action'},
+  {stage:'S150',message:'MOU Accepted by Client is pending, please take necessary action'},
+  {stage:'S151',message:'Business Development Manager Assiged is pending, please take necessary action'},
+  {stage:'S152',message:'TTO Req Approved is pending, please take necessary action'},
+  {stage:'S153',message:'IP Manager Assigned is pending, please take necessary action'},
+  {stage:'S154',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S155',message:'MOU Change By Client is pending, please take necessary action'},
+  {stage:'S156',message:'MOU Proposed by Admin is pending, please take necessary action'},
+
+]
+
+
+notificationseen(data){
+  this.Bdoservice.Notificationseen(data).subscribe(data=>{
+this.ngOnInit();
+
+  });
+}
   ngOnInit(): void {
 
-    this.notify_call();
+   // this.notify_call();
+    this.Bdoservice.GetNotification().subscribe(data=>{
+      if(data.length>0){
+        this.notificationcount=data.filter(x=>x.active==true).length;
+      this.notify = true;
+      this.noticfy_class=data.map(obj=>({...obj,message:this.notifymessage?.find(x=>x.stage==obj.stageon)?.message
+      ,user:this.UserName}));
+      }
+    })
     
-
 
   }
 
@@ -171,6 +248,10 @@ export class BcilComponent implements OnInit {
   get canViewReport() {
     return this.accountService.userHasPermission(Permission.viewReportPermission);
   }
+  get canViewReminder() {
+    return this.accountService.userHasPermission(Permission.viewReminderPermission);
+  }
+  
 
   get canViewTechnologytransfer() {
     return this.accountService.userHasPermission(Permission.viewTechnologyTransferPermission);
