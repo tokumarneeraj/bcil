@@ -21,6 +21,9 @@ export class NttsaDashboardComponent implements OnInit {
   isBDM: boolean;
   isIPM: boolean;
   UserId: string;
+  isScientist: boolean;
+  isLUF: boolean;
+  isCompany: boolean;
 
   constructor(private Bdoservice: Bdoservice, private accountService: AccountService,) {
     this.UserEmail = this.accountService.currentUser.email;
@@ -31,6 +34,10 @@ export class NttsaDashboardComponent implements OnInit {
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
+    
+    this.isLUF = this.userRoles.includes('LUF');
+    this.isScientist = this.userRoles.includes('Scientist');
+    this.isCompany = this.userRoles.includes('Company');
   }
 
   ngOnInit(): void {
@@ -56,6 +63,16 @@ export class NttsaDashboardComponent implements OnInit {
     else if (this.isBDM || this.isIPM) {
       return this.mouModel?.filter(x => x.app_Status == data && x.createdBy == this.UserId).length;
 
+    }
+    else if (this.isLUF == true) {
+      return this.mouModel?.filter(x => x.app_Status == data && x.assigntoluf == this.UserId).length;
+    }
+    else if (this.isCompany == true) {
+      return this.mouModel?.filter(x => x.app_Status == data && x.assigntocompany == this.UserId).length;
+    }
+
+    else if (this.isScientist == true) {
+      return this.mouModel?.filter(x => x.app_Status == data && x.assigntoscientist == this.UserId).length;
     }
     else {
       return this.mouModel?.filter(x => x.app_Status == data).length;

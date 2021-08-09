@@ -19,11 +19,12 @@ import { StringDecoder } from 'string_decoder';
 import { param } from 'jquery';
 
 @Component({
-  selector: 'app-nttsa-main',
-  templateUrl: './nttsa-main.component.html',
-  styleUrls: ['./nttsa-main.component.scss']
+  selector: 'app-tstl-main',
+  templateUrl: './tstl-main.component.html',
+  styleUrls: ['./tstl-main.component.scss']
 })
-export class NttsaMainComponent implements OnInit {
+export class TstlMainComponent implements OnInit {
+
   mouModel: mouModel[];
   mouModel1: mouModel;
   showpage = false;
@@ -70,18 +71,29 @@ export class NttsaMainComponent implements OnInit {
 
   array = [
 
-    { tabelname: "TS Entered by LUF", name: 'ts_entered_by_luf', value: 'S146', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S147", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S148', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
-    { tabelname: "TS Change Request by Admin", name: 'ts_change_req_by_admin', value: 'S147', forwordtitle: "Update Termsheet ", forward: "S146", forwardCheck: true, type: false, forwardText: 'Update Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "TS Executed", name: 'ts_executed', value: 'S154', forwordtitle: "Draft license agreement", forward: "S155", forwardCheck: true, type: false, forwardText: 'Draft license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
+
+    { tabelname: "LA Entered by LUF", name: 'la_entered_by_luf', value: 'S155', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S156", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S157', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
     
-    { tabelname: "TS Approved by Admin", name: 'ts_approved_by_admin', value: 'S148', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S149", approvetitle: "Forward to Admin", approvedvalue: 'S150', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
+    { tabelname: "LA Change Request by Admin", name: 'la_change_req_by_admin', value: 'S156', forwordtitle: "Update license agreement", forward: "S155", forwardCheck: true, type: false, forwardText: 'Update license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
+
+    { tabelname: "LA Approved by Admin", name: 'la_approved_by_admin', value: 'S157', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S158", approvetitle: "Forward to Admin", approvedvalue: 'S159', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
+    { tabelname: "LA Change Request by Client", name: 'la_change_req_by_client', value: 'S158', forwordtitle: "Forword to LUF", forward: "S156", forwardCheck: true, type: false, forwardText: 'Forward Change Request', approvedvalue: '', backStatus: '', permissionforword: true },
+
+    { tabelname: "LA Approved by Client", name: 'la_approved_by_client', value: 'S159', forwordtitle: "Share license agreement", forward: "S160", forwardCheck: true, type: false, forwardText: 'Share license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
+
+    { tabelname: "LA shared with Company", name: 'la_shared_with_company', value: 'S160', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S156", approvetitle: "Forward to BDM", approvedvalue: 'S161', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
+
+    { tabelname: "LA Approved by Company", name: 'la_approved_by_company', value: 'S161', forwordtitle: "Forward to Client", forward: "S162", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '', permissionforword: true },
+
+    { tabelname: "LA Uploaded", name: 'la_uploaded', value: 'S162', forwordtitle: "Forward to BDM", forward: "S163", forwardCheck: true, type: false, forwardText: 'Submit TT Docket', approvedvalue: '', backStatus: '', permissionforword: true },
+
+    { tabelname: "TT Docket by Client", name: 'tt_docket_by_client', value: 'S163', forwordtitle: "Forward to Company", forward: "S164", forwardCheck: true, type: false, forwardText: 'Share TT Docket', approvedvalue: '', backStatus: '', permissionforword: true },
+
+    { tabelname: "TT Docket shared with Company", name: 'tt_docket_shared_with_company', value: 'S164',  forwardCheck: false, type: false, approvedvalue: '', backStatus: '' },
+
     
-    { tabelname: "TS Change Request by Client", name: 'ts_change_req_by_client', value: 'S149', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
     
-    { tabelname: "TS Approved by Client", name: 'ts_approved_by_client', value: 'S150', forwordtitle: "Forward to Company ", forward: "S151", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '', permissionforword: true },
-    
-    { tabelname: "TS Entered by LUF", name: 'ts_shared_with_company', value: 'S151', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S152", approvetitle: "Forward to Admin", approvedvalue: 'S153', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
-    { tabelname: "TS Change Request by Company", name: 'ts_change_req_by_company', value: 'S152', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
-    { tabelname: "TS Approved by Company", name: 'ts_approved_by_company', value: 'S153', forwardCheck: true, type: false, forwardText: 'Upload Signed Termsheet ', forwordtitle: 'Upload Termsheet ', permissionforword: true, forward:'S154'},
   ]
 
 
@@ -209,7 +221,7 @@ export class NttsaMainComponent implements OnInit {
 
       alert("Application Forward Successfully")
       this.editorModal1.hide();
-      this.router.navigateByUrl('bcil/nttsa-dashboard')
+      this.router.navigateByUrl('bcil/tstl-dashboard')
 
     })
 
@@ -241,7 +253,7 @@ export class NttsaMainComponent implements OnInit {
         alert("Application Approved Successfully")
         //this.editorModal1.hide();
         this.ngOnInit();
-        this.router.navigateByUrl('bcil/nttsa-dashboard')
+        this.router.navigateByUrl('bcil/tstl-dashboard')
       })
 
     }

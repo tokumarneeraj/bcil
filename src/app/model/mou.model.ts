@@ -33,7 +33,7 @@ export class mouModel {
   public createdOn:Date;
 } 
 
-export class StatusMaster{
+export class StatusMaster {
 
   public status_name:string;
   public status_code:string;
@@ -62,14 +62,14 @@ export class Reminder{
   public deadlinelowremtypetime:string;
   public deadlinemedreminputtime:string;
 
-  public deadlinemedremtypetime:string;
-  public deadlinehighreminputtime:string;
-  public deadlinehighremtypetime:string;
+  public deadlinemedremtypetime: string;
+  public deadlinehighreminputtime: string;
+  public deadlinehighremtypetime: string;
 
-  public repeatreminputtime:string;
-  public repeatremtypetime:string;
-  public id:string;
-  public createdBy:string;
-  public status:boolean;
+  public repeatreminputtime: string;
+  public repeatremtypetime: string;
+  public id: string;
+  public createdBy: string;
+  public status: boolean;
 
 }

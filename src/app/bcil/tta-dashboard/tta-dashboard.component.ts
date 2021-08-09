@@ -23,6 +23,7 @@ export class TtaDashboardComponent implements OnInit {
 
   tlpstatus = ['S130', 'S132', 'S133', 'S134', 'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145'];
   nttsastatus = ['S146', 'S147', 'S148', 'S149', 'S150', 'S151', 'S152', 'S153'];
+  tstlstatus = ['S154', 'S155', 'S156', 'S157', 'S158', 'S159', 'S160', 'S161', 'S162', 'S163', 'S164'];
   constructor(private Bdoservice: Bdoservice, private accountService: AccountService,) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
@@ -103,6 +104,10 @@ export class TtaDashboardComponent implements OnInit {
   nttsalist() {
     console.log(this.mouModel?.filter(x => !this.nttsastatus.includes(x.app_Status)).length)
     return this.mouModel?.filter(x => this.nttsastatus.includes(x.app_Status)).length;
+  }
+  tstllist() {
+    return this.mouModel?.filter(x => this.tstlstatus.includes(x.app_Status)).length;
+
   }
   
   ngOnInit(): void {
