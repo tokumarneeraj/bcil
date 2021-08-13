@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService, MessageSeverity } from 'src/app/services/alert.service';
 import { Bdoservice } from '../../services/bdo.service'
 @Component({
   selector: 'app-mou-add',
@@ -16,7 +17,7 @@ export class MouAddComponent implements OnInit {
   mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
 
 
-  constructor(private formbuilder: FormBuilder, private router: Router, private Bdoservice: Bdoservice) { }
+  constructor(private formbuilder: FormBuilder,private alertService: AlertService, private router: Router, private Bdoservice: Bdoservice) { }
   get f() { return this.AddMouForm.controls; }
   ngOnInit(): void {
     this.AddMouForm = this.formbuilder.group({
@@ -91,7 +92,7 @@ export class MouAddComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
+this.loading=true;
 
     this.AddMouForm.controls.nodal_Name.enable();
     this.AddMouForm.controls.nodal_Phone_No.enable();
@@ -105,9 +106,21 @@ export class MouAddComponent implements OnInit {
     }
 
     this.Bdoservice.AddMou(this.AddMouForm.value).subscribe(data => {
-      alert("data save Successfully");
+     // var b = JSON.parse(JSON.stringify(data));
+     this.loading=false;
+      if(data.message=="already_exist"){
+        this.alertService.showStickyMessage("MOU ADD","Nodal Already exists,Please Change the name of Nodal",MessageSeverity.warn);
+      }
+      else
+      {
+        this.alertService.showStickyMessage('MOU ADD',"data save Successfully",MessageSeverity.success);
+      //alert("");
       this.router.navigateByUrl("bcil/bcil-dashboard");
+      }
       console.log(data)
+    },error=>{
+      this.loading=false;
+
     })
   }
 

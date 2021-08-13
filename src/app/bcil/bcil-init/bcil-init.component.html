@@ -255,7 +255,7 @@
                                                   <td>{{item.dir_Mobile_No}}</td>
 
                                                   <td>
-                                                    <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-info" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
+                                                    <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
                                                     <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
                                                     <button value="approve" *ngIf="activearray?.approved" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 

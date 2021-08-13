@@ -17,6 +17,7 @@ export class MouDashboardComponent implements OnInit {
   isAdmin:boolean;
   isBDM: boolean;
   isIPM:boolean;
+  isSuperAdmin:boolean;
   userRoles: string[];
   UserId: string;
 commondata=new commondata();
@@ -31,6 +32,7 @@ commondata=new commondata();
     this.isAdmin = this.userRoles.includes('admin');
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
+  this.isSuperAdmin=this.userRoles.includes('Super Admin');
   }
 
  
@@ -95,8 +97,11 @@ return this.commondata.moustatus().find(x=>x.value==data)?.tabelname;
     //     return this.mouModel?.filter(x => x.app_Status == data &&  x.assigntoadmin==this.UserId).length;//&& x.assignto==this.UserId
   
       
-
-     if(this.isBDM ||this.isIPM){
+if(this.isSuperAdmin){
+  return this.mouModel?.filter(x => x.app_Status == data).length;//&& x.assignto==this.UserId
+  
+}
+     else if(this.isBDM ||this.isIPM){
       return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;//&& x.assignto==this.UserId
   
 

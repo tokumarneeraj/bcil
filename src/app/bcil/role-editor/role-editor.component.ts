@@ -29,7 +29,7 @@ export class RoleEditorComponent {
   public selectedValues1: { [key: string]: boolean; } = {};
 
   private editingRoleName: string;
-
+editmode=true;
   public formResetToggle = true;
   array1: any[] = [];
   public changesSavedCallback: () => void;
@@ -46,6 +46,7 @@ export class RoleEditorComponent {
   usertext = "";
   uservalue = "";
   constructor(private alertService: AlertService, private accountService: AccountService) {
+    this.editmode=false;
   }
 
 
@@ -181,6 +182,7 @@ export class RoleEditorComponent {
     if (this.changesSavedCallback) {
       this.changesSavedCallback();
     }
+    this.editmode=false;
   }
 
 
@@ -270,6 +272,7 @@ export class RoleEditorComponent {
 
 
   newRole(allPermissions: Permission[]) {
+    this.editmode=false;
     this.selectedValues1={};
     this.isNewRole = true;
     this.showValidationErrors = true;
@@ -283,7 +286,11 @@ export class RoleEditorComponent {
   }
 
   editRole(role: Role, allPermissions: Permission[]) {
+    
+    this.editmode=true;
+    //alert(this.editmode)
     if (role) {
+     
       this.isNewRole = false;
       this.showValidationErrors = true;
 

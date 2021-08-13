@@ -1,13 +1,15 @@
 <div>
     <form *ngIf="formResetToggle" name="roleEditorForm" #f="ngForm" novalidate (ngSubmit)="f.form.valid ? save() :
-          (!roleName.valid && showErrorAlert('Role name is required', 'Please enter a role name (minimum of 2 and maximum of 200 characters)'));">
+          (!roleName?.valid && showErrorAlert('Role name is required', 'Please enter a role name (minimum of 2 and maximum of 200 characters)'));">
 
         <div class="row">
             <div class="col-sm-5">
                 <div class="form-group row">
                     <label class="col-form-label col-md-3" for="roleName">Name</label>
                     <div class="col-md-9">
-                        <input  type="text" id="roleName" name="roleName" placeholder="Enter role name" class="form-control" [ngClass]="{'is-valid': f.submitted && roleName.valid, 'is-invalid' : f.submitted && !roleName.valid}" [(ngModel)]="roleEdit.name"
+                        <label *ngIf="editmode" class="col-form-label col-md-3" for="roleName">{{roleEdit.name}}</label>
+                        
+                        <input  [ngStyle]="{'display':!editmode?'block':'none'}" type="text" id="roleName" name="roleName" placeholder="Enter role name" class="form-control" [ngClass]="{'is-valid': f.submitted && roleName.valid, 'is-invalid' : f.submitted && !roleName.valid}" [(ngModel)]="roleEdit.name"
                             #roleName="ngModel" required minlength="2" maxlength="200" />
                     </div>
                 </div>
@@ -23,9 +25,9 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="!editmode">
             <div class="col-md-12">
-                <span *ngIf="showValidationErrors && f.submitted && !roleName.valid" class="invalid-feedback">
+                <span *ngIf="showValidationErrors && f.submitted && !roleName?.valid" class="invalid-feedback">
           Role Name is Required
         </span>
             </div>

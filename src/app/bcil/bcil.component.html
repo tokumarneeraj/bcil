@@ -51,7 +51,7 @@
             </li>
           </ul>
           <ul class="nav-right">
-            <li class="header-notification">
+            <li class="header-notification" (click)="notificationtoogle()">
               <a href="javascript:void(0)" class="waves-effect waves-light">
                 <i class="ti-bell blackMenu"></i>
                 <span *ngIf="doticon" [ngClass]="{'bg-c-red shadowColor badge':notify==true,'info':notify==false}"></span>
@@ -77,7 +77,7 @@
               </ul>
 
             </li>
-            <li class="user-profile header-notification">
+            <li class="user-profile header-notification" (click)="toggle()">
               <a href="javascript:{}" class="waves-effect waves-light userName">
                 <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                 <span>{{usertype}}</span>
@@ -113,7 +113,7 @@
             <div class="">
               <div class="main-menu-header">
                 <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
-                <div class="user-details">
+                <div class="user-details" (click)="usertoggle()">
                   <span id="more-details">{{UserName}}<i class="fa fa-caret-down"></i></span>
                 </div>
               </div>
@@ -155,7 +155,7 @@
                   <li class=" " *ngIf="canviewTta_initPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_init'}">
                       <span class="pcoded-micon"><i class="ti-layers"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">TTA INIT</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">TTA Initiation</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -405,7 +405,7 @@
                   <li class=" " *ngIf="canviewbdoassignedPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'bodassigned'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">BDO Assigned</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">BDM Assigned</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>

@@ -47,6 +47,7 @@ export class BcilInitComponent implements OnInit {
   formHeader: string;
   isBdm: boolean;
   isLM: boolean;
+  isSuperAdmin: boolean;
   isIPM:boolean;
   users: User[] = [];
   rows: User[] = [];
@@ -105,6 +106,7 @@ else if(data=="custom"){
     this.isBdm = this.userRoles.includes('BDM');
 
   this.isIPM=this.userRoles.includes('IPM');
+  this.isSuperAdmin=this.userRoles.includes('Super Admin');
     this.route.queryParams.subscribe((params) => {
 
         this.createdBy = this.UserId;
@@ -120,9 +122,13 @@ else if(data=="custom"){
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       debugger
-      if(this.isBdm ||this.isIPM){
+      if(this.isSuperAdmin){
+        this.mouModel = data.filter(x => x.app_Status == this.type);
+      }
+     else if(this.isBdm ||this.isIPM){
         this.mouModel = data.filter(x => x.app_Status == this.type &&  x.createdBy==this.UserId);
       }
+
       else{
       this.mouModel = data.filter(x => x.app_Status == this.type &&  (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
         x.assignto==this.UserId || x.app_Status=='S101'));

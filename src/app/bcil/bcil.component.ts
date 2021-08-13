@@ -15,6 +15,7 @@ import { filehistoryModel } from 'src/app/model/filehistory';
 import { DatePipe } from '@angular/common';
 import { notificationmodel } from 'src/app/model/notification.model';
 import {commondata} from '../model/common'
+import { groupRowsByParents, sortRows } from '@swimlane/ngx-datatable';
 const alertify: any = require('../../assets/scripts/alertify.js');
 declare var jQuery:any;
 @Component({
@@ -43,6 +44,8 @@ export class BcilComponent implements OnInit {
   commondata=new commondata();
   doticon=false;
   showdiv=false;
+  notificationdiv=false;
+  userdiv=false;
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -145,6 +148,7 @@ this.ngOnInit();
 
    // this.notify_call();
     this.Bdoservice.GetNotification().subscribe(data=>{
+      console.log(data,'not')
       if(data.length>0){
         this.doticon=data.some(x=>x.active==true);
         this.notificationcount=data.filter(x=>x.active==true).length;
@@ -367,14 +371,45 @@ get canviewTta_interest_receivedPermission() {
   }
   toggle(){
     this.showdiv=!this.showdiv;
+
+   
+   
+  }
+  usertoggle(){
+
+  }
+  notificationtoogle(){
+    //alert('');
+this.notificationdiv=!this.notificationdiv;
   }
   loadscript() {
-(function($){
-  $(document).ready(function(){
-    
-console.log("jquery")
-  });
-})(jQuery);
+    let row=this;
+    (function($){
+      $(document).ready(function(){
+          $(".header-notification").click(function(){
+            if(row.showdiv==true ||row.notificationdiv ==true){
+               $(this).find(".show-notification").css('display','block');
+                $(this).addClass('active');
+            }
+            else{
+              $(this).find(".show-notification").css('display','none');
+              $(this).removeClass('active');
+            }
+           
+            });
+
+            $("#more-details").on('click', function() {
+              row.userdiv=!row.userdiv;
+              if(row.userdiv==true){
+              $(".more-details").css('display','block');
+              }
+              else{
+                $(".more-details").css('display','none');
+              }
+          });
+    console.log("jquery")
+      });
+    })(jQuery);
     const dynamicScripts = [
       // './assets/js/jquery/jquery.min.js',
       // './assets/js/SmoothScroll.js',
@@ -396,7 +431,7 @@ console.log("jquery")
       // './assets/js/vertical-layout.min.js',
       // './assets/pages/dashboard/custom-dashboard.js',
 
-     './assets/js/script.js'
+   //  './assets/js/script.js'
 
 
 

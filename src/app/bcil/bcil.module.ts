@@ -39,6 +39,8 @@ import { NttsaDashboardComponent } from './nttsa-dashboard/nttsa-dashboard.compo
 import { NttsaMainComponent } from './nttsa-main/nttsa-main.component';
 import { TstlDashboardComponent } from './tstl-dashboard/tstl-dashboard.component';
 import { TstlMainComponent } from './tstl-main/tstl-main.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { TstlMainComponent } from './tstl-main/tstl-main.component';
     NttsaDashboardComponent,
     NttsaMainComponent,
     TstlDashboardComponent,
-    TstlMainComponent],
+    TstlMainComponent,
+    ForgetpasswordComponent,
+    ResetpasswordComponent],
 
   imports: [
     

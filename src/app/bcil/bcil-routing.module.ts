@@ -24,6 +24,8 @@ import { NttsaDashboardComponent } from './nttsa-dashboard/nttsa-dashboard.compo
 import { NttsaMainComponent } from './nttsa-main/nttsa-main.component';
 import { TstlDashboardComponent } from './tstl-dashboard/tstl-dashboard.component';
 import { TstlMainComponent } from './tstl-main/tstl-main.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
@@ -48,7 +50,7 @@ const routes: Routes = [
   { path: "tstl-dashboard", canActivate: [AuthGuard], component: TstlDashboardComponent },
   { path: "bcil-tstl-table", canActivate: [AuthGuard], component: TstlMainComponent },
 
- 
+  
 
 ];
 

@@ -3,6 +3,7 @@ import { mouModel } from 'src/app/model/mou.model';
 import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
 import { Permission } from 'src/app/model/permission.model';
+import { commondata } from 'src/app/model/common';
 
 @Component({
   selector: 'app-tta-dashboard',
@@ -20,15 +21,19 @@ export class TtaDashboardComponent implements OnInit {
   isBDM: boolean;
   isIPM: boolean;
   UserId: string;
-
+  UserName: string;
+  commondata=new commondata();
   tlpstatus = ['S130', 'S132', 'S133', 'S134', 'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145'];
   nttsastatus = ['S146', 'S147', 'S148', 'S149', 'S150', 'S151', 'S152', 'S153'];
   tstlstatus = ['S154', 'S155', 'S156', 'S157', 'S158', 'S159', 'S160', 'S161', 'S162', 'S163', 'S164'];
+  cardname(data){
+    return this.commondata.ttaarray().find(x=>x.value==data)?.tabelname;
+      }
   constructor(private Bdoservice: Bdoservice, private accountService: AccountService,) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
     this.UserId = this.accountService.currentUser.id;
-
+this.UserName=this.accountService.currentUser.userName;
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');
@@ -128,7 +133,7 @@ export class TtaDashboardComponent implements OnInit {
   clientMouListFilter(data) {
 
     if (this.isNodal == true) {
-      return this.mouModel?.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == data).length;
+      return this.mouModel?.filter(x => x.nodal_Name == this.UserName && x.app_Status == data).length;
     }
     else if (this.isAdmin) {
 

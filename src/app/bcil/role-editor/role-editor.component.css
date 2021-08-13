@@ -20,4 +20,7 @@
     background-color: #dc3545;
     border-color: #dc3545;
 }
+.editmode{
+    display: none;
+}
 
