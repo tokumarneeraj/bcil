@@ -93,4 +93,29 @@ export class NttsaDashboardComponent implements OnInit {
   clientListFilter() {
     return this.mouModel?.filter(x => x.app_Status == 'S144' || x.app_Status == 'S145' || x.app_Status == 'S136').length;
   }
+
+  get canview_TS_entered_by_luf_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_entered_by_luf_permission);
+  }
+  get canview_TS_change_request_by_admin_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_change_request_by_admin_permission);
+  }
+  get canview_TS_approved_by_admin_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_approved_by_admin_permission);
+  }
+  get canview_TS_change_request_by_client_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_change_request_by_client_permission);
+  }
+  get canview_TS_approved_by_client_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_approved_by_client_permission);
+  }
+  get canview_TS_shared_by_company_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_shared_by_company_permission);
+  }
+  get canview_TS_change_requesy_by_company_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_change_requesy_by_company_permission);
+  }
+  get canview_TS_approved_by_company_permission() {
+    return this.accountService.userHasPermission(Permission.view_TS_approved_by_company_permission);
+  }
 }
