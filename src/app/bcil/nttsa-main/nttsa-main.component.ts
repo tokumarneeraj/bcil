@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { mouModel } from '../../model/mou.model';
+import { activeusermou, mouModel } from '../../model/mou.model';
 import { Role } from 'src/app/model/role.model';
 import { UserEdit } from 'src/app/model/user-edit.model';
 import { User } from 'src/app/model/user.model';
@@ -65,6 +65,8 @@ export class NttsaMainComponent implements OnInit {
   moucreatedby_role: string;
   forword = false;
   isScientist: boolean;
+  isSuperAdmin:boolean;
+  activeusermou:activeusermou[];
   isLUF: boolean;
   isCompany: boolean;
 
@@ -108,7 +110,7 @@ export class NttsaMainComponent implements OnInit {
     this.isLUF = this.userRoles.includes('LUF');
     this.isScientist = this.userRoles.includes('Scientist');
     this.isCompany = this.userRoles.includes('Company');
-
+    this.isSuperAdmin = this.userRoles.includes('Super Admin');
     this.route.queryParams.subscribe((params) => {
 
       this.createdBy = this.UserId;
@@ -121,44 +123,52 @@ export class NttsaMainComponent implements OnInit {
 
 
     })
+    this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
+      this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       debugger
-
-      this.showpage = true;
-      if (this.isAdmin == true) {
-
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
-
+      if(this.isSuperAdmin){
+        this.mouModel = data.filter(x=>x.app_Status==this.type);
       }
-
-      else if (this.isBdm == true) {
-
-
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
-
+      
+      else{
+        this.mouModel = data.filter(x=>x.app_Status==this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
       }
-      else if (this.isLUF == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoluf == this.UserId);
-      }
-      else if (this.isCompany == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntocompany == this.UserId);
-      }
+      // this.showpage = true;
+      // if (this.isAdmin == true) {
 
-      else if (this.isScientist == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoscientist == this.UserId);
-      }
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
 
-      else {
+      // }
+
+      // else if (this.isBdm == true) {
 
 
-        this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == this.type);
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
+
+      // }
+      // else if (this.isLUF == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoluf == this.UserId);
+      // }
+      // else if (this.isCompany == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntocompany == this.UserId);
+      // }
+
+      // else if (this.isScientist == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoscientist == this.UserId);
+      // }
+
+      // else {
 
 
-      }
+      //   this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == this.type);
 
 
+      // }
 
+
+    });
 
     })
 

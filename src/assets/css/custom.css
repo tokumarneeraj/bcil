@@ -85,7 +85,13 @@
 .headerMain,
 .loginSection{
     background: #fff;
+
     
+}
+.loginSection{
+    background: -moz-linear-gradient(top, #ffffff 20%, #3bb54a 100%);
+    background: -webkit-linear-gradient(top,#ffffff 20%, #3bb54a 100%);
+    background: linear-gradient(to bottom, #ffffff 20%, #3bb54a 100%);
 }
 .headerContent {
     display: flex;
@@ -228,7 +234,7 @@
     margin: 0;
     padding: 0 8px 4px;
     position: relative;
-    border-bottom: 2px solid #455a64;
+    /* border-bottom: 2px solid #455a64; */
     display: inline-block;
 }
 .ttoLogoContent h4:before {
@@ -236,7 +242,7 @@
     position: absolute;
     left: 0;
     top: 25px;
-    background: #455a64;
+    /* background: #455a64; */
     width: 2px;
     height: 20px;
 }
@@ -245,7 +251,7 @@
     position: absolute;
     right: 0;
     top: 25px;
-    background: #455a64;
+    /* background: #455a64; */
     width: 2px;
     height: 20px;
 }
@@ -257,7 +263,7 @@
     width: 440px;
 }
 .ttoLogoImg img {
-    border: 2px solid #455a64;
+    /* border: 2px solid #455a64; */
     padding: 4px 6px;
 }
 .ttoFooter {
@@ -301,7 +307,8 @@
 
 /*-- Footer design start --*/
 .footerElement {
-    background-color: #202426;
+    /* background-color: #202426; */
+    background-color:#36743e;
     padding: 40px 0 0;
 }
 .footerContent {
@@ -309,7 +316,8 @@
     padding: 0 0 40px;
 }
 .footerContent h3 {
-    color: #ddd;
+    /* color: #ddd; */
+    color:#fff;
     font-size: 22px;
     font-weight: bold;
     line-height: 1.2;
@@ -335,12 +343,14 @@
     margin-bottom: 16px;
     display: block;
     font-family: "Roboto", sans-serif;
-    color: #bababa !important;
+    /* color: #bababa !important; */
+    color:#fff;
     font-size: 1em;
 }
 .bottomFooter {
-    background-color: #202426;
-    border-top: 1px solid #333 !important;
+    /* background-color: #202426;
+    border-top: 1px solid #333 !important; */
+    background-color:#36743e;
     padding: 10px 0;
 }
 .bottomFooter h6,
@@ -462,11 +472,13 @@ footer.footerElement.dashFooter {
 .dashFooter p {
     margin: 0;
     line-height: 22px;
-    color: #bababa;
+    /* color: #bababa; */
+    color:#fff;
     font-size: 14px;
 }
 .contactInfo h4 {
-    color: #bababa;
+    color:#fff;
+    /* color: #bababa; */
     font-size: 22px;
     font-family: "Roboto", sans-serif;
     margin-bottom: .5rem;

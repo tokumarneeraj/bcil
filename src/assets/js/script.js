@@ -55,9 +55,9 @@ $(document).ready(function() {
     $(".card-header-right .icofont-spinner-alt-5").on('mouseenter mouseleave', function() {
         $(this).toggleClass("rotate-refresh").fadeIn('slow');
     });
-    $("#more-details").on('click', function() {
-        $(".more-details").slideToggle(500);
-    });
+    // $("#more-details").on('click', function() {
+    //     $(".more-details").slideToggle(500);
+    // });
     $(".mobile-options").on('click', function() {
         $(".navbar-container .nav-right").slideToggle('slow');
     });
@@ -81,20 +81,20 @@ $(document).ready(function() {
     //
     // });
 
-  $(document).ready(function () {
-    debugger;
-        $(".header-notification").click(function(){
-            $(this).find(".show-notification").slideToggle(500);
-            $(this).toggleClass('active');
-        });
-    });
-    $(document).on("click", function(event){
-        var $trigger = $(".header-notification");
-        if($trigger !== event.target && !$trigger.has(event.target).length){
-            $(".show-notification").slideUp(300);
-            $(".header-notification").removeClass('active');
-        }
-    });
+//   $(document).ready(function () {
+//     debugger;
+//         $(".header-notification").click(function(){
+//             $(this).find(".show-notification").slideToggle(500);
+//             $(this).toggleClass('active');
+//         });
+//     });
+//     $(document).on("click", function(event){
+//         var $trigger = $(".header-notification");
+//         if($trigger !== event.target && !$trigger.has(event.target).length){
+//             $(".show-notification").slideUp(300);
+//             $(".header-notification").removeClass('active');
+//         }
+//     });
 
     // card js end
     $.mCustomScrollbar.defaults.axis = "yx";

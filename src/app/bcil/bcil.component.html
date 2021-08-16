@@ -272,6 +272,13 @@
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
+                  <li class=" " *ngIf="canviewTta_no_interest_receivedPermission">
+                    <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_no_interest_received'}">
+                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">No Interest Received</span>
+                      <span class="pcoded-mcaret"></span>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <li class="" *ngIf="canViewRoles">

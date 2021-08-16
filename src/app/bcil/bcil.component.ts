@@ -369,6 +369,9 @@ get canviewstartegy_implementedPermission() {
 get canviewTta_interest_receivedPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_interest_receivedPermission);
   }
+  get canviewTta_no_interest_receivedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_no_interest_receivedPermission);
+  }
   toggle(){
     this.showdiv=!this.showdiv;
 

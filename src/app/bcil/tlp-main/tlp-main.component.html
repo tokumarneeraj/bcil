@@ -140,7 +140,8 @@
             <div class="col-sm-12">
               <label class="col-form-label">Subject</label>
               <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
-
+              <p *ngIf="submitted && f.subject.errors" class="invalid-feedback">Subject is required</p>
+                  
 
             </div>
           </div>

@@ -44,6 +44,19 @@ export class StatusMaster {
   public id:string;
 
 }
+export class activeusermou{
+  public userid:string;
+  public mouref:string;
+  public userrole:string;
+  public active:boolean;
+}
+
+export class addusertomou{
+  public mouref:string;
+  public userid:string;
+  public userrole:string;
+  
+}
 export class Reminder{
 
   public stage:string;

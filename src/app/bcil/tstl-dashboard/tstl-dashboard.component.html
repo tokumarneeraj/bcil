@@ -40,8 +40,8 @@
 
 
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_TS_executed_permission">
+                 
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -67,11 +67,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                  
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="can_view_LA_entered_by_luf_permission">
+                
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -97,11 +97,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                 
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="can_view_LA_change_request_by_admin_permission">
+                 
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -127,11 +127,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                 
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_LA_approved_by_admin_permission">
+               
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -157,11 +157,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_LA_change_request_by_client_permission">
+                
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -187,11 +187,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_LA_approved_by_client_permission">
+                 
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -217,11 +217,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_LA_shared_by_company_permission">
+                 
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -247,11 +247,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                 
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_LA_approved_by_company_permission">
+                 
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -277,12 +277,12 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                
                 </div>
 
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_LA_uploaded_permission">
+                
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -308,11 +308,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                  
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_TT_docket_by_client_permission">
+               
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -338,11 +338,11 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                  <a href="#">
+                <div class="col-xl-3 col-md-6" *ngIf="canview_TT_docket_shared_by_client_permission">
+                 
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -368,7 +368,7 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                  
                 </div>
 
 

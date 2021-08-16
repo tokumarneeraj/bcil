@@ -322,7 +322,8 @@
                   <div class="col-sm-12">
                     <label class="col-form-label">Subject</label>
                     <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
-
+                    <p *ngIf="submitted && f.subject.errors" class="invalid-feedback">Subject is required</p>
+                           
 
                   </div>
                 </div>
@@ -378,11 +379,14 @@
 
                 <div class="form-group row">
                   <div class="col-sm-6">
-                    <button type="submit"
+                    <!-- <button type="submit"
                             class="btn btn-success"
                             (click)="uploadFile()">
                       Upload File
-                    </button>
+                    </button> -->
+                    <button type="submit" class="btn btn-success"  (click)="uploadFile()" [disabled]="loading">
+                        <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Uploading...' : ' Upload File'}}
+                      </button>
                   </div>
                   
 

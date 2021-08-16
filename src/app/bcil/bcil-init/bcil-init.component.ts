@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { mouModel } from '../../model/mou.model';
+import { activeusermou, mouModel } from '../../model/mou.model';
 import { Role } from 'src/app/model/role.model';
 import { UserEdit } from 'src/app/model/user-edit.model';
 import { User } from 'src/app/model/user.model';
@@ -32,7 +32,7 @@ export class BcilInitComponent implements OnInit {
   submitted = false;
   createdBy = "";
   UploadFileViewModel = new UploadFileViewModel();
-  
+  activeusermou:activeusermou[];
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
   usertype: string;
@@ -69,7 +69,7 @@ forword=false;
 nodalofficer:string;
 customrem:boolean;
 commondata=new commondata();
-
+loading=false;
 
  // array:any[];
   activearray = this.commondata.moustatus()[0];
@@ -98,7 +98,7 @@ else if(data=="custom"){
 }
   }
  
-
+  
 
   ngOnInit(): void {
     this.isLM = this.userRoles.includes('LM');
@@ -119,24 +119,31 @@ else if(data=="custom"){
       
 
     })
+    this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
+      this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       debugger
       if(this.isSuperAdmin){
         this.mouModel = data.filter(x => x.app_Status == this.type);
       }
-     else if(this.isBdm ||this.isIPM){
-        this.mouModel = data.filter(x => x.app_Status == this.type &&  x.createdBy==this.UserId);
-      }
+    //  else if(this.isBdm ||this.isIPM){
+    //     this.mouModel = data.filter(x => x.app_Status == this.type &&  x.createdBy==this.UserId);
+    //   }
 
-      else{
-      this.mouModel = data.filter(x => x.app_Status == this.type &&  (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
-        x.assignto==this.UserId || x.app_Status=='S101'));
-      }
+    //   else{
+    //   this.mouModel = data.filter(x => x.app_Status == this.type &&  (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
+    //     x.assignto==this.UserId || x.app_Status=='S101'));
+    //   }
 
-      
+    else if(this.isAdmin){
+       this.mouModel= data.filter(x=>x.app_Status== this.type &&(x.app_Status=='S101'|| this.activeusermou?.find(t=>t.mouref==x.refid)));
+       }
+       else{
+          this.mouModel=data.filter(x=>x.app_Status== this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
+       }
         this.showpage = true;
-     
+    });
 
     })
 
@@ -146,7 +153,7 @@ else if(data=="custom"){
 
       subject: ['', Validators.required],
       remarks: [''],
-      remindertype:['default',Validators.required],
+      remindertype:['default'],
       type: [''],
       assignto:[''],
     });
@@ -175,7 +182,9 @@ else if(data=="custom"){
   uploadFile() {
 
     this.submitted = true;
-
+    if (this.ForwardForm.invalid) {
+      return;
+    }
     
     if(this.type=="S107"||this.type=="S109"){
       //create nodal
@@ -194,8 +203,9 @@ else if(data=="custom"){
     this.UploadFileViewModel.createdBy = this.UserId;
 
     console.log(this.UploadFileViewModel);
+    this.loading=true;
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
+this.loading=false;
       alert("Application Forward Successfully")
       this.editorModal1.hide();
       this.ngOnInit();

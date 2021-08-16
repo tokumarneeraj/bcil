@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { mouModel } from 'src/app/model/mou.model';
+import { activeusermou, mouModel } from 'src/app/model/mou.model';
 import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
 import { Permission } from 'src/app/model/permission.model';
@@ -20,15 +20,14 @@ export class TtaDashboardComponent implements OnInit {
   isAdmin: boolean;
   isBDM: boolean;
   isIPM: boolean;
+  isSuperAdmin:boolean;
   UserId: string;
   UserName: string;
   commondata=new commondata();
   tlpstatus = ['S130', 'S132', 'S133', 'S134', 'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145'];
   nttsastatus = ['S146', 'S147', 'S148', 'S149', 'S150', 'S151', 'S152', 'S153'];
   tstlstatus = ['S154', 'S155', 'S156', 'S157', 'S158', 'S159', 'S160', 'S161', 'S162', 'S163', 'S164'];
-  cardname(data){
-    return this.commondata.ttaarray().find(x=>x.value==data)?.tabelname;
-      }
+  activeusermou:activeusermou[];
   constructor(private Bdoservice: Bdoservice, private accountService: AccountService,) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
@@ -38,8 +37,16 @@ this.UserName=this.accountService.currentUser.userName;
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
+    this.isSuperAdmin = this.userRoles.includes('Super Admin');
+    
   }
-
+  cardname(data){
+    return this.commondata.ttaarray().find(x=>x.value==data)?.tablename;
+      }
+      
+      get canviewTta_upload_assign_tech_disclosure_formPermission() {
+        return this.accountService.userHasPermission(Permission.viewTta_upload_assign_tech_disclosure_formPermission);
+      }
   get canviewTta_initPermission() {
     return this.accountService.userHasPermission(Permission.viewTta_initPermission);
   }
@@ -96,34 +103,41 @@ this.UserName=this.accountService.currentUser.userName;
   get canviewTta_interest_receivedPermission() {
     return this.accountService.userHasPermission(Permission.viewTta_interest_receivedPermission);
   }
+  get canviewTta_no_interest_receivedPermission() {
+    return this.accountService.userHasPermission(Permission.viewTta_no_interest_receivedPermission);
+  }
+  
   
   get canViewTlp() {
     return this.accountService.userHasPermission(Permission.viewTechnologyLeadPermission);
   }
+  
 
   tlplist() {
     console.log(this.mouModel?.filter(x => !this.tlpstatus.includes(x.app_Status)).length)
-    return this.mouModel?.filter(x => this.tlpstatus.includes(x.app_Status)).length;
+    return this.mouModel?.filter(x => this.tlpstatus.includes(x.app_Status) &&  this.activeusermou?.find(t=>t.mouref==x.refid)).length;
   }
 
   nttsalist() {
     console.log(this.mouModel?.filter(x => !this.nttsastatus.includes(x.app_Status)).length)
-    return this.mouModel?.filter(x => this.nttsastatus.includes(x.app_Status)).length;
+    return this.mouModel?.filter(x => this.nttsastatus.includes(x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
   }
   tstllist() {
-    return this.mouModel?.filter(x => this.tstlstatus.includes(x.app_Status)).length;
+    return this.mouModel?.filter(x => this.tstlstatus.includes(x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
 
   }
   
   ngOnInit(): void {
 
     this.isNodal=this.userRoles.includes('Nodal');
-
+    this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
+      this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       this.mouModel = data;
       this.showpage = true;
     })
+  });
   }
 
 
@@ -131,24 +145,30 @@ this.UserName=this.accountService.currentUser.userName;
 
   
   clientMouListFilter(data) {
-
-    if (this.isNodal == true) {
-      return this.mouModel?.filter(x => x.nodal_Name == this.UserName && x.app_Status == data).length;
+    if(this.isSuperAdmin){
+      return this.mouModel?.filter(x=>x.app_Status==data).length;
     }
-    else if (this.isAdmin) {
-
-
-      return this.mouModel?.filter(x => x.app_Status == data && x.assigntoadmin == this.UserId).length;
-
-
+    
+    else{
+      return this.mouModel?.filter(x=>x.app_Status==data && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
     }
-     else if(this.isBDM ||this.isIPM){
-       return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;
+    // if (this.isNodal == true) {
+    //   return this.mouModel?.filter(x => x.nodal_Name == this.UserName && x.app_Status == data).length;
+    // }
+    // else if (this.isAdmin) {
 
-     }
-    else {
-      return this.mouModel?.filter(x => x.app_Status == data).length;
-    }
+
+    //   return this.mouModel?.filter(x => x.app_Status == data && x.assigntoadmin == this.UserId).length;
+
+
+    // }
+    //  else if(this.isBDM ||this.isIPM){
+    //    return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;
+
+    //  }
+    // else {
+    //   return this.mouModel?.filter(x => x.app_Status == data).length;
+    // }
   }
  
   

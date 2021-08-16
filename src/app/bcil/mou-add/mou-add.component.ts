@@ -92,7 +92,7 @@ export class MouAddComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-this.loading=true;
+
 
     this.AddMouForm.controls.nodal_Name.enable();
     this.AddMouForm.controls.nodal_Phone_No.enable();
@@ -104,14 +104,14 @@ this.loading=true;
     if (this.AddMouForm.invalid) {
       return;
     }
-
+    this.loading=true;
     this.Bdoservice.AddMou(this.AddMouForm.value).subscribe(data => {
      // var b = JSON.parse(JSON.stringify(data));
      this.loading=false;
       if(data.message=="already_exist"){
         this.alertService.showStickyMessage("MOU ADD","Nodal Already exists,Please Change the name of Nodal",MessageSeverity.warn);
       }
-      else
+      else if(data.message=="newuser")
       {
         this.alertService.showStickyMessage('MOU ADD',"data save Successfully",MessageSeverity.success);
       //alert("");

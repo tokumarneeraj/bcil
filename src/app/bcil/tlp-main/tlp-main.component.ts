@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { mouModel } from '../../model/mou.model';
+import { activeusermou, mouModel } from '../../model/mou.model';
 import { Role } from 'src/app/model/role.model';
 import { UserEdit } from 'src/app/model/user-edit.model';
 import { User } from 'src/app/model/user.model';
@@ -49,6 +49,7 @@ export class TlpMainComponent implements OnInit {
   isBdm: boolean;
   isLM: boolean;
   isIPM: boolean;
+  loading=false;
   users: User[] = [];
   rows: User[] = [];
   rowsCache: User[] = [];
@@ -67,7 +68,8 @@ export class TlpMainComponent implements OnInit {
   isScientist: boolean;
   isLUF: boolean;
   isCompany: boolean;
-
+  isSuperAdmin:boolean;
+  activeusermou:activeusermou[];
   array=this.commondata.ttaarray().filter(x=>x.stage=="tlp");
   
 
@@ -97,7 +99,7 @@ export class TlpMainComponent implements OnInit {
     this.isLUF = this.userRoles.includes('LUF');
     this.isScientist = this.userRoles.includes('Scientist');
     this.isCompany = this.userRoles.includes('Company');
-
+this.isSuperAdmin=this.userRoles.includes('Super Admin')
 
     this.route.queryParams.subscribe((params) => {
 
@@ -111,39 +113,47 @@ export class TlpMainComponent implements OnInit {
 
 
     })
+    this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
+      this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
       debugger
 
       //this.mouModel = data.filter(x => x.app_Status == this.type);
       this.showpage = true;
+      if(this.isSuperAdmin){
+        this.mouModel = data.filter(x=>x.app_Status==this.type);
+      }
+      
+      else{
+        this.mouModel = data.filter(x=>x.app_Status==this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
+      }
+      // if (this.isAdmin == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
+      // }
 
-      if (this.isAdmin == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
-      }
+      // else if (this.isBdm == true) {
 
-      else if (this.isBdm == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
+      // }
+      // else if (this.isLUF == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoluf == this.UserId);
+      // }
+      // else if (this.isCompany == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntocompany == this.UserId);
+      // }
 
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
-      }
-      else if (this.isLUF == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoluf == this.UserId);
-      }
-      else if (this.isCompany == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntocompany == this.UserId);
-      }
+      // else if (this.isScientist == true) {
+      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoscientist == this.UserId);
+      // }
 
-      else if (this.isScientist == true) {
-        this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoscientist == this.UserId);
-      }
-
-      else {
-        this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == this.type);
-      }
+      // else {
+      //   this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == this.type);
+      // }
 
 
     })
-
+  });
 
 
     this.ForwardForm = this.formbuilder.group({
@@ -180,16 +190,19 @@ export class TlpMainComponent implements OnInit {
   uploadFile() {
 
     this.submitted = true;
-
+    if (this.ForwardForm.invalid) {
+      return;
+    }
+this.loading=true;
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
-    this.UploadFileViewModel.assigntoluf = this.ForwardForm.get('assigntoluf').value;
+    this.UploadFileViewModel.assignto = this.ForwardForm.get('assigntoluf').value;
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
+this.loading=false;
       alert("Application Forward Successfully")
       this.editorModal1.hide();
       this.router.navigateByUrl('bcil/tlp-dashboard')

@@ -37,3 +37,12 @@ export interface AccessToken {
     scope: string | string[];
     amr: string[];
 }
+
+
+export class result
+{
+    status:string;
+    message:string;
+    reason:string;
+    data:any;
+}

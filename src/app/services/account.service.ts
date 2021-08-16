@@ -4,6 +4,7 @@ import { mergeMap, tap } from 'rxjs/operators';
 import { Permission, PermissionValues } from '../model/permission.model';
 import { Role } from '../model/role.model';
 import { UserEdit } from '../model/user-edit.model';
+import { ForgetPassword, ResetPassword } from '../model/user-login.model';
 import { User } from '../model/user.model';
 import { ViewuserpermissiontoaddUser } from '../model/userpermissiontoaddUser';
 import { AccountEndpoint } from './account-endpoint.service';
@@ -129,6 +130,12 @@ static instance:AccountService;
   getRoles(page?: number, pageSize?: number) {
 
     return this.accountEndpoint.getRolesEndpoint<Role[]>(page, pageSize);
+  }
+  forgetPassword(forgetPassword: ForgetPassword) {
+    return this.accountEndpoint.forgetPassword(forgetPassword);
+  }
+  resetPassword(resetPassword: ResetPassword) {
+    return this.accountEndpoint.resetPassword(resetPassword);
   }
 
   getRolesAndPermissions(page?: number, pageSize?: number) {

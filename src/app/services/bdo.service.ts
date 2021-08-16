@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {mouModel, Reminder, StatusMaster} from '../model/mou.model';
+import {activeusermou, addusertomou, mouModel, Reminder, StatusMaster} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
 import { AccountService } from './account.service';
 import { notificationmodel } from '../model/notification.model';
+import { EndpointBase } from './endpoint-base.service';
+import { AuthService } from './auth.service';
+import { result } from '../model/login-response.model';
 @Injectable()
-export class Bdoservice
+export class Bdoservice  extends EndpointBase
 {
     get addmouurl() { return  environment.baseUrl+'/api/bdo/addmou'; }
 
@@ -18,6 +21,11 @@ export class Bdoservice
     get addreminderurl() { return  environment.baseUrl+'/api/bdo/addreminder'; }
     get editreminderurl() { return  environment.baseUrl+'/api/bdo/editreminder'; }
     get getallnotificationurl() { return  environment.baseUrl+'/api/bdo/getallnotification'; }
+    get assignscientisturl(){return environment.baseUrl+'/api/bdo/assignscientist'}
+get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
+    get getactiveusermouuseridurl() { return  environment.baseUrl+'/api/bdo/getactivebyuserid'; }
+    get getactiveusermourefidurl() { return  environment.baseUrl+'/api/bdo/getactiveusermoubyref'; }
+    get getactiveusermouurl() { return  environment.baseUrl+'/api/bdo/getallactiveusermou'; }
     get getreminderurl() { return  environment.baseUrl+'/api/bdo/getallreminder'; }
 
     get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
@@ -27,34 +35,91 @@ export class Bdoservice
     get fileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddFile'; }
     get filehistory() { return environment.baseUrl + '/api/bdo/getfile'; }
     UserId:string;
-    constructor(private http: HttpClient ,private accountService: AccountService,){
+    constructor(http: HttpClient ,private accountService: AccountService, authService: AuthService){
+     super(http, authService);
+    
       this.UserId = this.accountService.currentUser.id;
     }
-   public uploadfile<T>(upload:UploadFileViewModel):Observable<UploadFileViewModel>{
-    const headers = new HttpHeaders({
+   public uploadfile<T>(upload:UploadFileViewModel):Observable<result>{
+    // const headers = new HttpHeaders({
             
-      'Content-Type': 'application/json',
-      Accept: 'application/json, text/plain, */*'
-    });
+    //   'Content-Type': 'application/json',
+    //   Accept: 'application/json, text/plain, */*'
+    // });
 
-    return this.http.post<UploadFileViewModel>(this.fileuploadurl, JSON.stringify(upload),{headers:headers});
+   // return this.http.post<UploadFileViewModel>(this.fileuploadurl, JSON.stringify(upload),{headers:headers});
+    return this.http.post(this.fileuploadurl, JSON.stringify(upload), this.requestHeaders).pipe<result>(
+      catchError(error => {
+        return this.handleError(error, () => this.uploadfile(upload));
+      }));
   //   .pipe<mouModel>(
    }
 
-    public  AddMou<T>(mou:mouModel): Observable<mouModel> {
+
+    public  AddMou<T>(mou:mouModel): Observable<result> {
       mou.createdBy=this.UserId;
-        const headers = new HttpHeaders({
+        
+          return this.http.post(this.addmouurl, JSON.stringify(mou), this.requestHeaders).pipe<result>(
+            catchError(error => {
+              return this.handleError(error, () => this.AddMou(mou));
+            }));
+
+
+        }
+
+        public  AddScientist<T>(mou:addusertomou): Observable<result> {
+         
             
-            'Content-Type': 'application/json',
-            Accept: 'application/json, text/plain, */*'
-          });
-      
-          return this.http.post<mouModel>(this.addmouurl, JSON.stringify(mou),{headers:headers});
+              return this.http.post(this.assignscientisturl, JSON.stringify(mou), this.requestHeaders).pipe<result>(
+                catchError(error => {
+                  return this.handleError(error, () => this.AddScientist(mou));
+                }));
+    
+    
+            }
+        public  GetScientistbynodal<T>(): Observable<activeusermou[]> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         return this.http.get<T>(this.getscientistbynodalurl, this.requestHeaders).pipe<activeusermou[]>(
+           catchError(error => {
+             return this.handleError(error, () => this.GetScientistbynodal());
+           }));
+         }
+        
+          
+        public  GetActiveUserMoubyuserid<T>(): Observable<activeusermou[]> {
+        
+         // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        return this.http.get<T>(this.getactiveusermouuseridurl, this.requestHeaders).pipe<activeusermou[]>(
+          catchError(error => {
+            return this.handleError(error, () => this.GetActiveUserMoubyuserid());
+          }));
+        }
+        public  GetActiveUserMoubyrefid<T>(): Observable<activeusermou[]> {
+        
+          return this.http.get<activeusermou[]>(this.getactiveusermourefidurl);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});
         //     }));
         }
+        public  GetActiveUserMou<T>(): Observable<activeusermou[]> {
+        
+          return this.http.get<activeusermou[]>(this.getactiveusermouurl);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+
 
          public  GetMou<T>(): Observable<mouModel[]> {
         
