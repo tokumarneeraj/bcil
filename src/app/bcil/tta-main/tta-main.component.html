@@ -112,6 +112,8 @@
 
                         <button value="assign" *ngIf='isBdm && item.app_Status==="S129"' class="btn btn-success" (click)="onClientClick(item,'S130')">Submit</button>
 
+                        <button value="assign" title="Forward To Admin" *ngIf='isAdmin && item.app_Status==="S131"' class="btn btn-success" (click)="onClientClick(item,'S125')">Forward</button>
+
                       </td>
 
                       <td *ngIf='isAdmin && item.app_Status==="S115"'><button value="assign" *ngIf='isAdmin && item.app_Status==="S115"' class="btn btn-success" (click)="onClientClick(item,'S117')">Forward</button></td>

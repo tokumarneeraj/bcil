@@ -4,6 +4,8 @@ import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
 import { Permission } from 'src/app/model/permission.model';
 import { commondata } from 'src/app/model/common';
+import { Role } from 'src/app/model/role.model';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tta-dashboard',
@@ -22,13 +24,28 @@ export class TtaDashboardComponent implements OnInit {
   isIPM: boolean;
   isSuperAdmin:boolean;
   UserId: string;
+  icon:any[];
   UserName: string;
+  permission:string[];
+  userperttaall:any[];
+  userpertlpall:any[];
+  userpernttsall:any[];
+  userpertstlall:any[];
+  userpertta:any[];
+  userpertlp:any[];
+  userperntts:any[];
+  userpertstl:any[];
+  open: boolean = true;
+   disabled: boolean = true;
+
   commondata=new commondata();
+  ttaper:any[];
   tlpstatus = ['S130', 'S132', 'S133', 'S134', 'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145'];
   nttsastatus = ['S146', 'S147', 'S148', 'S149', 'S150', 'S151', 'S152', 'S153'];
   tstlstatus = ['S154', 'S155', 'S156', 'S157', 'S158', 'S159', 'S160', 'S161', 'S162', 'S163', 'S164'];
   activeusermou:activeusermou[];
-  constructor(private Bdoservice: Bdoservice, private accountService: AccountService,) {
+  roles:Role[];
+  constructor(private Bdoservice: Bdoservice, private accountService: AccountService,private router:Router) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
     this.UserId = this.accountService.currentUser.id;
@@ -38,7 +55,19 @@ this.UserName=this.accountService.currentUser.userName;
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
-    
+    this.permission=JSON.parse(localStorage.getItem('user_permissions'));
+    debugger;
+    this.userperttaall=this.commondata.ttaarray()?.filter(x=>x.stage=="tta");
+    this.userpertlpall=this.commondata.ttaarray()?.filter(x=>x.stage=="tlp");
+    this.userpernttsall=this.commondata.ttaarray()?.filter(x=>x.stage=="ntts");
+    this.userpertstlall=this.commondata.ttaarray()?.filter(x=>x.stage=="tstl");
+    this.userpertlp=this.commondata.ttaarray()?.filter(x=>x.stage=="tlp").filter(r=>this.permission?.includes(r.permission));
+    this.userperntts=this.commondata.ttaarray()?.filter(x=>x.stage=="ntts").filter(r=>this.permission?.includes(r.permission));
+    this.userpertstl=this.commondata.ttaarray()?.filter(x=>x.stage=="tstl").filter(r=>this.permission?.includes(r.permission));
+  }
+  checkdiv(i,data){
+    debugger;
+return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
   }
   cardname(data){
     return this.commondata.ttaarray().find(x=>x.value==data)?.tablename;
@@ -114,20 +143,56 @@ this.UserName=this.accountService.currentUser.userName;
   
 
   tlplist() {
-    console.log(this.mouModel?.filter(x => !this.tlpstatus.includes(x.app_Status)).length)
-    return this.mouModel?.filter(x => this.tlpstatus.includes(x.app_Status) &&  this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    console.log(this.userpertlp);
+    return this.mouModel?.filter(x =>this.userpertlp?.find(r=>r.value==x.app_Status) &&  this.activeusermou?.find(t=>t.mouref==x.refid) ).length;
   }
 
   nttsalist() {
     console.log(this.mouModel?.filter(x => !this.nttsastatus.includes(x.app_Status)).length)
-    return this.mouModel?.filter(x => this.nttsastatus.includes(x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x => this.userperntts?.find(r=>r.value==x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
   }
   tstllist() {
-    return this.mouModel?.filter(x => this.tstlstatus.includes(x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x => this.userpertstl?.find(r=>r.value==x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
 
   }
+  fitertta(data,row){
+    return data.filter(x=>this.roles.find(e=>e.id==row.id).permissions.find(t=>t.value==x.permission))
+  }
+  fitertlp(data,row){
+    return data.filter(x=>this.roles.find(e=>e.id==row.id).permissions.find(t=>t.value==x.permission)).length;
+  }
+
+  fiterntts(data,row){
+    return data.filter(x=>this.roles.find(e=>e.id==row.id).permissions.find(t=>t.value==x.permission)).length;
+  }
+  fitertstl(data,row){
+    return data.filter(x=>this.roles.find(e=>e.id==row.id).permissions.find(t=>t.value==x.permission)).length;
+  }
+  querypara(data){
+    // let navigationExtras:NavigationExtras={
+    //   queryParams: {'type':data}
+    // }
+    this.router.navigate(['/bcil/bcil-tta-table'],  { queryParams: { type: data}});
+   // this.router.navigate(['/bcil/bcil-tta-table'],navigationExtras)
+   // return data;
+  }
+  log(row:Role){
+    
   
+   // return this.userperttaall.filter(x=>this.roles.find(e=>e.id==row.id).permissions.includes(x.permission));
+ }
   ngOnInit(): void {
+    this.accountService.getRolesAndPermissions()
+    .subscribe(results => {
+
+      console.log(results)
+    
+      this.roles= results[0];
+   
+//this.roles[0].permissions=results[1];
+      
+      const permissions = results[1];
+    });
 
     this.isNodal=this.userRoles.includes('Nodal');
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{

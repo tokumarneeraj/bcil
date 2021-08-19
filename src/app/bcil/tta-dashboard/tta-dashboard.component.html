@@ -33,8 +33,134 @@
 
           <div class="row categoryList mouList">
             <div class="col-sm-12">
+              <div *ngIf="isSuperAdmin">
+              <accordion *ngFor="let row of roles;let i=index;">
+               
+                <accordion-group heading="{{row.name}}" (isOpenChange)="log(row)">
+                  <div class="row" >
+                    <ng-container  *ngFor="let tta of fitertta(userperttaall,row)">
+                  <div class="col-xl-3 col-md-6" >
+                    
+                      <div class="card">
+                        <div class="card-block">
+                          <div class="row align-items-top">
+                            <div class="col-12">
+                              <h4 class="text-c-blue">{{tta.tablename}}</h4>
+                              <h6 class="text-muted m-b-0">{{clientMouListFilter(tta.value)}}</h6>
+                            </div>
+                            <!-- <div class="col-4 text-right">
+                  <i class="fa fa-bar-chart f-28"></i>
+              </div> -->
+                          </div>
+                        </div>
+                        <a (click)="querypara(tta.name)">
+                          <div class="card-footer bg-c-blue">
+                            <div class="row align-items-center">
+                              <div class="col-9">
+                                <p class="text-white m-b-0">View</p>
+                              </div>
+                              <div class="col-3 text-right">
+                                <i class="fa fa-arrow-right text-white f-16"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                  
+                  </div>
+                </ng-container>
+
+                <div class="col-xl-3 col-md-6" *ngIf="fitertta(userpertlpall,row)==0?false:true">
+                  <a routerLink="../tlp-dashboard">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-8">
+                            <h4 class="text-c-yellow">Technology Leads To Package Shared</h4>
+                            <h6 class="text-muted m-b-0">{{tlplist()}}</h6>
+                          </div>
+                          <div class="col-4 text-right">
+                            <i class="fa fa-file-text-o f-28"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer bg-c-yellow">
+                        <div class="row align-items-center">
+                          <div class="col-9">
+                            <p class="text-white m-b-0">View</p>
+                          </div>
+                          <div class="col-3 text-right">
+                            <i class="fa fa-arrow-right text-white f-16"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="fitertta(userpernttsall,row)==0?false:true">
+                  <a routerLink="../nttsa-dashboard">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-8">
+                            <h4 class="text-c-dark-blue">NDA to term sheet approval</h4>
+                            <h6 class="text-muted m-b-0">{{nttsalist()}}</h6>
+                          </div>
+                          <div class="col-4 text-right">
+                            <i class="fa fa-file-text-o f-28"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer bg-c-dark-blue">
+                        <div class="row align-items-center">
+                          <div class="col-9">
+                            <p class="text-white m-b-0">View</p>
+                          </div>
+                          <div class="col-3 text-right">
+                            <i class="fa fa-arrow-right text-white f-16"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="col-xl-3 col-md-6" *ngIf="fitertta(userpertstlall,row)==0?false:true">
+                  <a routerLink="../tstl-dashboard">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-8">
+                            <h4 class="text-c-dark-green">Term sheet to Licensing</h4>
+                            <h6 class="text-muted m-b-0">{{tstllist()}}</h6>
+                          </div>
+                          <div class="col-4 text-right">
+                            <i class="fa fa-file-text-o f-28"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer bg-c-dark-green">
+                        <div class="row align-items-center">
+                          <div class="col-9">
+                            <p class="text-white m-b-0">View</p>
+                          </div>
+                          <div class="col-3 text-right">
+                            <i class="fa fa-arrow-right text-white f-16"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+              
+                </accordion-group>
+             </accordion>
+            </div>
               <!-- Basic Form Inputs card start -->
-              <div class="row">
+              <div class="row" *ngIf="!isSuperAdmin">
                 <!-- task, page, download counter  start -->
                 <div class="col-xl-3 col-md-6" *ngIf="canviewTta_upload_assign_tech_disclosure_formPermission">
                   <a href="#">
@@ -597,7 +723,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6" *ngIf="canViewTlp">
+                <div class="col-xl-3 col-md-6" *ngIf="userpertlp.length==0?false:true">
                   <a routerLink="../tlp-dashboard">
                     <div class="card">
                       <div class="card-block">
@@ -625,7 +751,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="userperntts.length==0?false:true">
                   <a routerLink="../nttsa-dashboard">
                     <div class="card">
                       <div class="card-block">
@@ -653,7 +779,7 @@
                   </a>
                 </div>
 
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" *ngIf="userpertstl.length==0?false:true">
                   <a routerLink="../tstl-dashboard">
                     <div class="card">
                       <div class="card-block">

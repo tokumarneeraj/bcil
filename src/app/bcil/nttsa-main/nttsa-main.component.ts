@@ -65,6 +65,8 @@ export class NttsaMainComponent implements OnInit {
   moucreatedby_role: string;
   forword = false;
   isScientist: boolean;
+
+  isNodal: boolean;
   isSuperAdmin:boolean;
   activeusermou:activeusermou[];
   isLUF: boolean;
@@ -72,23 +74,11 @@ export class NttsaMainComponent implements OnInit {
 
   array = [
 
-    { tabelname: "TS Entered by LUF", name: 'ts_entered_by_luf', value: 'S146', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S147", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S148', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
-    { tabelname: "TS Change Request by Admin", name: 'ts_change_req_by_admin', value: 'S147', forwordtitle: "Update Termsheet ", forward: "S146", forwardCheck: true, type: false, forwardText: 'Update Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
-    
-    { tabelname: "TS Approved by Admin", name: 'ts_approved_by_admin', value: 'S148', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S149", approvetitle: "Forward to Admin", approvedvalue: 'S150', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
-    
-    { tabelname: "TS Change Request by Client", name: 'ts_change_req_by_client', value: 'S149', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
-    
-    { tabelname: "TS Approved by Client", name: 'ts_approved_by_client', value: 'S150', forwordtitle: "Forward to Company ", forward: "S151", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '', permissionforword: true },
-    
-    { tabelname: "TS Entered by LUF", name: 'ts_shared_with_company', value: 'S151', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S152", approvetitle: "Forward to Admin", approvedvalue: 'S153', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
-    { tabelname: "TS Change Request by Company", name: 'ts_change_req_by_company', value: 'S152', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
-    { tabelname: "TS Approved by Company", name: 'ts_approved_by_company', value: 'S153', forwardCheck: true, type: false, forwardText: 'Upload Signed Termsheet ', forwordtitle: 'Upload Termsheet ', permissionforword: true, forward:'S154'},
-  ]
+    ]
 
 
 
-  activearray = this.array[0];
+ activearray = this.array[0];
 
 
 
@@ -101,6 +91,31 @@ export class NttsaMainComponent implements OnInit {
     this.userRoles = this.accountService.currentUser.roles;
   }
 
+  permissiongiven(data:string):boolean{
+   
+    if(data=="S148")
+  {
+  
+return this.isScientist==true|| this.isNodal==true ?true:false;
+  }
+  if(data=="S149"){ 
+  return this.isAdmin==true?true:false;
+  }
+  if(data=="S150"){ 
+    return this.isAdmin==true?true:false;
+    }
+    if(data=="S151"){ 
+      return this.isBdm==true?true:false;
+      }
+      if(data=="S153"){ 
+        return   this.isLUF==true?true:false;
+        }
+
+    
+  return false;
+  }
+
+
   ngOnInit(): void {
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
@@ -108,9 +123,23 @@ export class NttsaMainComponent implements OnInit {
 
     this.isIPM = this.userRoles.includes('IPM');
     this.isLUF = this.userRoles.includes('LUF');
+    this.isNodal = this.userRoles.includes('Nodal');
     this.isScientist = this.userRoles.includes('Scientist');
     this.isCompany = this.userRoles.includes('Company');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
+    this.array=[ { tabelname: "TS Entered by LUF", name: 'ts_entered_by_luf', value: 'S146', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S147", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S148', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
+    { tabelname: "TS Change Request by Admin", name: 'ts_change_req_by_admin', value: 'S147', forwordtitle: "Update Termsheet ", forward: "S146", forwardCheck: true, type: false, forwardText: 'Update Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
+    
+    { tabelname: "TS Approved by Admin", name: 'ts_approved_by_admin', value: 'S148', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S149", approvetitle: "Forward to Admin", approvedvalue: 'S150', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S148"), permissionapprove: this.permissiongiven("S148") },
+    
+    { tabelname: "TS Change Request by Client", name: 'ts_change_req_by_client', value: 'S149', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S149")},
+    
+    { tabelname: "TS Approved by Client", name: 'ts_approved_by_client', value: 'S150', forwordtitle: "Forward to Company ", forward: "S151", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '',  permissionforword: this.permissiongiven("S150") },
+    
+    { tabelname: "TS SHARED BY COMPANY", name: 'ts_shared_with_company', value: 'S151', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S152", approvetitle: "Forward to Admin", approvedvalue: 'S153', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S151") , permissionapprove: this.permissiongiven("S151") },
+    { tabelname: "TS Change Request by Company", name: 'ts_change_req_by_company', value: 'S152', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "TS Approved by Company", name: 'ts_approved_by_company', value: 'S153', forwardCheck: true, type: false, forwardText: 'Upload Signed Termsheet ', forwordtitle: 'Upload Termsheet ', permissionforword:  this.permissiongiven("S153"), forward:'S154'},
+   ]
     this.route.queryParams.subscribe((params) => {
 
       this.createdBy = this.UserId;
@@ -123,10 +152,11 @@ export class NttsaMainComponent implements OnInit {
 
 
     })
+  
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
-      console.log(data)
+      
       debugger
       if(this.isSuperAdmin){
         this.mouModel = data.filter(x=>x.app_Status==this.type);
@@ -135,7 +165,8 @@ export class NttsaMainComponent implements OnInit {
       else{
         this.mouModel = data.filter(x=>x.app_Status==this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
       }
-      // this.showpage = true;
+      console.log(data)
+       this.showpage = true;
       // if (this.isAdmin == true) {
 
       //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);

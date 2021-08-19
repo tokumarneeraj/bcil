@@ -78,7 +78,7 @@
 
             </li>
             <li class="user-profile header-notification" (click)="toggle()">
-              <a href="javascript:{}" class="waves-effect waves-light userName">
+              <a href="javascript:{}" class="userName">
                 <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                 <span>{{usertype}}</span>
                 <i class="ti-angle-down"></i>
@@ -247,14 +247,14 @@
                   <li class=" " *ngIf="canviewTta_techb_and_flier_approved_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_techb_and_flier_approved_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Techb And Flier Approved by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Tech Brief And Flyer Approved by Admin</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_techb_and_flier_approved_by_scientistPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_change_req_by_scientist'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Techb And Flier Approved by Scientist</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Tech Brief And Flyer Approved by Scientist</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>

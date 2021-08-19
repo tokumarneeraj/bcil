@@ -14,6 +14,7 @@ import { BcilInitComponent } from './bcil-init/bcil-init.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AccordionModule } from 'ngx-bootstrap/accordion'
 import { ViewfileComponent } from './viewfile/viewfile.component';
 import { RolemanagementComponent } from './rolemanagement/rolemanagement.component';
 import { UsermanagementComponent } from './usermanagement/usermanagement.component';
@@ -63,7 +64,8 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     TstlDashboardComponent,
     TstlMainComponent,
     ForgetpasswordComponent,
-    ResetpasswordComponent],
+    ResetpasswordComponent,
+     ],
 
   imports: [
     
@@ -77,6 +79,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     HttpClientModule,
     ModalModule,
     BcilRoutingModule,
+    AccordionModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
