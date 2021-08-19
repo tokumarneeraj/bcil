@@ -139,7 +139,7 @@
     text-align: center;
     font-size: 18px;
     padding: 15px 0;
-    background: #3bb54a;
+    background: #025d10;
     border-radius: 6px 6px 0 0;
     color: #fff;
     text-transform: uppercase;
@@ -494,3 +494,28 @@ footer.footerElement.dashFooter {
 }
 /*-- Footer design 03 Aug 2021 End --*/
 /*-- Inner Header design end --*/
+.loginSection {    
+    background: url("../images/bg-texture2.png") no-repeat;
+    background-size: cover;
+    background-position: center center ;
+}
+.loginSection .container{
+    max-width: 80%;
+}
+.loginSection .headerMain {
+    margin: 0 0 20px;
+    background: #ffffff7a;
+}
+.loginSection .headerContent {   
+    padding: 15px 15px 20px;
+}
+.loginCard.ttoCard {   
+    background: #ffffffc9;
+}
+.loginCard{
+    background: #ffffffa1;
+}
+
+.loginCard .btn{
+    background: #025d10;
+}
