@@ -27,6 +27,7 @@ import { ToastaModule } from 'ngx-toasta';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppErrorHandler } from './app-error.handler';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 
 // import { HeaderComponent } from './header/header.component';
@@ -46,6 +47,7 @@ import { AppErrorHandler } from './app-error.handler';
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+   
     ToastaModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),

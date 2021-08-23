@@ -24,7 +24,7 @@ export class TtaDashboardComponent implements OnInit {
   isIPM: boolean;
   isSuperAdmin:boolean;
   UserId: string;
-  icon:any[];
+  icon:any[]=[];
   UserName: string;
   permission:string[];
   userperttaall:any[];
@@ -37,7 +37,7 @@ export class TtaDashboardComponent implements OnInit {
   userpertstl:any[];
   open: boolean = true;
    disabled: boolean = true;
-
+   showaccordion:boolean=false;
   commondata=new commondata();
   ttaper:any[];
   tlpstatus = ['S130', 'S132', 'S133', 'S134', 'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145'];
@@ -177,18 +177,31 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
    // return data;
   }
   log(row:Role){
-    
-  
+    debugger;
+    for(let t=0;t<this.icon.length;t++){
+  this.icon[t].value=false;
+  }   
    // return this.userperttaall.filter(x=>this.roles.find(e=>e.id==row.id).permissions.includes(x.permission));
+ }
+ stringhref(data){
+   return  '#'+data;
  }
   ngOnInit(): void {
     this.accountService.getRolesAndPermissions()
     .subscribe(results => {
 
-      console.log(results)
+   
     
       this.roles= results[0];
-   
+      if(this.roles.length>0){
+      for(let r=0;r<=this.roles.length-1;r++){
+
+      
+   this.icon.push({name:this.roles[r]?.name,value:false})
+      }
+    }
+      console.log(this.icon,'icon')
+      this.showaccordion=true;
 //this.roles[0].permissions=results[1];
       
       const permissions = results[1];

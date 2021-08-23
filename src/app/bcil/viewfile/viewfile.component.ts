@@ -24,9 +24,13 @@ export class ViewfileComponent implements OnInit {
     'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145',
     'S146', 'S147', 'S148', 'S149', 'S150', 'S151', 'S152', 'S153', 'S154', 'S155', 'S156',
     'S157', 'S158', 'S159', 'S160', 'S161', 'S162', 'S163', 'S164'];
-
+    userRoles: string[];
+    isBDM: boolean;
   getbaseurl=environment.baseUrl;
-  constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice, private accountService: AccountService) { }
+  constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice, private accountService: AccountService) { 
+    this.userRoles = this.accountService.currentUser.roles;
+    this.isBDM = this.userRoles.includes('BDM');
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params)=>{

@@ -31,9 +31,9 @@
         <!-- Page body start -->
         <div class="page-body">
 
-          <div class="row categoryList mouList">
+          <div class="row categoryList mouList ">
             <div class="col-sm-12">
-              <div *ngIf="isSuperAdmin">
+              <div *ngIf="isSuperAdmin" class="ttDashAccod">
               <accordion *ngFor="let row of roles;let i=index;">
                
                 <accordion-group heading="{{row.name}}" (isOpenChange)="log(row)">

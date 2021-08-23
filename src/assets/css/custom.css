@@ -460,7 +460,10 @@ textarea{
 
 /*-- Footer design 03 Aug 2021 Start --*/
 footer.footerElement.dashFooter {
-    padding: 20px 0 0;
+    padding-top: 20px;
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    padding-bottom: 4px;
 }
 .dashFooter .footerContent {
     padding: 0 0 12px;
@@ -518,4 +521,27 @@ footer.footerElement.dashFooter {
 
 .loginCard .btn{
     background: #025d10;
+}
+.ttDashAccod .accordion-toggle .btn {
+    font-size: 16px;
+    font-weight: 600;
+}
+.ttDashAccod .panel-body .row {
+    padding: 20px 0;
+    background: #d0ffd6;
+}
+.ttDashAccod .panel-body .row .card {
+    box-shadow: none;
+}
+.ttDashAccod .panel-body .row .row {
+    padding: 0;
+    background: inherit;
+}
+.ttDashAccod {
+    background: #3bb54a;
+    padding: 20px 0;
+}
+.ttDashAccod .panel{
+    border: none;
+    box-shadow: none;
 }
