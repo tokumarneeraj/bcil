@@ -13,6 +13,7 @@ export class MouAddComponent implements OnInit {
   submitted = false;
   loading = false;
   dir_des_Value = '';
+  int_Uni_Value='';
   nodal_des_Value = '';
   mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
 
@@ -23,6 +24,7 @@ export class MouAddComponent implements OnInit {
     this.AddMouForm = this.formbuilder.group({
 
       int_Uni_Name: ['', Validators.required],
+      int_Uni_Others:['',Validators.required],
       dept_Name: ['', Validators.required],
       address: ['', Validators.required],
       phoneNo: ['', Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")],

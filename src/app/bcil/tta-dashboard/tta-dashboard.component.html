@@ -32,11 +32,13 @@
         <div class="page-body">
 
           <div class="row categoryList mouList ">
+            
             <div class="col-sm-12">
+              
               <div *ngIf="isSuperAdmin" class="ttDashAccod">
-              <accordion *ngFor="let row of roles;let i=index;">
+              <accordion  [closeOthers]="oneAtATime" [isAnimated]="true">
                
-                <accordion-group heading="{{row.name}}" (isOpenChange)="log(row)">
+                <accordion-group *ngFor="let row of roles;let i=index;" heading="{{row.name}}" >
                   <div class="row" >
                     <ng-container  *ngFor="let tta of fitertta(userperttaall,row)">
                   <div class="col-xl-3 col-md-6" >

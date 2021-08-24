@@ -335,6 +335,7 @@
                       <option value="MOU">MOU</option>
                       <option value="NDA">NDA</option>
                       <option value="Work Order">Work Order</option>
+                      <option value="Others">Others</option>
                     </select>
 
 
@@ -385,7 +386,7 @@
                       Upload File
                     </button> -->
                     <button type="submit" class="btn btn-success"  (click)="uploadFile()" [disabled]="loading">
-                        <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Uploading...' : ' Upload File'}}
+                        <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
                       </button>
                   </div>
                   

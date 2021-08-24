@@ -112,7 +112,7 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
         }
 
     
-  return false;
+  return true;
   }
 
 
@@ -137,7 +137,7 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
     { tabelname: "TS Approved by Client", name: 'ts_approved_by_client', value: 'S150', forwordtitle: "Forward to Company ", forward: "S151", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '',  permissionforword: this.permissiongiven("S150") },
     
     { tabelname: "TS SHARED BY COMPANY", name: 'ts_shared_with_company', value: 'S151', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S152", approvetitle: "Forward to Admin", approvedvalue: 'S153', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S151") , permissionapprove: this.permissiongiven("S151") },
-    { tabelname: "TS Change Request by Company", name: 'ts_change_req_by_company', value: 'S152', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "TS Change Request by Company", name: 'ts_change_req_by_company', value: 'S152', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S152") },
     { tabelname: "TS Approved by Company", name: 'ts_approved_by_company', value: 'S153', forwardCheck: true, type: false, forwardText: 'Upload Signed Termsheet ', forwordtitle: 'Upload Termsheet ', permissionforword:  this.permissiongiven("S153"), forward:'S154'},
    ]
     this.route.queryParams.subscribe((params) => {

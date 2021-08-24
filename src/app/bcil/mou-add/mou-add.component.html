@@ -42,29 +42,37 @@
                           <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
-                          <h4 class="sub-title">Institute/University Details</h4>
+                          <h2 class="sub-title" style="font-size:16px;">Institute/University Details</h2>
                           <form [formGroup]="AddMouForm">
                             <div class="form-group row">
                               <div class="col-sm-6">
                                 <label class="col-form-label">Institute / University </label>
-                                <select class="form-control" formControlName="int_Uni_Drop" [ngClass]="{ 'is-invalid': submitted && f.int_Uni_Drop.errors }">
+                                <select class="form-control" formControlName="int_Uni_Drop" [ngClass]="{ 'is-invalid': submitted && f.int_Uni_Drop.errors }" [(ngModel)]="int_Uni_Value">
                                   <option value="">--Select--</option>
                                   <option value="1">Institute</option>
                                   <option value="2">University</option>
+                                  <option value="3">Others</option>
                                 </select>
 
                                 <p *ngIf="submitted && f.int_Uni_Drop.errors" class="invalid-feedback">Please select Institute / University </p>
                               </div>
                               <div class="col-sm-6">
-                                <label class="col-form-label">Institute / University Name</label>
-                                <input type="text" class="form-control" formControlName="int_Uni_Name" [ngClass]="{ 'is-invalid': submitted && f.int_Uni_Name.errors }">
-                                <p *ngIf="submitted && f.int_Uni_Name.errors" class="invalid-feedback">Institute / University is required</p>
+                                <ng-container *ngIf="int_Uni_Value == '3'">
+                                  <label class="col-form-label">Others</label>
+                                  <input type="text" class="form-control" formControlName="int_Uni_Others" [ngClass]="{ 'is-invalid': submitted && f.int_Uni_Others.errors }">
+                                  <p *ngIf="submitted && f.int_Uni_Others.errors" class="invalid-feedback">Others is required</p>
+                                </ng-container>
                               </div>
+                             
                             </div>
 
                             <div class="form-group row">
 
-
+                              <div class="col-sm-6">
+                                <label class="col-form-label">Institute / University Name</label>
+                                <input type="text" class="form-control" formControlName="int_Uni_Name" [ngClass]="{ 'is-invalid': submitted && f.int_Uni_Name.errors }"  >
+                                <p *ngIf="submitted && f.int_Uni_Name.errors" class="invalid-feedback">Institute / University is required</p>
+                              </div>
                               <div class="col-sm-6">
                                 <label class="col-form-label">Dept. Name</label>
                                 <input type="text" class="form-control" formControlName="dept_Name" [ngClass]="{ 'is-invalid': submitted && f.dept_Name.errors }"
@@ -72,14 +80,14 @@
                                 <p *ngIf="submitted && f.dept_Name.errors" class="invalid-feedback">Dept. Name is required</p>
                               </div>
 
+                            
+                            </div>
+                            <div class="form-group row">
                               <div class="col-sm-6">
                                 <label class="col-form-label">Address</label>
                                 <textarea rows="2" cols="2" class="form-control" placeholder="" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
                                 <p *ngIf="submitted && f.address.errors" class="invalid-feedback">Address is required</p>
                               </div>
-
-                            </div>
-                            <div class="form-group row">
 
                               <div class="col-sm-6">
                                 <label class="col-form-label">Phone No.</label>
@@ -89,16 +97,16 @@
                                 <!--<p *ngIf="f.phoneNo.errors.pattern" class="invalid-feedback">Please, Enter 10 digit Mobile Number.</p>-->
                               </div>
 
+                             
+                            </div>
+                            <div class="form-group row">
+
                               <div class="col-sm-6">
                                 <label class="col-form-label">Email Id</label>
                                 <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                                
                                 <p *ngIf="submitted && f.email.errors" class="invalid-feedback">Valid Email is required</p>
                               </div>
-                            </div>
-                            <div class="form-group row">
-
-
                               <div class="col-sm-6">
                                 <label class="col-form-label">GST No.</label>
                                 <input type="text" class="form-control" formControlName="gstNo" [ngClass]="{ 'is-invalid': submitted && f.gstNo.errors }"
@@ -106,7 +114,32 @@
                                 <p *ngIf="submitted && f.gstNo.errors" class="invalid-feedback">Gst No. is required</p>
                               </div>
                             </div>
-                            <h4 class="sub-title">Director / Head Details</h4>
+                            <h2 class="sub-title" style="font-size:16px;">Director / Head Details</h2>
+                            <div class="form-group row">
+
+                              <div class="col-sm-6">
+                                <label class="col-form-label">Designation </label>
+                                <select class="form-control" formControlName="dir_Designation_Drop" [ngClass]="{ 'is-invalid': submitted && f.dir_Designation_Drop.errors }" [(ngModel)]="dir_des_Value">
+                                  <option value="">--Select--</option>
+                                  <option value="1">Director</option>
+                                  <option value="2">HoD</option>
+                                  <option value="3">Dean</option>
+                                  <option value="4">Other</option>
+
+                                </select>
+
+                                <p *ngIf="submitted && f.dir_Designation_Drop.errors" class="invalid-feedback">Please select Designation </p>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <ng-container *ngIf="dir_des_Value == '4'">
+                                  <label class="col-form-label">Designation (Other)</label>
+                                  <input type="text" class="form-control" formControlName="dir_Designation" [ngClass]="{ 'is-invalid': submitted && f.dir_Designation.errors }">
+                                  <p *ngIf="submitted && f.dir_Designation.errors" class="invalid-feedback">Designation is required</p>
+                                </ng-container>
+                              </div>
+
+                            </div>
                             <div class="form-group row">
 
 
@@ -140,31 +173,7 @@
                               </div>
 
                             </div>
-                            <div class="form-group row">
-
-                              <div class="col-sm-6">
-                                <label class="col-form-label">Designation </label>
-                                <select class="form-control" formControlName="dir_Designation_Drop" [ngClass]="{ 'is-invalid': submitted && f.dir_Designation_Drop.errors }" [(ngModel)]="dir_des_Value">
-                                  <option value="">--Select--</option>
-                                  <option value="1">Director</option>
-                                  <option value="2">HoD</option>
-                                  <option value="3">Dean</option>
-                                  <option value="4">Other</option>
-
-                                </select>
-
-                                <p *ngIf="submitted && f.dir_Designation_Drop.errors" class="invalid-feedback">Please select Designation </p>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <ng-container *ngIf="dir_des_Value == '4'">
-                                  <label class="col-form-label">Designation (Other)</label>
-                                  <input type="text" class="form-control" formControlName="dir_Designation" [ngClass]="{ 'is-invalid': submitted && f.dir_Designation.errors }">
-                                  <p *ngIf="submitted && f.dir_Designation.errors" class="invalid-feedback">Designation is required</p>
-                                </ng-container>
-                              </div>
-
-                            </div>
+                           
                             <hr />
                             <div class="form-group row">
                               <div class="col-sm-12" style="background-color:blue">
@@ -179,35 +188,7 @@
                             </div>
                             <hr />
 
-                            <h4 class="sub-title">Nodal Officer Details</h4>
-                            <div class="form-group row">
-                              <div class="col-sm-6">
-                                <label class="col-form-label">Nodal Officer Name</label>
-                                <input type="text" class="form-control" formControlName="nodal_Name" [ngClass]="{ 'is-invalid': submitted && f.nodal_Name.errors }">
-                                <p *ngIf="submitted && f.nodal_Name.errors" class="invalid-feedback">Nodal Officer Name is required</p>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <label class="col-form-label">Phone No.</label>
-                                <input type="text" class="form-control" [pattern]="mobNumberPattern" formControlName="nodal_Phone_No" [ngClass]="{ 'is-invalid': submitted && f.nodal_Phone_No.errors }"
-                                       placeholder="">
-                                <p *ngIf="submitted && f.nodal_Phone_No.errors" class="invalid-feedback">Enter valid Phone No</p>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <div class="col-sm-6">
-                                <label class="col-form-label">Mobile No.</label>
-                                <input type="text" class="form-control" formControlName="nodal_Mobile_No" [pattern]="mobNumberPattern" [ngClass]="{ 'is-invalid': submitted && f.nodal_Mobile_No.errors }">
-                                <p *ngIf="submitted && f.nodal_Mobile_No.errors" class="invalid-feedback">Nodal Officer Mobile No is required</p>
-                              </div>
-
-                              <div class="col-sm-6">
-                                <label class="col-form-label">Email Id</label>
-                                <input type="text" class="form-control" formControlName="nodal_Email" [ngClass]="{ 'is-invalid': submitted && f.nodal_Email.errors }"
-                                       placeholder="">
-                                <p *ngIf="submitted && f.nodal_Email.errors" class="invalid-feedback">Nodal Officer Email Id is required</p>
-                              </div>
-                            </div>
+                            <h2 class="sub-title" style="font-size:16px;">Nodal Officer Details</h2>
                             <div class="form-group row">
                               <div class="col-sm-6">
                                 <label class="col-form-label">Designation </label>
@@ -237,6 +218,35 @@
                               <!-- placeholder=""> -->
                               <!-- </div> -->
                             </div>
+                            <div class="form-group row">
+                              <div class="col-sm-6">
+                                <label class="col-form-label">Nodal Officer Name</label>
+                                <input type="text" class="form-control" formControlName="nodal_Name" [ngClass]="{ 'is-invalid': submitted && f.nodal_Name.errors }">
+                                <p *ngIf="submitted && f.nodal_Name.errors" class="invalid-feedback">Nodal Officer Name is required</p>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="col-form-label">Phone No.</label>
+                                <input type="text" class="form-control" [pattern]="mobNumberPattern" formControlName="nodal_Phone_No" [ngClass]="{ 'is-invalid': submitted && f.nodal_Phone_No.errors }"
+                                       placeholder="">
+                                <p *ngIf="submitted && f.nodal_Phone_No.errors" class="invalid-feedback">Enter valid Phone No</p>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-sm-6">
+                                <label class="col-form-label">Mobile No.</label>
+                                <input type="text" class="form-control" formControlName="nodal_Mobile_No" [pattern]="mobNumberPattern" [ngClass]="{ 'is-invalid': submitted && f.nodal_Mobile_No.errors }">
+                                <p *ngIf="submitted && f.nodal_Mobile_No.errors" class="invalid-feedback">Nodal Officer Mobile No is required</p>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="col-form-label">Email Id</label>
+                                <input type="text" class="form-control" formControlName="nodal_Email" [ngClass]="{ 'is-invalid': submitted && f.nodal_Email.errors }"
+                                       placeholder="">
+                                <p *ngIf="submitted && f.nodal_Email.errors" class="invalid-feedback">Nodal Officer Email Id is required</p>
+                              </div>
+                            </div>
+                           
                             <!-- <div class="form-group row"> -->
                             <!-- <div class="col-sm-6"> -->
                             <!-- <label class="col-form-label">Email ID</label> -->

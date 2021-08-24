@@ -35,6 +35,7 @@ export class TtaDashboardComponent implements OnInit {
   userpertlp:any[];
   userperntts:any[];
   userpertstl:any[];
+  oneAtATime=true;
   open: boolean = true;
    disabled: boolean = true;
    showaccordion:boolean=false;

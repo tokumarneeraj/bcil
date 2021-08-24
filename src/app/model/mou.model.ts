@@ -1,6 +1,7 @@
 export class mouModel {
   public refid: string;
   public int_Uni_Name: string;
+  public int_Uni_Others:string;
   public dept_Name: string;
 
   public address: string;
