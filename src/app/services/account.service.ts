@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { Permission, PermissionValues } from '../model/permission.model';
-import { Role } from '../model/role.model';
+import { Role ,otherpermission} from '../model/role.model';
 import { UserEdit } from '../model/user-edit.model';
 import { ForgetPassword, ResetPassword } from '../model/user-login.model';
 import { User } from '../model/user.model';
@@ -46,6 +46,17 @@ static instance:AccountService;
 
   }
 
+  AddOtherpermission(otherpermission:otherpermission[]){
+    return this.accountEndpoint.AddOtherpermissionEndpoint<any>(otherpermission);
+  }
+  getOtherpermission(role?: string) {
+
+    return this.accountEndpoint.getOtherpermissionEndpoint<any>(role);
+  }
+  getOtherpermissionbyrolename(role?: string) {
+
+    return this.accountEndpoint.getOtherpermissionbyrolenameEndpoint<any>(role);
+  }
   GetUserpermissiontoAdduserbyrole(role: string) {
     return this.accountEndpoint.GetUserpermissiontoAdduserbyrole<any>(role);
   }

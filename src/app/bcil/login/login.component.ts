@@ -3,9 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserLogin } from 'src/app/model/user-login.model';
+import { AccountService } from 'src/app/services/account.service';
 import { AlertService, MessageSeverity } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConfigurationService } from 'src/app/services/configuration.service';
+import { DBkeys } from 'src/app/services/db-keys';
+import { LocalStoreManager } from 'src/app/services/local-store-manager.service';
 import { Utilities } from 'src/app/services/utilities';
 @Component({
   selector: 'app-login',
@@ -19,7 +22,7 @@ export class LoginComponent implements OnInit {
   isLoading = false;
   @Input()
   isModal = false;
-  constructor(private alertService: AlertService, private authService: AuthService, private configurations: ConfigurationService,private forms: FormBuilder,private _cookieService: CookieService, private router: Router) {
+  constructor(private accountService: AccountService, private localStorage: LocalStoreManager,private alertService: AlertService, private authService: AuthService, private configurations: ConfigurationService,private forms: FormBuilder,private _cookieService: CookieService, private router: Router) {
   this.LoginForm = this.forms.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
@@ -62,6 +65,18 @@ get f() {
               ////this.closeModal();
             }
           }, 500);
+          
+          this.accountService.getOtherpermissionbyrolename(user.roles[0]).subscribe(data=>{
+            var arrNames = [];
+//iterate through object keys
+data.forEach(function(item) {
+  //get the value of name
+  var val = item.permission
+  //push the name string in the array
+  arrNames.push(val);
+});
+            this.localStorage.savePermanentData(arrNames, DBkeys.USER_OTHERPERMISSIONS);
+          })
         },
         error => {
 

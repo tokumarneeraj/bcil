@@ -188,6 +188,7 @@ debugger;
     this.localStorage.deleteData(DBkeys.REFRESH_TOKEN);
     this.localStorage.deleteData(DBkeys.TOKEN_EXPIRES_IN);
     this.localStorage.deleteData(DBkeys.USER_PERMISSIONS);
+    this.localStorage.deleteData(DBkeys.USER_OTHERPERMISSIONS);
     this.localStorage.deleteData(DBkeys.CURRENT_USER);
 
     this.configurations.clearLocalChanges();

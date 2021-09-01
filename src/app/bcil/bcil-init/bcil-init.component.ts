@@ -70,6 +70,9 @@ nodalofficer:string;
 customrem:boolean;
 commondata=new commondata();
 loading=false;
+viewhistory:boolean;
+viewremark:boolean;
+viewadditionfile:boolean;
 
  // array:any[];
   activearray = this.commondata.moustatus()[0];
@@ -142,6 +145,10 @@ else if(data=="custom"){
        else{
           this.mouModel=data.filter(x=>x.app_Status== this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
        }
+       this.viewhistory= this.commondata.getotherpermissiondata('history').some(x=>x.permission?.split('-')[1]==this.type);
+       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x.permission?.split('-')[1]==this.type);
+      this.viewadditionfile= this.commondata.getotherpermissiondata('additionfile').some(x=>x.permission?.split('-')[1]==this.type);
+      
         this.showpage = true;
     });
 

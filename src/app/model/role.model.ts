@@ -16,3 +16,10 @@ export class Role {
     public usersCount: number;
     public permissions: Permission[];
 }
+
+
+export class otherpermission{
+    public roleid:string;
+    public permission:string;
+    public status:boolean;
+}

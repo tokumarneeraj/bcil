@@ -241,8 +241,9 @@
                                                   <th>Director Mobile</th>
 
                                                   <th>Action</th>
-                                                  <th>History</th>
-
+                                                  <th *ngIf="viewhistory">History</th>
+                                                   <th *ngIf="viewremark">Remarks</th>
+                                                  <th *ngIf="viewadditionfile">AdditionFile</th>
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -260,8 +261,9 @@
                                                     <button value="approve" *ngIf="activearray?.approved" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 
                                                   </td>
-                                                  <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mou',refid:item.refid}">View</a></td>
-
+                                                  <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mou',refid:item.refid}">View</a></td>
+<td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td>
+<td *ngIf="viewadditionfile"><button class="btn btn-info">Additionfile</button></td>
                                                 </tr>
                                               </tbody>
                                             </table>

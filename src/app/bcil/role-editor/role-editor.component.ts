@@ -7,10 +7,14 @@ import { Component, ViewChild } from '@angular/core';
 
 import { AlertService, MessageSeverity } from '../../services/alert.service';
 import { AccountService } from '../../services/account.service';
-import { Role } from '../../model/role.model';
+import { otherpermission, Role } from '../../model/role.model';
 import { Permission } from '../../model/permission.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ViewuserpermissiontoaddUser } from '../../model/userpermissiontoaddUser'
+import { Bdoservice } from 'src/app/services/bdo.service';
+import { StatusMaster } from 'src/app/model/mou.model';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-role-editor',
@@ -18,10 +22,14 @@ import { ViewuserpermissiontoaddUser } from '../../model/userpermissiontoaddUser
   styleUrls: ['./role-editor.component.scss']
 })
 export class RoleEditorComponent {
+  @ViewChild('editorModal3', { static: true })
+  editorModal3: ModalDirective;
+  StatusMaster:StatusMaster[];
   ViewuserpermissiontoaddUserList: ViewuserpermissiontoaddUser[] = [];
   ViewuserpermissiontoaddUser = new ViewuserpermissiontoaddUser();
   private isNewRole = false;
   public isSaving: boolean;
+  otherpermissions:otherpermission[]=[];
   public showValidationErrors = true;
   public roleEdit: Role = new Role();
   public allPermissions: Permission[] = [];
@@ -45,11 +53,36 @@ editmode=true;
   rows: Role[] = [];
   usertext = "";
   uservalue = "";
-  constructor(private alertService: AlertService, private accountService: AccountService) {
+  myForm: FormGroup;
+  constructor(private alertService: AlertService, private accountService: AccountService,private bdoService: Bdoservice,private fb: FormBuilder) {
     this.editmode=false;
   }
+  ngOnInit() {
+    this.myForm = this.fb.group({
+      permission: this.fb.array([])
+    });
+  }
+  otherpermission(){
+    this.bdoService.GetStatusMaster().subscribe(data=>{
 
+      this.StatusMaster=data;
+      this.StatusMaster.map((item)=>({...item,
+      check:false
 
+      }))
+      this.accountService.getOtherpermission(this.roleEdit.id).subscribe(data=>
+        {
+          console.log(data)
+          data.forEach(element => {
+            $("[name="+element.permission+"]").trigger('click');
+            //this.myForm.controls.permission.value
+          });
+
+          this.editorModal3.show();
+        })
+   
+    });
+  }
 
   showErrorAlert(caption: string, message: string) {
     this.alertService.showMessage(caption, message, MessageSeverity.error);
@@ -207,7 +240,35 @@ editmode=true;
       this.changesFailedCallback();
     }
   }
+  onChange(name:string,value:string, isChecked: boolean) {
+    let newvalue=name+'-'+value;
+    const emailFormArray = <FormArray>this.myForm.controls.permission;
+  
+    if(isChecked) {
+      emailFormArray.push(new FormControl(newvalue));
+    } else {
+      let index = emailFormArray.controls.findIndex(x => x.value == newvalue)
+      emailFormArray.removeAt(index);
+    }
+  }
+  permissionsubmit(){
+    this.isSaving=true;
+    let permission1= <FormArray>this.myForm.controls.permission;
+    for(let per of permission1.value){
+    this.otherpermissions.push({roleid:this.roleEdit.id,permission:per,status:true})
+    }
 
+    this.accountService.AddOtherpermission(this.otherpermissions).subscribe(data=>{
+      console.log(data)
+      this.otherpermissions=[];
+      this.isSaving=false;
+      this.editorModal3.hide();
+        this.alertService.showMessage('Success', 'Permission Change Successfully', MessageSeverity.success);
+    },error=>{
+      this.isSaving=false;
+      this.editorModal3.hide();
+    })
+  }
 
   cancel() {
     this.roleEdit = new Role();

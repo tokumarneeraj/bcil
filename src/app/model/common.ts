@@ -10,6 +10,7 @@ import { AuthService } from "../services/auth.service";
 import { DBkeys } from "../services/db-keys";
 import { LocalStoreManager } from "../services/local-store-manager.service";
 import { Permission, PermissionValues } from "./permission.model";
+import { otherpermission } from "./role.model";
 
 
   export class commondata{
@@ -28,6 +29,11 @@ import { Permission, PermissionValues } from "./permission.model";
     //   return new AccountEndpoint();
     // }
     //moubutton
+     getotherpermissiondata(data:any):otherpermission[]{
+     let permi= JSON.parse(localStorage.getItem('user_otherpermissions'));
+     return permi.filter(s => s.includes(data));
+    }
+    
     userHasPermission(permissionValue: PermissionValues): boolean {
       return this.permissions?.some(p => p === permissionValue);
     }
@@ -269,6 +275,13 @@ export const moustatus1=[{status:'S101',permission:'mou_init.view'}
 {status:'S106',permission:"mou_accepted_by_client.view"},{status:'S107',permission:"bdoassigned.view"},{status:'S108',permission:"tto_req_approved.view"},
 {status:'S019',permission:"ip_manager_assigned.view"},{status:'S110',permission:"mou_proposed_by_admin_client.view"},
 {status:'S111',permission:"mou_change_by_client.view"},{status:'S112',permission:""}];
+
+
+
+
+
+
+
 
  
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { commondata } from 'src/app/model/common';
 import { filehistoryModel } from 'src/app/model/filehistory';
 import { User } from 'src/app/model/user.model';
 import { AccountService } from 'src/app/services/account.service';
@@ -14,9 +15,11 @@ import { environment } from 'src/environments/environment.prod';
 export class ViewfileComponent implements OnInit {
   refid: string;
   stage:string;
+  perm:any[]=[];
   fileshistory:filehistoryModel[];
   showpage= false;
   rows: User[] = [];
+  commondata=new commondata();
   moustatus=['S101','S102','S103','S104','S105','S106','S107','S108','S109','S110','S111','S112'];
   ttostatus =
     ['S113', 'S114', 'S115', 'S116', 'S117', 'S118', 'S119', 'S120', 'S121', 'S122', 'S123',
@@ -50,8 +53,9 @@ x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=
        data= this.stage=="mou"?data.filter(x=>this.moustatus.includes(x.status)):
         data.filter(x=>this.ttostatus.includes(x.status));
         debugger
-        environment.baseUrl
-        this.fileshistory=data
+//      this.perm=;
+// this.perm=getotherpermissiondata;
+        this.fileshistory=data.filter(x=>this.commondata.getotherpermissiondata('history').find(y=>y?.permission.split('-')[1]==x.status))
         this.showpage=true;
         })
         console.log(data)

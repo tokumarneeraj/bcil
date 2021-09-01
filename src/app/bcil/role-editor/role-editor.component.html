@@ -70,13 +70,13 @@
 
 
         <div class="form-group row">
-            <div class="col-sm-5">
+            <div class="col-sm-7">
                 <div  class="float-left">
-                    <a (click)="selectAll()" href="javascript:;" class="p-3 btn-link">SelectAll</a>|<a (click)="selectNone()" href="javascript:;" class="p-3 btn-link">SelectNone</a>
+                    <a (click)="otherpermission()" href="javascript:;" class="p-3 btn-link">Other Permission</a>|  <a (click)="selectAll()" href="javascript:;" class="p-3 btn-link">SelectAll</a>|<a (click)="selectNone()" href="javascript:;" class="p-3 btn-link">SelectNone</a>
                 </div>
             </div>
 
-            <div class="col-sm-7">
+            <div class="col-sm-5">
                 <div ngPreserveWhitespaces class="float-right">
                     <button *ngIf="!canManageRoles" type="button" (click)="cancel()" class="btn btn-outline-secondary">Close</button>
                     <button *ngIf="canManageRoles" type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> Cancel</button>
@@ -107,4 +107,58 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<div>
+    <div class="modal fade" bsModal #editorModal3="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
+        <div class="modal-dialog modal-lg" style="bottom: 0px;
+        width: 100%;
+        position: absolute;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4> <i _ngcontent-vnn-c102="" class="fa fa-shield"></i>Permission</h4>
+              <button type="button" class="close float-right" title="Close" (click)="editorModal3.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- <div class="col-12" >
+                  <div class="col-2">{{sta.status_name}}</div>
+                  <div class="col-2"><input type="checkbox" /></div>
+              </div> -->
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                    <form [formGroup]="myForm">
+                    <table class="table table-hover">
+                  <thead>
+                      <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let sta of StatusMaster">
+                          <td>{{sta.status_name}}</td>
+                          <td>{{sta.stagetype}}</td>
+                          <td>
+                              History<input type="checkbox" (change)="onChange('history',sta.status_code, $event.target.checked)" name="history-{{sta.status_code}}" checked="{{sta.check}}"/>
+                              Remarks<input type="checkbox" (change)="onChange('remark',sta.status_code, $event.target.checked)" name="remark-{{sta.status_code}}" value="remark-{{sta.status_code}}" checked="{{sta.check}}"/>
+                              Additionfile<input type="checkbox" (change)="onChange('addfile',sta.status_code, $event.target.checked)" name="addfile-{{sta.status_code}}" value="addfile-{{sta.status_code}}" checked="{{sta.check}}"/>
+                            </td>
+                      </tr>
+                  </tbody>
+              </table>
+<div>{{myForm.value | json}}</div>
+              <button  type="submit" class="btn btn-primary" [disabled]="isSaving" (click)="permissionsubmit()">
+                <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('Saving' ) : ('Save' )}}
+              </button>
+            </form>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </div>

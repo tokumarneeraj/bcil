@@ -16,6 +16,9 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class AccountEndpoint extends EndpointBase {
+  get getotherpermissionbyrolenameUrl(){ return this.configurations.baseUrl + '/api/account/getotherperrole'; }
+  get getotherpermissionUrl() { return this.configurations.baseUrl + '/api/account/getotherperroleid'; }
+  get otherpermissionUrl() { return this.configurations.baseUrl + '/api/account/otherpermission'; }
   get departmentUrl() { return this.configurations.baseUrl + '/api/account/department'; }
   get currentDepartmentUrl() { return this.configurations.baseUrl + '/api/account/department/me'; }
   get usersUrl() { return this.configurations.baseUrl + '/api/account/users'; }
@@ -52,6 +55,8 @@ export class AccountEndpoint extends EndpointBase {
     //this.configurations.baseUrl ='http://43.224.139.121';
   }
   // donation verification
+
+  
   resetPassword<T>(resetPassword: ResetPassword): Observable<T> {
     return this.http.post(this.resetpassword, JSON.stringify(resetPassword), this.requestHeaders).pipe<T>(
       catchError(error => {
@@ -94,7 +99,33 @@ export class AccountEndpoint extends EndpointBase {
         return this.handleError(error, () => this.getUserByUserNameEndpoint(userName));
       }));
   }
+   // const endpointUrl = `${this.userByUserNameUrl}/${userName}`;
 
+   AddOtherpermissionEndpoint<T>(userObject: any): Observable<T> {
+
+    return this.http.post<T>(this.otherpermissionUrl, JSON.stringify(userObject), this.requestHeaders).pipe<T>(
+      catchError(error => {
+        return this.handleError(error, () => this.AddOtherpermissionEndpoint(userObject));
+      }));
+  }
+  getOtherpermissionEndpoint<T>(role:string): Observable<T> {
+    const endpointUrl = `${this.getotherpermissionUrl}/${role}`;
+
+    return this.http.get<T>(endpointUrl, this.requestHeaders).pipe<T>(
+      catchError(error => {
+        return this.handleError(error, () => this.getOtherpermissionEndpoint(role));
+      }));
+    }
+    getOtherpermissionbyrolenameEndpoint<T>(role:string): Observable<T> {
+      const endpointUrl = `${this.getotherpermissionbyrolenameUrl}/${role}`;
+  
+      return this.http.get<T>(endpointUrl, this.requestHeaders).pipe<T>(
+        catchError(error => {
+          return this.handleError(error, () => this.getOtherpermissionbyrolenameEndpoint(role));
+        }));
+      }
+    
+  
   getDepartmentsEndpoint<T>(page?: number, pageSize?: number): Observable<T> {
     const endpointUrl = page && pageSize ? `${this.departmentUrl}/${page}/${pageSize}` : this.departmentUrl;
 

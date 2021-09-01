@@ -24,7 +24,7 @@ export class MouAddComponent implements OnInit {
     this.AddMouForm = this.formbuilder.group({
 
       int_Uni_Name: ['', Validators.required],
-      int_Uni_Others:['',Validators.required],
+      int_Uni_Others:[''],
       dept_Name: ['', Validators.required],
       address: ['', Validators.required],
       phoneNo: ['', Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")],
