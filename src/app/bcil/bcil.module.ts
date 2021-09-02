@@ -42,6 +42,8 @@ import { TstlDashboardComponent } from './tstl-dashboard/tstl-dashboard.componen
 import { TstlMainComponent } from './tstl-main/tstl-main.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { AdditionFileComponent } from './addition-file/addition-file.component';
+import { RemarksComponent } from './remarks/remarks.component';
 
 
 @NgModule({
@@ -65,6 +67,8 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     TstlMainComponent,
     ForgetpasswordComponent,
     ResetpasswordComponent,
+    AdditionFileComponent,
+    RemarksComponent,
      ],
 
   imports: [

@@ -29,7 +29,7 @@ import { otherpermission } from "./role.model";
     //   return new AccountEndpoint();
     // }
     //moubutton
-     getotherpermissiondata(data:any):otherpermission[]{
+     getotherpermissiondata(data:any){
      let permi= JSON.parse(localStorage.getItem('user_otherpermissions'));
      return permi.filter(s => s.includes(data));
     }

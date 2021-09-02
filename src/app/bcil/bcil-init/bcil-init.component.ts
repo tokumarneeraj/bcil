@@ -145,9 +145,11 @@ else if(data=="custom"){
        else{
           this.mouModel=data.filter(x=>x.app_Status== this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
        }
-       this.viewhistory= this.commondata.getotherpermissiondata('history').some(x=>x.permission?.split('-')[1]==this.type);
-       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x.permission?.split('-')[1]==this.type);
-      this.viewadditionfile= this.commondata.getotherpermissiondata('additionfile').some(x=>x.permission?.split('-')[1]==this.type);
+       debugger;
+       console.log( this.commondata.getotherpermissiondata('history'),'his')
+    this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
+       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
+      this.viewadditionfile= this.commondata.getotherpermissiondata('addfile').some(x=>x?.split('-')[1]==this.type);
       
         this.showpage = true;
     });
