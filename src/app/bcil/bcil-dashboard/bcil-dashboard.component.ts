@@ -6,6 +6,7 @@ import {commondata} from '../../model/common'
 
 import { AccountService } from 'src/app/services/account.service';
 import { Permission, PermissionValues } from 'src/app/model/permission.model';
+import { ComponentFactoryResolver } from '@angular/core';
 //import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-bcil-dashboard',
@@ -83,6 +84,7 @@ export class BcilDashboardComponent implements OnInit {
   userRoles: string[];
   commondata=new commondata();
   activeusermou:activeusermou[];
+  viewadditionalfile:boolean=false;
   //permission:PermissionValues[];
   constructor(private Bdoservice:Bdoservice, private accountService: AccountService) {
     // this.usertype=this._cookieService.get("UserType");
@@ -110,19 +112,21 @@ this.activeusermou=data1;
     this.showpage=true;
    this.userper=this.commondata.moustatus().filter(r=>this.permission.includes(r.permission));
    this.userpertta=this.commondata.ttaarray().filter(r=>this.permission.includes(r.permission));
+ 
+  
     })
   });
   }
 
 moulist(){
   if(this.isSuperAdmin){
-    return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status)).length;
+    return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status || x.tto_approved=="S108")).length;
   }
   else if(this.isAdmin){
-  return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status) && (x.app_Status=="S101" || this.activeusermou?.find(t=>t.mouref==x.refid))).length;
+  return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status || x.tto_approved=="S108") && (x.app_Status=="S101" || this.activeusermou?.find(t=>t.mouref==x.refid))).length;
   }
   else{
-    return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status || x.tto_approved=="S108") && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
  
   }
   // return this.mouModel?.filter(x=>this.commondata.moustatus().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status) && (x.app_Status=='S101'||

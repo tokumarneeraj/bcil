@@ -239,11 +239,12 @@
                                                   <th>Phone No.</th>
                                                   <th>Director Name</th>
                                                   <th>Director Mobile</th>
-
-                                                  <th>Action</th>
+                                               
+                                                  <th >Action</th>
                                                   <th *ngIf="viewhistory">History</th>
-                                                   <th *ngIf="viewremark">Remarks</th>
-                                                  <th *ngIf="viewadditionfile">AdditionFile</th>
+                                                
+                                                 <th *ngIf="viewadditionalfileright">Additional File</th>
+                                                 <th *ngIf="viewremark">Previous Remarks</th> 
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -253,17 +254,18 @@
                                                   <td>{{item.dept_Name}}</td>
                                                   <td>{{item.phoneNo}}</td>
                                                   <td>{{item.dir_Head_Name}}</td>
-                                                  <td>{{item.dir_Mobile_No}}</td>
-
-                                                  <td>
+                                                  <td>{{item.dir_Mobile_No}} <span  class="badge badge-info" *ngIf="(isScientist==true || isNodal==true) && (item.app_Status=='S101'||item.app_Status=='S102'||item.app_Status=='S103'||item.app_Status=='S104')">Under Process</span></td>
+                                                      <!-- <td *ngIf="(app_status=='S101'||item.app_status=='S102'||item.app_status=='S103'||item.app_status=='S104')?showitem=true:showitem=false">Under Process</td>
+                                                      --> <td> 
                                                     <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
                                                     <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
                                                     <button value="approve" *ngIf="activearray?.approved" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 
                                                   </td>
                                                   <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mou',refid:item.refid}">View</a></td>
-<td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td>
-<td *ngIf="viewadditionfile"><button class="btn btn-info">Additionfile</button></td>
+<!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+<td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(item)" class="stretched-link">View</a></td>
+<td *ngIf="viewremark"><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
                                                 </tr>
                                               </tbody>
                                             </table>
@@ -354,8 +356,8 @@
                 <div class="form-group row">
                   <div class="col-sm-12">
                     <label class="col-form-label">Upload</label>
-                    <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
-
+                    <input type="file" accept="*" class="form-control" (change)="fileChangeEvent($event)" />
+                    <span class="text-danger float-right">*For multiple files, please compress and upload.</span>
 
                   </div>
                 </div>
@@ -406,7 +408,7 @@
         </div>
     </div>
   </div>
-
+  <app-addition-file></app-addition-file>
   <!-- <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" style="min-height:600px">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

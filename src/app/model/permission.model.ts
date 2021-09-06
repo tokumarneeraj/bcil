@@ -6,6 +6,8 @@ export type PermissionNames =
 export type PermissionValues =
   'users.view' | 'users.manage' | 'users.approved' |
   'roles.view' | 'roles.manage' | 'roles.assign' |
+'internalfiles.view'|'gobalfiles.view'|'addadditionalfiles.view'|'manageadditionalfiles.view'|
+
   'department.view' | 'department.manage' | 'mou.view' | 'mou.add' | 'mou_init_forword_button.view' |
   'mou_pending_forword_button.view' | 'mou_proposed_by_admin_client_request_change.view' | 'mou_proposed_by_admin_client_approved.view' |
   'mou_change_by_admin_forword_button.view' |
@@ -75,6 +77,15 @@ export class Permission {
   public static readonly viewRolesPermission: PermissionValues = 'roles.view';
   public static readonly manageRolesPermission: PermissionValues = 'roles.manage';
   public static readonly assignRolesPermission: PermissionValues = 'roles.assign';
+
+
+  public static readonly viewinternalfilesPermission: PermissionValues = 'internalfiles.view';
+  public static readonly viewgobalfilesPermission: PermissionValues = 'gobalfiles.view';
+  public static readonly viewaddadditionalfilesPermission: PermissionValues = 'addadditionalfiles.view';
+  public static readonly viewmanageadditobalfilePermission: PermissionValues = 'manageadditionalfiles.view';
+
+
+  
 
   public static readonly viewTechnologyTransferPermission: PermissionValues = 'technologytransfer.view';
 

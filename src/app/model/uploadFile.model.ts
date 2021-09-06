@@ -1,8 +1,10 @@
 export class UploadFileViewModel {
-
+  public fileaccess: string;
+  public fileused:string;
   public fileType: string;
   public uploadType: string;
   public subject: string;
+  public stage: string;
   public file64: any;
   public fileFullName: string;
   public remarks: string;

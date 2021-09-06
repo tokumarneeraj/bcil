@@ -4,7 +4,13 @@
 //@import "~bootstrap/scss/bootstrap";
 @import "app/assets/styles/styles-vendor.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
-
+.spandots{
+  display:inline-block;
+  width:50px;
+  white-space: nowrap;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
+}
 .invalid-feedback {
     display: none;
     width: 100%;
@@ -14,6 +20,7 @@
 }
 .alertify {
   top: 75px;
+  z-index: 9999999;
 }
 .accordion-toggle[aria-expanded="true"]:before {
   content: "\f107";

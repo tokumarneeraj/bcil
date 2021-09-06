@@ -63,12 +63,15 @@
                       <th>Director Name</th>
                       <th>Director Mobile</th>
 
-
+                      <th *ngIf="viewhistory">History</th>
+                                                
+                      <th *ngIf="viewadditionalfileright">Additional File</th>
+                      <th *ngIf="viewremark">Previous Remarks</th> 
                       <th>Action</th>
                       <th *ngIf='isAdmin && (type=="S115" ||type=="S121" ||type=="S124")'></th>
                       <th *ngIf='isAdmin && (type=="S115" ||type=="S121")'></th>
                       <th *ngIf='isNodal && type=== "S117"|| type=="126"'></th>
-                      <th>History</th>
+                   
 
                     </tr>
                   </thead>
@@ -80,7 +83,10 @@
                       <td>{{item.phoneNo}}</td>
                       <td>{{item.dir_Head_Name}}</td>
                       <td>{{item.dir_Mobile_No}}</td>
-
+                      <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tta',refid:item.refid}">View</a></td>
+                      <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+                      <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(item)" class="stretched-link">View</a></td>
+                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
 
                       <td>
                         <button class="btn btn-info" *ngIf='item.app_Status === "S108" && !item.assigntoscientist' (click)="assignscientist(item)">Assign Scientist</button>
@@ -134,7 +140,7 @@
                       <td *ngIf='isNodal && item.app_Status==="S126"'><button value="assign" *ngIf='isScientist && item.app_Status==="S126"' class="btn btn-success" (click)="onClientClick(item,'S128')">Change Request</button></td>
 
 
-                      <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tto',refid:item.refid}">View</a></td>
+                      <!-- <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tto',refid:item.refid}">View</a></td> -->
 
                     </tr>
                   </tbody>
@@ -219,7 +225,7 @@
             <div class="col-sm-6">
              
               <button type="submit" class="btn btn-success" (click)="uploadClientFile()" [disabled]="loading">
-                <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saveing...' : 'Save'}}
+                <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
               </button>
             </div>
           </div>
@@ -267,3 +273,4 @@
           </div>
           </div>
           </div>
+          <app-addition-file></app-addition-file>

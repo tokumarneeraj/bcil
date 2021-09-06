@@ -36,6 +36,11 @@
             <div class="col-sm-12">
               
               <div *ngIf="isSuperAdmin" class="ttDashAccod">
+                <div class="col-sm-12">
+                  <div class="addMou">
+                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View Applications</a>
+                  </div>
+              </div>
               <accordion  [closeOthers]="oneAtATime" [isAnimated]="true">
                
                 <accordion-group *ngFor="let row of roles;let i=index;" heading="{{row.name}}" >
@@ -163,6 +168,11 @@
             </div>
               <!-- Basic Form Inputs card start -->
               <div class="row" *ngIf="!isSuperAdmin">
+                <div class="col-sm-12">
+                  <div class="addMou">
+                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View Applications</a>
+                  </div>
+              </div>
                 <!-- task, page, download counter  start -->
                 <div class="col-xl-3 col-md-6" *ngIf="canviewTta_upload_assign_tech_disclosure_formPermission">
                   <a href="#">

@@ -122,7 +122,7 @@ export class MouAddComponent implements OnInit {
       console.log(data)
     },error=>{
       this.loading=false;
-
+      this.alertService.showStickyMessage('MOU ADD',"Nodal Already exists,Please Change the name of Nodal",MessageSeverity.warn);
     })
   }
 

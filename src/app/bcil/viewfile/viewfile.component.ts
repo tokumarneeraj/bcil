@@ -55,7 +55,7 @@ x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=
         debugger
 //      this.perm=;
 // this.perm=getotherpermissiondata;
-        this.fileshistory=data.filter(x=>this.commondata.getotherpermissiondata('history').find(y=>y?.permission.split('-')[1]==x.status))
+        this.fileshistory=data.filter(x=>this.commondata.getotherpermissiondata('history').find(y=>y?.split('-')[1]==x.status))
         this.showpage=true;
         })
         console.log(data)

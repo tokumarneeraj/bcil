@@ -44,6 +44,7 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { AdditionFileComponent } from './addition-file/addition-file.component';
 import { RemarksComponent } from './remarks/remarks.component';
+import { MouApplicationComponent } from './mou-application/mou-application.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { RemarksComponent } from './remarks/remarks.component';
     ResetpasswordComponent,
     AdditionFileComponent,
     RemarksComponent,
+    MouApplicationComponent,
      ],
 
   imports: [

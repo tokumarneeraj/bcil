@@ -94,13 +94,13 @@ return this.commondata.moustatus().find(x=>x.value==data)?.tabelname;
   }
   moulistfilter(data) {
     if(this.isSuperAdmin){
-      return this.mouModel?.filter(x=>x.app_Status==data).length;
+      return this.mouModel?.filter(x=>x.app_Status==data || x.tto_approved==data).length;
     }
     else if(this.isAdmin){
-   return this.mouModel?.filter(x=>x.app_Status==data &&(x.app_Status=='S101'|| this.activeusermou?.find(t=>t.mouref==x.refid))).length;
+   return this.mouModel?.filter(x=>(x.app_Status==data || x.tto_approved==data) &&(x.app_Status=='S101'|| this.activeusermou?.find(t=>t.mouref==x.refid))).length;
     }
     else{
-      return this.mouModel?.filter(x=>x.app_Status==data && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+      return this.mouModel?.filter(x=>(x.app_Status==data || x.tto_approved==data)&& this.activeusermou?.find(t=>t.mouref==x.refid)).length;
     }
     // else if(this.isAdmin){
      

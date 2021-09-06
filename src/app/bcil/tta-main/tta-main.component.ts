@@ -11,6 +11,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
 import {commondata} from '../../model/common'
 import { error } from 'jquery';
+import { AdditionFileComponent } from '../addition-file/addition-file.component';
+import { AlertService, DialogType } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-tta-main',
@@ -32,6 +34,8 @@ export class TtaMainComponent implements OnInit {
   submitted = false;
   submitted1 = false;
   createdBy = "";
+  @ViewChild(AdditionFileComponent)
+  AdditionFile: AdditionFileComponent;
   UploadFileViewModel = new UploadFileViewModel();
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
@@ -61,10 +65,13 @@ commondata=new commondata();
   activearray = this.array[0];
 
 addusertomou=new addusertomou();
+viewhistory:boolean;
+viewremark:boolean;
+
+viewadditionalfileright:boolean;
 
 
-
-  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
+  constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
     this.UserEmail = this.accountService.currentUser.email;
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -78,6 +85,7 @@ addusertomou=new addusertomou();
     this.isNodal = this.userRoles.includes('Nodal'); 
 this.isSuperAdmin=this.userRoles.includes('Super Admin');
 this.isScientist=this.userRoles.includes('Scientist');
+this.viewadditionalfileright=this.commondata.CanviewadditionalfilesPermission;
     this.route.queryParams.subscribe((params) => {
       this.createdBy = this.UserId;
 
@@ -100,7 +108,8 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
       else{
         this.mouModel = data.filter(x=>x.app_Status==this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
       }
-
+      this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
+      this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
       // if (this.isAdmin == true) {
       //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
       // }
@@ -135,7 +144,13 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
   get f() { return this.ForwardForm.controls; }
 
 
+  viewadditionalfile(data:mouModel){
+    this.AdditionFile.showviewmodel(data,true,"tta");
+  }
+  remarksview(data:any){
+    this.alertService.showDialog(data,DialogType.alert);
 
+  }
   //for client start
   onClientClick(data: mouModel, status) {
     this.UploadFileViewModel.app_ref_id = data.refid;

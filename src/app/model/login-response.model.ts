@@ -46,3 +46,10 @@ export class result
     reason:string;
     data:any;
 }
+
+export class remarks{
+    remark:string;
+
+    additionalfile:string;
+    refid:string;
+}

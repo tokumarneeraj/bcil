@@ -40,6 +40,37 @@ import { otherpermission } from "./role.model";
     get permissions(): PermissionValues[] {
       return this.localStorage.getDataObject<PermissionValues[]>(DBkeys.USER_PERMISSIONS) || [];//JSON.parse(localStorage.getItem('user_permissions'));
     }
+
+    get CanviewinternalfilesPermission() {
+     
+      return this.userHasPermission(Permission.viewinternalfilesPermission);
+    }
+    get CanviewgobalfilesPermission() {
+      
+      return this.userHasPermission(Permission.viewgobalfilesPermission);
+    }
+    get CanviewadditionalfilesPermission() {
+      let view:boolean=false;
+      if(this.CanviewinternalfilesPermission==true){
+        view=true;
+      }
+     
+     if(this.CanviewgobalfilesPermission==true){
+view=true;
+     }
+     else{
+       view=false;
+     }
+      return view;
+    }
+    get CanviewaddadditionalfilesPermission() {
+     
+      return this.userHasPermission(Permission.viewaddadditionalfilesPermission);
+    }
+    get CanviewmanageadditobalfilePermission() {
+     
+      return this.userHasPermission(Permission.viewmanageadditobalfilePermission);
+    }
     get Canviewagreement_not_needed_forword_buttonPermission() {
       debugger;
       return this.userHasPermission(Permission.viewagreement_not_needed_forword_buttonPermission);

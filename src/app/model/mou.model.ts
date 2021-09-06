@@ -5,7 +5,9 @@ export class mouModel {
   public dept_Name: string;
 
   public address: string;
-
+public remarks:string;
+public additionalfilecount:string;
+public tto_approved:string;
   public phoneNo: string;
   public email: string;
   public gstNo: string;
@@ -47,6 +49,7 @@ export class StatusMaster {
 }
 export class activeusermou{
   public userid:string;
+  public username:string;
   public mouref:string;
   public userrole:string;
   public active:boolean;

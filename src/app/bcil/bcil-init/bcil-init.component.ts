@@ -17,6 +17,7 @@ import { AlertService, DialogType, MessageSeverity } from 'src/app/services/aler
 import { Permission } from 'src/app/model/permission.model';
 import { StringDecoder } from 'string_decoder';
 import {commondata} from '../../model/common'
+import { AdditionFileComponent } from '../addition-file/addition-file.component';
 @Component({
   selector: 'app-bcil-init',
   templateUrl: './bcil-init.component.html',
@@ -35,6 +36,8 @@ export class BcilInitComponent implements OnInit {
   activeusermou:activeusermou[];
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
+  @ViewChild(AdditionFileComponent)
+  AdditionFile: AdditionFileComponent;
   usertype: string;
   UserName: string;
   showClientPage = false;
@@ -46,6 +49,8 @@ export class BcilInitComponent implements OnInit {
   isAdmin: boolean;
   formHeader: string;
   isBdm: boolean;
+  isScientist:boolean;
+  isNodal: boolean;
   isLM: boolean;
   isSuperAdmin: boolean;
   isIPM:boolean;
@@ -72,8 +77,8 @@ commondata=new commondata();
 loading=false;
 viewhistory:boolean;
 viewremark:boolean;
-viewadditionfile:boolean;
-
+showstatus:any[]=[];
+viewadditionalfileright:boolean;
  // array:any[];
   activearray = this.commondata.moustatus()[0];
 
@@ -81,10 +86,11 @@ viewadditionfile:boolean;
 
 
     this.UserEmail = this.accountService.currentUser.email;
+  
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
 
-    this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+   // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
     
 this.customrem=false;
     
@@ -107,13 +113,18 @@ else if(data=="custom"){
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBdm = this.userRoles.includes('BDM');
-
+    this.isNodal = this.userRoles.includes('Nodal'); 
+    
+    this.isScientist=this.userRoles.includes('Scientist');
   this.isIPM=this.userRoles.includes('IPM');
   this.isSuperAdmin=this.userRoles.includes('Super Admin');
+  
+    this.viewadditionalfileright=this.commondata.CanviewadditionalfilesPermission;
+  
     this.route.queryParams.subscribe((params) => {
 
         this.createdBy = this.UserId;
-
+console.log(this.isNodal+""+this.userRoles)
         this.type = this.commondata.moustatus().find(x => x.name == params.type).value;
         this.activearray = this.commondata.moustatus().find(x => x.name == params.type);
         this.permission=this.commondata.moustatus().find(x => x.name == params.type).permissionforword;
@@ -128,7 +139,7 @@ else if(data=="custom"){
       console.log(data)
       debugger
       if(this.isSuperAdmin){
-        this.mouModel = data.filter(x => x.app_Status == this.type);
+        this.mouModel = data.filter(x => x.app_Status == this.type || x.tto_approved==this.type);
       }
     //  else if(this.isBdm ||this.isIPM){
     //     this.mouModel = data.filter(x => x.app_Status == this.type &&  x.createdBy==this.UserId);
@@ -140,16 +151,16 @@ else if(data=="custom"){
     //   }
 
     else if(this.isAdmin){
-       this.mouModel= data.filter(x=>x.app_Status== this.type &&(x.app_Status=='S101'|| this.activeusermou?.find(t=>t.mouref==x.refid)));
+       this.mouModel= data.filter(x=>(x.app_Status== this.type|| x.tto_approved==this.type) &&(x.app_Status=='S101'  || this.activeusermou?.find(t=>t.mouref==x.refid)));
        }
        else{
-          this.mouModel=data.filter(x=>x.app_Status== this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
+          this.mouModel=data.filter(x=>(x.app_Status== this.type || x.tto_approved==this.type) && this.activeusermou?.find(t=>t.mouref==x.refid));
        }
        debugger;
        console.log( this.commondata.getotherpermissiondata('history'),'his')
     this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
        this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
-      this.viewadditionfile= this.commondata.getotherpermissiondata('addfile').some(x=>x?.split('-')[1]==this.type);
+     // this.viewadditionfile= this.commondata.getotherpermissiondata('addfile').some(x=>x?.split('-')[1]==this.type);
       
         this.showpage = true;
     });
@@ -187,6 +198,13 @@ else if(data=="custom"){
         this.UploadFileViewModel.file64 = contentType;
       });
     }
+  }
+  viewadditionalfile(data:mouModel){
+    this.AdditionFile.showviewmodel(data,true,"mou");
+  }
+  remarksview(data:any){
+    this.alertService.showDialog(data,DialogType.alert);
+
   }
   uploadFile() {
 

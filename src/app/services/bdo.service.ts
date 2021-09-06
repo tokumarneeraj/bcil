@@ -31,7 +31,10 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
     get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
     get getstatusmasterurl() { return environment.baseUrl+'/api/bdo/getstatusmaster'; }
-
+    
+    get getadditionalfile() { return environment.baseUrl + '/api/FileUploads/getaddifile'; }
+    get removeadditionalfile() { return environment.baseUrl + '/api/FileUploads/removeaddifile'; }
+    get additionalfileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddAdditionFile'; }
     get fileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddFile'; }
     get filehistory() { return environment.baseUrl + '/api/bdo/getfile'; }
     UserId:string;
@@ -40,6 +43,35 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
     
       this.UserId = this.accountService.currentUser.id;
     }
+
+    public getremarksmou(refid:any){
+      return this.http.get<result>(this.removeadditionalfile+"/"+refid,this.requestHeaders);
+      
+    }
+    public  RemoveAdditionalfile<T>(refid:string): Observable<result> {
+        
+      return this.http.get<result>(this.removeadditionalfile+"/"+refid,this.requestHeaders);
+    //   .pipe<mouModel>(
+    //     catchError(error => {
+    //       return this.handleError(error, () =>{});
+    //     }));
+    }
+    public  GetAdditionalfile<T>(refid:string): Observable<filehistoryModel[]> {
+        
+      return this.http.get<filehistoryModel[]>(this.getadditionalfile+"/"+refid,this.requestHeaders);
+    //   .pipe<mouModel>(
+    //     catchError(error => {
+    //       return this.handleError(error, () =>{});
+    //     }));
+    }
+    public Addadditionalfile<T>(upload:UploadFileViewModel):Observable<result>{
+    
+    return this.http.post(this.additionalfileuploadurl, JSON.stringify(upload), this.requestHeaders).pipe<result>(
+      catchError(error => {
+        return this.handleError(error, () => this.uploadfile(upload));
+      }));
+  //   .pipe<mouModel>(
+   }
    public uploadfile<T>(upload:UploadFileViewModel):Observable<result>{
     // const headers = new HttpHeaders({
             
@@ -123,7 +155,7 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
 
          public  GetMou<T>(): Observable<mouModel[]> {
         
-          return this.http.get<mouModel[]>(this.getmouurl);
+          return this.http.get<mouModel[]>(this.getmouurl,this.requestHeaders);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

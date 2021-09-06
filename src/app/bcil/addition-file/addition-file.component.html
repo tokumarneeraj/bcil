@@ -1,1 +1,125 @@
-<p>addition-file works!</p>
+<div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+    <div class="modal-dialog modal-lg" style="max-height: 600px;
+    overflow: auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Additional File</h4>
+                <button type="button" class="close float-right" title="Close" (click)="editorModal1.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="ForwardForm">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label class="col-form-label">File Access</label>
+                      <select type="text" class="form-control" formControlName="fileaccess" [ngClass]="{ 'is-invalid': submitted && f.fileaccess.errors }">
+                        <option value="Global">Global</option>
+                        <option value="Internal">Internal</option>
+                      
+                      </select>
+                    <p *ngIf="submitted && f.fileaccess.errors" class="invalid-feedback">fileaccess is required</p>
+                             
+  
+                    </div>
+                  </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label class="col-form-label">Subject</label>
+                      <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
+                      <p *ngIf="submitted && f.subject.errors" class="invalid-feedback">Subject is required</p>
+                             
+  
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label class="col-form-label">Remarks</label>
+                      <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
+                                  </textarea>
+  
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label class="col-form-label">Upload</label>
+                      <input type="file" accept="*" class="form-control"  (change)="fileChangeEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.files.errors }" />
+                      <input type="hidden" name="files" formControlName="files" /> 
+                      <p *ngIf="submitted && f.files.errors" class="invalid-feedback">File is required</p>
+                             
+  <span class="text-danger float-right">*For multiple files, please compress and upload.</span>
+  
+                    
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                      <!-- <button type="submit"
+                              class="btn btn-success"
+                              (click)="uploadFile()">
+                        Upload File
+                      </button> -->
+                      <button type="submit" class="btn btn-success"  (click)="uploadFile()" [disabled]="loading">
+                          <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
+                        </button>
+                    </div>
+                    
+  
+                  </div>
+  
+                          </form>
+           
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+    <div class="modal-dialog modal-lg" style="max-height: 600px;
+    overflow: auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>View Additional Files</h4>
+                <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                    <table class="table table-hover" >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>File Name</th>
+                                <th>Type</th>
+                                <th>From</th>
+                                <th>Created On</th>
+                                <th>Remarks</th>
+<th>Action</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of fileHistory;let i=index">
+                            <td>{{i+1}}</td>
+                           
+                            <td><a href="{{getbaseurl}}/{{item.url}}" target="_blank">{{item.filename==''?'Not Available':item.filename}}</a></td>
+                            <td>{{item.fileaccess}}</td>
+                            <td>{{item.createdby}}</td>
+                            <td>{{item.createdondate }}</td>
+                            <td>{{item.remarks}}</td>
+                            <td> <a *ngIf="deletefileright" (click)="deletefile(item.refid)"><i class="fa fa-trash fa-lg"></i></a></td>
+                          </tr>
+                          <!-- <tr _ngcontent-xgw-c72=""><td _ngcontent-xgw-c72="" scope="row">1</td><td _ngcontent-xgw-c72=""><a _ngcontent-xgw-c72="" target="_blank" href="http://43.224.139.121/">test2.pdf</a></td><td>Internal</td><td _ngcontent-xgw-c72="">adminuser1(Admin)</td><td _ngcontent-xgw-c72="">02-SEP-2021 03:07:16 PM</td><td _ngcontent-xgw-c72=""></td><td> <a ><i class="fa fa-trash fa-lg"></i></a></td></tr>
+                          <tr _ngcontent-xgw-c72=""><td _ngcontent-xgw-c72="" scope="row">2</td><td _ngcontent-xgw-c72=""><a _ngcontent-xgw-c72="" target="_blank" href="http://43.224.139.121/">test.pdf</a></td><td>Global</td><td _ngcontent-xgw-c72="">lmuser(LM)</td><td _ngcontent-xgw-c72="">02-SEP-2021 03:07:16 PM</td><td _ngcontent-xgw-c72=""></td><td> <a ><i class="fa fa-trash fa-lg"></i></a></td></tr>
+                         -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+              </div>
+              </div>
+    </div></div>
+    
