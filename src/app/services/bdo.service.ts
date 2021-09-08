@@ -24,7 +24,7 @@ export class Bdoservice  extends EndpointBase
     get assignscientisturl(){return environment.baseUrl+'/api/bdo/assignscientist'}
 get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
     get getactiveusermouuseridurl() { return  environment.baseUrl+'/api/bdo/getactivebyuserid'; }
-    get getactiveusermourefidurl() { return  environment.baseUrl+'/api/bdo/getactiveusermoubyref'; }
+    get getmouuser() { return  environment.baseUrl+'/api/bdo/getmouuser'; }
     get getactiveusermouurl() { return  environment.baseUrl+'/api/bdo/getallactiveusermou'; }
     get getreminderurl() { return  environment.baseUrl+'/api/bdo/getallreminder'; }
 
@@ -135,9 +135,9 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
             return this.handleError(error, () => this.GetActiveUserMoubyuserid());
           }));
         }
-        public  GetActiveUserMoubyrefid<T>(): Observable<activeusermou[]> {
-        
-          return this.http.get<activeusermou[]>(this.getactiveusermourefidurl);
+        public  GetActiveUserMoubyrefid<T>( id:string): Observable<activeusermou[]> {
+          const endpointUrl = `${this.getmouuser}/${id}`;
+          return this.http.get<activeusermou[]>(endpointUrl);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

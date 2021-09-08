@@ -17,6 +17,8 @@ import { AlertService, DialogType, MessageSeverity } from 'src/app/services/aler
 import { Permission } from 'src/app/model/permission.model';
 import { StringDecoder } from 'string_decoder';
 import { param } from 'jquery';
+import { commondata } from 'src/app/model/common';
+import { AdditionFileComponent } from '../addition-file/addition-file.component';
 
 @Component({
   selector: 'app-tstl-main',
@@ -34,7 +36,8 @@ export class TstlMainComponent implements OnInit {
   submitted = false;
   createdBy = "";
   UploadFileViewModel = new UploadFileViewModel();
-
+  @ViewChild(AdditionFileComponent)
+  AdditionFile: AdditionFileComponent;
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
   usertype: string;
@@ -70,7 +73,10 @@ export class TstlMainComponent implements OnInit {
   isScientist: boolean;
   isLUF: boolean;
   isCompany: boolean;
-
+  viewhistory:boolean;
+  viewremark:boolean;
+  commondata=new commondata();
+  viewadditionalfileright:boolean;
   array = [
 
     { tabelname: "TS Executed", name: 'ts_executed', value: 'S154', forwordtitle: "Draft license agreement", forward: "S155", forwardCheck: true, type: false, forwardText: 'Draft license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
@@ -149,6 +155,9 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
       else{
         this.mouModel = data.filter(x=>x.app_Status==this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
       }
+      this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
+      this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
+     
       // if (this.isAdmin == true) {
 
       //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
@@ -195,12 +204,20 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
       assignto: [''],
     });
   }
+  viewadditionalfile(data:mouModel){
+    this.AdditionFile.showviewmodel(data,true,"tta");
+  }
+  remarksview(data:any){
+    this.alertService.showDialog(data,DialogType.alert);
+
+  }
   get f() { return this.ForwardForm.controls; }
 
   fileChangeEvent(event) {
     if (event.target.files && event.target.files[0]) {
       const fileUpload = event.target.files[0];
       const filee = fileUpload.files;
+      if( fileUpload.size<=30*1024*1024){
       this.UploadFileViewModel.fileFullName = fileUpload.name;
 
       const sFileExtension = fileUpload.name
@@ -216,6 +233,12 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
         this.UploadFileViewModel.file64 = contentType;
       });
     }
+    else{
+      this.ForwardForm.get('files').setValue("");
+      alert("File Size Should be less than 30 MB")
+    }
+  }
+
   }
   uploadFile() {
 

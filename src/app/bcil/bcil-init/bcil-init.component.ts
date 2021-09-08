@@ -34,6 +34,7 @@ export class BcilInitComponent implements OnInit {
   createdBy = "";
   UploadFileViewModel = new UploadFileViewModel();
   activeusermou:activeusermou[];
+  activuser:activeusermou[];
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
   @ViewChild(AdditionFileComponent)
@@ -65,6 +66,7 @@ export class BcilInitComponent implements OnInit {
   allRoles: Role[] = [];
   loadingIndicator: boolean;
   user: any;
+  allusers:User[];
 permission:boolean;
 permissionbutton1:boolean;
 permissionbutton2:boolean;
@@ -78,7 +80,9 @@ loading=false;
 viewhistory:boolean;
 viewremark:boolean;
 showstatus:any[]=[];
+selected:string;
 viewadditionalfileright:boolean;
+
  // array:any[];
   activearray = this.commondata.moustatus()[0];
 
@@ -90,9 +94,7 @@ viewadditionalfileright:boolean;
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
 
-   // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
-    
-this.customrem=false;
+   this.customrem=false;
     
   }
   reminderchange(data){
@@ -129,10 +131,29 @@ console.log(this.isNodal+""+this.userRoles)
         this.activearray = this.commondata.moustatus().find(x => x.name == params.type);
         this.permission=this.commondata.moustatus().find(x => x.name == params.type).permissionforword;
         this.permissionbutton1=this.commondata.moustatus().find(x => x.name == params.type).permissionbutton1;
+        //alert(this.commondata.moustatus().find(x => x.name == this.type)?.lmassigned);
+        
         //this.createdBy = this.array.find(x => x.name == params.type).createdBy;
+        if(this.commondata.moustatus().find(x => x.name == params.type)?.bdoassigned==true){
+          // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+         
+          this.accountService.getAllUser(0,0).subscribe(data=>{
+            this.rows=data.filter((x)=>x.roles.includes('BDM'));
+          })
+     
+         }
+         if(this.commondata.moustatus().find(x => x.name  == params.type)?.lmassigned==true){
+           // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
       
+           this.accountService.getAllUser(0,0).subscribe(data=>{
+             this.rows=data.filter((x)=>x.roles.includes('LM'));
+             console.log(this.rows,'uu')
+           })
+      
+          }
 
     })
+   
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
@@ -176,6 +197,7 @@ console.log(this.isNodal+""+this.userRoles)
       remindertype:['default'],
       type: [''],
       assignto:[''],
+      assigntobdo:['']
     });
   }
   get f() { return this.ForwardForm.controls; }
@@ -183,6 +205,7 @@ console.log(this.isNodal+""+this.userRoles)
     if (event.target.files && event.target.files[0]) {
       const fileUpload = event.target.files[0];
       const filee = fileUpload.files;
+      if( fileUpload.size<=30*1024*1024){
       this.UploadFileViewModel.fileFullName = fileUpload.name;
 
       const sFileExtension = fileUpload.name
@@ -198,6 +221,12 @@ console.log(this.isNodal+""+this.userRoles)
         this.UploadFileViewModel.file64 = contentType;
       });
     }
+    
+    else{
+      this.ForwardForm.get('files').setValue("");
+      alert("File Size Should be less than 30 MB")
+    }
+  }
   }
   viewadditionalfile(data:mouModel){
     this.AdditionFile.showviewmodel(data,true,"mou");
@@ -225,6 +254,10 @@ console.log(this.isNodal+""+this.userRoles)
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
     this.UploadFileViewModel.assignto = this.ForwardForm.get('assignto').value;
+    if(this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
+{
+    this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
+}
     this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
 //this.UploadFileViewModel.assigntoadmin= this.UploadFileViewModel.createdBy;
     this.UploadFileViewModel.createdBy = this.UserId;
@@ -243,7 +276,8 @@ this.loading=false;
   }
 
   onmodalclick(e: string, data: mouModel) {
-   
+   this.loading=false;
+   this.submitted=false;
     this.UploadFileViewModel.app_Status = e == "approve" ? this.commondata.moustatus().find(x => x.value == this.type).approvedvalue :
      e== "forword" ? this.commondata.moustatus().find(x => x.value == this.type).forward : this.commondata.moustatus().find(x => x.value == this.type).backStatus;
     this.UploadFileViewModel.app_ref_id = data.refid;
@@ -255,6 +289,16 @@ debugger;
 if((this.type=="S101" &&e=="back") ||this.type=="S105"){
  this.moucreatedby_role=="IPM"?this.UploadFileViewModel.app_Status="S109":
    this.moucreatedby_role=="IBM"?this.UploadFileViewModel.app_Status="S107":null;
+
+   this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
+    this.activuser=data1;
+    this.selected=this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid;
+    //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
+   //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
+    //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
+              });
+
+   
   
 }
 
@@ -278,40 +322,40 @@ if((this.type=="S101" &&e=="back") ||this.type=="S105"){
    
   }
 
-  onDataLoadSuccessful(users: User[], roles: Role[]) {
+  // onDataLoadSuccessful(users: User[], roles: Role[]) {
 
-   // this.accountService.getRoles(0, 0).subscribe(data => { })
-    console.log(users, roles)
-    this.alertService.stopLoadingMessage();
-    this.loadingIndicator = false;
-    let rol = [];
-    let rol1 = [];
-    debugger;
+  //  // this.accountService.getRoles(0, 0).subscribe(data => { })
+  //   console.log(users, roles)
+  //   this.alertService.stopLoadingMessage();
+  //   this.loadingIndicator = false;
+  //   let rol = [];
+  //   let rol1 = [];
+  //   debugger;
 
     
-    this.allRoles = roles;
+  //   this.allRoles = roles;
 
-    users.forEach((user, index) => {
-      (user as any).index = index + 1;
-    });
+  //   users.forEach((user, index) => {
+  //     (user as any).index = index + 1;
+  //   });
 
    
-    this.rowsCache = [...users];
-    this.users=users;
+  //   this.rowsCache = [...users];
+  //   this.users=users;
 
-    console.log(this.users,'users')
-    this.rows = users.filter(x => x.roles.includes('LM'));
+  //   console.log(this.users,'users')
+  //   this.rows = users.filter(x => x.roles.includes('LM'));
 
 
 
-  }
+  // }
 
-  onDataLoadFailed(error: any) {
-    this.alertService.stopLoadingMessage();
-    this.loadingIndicator = false;
+  // onDataLoadFailed(error: any) {
+  //   this.alertService.stopLoadingMessage();
+  //   this.loadingIndicator = false;
 
-    this.alertService.showStickyMessage('Load Error', `Unable to retrieve users from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
-      MessageSeverity.error, error);
-  }
+  //   this.alertService.showStickyMessage('Load Error', `Unable to retrieve users from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
+  //     MessageSeverity.error, error);
+  // }
 
 }

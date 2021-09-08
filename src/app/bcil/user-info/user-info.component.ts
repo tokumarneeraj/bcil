@@ -77,7 +77,7 @@ export class UserInfoComponent implements OnInit {
   user1: any;
   isNodal: boolean;
   userRoles: string[];
-
+rolename:string;
 
   constructor(private localStorage: LocalStoreManager,private alertService: AlertService, private accountService: AccountService) {
     this.user1 = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
@@ -180,9 +180,15 @@ export class UserInfoComponent implements OnInit {
     delete userEdit.confirmPassword;
   }
 
-
+  selectedroles(event: any[]){
+console.log(event[event.length-1]?.name);
+this.userEdit.roles=[];
+this.userEdit.roles.push(event[event.length-1]?.name);
+this.userEdit.roles=this.userEdit.roles.filter(x=>x!=null)
+  }
   edit() {
     debugger;
+    
     if (!this.isGeneralEditor) {
       this.isEditingSelf = true;
       this.userEdit = new UserEdit();
@@ -202,10 +208,11 @@ this.allDepartment=this.allDepartment1;
 
 
   save() {
+   // alert(this.rolename)
     this.isSaving = true;
     this.alertService.startLoadingMessage('Saving changes...');
     console.log(this.userEdit)
-
+//this.userEdit.roles.push(this.rolename);
     if (this.isNewUser) {
       this.accountService.newUser(this.userEdit).subscribe(user => this.saveSuccessHelper(user), error => this.saveFailedHelper(error));
     } else {
@@ -432,6 +439,7 @@ this.allDepartment=this.allDepartment1;
       for (const ur of user.roles) {
         if (!this.allRoles.some(r => r.name === ur)) {
           this.allRoles.unshift(new Role(ur));
+         // this.rolename=user.roles[0]
         }
       }
     }

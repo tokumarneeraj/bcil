@@ -97,7 +97,7 @@
                         <button value="assign" *ngIf='isAdmin && item.app_Status==="S115"' class="btn btn-danger" (click)="onClientClick(item,'S116')">Close</button>
 
                         <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S118"' (click)="onClientClick(item,'S115')">Upload</button>
-                        <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S116"' (click)="onClientClick(item,'S119')">Upload</button>
+                        <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S116"' (click)="onClientClick(item,'S119')">Closure Report </button>
                         <button value="assign"  *ngIf='isAdmin && item.app_Status==="S119"' class="btn btn-danger" (click)="onClientClick(item,'S120')">Close</button>
 
 
@@ -184,7 +184,20 @@
 
             </div>
           </div>
-          
+          <div class="form-group row" *ngIf="activearray?.bdoassigned">
+            <div class="col-sm-12">
+              <label class="col-form-label">BDM</label>
+              <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selected">
+                <option *ngFor="let user of rows" value="{{user.id}}">{{user.fullName}}</option>
+                <!-- <option value="MOU">MOU</option>
+                <option value="NDA">NDA</option>
+                <option value="Work Order">Work Order</option>
+                <option value="Others">Others</option> -->
+              </select>
+
+
+            </div>
+          </div>
           <div class="form-group row"  *ngIf="type=='S113'">
             <div class="col-sm-6"> 
                 <label class="col-form-label">Default Reminder</label>
@@ -215,7 +228,7 @@
           <div class="form-group row">
             <div class="col-sm-12">
               <label class="col-form-label">Upload</label>
-              <input type="file" class="form-control" accept="application/msword,
+              <input type="file"  accept="*" class="form-control" accept="application/msword,
   application/vnd.openxmlformats-officedocument.wordprocessingml.document" (change)="ClientfileChangeEvent($event)" />
 
 

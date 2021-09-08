@@ -103,6 +103,11 @@ view=true;
   get CanviewMou_proposed_by_lm_change_required_buttonPermission() {
     return this.userHasPermission(Permission.viewMou_proposed_by_lm_change_required_buttonPermission);
   }
+
+  get CanviewMou_change_by_client_forword_buttonPermission() {
+    return this.userHasPermission(Permission.viewMou_change_by_client_forword_buttonPermission);
+  }
+  
   get CanviewMou_accepted_by_client_forword_buttonPermission() {
     return this.userHasPermission(Permission.viewMou_accepted_by_client_forword_buttonPermission);
   }
@@ -191,17 +196,17 @@ get CanviewTLP_nda_executed_forword2button_permission() {
 }
 
  public moustatus() {
-   return [{tabelname:"Initiation of Assignment",permission:'mou_init.view', name: 'init', value: 'S101', createdBy: "Test1",forwordtitle:"Forward to LM", forward: "S102", forwardCheck: true, type: true,forwardText: 'Forward', back: true,backbuttonText: 'Agreement not needed',backStatus: "S107",permissionbutton1:new commondata().Canviewagreement_not_needed_forword_buttonPermission,permissionforword:new commondata().CanviewMou_init_forword_button_Permission },
-{tabelname:"MOU Pending",permission:"mou_pending.view", name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104",forwordtitle:"Forward to Admin", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:new commondata().CanviewMou_pending_forword_buttonPermission },
+   return [{tabelname:"Initiation of Assignment",permission:'mou_init.view', name: 'init', value: 'S101', createdBy: "Test1",forwordtitle:"Forward to LM", forward: "S102", forwardCheck: true, type: true,forwardText: 'Forward', back: true,backbuttonText: 'Agreement not needed',backStatus: "S107",permissionbutton1:new commondata().Canviewagreement_not_needed_forword_buttonPermission,permissionforword:new commondata().CanviewMou_init_forword_button_Permission ,lmassigned:true},
+{tabelname:"MOU Pending",permission:"mou_pending.view", name: 'mou_pending', value: 'S102', createdBy: "Tes2", forward: "S104",forwordtitle:"Forward to Admin", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:new commondata().CanviewMou_pending_forword_buttonPermission ,},
 {tabelname:"MOU Change Required By Admin",permission:'mou_change_req_by_admin.view', name: 'mou_change_by_admin', value: 'S103', createdBy: "Tes3", forward: "S104", forwardCheck: true, forwardText: 'Forward', back: true,permissionforword:new commondata().CanviewMou_change_by_admin_forword_buttonPermission },
 {tabelname:"MOU Proposed By Legal Manager",permission:"mou_proposed_by_lm.view", name: 'mou_porposed_by_lm', value: 'S104', createdBy: "Tes4",forwordtitle:"Forward to BDM/IPM",backtitle:"Forward to LM", forward: "S110", forwardCheck: false, forwardText: 'Forward', back: true, backStatus: "S103",approvetitle:"Forward to BdM/IPM", approvedvalue: 'S110', approved: true, approvedText: "Approved", backbuttonText: 'Change Req',permissionforword:new commondata().CanviewMou_proposed_by_lm_forword_buttonPermission ,permissionbutton1:new commondata().CanviewMou_proposed_by_lm_change_required_buttonPermission},
-{ tabelname:"Agreement Signed",permission:"agreementsigned.view",name: 'agreementsigned', value: 'S105', createdBy: "Tes5", forward: "S107", forwardCheck: true, forwardText: 'Forward', back: false, permissionforword:new commondata().CanviewAgreementsigned_forwprd_buttonPermission },
+{ tabelname:"Agreement Signed",permission:"agreementsigned.view",name: 'agreementsigned', value: 'S105', createdBy: "Tes5", forward: "S107", forwardCheck: true, forwardText: 'Forward', back: false, permissionforword:new commondata().CanviewAgreementsigned_forwprd_buttonPermission,bdoassigned:true },
 { tabelname:"MOU Accepted by Client",permission:"mou_accepted_by_client.view",name: 'mou_accepted_by_client', value: 'S106', createdBy: "Tes6", forward: "S105", forwardCheck: true, forwardText: 'Forward', back: false ,permissionforword:new commondata().CanviewMou_accepted_by_client_forword_buttonPermission},
 { tabelname:"Business Development Manager Assigned",permission:"bdoassigned.view",name: 'bodassigned', value: 'S107', createdBy: "Tes4", forward: "S108", forwardCheck: true, forwardText: 'Forward', back: false ,permissionforword:new commondata().Canviewbdoassigned_forword_buttonPermission},
 { tabelname:"TTO Request Approved",permission:"tto_req_approved.view",name: 'tto_req_approved', value: 'S108', createdBy: "Tes5", forward: "S109", forwardCheck: true, forwardText: 'Forward', back: false ,permissionforword:new commondata().Canviewtto_req_approved_forword_buttonPermission},
 { tabelname:"IP Manager Assigned",permission:"ip_manager_assigned.view",name: 'ipm_assigned', value: 'S109', createdBy: "Tes6", forward: "S108", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:new commondata().Canviewip_manager_assigned_forword_buttonPermission },
-{ tabelname:"MOU Proposed by Admin",permission:"mou_proposed_by_admin_client.view",name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S106",forwordtitle:"Forward to LM", forwardCheck: true, forwardText: 'Forward', back: true,backtitle:'Forward to Admin', backStatus: "S112", backbuttonText: 'Mou Change By Client',permissionforword:new commondata().CanviewMou_accepted_by_client_forword_buttonPermission,permissionbutton1:new commondata().CanviewMou_proposed_by_admin_client_request_changePermissionPermission },
-{ tabelname:"MOU Change By Client",permission:"mou_change_by_client.view",name: 'mou_change_by_client', value: 'S111', createdBy: "Tes3", forward: "S103", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:new commondata().Canviewbdoassigned_forword_buttonPermission },
+{ tabelname:"MOU Proposed by Admin",permission:"mou_proposed_by_admin_client.view",name: 'mou_proposed_by_admin', value: 'S110', createdBy: "Tes6", forward: "S106",forwordtitle:"Forward to LM", forwardCheck: true, forwardText: 'Forward', back: true,backtitle:'Forward to Admin', backStatus: "S111", backbuttonText: 'Mou Change By Client',permissionforword:new commondata().CanviewMou_accepted_by_client_forword_buttonPermission,permissionbutton1:new commondata().CanviewMou_proposed_by_admin_client_request_changePermissionPermission },
+{ tabelname:"MOU Change By Client",permission:"mou_change_by_client.view",name: 'mou_change_by_client', value: 'S111', createdBy: "Tes3", forward: "S103", forwardCheck: true, forwardText: 'Forward', back: false,permissionforword:new commondata().CanviewMou_change_by_client_forword_buttonPermission },
 //{ name: 'mou_approved_by_admin', value: 'S112', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forword', back: false },
 //{tabelname:"init",permission:"tto_req_approved.view", name: 'tta_init', value: 'S113', createdBy: "Tes3", forward: "S106", forwardCheck: true, forwardText: 'Forward', back: false ,permissionforword:new commondata().Canviewbdoassigned_forword_buttonPermission},
 ]
@@ -209,16 +214,16 @@ get CanviewTLP_nda_executed_forword2button_permission() {
 
  public ttaarray(){ return [
   {stage:'tta', tablename:'Upload Assignment/Tech. disclosure form', name: 'ViewMouAll', value: 'S108', formHeader: 'Assignment and Tech. Disclosure Form',permission:"tta_upload_assign_tech_disclosure_form.view" },
-  {stage:'tta', tablename:'TTA Initiation',name: 'tta_init', value: 'S113', formHeader: 'Assign to BDM',permission:"tta_init.view" },
+  {stage:'tta', tablename:'TTA Initiation',name: 'tta_init', value: 'S113', formHeader: 'Assign to BDM',permission:"tta_init.view",bdoassigned:true },
   {stage:'tta', tablename:'TTA Evaluation Assigned',name: 'tta_evaluation_assigned', value: 'S114', formHeader: 'Upload Evaluation Report',permission:"tta_evaluation_assigned.view" },
   {stage:'tta', tablename:'TTA Evaluation Uploaded by BDM',name: 'tta_evaluation_uploaded_by_bdm', value: 'S115', formHeader: 'Application Forward',permission:"tta_evaluation_upload_by_bdm.view" },
   {stage:'tta', tablename:'TTA Evaluation Closure by Admin',name: 'tta_evaluation_closure_by_admin', value: 'S116', formHeader: 'Close TTA',permission:"tta_evaluation_closure_by_admin.view" },
   {stage:'tta', tablename:'TTA Evaluation Approved by Admin',name: 'tta_evaluation_approved_by_admin', value: 'S117', formHeader: 'Application Forward' ,permission:"tta_evaluation_approved_by_admin.view"},
   {stage:'tta', tablename:'TTA Evaluation Change Request by Admin',name: 'tta_evaluation_change_req_by_admin', value: 'S118', formHeader: 'Upload Evaluation Report ',permission:"tta_evaluation_change_request_by_admin.view" },
   {stage:'tta', tablename:'TTA Closure Requested by BDM',name: 'tta_closure_requested_by_bdm', value: 'S119', formHeader: 'Closure Request' ,permission:"tta_closure_request_by_bdm.view"},
-  {stage:'tta', tablename:'TTA Closed',name: 'tta_closed', value: 'S120', formHeader: 'Close TTA ',permission:"tta_close.view" },
+  {stage:'tta', tablename:'TTA Closed',name: 'tta_closed', value: 'S120', formHeader: 'Closure Report',permission:"tta_close.view" },
   {stage:'tta', tablename:'TTA Evaluation Change Request by Client',name: 'tta_evaluation_change_req_by_client', value: 'S121', formHeader: 'Application Forward' ,permission:"tta_evaluation_change_request_by_client.view"},
-  {stage:'tta', tablename:'TTA Evaluation Accepted by Client',name: 'tta_evaluation_accepted_by_client', value: 'S122', formHeader: 'Application Forward' ,permission:"tta_evaluation_accepted_by_client.view"},
+  {stage:'tta', tablename:'TTA Evaluation Accepted by Client',name: 'tta_evaluation_accepted_by_client', value: 'S122', formHeader: 'Application Forward' ,permission:"tta_evaluation_accepted_by_client.view",bdoassigned:true},
   {stage:'tta', tablename:'TTA Strategy Assigned',name: 'tta_strategy_assigned', value: 'S123', formHeader: 'Application Forward',permission:"tta_strategy_assigned.view" },
   {stage:'tta', tablename:'TTA Strategy Uploaded by BDM',name: 'tta_strategy_uploaded_by_bdm', value: 'S124', formHeader: 'Application Forward',permission:"tta_strategy_uploaded_by_bdm.view" },
   {stage:'tta', tablename:'TTA Strategy Change Request by Admin',name: 'tta_strategy_change_req_by_admin', value: 'S125', formHeader: 'Update Strategy',permission:"tta_strategy_change_request_by_admin.view" },

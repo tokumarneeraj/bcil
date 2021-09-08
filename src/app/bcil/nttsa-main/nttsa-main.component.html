@@ -59,9 +59,12 @@
                       <th>Phone No.</th>
                       <th>Director Name</th>
                       <th>Director Mobile</th>
-
+                      <th *ngIf="viewhistory">History</th>
+                                                
+                      <th *ngIf="viewadditionalfileright">Additional File</th>
+                      <th *ngIf="viewremark">Previous Remarks</th> 
                       <th>Action</th>
-                      <th>History</th>
+                    
 
                     </tr>
                   </thead>
@@ -73,15 +76,17 @@
                       <td>{{item.phoneNo}}</td>
                       <td>{{item.dir_Head_Name}}</td>
                       <td>{{item.dir_Mobile_No}}</td>
-
+                      <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mou',refid:item.refid}">View</a></td>
+                      <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+                      <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(item)" class="stretched-link">View</a></td>
+                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
                       <td>
                         <button value="back" *ngIf="activearray?.back && permissionbutton1 " title="{{activearray?.backtitle}}" class="btn btn-info" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
                         <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
                         <button value="approve" *ngIf="activearray?.approved && permissionbutton2" title="{{activearray?.approvetitle}}" approvetitle class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 
                       </td>
-                      <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tto',refid:item.refid}">View</a></td>
-
+                   
                     </tr>
                   </tbody>
                 </table>
@@ -168,7 +173,8 @@
           <div class="form-group row">
             <div class="col-sm-12">
               <label class="col-form-label">Upload</label>
-              <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
+              <input type="file"  accept="*" class="form-control" (change)="fileChangeEvent($event)" />
+              <span class="text-danger float-right">*For multiple files, please compress and upload.</span>
 
 
             </div>
@@ -196,5 +202,6 @@
     </div>
   </div>
 </div>
+<app-addition-file></app-addition-file>
 
 

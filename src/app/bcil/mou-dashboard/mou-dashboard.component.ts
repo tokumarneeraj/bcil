@@ -93,6 +93,7 @@ activeusermou:activeusermou[];
 return this.commondata.moustatus().find(x=>x.value==data)?.tabelname;
   }
   moulistfilter(data) {
+   
     if(this.isSuperAdmin){
       return this.mouModel?.filter(x=>x.app_Status==data || x.tto_approved==data).length;
     }

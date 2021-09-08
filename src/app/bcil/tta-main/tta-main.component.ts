@@ -13,6 +13,7 @@ import {commondata} from '../../model/common'
 import { error } from 'jquery';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { AlertService, DialogType } from 'src/app/services/alert.service';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-tta-main',
@@ -27,6 +28,7 @@ export class TtaMainComponent implements OnInit {
   showpage = false;
   loading=false;
   type: string;
+  selected:string;
   customrem:boolean;
   closeResult = '';
   ForwardForm: FormGroup;
@@ -42,6 +44,8 @@ export class TtaMainComponent implements OnInit {
   usertype: string;
   UserName: string;
   showClientPage = false;
+  users: User[] = [];
+  rows: User[] = [];
   @ViewChild('editorModal2', { static: true })
   editorModal2: ModalDirective;
 
@@ -63,7 +67,7 @@ commondata=new commondata();
   array=this.commondata.ttaarray();
   activeusermou: activeusermou[];
   activearray = this.array[0];
-
+  activuser:activeusermou[];
 addusertomou=new addusertomou();
 viewhistory:boolean;
 viewremark:boolean;
@@ -88,10 +92,28 @@ this.isScientist=this.userRoles.includes('Scientist');
 this.viewadditionalfileright=this.commondata.CanviewadditionalfilesPermission;
     this.route.queryParams.subscribe((params) => {
       this.createdBy = this.UserId;
-
+      this.activearray = this.commondata.ttaarray().find(x => x.name == params.type);
       this.type = this.array.find(x => x.name == params.type).value;
       this.formHeader = this.array.find(x => x.name == params.type).formHeader;
 this.tablename=this.array.find(x => x.name == params.type).tablename;
+if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==true){
+  // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+ 
+  this.accountService.getAllUser(0,0).subscribe(data=>{
+    this.rows=data.filter((x)=>x.roles.includes('BDM'));
+  })
+
+ }
+//  if(this.commondata.ttaarray().find(x => x.name  == params.type)?.lmassigned==true){
+//    // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+
+//    this.accountService.getAllUser(0,0).subscribe(data=>{
+//      this.rows=data.filter((x)=>x.roles.includes('LM'));
+//      console.log(this.rows,'uu')
+//    })
+
+//   }
+
     })
 
 
@@ -135,7 +157,8 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
       subject: ['', Validators.required],
       remarks: [''],
       remindertype:['default',Validators.required],
-      type: ['']
+      type: [''],
+      assigntobdo:['']
     });
   }
 
@@ -156,14 +179,22 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
     this.UploadFileViewModel.app_ref_id = data.refid;
     this.mouref=data.refid;
     this.UploadFileViewModel.app_Status = status;
-    this.editorModal2.show();
 
+    this.editorModal2.show();
+this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
+    this.activuser=data1;
+    this.selected=this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid;
+    //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
+   //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
+    //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
+              });
   }
 
   ClientfileChangeEvent(event) {
     if (event.target.files && event.target.files[0]) {
       const fileUpload = event.target.files[0];
       const filee = fileUpload.files;
+      if( fileUpload.size<=30*1024*1024){
       this.UploadFileViewModel.fileFullName = fileUpload.name;
 
       const sFileExtension = fileUpload.name
@@ -178,6 +209,13 @@ this.tablename=this.array.find(x => x.name == params.type).tablename;
 
         this.UploadFileViewModel.file64 = contentType;
       });
+    }
+    
+      else{
+        this.ForwardForm.get('files').setValue("");
+        alert("File Size Should be less than 30 MB")
+      
+    }
     }
   }
   reminderchange(data){
@@ -242,6 +280,10 @@ this.ngOnInit();
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
     this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
+    if(this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
+{
+    this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
+}
     this.UploadFileViewModel.createdBy = this.createdBy;
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
 

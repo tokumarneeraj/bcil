@@ -175,7 +175,7 @@
         </p>
       </div>
       <div *ngIf="isEditMode && canAssignRoles" [ngClass]="{'is-valid': f.submitted && roles.valid, 'is-invalid' : f.submitted && !roles.valid}" [class.col-lg-9]="isViewOnly" [class.col-lg-10]="!isViewOnly">
-        <ng-select id="roles-user-info" name="roles" [items]="allRoles" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
+        <ng-select size="1" id="roles-user-info" name="roles" (change)="selectedroles($event)" [items]="allRoles" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
                    placeholder="Select Roles" [(ngModel)]="userEdit.roles" #roles="ngModel" class="form-control left-status pill-items" required>
           <ng-template ng-label-tmp let-item="item" let-clear="clear">
             <span title='{{item.description}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>

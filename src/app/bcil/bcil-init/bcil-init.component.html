@@ -254,7 +254,7 @@
                                                   <td>{{item.dept_Name}}</td>
                                                   <td>{{item.phoneNo}}</td>
                                                   <td>{{item.dir_Head_Name}}</td>
-                                                  <td>{{item.dir_Mobile_No}} <span  class="badge badge-info" *ngIf="(isScientist==true || isNodal==true) && (item.app_Status=='S101'||item.app_Status=='S102'||item.app_Status=='S103'||item.app_Status=='S104')">Under Process</span></td>
+                                                  <td>{{item.dir_Mobile_No}} <span  class="badge badge-info" *ngIf="(isScientist==true || isNodal==true) && (item.app_Status=='S101'||item.app_Status=='S102'||item.app_Status=='S103'||item.app_Status=='S104')">Document in process</span></td>
                                                       <!-- <td *ngIf="(app_status=='S101'||item.app_status=='S102'||item.app_status=='S103'||item.app_status=='S104')?showitem=true:showitem=false">Under Process</td>
                                                       --> <td> 
                                                     <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
@@ -345,6 +345,20 @@
 
                   </div>
                 </div>
+                <div class="form-group row" *ngIf="activearray?.bdoassigned">
+                    <div class="col-sm-12">
+                      <label class="col-form-label">BDM</label>
+                      <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selected">
+                        <option *ngFor="let user of rows" value="{{user.id}}">{{user.fullName}}</option>
+                        <!-- <option value="MOU">MOU</option>
+                        <option value="NDA">NDA</option>
+                        <option value="Work Order">Work Order</option>
+                        <option value="Others">Others</option> -->
+                      </select>
+  
+  
+                    </div>
+                  </div>
                 <div class="form-group row">
                   <div class="col-sm-12">
                     <label class="col-form-label">Remarks</label>
