@@ -47,7 +47,7 @@
                       <input type="hidden" name="files" formControlName="files" /> 
                       <p *ngIf="submitted && f.files.errors" class="invalid-feedback">File is required</p>
                              
-  <span class="text-danger float-right">*For multiple files, please compress and upload.</span>
+  <span class="text-danger float-right">*For multiple files, please compress and upload.(zip format)</span>
   
                     
                     </div>
@@ -109,7 +109,7 @@
                             <td>{{item.fileaccess}}</td>
                             <td>{{item.createdby}}</td>
                             <td>{{item.createdondate }}</td>
-                            <td>{{item.remarks}}</td>
+                            <td><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
                             <td> <a *ngIf="deletefileright" (click)="deletefile(item.refid)"><i class="fa fa-trash fa-lg"></i></a></td>
                           </tr>
                           <!-- <tr _ngcontent-xgw-c72=""><td _ngcontent-xgw-c72="" scope="row">1</td><td _ngcontent-xgw-c72=""><a _ngcontent-xgw-c72="" target="_blank" href="http://43.224.139.121/">test2.pdf</a></td><td>Internal</td><td _ngcontent-xgw-c72="">adminuser1(Admin)</td><td _ngcontent-xgw-c72="">02-SEP-2021 03:07:16 PM</td><td _ngcontent-xgw-c72=""></td><td> <a ><i class="fa fa-trash fa-lg"></i></a></td></tr>

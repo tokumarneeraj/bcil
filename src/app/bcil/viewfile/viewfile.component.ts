@@ -4,6 +4,7 @@ import { commondata } from 'src/app/model/common';
 import { filehistoryModel } from 'src/app/model/filehistory';
 import { User } from 'src/app/model/user.model';
 import { AccountService } from 'src/app/services/account.service';
+import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -30,11 +31,14 @@ export class ViewfileComponent implements OnInit {
     userRoles: string[];
     isBDM: boolean;
   getbaseurl=environment.baseUrl;
-  constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice, private accountService: AccountService) { 
+  constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice, private accountService: AccountService,private alertService: AlertService) { 
     this.userRoles = this.accountService.currentUser.roles;
     this.isBDM = this.userRoles.includes('BDM');
   }
+  remarksview(data:any){
+    this.alertService.showDialog(data,DialogType.alert);
 
+  }
   ngOnInit(): void {
     this.route.queryParams.subscribe((params)=>{
      

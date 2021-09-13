@@ -131,11 +131,14 @@ fileaccess:['Internal',Validators.required],
     this.UploadFileViewModel.app_ref_id=data.refid;
     this.editorModal1.show();
   }
-  
+  remarksview(data:any){
+    this.alertService.showDialog(data,DialogType.alert);
+
+  }
   showviewmodel(data:mouModel,show:boolean,stage:any){
     this.moudetails=data;
     this.stage=stage;
-    this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
+    this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetAdditionalfile(data.refid).subscribe(data=>{
       this.fileHistory=data.filter(x=>x.stage==stage).map((item)=>({...item,createdby:this.activeusermou.find(x=>x.userid==item.createdby).username}));
@@ -166,7 +169,7 @@ if(show==true){
     this.Bdoservice.Addadditionalfile(this.UploadFileViewModel).subscribe((data) => {
       this.loading=false;
       if(data.message=="success"){
-            alert("Additional files Successfully")
+            alert("Additional files Added Successfully")
       }
       else{
         alert(data.reason)

@@ -39,6 +39,7 @@ export class NttsaMainComponent implements OnInit {
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
   usertype: string;
+  loading:boolean=false;
   UserName: string;
   showClientPage = false;
   @ViewChild(AdditionFileComponent)
@@ -270,12 +271,18 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
-    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
-      alert("Application Forward Successfully")
+    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
+      this.loading=false;
+      this.submitted=false;
+      if(data.message=="success"){
+        alert("Submitted Successfully")
+     // alert("Application Forward Successfully")
       this.editorModal1.hide();
       this.router.navigateByUrl('bcil/nttsa-dashboard')
-
+      }
+      else{
+        alert(data.reason)
+      }
     })
 
 

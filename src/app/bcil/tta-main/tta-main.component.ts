@@ -280,18 +280,24 @@ this.ngOnInit();
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
     this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
-    if(this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
+    if(this.activuser?.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
 {
     this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
 }
     this.UploadFileViewModel.createdBy = this.createdBy;
-    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
+    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
+       this.loading=false;
+       this.submitted=false;
+if(data.message=="success"){
       alert("Submitted Successfully")
-      this.loading=false;
+     
       this.editorModal2.hide();
       //this.ngOnInit();
       this.router.navigateByUrl('bcil/tta-dashboard')
+}
+      else{
+        alert(data.reason)
+      }
     })
   }
   //for client end

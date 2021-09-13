@@ -6,6 +6,7 @@ export class UploadFileViewModel {
   public subject: string;
   public stage: string;
   public file64: any;
+  
   public fileFullName: string;
   public remarks: string;
   public app_Status: string;

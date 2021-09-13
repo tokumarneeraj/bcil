@@ -416,8 +416,8 @@ b, strong {
 /**  =====================
       Modal css start
 ==========================  **/
-.modal {
-  z-index: 99999999999; }
+/* .modal {
+  z-index: 99999999999; } */
 
 .bd-example .modal {
   display: block;

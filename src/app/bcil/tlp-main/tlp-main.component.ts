@@ -224,11 +224,18 @@ this.loading=true;
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
-    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
+    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
 this.loading=false;
-      alert("Application Forward Successfully")
+this.submitted=false;
+if(data.message=="success"){
+  alert("Submitted Successfully")
+   
       this.editorModal1.hide();
       this.router.navigateByUrl('bcil/tlp-dashboard')
+}
+else{
+  alert(data.reason);
+}
 
     })
 

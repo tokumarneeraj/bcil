@@ -66,7 +66,7 @@
                                                             <td><a href="{{getbaseurl}}/{{item.url}}" target="_blank">{{item.filename==''?'Not Available':item.filename}}</a></td>
                                                             <td>{{item.createdby}}</td>
                                                             <td>{{item.createdondate }}</td>
-                                                            <td>{{item.remarks}}</td>
+                                                            <td><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
                                                             
                                                      </tr>
                                                     </tbody>

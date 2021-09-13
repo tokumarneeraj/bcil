@@ -40,6 +40,7 @@ export class TstlMainComponent implements OnInit {
   AdditionFile: AdditionFileComponent;
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
+  loading:boolean=false;
   usertype: string;
   UserName: string;
   showClientPage = false;
@@ -243,7 +244,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
   uploadFile() {
 
     this.submitted = true;
-
+this.loading=true;
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
@@ -251,11 +252,18 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
-    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
-      alert("Application Forward Successfully")
+    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
+      this.loading=false;
+      this.submitted=false;
+      if(data.message=="success"){
+        alert("Submitted Successfully")
+      //alert("Application Forward Successfully")
       this.editorModal1.hide();
       this.router.navigateByUrl('bcil/tstl-dashboard')
+      }
+      else{
+        alert(data.reason);
+      }
 
     })
 
