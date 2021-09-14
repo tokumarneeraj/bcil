@@ -174,6 +174,35 @@
                   </div>
               </div>
                 <!-- task, page, download counter  start -->
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_Additional_info_neededPermission">
+                  <a href="#">
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-blue">{{cardname('S401')}}</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S401')}}</h6>
+                          </div>
+                          <!-- <div class="col-4 text-right">
+                <i class="fa fa-bar-chart f-28"></i>
+            </div> -->
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_additional_info_needed'}">
+                        <div class="card-footer bg-c-blue">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </a>
+                </div>
                 <div class="col-xl-3 col-md-6" *ngIf="canviewTta_upload_assign_tech_disclosure_formPermission">
                   <a href="#">
                     <div class="card">
@@ -395,6 +424,60 @@
                     </div>
                   </a>
                 </div>
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_strategy_approvedPermission">
+                
+                    <div class="card">
+                      <div class="card-block">
+                        <div class="row align-items-top">
+                          <div class="col-12">
+                            <h4 class="text-c-dark-orange">{{cardname('S402')}}</h4>
+                            <h6 class="text-muted m-b-0">{{clientMouListFilter('S402')}}</h6>
+                          </div>
+
+                        </div>
+                      </div>
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_strategy_approved'}">
+                        <div class="card-footer bg-c-dark-orange">
+                          <div class="row align-items-center">
+                            <div class="col-9">
+                              <p class="text-white m-b-0">View</p>
+                            </div>
+                            <div class="col-3 text-right">
+                              <i class="fa fa-arrow-right text-white f-16"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  
+                </div>
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_techb_flyer_uploadedPermission">
+                
+                  <div class="card">
+                    <div class="card-block">
+                      <div class="row align-items-top">
+                        <div class="col-12">
+                          <h4 class="text-c-dark-orange">{{cardname('S403')}}</h4>
+                          <h6 class="text-muted m-b-0">{{clientMouListFilter('S403')}}</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                    <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_techb_flyer_uploaded'}">
+                      <div class="card-footer bg-c-dark-orange">
+                        <div class="row align-items-center">
+                          <div class="col-9">
+                            <p class="text-white m-b-0">View</p>
+                          </div>
+                          <div class="col-3 text-right">
+                            <i class="fa fa-arrow-right text-white f-16"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                
+              </div>
 
                 <div class="col-xl-3 col-md-6" *ngIf="canviewTta_closePermission">
                   <a href="#">
@@ -539,7 +622,7 @@
 
 
                 <div class="col-xl-3 col-md-6" *ngIf="canviewtta_strategy_change_request_by_adminPermission">
-                  <a href="#">
+                
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -563,8 +646,35 @@
                         </div>
                       </a>
                     </div>
-                  </a>
+                 
                 </div>
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_techb_and_flier_change_req_by_adminPermission">
+                
+                  <div class="card">
+                    <div class="card-block">
+                      <div class="row align-items-top">
+                        <div class="col-12">
+                          <h4 class="text-c-dark-blue">{{cardname('S407')}}</h4>
+                          <h6 class="text-muted m-b-0">{{clientMouListFilter('S407')}}</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                    <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_techb_and_flier_change_request_by_admin'}">
+                      <div class="card-footer bg-c-dark-blue">
+                        <div class="row align-items-center">
+                          <div class="col-9">
+                            <p class="text-white m-b-0">View</p>
+                          </div>
+                          <div class="col-3 text-right">
+                            <i class="fa fa-arrow-right text-white f-16"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+               
+              </div>
 
                 <div class="col-xl-3 col-md-6" *ngIf="canviewTta_techb_and_flier_approved_by_adminPermission">
                   <a href="#">
@@ -635,7 +745,7 @@
 
                         </div>
                       </div>
-                      <a routerLink='bcil-tta-table' [queryParams]="{type:'tta_change_req_by_scientist'}">
+                      <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_change_req_by_scientist'}">
                         <div class="card-footer bg-c-blue">
                           <div class="row align-items-center">
                             <div class="col-9">
@@ -708,7 +818,7 @@
                   </a>
                 </div>
                 <div class="col-xl-3 col-md-6" *ngIf="canviewTta_no_interest_receivedPermission">
-                  <a href="#">
+                 
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
@@ -732,8 +842,89 @@
                         </div>
                       </a>
                     </div>
+                  
+                </div>
+                <div class="col-xl-3 col-md-6" *ngIf="canviewTta_strategy_update_request_by_adminPermission">
+                 
+                  <div class="card">
+                    <div class="card-block">
+                      <div class="row align-items-top">
+                        <div class="col-12">
+                          <h4 class="text-c-blue">{{cardname('S404')}}</h4>
+                          <h6 class="text-muted m-b-0">{{clientMouListFilter('S404')}}</h6>
+                        </div>
+
+                      </div>
+                    </div>
+                    <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_strategy_update_req_by_admin'}">
+                      <div class="card-footer bg-c-blue">
+                        <div class="row align-items-center">
+                          <div class="col-9">
+                            <p class="text-white m-b-0">View</p>
+                          </div>
+                          <div class="col-3 text-right">
+                            <i class="fa fa-arrow-right text-white f-16"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                
+              </div>
+              <div class="col-xl-3 col-md-6" *ngIf="canviewTta_strategy_update_uploadedPermission">
+                 
+                <div class="card">
+                  <div class="card-block">
+                    <div class="row align-items-top">
+                      <div class="col-12">
+                        <h4 class="text-c-blue">{{cardname('S405')}}</h4>
+                        <h6 class="text-muted m-b-0">{{clientMouListFilter('S405')}}</h6>
+                      </div>
+
+                    </div>
+                  </div>
+                  <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_strategy_update_uploaded'}">
+                    <div class="card-footer bg-c-blue">
+                      <div class="row align-items-center">
+                        <div class="col-9">
+                          <p class="text-white m-b-0">View</p>
+                        </div>
+                        <div class="col-3 text-right">
+                          <i class="fa fa-arrow-right text-white f-16"></i>
+                        </div>
+                      </div>
+                    </div>
                   </a>
                 </div>
+              
+            </div>
+            <div class="col-xl-3 col-md-6" *ngIf="canviewTta_strategy_update_approvedPermission">
+                 
+              <div class="card">
+                <div class="card-block">
+                  <div class="row align-items-top">
+                    <div class="col-12">
+                      <h4 class="text-c-blue">{{cardname('S406')}}</h4>
+                      <h6 class="text-muted m-b-0">{{clientMouListFilter('S406')}}</h6>
+                    </div>
+
+                  </div>
+                </div>
+                <a routerLink='../bcil-tta-table' [queryParams]="{type:'tta_strategy_update_approved'}">
+                  <div class="card-footer bg-c-blue">
+                    <div class="row align-items-center">
+                      <div class="col-9">
+                        <p class="text-white m-b-0">View</p>
+                      </div>
+                      <div class="col-3 text-right">
+                        <i class="fa fa-arrow-right text-white f-16"></i>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            
+          </div>
 
                 <div class="col-xl-3 col-md-6" *ngIf="userpertlp.length==0?false:true">
                   <a routerLink="../tlp-dashboard">

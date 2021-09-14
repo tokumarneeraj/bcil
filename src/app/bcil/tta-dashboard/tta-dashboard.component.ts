@@ -77,6 +77,9 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
       get canviewTta_upload_assign_tech_disclosure_formPermission() {
         return this.accountService.userHasPermission(Permission.viewTta_upload_assign_tech_disclosure_formPermission);
       }
+      get canviewTta_Additional_info_neededPermission() {
+        return this.accountService.userHasPermission(Permission.viewTta_Additional_info_neededPermission);
+      }
   get canviewTta_initPermission() {
     return this.accountService.userHasPermission(Permission.viewTta_initPermission);
   }
@@ -115,8 +118,19 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
   get canviewTta_strategy_uploaded_by_bdmPermission() {
     return this.accountService.userHasPermission(Permission.viewTta_strategy_uploaded_by_bdmPermission);
   }
+  get canviewTta_strategy_approvedPermission() {
+    return this.accountService.userHasPermission(Permission.viewTta_strategy_approvedPermission);
+  }
+  get canviewTta_techb_flyer_uploadedPermission() {
+    return this.accountService.userHasPermission(Permission.viewTta_techb_flyer_uploadedPermission);
+  }
+
+
   get canviewtta_strategy_change_request_by_adminPermission() {
     return this.accountService.userHasPermission(Permission.viewtta_strategy_change_request_by_adminPermission);
+  }
+  get canviewTta_techb_and_flier_change_req_by_adminPermission() {
+    return this.accountService.userHasPermission(Permission.viewTta_techb_and_flier_change_req_by_adminPermission);
   }
   get canviewTta_techb_and_flier_approved_by_adminPermission() {
     return this.accountService.userHasPermission(Permission.viewTta_techb_and_flier_approved_by_adminPermission);
@@ -136,6 +150,18 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
   get canviewTta_no_interest_receivedPermission() {
     return this.accountService.userHasPermission(Permission.viewTta_no_interest_receivedPermission);
   }
+
+  get canviewTta_strategy_update_request_by_adminPermission() {
+    return this.accountService.userHasPermission(Permission.viewTta_strategy_update_request_by_adminPermission);
+  }
+  get canviewTta_strategy_update_uploadedPermission() {
+    return this.accountService.userHasPermission(Permission.viewTta_strategy_update_uploadedPermission);
+  }
+
+  get canviewTta_strategy_update_approvedPermission() {
+    return this.accountService.userHasPermission(Permission.viewTta_strategy_update_approvedPermission);
+  }
+
   
   
   get canViewTlp() {

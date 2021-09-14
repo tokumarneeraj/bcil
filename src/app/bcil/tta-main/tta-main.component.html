@@ -91,13 +91,16 @@
                       <td>
                         <button class="btn btn-info" *ngIf='item.app_Status === "S108" && !item.assigntoscientist' (click)="assignscientist(item)">Assign Scientist</button>
                         <button class="btn btn-info" title="Forward to Admin" *ngIf='item.app_Status === "S108" && item.assigntoscientist' (click)="onClientClick(item,'S113')">Upload</button>
+                        <button class="btn btn-info" title="Forward to No/Scientist" *ngIf='isAdmin && item.app_Status === "S113"' (click)="onClientClick(item,'S401')">Additional Info Needed</button>
+                      
                         <button value="assign" title="Forward to BDM" *ngIf='isAdmin && item.app_Status==="S113"' class="btn btn-success" (click)="onClientClick(item,'S114')">Assign</button>
                         <button class="btn btn-info" title="Forward to Admin" *ngIf='isBdm  && item.app_Status === "S114"' (click)="onClientClick(item,'S115')">Upload</button>
+                        <button class="btn btn-info" title="Forward to Admin" *ngIf='(isScientist ||isNodal)  && item.app_Status === "S401"' (click)="onClientClick(item,'S113')">Upload Additional info</button>
 
                         <button value="assign" *ngIf='isAdmin && item.app_Status==="S115"' class="btn btn-danger" (click)="onClientClick(item,'S116')">Close</button>
 
                         <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S118"' (click)="onClientClick(item,'S115')">Upload</button>
-                        <button class="btn btn-info" *ngIf='isBdm && item.app_Status === "S116"' (click)="onClientClick(item,'S119')">Closure Report </button>
+                        <button class="btn btn-info" title="Forward to Admin" *ngIf='isBdm && item.app_Status === "S116"' (click)="onClientClick(item,'S119')">Closure Report </button>
                         <button value="assign"  *ngIf='isAdmin && item.app_Status==="S119"' class="btn btn-danger" (click)="onClientClick(item,'S120')">Close</button>
 
 
@@ -106,19 +109,32 @@
                         <button value="assign" title="Forward to BDM" *ngIf='isAdmin && item.app_Status==="S122"' class="btn btn-info" (click)="onClientClick(item,'S123')">Assign</button>
                         <button class="btn btn-info" title="Forward to Admin" *ngIf='isBdm && item.app_Status === "S123"' (click)="onClientClick(item,'S124')">Upload</button>
 
-                        <button value="assign" *ngIf='isAdmin && item.app_Status==="S124"' class="btn btn-success" (click)="onClientClick(item,'S126')">Approve</button>
+                        <button value="assign" *ngIf='isAdmin && item.app_Status==="S124"' class="btn btn-success" (click)="onClientClick(item,'S402')">Approve</button>
+
+                        <button value="assign" *ngIf='isBdm && item.app_Status==="S402"' class="btn btn-success" (click)="onClientClick(item,'S403')">Upload</button>
+
+                        <button value="assign" title="Forword to Bdm" *ngIf='isAdmin && item.app_Status==="S403"' class="btn btn-info" (click)="onClientClick(item,'S407')">Change Request</button>
+                        <button value="assign" title="Forword to Admin" *ngIf='isBdm && item.app_Status==="S407"' class="btn btn-info" (click)="onClientClick(item,'S403')">Upload</button>
+
+                        <button value="assign" title="Forword to Nodal/Scientist" *ngIf='isAdmin && item.app_Status==="S403"' class="btn btn-success" (click)="onClientClick(item,'S126')">Approve</button>
 
                         <button value="assign" *ngIf='isBdm && item.app_Status==="S125"' class="btn btn-info" (click)="onClientClick(item,'S124')">Update</button>
 
                         <button value="assign" *ngIf='isScientist && item.app_Status==="S126"' class="btn btn-success" (click)="onClientClick(item,'S127')">Approve</button>
+                        <button value="assign" *ngIf='isScientist && item.app_Status==="S126"' class="btn btn-info" (click)="onClientClick(item,'S128')">Change Request</button>
 
-                        <button value="assign" *ngIf='isAdmin && item.app_Status==="S128"' class="btn btn-success" (click)="onClientClick(item,'S125')">Forward</button>
+                        <button value="assign" *ngIf='isAdmin && item.app_Status==="S128"' class="btn btn-success" (click)="onClientClick(item,'S407')">Change Request</button>
+                        <button value="assign" *ngIf='isAdmin && item.app_Status==="S128"' class="btn btn-danger" (click)="onClientClick(item,'S126')">Reject</button>
 
                         <button value="assign" *ngIf='isBdm && item.app_Status==="S127"' class="btn btn-success" (click)="onClientClick(item,'S129')">Submit</button>
 
                         <button value="assign" *ngIf='isBdm && item.app_Status==="S129"' class="btn btn-success" (click)="onClientClick(item,'S130')">Submit</button>
 
-                        <button value="assign" title="Forward To Admin" *ngIf='isAdmin && item.app_Status==="S131"' class="btn btn-success" (click)="onClientClick(item,'S125')">Forward</button>
+                        <button value="assign" title="Forward To Admin" *ngIf='isAdmin && item.app_Status==="S131"' class="btn btn-success" (click)="onClientClick(item,'S404')">Forward</button>
+                        <button value="assign" title="Forward To Admin" *ngIf='isAdmin && item.app_Status==="S131"' class="btn btn-danger" (click)="onClientClick(item,'S116')">Close</button>
+                        <button value="assign"  title="Forward To Admin" *ngIf='isBdm && item.app_Status==="S404"' class="btn btn-success" (click)="onClientClick(item,'S405')">Upload</button>
+                        <button value="assign"  title="Forward To Bdm" *ngIf='isAdmin && item.app_Status==="S405"' class="btn btn-success" (click)="onClientClick(item,'S406')">Upload</button>
+                        <button value="assign"  title="Forward To Admin" *ngIf='isBdm && item.app_Status==="S406"' class="btn btn-success" (click)="onClientClick(item,'S129')">Upload</button>
 
                       </td>
 
@@ -184,11 +200,11 @@
 
             </div>
           </div>
-          <div class="form-group row" *ngIf="activearray?.bdoassigned">
+          <div class="form-group row" *ngIf="activearray?.bdoassigned && showextrafield">
             <div class="col-sm-12">
               <label class="col-form-label">BDM</label>
               <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selected">
-                <option *ngFor="let user of rows" value="{{user.id}}">{{user.fullName}}</option>
+                <option *ngFor="let user of rows" value="{{user.id}}">{{user.userName}}</option>
                 <!-- <option value="MOU">MOU</option>
                 <option value="NDA">NDA</option>
                 <option value="Work Order">Work Order</option>
@@ -198,7 +214,7 @@
 
             </div>
           </div>
-          <div class="form-group row"  *ngIf="type=='S113'">
+          <div class="form-group row"  *ngIf="type=='S113' && showextrafield">
             <div class="col-sm-6"> 
                 <label class="col-form-label">Default Reminder</label>
                 <input type="radio" class="form-control" name="remindertype" value="default"  formControlName="remindertype" (change)="reminderchange('default')"/>
@@ -210,7 +226,7 @@
                        
                               </div>
                             </div>
-                             <div class="form-group row"  *ngIf="type=='S113'">
+                             <div class="form-group row"  *ngIf="type=='S113' && showextrafield">
                                 <app-reminder *ngIf="customrem" [customrem]="customrem" [mouref]="mouref" [type]="type" style="width:100%"></app-reminder>
                              </div>
             

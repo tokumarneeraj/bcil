@@ -213,11 +213,13 @@ get CanviewTLP_nda_executed_forword2button_permission() {
  }
 
  public ttaarray(){ return [
+  {stage:'tta', tablename:'TTA Addition Info Needed', name: 'tta_additional_info_needed', value: 'S401', formHeader: 'Upload Additonal Info',permission:"tta_additional_info_needed.view" },
+ 
   {stage:'tta', tablename:'Upload Assignment/Tech. disclosure form', name: 'ViewMouAll', value: 'S108', formHeader: 'Assignment and Tech. Disclosure Form',permission:"tta_upload_assign_tech_disclosure_form.view" },
-  {stage:'tta', tablename:'TTA Initiation',name: 'tta_init', value: 'S113', formHeader: 'Assign to BDM',permission:"tta_init.view",bdoassigned:true },
+  {stage:'tta', tablename:'TTA Initiation',name: 'tta_init', value: 'S113', formHeader: 'Assign to BDM',permission:"tta_init.view",bdoassigned:true,extrafiled:true },
   {stage:'tta', tablename:'TTA Evaluation Assigned',name: 'tta_evaluation_assigned', value: 'S114', formHeader: 'Upload Evaluation Report',permission:"tta_evaluation_assigned.view" },
   {stage:'tta', tablename:'TTA Evaluation Uploaded by BDM',name: 'tta_evaluation_uploaded_by_bdm', value: 'S115', formHeader: 'Application Forward',permission:"tta_evaluation_upload_by_bdm.view" },
-  {stage:'tta', tablename:'TTA Evaluation Closure by Admin',name: 'tta_evaluation_closure_by_admin', value: 'S116', formHeader: 'Close TTA',permission:"tta_evaluation_closure_by_admin.view" },
+  {stage:'tta', tablename:'TTA Closure',name: 'tta_evaluation_closure_by_admin', value: 'S116', formHeader: 'Close TTA',permission:"tta_evaluation_closure_by_admin.view" },
   {stage:'tta', tablename:'TTA Evaluation Approved by Admin',name: 'tta_evaluation_approved_by_admin', value: 'S117', formHeader: 'Application Forward' ,permission:"tta_evaluation_approved_by_admin.view"},
   {stage:'tta', tablename:'TTA Evaluation Change Request by Admin',name: 'tta_evaluation_change_req_by_admin', value: 'S118', formHeader: 'Upload Evaluation Report ',permission:"tta_evaluation_change_request_by_admin.view" },
   {stage:'tta', tablename:'TTA Closure Requested by BDM',name: 'tta_closure_requested_by_bdm', value: 'S119', formHeader: 'Closure Request' ,permission:"tta_closure_request_by_bdm.view"},
@@ -226,13 +228,22 @@ get CanviewTLP_nda_executed_forword2button_permission() {
   {stage:'tta', tablename:'TTA Evaluation Accepted by Client',name: 'tta_evaluation_accepted_by_client', value: 'S122', formHeader: 'Application Forward' ,permission:"tta_evaluation_accepted_by_client.view",bdoassigned:true},
   {stage:'tta', tablename:'TTA Strategy Assigned',name: 'tta_strategy_assigned', value: 'S123', formHeader: 'Application Forward',permission:"tta_strategy_assigned.view" },
   {stage:'tta', tablename:'TTA Strategy Uploaded by BDM',name: 'tta_strategy_uploaded_by_bdm', value: 'S124', formHeader: 'Application Forward',permission:"tta_strategy_uploaded_by_bdm.view" },
+  {stage:'tta', tablename:'TTA Strategy Approved',name: 'tta_strategy_approved', value: 'S402', formHeader: 'Application Forward',permission:"tta_strategy_approved.view" },
+  {stage:'tta', tablename:'TTA Tech Brief And Flyer Uploaded',name: 'tta_techb_flyer_uploaded', value: 'S403', formHeader: 'Application Forward',permission:"tta_techb_flyer_uploaded.view" },
+ 
   {stage:'tta', tablename:'TTA Strategy Change Request by Admin',name: 'tta_strategy_change_req_by_admin', value: 'S125', formHeader: 'Update Strategy',permission:"tta_strategy_change_request_by_admin.view" },
+  
+  {stage:'tta', tablename:'TTA Tech Brief And Flyer change Request by Admin',name: 'tta_techb_and_flier_change_request_by_admin', value: 'S407', formHeader: 'Application Forward',permission:"tta_techb_and_flier_change_request_by_admin.view" },
+  
   {stage:'tta', tablename:'TTA Tech Brief And Flyer Approved by Admin',name: 'tta_techb_and_flier_approved_by_admin', value: 'S126', formHeader: 'Application Forward',permission:"tta_techb_and_flier_approved_by_admin.view" },
   {stage:'tta', tablename:'TTA Tech Brief And Flyer Approved by Scientist',name: 'tta_techb_and_flier_approved_by_scientist', value: 'S127', formHeader: 'Application Forward',permission:"tta_techb_and_flier_approved_by_scientist.view" },
   {stage:'tta', tablename:'TTA Change Request by Scientist',name: 'tta_change_req_by_scientist', value: 'S128', formHeader: 'Application Forward',permission:"tta_change_req_by_scientist.view" },
   {stage:'tta', tablename:'Strategy Implemented',name: 'strategy_implemented', value: 'S129', formHeader: 'Application Forward',permission:"strategy_implemented.view" },
   {stage:'tta', tablename:'TTA Interest Received',name: 'tta_interest_received', value: 'S130', formHeader: 'Application Forward',permission:"tta_interest_received.view" },
   {stage:'tta', tablename:'No Interest Received',name: 'tta_no_interest_received', value: 'S131', formHeader: 'Application Forward',permission:"" },
+  {stage:'tta', tablename:'TTA Strategy Update Request by Admin',name: 'tta_strategy_update_req_by_admin', value: 'S404', formHeader: 'Application Forward',permission:"tta_strategy_update_request_by_admin.view" },
+  {stage:'tta', tablename:'TTA Strategy Update Uploaded',name: 'tta_strategy_update_uploaded', value: 'S405', formHeader: 'Application Forward',permission:"tta_strategy_update_uploaded.view" },
+  {stage:'tta', tablename:'TTA Strategy Update Approved',name: 'tta_strategy_update_approved', value: 'S406', formHeader: 'Application Forward',permission:"tta_strategy_update_approved.view" },
 
 
 //{stage:'tlp',tabelname: "Enter Lead", name: 'enter_lead', value: 'S130', forwordtitle: "Enter Lead", forward: "S132", forwardCheck: true, type: false, forwardText: 'Enter Lead', approvedvalue: '', backStatus: '', permissionforword: new commondata().CanviewTLP_EnterLead_forwordbutton_permission},

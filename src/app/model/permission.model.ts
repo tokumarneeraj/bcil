@@ -16,14 +16,14 @@ export type PermissionValues =
   'mou_init.view' | 'mou_pending.view' | 'mou_proposed_by_admin_client.view' | 'mou_change_req_by_admin.view' | 'mou_change_by_client.view' |
   'mou_change_by_client_forword_button.view'| 'mou_proposed_by_lm.view' | 'mou_accepted_by_client.view' |
   'agreementsigned.view' | 'bdoassigned.view' | 'tto_req_approved.view' | 'ip_manager_assigned.view' |
-  'technologytransfer.view' |'tta_upload_assign_tech_disclosure_form.view'| 'tta_init.view' | 'tta_evaluation_assigned.view' | 'tta_evaluation_upload_by_bdm.view' |
+  'technologytransfer.view' |'tta_additional_info_needed.view'|'tta_upload_assign_tech_disclosure_form.view'| 'tta_init.view' | 'tta_evaluation_assigned.view' | 'tta_evaluation_upload_by_bdm.view' |
   'tta_evaluation_closure_by_admin.view' | 'tta_evaluation_approved_by_admin.view' |
   'tta_evaluation_change_request_by_admin.view' | 'tta_closure_request_by_bdm.view' |
   'tta_close.view' | 'tta_evaluation_change_request_by_client.view' | 'tta_evaluation_accepted_by_client.view' |
-  'tta_strategy_assigned.view' | 'tta_strategy_uploaded_by_bdm.view' | 'tta_strategy_change_request_by_admin.view' |
-  'tta_techb_and_flier_approved_by_admin.view' | 'tta_techb_and_flier_approved_by_scientist.view' | 'tta_change_req_by_scientist.view' |
+  'tta_strategy_assigned.view' | 'tta_strategy_uploaded_by_bdm.view'|'tta_strategy_approved.view'|'tta_techb_flyer_uploaded.view' | 'tta_strategy_change_request_by_admin.view' |
+  'tta_techb_and_flier_change_request_by_admin.view'|'tta_techb_and_flier_approved_by_admin.view' | 'tta_techb_and_flier_approved_by_scientist.view' | 'tta_change_req_by_scientist.view' |
   'strategy_implemented.view' | 'tta_interest_received.view' |'tta_no_interest_received.view' |
-
+'tta_strategy_update_request_by_admin.view'|'tta_strategy_update_uploaded.view'|'tta_strategy_update_approved.view'|
   'technologylead.view' | 'enter_lead.view' |
 
   'lead_entered_by_bdm.view' |
@@ -89,7 +89,8 @@ export class Permission {
   
 
   public static readonly viewTechnologyTransferPermission: PermissionValues = 'technologytransfer.view';
-
+  public static readonly viewTta_Additional_info_neededPermission: PermissionValues = 'tta_additional_info_needed.view';
+  
   public static readonly viewTta_upload_assign_tech_disclosure_formPermission: PermissionValues ='tta_upload_assign_tech_disclosure_form.view';
   public static readonly viewTta_initPermission: PermissionValues = 'tta_init.view';
 
@@ -108,13 +109,27 @@ export class Permission {
   public static readonly viewTta_evaluation_accepted_by_clientPermission: PermissionValues = 'tta_evaluation_accepted_by_client.view';
   public static readonly viewTta_strategy_assignedPermission: PermissionValues = 'tta_strategy_assigned.view';
   public static readonly viewTta_strategy_uploaded_by_bdmPermission: PermissionValues = 'tta_strategy_uploaded_by_bdm.view';
+  public static readonly viewTta_strategy_approvedPermission: PermissionValues = 'tta_strategy_approved.view';
+
+  public static readonly viewTta_techb_flyer_uploadedPermission: PermissionValues = 'tta_techb_flyer_uploaded.view';
+
+  
+
   public static readonly viewtta_strategy_change_request_by_adminPermission: PermissionValues = 'tta_strategy_change_request_by_admin.view';
   public static readonly viewTta_techb_and_flier_approved_by_adminPermission: PermissionValues = 'tta_techb_and_flier_approved_by_admin.view';
   public static readonly viewTta_techb_and_flier_approved_by_scientistPermission: PermissionValues = 'tta_techb_and_flier_approved_by_scientist.view';
+  public static readonly viewTta_techb_and_flier_change_req_by_adminPermission: PermissionValues = 'tta_techb_and_flier_change_request_by_admin.view';
+  
+  
+  
   public static readonly viewTta_change_req_by_scientistPermission: PermissionValues = 'tta_change_req_by_scientist.view';
   public static readonly viewstartegy_implementedPermission: PermissionValues = 'strategy_implemented.view';
   public static readonly viewTta_interest_receivedPermission: PermissionValues = 'tta_interest_received.view';
   public static readonly viewTta_no_interest_receivedPermission: PermissionValues = 'tta_no_interest_received.view';
+
+  public static readonly viewTta_strategy_update_request_by_adminPermission: PermissionValues = 'tta_strategy_update_request_by_admin.view';
+  public static readonly viewTta_strategy_update_uploadedPermission: PermissionValues = 'tta_strategy_update_uploaded.view';
+  public static readonly viewTta_strategy_update_approvedPermission: PermissionValues = 'tta_strategy_update_approved.view';
 
 
   public static readonly viewTechnologyLeadPermission: PermissionValues = 'technologylead.view';

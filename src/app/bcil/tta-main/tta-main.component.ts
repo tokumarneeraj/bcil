@@ -51,7 +51,7 @@ export class TtaMainComponent implements OnInit {
 
   @ViewChild('editorModal3', { static: true })
   editorModal3: ModalDirective;
-  
+  showextrafield:boolean=false;
   UserEmail: string;
   UserId: string;
   userRoles: string[];
@@ -79,6 +79,7 @@ viewadditionalfileright:boolean;
     this.UserEmail = this.accountService.currentUser.email;
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
+    this.showextrafield=false;
   }
 
   ngOnInit(): void {
@@ -176,6 +177,8 @@ if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==tru
   }
   //for client start
   onClientClick(data: mouModel, status) {
+    this.showextrafield=status=="S114"?true:false;
+    status=="S401"?this.formHeader="Assign To Nodal/Scientist":this.formHeader;
     this.UploadFileViewModel.app_ref_id = data.refid;
     this.mouref=data.refid;
     this.UploadFileViewModel.app_Status = status;
