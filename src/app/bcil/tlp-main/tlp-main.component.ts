@@ -74,7 +74,8 @@ export class TlpMainComponent implements OnInit {
   isSuperAdmin:boolean;
   activeusermou:activeusermou[];
   array=this.commondata.ttaarray().filter(x=>x.stage=="tlp");
-  
+  activuser:activeusermou[];
+  selected:string;
   viewhistory:boolean;
   viewremark:boolean;
   
@@ -116,7 +117,14 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin')
        this.permission = this.array.find(x => x.name == params.type).permissionforword;
       this.permissionbutton1 = this.array.find(x => x.name == params.type).permissionback;
       this.permissionbutton2 = this.array.find(x => x.name == params.type).permissionapprove;
-
+      if(this.commondata.ttaarray().find(x => x.name == params.type)?.lmassigned==true){
+        // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+       
+        this.accountService.getAllUser(0,0).subscribe(data=>{
+          this.rows=data.filter((x)=>x.roles.includes('LM'));
+        })
+      
+       }
 
     })
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
@@ -271,7 +279,13 @@ else{
       })
 
     }
-
+    this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
+      this.activuser=data1;
+      this.selected=this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid;
+      //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
+     //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
+      //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
+                });
   }
 
   onDataLoadSuccessful(users: User[], roles: Role[]) {
@@ -296,7 +310,7 @@ else{
     this.users = users;
 
     console.log(this.users, 'users')
-    this.rows = users.filter(x => x.roles.includes('LUF'));
+    this.rows = users.filter(x => x.roles.includes('LM'));
 
 
 

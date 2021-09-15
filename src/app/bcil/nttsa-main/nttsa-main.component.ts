@@ -117,7 +117,7 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
       return this.isBdm==true?true:false;
       }
       if(data=="S153"){ 
-        return   this.isLUF==true?true:false;
+        return   this.isLM==true?true:false;
         }
 
     

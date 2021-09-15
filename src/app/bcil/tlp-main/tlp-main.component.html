@@ -130,11 +130,11 @@
 
           <div class="form-group row" *ngIf="type=='S133'&& forword">
             <div class="col-sm-12">
-              <label class="col-form-label">Select Law firm user</label>
+              <label class="col-form-label">Select LM</label>
 
-              <select type="text" class="form-control" formControlName="assigntoluf" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+              <select type="text" class="form-control" formControlName="assigntoluf"  [(ngModel)]="selected" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
                 <option value="" selected>--select--</option>
-                <option *ngFor="let data of rows" value="{{data.id}}">{{data.fullName}}</option>
+                <option *ngFor="let data of rows" value="{{data.id}}">{{data.userName}}</option>
 
               </select>
 

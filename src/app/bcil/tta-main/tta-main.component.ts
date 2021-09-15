@@ -159,7 +159,8 @@ if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==tru
       remarks: [''],
       remindertype:['default',Validators.required],
       type: [''],
-      assigntobdo:['']
+      assigntobdo:[''],
+      files:['', Validators.required]
     });
   }
 
@@ -195,6 +196,7 @@ this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
 
   ClientfileChangeEvent(event) {
     if (event.target.files && event.target.files[0]) {
+      this.ForwardForm.get('files').setValue("vgv");
       const fileUpload = event.target.files[0];
       const filee = fileUpload.files;
       if( fileUpload.size<=30*1024*1024){
@@ -275,6 +277,12 @@ this.ngOnInit();
   uploadClientFile() {
 
     this.submitted = true;
+    if(this.type=="S113"){
+      this.ForwardForm.controls['files'].setValidators([Validators.required]);              
+  } else {                
+    this.ForwardForm.controls["files"].clearValidators();              
+  }
+  this.ForwardForm.controls['files'].updateValueAndValidity();
     if (this.ForwardForm.invalid) {
       return;
     }

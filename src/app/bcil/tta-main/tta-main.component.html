@@ -245,6 +245,9 @@
             <div class="col-sm-12">
               <label class="col-form-label">Upload</label>
               <input type="file"  accept="*" class="form-control"  (change)="ClientfileChangeEvent($event)" />
+              <input type="hidden" name="files" formControlName="files" /> 
+              <p *ngIf="submitted && f.files.errors" class="invalid-feedback">File is required</p>
+            
               <span class="text-danger float-right">*For multiple files, please compress and upload.(zip format)</span>
 
 

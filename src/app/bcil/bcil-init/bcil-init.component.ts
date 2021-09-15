@@ -197,12 +197,14 @@ console.log(this.isNodal+""+this.userRoles)
       remindertype:['default'],
       type: [''],
       assignto:[''],
-      assigntobdo:['']
+      assigntobdo:[''],
+      files:['', Validators.required]
     });
   }
   get f() { return this.ForwardForm.controls; }
   fileChangeEvent(event) {
     if (event.target.files && event.target.files[0]) {
+      this.ForwardForm.get('files').setValue("vgv");
       const fileUpload = event.target.files[0];
       const filee = fileUpload.files;
       if( fileUpload.size<=30*1024*1024){
@@ -238,6 +240,14 @@ console.log(this.isNodal+""+this.userRoles)
   uploadFile() {
 
     this.submitted = true;
+    
+    if(this.type=="S102"){
+      this.ForwardForm.controls['files'].setValidators([Validators.required]);              
+  } else {                
+    this.ForwardForm.controls["files"].clearValidators();              
+  }
+  this.ForwardForm.controls['files'].updateValueAndValidity();
+
     if (this.ForwardForm.invalid) {
       return;
     }
