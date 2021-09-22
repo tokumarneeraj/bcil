@@ -101,7 +101,12 @@ export class NttsaMainComponent implements OnInit {
   }
 
   permissiongiven(data:string):boolean{
-   
+    if(data=="S146"){ 
+      return this.isAdmin==true?true:false;
+      }
+      if(data=="S147"){ 
+        return this.isLM==true?true:false;
+        }
     if(data=="S148")
   {
   
@@ -136,8 +141,8 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
     this.isScientist = this.userRoles.includes('Scientist');
     this.isCompany = this.userRoles.includes('Company');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
-    this.array=[ { tabelname: "TS Entered by LUF", name: 'ts_entered_by_luf', value: 'S146', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S147", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S148', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
-    { tabelname: "TS Change Request by Admin", name: 'ts_change_req_by_admin', value: 'S147', forwordtitle: "Update Termsheet ", forward: "S146", forwardCheck: true, type: false, forwardText: 'Update Termsheet ', approvedvalue: '', backStatus: '', permissionforword: true },
+    this.array=[ { tabelname: "TS Entered by LUF", name: 'ts_entered_by_luf', value: 'S146', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S147", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S148', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S146"), permissionapprove: this.permissiongiven("S146") },
+    { tabelname: "TS Change Request by Admin", name: 'ts_change_req_by_admin', value: 'S147', forwordtitle: "Update Termsheet ", forward: "S146", forwardCheck: true, type: false, forwardText: 'Update Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S147")  },
     
     { tabelname: "TS Approved by Admin", name: 'ts_approved_by_admin', value: 'S148', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S149", approvetitle: "Forward to Admin", approvedvalue: 'S150', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S148"), permissionapprove: this.permissiongiven("S148") },
     
