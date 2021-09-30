@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
+import { emailsend, nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
@@ -79,6 +79,7 @@ commondata=new commondata();
 loading=false;
 viewhistory:boolean;
 viewremark:boolean;
+emailpermission:boolean;
 showstatus:any[]=[];
 selected:string;
 viewadditionalfileright:boolean;
@@ -181,6 +182,7 @@ console.log(this.isNodal+""+this.userRoles)
        console.log( this.commondata.getotherpermissiondata('history'),'his')
     this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
        this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
+       //this.emailpermission=this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
      // this.viewadditionfile= this.commondata.getotherpermissiondata('addfile').some(x=>x?.split('-')[1]==this.type);
       
         this.showpage = true;
@@ -272,6 +274,13 @@ console.log(this.isNodal+""+this.userRoles)
 //this.UploadFileViewModel.assigntoadmin= this.UploadFileViewModel.createdBy;
     this.UploadFileViewModel.createdBy = this.UserId;
 
+    // if(this.emailpermission==true){
+    //   this.UploadFileViewModel.emailsend=new emailsend();
+    //   this.UploadFileViewModel.emailsend.emailcheck=true;
+    //   this.UploadFileViewModel.emailsend.email=this.UserEmail;
+
+    // }
+
     console.log(this.UploadFileViewModel);
     this.loading=true;
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
@@ -296,6 +305,7 @@ else{
   onmodalclick(e: string, data: mouModel) {
    this.loading=false;
    this.submitted=false;
+   this.UploadFileViewModel.app_no=data.mou_no;
     this.UploadFileViewModel.app_Status = e == "approve" ? this.commondata.moustatus().find(x => x.value == this.type).approvedvalue :
      e== "forword" ? this.commondata.moustatus().find(x => x.value == this.type).forward : this.commondata.moustatus().find(x => x.value == this.type).backStatus;
     this.UploadFileViewModel.app_ref_id = data.refid;
@@ -325,7 +335,7 @@ if((this.type=="S101" &&e=="back") ||this.type=="S105"){
    console.log(this.mouModel1)
 
 
-    if (e == "forword" || e == "back") {
+    if (e == "forword" || e == "back" ||e=="approve") {
       this.editorModal1.show();
     }
     else if ("approve") {

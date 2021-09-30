@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { UploadFileViewModel } from '../../model/uploadFile.model'
+import { emailsend, UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
@@ -71,7 +71,7 @@ commondata=new commondata();
 addusertomou=new addusertomou();
 viewhistory:boolean;
 viewremark:boolean;
-
+emailpermission:boolean;
 viewadditionalfileright:boolean;
 
 
@@ -133,6 +133,7 @@ if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==tru
       }
       this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
+     // this.emailpermission=this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
       // if (this.isAdmin == true) {
       //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
       // }
@@ -180,6 +181,7 @@ if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==tru
   onClientClick(data: mouModel, status) {
     this.showextrafield=status=="S114"?true:false;
     status=="S401"?this.formHeader="Assign To Nodal/Scientist":this.formHeader;
+    this.UploadFileViewModel.app_no=data.tto_no;
     this.UploadFileViewModel.app_ref_id = data.refid;
     this.mouref=data.refid;
     this.UploadFileViewModel.app_Status = status;
@@ -277,7 +279,7 @@ this.ngOnInit();
   uploadClientFile() {
 
     this.submitted = true;
-    if(this.type=="S113"){
+    if(this.type=="S113" ||this.type=="S115" ||this.type=="S124"||this.type=="S403"||this.type=="S405"){
       this.ForwardForm.controls['files'].setValidators([Validators.required]);              
   } else {                
     this.ForwardForm.controls["files"].clearValidators();              
@@ -296,6 +298,13 @@ this.ngOnInit();
     this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
 }
     this.UploadFileViewModel.createdBy = this.createdBy;
+    // if(this.emailpermission==true){
+    //   this.UploadFileViewModel.emailsend=new emailsend();
+    //   this.UploadFileViewModel.emailsend.emailcheck=true;
+    //   this.UploadFileViewModel.emailsend.email=this.UserEmail;
+
+    // }
+
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
        this.loading=false;
        this.submitted=false;

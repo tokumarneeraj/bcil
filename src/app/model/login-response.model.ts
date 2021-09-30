@@ -25,6 +25,8 @@ export interface AccessToken {
     idp: string;
     role: string | string[];
     department: string;
+    img:string;
+    imgurl:string;
     isLastPasswordChanged: string;
     isApproved: string;
     permission: PermissionValues | PermissionValues[];

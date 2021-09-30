@@ -17,7 +17,7 @@
           ((isChangePassword || isNewUser) && newPassword.valid && confirmPassword.errors?.appValidateEqual && showErrorAlert('Passwword mismatch', 'New password and confirmation password do not match'));
          
           (canAssignRoles && !roles.valid && showErrorAlert('Roles is required', 'Please select a minimum of 1 role'));">
-
+  
     <div class="form-group row">
       <label [class.col-lg-3]="isViewOnly" [class.col-lg-2]="!isViewOnly" class="col-form-label" for="jobTitle-{{uniqueId}}">JobTitle</label>
       <div *ngIf="!isEditMode" [class.col-lg-9]="isViewOnly" [class.col-lg-10]="!isViewOnly">
@@ -231,7 +231,11 @@
         <hr [class.last-separator-hr]="!isEditMode" [class.edit-last-separator-hr]="isEditMode" />
       </div>
     </div>
-
+    <div class="form-group row">
+      <label [class.col-lg-3]="isViewOnly" [class.col-lg-2]="!isViewOnly" class="col-form-label" for="phoneNumber-{{uniqueId}}">Profile Image</label>
+      
+    <image-uploader #Imageupload [photo]="imageurl"  [imgname]="imagename" (imagechange)="imagechange($event)" [activeColor]="'orangered'" [baseColor]="'lightgray'"></image-uploader>
+    </div>
     <div *ngIf="!isViewOnly" class="form-group row">
       <div class="col-sm-5">
         <div *ngIf="isGeneralEditor && isEditMode" class="float-left">

@@ -16,7 +16,7 @@
               <a href="index.html"> <i class="fa fa-home"></i> </a>
             </li>
             <li class="breadcrumb-item">
-              <a href="#!">MOU</a>
+              <a href="#!">TTA</a>
             </li>
             <!-- <li class="breadcrumb-item"><a href="#!">Assignments</a>
             </li> -->
@@ -54,6 +54,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>TTA NO</th>
                       <th>Institute</th>
                       <th>Dept. Name</th>
                       <th>Phone No.</th>
@@ -71,6 +72,7 @@
                   <tbody>
                     <tr *ngFor="let item of mouModel;let i=index;">
                       <th scope="row">{{i+1}}</th>
+                      <td>{{item.tto_no}}</td>
                       <td>{{item.int_Uni_Name}}</td>
                       <td>{{item.dept_Name}}</td>
                       <td>{{item.phoneNo}}</td>
@@ -82,9 +84,11 @@
                       <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
 
                       <td>
-                        <button value="back" *ngIf="activearray?.back && permissionbutton1 " title="{{activearray?.backtitle}}" class="btn btn-info" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
-                        <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
-                        <button value="approve" *ngIf="activearray?.approved && permissionbutton2" title="{{activearray?.approvetitle}}" approvetitle class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
+                        <button value="back" *ngIf="permissionbutton1 " title="{{activearray?.backtitle}}" class="btn btn-info" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
+                        <button value="forword" *ngIf="permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
+                        <button value="forword2" *ngIf="permissionbutton3" title="{{activearray?.forwordtitle2}}" class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText2}}</button>
+                      
+                        <button value="approve" *ngIf="permissionbutton2" title="{{activearray?.approvetitle}}" approvetitle class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
 
                       </td>
                       <!-- <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tto',refid:item.refid}">View</a></td> -->
@@ -120,7 +124,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>Application Forward</h4>
+        <h4>{{activearray?.formHeader}}</h4>
         <button type="button" class="close float-right" title="Close" (click)="editorModal1.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -177,6 +181,8 @@
             <div class="col-sm-12">
               <label class="col-form-label">Upload</label>
               <input type="file"  accept="*" class="form-control" (change)="fileChangeEvent($event)" />
+              <input type="hidden" name="files" formControlName="files" /> 
+              <p *ngIf="submitted && f.files.errors" class="invalid-feedback">File is required</p>
               <span class="text-danger float-right">*For multiple files, please compress and upload.(zip format)</span>
 
 

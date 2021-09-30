@@ -15,7 +15,7 @@
               <a href="index.html"> <i class="fa fa-home"></i> </a>
             </li>
             <li class="breadcrumb-item">
-              <a href="#!">MOU</a>
+              <a href="#!">TTA</a>
             </li>
           </ul>
         </div>
@@ -38,7 +38,7 @@
               <div *ngIf="isSuperAdmin" class="ttDashAccod">
                 <div class="col-sm-12">
                   <div class="addMou">
-                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View Applications</a>
+                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View TTA</a>
                   </div>
               </div>
               <accordion  [closeOthers]="oneAtATime" [isAnimated]="true">
@@ -83,7 +83,7 @@
                       <div class="card-block">
                         <div class="row align-items-top">
                           <div class="col-8">
-                            <h4 class="text-c-yellow">Technology Leads To Package Shared</h4>
+                            <h4 class="text-c-yellow">Industry Due-Diligence and Information Sharing</h4>
                             <h6 class="text-muted m-b-0">{{tlplist()}}</h6>
                           </div>
                           <div class="col-4 text-right">
@@ -111,7 +111,7 @@
                       <div class="card-block">
                         <div class="row align-items-top">
                           <div class="col-8">
-                            <h4 class="text-c-dark-blue">NDA to term sheet approval</h4>
+                            <h4 class="text-c-dark-blue">Term Sheet (TS)</h4>
                             <h6 class="text-muted m-b-0">{{nttsalist()}}</h6>
                           </div>
                           <div class="col-4 text-right">
@@ -139,7 +139,7 @@
                       <div class="card-block">
                         <div class="row align-items-top">
                           <div class="col-8">
-                            <h4 class="text-c-dark-green">Term sheet to Licensing</h4>
+                            <h4 class="text-c-dark-green">License Agreement (LA)</h4>
                             <h6 class="text-muted m-b-0">{{tstllist()}}</h6>
                           </div>
                           <div class="col-4 text-right">
@@ -170,7 +170,7 @@
               <div class="row" *ngIf="!isSuperAdmin">
                 <div class="col-sm-12">
                   <div class="addMou">
-                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View Applications</a>
+                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View TTA</a>
                   </div>
               </div>
                 <!-- task, page, download counter  start -->
@@ -932,7 +932,7 @@
                       <div class="card-block">
                         <div class="row align-items-top">
                           <div class="col-8">
-                            <h4 class="text-c-yellow">Technology Leads To Package Shared</h4>
+                            <h4 class="text-c-yellow">Industry Due-Diligence and Information Sharing</h4>
                             <h6 class="text-muted m-b-0">{{tlplist()}}</h6>
                           </div>
                           <div class="col-4 text-right">
@@ -960,7 +960,7 @@
                       <div class="card-block">
                         <div class="row align-items-top">
                           <div class="col-8">
-                            <h4 class="text-c-dark-blue">NDA to term sheet approval</h4>
+                            <h4 class="text-c-dark-blue">Term Sheet (TS)</h4>
                             <h6 class="text-muted m-b-0">{{nttsalist()}}</h6>
                           </div>
                           <div class="col-4 text-right">
@@ -988,7 +988,7 @@
                       <div class="card-block">
                         <div class="row align-items-top">
                           <div class="col-8">
-                            <h4 class="text-c-dark-green">Term sheet to Licensing</h4>
+                            <h4 class="text-c-dark-green">License Agreement (LA)</h4>
                             <h6 class="text-muted m-b-0">{{tstllist()}}</h6>
                           </div>
                           <div class="col-4 text-right">

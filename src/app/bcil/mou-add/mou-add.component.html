@@ -74,20 +74,32 @@
                                 <p *ngIf="submitted && f.int_Uni_Name.errors" class="invalid-feedback">Institute / University is required</p>
                               </div>
                               <div class="col-sm-6">
-                                <label class="col-form-label">Dept. Name</label>
-                                <input type="text" class="form-control" formControlName="dept_Name" [ngClass]="{ 'is-invalid': submitted && f.dept_Name.errors }"
-                                       placeholder="">
-                                <p *ngIf="submitted && f.dept_Name.errors" class="invalid-feedback">Dept. Name is required</p>
+                                <label class="col-form-label">Institute / University Code</label>
+                                <input type="text" class="form-control uppercase" maxlength="3"  formControlName="int_Uni_Code" [ngClass]="{ 'is-invalid': submitted && f.int_Uni_Code.errors }"  >
+                                <p *ngIf="submitted && f.int_Uni_Code.errors?.required" class="invalid-feedback">Institute / University Code is required</p>
+                                <p *ngIf="submitted && f.int_Uni_Code.errors?.pattern" class="invalid-feedback">Institute / University Code Only Except Alphabets</p>
+                                <p *ngIf="submitted && f.int_Uni_Code.errors?.minlength" class="invalid-feedback">Institute / University Code Length is equal to 3</p>
                               </div>
+                              
 
                             
                             </div>
                             <div class="form-group row">
                               <div class="col-sm-6">
+                                <label class="col-form-label">Dept. Name</label>
+                                <input type="text" class="form-control" formControlName="dept_Name" [ngClass]="{ 'is-invalid': submitted && f.dept_Name.errors }"
+                                       placeholder="">
+                                <p *ngIf="submitted && f.dept_Name.errors" class="invalid-feedback">Dept. Name is required</p>
+                              </div>
+                              <div class="col-sm-6">
                                 <label class="col-form-label">Address</label>
                                 <textarea rows="2" cols="2" class="form-control" placeholder="" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
                                 <p *ngIf="submitted && f.address.errors" class="invalid-feedback">Address is required</p>
                               </div>
+
+                             
+                            </div>
+                            <div class="form-group row">
 
                               <div class="col-sm-6">
                                 <label class="col-form-label">Phone No.</label>
@@ -97,16 +109,15 @@
                                 <!--<p *ngIf="f.phoneNo.errors.pattern" class="invalid-feedback">Please, Enter 10 digit Mobile Number.</p>-->
                               </div>
 
-                             
-                            </div>
-                            <div class="form-group row">
-
                               <div class="col-sm-6">
                                 <label class="col-form-label">Email Id</label>
                                 <input type="text" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                                
                                 <p *ngIf="submitted && f.email.errors" class="invalid-feedback">Valid Email is required</p>
                               </div>
+                             
+                            </div>
+                            <div class="form-group row">
                               <div class="col-sm-6">
                                 <label class="col-form-label">GST No.</label>
                                 <input type="text" class="form-control" formControlName="gstNo" [ngClass]="{ 'is-invalid': submitted && f.gstNo.errors }"
@@ -116,7 +127,7 @@
                             </div>
                             <h2 class="sub-title" style="font-size:16px;">Director / Head Details</h2>
                             <div class="form-group row">
-
+                             
                               <div class="col-sm-6">
                                 <label class="col-form-label">Designation </label>
                                 <select class="form-control" formControlName="dir_Designation_Drop" [ngClass]="{ 'is-invalid': submitted && f.dir_Designation_Drop.errors }" [(ngModel)]="dir_des_Value">
@@ -140,6 +151,7 @@
                               </div>
 
                             </div>
+                           
                             <div class="form-group row">
 
 

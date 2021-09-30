@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
+import { emailsend, nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
@@ -78,7 +78,7 @@ export class NttsaMainComponent implements OnInit {
   isCompany: boolean;
   viewhistory:boolean;
   viewremark:boolean;
-  
+  emailpermission:boolean;
   viewadditionalfileright:boolean;
   commondata=new commondata()
   array = [
@@ -141,18 +141,18 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
     this.isScientist = this.userRoles.includes('Scientist');
     this.isCompany = this.userRoles.includes('Company');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
-    this.array=[ { tabelname: "TS Entered by LUF", name: 'ts_entered_by_luf', value: 'S146', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S147", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S148', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S146"), permissionapprove: this.permissiongiven("S146") },
-    { tabelname: "TS Change Request by Admin", name: 'ts_change_req_by_admin', value: 'S147', forwordtitle: "Update Termsheet ", forward: "S146", forwardCheck: true, type: false, forwardText: 'Update Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S147")  },
+    this.array=[ { tabelname: "Draft TS",formHeader:"Draft TS", name: 'ts_entered_by_luf', value: 'S146', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S147", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S148', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S146"), permissionapprove: this.permissiongiven("S146") },
+    { tabelname: "Change request by Admin",formHeader:"Change request by Admin", name: 'ts_change_req_by_admin', value: 'S147', forwordtitle: "Update Termsheet ", forward: "S146", forwardCheck: true, type: false, forwardText: 'Update Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S147")  },
     
-    { tabelname: "TS Approved by Admin", name: 'ts_approved_by_admin', value: 'S148', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S149", approvetitle: "Forward to Admin", approvedvalue: 'S150', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S148"), permissionapprove: this.permissiongiven("S148") },
+    { tabelname: "Draft TS for Review",formHeader:"Draft TS for Review", name: 'ts_approved_by_admin', value: 'S148', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S149", approvetitle: "Forward to Admin", approvedvalue: 'S150', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S148"), permissionapprove: this.permissiongiven("S148") },
     
-    { tabelname: "TS Change Request by Client", name: 'ts_change_req_by_client', value: 'S149', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S149")},
+    { tabelname: "Change request by Organization",formHeader:"Change request by Organization", name: 'ts_change_req_by_client', value: 'S149', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S149")},
     
-    { tabelname: "TS Approved by Client", name: 'ts_approved_by_client', value: 'S150', forwordtitle: "Forward to Company ", forward: "S151", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '',  permissionforword: this.permissiongiven("S150") },
+    { tabelname: "TS Approved",formHeader:"TS Approved", name: 'ts_approved_by_client', value: 'S150', forwordtitle: "Forward to Company ", forward: "S151", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '',  permissionforword: this.permissiongiven("S150") },
     
-    { tabelname: "TS SHARED BY COMPANY", name: 'ts_shared_with_company', value: 'S151', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S152", approvetitle: "Forward to Admin", approvedvalue: 'S153', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S151") , permissionapprove: this.permissiongiven("S151") },
-    { tabelname: "TS Change Request by Company", name: 'ts_change_req_by_company', value: 'S152', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S152") },
-    { tabelname: "TS Approved by Company", name: 'ts_approved_by_company', value: 'S153', forwardCheck: true, type: false, forwardText: 'Upload Signed Termsheet ', forwordtitle: 'Upload Termsheet ', permissionforword:  this.permissiongiven("S153"), forward:'S154'},
+    { tabelname: "Shared with Industry",formHeader:"Shared with Industry", name: 'ts_shared_with_company', value: 'S151', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S152", approvetitle: "Forward to Admin", approvedvalue: 'S153', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: this.permissiongiven("S151") , permissionapprove: this.permissiongiven("S151") },
+    { tabelname: "Change request by Industry",formHeader:"Change request by Industry", name: 'ts_change_req_by_company', value: 'S152', forwordtitle: "Approve Change Request", forward: "S147", forwardCheck: true, type: false, forwardText: 'Approve Change Request in Termsheet ', approvedvalue: '', backStatus: '', permissionforword: this.permissiongiven("S152") },
+    { tabelname: "Final approved TS",formHeader:"Final approved TS", name: 'ts_approved_by_company', value: 'S153', forwardCheck: true, type: false, forwardText: 'Upload Signed Termsheet ', forwordtitle: 'Upload Termsheet ', permissionforword:  this.permissiongiven("S153"), forward:'S154'},
    ]
     this.route.queryParams.subscribe((params) => {
 
@@ -181,7 +181,7 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
       }
       this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
-     
+     //this.emailpermission= this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
       console.log(data)
        this.showpage = true;
       // if (this.isAdmin == true) {
@@ -276,6 +276,12 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
+    // if(this.emailpermission==true){
+    //   this.UploadFileViewModel.emailsend=new emailsend();
+    //   this.UploadFileViewModel.emailsend.emailcheck=true;
+    //   this.UploadFileViewModel.emailsend.email=this.UserEmail;
+
+    // }
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
       this.loading=false;
       this.submitted=false;
@@ -294,7 +300,7 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
   }
 
   onmodalclick(e: string, data: mouModel) {
-
+    this.UploadFileViewModel.app_no =data.tto_no;
     this.UploadFileViewModel.app_Status = e == "approve" ? this.array.find(x => x.value == this.type).approvedvalue :
       e == "forword" ? this.array.find(x => x.value == this.type).forward : this.array.find(x => x.value == this.type).backStatus;
     this.UploadFileViewModel.app_ref_id = data.refid;
@@ -309,7 +315,7 @@ return this.isScientist==true|| this.isNodal==true ?true:false;
     console.log(this.mouModel1)
 
 
-    if (e == "forword" || e == "back") {
+    if (e == "forword" || e == "back" ||e=="approve") {
       this.editorModal1.show();
     }
     else if ("approve") {

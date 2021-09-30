@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable,of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {activeusermou, addusertomou, mouModel, Reminder, StatusMaster} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
@@ -37,6 +37,8 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
     get additionalfileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddAdditionFile'; }
     get fileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddFile'; }
     get filehistory() { return environment.baseUrl + '/api/bdo/getfile'; }
+
+    get datapermission(){return environment.baseUrl + '../../';}
     UserId:string;
     constructor(http: HttpClient ,private accountService: AccountService, authService: AuthService){
      super(http, authService);
@@ -44,6 +46,13 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
       this.UserId = this.accountService.currentUser.id;
     }
 
+   
+    public getdatapermission(){
+
+      let datapermission= of(require("../../assets/locale/datapermission.json"))
+      return datapermission;
+      
+    }
     public getremarksmou(refid:any){
       return this.http.get<result>(this.removeadditionalfile+"/"+refid,this.requestHeaders);
       
@@ -90,7 +99,7 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
 
     public  AddMou<T>(mou:mouModel): Observable<result> {
       mou.createdBy=this.UserId;
-        
+        mou.int_Uni_Code=mou.int_Uni_Code.toUpperCase();
           return this.http.post(this.addmouurl, JSON.stringify(mou), this.requestHeaders).pipe<result>(
             catchError(error => {
               return this.handleError(error, () => this.AddMou(mou));

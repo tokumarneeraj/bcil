@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { notificationmodel } from 'src/app/model/notification.model';
 import {commondata} from '../model/common'
 import { groupRowsByParents, sortRows } from '@swimlane/ngx-datatable';
+import { environment } from 'src/environments/environment';
 const alertify: any = require('../../assets/scripts/alertify.js');
 declare var jQuery:any;
 @Component({
@@ -32,6 +33,7 @@ export class BcilComponent implements OnInit {
   notify = false;
   mouModel: mouModel[];
   UserId: string;
+  userimg:string;
   fileshistory: filehistoryModel[];
   refidno: string;
   f_check: boolean;
@@ -46,6 +48,7 @@ export class BcilComponent implements OnInit {
   showdiv=false;
   notificationdiv=false;
   userdiv=false;
+  getbaseurl=environment.baseUrl;
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -64,9 +67,14 @@ export class BcilComponent implements OnInit {
     this.usertype = this.accountService.currentUser.roles.join(',');
     this.UserName = this.accountService.currentUser.userName;
     this.UserId = this.accountService.currentUser.id;
+    this.userimg=this.accountService.currentUser?.img?.replace(/\//g,"/");
+    console.log(this.userimg)
+    this.userimg==undefined?this.userimg="":this.userimg;
   }
 
-
+  imageurl(){
+    return this.userimg ==""||"undefined"?this.getbaseurl+"/assets/images/avatar-4.jpg":this.getbaseurl+"/"+this.userimg;
+  }
   logout() {
     this.authService.logout();
     this.authService.redirectLogoutUser();
@@ -312,7 +320,9 @@ this.ngOnInit();
 
 
 //tto internal menu
-
+get canviewTta_Additional_info_neededPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_Additional_info_neededPermission);
+}
 get canviewTta_initPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_initPermission);
 }
@@ -328,6 +338,9 @@ get canviewTta_evaluation_closure_by_adminPermission() {
 get canviewTta_evaluation_approved_by_adminPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_evaluation_approved_by_adminPermission);
 }
+
+
+
 get canviewTta_evaluation_change_request_by_adminPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_evaluation_change_request_by_adminPermission);
 }
@@ -348,8 +361,12 @@ get canviewTta_evaluation_accepted_by_clientPermission() {
 get canviewTta_strategy_assignedPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_strategy_assignedPermission);
 }
+
 get canviewTta_strategy_uploaded_by_bdmPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_strategy_uploaded_by_bdmPermission);
+}
+get canviewTta_strategy_approvedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_strategy_approvedPermission);
 }
 get canviewtta_strategy_change_request_by_adminPermission() {
   return this.accountService.userHasPermission(Permission.viewtta_strategy_change_request_by_adminPermission);

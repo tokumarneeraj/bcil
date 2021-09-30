@@ -6,12 +6,13 @@ export class UploadFileViewModel {
   public subject: string;
   public stage: string;
   public file64: any;
-  
+ 
   public fileFullName: string;
   public remarks: string;
   public app_Status: string;
   public createdBy: string;
   public app_ref_id: string;
+  public app_no: string;
   public type: string;
   public assignto: string;
   public nodalofficer: string;
@@ -23,6 +24,7 @@ export class UploadFileViewModel {
   public  remindertype:string;
   public createdon: string; 
   public nodal:nodalOfficer;
+  public emailsend:emailsend;
 }
 
 
@@ -31,4 +33,9 @@ export class nodalOfficer{
   public nodal_name:string;
   public nodal_email:string;
   public nodal_mobile:string;
+}
+export class emailsend{
+  public email:any;
+  public emailcheck: boolean;
+  public emailtemplate: any;
 }

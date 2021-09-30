@@ -146,7 +146,7 @@ fileaccess:['Internal',Validators.required],
         this.fileHistory=this.fileHistory.filter(x=>x.fileaccess!="Internal");
       }
       if(this.commondata.CanviewgobalfilesPermission==false){
-        this.fileHistory= this.fileHistory.filter(x=>x.fileaccess!="Global");
+        this.fileHistory= this.fileHistory.filter(x=>x.fileaccess!="External");
       }
 if(show==true){
     this.editorModal2.show();

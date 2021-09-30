@@ -140,9 +140,11 @@ debugger;
       decodedAccessToken.email,
       decodedAccessToken.jobtitle,
       decodedAccessToken.phone_number,
-
+      
       Array.isArray(decodedAccessToken.role) ? decodedAccessToken.role : [decodedAccessToken.role]
       , decodedAccessToken.isApproved, decodedAccessToken.department,
+      decodedAccessToken.imgurl,
+      decodedAccessToken.img,
       //decodedAccessToken.isLastPasswordChanged
     );
     user.isEnabled = true;

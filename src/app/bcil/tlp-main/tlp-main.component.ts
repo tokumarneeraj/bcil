@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
+import { emailsend, nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
@@ -66,6 +66,7 @@ export class TlpMainComponent implements OnInit {
   permission: boolean;
   permissionbutton1: boolean;
   permissionbutton2: boolean;
+  permissionbutton3:boolean;
   moucreatedby_role: string;
   forword = false;
   isScientist: boolean;
@@ -80,7 +81,7 @@ export class TlpMainComponent implements OnInit {
   viewremark:boolean;
   
   viewadditionalfileright:boolean;
-
+  emailpermission:boolean;
   activearray = this.array[0];
 
 
@@ -115,6 +116,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin')
       this.type = this.array.find(x => x.name == params.type).value;
       this.activearray = this.array.find(x => x.name == params.type);
        this.permission = this.array.find(x => x.name == params.type).permissionforword;
+       this.permissionbutton3= this.array.find(x => x.name == params.type)?.permissionforword2;
       this.permissionbutton1 = this.array.find(x => x.name == params.type).permissionback;
       this.permissionbutton2 = this.array.find(x => x.name == params.type).permissionapprove;
       if(this.commondata.ttaarray().find(x => x.name == params.type)?.lmassigned==true){
@@ -144,7 +146,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin')
       }
       this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
-     
+//this.emailpermission= this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
       // if (this.isAdmin == true) {
       //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
       // }
@@ -179,7 +181,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin')
       remarks: [''],
       type: [''],
       assigntoluf: [''],
-
+      files:['', Validators.required],
     });
   }
 
@@ -194,6 +196,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin')
 
   fileChangeEvent(event) {
     if (event.target.files && event.target.files[0]) {
+      this.ForwardForm.get('files').setValue("vgv");
       const fileUpload = event.target.files[0];
       const filee = fileUpload.files;
       if( fileUpload.size<=30*1024*1024){
@@ -221,6 +224,12 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin')
   uploadFile() {
 
     this.submitted = true;
+    if(this.type=="S113"){
+      this.ForwardForm.controls['files'].setValidators([Validators.required]);              
+  } else {                
+    this.ForwardForm.controls["files"].clearValidators();              
+  }
+  this.ForwardForm.controls['files'].updateValueAndValidity();
     if (this.ForwardForm.invalid) {
       return;
     }
@@ -232,6 +241,12 @@ this.loading=true;
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
+    // if(this.emailpermission==true){
+    //   this.UploadFileViewModel.emailsend=new emailsend();
+    //   this.UploadFileViewModel.emailsend.emailcheck=true;
+    //   this.UploadFileViewModel.emailsend.email=this.UserEmail;
+
+    // }
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
 this.loading=false;
 this.submitted=false;
@@ -251,9 +266,11 @@ else{
   }
 
   onmodalclick(e: string, data: mouModel) {
-
+this.UploadFileViewModel.app_no=data.tto_no;
     this.UploadFileViewModel.app_Status = e == "approve" ? this.array.find(x => x.value == this.type).approvedvalue :
-      e == "forword" ? this.array.find(x => x.value == this.type).forward : this.array.find(x => x.value == this.type).backStatus;
+      e == "forword" ? this.array.find(x => x.value == this.type).forward:
+      e == "forword2" ? this.array.find(x => x.value == this.type).forward2
+       : this.array.find(x => x.value == this.type).backStatus;
     this.UploadFileViewModel.app_ref_id = data.refid;
     debugger;
     this.mouModel1 = this.mouModel.find(x => x.refid == data.refid);
@@ -266,7 +283,7 @@ else{
     console.log(this.mouModel1)
 
 
-    if (e == "forword" || e == "back") {
+    if (e == "forword"||e == "forword2" || e == "back" ||e=="approve") {
       this.editorModal1.show();
     }
     else if ("approve") {

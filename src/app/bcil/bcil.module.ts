@@ -45,12 +45,15 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { AdditionFileComponent } from './addition-file/addition-file.component';
 import { RemarksComponent } from './remarks/remarks.component';
 import { MouApplicationComponent } from './mou-application/mou-application.component';
-
+import { ImageUploaderComponent } from './image-uploader.component';
+import { MisDashboardComponent } from './mis-dashboard/mis-dashboard.component';
+import { MisInitComponent } from './mis-init/mis-init.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
     RolemanagementComponent,
     UsermanagementComponent,
+    ImageUploaderComponent,
     RoleEditorComponent,
     UserInfoComponent,
     ProfileComponent,
@@ -71,6 +74,8 @@ import { MouApplicationComponent } from './mou-application/mou-application.compo
     AdditionFileComponent,
     RemarksComponent,
     MouApplicationComponent,
+    MisDashboardComponent,
+    MisInitComponent,
      ],
 
   imports: [

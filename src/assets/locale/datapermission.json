@@ -1,0 +1,120 @@
+{
+    "mis":[{
+        "stage":"mis",
+        "tablename":"Misc Init",
+        "heading":"Misc Init",
+        "type":"misc_init",
+"value":"S170",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Misc Activity Assigned",
+    "heading":"Misc Activity Assigned",
+    "type":"activity_assigned",
+"value":"S171",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Proposal Required",
+    "heading":"Proposal Required",
+    "type":"proposeal_require",
+"value":"S172",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Proposal Change Required By Admin",
+    "heading":"Proposal Change Required By Admin",
+    "type":"proposal_change_required_by_admin",
+"value":"S173",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Proposal Forwarded by Admin",
+    "heading":"Proposal Forwarded by Admin",
+    "type":"proposal_forward_by_admin",
+"value":"S174",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Proposal change Required By Client",
+    "heading":"Proposal change Required By Client",
+    "type":"proposal_change_required_by_client",
+"value":"S175",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Proposal Accepted By Client",
+    "heading":"Proposal Accepted By Client",
+    "type":"proposal_accepted_by_client",
+"value":"S176",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Report Proposed",
+    "heading":"Report Proposed",
+    "type":"report_proposed",
+"value":"S177",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Report Change Required By Admin",
+    "heading":"Report Change Required by Admin",
+    "type":"report_chnage_req_by_admin",
+"value":"S178",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Report Forward By Admin",
+    "heading":"Report Forward By Admin",
+    "type":"report_forward_by_admin",
+"value":"S179",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Report Change Required By Client",
+    "heading":"Report Change Required By Client",
+    "type":"report_change_required_by_client",
+"value":"S180",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"Report Accepted By Client",
+    "heading":"Report Accepted By Client",
+    "type":"report_accepted_by_client",
+"value":"S181",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"mis",
+    "tablename":"All Report Accepted By Client",
+    "heading":"All Report Accepted By Client",
+    "type":"all_report_accepted_by_client",
+"value":"S182",
+"button":[{
+"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+]
+}

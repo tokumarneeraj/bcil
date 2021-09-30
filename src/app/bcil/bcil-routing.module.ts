@@ -27,6 +27,8 @@ import { TstlMainComponent } from './tstl-main/tstl-main.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { MouApplicationComponent } from './mou-application/mou-application.component';
+import { MisInitComponent } from './mis-init/mis-init.component';
+import { MisDashboardComponent } from './mis-dashboard/mis-dashboard.component';
 
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
@@ -43,6 +45,8 @@ const routes: Routes = [
   {path:"user-profile",canActivate:[AuthGuard],component:ProfileComponent},
   { path: "mou-dashboard", canActivate: [AuthGuard], component: MouDashboardComponent },
   { path: "tta-dashboard", canActivate: [AuthGuard], component: TtaDashboardComponent },
+  { path: "mis-dashboard", canActivate: [AuthGuard], component: MisDashboardComponent },
+  { path: "bcil-mis-table", canActivate: [AuthGuard], component: MisInitComponent },
   { path: "bcil-tta-table", canActivate: [AuthGuard], component: TtaMainComponent },
   { path: "tlp-dashboard", canActivate: [AuthGuard], component: TlpDashboardComponent },
   { path: "bcil-tlp-table", canActivate: [AuthGuard], component: TlpMainComponent },

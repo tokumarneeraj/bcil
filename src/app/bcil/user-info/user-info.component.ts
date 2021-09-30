@@ -10,21 +10,30 @@ import { Permission } from '../../model/permission.model';
 import { Departments } from 'src/app/model/department';
 import { DBkeys } from 'src/app/services/db-keys';
 import { LocalStoreManager } from 'src/app/services/local-store-manager.service';
+import { ImageUploaderComponent } from '../image-uploader.component';
+import { environment } from 'src/environments/environment';
+
 
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.scss']
+  styleUrls: ['./user-info.component.scss'],
+ 
 })
 export class UserInfoComponent implements OnInit {
-
+  public imagename="cxxc";
+  public imageurl="cxxc";
   public isEditMode = false;
   public isNewUser = false;
   public isSaving = false;
   public isChangePassword = false;
   public isEditingSelf = false;
   public showValidationErrors = false;
+  public imgUrl="";
+  getbaseurl=environment.baseUrl;
+  @ViewChild('image-uploader', { static: true })
+  Imageupload: ImageUploaderComponent;
   public uniqueId: string = Utilities.uniqueId();
   public user: User = new User();
   public userEdit: UserEdit;
@@ -37,7 +46,10 @@ export class UserInfoComponent implements OnInit {
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
-
+  imagechange({imagename,imageurl}){
+this.imagename=imagename;
+this.imageurl=imageurl;
+  }
   @Input()
   isViewOnly: boolean;
 
@@ -83,8 +95,12 @@ rolename:string;
     this.user1 = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
     this.userRoles = this.accountService.currentUser.roles;
     this.isNodal = this.userRoles.includes('Nodal'); 
+  //  this.Imageupload.imageSrc="vayy";
+    this.imageurl=this.getbaseurl+"/"+this.accountService.currentUser.img;
   }
-
+  imgsrc(data:string){
+return data;
+  }
   ngOnInit() {
     // this.accountService.getDepartment(0, 0).subscribe(depart => {
     //   if(this.user1.roles.find(x=>x=="Super Admin")!==undefined){
@@ -209,7 +225,11 @@ this.allDepartment=this.allDepartment1;
 
   save() {
    // alert(this.rolename)
+   
     this.isSaving = true;
+  this.userEdit.img=  this.imagename;
+  this.userEdit.imgUrl=  this.imageurl;
+
     this.alertService.startLoadingMessage('Saving changes...');
     console.log(this.userEdit)
 //this.userEdit.roles.push(this.rolename);
@@ -218,6 +238,7 @@ this.allDepartment=this.allDepartment1;
     } else {
       this.accountService.updateUser(this.userEdit).subscribe(response => this.saveSuccessHelper(), error => this.saveFailedHelper(error));
     }
+
   }
 
 
@@ -258,6 +279,8 @@ this.allDepartment=this.allDepartment1;
     if (this.changesSavedCallback) {
       this.changesSavedCallback();
     }
+    this.userEdit.img= "";
+  this.userEdit.imgUrl=  "";
   }
 
 

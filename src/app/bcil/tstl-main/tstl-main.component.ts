@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { Bdoservice } from '../../services/bdo.service'
 import { Utilities } from '../../services/utilities';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
+import { emailsend, nodalOfficer, UploadFileViewModel } from '../../model/uploadFile.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from '../../services/account.service';
@@ -78,28 +78,29 @@ export class TstlMainComponent implements OnInit {
   viewremark:boolean;
   commondata=new commondata();
   viewadditionalfileright:boolean;
+  emailpermission:boolean;
   array = [
 
-    { tabelname: "TS Executed", name: 'ts_executed', value: 'S154', forwordtitle: "Draft license agreement", forward: "S155", forwardCheck: true, type: false, forwardText: 'Draft license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "Executed Term Sheet",formHeader:"Executed Term Sheet",name: 'ts_executed', value: 'S154', forwordtitle: "Draft license agreement", forward: "S155", forwardCheck: true, type: false, forwardText: 'Draft license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
 
-    { tabelname: "LA Entered by LUF", name: 'la_entered_by_luf', value: 'S155', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S156", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S157', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
+    { tabelname: "Draft LA",formHeader:"Draft LA", name: 'la_entered_by_luf', value: 'S155', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S156", approvetitle: "Forward to Nodal/Scientist", approvedvalue: 'S157', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
     
-    { tabelname: "LA Change Request by Admin", name: 'la_change_req_by_admin', value: 'S156', forwordtitle: "Update license agreement", forward: "S155", forwardCheck: true, type: false, forwardText: 'Update license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "Change request by Admin",formHeader:"Change request by Admin", name: 'la_change_req_by_admin', value: 'S156', forwordtitle: "Update license agreement", forward: "S155", forwardCheck: true, type: false, forwardText: 'Update license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
 
-    { tabelname: "LA Approved by Admin", name: 'la_approved_by_admin', value: 'S157', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S158", approvetitle: "Forward to Admin", approvedvalue: 'S159', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
-    { tabelname: "LA Change Request by Client", name: 'la_change_req_by_client', value: 'S158', forwordtitle: "Forword to LUF", forward: "S156", forwardCheck: true, type: false, forwardText: 'Forward Change Request', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "Draft LA for Review",formHeader:"Draft LA for Review", name: 'la_approved_by_admin', value: 'S157', backtitle: "Forward to Admin", forwardCheck: false, back: true, backStatus: "S158", approvetitle: "Forward to Admin", approvedvalue: 'S159', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
+    { tabelname: "Change request by Organization",formHeader:"Change request by Organization", name: 'la_change_req_by_client', value: 'S158', forwordtitle: "Forword to LUF", forward: "S156", forwardCheck: true, type: false, forwardText: 'Forward Change Request', approvedvalue: '', backStatus: '', permissionforword: true },
 
-    { tabelname: "LA Approved by Client", name: 'la_approved_by_client', value: 'S159', forwordtitle: "Share license agreement", forward: "S160", forwardCheck: true, type: false, forwardText: 'Share license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "Draft LA approved ",formHeader:"Draft LA approved", name: 'la_approved_by_client', value: 'S159', forwordtitle: "Share license agreement", forward: "S160", forwardCheck: true, type: false, forwardText: 'Share license agreement', approvedvalue: '', backStatus: '', permissionforword: true },
 
-    { tabelname: "LA shared with Company", name: 'la_shared_with_company', value: 'S160', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S156", approvetitle: "Forward to BDM", approvedvalue: 'S161', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
+    { tabelname: "LA shared with Industry",formHeader:"LA shared with Industry", name: 'la_shared_with_company', value: 'S160', backtitle: "Forward to LUF", forwardCheck: false, back: true, backStatus: "S156", approvetitle: "Forward to BDM", approvedvalue: 'S161', approved: true, approvedText: "Approved", backbuttonText: 'Change Req', permissionback: true, permissionapprove: true },
 
-    { tabelname: "LA Approved by Company", name: 'la_approved_by_company', value: 'S161', forwordtitle: "Forward to Client", forward: "S162", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "LA Agreed by Industry",formHeader:"LA Agreed by Industry", name: 'la_approved_by_company', value: 'S161', forwordtitle: "Forward to Client", forward: "S162", forwardCheck: true, type: false, forwardText: 'Forward', approvedvalue: '', backStatus: '', permissionforword: true },
 
-    { tabelname: "LA Uploaded", name: 'la_uploaded', value: 'S162', forwordtitle: "Forward to BDM", forward: "S163", forwardCheck: true, type: false, forwardText: 'Submit TT Docket', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "Executed LA",formHeader:"Executed LA", name: 'la_uploaded', value: 'S162', forwordtitle: "Forward to BDM", forward: "S163", forwardCheck: true, type: false, forwardText: 'Submit TT Docket', approvedvalue: '', backStatus: '', permissionforword: true },
 
-    { tabelname: "TT Docket by Client", name: 'tt_docket_by_client', value: 'S163', forwordtitle: "Forward to Company", forward: "S164", forwardCheck: true, type: false, forwardText: 'Share TT Docket', approvedvalue: '', backStatus: '', permissionforword: true },
+    { tabelname: "Technology Docket",formHeader:"Technology Docket", name: 'tt_docket_by_client', value: 'S163', forwordtitle: "Forward to Company", forward: "S164", forwardCheck: true, type: false, forwardText: 'Share TT Docket', approvedvalue: '', backStatus: '', permissionforword: true },
 
-    { tabelname: "TT Docket shared with Company", name: 'tt_docket_shared_with_company', value: 'S164',  forwardCheck: false, type: false, approvedvalue: '', backStatus: '' },
+    { tabelname: "Technology Docket shared with industry",formHeader:"Technology Docket shared with industry", name: 'tt_docket_shared_with_company', value: 'S164',  forwardCheck: false, type: false, approvedvalue: '', backStatus: '' },
 
     
     
@@ -158,6 +159,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
       }
       this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
+      //this.emailpermission= this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
      
       // if (this.isAdmin == true) {
 
@@ -203,6 +205,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
       remarks: [''],
       type: [''],
       assignto: [''],
+      files: ['', Validators.required],
     });
   }
   viewadditionalfile(data:mouModel){
@@ -216,6 +219,7 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
 
   fileChangeEvent(event) {
     if (event.target.files && event.target.files[0]) {
+      this.ForwardForm.get('files').setValue("vgv");
       const fileUpload = event.target.files[0];
       const filee = fileUpload.files;
       if( fileUpload.size<=30*1024*1024){
@@ -244,6 +248,15 @@ this.isSuperAdmin=this.userRoles.includes('Super Admin');
   uploadFile() {
 
     this.submitted = true;
+    if(this.type=="S113"){
+      this.ForwardForm.controls['files'].setValidators([Validators.required]);              
+  } else {                
+    this.ForwardForm.controls["files"].clearValidators();              
+  }
+  this.ForwardForm.controls['files'].updateValueAndValidity();
+    if (this.ForwardForm.invalid) {
+      return;
+    }
 this.loading=true;
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
@@ -252,6 +265,12 @@ this.loading=true;
     this.UploadFileViewModel.createdBy = this.createdBy;
 
     console.log(this.UploadFileViewModel);
+    // if(this.emailpermission==true){
+    //   this.UploadFileViewModel.emailsend=new emailsend();
+    //   this.UploadFileViewModel.emailsend.emailcheck=true;
+    //   this.UploadFileViewModel.emailsend.email=this.UserEmail;
+
+    // }
     this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
       this.loading=false;
       this.submitted=false;
@@ -272,6 +291,7 @@ this.loading=true;
 
   onmodalclick(e: string, data: mouModel) {
 
+    this.UploadFileViewModel.app_no=data.tto_no
     this.UploadFileViewModel.app_Status = e == "approve" ? this.array.find(x => x.value == this.type).approvedvalue :
       e == "forword" ? this.array.find(x => x.value == this.type).forward : this.array.find(x => x.value == this.type).backStatus;
     this.UploadFileViewModel.app_ref_id = data.refid;
@@ -286,7 +306,7 @@ this.loading=true;
     console.log(this.mouModel1)
 
 
-    if (e == "forword" || e == "back") {
+    if (e == "forword" || e == "back" ||"approve") {
       this.editorModal1.show();
     }
     else if ("approve") {

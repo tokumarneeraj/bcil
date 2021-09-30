@@ -79,7 +79,8 @@
             </li>
             <li class="user-profile header-notification" (click)="toggle()">
               <a href="javascript:{}" class="userName">
-                <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                <img *ngIf="userimg==''" src="assets/images/avatar-4.jpg"  class="img-radius" alt="User-Profile-Image">
+                <img *ngIf="userimg!=''" src="{{getbaseurl}}/{{userimg}}" class="img-radius" alt="User-Profile-Image">
                 <span>{{usertype}}</span>
                 <i class="ti-angle-down"></i>
               </a>
@@ -112,7 +113,8 @@
           <div class="pcoded-inner-navbar main-menu">
             <div class="">
               <div class="main-menu-header">
-                <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                <img class="img-80 img-radius" *ngIf="userimg==''" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                <img class="img-80 img-radius" *ngIf="userimg!=''" src="{{getbaseurl}}/{{userimg}}" alt="User-Profile-Image">
                 <div class="user-details" (click)="usertoggle()">
                   <span id="more-details">{{UserName}}<i class="fa fa-caret-down"></i></span>
                 </div>
@@ -148,21 +150,28 @@
               <li class="pcoded-hasmenu" *ngIf="canViewTechnologytransfer">
                 <a href="javascript:void(0)" class="waves-effect waves-dark" (click)="loadscript()">
                   <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
-                  <span class="pcoded-mtext" data-i18n="nav.dash.main">Technology Transfer</span>
+                  <span class="pcoded-mtext" data-i18n="nav.dash.main">TT Activity Initiation</span>
                   <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu fontWeight">
+                  <li class=" " *ngIf="canviewTta_Additional_info_neededPermission">
+                    <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_additional_info_needed'}">
+                      <span class="pcoded-micon"><i class="ti-layers"></i></span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Additional Information Required</span>
+                      <span class="pcoded-mcaret"></span>
+                    </a>
+                  </li>
                   <li class=" " *ngIf="canviewTta_initPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_init'}">
                       <span class="pcoded-micon"><i class="ti-layers"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">TTA Initiation</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">TT Request and Disclosure</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_evaluation_assignedPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_evaluation_assigned'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Evaluation Assigned</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Evaluation Assigned</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -170,112 +179,119 @@
                   <li class=" " *ngIf="canviewTta_evaluation_upload_by_bdmPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_evaluation_uploaded_by_bdm'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Evaluation Uploaded by BDM</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Evaluation Report Uploaded</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_evaluation_closure_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_evaluation_closure_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Evaluation Closure by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Activity to be Closed</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_evaluation_approved_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_evaluation_approved_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Evaluation Approved by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Evaluation Report for Review</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_evaluation_change_request_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_evaluation_change_req_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Evaluation Change Request by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Change request by Admin</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_Closure_request_by_bdmPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_closure_requested_by_bdm'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Closure Requested by BDM</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Activity Closure Report</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_closePermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_closed'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Closed</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Activity Closed</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_evaluation_change_request_by_clientPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_evaluation_change_req_by_client'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Evaluation Change Request by Client</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Change request by Scientist</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_evaluation_accepted_by_clientPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_evaluation_accepted_by_client'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Evaluation Accepted by Client</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Evaluation Report Approved</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_strategy_assignedPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_strategy_assigned'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Strategy Assigned</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Strategy assigned</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_strategy_uploaded_by_bdmPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_strategy_uploaded_by_bdm'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Strategy Uploaded by BDM</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Strategy Uploaded</span>
+                      <span class="pcoded-mcaret"></span>
+                    </a>
+                  </li>
+                  <li class=" " *ngIf="canviewTta_strategy_approvedPermission">
+                    <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_strategy_approved'}">
+                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Strategy Approved</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewtta_strategy_change_request_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_strategy_change_req_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Strategy Change Request by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Tech Brief change request by Admin</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_techb_and_flier_approved_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_techb_and_flier_approved_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Tech Brief And Flyer Approved by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Tech Brief for Review</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_techb_and_flier_approved_by_scientistPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_change_req_by_scientist'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Tech Brief And Flyer Approved by Scientist</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Tech Brief Approved</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewstartegy_implementedPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'strategy_implemented'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Strategy Implemented</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Strategy Implemented</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_interest_receivedPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_interest_received'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTA Interest Received</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Industry Interest received</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewTta_no_interest_receivedPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_no_interest_received'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">No Interest Received</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">No Interest received</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -355,42 +371,49 @@
               <li class="pcoded-hasmenu" *ngIf="canViewMou">
                 <a href="javascript:void(0)" class="waves-effect waves-dark">
                   <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
-                  <span class="pcoded-mtext" data-i18n="nav.dash.main">MOU</span>
+                  <span class="pcoded-mtext" data-i18n="nav.dash.main">Engagement with Organization</span>
                   <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu fontWeight">
                   <li class=" " *ngIf="canviewMou_initPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'init'}">
                       <span class="pcoded-micon"><i class="ti-layers"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Initiation of Assignment</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Initiation - Organization Details</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewMou_pendingPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'mou_pending'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MOU Pending</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MoU Pending</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewMou_proposed_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'mou_proposed_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MOU Proposed by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MoU proposed by TTO</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewMou_change_by_adminPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'mou_change_by_admin'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MOU Change Req by Admin</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MoU change request by Admin</span>
+                      <span class="pcoded-mcaret"></span>
+                    </a>
+                  </li>
+                  <li class=" " *ngIf="canviewMou_change_by_clientPermission">
+                    <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'mou_change_by_client'}">
+                      <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MoU change request by Organization</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
                   <li class=" " *ngIf="canviewMou_proposed_by_lmPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'mou_porposed_by_lm'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MOU Proposed by LM</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MoU proposed by LM</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -398,7 +421,7 @@
                   <li class=" " *ngIf="canviewMou_accepted_by_clientPermission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'mou_accepted_by_client'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MOU Accepted by Client</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">MoU Accepted</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>
@@ -419,7 +442,7 @@
                   <li class=" " *ngIf="canviewtto_required_aproved_Permission">
                     <a class="waves-effect waves-dark" routerLink='bcil-table' [queryParams]="{type:'tto_req_approved'}">
                       <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TTO Request Approved</span>
+                      <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">TT Assignment</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </li>

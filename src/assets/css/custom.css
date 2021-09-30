@@ -2,6 +2,20 @@
 .userName{
     color: #000;
 }
+.secLogo img{
+    height: 69px;
+    width: 100px;
+}
+.headercl{
+    margin-left:12%;
+    width:85%;
+}
+@media (min-width: 1200px) {
+.headercl {
+    margin-left: 15%;
+    width: 82%;
+}
+}
 .header-navbar .navbar-wrapper .navbar-container .badge.shadowColor::before{
     -webkit-box-shadow: inset 0 0 20px 5px rgb(113 62 62 / 40%);
     box-shadow: inset 0 0 20px 5px rgb(113 62 62 / 40%);

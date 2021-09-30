@@ -1,6 +1,6 @@
 export class User {
   // Note: Using only optional constructor properties without backing store disables typescript's type checking for the type
-  constructor(id?: string, userName?: string, fullName?: string, email?: string, jobTitle?: string, phoneNumber?: string, roles?: string[], isapproved?: string, department?: string, isLastPasswordChanged?: string) {
+  constructor(id?: string, userName?: string, fullName?: string, email?: string, jobTitle?: string, phoneNumber?: string, roles?: string[], isapproved?: string, department?: string,imgUrl?: string,img?: string,  isLastPasswordChanged?: string) {
 
     this.id = id;
     this.userName = userName;
@@ -9,6 +9,8 @@ export class User {
     this.jobTitle = jobTitle;
     this.phoneNumber = phoneNumber;
     this.roles = roles;
+    this.img=img;
+    this.imgUrl=imgUrl;
     this.isapproved = isapproved;
     this.department = department;
     this.isLastPasswordChanged = isLastPasswordChanged;
@@ -31,6 +33,8 @@ export class User {
   public isapproved: string;
   public userName: string;
   public fullName: string;
+  public img:string;
+  public imgUrl:string;
   public email: string;
   public jobTitle: string;
   public phoneNumber: string;

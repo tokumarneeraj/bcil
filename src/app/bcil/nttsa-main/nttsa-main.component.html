@@ -16,7 +16,7 @@
               <a href="index.html"> <i class="fa fa-home"></i> </a>
             </li>
             <li class="breadcrumb-item">
-              <a href="#!">MOU</a>
+              <a href="#!">TTA</a>
             </li>
             <!-- <li class="breadcrumb-item"><a href="#!">Assignments</a>
             </li> -->
@@ -54,6 +54,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>TTA NO</th>
                       <th>Institute</th>
                       <th>Dept. Name</th>
                       <th>Phone No.</th>
@@ -71,6 +72,7 @@
                   <tbody>
                     <tr *ngFor="let item of mouModel;let i=index;">
                       <th scope="row">{{i+1}}</th>
+                      <td>{{item.tto_no}}</td>
                       <td>{{item.int_Uni_Name}}</td>
                       <td>{{item.dept_Name}}</td>
                       <td>{{item.phoneNo}}</td>
@@ -118,7 +120,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>Application Forward</h4>
+        <h4>{{activearray?.formHeader}}</h4>
         <button type="button" class="close float-right" title="Close" (click)="editorModal1.hide()">
           <span aria-hidden="true">&times;</span>
         </button>

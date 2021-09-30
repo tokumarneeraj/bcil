@@ -57,6 +57,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>TTA No</th>
                       <th>Institute</th>
                       <th>Dept. Name</th>
                       <th>Phone No.</th>
@@ -78,6 +79,7 @@
                   <tbody>
                     <tr *ngFor="let item of mouModel;let i=index;">
                       <th scope="row">{{i+1}}</th>
+                      <td>{{item.tto_no}}</td>
                       <td>{{item.int_Uni_Name}}</td>
                       <td>{{item.dept_Name}}</td>
                       <td>{{item.phoneNo}}</td>
@@ -128,12 +130,13 @@
 
                         <button value="assign" *ngIf='isBdm && item.app_Status==="S127"' class="btn btn-success" (click)="onClientClick(item,'S129')">Submit</button>
 
-                        <button value="assign" *ngIf='isBdm && item.app_Status==="S129"' class="btn btn-success" (click)="onClientClick(item,'S130')">Submit</button>
+                        <button value="assign" *ngIf='isBdm && item.app_Status==="S129"' class="btn btn-success" (click)="onClientClick(item,'S130')">Interests Received</button>
+                        <button value="assign" *ngIf='isBdm && item.app_Status==="S129"' class="btn btn-danger" (click)="onClientClick(item,'S131')">No Interests Received</button>
 
                         <button value="assign" title="Forward To Admin" *ngIf='isAdmin && item.app_Status==="S131"' class="btn btn-success" (click)="onClientClick(item,'S404')">Forward</button>
                         <button value="assign" title="Forward To Admin" *ngIf='isAdmin && item.app_Status==="S131"' class="btn btn-danger" (click)="onClientClick(item,'S116')">Close</button>
                         <button value="assign"  title="Forward To Admin" *ngIf='isBdm && item.app_Status==="S404"' class="btn btn-success" (click)="onClientClick(item,'S405')">Upload</button>
-                        <button value="assign"  title="Forward To Bdm" *ngIf='isAdmin && item.app_Status==="S405"' class="btn btn-success" (click)="onClientClick(item,'S406')">Upload</button>
+                        <button value="assign"  title="Forward To Bdm" *ngIf='isAdmin && item.app_Status==="S405"' class="btn btn-success" (click)="onClientClick(item,'S406')">Approve</button>
                         <button value="assign"  title="Forward To Admin" *ngIf='isBdm && item.app_Status==="S406"' class="btn btn-success" (click)="onClientClick(item,'S129')">Upload</button>
 
                       </td>
