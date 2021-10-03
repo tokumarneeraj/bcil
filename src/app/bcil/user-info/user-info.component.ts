@@ -12,6 +12,7 @@ import { DBkeys } from 'src/app/services/db-keys';
 import { LocalStoreManager } from 'src/app/services/local-store-manager.service';
 import { ImageUploaderComponent } from '../image-uploader.component';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -22,8 +23,8 @@ import { environment } from 'src/environments/environment';
  
 })
 export class UserInfoComponent implements OnInit {
-  public imagename="cxxc";
-  public imageurl="cxxc";
+  public imagename="";
+  public imageurl="";
   public isEditMode = false;
   public isNewUser = false;
   public isSaving = false;
@@ -91,12 +92,15 @@ this.imageurl=imageurl;
   userRoles: string[];
 rolename:string;
 
-  constructor(private localStorage: LocalStoreManager,private alertService: AlertService, private accountService: AccountService) {
+  constructor(private authservice:AuthService,private localStorage: LocalStoreManager,private alertService: AlertService, private accountService: AccountService) {
     this.user1 = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
     this.userRoles = this.accountService.currentUser.roles;
     this.isNodal = this.userRoles.includes('Nodal'); 
   //  this.Imageupload.imageSrc="vayy";
-    this.imageurl=this.getbaseurl+"/"+this.accountService.currentUser.img;
+  if(this.accountService.currentUser?.imgUrl!=undefined){
+    this.imageurl='';
+    this.imageurl=this.getbaseurl+"/"+this.accountService.currentUser?.imgUrl;
+  }
   }
   imgsrc(data:string){
 return data;
@@ -271,10 +275,18 @@ this.allDepartment=this.allDepartment1;
     if (this.isEditingSelf) {
       this.alertService.showMessage('Success', 'Changes to your User Profile was saved successfully', MessageSeverity.success);
       this.refreshLoggedInUser();
+
+    
+      setTimeout(()=>{
+
+        this.authservice.logout();
+        this.authservice.redirectLogoutUser();
+      },300);
     }
 
     this.isEditMode = false;
-
+    
+   // this.refreshLoggedInUser();
 
     if (this.changesSavedCallback) {
       this.changesSavedCallback();
@@ -348,6 +360,7 @@ this.allDepartment=this.allDepartment1;
 
 
   private refreshLoggedInUser() {
+    debugger;
     this.accountService.refreshLoggedInUser()
       .subscribe(user => {
         this.loadCurrentUserData();

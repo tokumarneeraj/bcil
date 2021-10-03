@@ -4,6 +4,7 @@ import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
 import { Permission } from 'src/app/model/permission.model';
 import {commondata} from '../../model/common'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-mou-dashboard',
   templateUrl: './mou-dashboard.component.html',
@@ -22,9 +23,11 @@ export class MouDashboardComponent implements OnInit {
   UserId: string;
 commondata=new commondata();
 activeusermou:activeusermou[];
+moudata:any;
+  viewtab:any;
   // usertype:string;
   // UserName:string;
-  constructor(private Bdoservice: Bdoservice, private accountService: AccountService) {
+  constructor(private Bdoservice: Bdoservice, private accountService: AccountService,private router:Router) {
 
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -38,44 +41,20 @@ activeusermou:activeusermou[];
 
  
 
-  get canviewMou_initPermission() {
-    return this.accountService.userHasPermission(Permission.viewMou_initPermission);
+ 
+  queryparam(data:any){
+    this.router.navigate(['./bcil/bcil-table'], { queryParams: { type: data} });
+  // return  '{type:'+data+'}'
   }
-  get canviewMou_pendingPermission() {
-    return this.accountService.userHasPermission(Permission.viewMou_pendingPermission);
-  }
-  get canviewMou_proposed_by_adminPermission() {
-    return this.accountService.userHasPermission(Permission.viewMou_proposed_by_adminPermission);
-  }
-  get canviewMou_change_by_adminPermission() {
-    return this.accountService.userHasPermission(Permission.viewMou_change_req_by_adminPermission);
-  }
-
-  get canviewMou_change_by_clientPermission() {
-    return this.accountService.userHasPermission(Permission.viewMou_change_req_by_clientPermission);
-  }
-  get canviewMou_proposed_by_lmPermission() {
-    return this.accountService.userHasPermission(Permission.viewMou_proposed_by_lmPermission);
-  }
-  get canviewMou_accepted_by_clientPermission() {
-    return this.accountService.userHasPermission(Permission.viewMou_accepted_by_clientPermission);
-  }
-  get canviewagreementsignedPermission() {
-    return this.accountService.userHasPermission(Permission.viewagreementsignedPermission);
-  }
-  get canviewbdoassignedPermission() {
-    return this.accountService.userHasPermission(Permission.viewbdoassignedPermission);
-  }
-  get canviewtto_required_aproved_Permission() {
-    return this.accountService.userHasPermission(Permission.viewtto_required_aproved_Permission);
-  }
-  get canviewip_manager_assignedPermission() {
-    return this.accountService.userHasPermission(Permission.viewip_manager_assignedPermission);
-  }
-
-
+  
   ngOnInit(): void {
-    debugger;
+    
+    this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
+    this.Bdoservice.getdatapermission().subscribe(data=>{
+      console.log(data);
+      this.moudata=data?.mou?.filter(x=>this.viewtab.find(y=>y==x.value));
+
+    })
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
@@ -103,30 +82,7 @@ return this.commondata.moustatus().find(x=>x.value==data)?.tabelname;
     else{
       return this.mouModel?.filter(x=>(x.app_Status==data || x.tto_approved==data)&& this.activeusermou?.find(t=>t.mouref==x.refid)).length;
     }
-    // else if(this.isAdmin){
-     
-
-    //     return this.mouModel?.filter(x => x.app_Status == data &&  x.assigntoadmin==this.UserId).length;//&& x.assignto==this.UserId
-  
-      
-// if(this.isSuperAdmin){
-//   return this.mouModel?.filter(x => x.app_Status == data).length;//&& x.assignto==this.UserId
-  
-// }
-//      else if(this.isBDM ||this.isIPM){
-//       return this.mouModel?.filter(x => x.app_Status == data &&  x.createdBy==this.UserId).length;//&& x.assignto==this.UserId
-  
-
-//     }
-//    else {
-
-//       console.log(this.mouModel?.filter(x => x.app_Status == data).length)
-//       return this.mouModel?.filter(x => (x.app_Status == data) && (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
-//         x.assignto==this.UserId || x.app_Status=='S101'
-//         )).length;
-//     //}
-
-//   }
+   
 }
 
 }

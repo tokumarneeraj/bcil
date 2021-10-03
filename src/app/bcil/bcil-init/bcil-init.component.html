@@ -1,185 +1,4 @@
-<!--<div id="pcoded" class="pcoded">
-    <div class="pcoded-overlay-box"></div>
-    <div class="pcoded-container navbar-wrapper">
-        <nav class="navbar header-navbar pcoded-header">
-            <div class="navbar-wrapper">
-                <div class="navbar-logo">
-                    <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
-                        <i class="ti-menu blackMenu"></i>
-                    </a>
-                    <div class="mobile-search waves-effect waves-light">
-                        <div class="header-search">
-                            <div class="main-search morphsearch-search">
-                                <div class="input-group">
-                                    <span class="input-group-addon search-close"><i class="ti-close"></i></span>
-                                    <input type="text" class="form-control" placeholder="Enter Keyword">
-                                    <span class="input-group-addon search-btn"><i class="ti-search blackMenu"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <a class="mobile-options waves-effect waves-light">
-                        <i class="ti-more"></i>
-                    </a>
-                </div>
-              
-                <div class="navbar-container container-fluid">
-                    <ul class="nav-left">
-                        <li>
-                            <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-                        </li>
-                       
-                        <li>
-                            <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
-                                <i class="ti-fullscreen blackMenu"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav-right">
-                        <li class="header-notification">
-                            <a href="#!" class="waves-effect waves-light">
-                                <i class="ti-bell blackMenu"></i>
-                                <span class="badge bg-c-red shadowColor"></span>
-                            </a>
-                            
-                         </li>
-                        <li class="user-profile header-notification">
-                            <a href="#!" class="waves-effect waves-light userName">
-                                <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>Admin</span>
-                                <i class="ti-angle-down"></i>
-                            </a>
-                            <ul class="show-notification profile-notification">
-                                
-                                <li class="waves-effect waves-light">
-                                    <a href="user-profile.html">
-                                        <i class="ti-user"></i> Profile
-                                    </a>
-                                </li>
-                               
-                               
-                                <li class="waves-effect waves-light">
-                                    <a href="auth-normal-sign-in.html">
-                                        <i class="ti-layout-sidebar-left"></i> Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
-        <div class="pcoded-main-container">
-            <div class="pcoded-wrapper">
-                <nav class="pcoded-navbar">
-                    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-                    <div class="pcoded-inner-navbar main-menu">
-                        <div class="">
-                            <div class="main-menu-header">
-                                <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
-                                <div class="user-details">
-                                    <span id="more-details">Admin<i class="fa fa-caret-down"></i></span>
-                                </div>
-                            </div>
-                    
-                            <div class="main-menu-content">
-                                <ul>
-                                    <li class="more-details">
-                                        <a href="user-profile.html"><i class="ti-user"></i>View Profile</a>
-                                        
-                                        <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
-                      <ul class="pcoded-item pcoded-left-item">
-                        <li class="active index.html">
-                            <a href="index.html" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="ti-home"></i></span>
-                                <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Dashboard</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>                                  
-                        </li>
-                          <li class="pcoded-hasmenu">
-                              <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
-                                  <span class="pcoded-mtext" data-i18n="nav.dash.main">Technology Transfer</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>
-                              <ul class="pcoded-submenu fontWeight">
-                                <li class=" ">
-                                    <a href="form-elements-component.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Milestones</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="bs-basic-table.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Assignments</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                              </ul>
-                          </li>
-                          <li class="">
-                              <a href="#" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                  <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Patent</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>                                  
-                          </li>
-                          <li class="">
-                              <a href="#" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                  <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Trademark</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>                                  
-                          </li>
-                          <li class="">
-                              <a href="#" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                  <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Design</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>                                  
-                          </li>
-                          <li class="">
-                              <a href="#" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                  <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Copyright</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>                                  
-                          </li>
-                          <li class="">
-                              <a href="#" class="waves-effect waves-dark">
-                                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                  <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Plant Variety</span>
-                                  <span class="pcoded-mcaret"></span>
-                              </a>                                  
-                          </li>
-                          <li class="">
-                            <a href="#" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Other Services</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>                                  
-                        </li>
-                          <li class="">
-                            <a href="#" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
-                                <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Reports</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>                                  
-                        </li>
-                      </ul> 
-                      <div class="dummyHeight"></div>  
-                    </div>
-                </nav> -->
                 <div class="pcoded-content">
                     <!-- Page-header start -->
                     <div class="page-header">
@@ -216,7 +35,7 @@
                                     <!-- Hover table card start -->
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>{{activearray?.tabelname}}</h5>
+                                            <h5>{{array?.tabelname}}</h5>
                                             <!-- <span>use class <code>table-hover</code> inside table element</span> -->
                                             <div class="card-header-right">
                                                 <ul class="list-unstyled card-option">
@@ -258,10 +77,14 @@
                                                   <td>{{item.dir_Head_Name}}</td>
                                                   <td>{{item.dir_Mobile_No}} <span  class="badge badge-info" *ngIf="(isScientist==true || isNodal==true) && (item.app_Status=='S101'||item.app_Status=='S102'||item.app_Status=='S103'||item.app_Status=='S104')">Document in process</span></td>
                                                       <!-- <td *ngIf="(app_status=='S101'||item.app_status=='S102'||item.app_status=='S103'||item.app_status=='S104')?showitem=true:showitem=false">Under Process</td>
-                                                      --> <td> 
-                                                    <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
+                                                      --> 
+                                                      <td> 
+                                                        <ng-container *ngFor="let btn of array?.button">
+                                                            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,item)">{{btn.text}}</button>
+                                                                                                      </ng-container>
+                                                    <!-- <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
                                                     <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
-                                                    <button value="approve" *ngIf="activearray?.approved && permission" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button>
+                                                    <button value="approve" *ngIf="activearray?.approved && permission" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button> -->
 
                                                   </td>
                                                   <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mou',refid:item.refid}">View</a></td>
@@ -301,7 +124,7 @@
     overflow: auto;">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>{{activearray?.tabelname}}</h4>
+                <h4>{{array?.tablename}}</h4>
                 <button type="button" class="close float-right" title="Close" (click)="editorModal1.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -309,13 +132,13 @@
             <div class="modal-body">
               <form [formGroup]="ForwardForm">
 
-                <div class="form-group row" *ngIf="type=='S101' && isAdmin && forword">
+                <div class="form-group row" *ngIf="isAdmin && activebtn?.form?.lmassigned">
                   <div class="col-sm-12">
                     <label class="col-form-label">Select Legal Manager</label>
 
                     <select type="text" class="form-control" formControlName="assignto" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
                       <option value="" selected>--select--</option>
-                      <option *ngFor="let data of rows" value="{{data.id}}">{{data.fullName}}</option>
+                      <option *ngFor="let data of rows" value="{{data.id}}">{{data.userName}}</option>
 
                     </select>
 
@@ -333,7 +156,7 @@
 
                   </div>
                 </div>
-                <div class="form-group row" *ngIf="activearray?.type">
+                <div class="form-group row" *ngIf="activebtn?.form?.showlm">
                   <div class="col-sm-12">
                     <label class="col-form-label">Type</label>
                     <select type="text" class="form-control" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
@@ -347,11 +170,11 @@
 
                   </div>
                 </div>
-                <div class="form-group row" *ngIf="activearray?.bdoassigned">
+                <div class="form-group row" *ngIf="activebtn?.form?.bdoassigned">
                     <div class="col-sm-12">
                       <label class="col-form-label">BDM</label>
                       <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selected">
-                        <option *ngFor="let user of rows" value="{{user.id}}">{{user.userName}}</option>
+                        <option *ngFor="let user of rows1" value="{{user.id}}">{{user.userName}}</option>
                         <!-- <option value="MOU">MOU</option>
                         <option value="NDA">NDA</option>
                         <option value="Work Order">Work Order</option>
@@ -381,7 +204,7 @@
                   </div>
                 </div>
 
-                <div class="form-group row"  *ngIf="activearray?.value=='S101'">
+                <div class="form-group row"  *ngIf="activebtn?.form?.reminder">
 <div class="col-sm-6"> 
     <label class="col-form-label">Default Reminder</label>
     <input type="radio" class="form-control" name="remindertype" value="default"  formControlName="remindertype" (change)="reminderchange('default')"/>
@@ -393,7 +216,7 @@
            
                   </div>
                 </div>
-                 <div class="form-group row"  *ngIf="activearray?.value=='S101'">
+                 <div class="form-group row"  *ngIf="activebtn?.form?.reminder">
                     <app-reminder *ngIf="customrem" [customrem]="customrem" [mouref]="mouref" [type]="type" style="width:100%"></app-reminder>
                  </div>
 

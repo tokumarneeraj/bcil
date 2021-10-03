@@ -52,7 +52,7 @@ debugger;
     //moubutton
      getotherpermissiondata(data:any){
      let permi= JSON.parse(localStorage.getItem('user_otherpermissions'));
-     return permi.filter(s => s.includes(data));
+     return permi?.filter(s => s.includes(data));
     }
     
     userHasPermission(permissionValue: PermissionValues): boolean {

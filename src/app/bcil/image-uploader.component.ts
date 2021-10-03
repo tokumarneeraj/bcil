@@ -51,6 +51,9 @@ export class ImageUploaderComponent {
 //    }
    ngOnInit() {
     this.imageSrc=this.photo
+
+
+    
    }
    @Output() imagechange = new EventEmitter<any>();
   
@@ -73,13 +76,14 @@ export class ImageUploaderComponent {
     }
 
     handleInputChange(e) {
-        debugger;
+        this.imageurl="";
+        this.imagename="";
         var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
 
         var pattern = /image-*/;
         var reader = new FileReader();
 
-        if (!file.type.match(pattern)) {
+        if (!file?.type.match(pattern)) {
             alert('invalid format');
             return;
         }
@@ -90,7 +94,7 @@ export class ImageUploaderComponent {
             let data1: any = data;
           this.imagename= file.name
            this.imageurl = data1?.split(',')[1];
-    this.imagechange.emit({imagename:file.name,imageurl:this.imageurl})
+    this.imagechange.emit({imagename:  this.imagename,imageurl:this.imageurl})
    
           //  this.UploadFileViewModel.file64 = contentType;
         this.loaded = false;

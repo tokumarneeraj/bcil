@@ -46,9 +46,11 @@ export class BcilComponent implements OnInit {
   commondata=new commondata();
   doticon=false;
   showdiv=false;
+  viewtab:any;
   notificationdiv=false;
   userdiv=false;
   getbaseurl=environment.baseUrl;
+  jsondata:any;
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -67,7 +69,7 @@ export class BcilComponent implements OnInit {
     this.usertype = this.accountService.currentUser.roles.join(',');
     this.UserName = this.accountService.currentUser.userName;
     this.UserId = this.accountService.currentUser.id;
-    this.userimg=this.accountService.currentUser?.img?.replace(/\//g,"/");
+    this.userimg=this.accountService.currentUser?.imgUrl?.replace(/\//g,"/");
     console.log(this.userimg)
     this.userimg==undefined?this.userimg="":this.userimg;
   }
@@ -82,66 +84,66 @@ export class BcilComponent implements OnInit {
 mouleftmenu(data){
 return this.commondata.moustatus().find(x=>x.value==data)?.tabelname;
 }
-  notifymessage=[{stage:'S101',message:'Initiation- to be suggested by client is pending, please take necessary action'},
-  {stage:'S102',message:'MOU is pending, please take necessary action'},
-  {stage:'S103',message:'MOU Change Required By Admin is pending, please take necessary action'},
-  {stage:'S104',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
-  {stage:'S105',message:'Agreement Signed is pending, please take necessary action'},
-  {stage:'S106',message:'MOU Accepted by Client is pending, please take necessary action'},
-  {stage:'S107',message:'Business Development Manager Assiged is pending, please take necessary action'},
-  {stage:'S108',message:'TTO Req Approved is pending, please take necessary action'},
-  {stage:'S109',message:'IP Manager Assigned is pending, please take necessary action'},
-  {stage:'S110',message:'MOU Proposed by Admin is pending, please take necessary action'},
-  {stage:'S111',message:'MOU Change By Client is pending, please take necessary action'},
-  {stage:'S112',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  notifymessage=[{stage:'S101',message:'Initiation- to be suggested by client is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S102',message:'MOU is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S103',message:'MOU Change Required By Admin is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S104',message:'MOU Proposed By Legal Manager is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S105',message:'Agreement Signed is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S106',message:'MOU Accepted by Client is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S107',message:'Business Development Manager Assiged is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S108',message:'TTO Req Approved is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S109',message:'IP Manager Assigned is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S110',message:'MOU Proposed by Admin is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S111',message:'MOU Change By Client is pending, please take necessary action',url:'mou-dashboard'},
+  {stage:'S112',message:'MOU Proposed by Admin is pending, please take necessary action',url:'mou-dashboard'},
 
-  {stage:'S113',message:'MOU is pending, please take necessary action'},
-  {stage:'S114',message:'MOU Change Required By Admin is pending, please take necessary action'},
-  {stage:'S115',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
-  {stage:'S116',message:'Agreement Signed is pending, please take necessary action'},
-  {stage:'S117',message:'MOU Accepted by Client is pending, please take necessary action'},
-  {stage:'S118',message:'Business Development Manager Assiged is pending, please take necessary action'},
-  {stage:'S119',message:'TTO Req Approved is pending, please take necessary action'},
-  {stage:'S120',message:'IP Manager Assigned is pending, please take necessary action'},
-  {stage:'S121',message:'MOU Proposed by Admin is pending, please take necessary action'},
-  {stage:'S122',message:'MOU Change By Client is pending, please take necessary action'},
-  {stage:'S123',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S113',message:'MOU is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S114',message:'MOU Change Required By Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S115',message:'MOU Proposed By Legal Manager is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S116',message:'Agreement Signed is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S117',message:'MOU Accepted by Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S118',message:'Business Development Manager Assiged is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S119',message:'TTO Req Approved is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S120',message:'IP Manager Assigned is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S121',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S122',message:'MOU Change By Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S123',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
 
-  {stage:'S124',message:'MOU is pending, please take necessary action'},
-  {stage:'S125',message:'MOU Change Required By Admin is pending, please take necessary action'},
-  {stage:'S126',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
-  {stage:'S127',message:'Agreement Signed is pending, please take necessary action'},
-  {stage:'S128',message:'MOU Accepted by Client is pending, please take necessary action'},
-  {stage:'S129',message:'Business Development Manager Assiged is pending, please take necessary action'},
-  {stage:'S130',message:'TTO Req Approved is pending, please take necessary action'},
-  {stage:'S131',message:'IP Manager Assigned is pending, please take necessary action'},
-  {stage:'S132',message:'MOU Proposed by Admin is pending, please take necessary action'},
-  {stage:'S133',message:'MOU Change By Client is pending, please take necessary action'},
-  {stage:'S134',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S124',message:'MOU is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S125',message:'MOU Change Required By Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S126',message:'MOU Proposed By Legal Manager is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S127',message:'Agreement Signed is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S128',message:'MOU Accepted by Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S129',message:'Business Development Manager Assiged is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S130',message:'TTO Req Approved is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S131',message:'IP Manager Assigned is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S132',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S133',message:'MOU Change By Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S134',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
 
-  {stage:'S135',message:'MOU is pending, please take necessary action'},
-  {stage:'S136',message:'MOU Change Required By Admin is pending, please take necessary action'},
-  {stage:'S137',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
-  {stage:'S138',message:'Agreement Signed is pending, please take necessary action'},
-  {stage:'S139',message:'MOU Accepted by Client is pending, please take necessary action'},
-  {stage:'S140',message:'Business Development Manager Assiged is pending, please take necessary action'},
-  {stage:'S141',message:'TTO Req Approved is pending, please take necessary action'},
-  {stage:'S142',message:'IP Manager Assigned is pending, please take necessary action'},
-  {stage:'S143',message:'MOU Proposed by Admin is pending, please take necessary action'},
-  {stage:'S144',message:'MOU Change By Client is pending, please take necessary action'},
-  {stage:'S145',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S135',message:'MOU is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S136',message:'MOU Change Required By Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S137',message:'MOU Proposed By Legal Manager is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S138',message:'Agreement Signed is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S139',message:'MOU Accepted by Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S140',message:'Business Development Manager Assiged is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S141',message:'TTO Req Approved is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S142',message:'IP Manager Assigned is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S143',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S144',message:'MOU Change By Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S145',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
 
-  {stage:'S146',message:'MOU is pending, please take necessary action'},
-  {stage:'S147',message:'MOU Change Required By Admin is pending, please take necessary action'},
-  {stage:'S148',message:'MOU Proposed By Legal Manager is pending, please take necessary action'},
-  {stage:'S149',message:'Agreement Signed is pending, please take necessary action'},
-  {stage:'S150',message:'MOU Accepted by Client is pending, please take necessary action'},
-  {stage:'S151',message:'Business Development Manager Assiged is pending, please take necessary action'},
-  {stage:'S152',message:'TTO Req Approved is pending, please take necessary action'},
-  {stage:'S153',message:'IP Manager Assigned is pending, please take necessary action'},
-  {stage:'S154',message:'MOU Proposed by Admin is pending, please take necessary action'},
-  {stage:'S155',message:'MOU Change By Client is pending, please take necessary action'},
-  {stage:'S156',message:'MOU Proposed by Admin is pending, please take necessary action'},
+  {stage:'S146',message:'MOU is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S147',message:'MOU Change Required By Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S148',message:'MOU Proposed By Legal Manager is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S149',message:'Agreement Signed is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S150',message:'MOU Accepted by Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S151',message:'Business Development Manager Assiged is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S152',message:'TTO Req Approved is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S153',message:'IP Manager Assigned is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S154',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S155',message:'MOU Change By Client is pending, please take necessary action',url:'tta-dashboard'},
+  {stage:'S156',message:'MOU Proposed by Admin is pending, please take necessary action',url:'tta-dashboard'},
 
 ]
 
@@ -152,16 +154,30 @@ this.ngOnInit();
 
   });
 }
-  ngOnInit(): void {
+menus(){
+ let menu=  this.jsondata?.tabheading;
+ return menu;
 
+}
+submenus(stage:string){
+let submenu=  this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value)));
+
+return submenu;
+}
+  ngOnInit(): void {
+    this.viewtab=this.commondata.getotherpermissiondata('view')?.map((item)=>(item?.split('-')[1]));
    // this.notify_call();
+   this.Bdoservice.getdatapermission().subscribe(data=>{
+this.jsondata=data;
+     });
     this.Bdoservice.GetNotification().subscribe(data=>{
       console.log(data,'not')
       if(data.length>0){
         this.doticon=data.some(x=>x.active==true);
         this.notificationcount=data.filter(x=>x.active==true).length;
       this.notify = true;
-      this.noticfy_class=data.map(obj=>({...obj,message:this.notifymessage?.find(x=>x.stage==obj.stageon)?.message
+      this.noticfy_class=data.map(obj=>({...obj,message:this.notifymessage?.find(x=>x.stage==obj.stageon)?.message,
+        url:this.notifymessage?.find(x=>x.stage==obj.stageon)?.url
       ,user:this.UserName}));
       }
       else{
@@ -377,12 +393,28 @@ get canviewTta_techb_and_flier_approved_by_adminPermission() {
 get canviewTta_techb_and_flier_approved_by_scientistPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_techb_and_flier_approved_by_scientistPermission);
 }
+
+get canviewTta_techb_flyer_uploadedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_techb_flyer_uploadedPermission);
+}
+
 get canviewTta_chnage_req_by_scientistPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_change_req_by_scientistPermission);
 }
 get canviewstartegy_implementedPermission() {
   return this.accountService.userHasPermission(Permission.viewstartegy_implementedPermission);
 }
+
+get canviewTta_strategy_update_request_by_adminPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_strategy_update_request_by_adminPermission);
+}
+get canviewTta_strategy_update_uploadedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_strategy_update_uploadedPermission);
+}
+get canviewTta_strategy_update_approvedPermission() {
+  return this.accountService.userHasPermission(Permission.viewTta_strategy_update_approvedPermission);
+}
+
 get canviewTta_interest_receivedPermission() {
   return this.accountService.userHasPermission(Permission.viewTta_interest_receivedPermission);
   }

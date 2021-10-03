@@ -98,7 +98,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" >
                 <ul class="list-unstyled">
                     <li *ngFor="let role of rows"><input type="checkbox" name="checkbox-{{role.name}}" [disabled]="!canManageRoles" [(ngModel)]="selectedValues1[role.id+uservalue]" />{{role.name}}</li>
                 </ul>
@@ -114,7 +114,7 @@
     <div class="modal fade" bsModal #editorModal3="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
         <div class="modal-dialog modal-lg" style="bottom: 0px;
         width: 100%;
-        position: absolute;">
+        position: absolute;height:700px;overflow-y: scroll; ">
           <div class="modal-content">
             <div class="modal-header">
               <h4> <i _ngcontent-vnn-c102="" class="fa fa-shield"></i>Permission</h4>
@@ -122,7 +122,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="overflow-y: scroll; ">
               <!-- <div class="col-12" >
                   <div class="col-2">{{sta.status_name}}</div>
                   <div class="col-2"><input type="checkbox" /></div>
@@ -143,6 +143,10 @@
                           <td>{{sta.status_name}}</td>
                           <td>{{sta.stagetype}}</td>
                           <td>
+                            View<input type="checkbox" (change)="onChange('view',sta.status_code, $event.target.checked)" name="view-{{sta.status_code}}" checked="{{sta.check}}"/>
+                             
+                            Manage button<input type="checkbox" (change)="onChange('manage',sta.status_code, $event.target.checked)" name="manage-{{sta.status_code}}" checked="{{sta.check}}"/>
+                             
                               History<input type="checkbox" (change)="onChange('history',sta.status_code, $event.target.checked)" name="history-{{sta.status_code}}" checked="{{sta.check}}"/>
                               Remarks<input type="checkbox" (change)="onChange('remark',sta.status_code, $event.target.checked)" name="remark-{{sta.status_code}}" value="remark-{{sta.status_code}}" checked="{{sta.check}}"/>
                               <!-- Email<input type="checkbox" (change)="onChange('email',sta.status_code, $event.target.checked)" name="email-{{sta.status_code}}" value="email-{{sta.status_code}}" checked="{{sta.check}}"/>

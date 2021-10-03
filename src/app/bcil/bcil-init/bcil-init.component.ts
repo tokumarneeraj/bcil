@@ -57,6 +57,7 @@ export class BcilInitComponent implements OnInit {
   isIPM:boolean;
   users: User[] = [];
   rows: User[] = [];
+  rows1: User[] = [];
   rowsCache: User[] = [];
   departments: Departments[] = [];
   editedUser: UserEdit;
@@ -83,9 +84,14 @@ emailpermission:boolean;
 showstatus:any[]=[];
 selected:string;
 viewadditionalfileright:boolean;
-
+viewtab:any;
+managetab:any;
+showbutton:any;
+moudata:any;
+activebtn:any;
+array:any;
  // array:any[];
-  activearray = this.commondata.moustatus()[0];
+ // activearray = this.commondata.moustatus()[0];
 
   constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router, private alertService: AlertService) {
 
@@ -124,36 +130,29 @@ else if(data=="custom"){
   
     this.viewadditionalfileright=this.commondata.CanviewadditionalfilesPermission;
   
-    this.route.queryParams.subscribe((params) => {
 
-        this.createdBy = this.UserId;
-console.log(this.isNodal+""+this.userRoles)
-        this.type = this.commondata.moustatus().find(x => x.name == params.type).value;
-        this.activearray = this.commondata.moustatus().find(x => x.name == params.type);
-        this.permission=this.commondata.moustatus().find(x => x.name == params.type).permissionforword;
-        this.permissionbutton1=this.commondata.moustatus().find(x => x.name == params.type).permissionbutton1;
-        //alert(this.commondata.moustatus().find(x => x.name == this.type)?.lmassigned);
+    this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
+        this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
+        this.Bdoservice.getdatapermission().subscribe(data=>{
+          console.log(data);
+          this.moudata=data?.mou?.filter(x=>this.viewtab.find(y=>y==x.value));
+          //this.moudata=data?.mou?.filter(x=>this.managetab.find(y=>y==x.value));
+      this.route.queryParams.subscribe((params) => {
+
         
+        //this.type=this.moudata.find(x => x.type == params.type).value;
+        this.array=this.moudata.find(x => x.type == params.type);
+       this.managetab.some(x=>x==this.array.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
+        //this.showbutton=this.array?.button
+       
+      });
+          
+    
+        })
         //this.createdBy = this.array.find(x => x.name == params.type).createdBy;
-        if(this.commondata.moustatus().find(x => x.name == params.type)?.bdoassigned==true){
-          // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
-         
-          this.accountService.getAllUser(0,0).subscribe(data=>{
-            this.rows=data.filter((x)=>x.roles.includes('BDM'));
-          })
-     
-         }
-         if(this.commondata.moustatus().find(x => x.name  == params.type)?.lmassigned==true){
-           // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
-      
-           this.accountService.getAllUser(0,0).subscribe(data=>{
-             this.rows=data.filter((x)=>x.roles.includes('LM'));
-             console.log(this.rows,'uu')
-           })
-      
-          }
+       
 
-    })
+    // })
    
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
@@ -161,7 +160,7 @@ console.log(this.isNodal+""+this.userRoles)
       console.log(data)
       debugger
       if(this.isSuperAdmin){
-        this.mouModel = data.filter(x => x.app_Status == this.type || x.tto_approved==this.type);
+        this.mouModel = data.filter(x => x.app_Status == this.array?.value || x.tto_approved==this.array?.value);
       }
     //  else if(this.isBdm ||this.isIPM){
     //     this.mouModel = data.filter(x => x.app_Status == this.type &&  x.createdBy==this.UserId);
@@ -173,15 +172,15 @@ console.log(this.isNodal+""+this.userRoles)
     //   }
 
     else if(this.isAdmin){
-       this.mouModel= data.filter(x=>(x.app_Status== this.type|| x.tto_approved==this.type) &&(x.app_Status=='S101'  || this.activeusermou?.find(t=>t.mouref==x.refid)));
+       this.mouModel= data.filter(x=>(x.app_Status== this.array?.value|| x.tto_approved==this.array?.value) &&(x.app_Status=='S101'  || this.activeusermou?.find(t=>t.mouref==x.refid)));
        }
        else{
-          this.mouModel=data.filter(x=>(x.app_Status== this.type || x.tto_approved==this.type) && this.activeusermou?.find(t=>t.mouref==x.refid));
+          this.mouModel=data.filter(x=>(x.app_Status== this.array?.value || x.tto_approved==this.array?.value) && this.activeusermou?.find(t=>t.mouref==x.refid));
        }
        debugger;
        console.log( this.commondata.getotherpermissiondata('history'),'his')
-    this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
-       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
+    this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.array?.value);
+       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.array?.value);
        //this.emailpermission=this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
      // this.viewadditionfile= this.commondata.getotherpermissiondata('addfile').some(x=>x?.split('-')[1]==this.type);
       
@@ -243,7 +242,7 @@ console.log(this.isNodal+""+this.userRoles)
 
     this.submitted = true;
     
-    if(this.type=="S102"){
+    if(this.array?.button?.form?.fileuploadreq==true){
       this.ForwardForm.controls['files'].setValidators([Validators.required]);              
   } else {                
     this.ForwardForm.controls["files"].clearValidators();              
@@ -254,14 +253,7 @@ console.log(this.isNodal+""+this.userRoles)
       return;
     }
     
-    if(this.type=="S107"||this.type=="S109"){
-      //create nodal
-      console.log('dd')
-      this.UploadFileViewModel.nodal=new nodalOfficer();
-      this.UploadFileViewModel.nodal.nodal_name=this.mouModel1?.nodal_Name;
-      this.UploadFileViewModel.nodal.nodal_email=this.mouModel1?.nodal_Email;
-      this.UploadFileViewModel.nodal.nodal_mobile=this.mouModel1?.nodal_Mobile_No;
-    }
+    
     this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
     this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
     this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
@@ -302,25 +294,42 @@ else{
 
   }
 
-  onmodalclick(e: string, data: mouModel) {
+  onmodalclick(e: string,value:any, data: mouModel) {
    this.loading=false;
    this.submitted=false;
    this.UploadFileViewModel.app_no=data.mou_no;
-    this.UploadFileViewModel.app_Status = e == "approve" ? this.commondata.moustatus().find(x => x.value == this.type).approvedvalue :
-     e== "forword" ? this.commondata.moustatus().find(x => x.value == this.type).forward : this.commondata.moustatus().find(x => x.value == this.type).backStatus;
-    this.UploadFileViewModel.app_ref_id = data.refid;
-    this.mouref=data.refid;
+   this.UploadFileViewModel.app_Status=value;
+   debugger;
+   this.activebtn=this.array?.button?.find(x=>x.value==value);
+
+   if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true){
+    // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+ 
+    this.accountService.getAllUser(0,0).subscribe(data=>{
+      this.rows1=data.filter((x)=>x.roles.includes('BDM'));
+      this.rows=data.filter((x)=>x.roles.includes('LM'));
+    })
+
+   }
+   
+     
+ 
+    // this.UploadFileViewModel.app_Status = e == "approve" ? this.commondata.moustatus().find(x => x.value == this.type).approvedvalue :
+    //  e== "forword" ? this.commondata.moustatus().find(x => x.value == this.type).forward : this.commondata.moustatus().find(x => x.value == this.type).backStatus;
+    //
+     this.UploadFileViewModel.app_ref_id = data.refid;
+    this.mouref=data.refid;  
 debugger;
     this.mouModel1= this.mouModel.find(x=>x.refid==data.refid);
     this.moucreatedby_role=this.users.find(x=>x.id==this.mouModel1.createdBy)?.roles[0];
-   this.forword=e=="forword"?true:false;
-if((this.type=="S101" &&e=="back") ||this.type=="S105"){
- this.moucreatedby_role=="IPM"?this.UploadFileViewModel.app_Status="S109":
-   this.moucreatedby_role=="IBM"?this.UploadFileViewModel.app_Status="S107":null;
+//    this.forword=e=="forword"?true:false;
+// if((this.type=="S101" &&e=="back") ||this.type=="S105"){
+ this.moucreatedby_role=="IPM"?this.UploadFileViewModel.app_Status=="S107"?this.UploadFileViewModel.app_Status="S109":null:
+   //this.moucreatedby_role=="BDM"?this.UploadFileViewModel.app_Status="S107":null;
 
    this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
     this.activuser=data1;
-    this.selected=this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid;
+    this.selected=this.activuser.find(x=>this.rows1?.find(y=>y.id==x.userid))?.userid;
     //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
    //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
     //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
@@ -328,62 +337,18 @@ if((this.type=="S101" &&e=="back") ||this.type=="S105"){
 
    
   
-}
+//}
 
 
 
    console.log(this.mouModel1)
 
 
-    if (e == "forword" || e == "back" ||e=="approve") {
+    //if (e == "forword" || e == "back" ||e=="approve") {
       this.editorModal1.show();
-    }
-    else if ("approve") {
-      this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((event) => {
-
-        alert("Application Approved Successfully")
-        //this.editorModal1.hide();
-        this.ngOnInit();
-      })
-
-    }
+   
    
   }
 
-  // onDataLoadSuccessful(users: User[], roles: Role[]) {
-
-  //  // this.accountService.getRoles(0, 0).subscribe(data => { })
-  //   console.log(users, roles)
-  //   this.alertService.stopLoadingMessage();
-  //   this.loadingIndicator = false;
-  //   let rol = [];
-  //   let rol1 = [];
-  //   debugger;
-
-    
-  //   this.allRoles = roles;
-
-  //   users.forEach((user, index) => {
-  //     (user as any).index = index + 1;
-  //   });
-
-   
-  //   this.rowsCache = [...users];
-  //   this.users=users;
-
-  //   console.log(this.users,'users')
-  //   this.rows = users.filter(x => x.roles.includes('LM'));
-
-
-
-  // }
-
-  // onDataLoadFailed(error: any) {
-  //   this.alertService.stopLoadingMessage();
-  //   this.loadingIndicator = false;
-
-  //   this.alertService.showStickyMessage('Load Error', `Unable to retrieve users from the server.\r\nErrors: "${Utilities.getHttpResponseMessages(error)}"`,
-  //     MessageSeverity.error, error);
-  // }
-
+  
 }

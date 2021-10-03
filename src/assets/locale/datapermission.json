@@ -1,10 +1,854 @@
 {
+"tabheading":[
+{"stage":"tta",
+"text":"TT Activity Initiation","menuheading":"TT Activity Initiation","submenu":true
+},
+{"stage":"mou",
+"text":"Engagement with Organization","menuheading":"Engagement with Organization","submenu":true
+},
+{"stage":"mis",
+"text":"MIS","menuheading":"MIS","submenu":true
+}],
+"mou":[{
+ "stage":"mou",
+        "tablename":"Initiation - Organization Details",
+        "heading":"Initiation - Organization Details",
+        "type":"init",
+"value":"S101",
+"color":"blue",
+"button":[{
+    "text":"Agreement not needed","class":"btn btn-primary","title":"","value":"S107"},
+	{"text":"Forward","class":"btn btn-success","title":"","value":"S102",
+	"form":{"lmassigned":true,"reminder":true,"typedrop":true,"bdoassigned":true,"fileuploadreq":true}
+	}]
+	
+	
+},
+{
+ "stage":"mou",
+        "tablename":"MoU Pending",
+        "heading":"MoU Pending",
+        "type":"mou_pending",
+"value":"S102",
+"color":"green",
+"button":[{
+    "text":"Forward","class":"btn btn-success","title":"","value":"S104",
+	"form":{"fileuploadreq":true}}]
+},
+{
+ "stage":"mou",
+        "tablename":"MoU proposed by LM",
+        "heading":"MoU proposed by LM",
+        "type":"mou_porposed_by_lm",
+"value":"S104",
+"color":"green",
+"button":[{
+    "text":"Change req","class":"btn btn-primary","title":"","value":"S103"},
+    {"text":"Approved","class":"btn btn-info","title":"","value":"S110"}]
+},{
+ "stage":"mou",
+        "tablename":"MoU proposed by TTO",
+        "heading":"MoU proposed by TTO",
+        "type":"mou_proposed_by_admin",
+"value":"S110",
+"color":"red",
+"button":[{
+    "text":"Mou Change By Client","class":"btn btn-primary","title":"","value":"S111"},{
+    "text":"Forward","class":"btn btn-info","title":"","value":"S106"}]
+},{
+ "stage":"mou",
+        "tablename":"MoU Accepted",
+        "heading":"MoU Accepted",
+        "type":"mou_accepted_by_client",
+"value":"S106",
+"color":"red",
+"button":[{
+    "text":"Forward","class":"btn btn-info","title":"","value":"S105"}]
+},{
+ "stage":"mou",
+        "tablename":"Agreement Signed",
+        "heading":"Agreement Signed",
+        "type":"agreementsigned",
+"value":"S105",
+"color":"purple",
+"button":[{
+    "text":"Forward","class":"btn btn-info","title":"","value":"S107",
+	"form":{"bdoassigned":true,"fileuploadreq":true}}]
+},{
+ "stage":"mou",
+        "tablename":"BDM Assigned",
+        "heading":"BDM Assigned",
+        "type":"bodassigned",
+"value":"S107",
+"color":"yellow",
+"button":[{
+    "text":"Forward","class":"btn btn-info","title":"","value":"S108"}]
+},{
+ "stage":"mou",
+        "tablename":"IPM Assigned",
+        "heading":"IPM Assigned",
+        "type":"ipm_assigned",
+"value":"S109",
+"color":"dark-orange",
+"button":[{
+    "text":"Forward","class":"btn btn-info","title":"","value":"S108"}]
+},{
+"stage":"mou",
+        "tablename":"TT Assignment",
+        "heading":"TT Assignment",
+        "type":"tto_req_approved",
+"value":"S108",
+"color":"dark-pink",
+"button":[]
+},{
+"stage":"mou",
+        "tablename":"MoU change request by Admin",
+        "heading":"MoU change request by Admin",
+        "type":"mou_change_by_admin",
+"value":"S103",
+"color":"dark-green",
+"button":[{
+    "text":"Forward","class":"btn btn-info","title":"","value":"S104"}]
+},{
+"stage":"mou",
+        "tablename":"MoU change request by Organization",
+        "heading":"MoU change request by Organization",
+        "type":"mou_change_by_client",
+"value":"S111",
+"color":"blue",
+"button":[{
+    "text":"Forward","class":"btn btn-info","title":"","value":"S103"}]
+}
+
+],
+
+    "tta":[
+	{
+        "stage":"tta",
+        "tablename":"Additional Information Required",
+		"formheader":"Additional Information Required",
+        "heading":"Additional Information Required",
+        "type":"tta_additional_info_needed",
+"value":"S401",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+	{
+        "stage":"tta",
+        "tablename":"Upload Assignment/Tech. disclosure form",
+		"formheader":"Upload Assignment/Tech. disclosure form",
+        "heading":"Upload Assignment/Tech. disclosure form",
+        "type":"ViewMouAll",
+"value":"S108",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Request and Disclosure",
+		"formheader":"TT Request and Disclosure",
+        "heading":"TT Request and Disclosure",
+        "type":"tta_init",
+"value":"S113",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Evaluation Assigned",
+		"formheader":"Evaluation Assigned",
+        "heading":"Evaluation Assigned",
+        "type":"tta_evaluation_assigned",
+"value":"S114",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Evaluation Report Uploaded",
+		"formheader":"Evaluation Report Uploaded",
+        "heading":"Evaluation Report Uploaded",
+        "type":"tta_evaluation_uploaded_by_bdm",
+"value":"S115",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Activity to be Closed",
+		"formheader":"TT Activity to be Closed",
+        "heading":"TT Activity to be Closed",
+        "type":"tta_evaluation_closure_by_admin",
+"value":"S116",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Evaluation Report for Review",
+		"formheader":"Evaluation Report for Review",
+        "heading":"Evaluation Report for Review",
+        "type":"tta_evaluation_approved_by_admin",
+"value":"S117",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Change request by Admin",
+		"formheader":"Change request by Admin",
+        "heading":"Change request by Admin",
+        "type":"tta_evaluation_change_req_by_admin",
+"value":"S118",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Activity Closure Report",
+		"formheader":"TT Activity Closure Report",
+        "heading":"TT Activity Closure Report",
+        "type":"tta_closure_requested_by_bdm",
+"value":"S119",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Activity Closed",
+		"formheader":"TT Activity Closed",
+        "heading":"TT Activity Closed",
+        "type":"tta_closed",
+"value":"S120",
+"color":"dark-pink",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Change request by Scientist",
+		"formheader":"Change request by Scientist",
+        "heading":"Change request by Scientist",
+        "type":"tta_evaluation_change_req_by_client",
+"value":"S121",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Evaluation Report Approved",
+		"formheader":"Evaluation Report Approved",
+        "heading":"Evaluation Report Approved",
+        "type":"tta_evaluation_accepted_by_client",
+"value":"S122",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Strategy assigned",
+		"formheader":"TT Strategy assigned",
+        "heading":"TT Strategy assigned",
+        "type":"tta_strategy_assigned",
+"value":"S123",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Strategy Uploaded",
+		"formheader":"TT Strategy Uploaded",
+        "heading":"TT Strategy Uploaded",
+        "type":"tta_strategy_uploaded_by_bdm",
+"value":"S124",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Strategy Approved",
+		"formheader":"TT Strategy Approved",
+        "heading":"TT Strategy Approved",
+        "type":"tta_strategy_approved",
+"value":"S402",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Tech Brief for Admin Review",
+		"formheader":"Tech Brief for Admin Review",
+        "heading":"Tech Brief for Admin Review",
+        "type":"tta_techb_flyer_uploaded",
+"value":"S403",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+
+
+{
+        "stage":"tta",
+        "tablename":"TTA Strategy Change Request by Admin",
+		"formheader":"TTA Strategy Change Request by Admin",
+        "heading":"TTA Strategy Change Request by Admin",
+        "type":"tta_strategy_change_req_by_admin",
+"value":"S125",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Tech Brief change request by Admin",
+		"formheader":"Tech Brief change request by Admin",
+        "heading":"Tech Brief change request by Admin",
+        "type":"tta_techb_and_flier_change_request_by_admin",
+"value":"S407",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Tech Brief for Review",
+		"formheader":"Tech Brief for Review",
+        "heading":"Tech Brief for Review",
+        "type":"tta_techb_and_flier_approved_by_admin",
+"value":"S126",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Tech Brief Approved",
+		"formheader":"Tech Brief Approved",
+        "heading":"Tech Brief Approved",
+        "type":"tta_techb_and_flier_approved_by_scientist",
+"value":"S127",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Tech Brief change request by Scientist",
+		"formheader":"Tech Brief change request by Scientist",
+        "heading":"Tech Brief change request by Scientist",
+        "type":"tta_change_req_by_scientist",
+"value":"S128",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Strategy Implemented",
+		"formheader":"TT Strategy Implemented",
+        "heading":"TT Strategy Implemented",
+        "type":"strategy_implemented",
+"value":"S129",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Industry Interest received",
+		"formheader":"Industry Interest received",
+        "heading":"Industry Interest received",
+        "type":"tta_interest_received",
+"value":"S130",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"No Interest received",
+		"formheader":"No Interest received",
+        "heading":"No Interest received",
+        "type":"tta_no_interest_received",
+"value":"S131",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Revised Strategy required",
+		"formheader":"TT Revised Strategy required",
+        "heading":"TT Revised Strategy required",
+        "type":"tta_strategy_update_req_by_admin",
+"value":"S404",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Revised Strategy Upload",
+		"formheader":"TT Revised Strategy Upload",
+        "heading":"TT Revised Strategy Upload",
+        "type":"tta_strategy_update_uploaded",
+"value":"S405",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+        "tablename":"TT Revised Strategy Approved",
+		"formheader":"TT Revised Strategy Approved",
+        "heading":"TT Revised Strategy Approved",
+        "type":"tta_strategy_update_approved",
+"value":"S406",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+		"substage":"tlp",
+        "tablename":"Industry Due-Diligence and Information Sharing",
+		"formheader":"Industry Due-Diligence and Information Sharing",
+        "heading":"Industry Due-Diligence and Information Sharing",
+        "type":"misc_init",
+		"subchild":[
+		{
+        "stage":"tlp",
+		
+        "tablename":"Industry Interest",
+		"formheader":"Industry Interest",
+        "heading":"Industry Interest",
+        "type":"lead_entered_by_bdm",
+"value":"S130",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+"stage":"tlp",
+		
+        "tablename":"Industry Due-Diligence",
+		"formheader":"Industry Due-Diligence",
+        "heading":"Industry Due-Diligence",
+        "type":"due_deligence_done",
+"value":"S133",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+"stage":"tlp",
+		
+        "tablename":"Due Diligence change request",
+		"formheader":"Due Diligence change request",
+        "heading":"Due Diligence change request",
+        "type":"due_deligence_change_req_by_admin",
+"value":"S134",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+"stage":"tlp",
+		
+        "tablename":"Industry Approved",
+		"formheader":"Industry Approved",
+        "heading":"Industry Approved",
+        "type":"lead_approved_by_admin",
+"value":"S135",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+"stage":"tlp",
+		
+        "tablename":"Tech details shared",
+		"formheader":"Tech details shared",
+        "heading":"Tech details shared",
+        "type":"ncp_shared",
+"value":"S136",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+"stage":"tlp",
+		
+        "tablename":"Draft NDA",
+		"formheader":"Draft NDA",
+        "heading":"Draft NDA",
+        "type":"nda_req_by_luf",
+"value":"S137",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+"stage":"tlp",
+		
+        "tablename":"Change request by Admin",
+		"formheader":"Change request by Admin",
+        "heading":"Change request by Admin",
+        "type":"nda_change_req_by_Admin",
+"value":"S138",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,{
+"stage":"tlp",
+		
+        "tablename":"Draft NDA for Review",
+		"formheader":"Draft NDA for Review",
+        "heading":"Draft NDA for Review",
+        "type":"nda_approved_by_Admin",
+"value":"S139",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,{
+"stage":"tlp",
+		
+        "tablename":"Change request by Organization",
+		"formheader":"Change request by Organization",
+        "heading":"Change request by Organization",
+        "type":"nda_change_req_by_no",
+"value":"S140",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,{
+"stage":"tlp",
+		
+        "tablename":"Draft NDA for Review",
+		"formheader":"Draft NDA for Review",
+        "heading":"Draft NDA for Review",
+        "type":"nda_approved_by_no",
+"value":"S141",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,{
+"stage":"tlp",
+		
+        "tablename":"NDA Approved",
+		"formheader":"NDA Approved",
+        "heading":"NDA Approved",
+        "type":"nda_approved_by_company",
+"value":"S142",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,{
+"stage":"tlp",
+		
+        "tablename":"NDA Executed",
+		"formheader":"NDA Executed",
+        "heading":"NDA Executed",
+        "type":"nda_executed",
+"value":"S143",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,{
+"stage":"tlp",
+		
+        "tablename":"Confidential & Non-Confidential Information shared",
+		"formheader":"Confidential & Non-Confidential Information shared",
+        "heading":"Confidential & Non-Confidential Information shared",
+        "type":"ncp_cip_shared",
+"value":"S144",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+"stage":"tlp",
+		
+        "tablename":"Confidential Information shared",
+		"formheader":"Confidential Information shared",
+        "heading":"Confidential Information shared",
+        "type":"cip_shared",
+"value":"S145",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+
+		],
+"value":"tlp",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+		"substage":"nttsa",
+        "tablename":"Term Sheet (TS)",
+		"formheader":"Term Sheet (TS)",
+        "heading":"Term Sheet (TS)",
+        "type":"misc_init",
+		"subchild":[{
+        "stage":"nttsa",
+		
+        "tablename":"Draft TS",
+		"formheader":"Draft TS",
+        "heading":"Draft TS",
+        "type":"misc_init",
+"value":"S146",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"nttsa",
+		
+        "tablename":"Change request by Admin",
+		"formheader":"Change request by Admin",
+        "heading":"Change request by Admin",
+        "type":"ts_change_req_by_admin",
+"value":"S147",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"nttsa",
+		
+        "tablename":"Draft TS for Review",
+		"formheader":"Draft TS for Review",
+        "heading":"Draft TS for Review",
+        "type":"ts_approved_by_admin",
+"value":"S148",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"nttsa",
+		
+        "tablename":"Change request by Organization",
+		"formheader":"Change request by Organization",
+        "heading":"Change request by Organization",
+        "type":"ts_change_req_by_client",
+"value":"S149",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"nttsa",
+		
+        "tablename":"TS Approved",
+		"formheader":"TS Approved",
+        "heading":"TS Approved",
+        "type":"ts_approved_by_client",
+"value":"S150",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"nttsa",
+		
+        "tablename":"Shared with Industry",
+		"formheader":"Shared with Industry",
+        "heading":"Shared with Industry",
+        "type":"ts_shared_with_company",
+"value":"S151",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"nttsa",
+		
+        "tablename":"Change request by Industry",
+		"formheader":"Change request by Industry",
+        "heading":"Change request by Industry",
+        "type":"ts_change_req_by_company",
+"value":"S152",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"nttsa",
+		
+        "tablename":"Final approved TS",
+		"formheader":"Final approved TS",
+        "heading":"Final approved TS",
+        "type":"ts_approved_by_company",
+"value":"S153",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}],
+"value":"nttsa",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tta",
+		"substage":"tstl",
+        "tablename":"License Agreement (LA)",
+		"formheader":"License Agreement (LA)",
+        "heading":"License Agreement (LA)",
+        "type":"misc_init",
+		"subchild":[{
+        "stage":"tstl",
+		
+        "tablename":"Executed Term Sheet",
+		"formheader":"Executed Term Sheet",
+        "heading":"Executed Term Sheet",
+        "type":"ts_executed",
+"value":"S154",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"tstl",
+		
+        "tablename":"Draft LA",
+		"formheader":"Draft LA",
+        "heading":"Draft LA",
+        "type":"la_entered_by_luf",
+"value":"S155",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"Change request by Admin",
+		"formheader":"Change request by Admin",
+        "heading":"Change request by Admin",
+        "type":"la_change_req_by_admin",
+"value":"S156",
+"color":"orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"Draft LA for Review",
+		"formheader":"Draft LA for Review",
+        "heading":"Draft LA for Review",
+        "type":"la_approved_by_admin",
+"value":"S157",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"Change request by Organization",
+		"formheader":"Change request by Organization",
+        "heading":"Change request by Organization",
+        "type":"la_change_req_by_client",
+"value":"S158",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"Draft LA approved",
+		"formheader":"Draft LA approved",
+        "heading":"Draft LA approved ",
+        "type":"la_approved_by_client",
+"value":"S159",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"LA shared with Industry",
+		"formheader":"LA shared with Industry",
+        "heading":"LA shared with Industry",
+        "type":"la_shared_with_company",
+"value":"S160",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"LA Agreed by Industry",
+		"formheader":"LA Agreed by Industry",
+        "heading":"LA Agreed by Industry",
+        "type":"la_approved_by_company",
+"value":"S161",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"Executed LA",
+		"formheader":"Executed LA",
+        "heading":"Executed LA",
+        "type":"la_uploaded",
+"value":"S162",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"Technology Docket",
+		"formheader":"Technology Docket",
+        "heading":"Technology Docket",
+        "type":"tt_docket_by_client",
+"value":"S163",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"tstl",
+		
+        "tablename":"Technology Docket shared with industry",
+		"formheader":"Technology Docket shared with industry",
+        "heading":"Technology Docket shared with industry",
+        "type":"tt_docket_shared_with_company",
+"value":"S164",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+],
+"value":"tstl",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+
+
+
+],
     "mis":[{
         "stage":"mis",
         "tablename":"Misc Init",
         "heading":"Misc Init",
         "type":"misc_init",
 "value":"S170",
+"color":"green",
 "button":[{
     "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -14,6 +858,7 @@
     "heading":"Misc Activity Assigned",
     "type":"activity_assigned",
 "value":"S171",
+"color":"dark-blue",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -23,6 +868,7 @@
     "heading":"Proposal Required",
     "type":"proposeal_require",
 "value":"S172",
+"color":"dark-orange",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -32,6 +878,7 @@
     "heading":"Proposal Change Required By Admin",
     "type":"proposal_change_required_by_admin",
 "value":"S173",
+"color":"green",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -41,6 +888,7 @@
     "heading":"Proposal Forwarded by Admin",
     "type":"proposal_forward_by_admin",
 "value":"S174",
+"color":"blue",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -50,6 +898,7 @@
     "heading":"Proposal change Required By Client",
     "type":"proposal_change_required_by_client",
 "value":"S175",
+"color":"red",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -59,6 +908,7 @@
     "heading":"Proposal Accepted By Client",
     "type":"proposal_accepted_by_client",
 "value":"S176",
+"color":"purple",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -68,6 +918,7 @@
     "heading":"Report Proposed",
     "type":"report_proposed",
 "value":"S177",
+"color":"dark-blue",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -77,6 +928,7 @@
     "heading":"Report Change Required by Admin",
     "type":"report_chnage_req_by_admin",
 "value":"S178",
+"color":"dark-orange",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -86,6 +938,7 @@
     "heading":"Report Forward By Admin",
     "type":"report_forward_by_admin",
 "value":"S179",
+"color":"yellow",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -95,6 +948,7 @@
     "heading":"Report Change Required By Client",
     "type":"report_change_required_by_client",
 "value":"S180",
+"color":"blue",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -104,6 +958,7 @@
     "heading":"Report Accepted By Client",
     "type":"report_accepted_by_client",
 "value":"S181",
+"color":"red",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 },
@@ -113,6 +968,7 @@
     "heading":"All Report Accepted By Client",
     "type":"all_report_accepted_by_client",
 "value":"S182",
+"color":"blue",
 "button":[{
 "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
 }

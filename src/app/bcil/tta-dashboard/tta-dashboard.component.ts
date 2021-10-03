@@ -5,7 +5,7 @@ import { AccountService } from '../../services/account.service';
 import { Permission } from 'src/app/model/permission.model';
 import { commondata } from 'src/app/model/common';
 import { Role } from 'src/app/model/role.model';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tta-dashboard',
@@ -46,7 +46,9 @@ export class TtaDashboardComponent implements OnInit {
   tstlstatus = ['S154', 'S155', 'S156', 'S157', 'S158', 'S159', 'S160', 'S161', 'S162', 'S163', 'S164'];
   activeusermou:activeusermou[];
   roles:Role[];
-  constructor(private Bdoservice: Bdoservice, private accountService: AccountService,private router:Router) {
+  viewtab:any;
+  ttadata:any;
+  constructor(private route: ActivatedRoute,private Bdoservice: Bdoservice, private accountService: AccountService,private router:Router) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
     this.UserId = this.accountService.currentUser.id;
@@ -195,11 +197,11 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
   fitertstl(data,row){
     return data.filter(x=>this.roles.find(e=>e.id==row.id).permissions.find(t=>t.value==x.permission)).length;
   }
-  querypara(data){
+  queryparam(data){
     // let navigationExtras:NavigationExtras={
     //   queryParams: {'type':data}
     // }
-    this.router.navigate(['/bcil/bcil-tta-table'],  { queryParams: { type: data}});
+    this.router.navigate(data?.subchild?.length>0?['/bcil/tta-dashboard']:['/bcil/bcil-tta-table'],  { queryParams: {substage:data.substage, type: data.type,subchild:data?.subchild?.length>0?true:false}});
    // this.router.navigate(['/bcil/bcil-tta-table'],navigationExtras)
    // return data;
   }
@@ -214,6 +216,23 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
    return  '#'+data;
  }
   ngOnInit(): void {
+    this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
+   
+    this.Bdoservice.getdatapermission().subscribe(data=>{
+      console.log(data);
+      this.route.queryParams.subscribe((params) => {
+
+if(params?.subchild=="true"){
+  
+  this.ttadata=data?.tta?.find(r=>r.substage==params?.substage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value) || x?.subchild?.find(t=>this.viewtab.find(y=>y==t.value)));
+}
+else{
+        this.ttadata=data?.tta?.filter(x=>this.viewtab.find(y=>y==x.value) || x?.subchild?.find(t=>this.viewtab.find(y=>y==t.value)));
+}
+      });
+     
+
+    })
     this.accountService.getRolesAndPermissions()
     .subscribe(results => {
 
@@ -250,12 +269,13 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
 
   
   clientMouListFilter(data) {
+   let yy=["tlp","nstta","tstl"]
     if(this.isSuperAdmin){
-      return this.mouModel?.filter(x=>x.app_Status==data).length;
+      return this.mouModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) ).length;
     }
     
     else{
-      return this.mouModel?.filter(x=>x.app_Status==data && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+      return this.mouModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) && this.activeusermou?.find(t=>t.mouref==x.refid) ).length;
     }
     // if (this.isNodal == true) {
     //   return this.mouModel?.filter(x => x.nodal_Name == this.UserName && x.app_Status == data).length;
