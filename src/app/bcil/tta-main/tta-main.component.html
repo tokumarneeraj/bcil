@@ -36,7 +36,7 @@
           <!-- Hover table card start -->
           <div class="card">
             <div class="card-header">
-          <h5>{{tablename}}</h5>
+          <h5>{{array?.tablename}}</h5>
               <!-- <span>use class <code>table-hover</code> inside table element</span> -->
               <div class="card-header-right">
                 <ul class="list-unstyled card-option">
@@ -89,9 +89,12 @@
                       <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
                       <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(item)" class="stretched-link">View</a></td>
                       <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
-
-                      <td>
-                        <button class="btn btn-info" *ngIf='item.app_Status === "S108" && !item.assigntoscientist' (click)="assignscientist(item)">Assign Scientist</button>
+                     <td>
+                      <ng-container *ngFor="let btn of array?.button">
+                        <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,item)">{{btn.text}}</button>
+                                                                  </ng-container></td>
+                      <!-- <td> -->
+                        <!-- <button class="btn btn-info" *ngIf='item.app_Status === "S108" && !item.assigntoscientist' (click)="assignscientist(item)">Assign Scientist</button>
                         <button class="btn btn-info" title="Forward to Admin" *ngIf='item.app_Status === "S108" && item.assigntoscientist' (click)="onClientClick(item,'S113')">Upload</button>
                         <button class="btn btn-info" title="Forward to No/Scientist" *ngIf='isAdmin && item.app_Status === "S113"' (click)="onClientClick(item,'S401')">Additional Info Needed</button>
                       
@@ -157,7 +160,7 @@
 
 
                       <td *ngIf='isNodal && item.app_Status==="S126"'><button value="assign" *ngIf='isScientist && item.app_Status==="S126"' class="btn btn-success" (click)="onClientClick(item,'S128')">Change Request</button></td>
-
+ -->
 
                       <!-- <td><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tto',refid:item.refid}">View</a></td> -->
 
@@ -187,7 +190,7 @@
   overflow: auto;">
     <div class="modal-content">
       <div class="modal-header">
-        <h4>{{formHeader}}</h4>
+        <h4>{{array?.formheader}}</h4>
         <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -203,11 +206,11 @@
 
             </div>
           </div>
-          <div class="form-group row" *ngIf="activearray?.bdoassigned">
+          <div class="form-group row" *ngIf="activebtn?.form?.bdoassigned">
             <div class="col-sm-12">
               <label class="col-form-label">BDM</label>
               <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selected">
-                <option *ngFor="let user of rows" value="{{user.id}}">{{user.userName}}</option>
+                <option *ngFor="let user of rows1" value="{{user.id}}">{{user.userName}}</option>
                 <!-- <option value="MOU">MOU</option>
                 <option value="NDA">NDA</option>
                 <option value="Work Order">Work Order</option>
@@ -217,7 +220,7 @@
 
             </div>
           </div>
-          <div class="form-group row"  *ngIf="type=='S113' && showextrafield">
+          <div class="form-group row"  *ngIf="activebtn?.form?.reminder">
             <div class="col-sm-6"> 
                 <label class="col-form-label">Default Reminder</label>
                 <input type="radio" class="form-control" name="remindertype" value="default"  formControlName="remindertype" (change)="reminderchange('default')"/>
@@ -229,8 +232,8 @@
                        
                               </div>
                             </div>
-                             <div class="form-group row"  *ngIf="type=='S113' && showextrafield">
-                                <app-reminder *ngIf="customrem" [customrem]="customrem" [mouref]="mouref" [type]="type" style="width:100%"></app-reminder>
+                             <div class="form-group row"  *ngIf="activebtn?.form?.reminder">
+                                <app-reminder *ngIf="customrem" [customrem]="customrem" [appref]="mouref" [type]="type" style="width:100%"></app-reminder>
                              </div>
             
 

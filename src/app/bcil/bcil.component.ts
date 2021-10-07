@@ -51,6 +51,8 @@ export class BcilComponent implements OnInit {
   userdiv=false;
   getbaseurl=environment.baseUrl;
   jsondata:any;
+  showmenu:boolean=false;
+  menulist:any;
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -155,12 +157,27 @@ this.ngOnInit();
   });
 }
 menus(){
- let menu=  this.jsondata?.tabheading;
+  debugger;
+ let menu=  this.jsondata?.tabheading.filter(x=>
+  this.jsondata?.[x.stage]?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
+ this.jsondata?.[x.stage]?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value))));
+ this.showmenu=true;
  return menu;
 
 }
+menuurl(url:string,stage:string,type:string){
+debugger;
+  return   this.router.navigate([url],  { queryParams: {type:type,stage:stage}});
+  
+//return this.router.navigate[[],{queryParams="{type:'tta_additional_info_needed'}"}]
+}
 submenus(stage:string){
 let submenu=  this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value)));
+
+return submenu;
+}
+subchildmenus(stage:string,childstage:string){
+  let submenu=  this.jsondata[stage]?.[childstage]?.filter(x=>this.viewtab?.find(y=>y==x.value));
 
 return submenu;
 }
@@ -169,6 +186,7 @@ return submenu;
    // this.notify_call();
    this.Bdoservice.getdatapermission().subscribe(data=>{
 this.jsondata=data;
+this.menulist=this.menus();
      });
     this.Bdoservice.GetNotification().subscribe(data=>{
       console.log(data,'not')

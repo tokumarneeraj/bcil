@@ -173,7 +173,8 @@
                   <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View TTA</a>
                   </div>
               </div>
-              <div class="col-xl-3 col-md-6" *ngFor="let tta of ttadata;let index=i;">
+              <ng-container *ngFor="let tta of ttadata;let index=i;">
+              <div class="col-xl-3 col-md-6" >
                                   
                 <div class="card">
                     <div class="card-block">
@@ -202,6 +203,7 @@
                 </div>
                                                      
         </div>
+      </ng-container>
 
 
                 <!-- task, page, download counter  start -->

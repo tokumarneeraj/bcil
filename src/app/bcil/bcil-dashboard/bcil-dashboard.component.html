@@ -32,26 +32,26 @@
         <!-- Page body start -->
         <div class="page-body">
           <div class="row categoryList">
-            <div class="col-sm-12">
+            <div class="col-sm-12" *ngIf="showpage">
               <!-- Basic Form Inputs card start -->
               <div class="row">
                 <!-- task, page, download counter  start -->
-
-                <div class="col-xl-3 col-md-6" *ngIf="canViewTechnologytransfer">
-                  <a routerLink="../tta-dashboard">
+<ng-container *ngFor="let tab of checktab()">
+                <div class="col-xl-3 col-md-6">
+                  <a (click)="taburl(tab?.url)">
                     <div class="card">
                       <div class="card-block">
                         <div class="row align-items-top">
                           <div class="col-8">
-                            <h4 class="text-c-blue">TT Activity Initiation</h4>
-                            <h6 class="text-muted m-b-0">{{ttolist()}}</h6>
+                            <h4 class="text-c-{{tab?.color}}">{{tab?.text}}</h4>
+                            <h6 class="text-muted m-b-0">{{counttotal(tab)}}</h6>
                           </div>
                           <div class="col-4 text-right">
-                            <i class="fa fa-bar-chart f-28"></i>
+                            <i class="{{tab?.icon}}"></i>
                           </div>
                         </div>
                       </div>
-                      <div class="card-footer bg-c-blue">
+                      <div class="card-footer bg-c-{{tab?.color}}">
                         <div class="row align-items-center">
                           <div class="col-9">
                             <p class="text-white m-b-0">View</p>
@@ -65,11 +65,11 @@
                   </a>
                 </div>
 
-                
+              </ng-container>
 
 
 
-                <div class="col-xl-3 col-md-6" *ngIf="canViewPatent">
+                <!-- <div class="col-xl-3 col-md-6" *ngIf="canViewPatent">
                   <a href="#">
                     <div class="card">
                       <div class="card-block">
@@ -311,7 +311,7 @@
                       </div>
                     </div>
                   </a>
-                </div>
+                </div> -->
               </div>
               <!-- Basic Form Inputs card end -->
             </div>

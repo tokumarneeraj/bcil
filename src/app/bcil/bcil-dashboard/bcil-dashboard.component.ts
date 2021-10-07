@@ -7,6 +7,7 @@ import {commondata} from '../../model/common'
 import { AccountService } from 'src/app/services/account.service';
 import { Permission, PermissionValues } from 'src/app/model/permission.model';
 import { ComponentFactoryResolver } from '@angular/core';
+import { Router } from '@angular/router';
 //import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-bcil-dashboard',
@@ -20,7 +21,8 @@ export class BcilDashboardComponent implements OnInit {
   usertype:string;
   UserName: string;
   mouModelFinal: mouModel[];
-
+  viewtab:any;
+  jsondata:any;
   permission:string[];
   userper:any[];
   userpertta:any[];
@@ -86,7 +88,7 @@ export class BcilDashboardComponent implements OnInit {
   activeusermou:activeusermou[];
   viewadditionalfile:boolean=false;
   //permission:PermissionValues[];
-  constructor(private Bdoservice:Bdoservice, private accountService: AccountService) {
+  constructor(private Bdoservice:Bdoservice, private accountService: AccountService,private router:Router) {
     // this.usertype=this._cookieService.get("UserType");
     // this.UserName=this._cookieService.get("UserName");
     this.userRoles = this.accountService.currentUser.roles;
@@ -96,9 +98,44 @@ export class BcilDashboardComponent implements OnInit {
     console.log(this.permission)
    // this.permission[0].link= this.accountService.permissions;
    }
-
+   counttotal(tab:any){
+    let data= this.jsondata?.[tab?.stage];
+    let rr=[];
+    
+    data?.forEach(y => {
+      if(this.viewtab?.some(w=>w==y.value)){
+        rr.push(y.value);
+      }
+     
+        y?.subchild?.forEach(x => {
+         if(this.viewtab?.some(w=>w==x.value)){
+          rr.push(x.value);
+         }
+        });
+       
+      
+      
+    });
+    console.log(rr,'pp')
+    if(tab?.stage=="tta"){
+      return this.ttolist(rr);
+    }
+else if(tab?.stage=="mou"){
+  return this.moulist(rr);
+  
+}
+else
+{
+  return 0;
+}
+   //return this.mouModel?.filter(x=>data?.find(y=>y.value==x.app_Status)).length;
+   }
   ngOnInit(): void {
-    debugger;
+    this.viewtab=this.commondata.getotherpermissiondata('view')?.map((item)=>(item?.split('-')[1]));
+    // this.notify_call();
+    this.Bdoservice.getdatapermission().subscribe(data=>{
+ this.jsondata=data;
+     
 this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
   console.log(data1,'mouref');
 this.activeusermou=data1;
@@ -110,57 +147,45 @@ this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data=>{console.log(data)
     this.mouModel=data;
     this.showpage=true;
-   this.userper=this.commondata.moustatus().filter(r=>this.permission.includes(r.permission));
-   this.userpertta=this.commondata.ttaarray().filter(r=>this.permission.includes(r.permission));
- 
+   
   
     })
   });
+});
   }
-
-moulist(){
+  taburl(url:any){
+this.router.navigate([url]);
+  }
+  checktab(){
+    let menu=  this.jsondata?.tabheading.filter(x=>
+      this.jsondata?.[x.stage]?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
+     this.jsondata?.[x.stage]?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value))));
+     return menu;
+    
+     }
+moulist(permission:any){
   if(this.isSuperAdmin){
-    return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status || x.tto_approved=="S108")).length;
+    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108")).length;
   }
   else if(this.isAdmin){
-  return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status || x.tto_approved=="S108") && (x.app_Status=="S101" || this.activeusermou?.find(t=>t.mouref==x.refid))).length;
+  return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && (x.app_Status=="S101" || this.activeusermou?.find(t=>t.mouref==x.refid))).length;
   }
   else{
-    return this.mouModel?.filter(x=>this.userper.find(p=>p.value==x.app_Status || x.tto_approved=="S108") && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
  
   }
-  // return this.mouModel?.filter(x=>this.commondata.moustatus().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status) && (x.app_Status=='S101'||
-  // this.activeusermou.find(t=>t.mouref==x.refid))).length;
-  // if(this.isBDM ||this.isIPM){
-  //   return this.mouModel?.filter(x=>this.commondata.moustatus().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status) && x.createdBy==this.UserId ).length;
-  // }
-  // else{
-//   return this.mouModel?.filter(x=>this.commondata.moustatus().filter(r=>this.permission.includes(r.permission)).find(y=>y.value==x.app_Status) && (x.createdBy==this.UserId ||x.app_Status=='S101'||
-//  x.assignto==this.UserId||x.assigntoadmin==this.UserId)).length;
- // }
+  
   }
-  ttolist(){
+  ttolist(permission:any){
     if(this.isSuperAdmin){
-      return this.mouModel?.filter(x=>this.userpertta.find(p=>p.value==x.app_Status)).length;
+      return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
    
     }
     else{
-    return this.mouModel?.filter(x=>this.userpertta.find(p=>p.value==x.app_Status) &&  this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.find(t=>t.mouref==x.refid)).length;
     
   }}
 
-  tlplist() {
-    console.log(this.mouModel?.filter(x => !this.tlpstatus.includes(x.app_Status)).length)
-    return this.mouModel?.filter(x => this.tlpstatus.includes(x.app_Status)).length;
-  }
-
-  // for client
-  clientMouListFilter(data) {
-    
-    return this.mouModel?.filter(x => x.nodal_Email == data).length;
-
-  }
   
-  //-------
 
 }

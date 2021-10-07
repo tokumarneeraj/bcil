@@ -48,7 +48,7 @@ get f() {
     this.authService.loginWithPassword(this.userLogin.userName, this.userLogin.password,true)
       .subscribe(
         user => {
-          this.router.navigateByUrl('bcil/bcil-dashboard')
+         
           setTimeout(() => {
             this.alertService.stopLoadingMessage();
             this.isLoading = false;
@@ -76,6 +76,7 @@ data.forEach(function(item) {
   arrNames.push(val);
 });
             this.localStorage.savePermanentData(arrNames, DBkeys.USER_OTHERPERMISSIONS);
+            this.router.navigateByUrl('bcil/bcil-dashboard')
           })
         },
         error => {

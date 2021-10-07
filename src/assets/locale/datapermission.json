@@ -1,14 +1,33 @@
 {
 "tabheading":[
 {"stage":"tta",
-"text":"TT Activity Initiation","menuheading":"TT Activity Initiation","submenu":true
+"text":"TT Activity Initiation","color":"red","icon":"fa fa-bar-chart f-28","menuheading":"TT Activity Initiation","submenu":true,"url":"bcil/tta-dashboard"
 },
-{"stage":"mou",
-"text":"Engagement with Organization","menuheading":"Engagement with Organization","submenu":true
+{"stage":"patent",
+"text":"Patent","color":"dark-green","icon":"fa fa-file-text-o f-28","menuheading":"Patent","submenu":true,"url":"bcil/bcil-tta-table"
+},
+{"stage":"design",
+"text":"Design","color":"purple","icon":"fa fa-paint-brush f-28","menuheading":"Design","submenu":true,"url":"bcil/bcil-tta-table"
+},
+{"stage":"copyright",
+"text":"Copyright","color":"dark-blue","icon":"fa fa-copyright f-28","menuheading":"Copyright","submenu":true,"url":"bcil/bcil-tta-table"
+},
+{"stage":"trademark",
+"text":"Trademark","color":"green","icon":"fa fa-bar-chart f-28","menuheading":"Trademark","submenu":true,"url":"bcil/bcil-tta-table"
+},
+{"stage":"plant_variety",
+"text":"Plant Variety","color":"blue","icon":"fa fa-pagelines f-28","menuheading":"Plant Variety","submenu":true,"url":"bcil/bcil-tta-table"
 },
 {"stage":"mis",
-"text":"MIS","menuheading":"MIS","submenu":true
-}],
+"text":"Other Services","icon":"fa fa-cogs f-28","menuheading":"Other Services","submenu":true,"color":"yellow","url":"bcil/mis-dashboard"
+},
+{"stage":"report",
+"text":"Report","icon":"fa fa-file-excel-o f-28","menuheading":"Report","submenu":true,"color":"blue","url":"bcil/mis-dashboard"
+},
+{"stage":"mou",
+"text":"Engagement with Organization","icon":"","menuheading":"Engagement with Organization","submenu":true,"url":"bcil/mou-dashboard","color":"dark-pink"
+}
+],
 "mou":[{
  "stage":"mou",
         "tablename":"Initiation - Organization Details",
@@ -19,7 +38,7 @@
 "button":[{
     "text":"Agreement not needed","class":"btn btn-primary","title":"","value":"S107"},
 	{"text":"Forward","class":"btn btn-success","title":"","value":"S102",
-	"form":{"lmassigned":true,"reminder":true,"typedrop":true,"bdoassigned":true,"fileuploadreq":true}
+	"form":{"lmassigned":true,"reminder":true,"typedrop":true,"bdoassigned":true,"fileuploadreq":true,"reminderfilter":["mou"]}
 	}]
 	
 	
@@ -132,7 +151,7 @@
 "value":"S401",
 "color":"blue",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Upload Additional Info","class":"btn btn-info","title":"Forward to Admin","value":"S113","form":{"fileuploadreq":true}}]
 },
 	{
         "stage":"tta",
@@ -143,7 +162,7 @@
 "value":"S108",
 "color":"dark-green",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Create TTA","class":"btn btn-info","title":"Forward to Admin","value":"S113","form":{"fileuploadreq":true}}]
 },
 {
         "stage":"tta",
@@ -154,7 +173,9 @@
 "value":"S113",
 "color":"green",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Additional Info Needed","class":"btn btn-info","title":"Forward to No/Scientist","value":"S401"},
+	{"text":"Assign","class":"btn btn-success","title":"Forward to BDM","value":"S114",
+	"form":{"reminder":true,"bdoassigned":true,"fileuploadreq":true}}]
 },
 {
         "stage":"tta",
@@ -165,7 +186,8 @@
 "value":"S114",
 "color":"yellow",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Upload","class":"btn btn-info","value":"S115"}
+	]
 },
 {
         "stage":"tta",
@@ -175,8 +197,20 @@
         "type":"tta_evaluation_uploaded_by_bdm",
 "value":"S115",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[
+    {"text":"Close","class":"btn btn-danger","value":"S116"},
+    {"text":"Forward","class":"btn btn-primary","value":"S117","form":{"fileuploadreq":true}},
+    {"text":"Change Request","class":"btn btn-info","value":"S118"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Change request by Admin",
+		"formheader":"Change request by Admin",
+        "heading":"Change request by Admin",
+        "type":"tta_evaluation_change_req_by_admin",
+"value":"S118",
+"color":"blue",
+"button":[{"text":"Upload","class":"btn btn-info","value":"S115"}]
 },
 {
         "stage":"tta",
@@ -187,29 +221,7 @@
 "value":"S116",
 "color":"red",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-},
-{
-        "stage":"tta",
-        "tablename":"Evaluation Report for Review",
-		"formheader":"Evaluation Report for Review",
-        "heading":"Evaluation Report for Review",
-        "type":"tta_evaluation_approved_by_admin",
-"value":"S117",
-"color":"dark-green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-},
-{
-        "stage":"tta",
-        "tablename":"Change request by Admin",
-		"formheader":"Change request by Admin",
-        "heading":"Change request by Admin",
-        "type":"tta_evaluation_change_req_by_admin",
-"value":"S118",
-"color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Closure Report","class":"btn btn-info","value":"S119"}]
 },
 {
         "stage":"tta",
@@ -220,7 +232,7 @@
 "value":"S119",
 "color":"dark-orange",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Close","class":"btn btn-info","value":"S120"}]
 },
 {
         "stage":"tta",
@@ -230,8 +242,7 @@
         "type":"tta_closed",
 "value":"S120",
 "color":"dark-pink",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 },
 {
         "stage":"tta",
@@ -242,8 +253,22 @@
 "value":"S121",
 "color":"red",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Change Request","class":"btn btn-info","value":"S118"},{
+    "text":"Reject","class":"btn btn-danger","value":"S117"}]
 },
+{
+        "stage":"tta",
+        "tablename":"Evaluation Report for Review",
+		"formheader":"Evaluation Report for Review",
+        "heading":"Evaluation Report for Review",
+        "type":"tta_evaluation_approved_by_admin",
+"value":"S117",
+"color":"dark-green",
+"button":[{
+    "text":"Accept","class":"btn btn-primary","value":"S122"},{
+    "text":"Change Request","class":"btn btn-info","value":"S121"}]
+},
+
 {
         "stage":"tta",
         "tablename":"Evaluation Report Approved",
@@ -253,8 +278,9 @@
 "value":"S122",
 "color":"dark-green",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Assign","class":"btn btn-primary","value":"S123","form":{"bdoassigned":true}}]
 },
+
 {
         "stage":"tta",
         "tablename":"TT Strategy assigned",
@@ -264,42 +290,8 @@
 "value":"S123",
 "color":"purple",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Upload","class":"btn btn-primary","value":"S124"}]
 },
-{
-        "stage":"tta",
-        "tablename":"TT Strategy Uploaded",
-		"formheader":"TT Strategy Uploaded",
-        "heading":"TT Strategy Uploaded",
-        "type":"tta_strategy_uploaded_by_bdm",
-"value":"S124",
-"color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-},
-{
-        "stage":"tta",
-        "tablename":"TT Strategy Approved",
-		"formheader":"TT Strategy Approved",
-        "heading":"TT Strategy Approved",
-        "type":"tta_strategy_approved",
-"value":"S402",
-"color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-},
-{
-        "stage":"tta",
-        "tablename":"Tech Brief for Admin Review",
-		"formheader":"Tech Brief for Admin Review",
-        "heading":"Tech Brief for Admin Review",
-        "type":"tta_techb_flyer_uploaded",
-"value":"S403",
-"color":"dark-green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-},
-
 
 {
         "stage":"tta",
@@ -310,8 +302,46 @@
 "value":"S125",
 "color":"dark-blue",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Upload","class":"btn btn-info","value":"S125"}]
 },
+{
+        "stage":"tta",
+        "tablename":"TT Strategy Uploaded",
+		"formheader":"TT Strategy Uploaded",
+        "heading":"TT Strategy Uploaded",
+        "type":"tta_strategy_uploaded_by_bdm",
+"value":"S124",
+"color":"dark-orange",
+"button":[{
+    "text":"Approve","class":"btn btn-success","value":"S402","form":{"fileuploadreq":true}},{
+    "text":"Change Request","class":"btn btn-primary","value":"S125"}]
+},
+
+{
+        "stage":"tta",
+        "tablename":"TT Strategy Approved",
+		"formheader":"TT Strategy Approved",
+        "heading":"TT Strategy Approved",
+        "type":"tta_strategy_approved",
+"value":"S402",
+"color":"yellow",
+"button":[{
+    "text":"Upload","class":"btn btn-info","value":"S403"}]
+},
+{
+        "stage":"tta",
+        "tablename":"Tech Brief for Admin Review",
+		"formheader":"Tech Brief for Admin Review",
+        "heading":"Tech Brief for Admin Review",
+        "type":"tta_techb_flyer_uploaded",
+"value":"S403",
+"color":"dark-green",
+"button":[{
+    "text":"Change Request","class":"btn btn-info","value":"S407"},{
+    "text":"Approve","class":"btn btn-success","value":"S126","form":{"fileuploadreq":true}}]
+},
+
+
 {
         "stage":"tta",
         "tablename":"Tech Brief change request by Admin",
@@ -321,7 +351,7 @@
 "value":"S407",
 "color":"red",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Upload","class":"btn btn-info","value":"S403"}]
 },
 {
         "stage":"tta",
@@ -332,7 +362,8 @@
 "value":"S126",
 "color":"green",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Change Request","class":"btn btn-info","value":"S127"},
+	{"text":"Approve","class":"btn btn-success","value":"S128"}]
 },
 {
         "stage":"tta",
@@ -342,8 +373,8 @@
         "type":"tta_techb_and_flier_approved_by_scientist",
 "value":"S127",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[
+    {"text":"Submit","class":"btn btn-info","value":"S129"}]
 },
 {
         "stage":"tta",
@@ -353,8 +384,8 @@
         "type":"tta_change_req_by_scientist",
 "value":"S128",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-info","value":"S407"},
+{"text":"Reject","class":"btn btn-danger","value":"S126"}]
 },
 {
         "stage":"tta",
@@ -364,8 +395,8 @@
         "type":"strategy_implemented",
 "value":"S129",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Interests Received","class":"btn btn-primary","value":"S130"},
+{"text":"No Interests Received","class":"btn btn-info","value":"S131"}]
 },
 {
         "stage":"tta",
@@ -386,8 +417,8 @@
         "type":"tta_no_interest_received",
 "value":"S131",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","value":"S404"},
+{"text":"Close","class":"btn btn-info","value":"S116"}]
 },
 {
         "stage":"tta",
@@ -397,8 +428,7 @@
         "type":"tta_strategy_update_req_by_admin",
 "value":"S404",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Upload","class":"btn btn-primary","value":"S405"}]
 },
 {
         "stage":"tta",
@@ -408,8 +438,7 @@
         "type":"tta_strategy_update_uploaded",
 "value":"S405",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Approve","class":"btn btn-success","value":"S406","form":{"fileuploadreq":true}}]
 },
 {
         "stage":"tta",
@@ -419,8 +448,7 @@
         "type":"tta_strategy_update_approved",
 "value":"S406",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Upload","class":"btn btn-success","value":"S129"}]
 },
 {
         "stage":"tta",
@@ -428,7 +456,7 @@
         "tablename":"Industry Due-Diligence and Information Sharing",
 		"formheader":"Industry Due-Diligence and Information Sharing",
         "heading":"Industry Due-Diligence and Information Sharing",
-        "type":"misc_init",
+        "type":"",
 		"subchild":[
 		{
         "stage":"tlp",
@@ -440,7 +468,7 @@
 "value":"S130",
 "color":"dark-blue",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Enter Company Profile","class":"btn btn-info","value":"S133"}]
 },{
 "stage":"tlp",
 		
@@ -451,7 +479,8 @@
 "value":"S133",
 "color":"dark-green",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Change Request","class":"btn btn-info","value":"S134"},{"text":"Approve","class":"btn btn-success","value":"S135"},
+	{"text":"Share NCP","class":"btn btn-primary","value":"S136"}]
 },{
 "stage":"tlp",
 		
@@ -461,8 +490,7 @@
         "type":"due_deligence_change_req_by_admin",
 "value":"S134",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update Due Deligence","class":"btn btn-primary","value":"S133"}]
 },{
 "stage":"tlp",
 		
@@ -472,8 +500,7 @@
         "type":"lead_approved_by_admin",
 "value":"S135",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Draft for NDA/PEA/MTA","class":"btn btn-primary","value":"S137"}]
 },{
 "stage":"tlp",
 		
@@ -483,8 +510,7 @@
         "type":"ncp_shared",
 "value":"S136",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Enter Termsheet","class":"btn btn-primary","value":"S146"}]
 },{
 "stage":"tlp",
 		
@@ -494,8 +520,7 @@
         "type":"nda_req_by_luf",
 "value":"S137",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S138"},{"text":"Aprrove","class":"btn btn-info","value":"S139"}]
 },{
 "stage":"tlp",
 		
@@ -505,8 +530,7 @@
         "type":"nda_change_req_by_Admin",
 "value":"S138",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update NDA/PEA","class":"btn btn-primary","value":"S137"}]
 }
 ,{
 "stage":"tlp",
@@ -517,8 +541,7 @@
         "type":"nda_approved_by_Admin",
 "value":"S139",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S140"},{"text":"Approve","class":"btn btn-info","value":"S141"}]
 }
 ,{
 "stage":"tlp",
@@ -529,20 +552,18 @@
         "type":"nda_change_req_by_no",
 "value":"S140",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S138"}]
 }
 ,{
 "stage":"tlp",
 		
         "tablename":"Draft NDA for Review",
 		"formheader":"Draft NDA for Review",
-        "heading":"Draft NDA for Review",
+        "heading":"Draft NDA for Review By Nodal",
         "type":"nda_approved_by_no",
 "value":"S141",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S138"},{"text":"Approve","class":"btn btn-info","value":"S142"}]
 }
 ,{
 "stage":"tlp",
@@ -553,8 +574,7 @@
         "type":"nda_approved_by_company",
 "value":"S142",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Upload Agreement","class":"btn btn-primary","value":"S143"}]
 }
 ,{
 "stage":"tlp",
@@ -565,8 +585,8 @@
         "type":"nda_executed",
 "value":"S143",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Share NCP & CIP","class":"btn btn-primary","value":"S144"},
+{"text":"Share CIP","class":"btn btn-primary","value":"S145"}]
 }
 ,{
 "stage":"tlp",
@@ -577,8 +597,7 @@
         "type":"ncp_cip_shared",
 "value":"S144",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Share CIP","class":"btn btn-primary","value":"S145"}]
 },{
 "stage":"tlp",
 		
@@ -588,15 +607,13 @@
         "type":"cip_shared",
 "value":"S145",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Enter Termsheet","class":"btn btn-primary","value":"S146"}]
 }
 
 		],
 "value":"tlp",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 },
 {
         "stage":"tta",
@@ -604,7 +621,7 @@
         "tablename":"Term Sheet (TS)",
 		"formheader":"Term Sheet (TS)",
         "heading":"Term Sheet (TS)",
-        "type":"misc_init",
+        "type":"",
 		"subchild":[{
         "stage":"nttsa",
 		
@@ -614,8 +631,7 @@
         "type":"misc_init",
 "value":"S146",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S147"},{"text":"Approve","class":"btn btn-info","value":"S148"}]
 },{
         "stage":"nttsa",
 		
@@ -625,8 +641,7 @@
         "type":"ts_change_req_by_admin",
 "value":"S147",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update Termsheet","class":"btn btn-primary","value":"S146"}]
 },
 {
         "stage":"nttsa",
@@ -637,8 +652,7 @@
         "type":"ts_approved_by_admin",
 "value":"S148",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S149"},{"text":"Approve","class":"btn btn-info","value":"S150"}]
 },
 {
         "stage":"nttsa",
@@ -649,8 +663,7 @@
         "type":"ts_change_req_by_client",
 "value":"S149",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Approve Change Request in Termsheet","class":"btn btn-primary","value":"S147"}]
 },{
         "stage":"nttsa",
 		
@@ -660,8 +673,7 @@
         "type":"ts_approved_by_client",
 "value":"S150",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","value":"S151"}]
 },
 {
         "stage":"nttsa",
@@ -672,8 +684,7 @@
         "type":"ts_shared_with_company",
 "value":"S151",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S152"},{"text":"Approve","class":"btn btn-info","value":"S153"}]
 },{
         "stage":"nttsa",
 		
@@ -683,8 +694,7 @@
         "type":"ts_change_req_by_company",
 "value":"S152",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Approve Change Request in Termsheet","class":"btn btn-primary","value":"S147"}]
 },{
         "stage":"nttsa",
 		
@@ -694,13 +704,11 @@
         "type":"ts_approved_by_company",
 "value":"S153",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Upload Signed Termsheet","class":"btn btn-primary","value":"S154"}]
 }],
 "value":"nttsa",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 },
 {
         "stage":"tta",
@@ -718,8 +726,7 @@
         "type":"ts_executed",
 "value":"S154",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Draft license agreement","class":"btn btn-primary","value":"S155"}]
 },
 {
         "stage":"tstl",
@@ -730,8 +737,8 @@
         "type":"la_entered_by_luf",
 "value":"S155",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S156"},
+{"text":"Approve","class":"btn btn-success","value":"S157"}]
 },{
         "stage":"tstl",
 		
@@ -741,8 +748,7 @@
         "type":"la_change_req_by_admin",
 "value":"S156",
 "color":"orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update license agreement","class":"btn btn-primary","value":"S156"}]
 },{
         "stage":"tstl",
 		
@@ -752,8 +758,8 @@
         "type":"la_approved_by_admin",
 "value":"S157",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S158"},
+{"text":"Approve","class":"btn btn-primary","value":"S159"}]
 },{
         "stage":"tstl",
 		
@@ -763,8 +769,7 @@
         "type":"la_change_req_by_client",
 "value":"S158",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S156"}]
 },{
         "stage":"tstl",
 		
@@ -774,8 +779,7 @@
         "type":"la_approved_by_client",
 "value":"S159",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Share license agreement","class":"btn btn-primary","value":"S160"}]
 },{
         "stage":"tstl",
 		
@@ -785,8 +789,8 @@
         "type":"la_shared_with_company",
 "value":"S160",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Request","class":"btn btn-primary","value":"S156"},
+{"text":"Approve","class":"btn btn-success","value":"S161"}]
 },{
         "stage":"tstl",
 		
@@ -796,8 +800,7 @@
         "type":"la_approved_by_company",
 "value":"S161",
 "color":"dark-green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","value":"S162"}]
 },{
         "stage":"tstl",
 		
@@ -807,8 +810,7 @@
         "type":"la_uploaded",
 "value":"S162",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Submit TT Docket","class":"btn btn-primary","value":"S163"}]
 },{
         "stage":"tstl",
 		
@@ -818,8 +820,7 @@
         "type":"tt_docket_by_client",
 "value":"S163",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Share TT Docket","class":"btn btn-primary","value":"S164"}]
 },{
         "stage":"tstl",
 		
@@ -829,14 +830,12 @@
         "type":"tt_docket_shared_with_company",
 "value":"S164",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 }
 ],
 "value":"tstl",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 }
 
 

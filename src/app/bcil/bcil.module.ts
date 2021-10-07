@@ -48,6 +48,8 @@ import { MouApplicationComponent } from './mou-application/mou-application.compo
 import { ImageUploaderComponent } from './image-uploader.component';
 import { MisDashboardComponent } from './mis-dashboard/mis-dashboard.component';
 import { MisInitComponent } from './mis-init/mis-init.component';
+import { ActivityComponent } from './activity/activity.component';
+import { AddScientistComponent } from './add-scientist/add-scientist.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -76,6 +78,8 @@ import { MisInitComponent } from './mis-init/mis-init.component';
     MouApplicationComponent,
     MisDashboardComponent,
     MisInitComponent,
+    ActivityComponent,
+    AddScientistComponent,
      ],
 
   imports: [

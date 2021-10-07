@@ -46,6 +46,7 @@ export class TtaMainComponent implements OnInit {
   showClientPage = false;
   users: User[] = [];
   rows: User[] = [];
+  rows1: User[] = [];
   @ViewChild('editorModal2', { static: true })
   editorModal2: ModalDirective;
 
@@ -64,17 +65,19 @@ export class TtaMainComponent implements OnInit {
   isSuperAdmin:boolean;
 tablename:string;
 commondata=new commondata();
-  array=this.commondata.ttaarray();
+  array:any;
   activeusermou: activeusermou[];
-  activearray = this.array[0];
+  
   activuser:activeusermou[];
 addusertomou=new addusertomou();
 viewhistory:boolean;
 viewremark:boolean;
 emailpermission:boolean;
 viewadditionalfileright:boolean;
-
-
+viewtab:any;
+managetab:any;
+ttadata:any;
+activebtn:any;
   constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
     this.UserEmail = this.accountService.currentUser.email;
     this.UserId = this.accountService.currentUser.id;
@@ -90,30 +93,27 @@ viewadditionalfileright:boolean;
     this.isNodal = this.userRoles.includes('Nodal'); 
 this.isSuperAdmin=this.userRoles.includes('Super Admin');
 this.isScientist=this.userRoles.includes('Scientist');
+
 this.viewadditionalfileright=this.commondata.CanviewadditionalfilesPermission;
-    this.route.queryParams.subscribe((params) => {
-      this.createdBy = this.UserId;
-      this.activearray = this.commondata.ttaarray().find(x => x.name == params.type);
-      this.type = this.array.find(x => x.name == params.type).value;
-      this.formHeader = this.array.find(x => x.name == params.type).formHeader;
-this.tablename=this.array.find(x => x.name == params.type).tablename;
-if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==true){
-  // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
+this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
+this.Bdoservice.getdatapermission().subscribe(data=>{
+  console.log(data);
  
-  this.accountService.getAllUser(0,0).subscribe(data=>{
-    this.rows=data.filter((x)=>x.roles.includes('BDM'));
-  })
+    this.route.queryParams.subscribe((params) => {
+      let yy=["tlp","nttsa","tstl"];
+      if(yy.includes(params.stage)){
 
- }
-//  if(this.commondata.ttaarray().find(x => x.name  == params.type)?.lmassigned==true){
-//    // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+        this.ttadata=data?.tta?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
 
-//    this.accountService.getAllUser(0,0).subscribe(data=>{
-//      this.rows=data.filter((x)=>x.roles.includes('LM'));
-//      console.log(this.rows,'uu')
-//    })
-
-//   }
+      }
+      else{
+      this.ttadata=data?.tta?.filter(x=>this.viewtab.find(y=>y==x.value));
+      }
+         this.array=this.ttadata.find(x => x.type == params.type);
+       this.managetab.some(x=>x==this.array.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
+     
+   
 
     })
 
@@ -125,32 +125,19 @@ if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==tru
       this.showClientPage = true;
 
       if(this.isSuperAdmin){
-        this.mouModel = data.filter(x=>x.app_Status==this.type);
+        this.mouModel = data.filter(x=>x.app_Status==this.array?.value);
       }
       
       else{
-        this.mouModel = data.filter(x=>x.app_Status==this.type && this.activeusermou?.find(t=>t.mouref==x.refid));
+        this.mouModel = data.filter(x=>x.app_Status==this.array?.value && this.activeusermou?.find(t=>t.mouref==x.refid));
       }
       this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
-     // this.emailpermission=this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
-      // if (this.isAdmin == true) {
-      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.assigntoadmin == this.UserId);
-      // }
-
-      // else if (this.isBdm == true) {
-
-      //   this.mouModel = data.filter(x => x.app_Status == this.type && x.createdBy == this.UserId);
-      // }
-
-      // else {
-      //   this.mouModel = data.filter(x => x.nodal_Email == this.UserEmail && x.app_Status == this.type);
-      // }
-
+  
 
     });
   })
-
+});
     this.AssignScientistForm=this.formbuilder.group({
       scientist:['',Validators.required]
     });
@@ -177,6 +164,36 @@ if(this.commondata.ttaarray().find(x => x.name == params.type)?.bdoassigned==tru
     this.alertService.showDialog(data,DialogType.alert);
 
   }
+
+  onmodalclick(e: string,value:any, data: mouModel) {
+    this.loading=false;
+    this.submitted=false;
+    this.UploadFileViewModel.app_no=data.mou_no;
+    this.UploadFileViewModel.app_ref_id = data.refid;
+    this.mouref=data.refid;
+    this.UploadFileViewModel.app_Status=value;
+    debugger;
+    this.activebtn=this.array?.button?.find(x=>x.value==value);
+ 
+    if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true){
+     // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+  
+     this.accountService.getAllUser(0,0).subscribe(data=>{
+       this.rows1=data.filter((x)=>x.roles.includes('BDM'));
+       this.rows=data.filter((x)=>x.roles.includes('LM'));
+     })
+ 
+    }
+    this.editorModal2.show();
+    this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
+      this.activuser=data1;
+      this.selected=this.activuser.find(x=>this.rows1?.find(y=>y.id==x.userid))?.userid;
+      //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
+     //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
+      //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
+                });
+  }
+    
   //for client start
   onClientClick(data: mouModel, status) {
     this.showextrafield=status=="S114"?true:false;
@@ -279,7 +296,8 @@ this.ngOnInit();
   uploadClientFile() {
 
     this.submitted = true;
-    if(this.type=="S113" ||this.type=="S115" ||this.type=="S124"||this.type=="S403"||this.type=="S405"){
+    //if(this.type=="S113" ||this.type=="S115" ||this.type=="S124"||this.type=="S403"||this.type=="S405"){
+      if(this.activebtn?.form?.fileuploadreq){
       this.ForwardForm.controls['files'].setValidators([Validators.required]);              
   } else {                
     this.ForwardForm.controls["files"].clearValidators();              

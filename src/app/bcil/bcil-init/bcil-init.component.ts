@@ -242,7 +242,7 @@ else if(data=="custom"){
 
     this.submitted = true;
     
-    if(this.array?.button?.form?.fileuploadreq==true){
+    if(this.activebtn?.form?.fileuploadreq==true){
       this.ForwardForm.controls['files'].setValidators([Validators.required]);              
   } else {                
     this.ForwardForm.controls["files"].clearValidators();              

@@ -201,7 +201,7 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
     // let navigationExtras:NavigationExtras={
     //   queryParams: {'type':data}
     // }
-    this.router.navigate(data?.subchild?.length>0?['/bcil/tta-dashboard']:['/bcil/bcil-tta-table'],  { queryParams: {substage:data.substage, type: data.type,subchild:data?.subchild?.length>0?true:false}});
+    this.router.navigate(data?.subchild?.length>0?['/bcil/tta-dashboard']:['/bcil/bcil-tta-table'],  { queryParams: {stage:data?.subchild?.length>0?data.substage:data.stage, type: data.type}});
    // this.router.navigate(['/bcil/bcil-tta-table'],navigationExtras)
    // return data;
   }
@@ -221,14 +221,16 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
       this.route.queryParams.subscribe((params) => {
-
-if(params?.subchild=="true"){
+let yy=["tlp","tstl","nttsa"]
+if(yy.includes(params?.stage)){
   
-  this.ttadata=data?.tta?.find(r=>r.substage==params?.substage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value) || x?.subchild?.find(t=>this.viewtab.find(y=>y==t.value)));
+  this.ttadata=data?.tta?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
+
 }
 else{
-        this.ttadata=data?.tta?.filter(x=>this.viewtab.find(y=>y==x.value) || x?.subchild?.find(t=>this.viewtab.find(y=>y==t.value)));
+        this.ttadata=data?.tta?.filter(x=>this.viewtab.find(y=>y==x.value)|| x?.subchild?.some(t=>this.viewtab.find(y=>y==t.value)));
 }
+console.log(this.ttadata,'uu')
       });
      
 
