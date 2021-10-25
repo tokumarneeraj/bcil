@@ -4,41 +4,43 @@
 "text":"TT Activity Initiation","color":"red","icon":"fa fa-bar-chart f-28","menuheading":"TT Activity Initiation","submenu":true,"url":"bcil/tta-dashboard"
 },
 {"stage":"patent",
-"text":"Patent","color":"dark-green","icon":"fa fa-file-text-o f-28","menuheading":"Patent","submenu":true,"url":"bcil/bcil-tta-table"
+"text":"Patent","color":"dark-green","icon":"fa fa-file-text-o f-28","menuheading":"Patent","submenu":true,"url":"bcil/patent-dashboard"
 },
 {"stage":"design",
-"text":"Design","color":"purple","icon":"fa fa-paint-brush f-28","menuheading":"Design","submenu":true,"url":"bcil/bcil-tta-table"
+"text":"Design","color":"purple","icon":"fa fa-paint-brush f-28","menuheading":"Design","submenu":true,"url":"bcil/design-dashboard"
 },
 {"stage":"copyright",
-"text":"Copyright","color":"dark-blue","icon":"fa fa-copyright f-28","menuheading":"Copyright","submenu":true,"url":"bcil/bcil-tta-table"
+"text":"Copyright","color":"dark-blue","icon":"fa fa-copyright f-28","menuheading":"Copyright","submenu":true,"url":"bcil/copyright-dashboard"
 },
 {"stage":"trademark",
-"text":"Trademark","color":"green","icon":"fa fa-bar-chart f-28","menuheading":"Trademark","submenu":true,"url":"bcil/bcil-tta-table"
+"text":"Trademark","color":"green","icon":"fa fa-bar-chart f-28","menuheading":"Trademark","submenu":true,"url":"bcil/trademark-dashboard"
 },
 {"stage":"plant_variety",
-"text":"Plant Variety","color":"blue","icon":"fa fa-pagelines f-28","menuheading":"Plant Variety","submenu":true,"url":"bcil/bcil-tta-table"
+"text":"Plant Variety","color":"blue","icon":"fa fa-pagelines f-28","menuheading":"Plant Variety","submenu":true,"url":"bcil/plant-variety-dashboard"
 },
 {"stage":"mis",
 "text":"Other Services","icon":"fa fa-cogs f-28","menuheading":"Other Services","submenu":true,"color":"yellow","url":"bcil/mis-dashboard"
 },
 {"stage":"report",
-"text":"Report","icon":"fa fa-file-excel-o f-28","menuheading":"Report","submenu":true,"color":"blue","url":"bcil/mis-dashboard"
+"text":"Report","icon":"fa fa-file-excel-o f-28","menuheading":"Report","submenu":true,"color":"blue","url":"bcil/report-dashboard"
 },
 {"stage":"mou",
 "text":"Engagement with Organization","icon":"","menuheading":"Engagement with Organization","submenu":true,"url":"bcil/mou-dashboard","color":"dark-pink"
 }
 ],
-"mou":[{
+"mou":[
+{
  "stage":"mou",
         "tablename":"Initiation - Organization Details",
         "heading":"Initiation - Organization Details",
+		"formheader":"Initiation - Organization Details",
         "type":"init",
 "value":"S101",
 "color":"blue",
 "button":[{
     "text":"Agreement not needed","class":"btn btn-primary","title":"","value":"S107"},
 	{"text":"Forward","class":"btn btn-success","title":"","value":"S102",
-	"form":{"lmassigned":true,"reminder":true,"typedrop":true,"bdoassigned":true,"fileuploadreq":true,"reminderfilter":["mou"]}
+	"form":{"lmassigned":true,"typeflied":true,"reminder":true,"typedrop":true,"bdoassigned":true,"fileuploadreq":true,"reminderfilter":["mou"]}
 	}]
 	
 	
@@ -47,6 +49,7 @@
  "stage":"mou",
         "tablename":"MoU Pending",
         "heading":"MoU Pending",
+		"formheader":"MoU Pending",
         "type":"mou_pending",
 "value":"S102",
 "color":"green",
@@ -58,6 +61,7 @@
  "stage":"mou",
         "tablename":"MoU proposed by LM",
         "heading":"MoU proposed by LM",
+		"formheader":"MoU proposed by LM",
         "type":"mou_porposed_by_lm",
 "value":"S104",
 "color":"green",
@@ -68,6 +72,7 @@
  "stage":"mou",
         "tablename":"MoU proposed by TTO",
         "heading":"MoU proposed by TTO",
+		"formheader":"MoU proposed by TTO",
         "type":"mou_proposed_by_admin",
 "value":"S110",
 "color":"red",
@@ -78,6 +83,7 @@
  "stage":"mou",
         "tablename":"MoU Accepted",
         "heading":"MoU Accepted",
+		"formheader":"MoU Accepted",
         "type":"mou_accepted_by_client",
 "value":"S106",
 "color":"red",
@@ -87,6 +93,7 @@
  "stage":"mou",
         "tablename":"Agreement Signed",
         "heading":"Agreement Signed",
+		"formheader":"Agreement Signed",
         "type":"agreementsigned",
 "value":"S105",
 "color":"purple",
@@ -97,6 +104,7 @@
  "stage":"mou",
         "tablename":"BDM Assigned",
         "heading":"BDM Assigned",
+		"formheader":"BDM Assigned",
         "type":"bodassigned",
 "value":"S107",
 "color":"yellow",
@@ -106,6 +114,7 @@
  "stage":"mou",
         "tablename":"IPM Assigned",
         "heading":"IPM Assigned",
+		"formheader":"IPM Assigned",
         "type":"ipm_assigned",
 "value":"S109",
 "color":"dark-orange",
@@ -115,6 +124,7 @@
 "stage":"mou",
         "tablename":"TT Assignment",
         "heading":"TT Assignment",
+		"formheader":"TT Assignment",
         "type":"tto_req_approved",
 "value":"S108",
 "color":"dark-pink",
@@ -123,6 +133,7 @@
 "stage":"mou",
         "tablename":"MoU change request by Admin",
         "heading":"MoU change request by Admin",
+		"formheader":"MoU change request by Admin",
         "type":"mou_change_by_admin",
 "value":"S103",
 "color":"dark-green",
@@ -132,6 +143,7 @@
 "stage":"mou",
         "tablename":"MoU change request by Organization",
         "heading":"MoU change request by Organization",
+		"formheader":"MoU change request by Organization",
         "type":"mou_change_by_client",
 "value":"S111",
 "color":"blue",
@@ -841,6 +853,897 @@
 
 
 ],
+ "patent":[
+ {
+  "stage":"patent",
+		"substage":"patentdraft",
+        "tablename":"Patent Draft Approval",
+		"formheader":"Patent Draft Approval",
+        "heading":"Patent Draft Approval",
+        "type":"",
+		"color":"green",
+		"value":"patentdraft",
+		"subchild":[
+		{
+        "stage":"patent",
+        "tablename":"IP Init",
+        "heading":"IP Init",
+		"formheader":"IP Init",
+        "type":"ip_init",
+"value":"S601",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+    "stage":"patentdraft",
+        "tablename":"IP Evaluation Assigned",
+        "heading":"IP Evaluation Assigned",
+		"formheader":"IP Evaluation Assigned",
+        "type":"ip_evaluation_assigned",
+"value":"S602",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Patent Additional Info Needed",
+        "heading":"Patent Additional Info Needed",
+		"formheader":"Patent Additional Info Needed",
+        "type":"patent_additional_info",
+"value":"S603",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Report Change Required By Admin",
+        "heading":"Report Change Required By Admin",
+		"formheader":"Report Change Required By Admin",
+        "type":"report_change_required_by_admin",
+"value":"S605",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Report Submitted By IPM",
+        "heading":"Report Submitted By IPM",
+		"formheader":"Report Submitted By IPM",
+        "type":"report_submitted_by_ipm",
+"value":"S604",
+"color":"dark-pink",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Report Change Required By Client",
+        "heading":"Report Change Required By Client",
+		"formheader":"Report Change Required By Client",
+        "type":"report_change_required_by_client",
+"value":"S607",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Report Submitted By Admin",
+        "heading":"Report Submitted By Admin",
+		"formheader":"Report Submitted By Admin",
+        "type":"report_submitted_by_admin",
+"value":"S606",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Report Approved By Client",
+		"formheader":"Report Approved By Client",
+        "heading":"Report Approved By Client",
+        "type":"report_approved_by_client",
+"value":"S609",
+"color":"dark-pink",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Closure Requested",
+		"formheader":"Closure Requested",
+        "heading":"Closure Requested",
+        "type":"closure_requested",
+"value":"S608",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Closed",
+        "heading":"Closed",
+		"formheader":"Closed",
+        "type":"closed",
+"value":"S610",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Report Shared BY LUF",
+        "heading":"Report Shared BY LUF",
+		"formheader":"Report Shared BY LUF",
+        "type":"report_shared_by_luf",
+"value":"S611",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Report Change Required By LUF",
+        "heading":"Report Change Required By LUF",
+		"formheader":"Report Change Required By LUF",
+        "type":"report_chnage_required_by_luf",
+"value":"S612",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"patentdraft",
+        "tablename":"Patent Draft By LUF",
+        "heading":"Patent Draft By LUF",
+		"formheader":"Patent Draft By LUF",
+        "type":"patent_draft_by_luf",
+"value":"S613",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Patent Draft Change Required By IPM",
+        "heading":"Patent Draft Change Required By IPM",
+		"formheader":"Patent Draft Change Required By IPM",
+        "type":"patent_draft_change_required_by_ipm",
+"value":"S614",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Patent Draft by IPM",
+        "heading":"Patent Draft by IPM",
+		"formheader":"Patent Draft by IPM",
+        "type":"patent_draft_by_ipm",
+"value":"S615",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Patent Draft Change Required by Client",
+        "heading":"Patent Draft Change Required by Client",
+		"formheader":"Patent Draft Change Required by Client",
+        "type":"patent_draft_change_required_by_client",
+"value":"S616",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentdraft",
+        "tablename":"Patent Draft Approved By Client",
+        "heading":"Patent Draft Approved By Client",
+		"formheader":"Patent Draft Approved By Client",
+        "type":"patent_draft_approved_by_client",
+"value":"S617",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}]
+},{"stage":"patent",
+		"substage":"patentfinalfiling",
+        "tablename":"Final Patent Filing",
+		"formheader":"Final Patent Filing",
+        "heading":"Final Patent Filing",
+        "type":"",
+		"color":"blue",
+		"value":"patentfinalfiling",
+		"subchild":[	{
+        "stage":"patentfinalfiling",
+        "tablename":"Provisional Filing Pending At Luf",
+        "heading":"Provisional Filing Pending At Luf",
+		"formheader":"Provisional Filing Pending At Luf",
+        "type":"provisional_filing_pending_atluf",
+"value":"S620",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},	{
+        "stage":"patentfinalfiling",
+        "tablename":"Final Filing Pending At Luf",
+        "heading":"Final Filing Pending At Luf",
+		"formheader":"Final Filing Pending At Luf",
+        "type":"final_filing_pending_atluf",
+"value":"S619",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},	{
+        "stage":"patentfinalfiling",
+        "tablename":"Provisional Filing Done By Luf",
+        "heading":"Provisional Filing Done By Luf",
+		"formheader":"Provisional Filing Done By Luf",
+        "type":"provisional_filing_done_atluf",
+"value":"S623",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"Final Patent Filing Done By Luf",
+        "heading":"Final Patent Filing Done By Luf",
+		"formheader":"Final Patent Filing Done By Luf",
+        "type":"final_patent_filing_done_atluf",
+"value":"S621",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"Final Patent Filing Shared With Client",
+        "heading":"Final Patent Filing Shared With Client",
+		"formheader":"Final Patent Filing Shared With Client",
+        "type":"final_patent_filing_done_with_luf",
+"value":"S622",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"Provisional Filing Shared With Client",
+        "heading":"Provisional Filing Shared With Client",
+		"formheader":"Provisional Filing Shared With Client",
+        "type":"provisional_filing_shared_with_client",
+"value":"S624",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"FP Go Ahead By Client",
+        "heading":"FP Go Ahead By Client",
+		"formheader":"FP Go Ahead By Client",
+        "type":"fp_go_ahead_by_client",
+"value":"S625",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"FP Go Ahead Shared With Luf ",
+        "heading":"FP Go Ahead Shared With Luf",
+		"formheader":"FP Go Ahead Shared With Luf",
+        "type":"fp_go_ahead_shared_with_luf",
+"value":"S626",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"FP Draft Uploaded By Luf",
+        "heading":"FP Draft Uploaded By Luf",
+		"formheader":"FP Draft Uploaded By Luf",
+        "type":"fp_draft_uploaded_by_luf",
+"value":"S627",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"FP Draft Change Required By IPM",
+        "heading":"FP Draft Change Required By IPM",
+		"formheader":"FP Draft Change Required By IPM",
+        "type":"fp_draft_change_required_by_ipm",
+"value":"S628",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"FP Draft Change Required By Client",
+        "heading":"FP Draft Change Required By Client",
+		"formheader":"FP Draft Change Required By Client",
+        "type":"fp_draft_change_required_by_client",
+"value":"S630",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+,	{
+        "stage":"patentfinalfiling",
+        "tablename":"FP Draft Shared With Client",
+        "heading":"FP Draft Shared With Client",
+		"formheader":"FP Draft Shared With Client",
+        "type":"fp_draft_shared_with_client",
+"value":"S629",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},	{
+        "stage":"patentfinalfiling",
+        "tablename":"FP Draft Approved By Client",
+        "heading":"FP Draft Approved By Client",
+		"formheader":"FP Draft Approved By Client",
+        "type":"fp_draft_approved_by_client",
+"value":"S631",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}]
+		},{"stage":"patent",
+		"substage":"patentforeignfiling",
+        "tablename":"Patent Foreign Filing",
+		"formheader":"Patent Foreign Filing",
+        "heading":"Patent Foreign Filing",
+        "type":"",
+		"color":"red",
+		"value":"patentforeignfiling",
+		"subchild":[	{
+        "stage":"patentforeignfiling",
+        "tablename":"FF Assigned",
+        "heading":"FF Assigned",
+		"formheader":"FF Assigned",
+        "type":"ff_assigned",
+"value":"S632",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"FF Draft Pending At Luf",
+        "heading":"FF Draft Pending At Luf",
+		"formheader":"FF Draft Pending At Luf",
+        "type":"ff_draft_pending_at_luf",
+"value":"S633",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"FF Draft Submitted By Luf",
+        "heading":"FF Draft Submitted By Luf",
+		"formheader":"FF Draft Submitted By Luf",
+        "type":"ff_draft_submitted_by_luf",
+"value":"S634",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"FF Report Change Required By IPM",
+        "heading":"FF Report Change Required By IPM",
+		"formheader":"FF Report Change Required By IPM",
+        "type":"ff_report_change_required_by_ipm",
+"value":"S635",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"Ff Draft Approved By IPM",
+        "heading":"Ff Draft Approved By IPM",
+		"formheader":"Ff Draft Approved By IPM",
+        "type":"ff_draft_approved_by_ipm",
+"value":"S636",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"Ff Report Change Required By Client",
+        "heading":"Ff Report Change Required By Client",
+		"formheader":"Ff Report Change Required By Client",
+        "type":"ff_report_change_required_by_client",
+"value":"S637",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"Ff Draft Approved By Client",
+        "heading":"Ff Draft Approved By Client",
+		"formheader":"Ff Draft Approved By Client",
+        "type":"ff_draft_approved_by_client",
+"value":"S638",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"Ff Draft Shared With Luf",
+        "heading":"Ff Draft Shared With Luf",
+		"formheader":"Ff Draft Shared With Luf",
+        "type":"ff_draft_shared_with_luf",
+"value":"S639",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"FF PCT Filed",
+        "heading":"FF PCT Filed",
+		"formheader":"FF PCT Filed",
+        "type":"ff_pct_filed",
+"value":"S640",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"FF Direct Filed",
+        "heading":"FF Direct Filed",
+		"formheader":"FF Direct Filed",
+        "type":"ff_direct_filed",
+"value":"S641",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"FF PCT Shared With Client",
+        "heading":"FF PCT Shared With Client",
+		"formheader":"FF PCT Shared With Client",
+        "type":"ff_pct_shared_with_client",
+"value":"S642",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentforeignfiling",
+        "tablename":"FF Direct Shared With Client",
+        "heading":"FF Direct Shared With Client",
+		"formheader":"FF Direct Shared With Client",
+        "type":"ff_direct_shared_with_client",
+"value":"S643",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}]
+		},{"stage":"patent",
+		"substage":"patentrequiredforexamination",
+        "tablename":"Patent Required For Examination",
+		"formheader":"Patent Required For Examination",
+        "heading":"Patent Required For Examination",
+        "type":"",
+		"color":"purple",
+		"value":"patentrequiredforexamination",
+		"subchild":[	{
+        "stage":"patentrequiredforexamination",
+        "tablename":"Published In Journels Received by Luf",
+        "heading":"Published In Journels Received by Luf",
+		"formheader":"Published In Journels Received by Luf",
+        "type":"published_in_journels_received_by_luf",
+"value":"S644",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentrequiredforexamination",
+        "tablename":"Published In Journels Shared With Client",
+        "heading":"Published In Journels Shared With Client",
+		"formheader":"Published In Journels Shared With Client",
+        "type":"published_in_journels_shared_with_client",
+"value":"S645",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentrequiredforexamination",
+        "tablename":"RFE Go Ahead By Client",
+        "heading":"RFE Go Ahead By Client",
+		"formheader":"RFE Go Ahead By Client",
+        "type":"rfe_go_ahead_by_client",
+"value":"S646",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentrequiredforexamination",
+        "tablename":"RFE Go Ahead Shared With Luf",
+        "heading":"RFE Go Ahead Shared With Luf",
+		"formheader":"RFE Go Ahead Shared With Luf",
+        "type":"rfe_go_ahead_shared_with_luf",
+"value":"S647",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentrequiredforexamination",
+        "tablename":"RFE Filing Done By Luf",
+        "heading":"RFE Filing Done By Luf",
+		"formheader":"RFE Filing Done By Luf",
+        "type":"rfe_filing_done_by_client",
+"value":"S648",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentrequiredforexamination",
+        "tablename":"RFE Filing Shared With Client",
+        "heading":"RFE Filing Shared With Client",
+		"formheader":"RFE Filing Shared With Client",
+        "type":"rfe_filing_shared_with_client",
+"value":"S649",
+"color":"dark-organge",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}]
+		},{"stage":"patent",
+		"substage":"patentfirstexamreport",
+        "tablename":"Patent First Exam Report",
+		"formheader":"Patent Draft Approval",
+        "heading":"Patent Draft Approval",
+        "type":"",
+		"color":"yellow",
+		"value":"patentfirstexamreport",
+		"subchild":[{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER RECEIVED",
+        "heading":"FER RECEIVED",
+		"formheader":"FER RECEIVED",
+        "type":"fer_received",
+"value":"S650",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Shared With Client",
+        "heading":"FER Shared With Client",
+		"formheader":"FER Shared With Client",
+        "type":"fer_shared_with_client",
+"value":"S651",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Go ahead By Client",
+        "heading":"FER Resp Go ahead By Client",
+		"formheader":"FER Resp Go ahead By Client",
+        "type":"fer_resp_go_ahead_by_client",
+"value":"S652",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Go Ahead Shared With Luf",
+        "heading":"FER Resp Go Ahead Shared With Luf",
+		"formheader":"FER Resp Go Ahead Shared With Luf",
+        "type":"fer_resp_go_ahead-shared_with_luf",
+"value":"S653",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Uploaded By Luf",
+        "heading":"FER Resp Uploaded By Luf",
+		"formheader":"FER Resp Uploaded By Luf",
+        "type":"fer_resp_uploaded_by_luf",
+"value":"S654",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Change Required By IPM",
+        "heading":"FER Resp Change Required By IPM",
+		"formheader":"FER Resp Change Required By IPM",
+        "type":"fer_resp_change_requires_by_ipm",
+"value":"S655",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Draft Shared With CLient",
+        "heading":"FER Resp Draft Shared With CLient",
+		"formheader":"FER Resp Draft Shared With CLient",
+        "type":"fer_resp_draft_shared-with_client",
+"value":"S656",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Draft Change Requird By Client",
+        "heading":"FER Resp Draft Change Requird By Client",
+		"formheader":"FER Resp Draft Change Requird By Client",
+        "type":"fer_resp_draft_change_required_by_client",
+"value":"S657",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Draft Approved By Client",
+        "heading":"FER Resp Draft Approved By Client",
+		"formheader":"FER Resp Draft Approved By Client",
+        "type":"fer_resp_draft_approved_by_client",
+"value":"S658",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Filing Pending At Luf",
+        "heading":"FER Resp Filing Pending At Luf",
+		"formheader":"FER Resp Filing Pending At Luf",
+        "type":"fer_resp_filing_pending_at_luf",
+"value":"S659",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Filing Done By Luf",
+        "heading":"FER Resp Filing Done By Luf",
+		"formheader":"FER Resp Filing Done By Luf",
+        "type":"fer_resp_filing_done_by_luf",
+"value":"S660",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"patentfirstexamreport",
+        "tablename":"FER Resp Filing Shared With Client",
+        "heading":"FER Resp Filing Shared With Client",
+		"formheader":"FER Resp Filing Shared With Client",
+        "type":"fer_resp_filing_shared_with_client",
+"value":"S661",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}]
+		}
+		,{"stage":"patent",
+		"substage":"ertoacceptancepatent",
+        "tablename":"ER To Acceptance Patent",
+		"formheader":"Patent Draft Approval",
+        "heading":"Patent Draft Approval",
+        "type":"",
+		"color":"dark-orange",
+		"value":"ertoacceptancepatent",
+		"subchild":[	{
+        "stage":"ertoacceptancepatent",
+        "tablename":"HN Received",
+        "heading":"HN Received",
+		"formheader":"HN Received",
+        "type":"hn_received",
+"value":"S662",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"ertoacceptancepatent",
+        "tablename":"HN Shared with Client",
+        "heading":"HN Shared with Client",
+		"formheader":"HN Shared with Client",
+        "type":"hn_shared_with_client",
+"value":"S663",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Client Go Ahead",
+        "heading":"Client Go Ahead",
+		"formheader":"Client Go Ahead",
+        "type":"client_go_ahead",
+"value":"S664",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"ertoacceptancepatent",
+        "tablename":"IPM Go Ahead To Luf",
+        "heading":"IPM Go Ahead To Luf",
+		"formheader":"IPM Go Ahead To Luf",
+        "type":"ipm_go-ahead_to_luf",
+"value":"S665",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"ertoacceptancepatent",
+        "tablename":"LUf Attened Hearing",
+        "heading":"LUf Attened Hearing",
+		"formheader":"LUf Attened Hearing",
+        "type":"luf_attened_hearing",
+"value":"S666",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Hearing Attended Shared With Client",
+        "heading":"Hearing Attended Shared With Client",
+		"formheader":"Hearing Attended Shared With Client",
+        "type":"hearing_attended_shared_with_client",
+"value":"S667",
+"color":"dark-green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Draft Written Submission By Luf",
+        "heading":"Draft Written Submission By Luf",
+		"formheader":"Draft Written Submission By Luf",
+        "type":"draft_written_submission_by_luf",
+"value":"S668",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},
+{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Draft Written Submission Change Required by IPM",
+        "heading":"Draft Written Submission Change Required by IPM",
+		"formheader":"Draft Written Submission Change Required by IPM",
+        "type":"draft_written_submission_change_required_by_ipm",
+"value":"S669",
+"color":"dark-orange",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Draft Written Submission shared With Client",
+        "heading":"Draft Written Submission shared With Client",
+		"formheader":"Draft Written Submission shared With Client",
+        "type":"draft_written_submission_shared_with_client",
+"value":"S670",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Draft Written Submission Chnage Required By Client",
+        "heading":"Draft Written Submission Chnage Required By Client",
+		"formheader":"Draft Written Submission Chnage Required By Client",
+        "type":"draft_written_submission_change_required_by_client",
+"value":"S671",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Draft Written Submission Approved By Client",
+        "heading":"Draft Written Submission Approved By Client",
+		"formheader":"Draft Written Submission Approved By Client",
+        "type":"draft_written_submission_approved_by_client",
+"value":"S672",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Approved Written Submission Shared by Luf",
+        "heading":"Approved Written Submission Shared by Luf",
+		"formheader":"Approved Written Submission Shared by Luf",
+        "type":"approved_written-submission_shared_by_luf",
+"value":"S673",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Written Submission Filed",
+        "heading":"Written Submission Filed",
+		"formheader":"Written Submission Filed",
+        "type":"written_submission_filed",
+"value":"S674",
+"color":"purple",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Rejection Shared With Client",
+        "heading":"Rejection Shared With Client",
+		"formheader":"Rejection Shared With Client",
+        "type":"rejection_shared_with_client",
+"value":"S675",
+"color":"blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Patent Rejected",
+        "heading":"Patent Rejected",
+		"formheader":"Patent Rejected",
+        "type":"patent_rejected",
+"value":"S676",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+       "stage":"ertoacceptancepatent",
+        "tablename":"Patent Granted",
+        "heading":"Patent Granted",
+		"formheader":"Patent Granted",
+        "type":"patent_granted",
+"value":"S677",
+"color":"red",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+},{
+        "stage":"ertoacceptancepatent",
+        "tablename":"Acceptance Shared With Client",
+        "heading":"Acceptance Shared With Client",
+		"formheader":"Acceptance Shared With Client",
+        "type":"appectance_shared_with_client",
+"value":"S678",
+"color":"yellow",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}
+
+
+]
+		}]
+,
+ "copyright":[{
+        "stage":"copyright",
+        "tablename":"Misc Init",
+        "heading":"Misc Init",
+        "type":"misc_init",
+"value":"S170",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}],
+ "design":[{
+        "stage":"design",
+        "tablename":"Misc Init",
+        "heading":"Misc Init",
+        "type":"misc_init",
+"value":"S170",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}],
+ "trademark":[{
+        "stage":"trademark",
+        "tablename":"Misc Init",
+        "heading":"Misc Init",
+        "type":"misc_init",
+"value":"S170",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}],
+ "plant_variety":[{
+        "stage":"plant_variety",
+        "tablename":"Misc Init",
+        "heading":"Misc Init",
+        "type":"misc_init",
+"value":"S170",
+"color":"green",
+"button":[{
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+}],
     "mis":[{
         "stage":"mis",
         "tablename":"Misc Init",

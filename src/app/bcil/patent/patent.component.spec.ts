@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TlpDashboardComponent } from './tlp-dashboard.component';
+import { PatentComponent } from './patent.component';
 
-describe('TlpDashboardComponent', () => {
-  let component: TlpDashboardComponent;
-  let fixture: ComponentFixture<TlpDashboardComponent>;
+describe('PatentComponent', () => {
+  let component: PatentComponent;
+  let fixture: ComponentFixture<PatentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TlpDashboardComponent ]
+      declarations: [ PatentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TlpDashboardComponent);
+    fixture = TestBed.createComponent(PatentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

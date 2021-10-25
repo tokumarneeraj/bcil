@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NttsaMainComponent } from './nttsa-main.component';
+import { TrademarkComponent } from './trademark.component';
 
-describe('NttsaMainComponent', () => {
-  let component: NttsaMainComponent;
-  let fixture: ComponentFixture<NttsaMainComponent>;
+describe('TrademarkComponent', () => {
+  let component: TrademarkComponent;
+  let fixture: ComponentFixture<TrademarkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NttsaMainComponent ]
+      declarations: [ TrademarkComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NttsaMainComponent);
+    fixture = TestBed.createComponent(TrademarkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

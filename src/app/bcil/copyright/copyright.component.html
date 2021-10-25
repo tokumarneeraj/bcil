@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">MIS</h5>
+                        <h5 class="m-b-10">Copyright</h5>
                         <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">MIS</a>
+                        <li class="breadcrumb-item"><a href="#!">Copyright</a>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="addMou">
-                            <a routerLink="../mou-application" [queryParams]="{ stage: 'mis'}" style="float:right" class="mb-5">View MIS</a>
+                            <a routerLink="../mou-application" [queryParams]="{ stage: 'copyright'}" style="float:right" class="mb-5">View Patent</a>
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -47,22 +47,22 @@
 
                               
                             <!-- task, page, download counter  start -->
-                                <div class="col-xl-3 col-md-6" *ngFor="let mis of misdata;let index=i;">
+                                <div class="col-xl-3 col-md-6" *ngFor="let copyright of copyrightdata;let index=i;">
                                   
                                         <div class="card">
                                             <div class="card-block">
                                                 <div class="row align-items-top">
                                                     <div class="col-12">
-                                                      <h4 class="text-c-{{mis?.color}}">{{mis.heading}}</h4>
-                                                        <h6 class="text-muted m-b-0">{{mislistfilter(mis.value)}}</h6>
+                                                      <h4 class="text-c-{{copyright?.color}}">{{copyright.heading}}</h4>
+                                                        <h6 class="text-muted m-b-0">{{copyrightlistfilter(copyright.value)}}</h6>
                                                     </div>
                                                     <!-- <div class="col-4 text-right">
                                                         <i class="fa fa-bar-chart f-28"></i>
                                                     </div> -->
                                                 </div>
                                             </div>
-                                            <a (click)="queryparam(mis.type)" >
-                                            <div class="card-footer bg-c-{{mis?.color}}">
+                                            <a (click)="queryparam(copyright.type)" >
+                                            <div class="card-footer bg-c-{{copyright?.color}}">
                                                 <div class="row align-items-center">
                                                     <div class="col-9">
                                                         <p class="text-white m-b-0">View</p>

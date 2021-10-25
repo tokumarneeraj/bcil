@@ -1,0 +1,2 @@
+insert into status_master(status_name,status_code,active,stagetype,id)
+values('TECHNOLOGY_DOCKET_SHARED_WITH_INDUSTRY','S164',true,'tstl', uuid_generate_v4()::text)

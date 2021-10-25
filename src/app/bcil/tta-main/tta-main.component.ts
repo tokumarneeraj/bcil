@@ -129,7 +129,7 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
       }
       
       else{
-        this.mouModel = data.filter(x=>x.app_Status==this.array?.value && this.activeusermou?.find(t=>t.mouref==x.refid));
+        this.mouModel = data.filter(x=>x.app_Status==this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
       }
       this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);

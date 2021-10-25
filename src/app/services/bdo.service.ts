@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {activeusermou, addusertomou, mouModel, Reminder, StatusMaster} from '../model/mou.model';
+import {activeusermou, addusertomou, copyrightModel, designModel, misModel, mouModel, patentModel, plantvarietyModel, Reminder, StatusMaster, trademarkModel} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
@@ -30,6 +30,13 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
 
     get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
+    get getorganization() { return environment.baseUrl+'/api/bdo/getorganization'; }
+    get getmisurl() { return environment.baseUrl+'/api/bdo/getotherservice'; }
+    get getpatenturl() { return environment.baseUrl+'/api/bdo/getpatentservice'; }
+    get getcopyrighturl() { return environment.baseUrl+'/api/bdo/getcopyright'; }
+    get gettrademarkurl() { return environment.baseUrl+'/api/bdo/gettrademark'; }
+    get getdesignurl() { return environment.baseUrl+'/api/bdo/getdesign'; }
+    get getplantvarietyurl() { return environment.baseUrl+'/api/bdo/getplantvariety'; }
     get getstatusmasterurl() { return environment.baseUrl+'/api/bdo/getstatusmaster'; }
     
     get getadditionalfile() { return environment.baseUrl + '/api/FileUploads/getaddifile'; }
@@ -162,9 +169,65 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
         }
 
 
+        public  Getorganization<T>(refid:string): Observable<any[]> {
+          const endpointUrl = `${this.getorganization}/${refid}`;
+          return this.http.get<any[]>(endpointUrl);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
          public  GetMou<T>(): Observable<mouModel[]> {
         
           return this.http.get<mouModel[]>(this.getmouurl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetMis<T>(): Observable<misModel[]> {
+        
+          return this.http.get<misModel[]>(this.getmisurl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetPatentModel<T>(): Observable<patentModel[]> {
+        
+          return this.http.get<patentModel[]>(this.getpatenturl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetTrademarkModel<T>(): Observable<trademarkModel[]> {
+        
+          return this.http.get<trademarkModel[]>(this.gettrademarkurl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetCopyrightModel<T>(): Observable<copyrightModel[]> {
+        
+          return this.http.get<copyrightModel[]>(this.getcopyrighturl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetDesignModel<T>(): Observable<designModel[]> {
+        
+          return this.http.get<designModel[]>(this.getdesignurl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetPlantvarietyModel<T>(): Observable<plantvarietyModel[]> {
+        
+          return this.http.get<plantvarietyModel[]>(this.getplantvarietyurl,this.requestHeaders);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

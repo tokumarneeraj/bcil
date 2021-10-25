@@ -114,6 +114,9 @@ export class MouAddComponent implements OnInit {
       if(data.message=="already_exist"){
         this.alertService.showStickyMessage("MOU ADD","Nodal Already exists,Please Change the name of Nodal",MessageSeverity.warn);
       }
+      else if(data.message=="institude_code_exist"){
+        this.alertService.showStickyMessage("MOU ADD","Institute Code Already exits Nodal",MessageSeverity.error);
+      }
       else if(data.message=="newuser")
       {
         this.alertService.showStickyMessage('MOU ADD',"data save Successfully",MessageSeverity.success);

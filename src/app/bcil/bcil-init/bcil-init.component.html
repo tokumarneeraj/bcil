@@ -35,7 +35,7 @@
                                     <!-- Hover table card start -->
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>{{array?.tabelname}}</h5>
+                                            <h5>{{array?.tablename}}</h5>
                                             <!-- <span>use class <code>table-hover</code> inside table element</span> -->
                                             <div class="card-header-right">
                                                 <ul class="list-unstyled card-option">
@@ -119,138 +119,9 @@
     </div>
 </div> -->
 
-<div class="modal fade" bsModal #editorModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
-    <div class="modal-dialog modal-lg" style="max-height: 600px;
-    overflow: auto;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>{{array?.tablename}}</h4>
-                <button type="button" class="close float-right" title="Close" (click)="editorModal1.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class="modal-body">
-              <form [formGroup]="ForwardForm">
 
-                <div class="form-group row" *ngIf="isAdmin && activebtn?.form?.lmassigned">
-                  <div class="col-sm-12">
-                    <label class="col-form-label">Select Legal Manager</label>
-
-                    <select type="text" class="form-control" formControlName="assignto" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
-                      <option value="" selected>--select--</option>
-                      <option *ngFor="let data of rows" value="{{data.id}}">{{data.userName}}</option>
-
-                    </select>
-
-
-                  </div>
-                </div>
-
-
-                <div class="form-group row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label">Subject</label>
-                    <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
-                    <p *ngIf="submitted && f.subject.errors" class="invalid-feedback">Subject is required</p>
-                           
-
-                  </div>
-                </div>
-                <div class="form-group row" *ngIf="activebtn?.form?.showlm">
-                  <div class="col-sm-12">
-                    <label class="col-form-label">Type</label>
-                    <select type="text" class="form-control" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
-                      <option value="">Choose</option>
-                      <option value="MOU">MOU</option>
-                      <option value="NDA">NDA</option>
-                      <option value="Work Order">Work Order</option>
-                      <option value="Others">Others</option>
-                    </select>
-
-
-                  </div>
-                </div>
-                <div class="form-group row" *ngIf="activebtn?.form?.bdoassigned">
-                    <div class="col-sm-12">
-                      <label class="col-form-label">BDM</label>
-                      <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selected">
-                        <option *ngFor="let user of rows1" value="{{user.id}}">{{user.userName}}</option>
-                        <!-- <option value="MOU">MOU</option>
-                        <option value="NDA">NDA</option>
-                        <option value="Work Order">Work Order</option>
-                        <option value="Others">Others</option> -->
-                      </select>
-  
-  
-                    </div>
-                  </div>
-                <div class="form-group row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label">Remarks</label>
-                    <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
-                                </textarea>
-
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-12">
-                    <label class="col-form-label">Upload</label>
-                    <input type="file" accept="*" class="form-control" (change)="fileChangeEvent($event)" />
-                    <input type="hidden" name="files" formControlName="files" /> 
-                    <p *ngIf="submitted && f.files.errors" class="invalid-feedback">File is required</p>
-                  
-                    <span class="text-danger float-right">*For multiple files, please compress and upload.(zip format)</span>
-
-                  </div>
-                </div>
-
-                <div class="form-group row"  *ngIf="activebtn?.form?.reminder">
-<div class="col-sm-6"> 
-    <label class="col-form-label">Default Reminder</label>
-    <input type="radio" class="form-control" name="remindertype" value="default"  formControlName="remindertype" (change)="reminderchange('default')"/>
- 
-</div>
-    <div class="col-sm-6"> 
-        <label class="col-form-label">Custom Reminder</label>
-        <input type="radio" class="form-control" name="remindertype" value="custom" formControlName="remindertype" (change)="reminderchange('custom')"/>
-           
-                  </div>
-                </div>
-                 <div class="form-group row"  *ngIf="activebtn?.form?.reminder">
-                    <app-reminder *ngIf="customrem" [customrem]="customrem"  [appref]="mouref" [type]="activebtn" style="width:100%"></app-reminder>
-                 </div>
-
-                
-                   
-              
-
-                <div class="form-group row">
-                  <div class="col-sm-6">
-                    <!-- <button type="submit"
-                            class="btn btn-success"
-                            (click)="uploadFile()">
-                      Upload File
-                    </button> -->
-                    <button type="submit" class="btn btn-success"  (click)="uploadFile()" [disabled]="loading">
-                        <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
-                      </button>
-                  </div>
-                  
-
-                </div>
-
-
-              </form>
-                <!-- <ul class="list-unstyled">
-                    <li *ngFor="let role of rows"><input type="checkbox" name="checkbox-{{role.name}}" [disabled]="!canManageRoles" [(ngModel)]="selectedValues1[role.id+uservalue]" />{{role.name}}</li>
-                </ul>
-                <button type="button" [ngClass]="!canManageRoles ? 'd-none': ''" [disabled]="!canManageRoles" (click)="addrolepermissionsubmit()" class="btn btn-sm btn-outline-primary"><i class="fa fa-save"></i> Submit</button> -->
-
-            </div>
-        </div>
-    </div>
-  </div>
   <app-addition-file></app-addition-file>
+  <app-activity [array]="array"></app-activity>
   <!-- <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" style="min-height:600px">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class BcilDashboardComponent implements OnInit {
 
   mouModel:mouModel[];
+  misModel:any[];
   showpage=false;
   usertype:string;
   UserName: string;
@@ -124,6 +125,10 @@ else if(tab?.stage=="mou"){
   return this.moulist(rr);
   
 }
+else if(tab?.stage=="mis"){
+  return this.mislist(rr);
+  
+}
 else
 {
   return 0;
@@ -144,14 +149,21 @@ this.activeusermou=data1;
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
+    
     this.Bdoservice.GetMou().subscribe(data=>{console.log(data)
-    this.mouModel=data;
-    this.showpage=true;
+      this.mouModel=data;
+      
+      this.Bdoservice.GetMis().subscribe(datamis=>{console.log(datamis)
+        this.misModel=datamis;
+        this.showpage=true;
+      }
+  
    
   
-    })
+    );
   });
 });
+    });
   }
   taburl(url:any){
 this.router.navigate([url]);
@@ -168,10 +180,10 @@ moulist(permission:any){
     return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108")).length;
   }
   else if(this.isAdmin){
-  return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && (x.app_Status=="S101" || this.activeusermou?.find(t=>t.mouref==x.refid))).length;
+  return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && (x.app_Status=="S101" || this.activeusermou?.some(t=>t.appref==x.refid))).length;
   }
   else{
-    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && this.activeusermou?.some(t=>t.appref==x.refid)).length;
  
   }
   
@@ -182,10 +194,18 @@ moulist(permission:any){
    
     }
     else{
-    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
     
   }}
-
+  mislist(permission:any){
+    if(this.isSuperAdmin){
+      return this.misModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
+   
+    }
+    else{
+    return this.misModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    
+  }}
   
-
+  
 }

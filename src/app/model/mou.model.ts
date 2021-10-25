@@ -41,6 +41,61 @@ public assigntoluf:string;
   public createdOn:Date;
 } 
 
+export class misModel{
+  public refid:string;
+  public subject:string;
+  public mouref:string;
+  public remark:string;
+  public appno:string;
+  public institude_code:string;
+  public app_Status:string;
+}
+export class patentModel{
+  public refid:string;
+  public subject:string;
+  public mouref:string;
+  public remark:string;
+  public appno:string;
+  public institude_code:string;
+  public app_Status:string;
+}
+export class trademarkModel{
+  public refid:string;
+  public subject:string;
+  public mouref:string;
+  public remark:string;
+  public appno:string;
+  public institude_code:string;
+  public app_Status:string;
+}
+export class designModel{
+  public refid:string;
+  public subject:string;
+  public mouref:string;
+  public remark:string;
+  public appno:string;
+  public institude_code:string;
+  public app_Status:string;
+}
+export class copyrightModel{
+  public refid:string;
+  public subject:string;
+  public mouref:string;
+  public remark:string;
+  public appno:string;
+  public institude_code:string;
+  public app_Status:string;
+}
+export class plantvarietyModel{
+  public refid:string;
+  public subject:string;
+  public mouref:string;
+  public remark:string;
+  public appno:string;
+  public institude_code:string;
+  public app_Status:string;
+}
+
 export class StatusMaster {
 
   public status_name:string;
@@ -53,7 +108,7 @@ export class StatusMaster {
 export class activeusermou{
   public userid:string;
   public username:string;
-  public mouref:string;
+  public appref:string;
   public userrole:string;
   public active:boolean;
 }

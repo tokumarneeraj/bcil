@@ -173,15 +173,15 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
 
   tlplist() {
     console.log(this.userpertlp);
-    return this.mouModel?.filter(x =>this.userpertlp?.find(r=>r.value==x.app_Status) &&  this.activeusermou?.find(t=>t.mouref==x.refid) ).length;
+    return this.mouModel?.filter(x =>this.userpertlp?.find(r=>r.value==x.app_Status) &&  this.activeusermou?.find(t=>t.appref==x.refid) ).length;
   }
 
   nttsalist() {
     console.log(this.mouModel?.filter(x => !this.nttsastatus.includes(x.app_Status)).length)
-    return this.mouModel?.filter(x => this.userperntts?.find(r=>r.value==x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x => this.userperntts?.find(r=>r.value==x.app_Status) && this.activeusermou?.find(t=>t.appref==x.refid)).length;
   }
   tstllist() {
-    return this.mouModel?.filter(x => this.userpertstl?.find(r=>r.value==x.app_Status) && this.activeusermou?.find(t=>t.mouref==x.refid)).length;
+    return this.mouModel?.filter(x => this.userpertstl?.find(r=>r.value==x.app_Status) && this.activeusermou?.find(t=>t.appref==x.refid)).length;
 
   }
   fitertta(data,row){
@@ -277,7 +277,7 @@ console.log(this.ttadata,'uu')
     }
     
     else{
-      return this.mouModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) && this.activeusermou?.find(t=>t.mouref==x.refid) ).length;
+      return this.mouModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
     }
     // if (this.isNodal == true) {
     //   return this.mouModel?.filter(x => x.nodal_Name == this.UserName && x.app_Status == data).length;

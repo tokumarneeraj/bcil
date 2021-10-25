@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TlpMainComponent } from './tlp-main.component';
+import { DesignComponent } from './design.component';
 
-describe('TlpMainComponent', () => {
-  let component: TlpMainComponent;
-  let fixture: ComponentFixture<TlpMainComponent>;
+describe('DesignComponent', () => {
+  let component: DesignComponent;
+  let fixture: ComponentFixture<DesignComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TlpMainComponent ]
+      declarations: [ DesignComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TlpMainComponent);
+    fixture = TestBed.createComponent(DesignComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

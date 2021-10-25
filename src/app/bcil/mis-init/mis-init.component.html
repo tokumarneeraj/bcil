@@ -53,19 +53,33 @@
                                 <tr>
                                   <th>#</th>
                                   <th>MIS No</th>
+                                  <th>Subject</th>
+                                  <th>Remarks</th>
                                <th>Action</th>
-                              
+                               <th *ngIf="viewhistory">History</th>
+                                                
+                               <th *ngIf="viewadditionalfileright">Additional File</th>
+                               <th *ngIf="viewremark">Previous Remarks</th> 
                                 </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <td></td>
-                                      <td>hjhhjhj</td>
+                                  <tr *ngFor="let mis of misModel;let i=index">
+                                      <td>{{i+1}}</td>
+                                      <td>{{mis?.appno}}</td>
+                                      <td>{{mis?.subject}}</td>
+                                      <td>{{mis?.remark}}</td>
+                                     
                                       <td>
                                           <ng-container *ngFor="let btn of array?.button">
-<button  type="submit" class="misbtn {{btn?.class}}">{{btn.text}}</button>
+                                            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,mis)">{{btn.text}}</button>
+                                                      
                                           </ng-container>
                                       </td>
+
+                                      <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mis',refid:mis?.refid}">View</a></td>
+                                      <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+                                      <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(mis)" class="stretched-link">View</a></td>
+                                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(mis.remarks)">{{mis?.remarks}}</p></td>
                                   </tr>
                                   </tbody>
                                   </table>

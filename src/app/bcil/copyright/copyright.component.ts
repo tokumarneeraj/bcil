@@ -1,26 +1,23 @@
-import { analyzeAndValidateNgModules, ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { commondata } from 'src/app/model/common';
 import { activeusermou } from 'src/app/model/mou.model';
 import { AccountService } from 'src/app/services/account.service';
-import { Bdoservice } from 'src/app/services/bdo.service';
 import { ActivityComponent } from '../activity/activity.component';
-
-
+import { Bdoservice } from 'src/app/services/bdo.service';
 @Component({
-  selector: 'app-mis-dashboard',
-  templateUrl: './mis-dashboard.component.html',
-  styleUrls: ['./mis-dashboard.component.scss']
+  selector: 'app-copyright',
+  templateUrl: './copyright.component.html',
+  styleUrls: ['./copyright.component.scss']
 })
-export class MisDashboardComponent implements OnInit {
-  misdata:any;
+export class CopyrightComponent implements OnInit {
+  copyrightdata:any;
   viewtab:any;
   commondata=new commondata();
   @ViewChild(ActivityComponent)
   activity: ActivityComponent;
   activeusermou:activeusermou[];
-  misModel:any[];
+  copyrightModel:any[];
   showpage:boolean=false;
   UserId: string;
   userRoles: string[];
@@ -44,33 +41,33 @@ export class MisDashboardComponent implements OnInit {
   this.isSuperAdmin=this.userRoles.includes('Super Admin');
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
 
    
    
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
-      this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value));
+      this.copyrightdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value));
 
     })
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetMis().subscribe(data => {
       console.log(data)
-      this.misModel = data;
+      this.copyrightModel = data;
       this.showpage = true;
     })
   });
   }
-  mislistfilter(data) {
+  copyrightlistfilter(data) {
    
     if(this.isSuperAdmin){
-      return this.misModel?.filter(x=>x.app_Status==data).length;
+      return this.copyrightModel?.filter(x=>x.app_Status==data).length;
     }
    
     else{
-      return this.misModel?.filter(x=>(x.app_Status==data )&& this.activeusermou?.some(t=>t.appref==x.refid)).length;
+      return this.copyrightModel?.filter(x=>(x.app_Status==data )&& this.activeusermou?.some(t=>t.appref==x.refid)).length;
     }
    
 }
@@ -80,7 +77,7 @@ this.activity.showviewmodel('','S170');
   }
 
   queryparam(data:any){
-    this.router.navigate(['./bcil/bcil-mis-table'], { queryParams: { type: data} });
+    this.router.navigate(['./bcil/bcil-copyright-table'], { queryParams: { type: data} });
   // return  '{type:'+data+'}'
   }
 

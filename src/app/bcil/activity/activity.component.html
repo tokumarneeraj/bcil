@@ -11,13 +11,13 @@
             <div class="modal-body">
               <form [formGroup]="ForwardForm">
 
-                <div class="form-group row" *ngIf="isAdmin && activebtn?.form?.lmassigned">
+                <div class="form-group row" *ngIf="activebtn?.form?.lmassigned">
                   <div class="col-sm-12">
                     <label class="col-form-label">Select Legal Manager</label>
 
-                    <select type="text" class="form-control" formControlName="assignto" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                    <select type="text" class="form-control" formControlName="assigntolm" [ngClass]="{ 'is-invalid': submitted && f.assigntolm.errors }"  [(ngModel)]="selectedlm">
                       <option value="" selected>--select--</option>
-                      <option *ngFor="let data of rows" value="{{data.id}}">{{data.userName}}</option>
+                      <option *ngFor="let data of rowslm" value="{{data.id}}">{{data.userName}}</option>
 
                     </select>
 
@@ -35,7 +35,7 @@
 
                   </div>
                 </div>
-                <div class="form-group row" *ngIf="activebtn?.form?.showlm">
+                <div class="form-group row" *ngIf="activebtn?.form?.typeflied">
                   <div class="col-sm-12">
                     <label class="col-form-label">Type</label>
                     <select type="text" class="form-control" formControlName="type" [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
@@ -52,8 +52,9 @@
                 <div class="form-group row" *ngIf="activebtn?.form?.bdoassigned">
                     <div class="col-sm-12">
                       <label class="col-form-label">BDM</label>
-                      <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selected">
-                        <option *ngFor="let user of rows1" value="{{user.id}}">{{user.userName}}</option>
+                      <select type="text" class="form-control" name="assigntobdo" formControlName="assigntobdo" [(ngModel)]="selectedbdm">
+                        <option value="" selected>--select--</option>
+                        <option *ngFor="let user of rowsbdm" value="{{user.id}}">{{user.userName}}</option>
                         <!-- <option value="MOU">MOU</option>
                         <option value="NDA">NDA</option>
                         <option value="Work Order">Work Order</option>

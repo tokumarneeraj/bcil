@@ -18,6 +18,7 @@ import { Permission } from 'src/app/model/permission.model';
 import { StringDecoder } from 'string_decoder';
 import {commondata} from '../../model/common'
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
+import { ActivityComponent } from '../activity/activity.component';
 @Component({
   selector: 'app-bcil-init',
   templateUrl: './bcil-init.component.html',
@@ -39,6 +40,8 @@ export class BcilInitComponent implements OnInit {
   editorModal1: ModalDirective;
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
+  @ViewChild(ActivityComponent)
+  activity: ActivityComponent;
   usertype: string;
   UserName: string;
   showClientPage = false;
@@ -117,7 +120,9 @@ else if(data=="custom"){
   }
  
   
-
+  
+    
+      
   ngOnInit(): void {
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
@@ -142,17 +147,14 @@ else if(data=="custom"){
         
         //this.type=this.moudata.find(x => x.type == params.type).value;
         this.array=this.moudata.find(x => x.type == params.type);
-       this.managetab.some(x=>x==this.array.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
+       this.managetab.some(x=>x==this.array?.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
         //this.showbutton=this.array?.button
        
       });
           
     
         })
-        //this.createdBy = this.array.find(x => x.name == params.type).createdBy;
-       
-
-    // })
+    
    
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
@@ -162,20 +164,13 @@ else if(data=="custom"){
       if(this.isSuperAdmin){
         this.mouModel = data.filter(x => x.app_Status == this.array?.value || x.tto_approved==this.array?.value);
       }
-    //  else if(this.isBdm ||this.isIPM){
-    //     this.mouModel = data.filter(x => x.app_Status == this.type &&  x.createdBy==this.UserId);
-    //   }
-
-    //   else{
-    //   this.mouModel = data.filter(x => x.app_Status == this.type &&  (x.createdBy==this.UserId ||  x.assigntoadmin==this.UserId||
-    //     x.assignto==this.UserId || x.app_Status=='S101'));
-    //   }
+  
 
     else if(this.isAdmin){
-       this.mouModel= data.filter(x=>(x.app_Status== this.array?.value|| x.tto_approved==this.array?.value) &&(x.app_Status=='S101'  || this.activeusermou?.find(t=>t.mouref==x.refid)));
+       this.mouModel= data.filter(x=>(x.app_Status== this.array?.value|| x.tto_approved==this.array?.value) &&(x.app_Status=='S101'  || this.activeusermou?.some(t=>t.appref==x.refid)));
        }
        else{
-          this.mouModel=data.filter(x=>(x.app_Status== this.array?.value || x.tto_approved==this.array?.value) && this.activeusermou?.find(t=>t.mouref==x.refid));
+          this.mouModel=data.filter(x=>(x.app_Status== this.array?.value || x.tto_approved==this.array?.value) && this.activeusermou?.some(t=>t.appref==x.refid));
        }
        debugger;
        console.log( this.commondata.getotherpermissiondata('history'),'his')
@@ -295,58 +290,10 @@ else{
   }
 
   onmodalclick(e: string,value:any, data: mouModel) {
-   this.loading=false;
-   this.submitted=false;
-   this.UploadFileViewModel.app_no=data.mou_no;
-   this.UploadFileViewModel.app_Status=value;
-   debugger;
+    this.activity.showviewmodel('mou',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
-   if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true){
-    // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
- 
-    this.accountService.getAllUser(0,0).subscribe(data=>{
-      this.rows1=data.filter((x)=>x.roles.includes('BDM'));
-      this.rows=data.filter((x)=>x.roles.includes('LM'));
-    })
-
-   }
-   
-     
- 
-    // this.UploadFileViewModel.app_Status = e == "approve" ? this.commondata.moustatus().find(x => x.value == this.type).approvedvalue :
-    //  e== "forword" ? this.commondata.moustatus().find(x => x.value == this.type).forward : this.commondata.moustatus().find(x => x.value == this.type).backStatus;
-    //
-     this.UploadFileViewModel.app_ref_id = data.refid;
-    this.mouref=data.refid;  
-debugger;
-    this.mouModel1= this.mouModel.find(x=>x.refid==data.refid);
-    this.moucreatedby_role=this.users.find(x=>x.id==this.mouModel1.createdBy)?.roles[0];
-//    this.forword=e=="forword"?true:false;
-// if((this.type=="S101" &&e=="back") ||this.type=="S105"){
- this.moucreatedby_role=="IPM"?this.UploadFileViewModel.app_Status=="S107"?this.UploadFileViewModel.app_Status="S109":null:
-   //this.moucreatedby_role=="BDM"?this.UploadFileViewModel.app_Status="S107":null;
-
-   this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
-    this.activuser=data1;
-    this.selected=this.activuser.find(x=>this.rows1?.find(y=>y.id==x.userid))?.userid;
-    //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
-   //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
-    //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
-              });
-
-   
   
-//}
-
-
-
-   console.log(this.mouModel1)
-
-
-    //if (e == "forword" || e == "back" ||e=="approve") {
-      this.editorModal1.show();
-   
    
   }
 

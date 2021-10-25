@@ -21,6 +21,7 @@ export class UploadFileViewModel {
   public assigntocompany: string;
   public assigntoscientist: string;
  public assigntobdo:string;
+ public assigntolm:string;
   public  remindertype:string;
   public createdon: string; 
   public nodal:nodalOfficer;

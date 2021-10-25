@@ -31,15 +31,11 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TtaDashboardComponent } from './tta-dashboard/tta-dashboard.component';
 import { TtaMainComponent } from './tta-main/tta-main.component';
 
-import { TlpDashboardComponent } from './tlp-dashboard/tlp-dashboard.component';
-import { TlpMainComponent } from './tlp-main/tlp-main.component';
+
 
 import { ReminderComponent } from './reminder/reminder.component';
 import { ReminderInfoComponent } from './reminder-info/reminder-info.component';
-import { NttsaDashboardComponent } from './nttsa-dashboard/nttsa-dashboard.component';
-import { NttsaMainComponent } from './nttsa-main/nttsa-main.component';
-import { TstlDashboardComponent } from './tstl-dashboard/tstl-dashboard.component';
-import { TstlMainComponent } from './tstl-main/tstl-main.component';
+
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { AdditionFileComponent } from './addition-file/addition-file.component';
@@ -50,6 +46,11 @@ import { MisDashboardComponent } from './mis-dashboard/mis-dashboard.component';
 import { MisInitComponent } from './mis-init/mis-init.component';
 import { ActivityComponent } from './activity/activity.component';
 import { AddScientistComponent } from './add-scientist/add-scientist.component';
+import { PatentComponent } from './patent/patent.component';
+import { DesignComponent } from './design/design.component';
+import { CopyrightComponent } from './copyright/copyright.component';
+import { TrademarkComponent } from './trademark/trademark.component';
+import { PlantVarityComponent } from './plant-varity/plant-varity.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -63,14 +64,10 @@ import { AddScientistComponent } from './add-scientist/add-scientist.component';
     TtaDashboardComponent,
     TtaMainComponent,
 
-    TlpDashboardComponent,
-    TlpMainComponent,
+    
     ReminderComponent,
     ReminderInfoComponent,
-    NttsaDashboardComponent,
-    NttsaMainComponent,
-    TstlDashboardComponent,
-    TstlMainComponent,
+    
     ForgetpasswordComponent,
     ResetpasswordComponent,
     AdditionFileComponent,
@@ -80,6 +77,11 @@ import { AddScientistComponent } from './add-scientist/add-scientist.component';
     MisInitComponent,
     ActivityComponent,
     AddScientistComponent,
+    PatentComponent,
+    DesignComponent,
+    CopyrightComponent,
+    TrademarkComponent,
+    PlantVarityComponent,
      ],
 
   imports: [

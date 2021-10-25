@@ -102,7 +102,7 @@ deleteRoleHelper(row: Reminder) {
    
     this.bdoService.GetReminder().subscribe(data=>{
       this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
-       })).filter(x=>this.type?.form?.reminderfilter.includes(x.stagetype))
+       }))?.filter(x=>this.type?.form?.reminderfilter?.includes(x.stagetype))
       // if(this.type==undefined){
       //   this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
       //   }))

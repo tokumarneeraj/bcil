@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NttsaDashboardComponent } from './nttsa-dashboard.component';
+import { CopyrightComponent } from './copyright.component';
 
-describe('NttsaDashboardComponent', () => {
-  let component: NttsaDashboardComponent;
-  let fixture: ComponentFixture<NttsaDashboardComponent>;
+describe('CopyrightComponent', () => {
+  let component: CopyrightComponent;
+  let fixture: ComponentFixture<CopyrightComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NttsaDashboardComponent ]
+      declarations: [ CopyrightComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NttsaDashboardComponent);
+    fixture = TestBed.createComponent(CopyrightComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
