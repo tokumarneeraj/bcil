@@ -90,6 +90,19 @@ else{
   createactivity(){
 this.activity.showviewmodel('','S601');
   }
+  ngAfterViewInit() {
+
+    this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+  
+    // this.roleEditor.changesCancelledCallback = () => {
+    //   this.editedRole = null;
+    //   this.sourceRole = null;
+    //   this.editorModal.hide();
+    // };
+  }
 
   queryparam(data:any){
       // }

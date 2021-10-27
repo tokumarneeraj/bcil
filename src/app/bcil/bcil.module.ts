@@ -51,6 +51,10 @@ import { DesignComponent } from './design/design.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { TrademarkComponent } from './trademark/trademark.component';
 import { PlantVarityComponent } from './plant-varity/plant-varity.component';
+import { PatentInitComponent } from './patent-init/patent-init.component';
+import { CopyrightInitComponent } from './copyright-init/copyright-init.component';
+import { TrademarkInitComponent } from './trademark-init/trademark-init.component';
+import { DesignInitComponent } from './design-init/design-init.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -82,6 +86,10 @@ import { PlantVarityComponent } from './plant-varity/plant-varity.component';
     CopyrightComponent,
     TrademarkComponent,
     PlantVarityComponent,
+    PatentInitComponent,
+    CopyrightInitComponent,
+    TrademarkInitComponent,
+    DesignInitComponent,
      ],
 
   imports: [

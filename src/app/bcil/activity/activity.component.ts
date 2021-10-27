@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild,ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -43,11 +43,16 @@ export class ActivityComponent implements OnInit {
   appref:string;
   rowslm:User[];
   rowsbdm:User[];
+  rowsassign:User[];
   selectedbdm:string;
   selectedlm:string;
+  selectassign:string;
   submitted:boolean=false;
   process:string;
-  constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder,  private accountService: AccountService, private router: Router) { 
+  public changesSavedCallback: () => void;
+  public changesFailedCallback: () => void;
+  public changesCancelledCallback: () => void;
+  constructor(private cdRef: ChangeDetectorRef,private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder,  private accountService: AccountService, private router: Router) { 
     this.userRoles = this.accountService.currentUser.roles;
   }
 
@@ -79,6 +84,7 @@ export class ActivityComponent implements OnInit {
     type: [''],
     assigntobdo:[''],
     assigntolm:[''],
+    assignto:[''],
     files:['']
   });
    
@@ -102,17 +108,19 @@ export class ActivityComponent implements OnInit {
         this.UploadFileViewModel.app_Status=value;
         this.activebtn=this.array?.button?.find(x=>x.value==value);
  
-    if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true){
+    if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true||this.activebtn?.form?.assign==true){
      // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
   
      this.accountService.getAllUser(0,0).subscribe(data=>{
        this.rowsbdm=data.filter((x)=>x.roles.includes('BDM'));
        this.rowslm=data.filter((x)=>x.roles.includes('LM'));
+       this.rowsassign=data.filter((x)=>x.roles.find(t=>this.activebtn?.form?.assignarray?.includes(t)));
      })
      this.Bdoservice.GetActiveUserMoubyrefid(data?.refid).subscribe(data1=>{
       this.activuser=data1;
       this.selectedbdm=this.activuser?.find(x=>this.rowsbdm?.find(y=>y.id==x.userid))?.userid||"";
       this.selectedlm=this.activuser?.find(x=>this.rowslm?.find(y=>y.id==x.userid))?.userid||"";
+      this.selectassign=this.activuser?.find(x=>this.rowslm?.find(y=>y.id==x.userid))?.userid||"";
       //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
      //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
       //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
@@ -133,6 +141,10 @@ export class ActivityComponent implements OnInit {
           this.ForwardForm.controls['assigntolm'].setValidators([Validators.required]);
           this.ForwardForm.controls['assigntolm'].updateValueAndValidity();
         }
+        if(this.activebtn?.form?.assign==true){
+          this.ForwardForm.controls['assignto'].setValidators([Validators.required]);
+          this.ForwardForm.controls['assignto'].updateValueAndValidity();
+        }
         //if(this.type=="S113" ||this.type=="S115" ||this.type=="S124"||this.type=="S403"||this.type=="S405"){
           if(this.activebtn?.form?.fileuploadreq){
           this.ForwardForm.controls['files'].setValidators([Validators.required]);              
@@ -149,6 +161,7 @@ export class ActivityComponent implements OnInit {
         this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
         this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
         this.UploadFileViewModel.assigntolm = this.ForwardForm.get('assigntolm').value;
+        this.UploadFileViewModel.assignto=this.ForwardForm.get('assignto').value;
         this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
     //     if(this.activuser?.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
     // {
@@ -163,6 +176,9 @@ export class ActivityComponent implements OnInit {
           alert("Submitted Successfully")
          
           this.editorModal.hide();
+          if (this.changesSavedCallback) {
+            this.changesSavedCallback();
+          }
           //this.ngOnInit();
           this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
           this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):

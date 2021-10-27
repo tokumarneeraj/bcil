@@ -18,6 +18,7 @@ export class BcilDashboardComponent implements OnInit {
 
   mouModel:mouModel[];
   misModel:any[];
+  patentModel:any[];
   showpage=false;
   usertype:string;
   UserName: string;
@@ -125,6 +126,10 @@ else if(tab?.stage=="mou"){
   return this.moulist(rr);
   
 }
+else if(tab?.stage=="patent"){
+  return this.patentlist(rr);
+  
+}
 else if(tab?.stage=="mis"){
   return this.mislist(rr);
   
@@ -155,8 +160,17 @@ this.activeusermou=data1;
       
       this.Bdoservice.GetMis().subscribe(datamis=>{console.log(datamis)
         this.misModel=datamis;
-        this.showpage=true;
+        this.Bdoservice.GetPatentModel().subscribe(datapatent=>{console.log(datapatent)
+          this.patentModel=datapatent;
+          this.showpage=true;
+        });
+        //this.showpage=true;
       }
+     
+      // this.Bdoservice.GetPatentModel().subscribe(datamis=>{console.log(datamis)
+      //   this.patentModel=datamis;
+      //   this.showpage=true;
+      // });
   
    
   
@@ -195,6 +209,15 @@ moulist(permission:any){
     }
     else{
     return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    
+  }}
+  patentlist(permission:any){
+    if(this.isSuperAdmin){
+      return this.patentModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
+   
+    }
+    else{
+    return this.patentModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
     
   }}
   mislist(permission:any){

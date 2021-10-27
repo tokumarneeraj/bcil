@@ -30,6 +30,7 @@ import { DesignComponent } from './design/design.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { TrademarkComponent } from './trademark/trademark.component';
 import { PlantVarityComponent } from './plant-varity/plant-varity.component';
+import { PatentInitComponent } from './patent-init/patent-init.component';
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
   // {path:"Login",component:LoginComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: "tta-dashboard", canActivate: [AuthGuard], component: TtaDashboardComponent },
   { path: "design-dashboard", canActivate: [AuthGuard], component: DesignComponent },
   { path: "patent-dashboard", canActivate: [AuthGuard], component: PatentComponent },
+  { path: "bcil-patent-table", canActivate: [AuthGuard], component: PatentInitComponent },
   { path: "copyright-dashboard", canActivate: [AuthGuard], component: CopyrightComponent },
   { path: "trademark-dashboard", canActivate: [AuthGuard], component: TrademarkComponent },
   { path: "plant-varity-dashboard", canActivate: [AuthGuard], component: PlantVarityComponent },

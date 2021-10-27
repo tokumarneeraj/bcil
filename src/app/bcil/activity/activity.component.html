@@ -49,6 +49,21 @@
 
                   </div>
                 </div>
+                <div class="form-group row" *ngIf="activebtn?.form?.assign">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">{{activebtn?.form?.assignlabel}}</label>
+                    <select type="text" class="form-control" name="assignto" formControlName="assignto" [(ngModel)]="selectassign">
+                      <option value="" selected>--select--</option>
+                      <option *ngFor="let user of rowsassign" value="{{user.id}}">{{user.userName}}/{{user.roles[0]}}</option>
+                      <!-- <option value="MOU">MOU</option>
+                      <option value="NDA">NDA</option>
+                      <option value="Work Order">Work Order</option>
+                      <option value="Others">Others</option> -->
+                    </select>
+
+
+                  </div>
+                </div>
                 <div class="form-group row" *ngIf="activebtn?.form?.bdoassigned">
                     <div class="col-sm-12">
                       <label class="col-form-label">BDM</label>

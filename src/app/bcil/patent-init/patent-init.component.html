@@ -1,0 +1,92 @@
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Patent</h5>
+                        <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Patent</a>
+                        </li>
+                        <!-- <li class="breadcrumb-item"><a href="#!">Assignments</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    
+                    <!-- Hover table card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>{{array?.tablename}}</h5>
+                            <!-- <span>use class <code>table-hover</code> inside table element</span> -->
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                    <li><i class="fa fa-trash close-card"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-block table-border-style">
+                          <div class="table-responsive">
+                            <table class="table table-hover" *ngIf="showpage">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Patent No</th>
+                                  <th>Subject</th>
+                                  <th>Remarks</th>
+                               <th>Action</th>
+                               <th *ngIf="viewhistory">History</th>
+                                                
+                               <th *ngIf="viewadditionalfileright">Additional File</th>
+                               <th *ngIf="viewremark">Previous Remarks</th> 
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let patent of patentModel;let i=index">
+                                      <td>{{i+1}}</td>
+                                      <td>{{patent?.appno}}</td>
+                                      <td>{{patent?.subject}}</td>
+                                      <td>{{patent?.remark}}</td>
+                                     
+                                      <td>
+                                          <ng-container *ngFor="let btn of array?.button">
+                                            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,patent)">{{btn.text}}</button>
+                                                      
+                                          </ng-container>
+                                      </td>
+
+                                      <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'patent',refid:patent?.refid}">View</a></td>
+                                      <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+                                      <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(patent)" class="stretched-link">View</a></td>
+                                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(patent.remarks)">{{patent?.remarks}}</p></td>
+                                  </tr>
+                                  </tbody>
+                                  </table>
+                          </div>
+                          </div>
+                          </div>
+                          <app-footer></app-footer>
+                          </div>
+            </div>
+            <app-activity [array]="array"></app-activity>
