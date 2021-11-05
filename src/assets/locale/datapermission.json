@@ -1,25 +1,26 @@
 {
+
 "tabheading":[
 {"stage":"tta",
 "text":"TT Activity Initiation","color":"red","icon":"fa fa-bar-chart f-28","menuheading":"TT Activity Initiation","submenu":true,"url":"bcil/tta-dashboard"
 },
 {"stage":"patent",
-"text":"Patent","color":"dark-green","icon":"fa fa-file-text-o f-28","menuheading":"Patent","submenu":true,"url":"bcil/patent-dashboard"
+"text":"Patent","color":"dark-green","icon":"fa fa-file-text-o f-28","menuheading":"Patent","submenu":true,"url":"bcil/patent-dashboard","activity":""
 },
 {"stage":"design",
-"text":"Design","color":"purple","icon":"fa fa-paint-brush f-28","menuheading":"Design","submenu":true,"url":"bcil/design-dashboard"
+"text":"Design","color":"purple","icon":"fa fa-paint-brush f-28","menuheading":"Design","submenu":true,"url":"bcil/design-dashboard","activity":["Scientist","Nodal"]
 },
 {"stage":"copyright",
-"text":"Copyright","color":"dark-blue","icon":"fa fa-copyright f-28","menuheading":"Copyright","submenu":true,"url":"bcil/copyright-dashboard"
+"text":"Copyright","color":"dark-blue","icon":"fa fa-copyright f-28","menuheading":"Copyright","submenu":true,"url":"bcil/copyright-dashboard","activity":["Scientist","Nodal"]
 },
 {"stage":"trademark",
-"text":"Trademark","color":"green","icon":"fa fa-bar-chart f-28","menuheading":"Trademark","submenu":true,"url":"bcil/trademark-dashboard"
+"text":"Trademark","color":"green","icon":"fa fa-bar-chart f-28","menuheading":"Trademark","submenu":true,"url":"bcil/trademark-dashboard","activity":["Scientist","Nodal"]
 },
 {"stage":"plant_variety",
-"text":"Plant Variety","color":"blue","icon":"fa fa-pagelines f-28","menuheading":"Plant Variety","submenu":true,"url":"bcil/plant-variety-dashboard"
+"text":"Plant Variety","color":"blue","icon":"fa fa-pagelines f-28","menuheading":"Plant Variety","submenu":true,"url":"bcil/plant-variety-dashboard","activity":["Scientist","Nodal"]
 },
 {"stage":"mis",
-"text":"Other Services","icon":"fa fa-cogs f-28","menuheading":"Other Services","submenu":true,"color":"yellow","url":"bcil/mis-dashboard"
+"text":"Other Services","icon":"fa fa-cogs f-28","menuheading":"Other Services","submenu":true,"color":"yellow","url":"bcil/mis-dashboard","activity":"","organisation":true,"assignscientist":true
 },
 {"stage":"report",
 "text":"Report","icon":"fa fa-file-excel-o f-28","menuheading":"Report","submenu":true,"color":"blue","url":"bcil/report-dashboard"
@@ -855,7 +856,7 @@
 ],
  "patent":[
  {
-  "stage":"patent",
+         "stage":"patent",
 		"substage":"patentdraft",
         "tablename":"Patent Draft Approval",
 		"formheader":"Patent Draft Approval",
@@ -865,15 +866,14 @@
 		"value":"patentdraft",
 		"subchild":[
 		{
-        "stage":"patent",
+        "stage":"patentdraft",
         "tablename":"IP Init",
         "heading":"IP Init",
 		"formheader":"IP Init",
         "type":"ip_init",
 "value":"S601",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"assign","class":"btn btn-success","title":"Admin assign to IPM","value":"S602","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]}}]
 },
 {
     "stage":"patentdraft",
@@ -883,8 +883,8 @@
         "type":"ip_evaluation_assigned",
 "value":"S602",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Addition Info needed","class":"btn btn-primary","title":"","value":"S603"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S604"}]
 },{
         "stage":"patentdraft",
         "tablename":"Patent Additional Info Needed",
@@ -893,8 +893,7 @@
         "type":"patent_additional_info",
 "value":"S603",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S602"}]
 },{
         "stage":"patentdraft",
         "tablename":"Report Change Required By Admin",
@@ -903,8 +902,7 @@
         "type":"report_change_required_by_admin",
 "value":"S605",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S604"}]
 },{
         "stage":"patentdraft",
         "tablename":"Report Submitted By IPM",
@@ -913,8 +911,8 @@
         "type":"report_submitted_by_ipm",
 "value":"S604",
 "color":"dark-pink",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S605"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S606"}]
 },{
         "stage":"patentdraft",
         "tablename":"Report Change Required By Client",
@@ -923,8 +921,8 @@
         "type":"report_change_required_by_client",
 "value":"S607",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S605"},
+{"text":"reject","class":"btn btn-danger","title":"","value":"S606"}]
 },{
         "stage":"patentdraft",
         "tablename":"Report Submitted By Admin",
@@ -933,8 +931,9 @@
         "type":"report_submitted_by_admin",
 "value":"S606",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S607"},
+{"text":"Closure Request","class":"btn btn-success","title":"","value":"S608"},
+{"text":"Forward","class":"btn btn-info","title":"","value":"S609"}]
 },{
         "stage":"patentdraft",
         "tablename":"Report Approved By Client",
@@ -943,8 +942,7 @@
         "type":"report_approved_by_client",
 "value":"S609",
 "color":"dark-pink",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-info","title":"","value":"S611"}]
 },{
         "stage":"patentdraft",
         "tablename":"Closure Requested",
@@ -953,8 +951,7 @@
         "type":"closure_requested",
 "value":"S608",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-info","title":"","value":"S610"}]
 },{
         "stage":"patentdraft",
         "tablename":"Closed",
@@ -963,8 +960,7 @@
         "type":"closed",
 "value":"S610",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 },{
         "stage":"patentdraft",
         "tablename":"Report Shared BY LUF",
@@ -973,8 +969,8 @@
         "type":"report_shared_by_luf",
 "value":"S611",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S607"},
+{"text":"Closure Request","class":"btn btn-success","title":"","value":"S608"}]
 },{
         "stage":"patentdraft",
         "tablename":"Report Change Required By LUF",
@@ -983,8 +979,8 @@
         "type":"report_chnage_required_by_luf",
 "value":"S612",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S605"},
+{"text":"Reject","class":"btn btn-danger","title":"","value":"S611"}]
 },
 {
         "stage":"patentdraft",
@@ -994,8 +990,8 @@
         "type":"patent_draft_by_luf",
 "value":"S613",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S614"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S615"}]
 },{
         "stage":"patentdraft",
         "tablename":"Patent Draft Change Required By IPM",
@@ -1004,8 +1000,7 @@
         "type":"patent_draft_change_required_by_ipm",
 "value":"S614",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S613"}]
 },{
         "stage":"patentdraft",
         "tablename":"Patent Draft by IPM",
@@ -1014,8 +1009,8 @@
         "type":"patent_draft_by_ipm",
 "value":"S615",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S616"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S617"}]
 },{
         "stage":"patentdraft",
         "tablename":"Patent Draft Change Required by Client",
@@ -1024,8 +1019,8 @@
         "type":"patent_draft_change_required_by_client",
 "value":"S616",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"endorse","class":"btn btn-primary","title":"","value":"S614"},
+{"text":"Reject","class":"btn btn-success","title":"","value":"S615"}]
 },{
         "stage":"patentdraft",
         "tablename":"Patent Draft Approved By Client",
@@ -1034,8 +1029,8 @@
         "type":"patent_draft_approved_by_client",
 "value":"S617",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Provisional Filing","class":"btn btn-primary","title":"","value":"S620"},
+{"text":"Final Filing","class":"btn btn-success","title":"","value":"S619"}]
 }]
 },{"stage":"patent",
 		"substage":"patentfinalfiling",
@@ -1053,8 +1048,7 @@
         "type":"provisional_filing_pending_atluf",
 "value":"S620",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S623"}]
 },	{
         "stage":"patentfinalfiling",
         "tablename":"Final Filing Pending At Luf",
@@ -1063,8 +1057,7 @@
         "type":"final_filing_pending_atluf",
 "value":"S619",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S621"}]
 },	{
         "stage":"patentfinalfiling",
         "tablename":"Provisional Filing Done By Luf",
@@ -1073,8 +1066,7 @@
         "type":"provisional_filing_done_atluf",
 "value":"S623",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S624"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1084,8 +1076,7 @@
         "type":"final_patent_filing_done_atluf",
 "value":"S621",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S622"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1095,8 +1086,7 @@
         "type":"final_patent_filing_done_with_luf",
 "value":"S622",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S644"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1106,8 +1096,7 @@
         "type":"provisional_filing_shared_with_client",
 "value":"S624",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S625"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1117,8 +1106,7 @@
         "type":"fp_go_ahead_by_client",
 "value":"S625",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S626"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1128,8 +1116,7 @@
         "type":"fp_go_ahead_shared_with_luf",
 "value":"S626",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S627"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1139,8 +1126,8 @@
         "type":"fp_draft_uploaded_by_luf",
 "value":"S627",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S628"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S629"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1150,8 +1137,7 @@
         "type":"fp_draft_change_required_by_ipm",
 "value":"S628",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S627"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1161,8 +1147,8 @@
         "type":"fp_draft_change_required_by_client",
 "value":"S630",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S628"},
+{"text":"Reject","class":"btn btn-danger","title":"","value":"S629"}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1172,8 +1158,7 @@
         "type":"fp_draft_shared_with_client",
 "value":"S629",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"approve","class":"btn btn-primary","title":"","value":"S631"}]
 },	{
         "stage":"patentfinalfiling",
         "tablename":"FP Draft Approved By Client",
@@ -1182,8 +1167,7 @@
         "type":"fp_draft_approved_by_client",
 "value":"S631",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"approve","class":"btn btn-primary","title":"","value":"S619"}]
 }]
 		},{"stage":"patent",
 		"substage":"patentforeignfiling",
@@ -1201,8 +1185,7 @@
         "type":"ff_assigned",
 "value":"S632",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"forward","class":"btn btn-primary","title":"","value":"S633"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"FF Draft Pending At Luf",
@@ -1211,8 +1194,7 @@
         "type":"ff_draft_pending_at_luf",
 "value":"S633",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"forward","class":"btn btn-primary","title":"","value":"S634"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"FF Draft Submitted By Luf",
@@ -1221,8 +1203,8 @@
         "type":"ff_draft_submitted_by_luf",
 "value":"S634",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S635"},
+{"text":"forward","class":"btn btn-primary","title":"","value":"S636"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"FF Report Change Required By IPM",
@@ -1231,8 +1213,7 @@
         "type":"ff_report_change_required_by_ipm",
 "value":"S635",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S634"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"Ff Draft Approved By IPM",
@@ -1241,8 +1222,8 @@
         "type":"ff_draft_approved_by_ipm",
 "value":"S636",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S637"},
+{"text":"forward","class":"btn btn-primary","title":"","value":"S638"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"Ff Report Change Required By Client",
@@ -1251,8 +1232,8 @@
         "type":"ff_report_change_required_by_client",
 "value":"S637",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S635"},
+{"text":"forward","class":"btn btn-primary","title":"","value":"S636"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"Ff Draft Approved By Client",
@@ -1261,8 +1242,7 @@
         "type":"ff_draft_approved_by_client",
 "value":"S638",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"forward","class":"btn btn-primary","title":"","value":"S639"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"Ff Draft Shared With Luf",
@@ -1271,8 +1251,8 @@
         "type":"ff_draft_shared_with_luf",
 "value":"S639",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"FF PCT FILED","class":"btn btn-primary","title":"","value":"S640"},
+{"text":"FF DIRECT FILED","class":"btn btn-primary","title":"","value":"S641"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"FF PCT Filed",
@@ -1281,8 +1261,7 @@
         "type":"ff_pct_filed",
 "value":"S640",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S642"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"FF Direct Filed",
@@ -1291,8 +1270,7 @@
         "type":"ff_direct_filed",
 "value":"S641",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S643"}]
 },{
         "stage":"patentforeignfiling",
         "tablename":"FF PCT Shared With Client",
@@ -1301,8 +1279,7 @@
         "type":"ff_pct_shared_with_client",
 "value":"S642",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 },{
         "stage":"patentforeignfiling",
         "tablename":"FF Direct Shared With Client",
@@ -1311,8 +1288,7 @@
         "type":"ff_direct_shared_with_client",
 "value":"S643",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 }]
 		},{"stage":"patent",
 		"substage":"patentrequiredforexamination",
@@ -1330,8 +1306,7 @@
         "type":"published_in_journels_received_by_luf",
 "value":"S644",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S645"}]
 },{
         "stage":"patentrequiredforexamination",
         "tablename":"Published In Journels Shared With Client",
@@ -1340,8 +1315,9 @@
         "type":"published_in_journels_shared_with_client",
 "value":"S645",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"REF already filed","class":"btn btn-primary","title":"","value":"S649"},
+{"text":"Client Give Go ahead","class":"btn btn-info","title":"","value":"S646"},
+{"text":"Go head Directly","class":"btn btn-primary","title":"","value":"S647"}]
 },{
         "stage":"patentrequiredforexamination",
         "tablename":"RFE Go Ahead By Client",
@@ -1350,8 +1326,7 @@
         "type":"rfe_go_ahead_by_client",
 "value":"S646",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S647"}]
 },{
         "stage":"patentrequiredforexamination",
         "tablename":"RFE Go Ahead Shared With Luf",
@@ -1360,8 +1335,7 @@
         "type":"rfe_go_ahead_shared_with_luf",
 "value":"S647",
 "color":"dark-green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S648"}]
 },{
         "stage":"patentrequiredforexamination",
         "tablename":"RFE Filing Done By Luf",
@@ -1370,8 +1344,7 @@
         "type":"rfe_filing_done_by_client",
 "value":"S648",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"forward","class":"btn btn-primary","title":"","value":"S649"}]
 },{
         "stage":"patentrequiredforexamination",
         "tablename":"RFE Filing Shared With Client",
@@ -1380,8 +1353,7 @@
         "type":"rfe_filing_shared_with_client",
 "value":"S649",
 "color":"dark-organge",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"REF Received","class":"btn btn-primary","title":"","value":"S650"}]
 }]
 		},{"stage":"patent",
 		"substage":"patentfirstexamreport",
@@ -1399,8 +1371,7 @@
         "type":"fer_received",
 "value":"S650",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S651"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Shared With Client",
@@ -1409,8 +1380,7 @@
         "type":"fer_shared_with_client",
 "value":"S651",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S652"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Go ahead By Client",
@@ -1419,8 +1389,7 @@
         "type":"fer_resp_go_ahead_by_client",
 "value":"S652",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S653"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Go Ahead Shared With Luf",
@@ -1429,8 +1398,7 @@
         "type":"fer_resp_go_ahead-shared_with_luf",
 "value":"S653",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S654"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Uploaded By Luf",
@@ -1439,8 +1407,8 @@
         "type":"fer_resp_uploaded_by_luf",
 "value":"S654",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S655"},
+{"text":"Forward","class":"btn btn-primary","title":"","value":"S656"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Change Required By IPM",
@@ -1449,8 +1417,7 @@
         "type":"fer_resp_change_requires_by_ipm",
 "value":"S655",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S654"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Draft Shared With CLient",
@@ -1459,8 +1426,8 @@
         "type":"fer_resp_draft_shared-with_client",
 "value":"S656",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S657"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S658"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Draft Change Requird By Client",
@@ -1469,8 +1436,8 @@
         "type":"fer_resp_draft_change_required_by_client",
 "value":"S657",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S655"},
+{"text":"Reject","class":"btn btn-danger","title":"","value":"S656"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Draft Approved By Client",
@@ -1479,8 +1446,7 @@
         "type":"fer_resp_draft_approved_by_client",
 "value":"S658",
 "color":"dark-orange",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S659"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Filing Pending At Luf",
@@ -1489,8 +1455,7 @@
         "type":"fer_resp_filing_pending_at_luf",
 "value":"S659",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S660"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Filing Done By Luf",
@@ -1499,8 +1464,7 @@
         "type":"fer_resp_filing_done_by_luf",
 "value":"S660",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S661"}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Filing Shared With Client",
@@ -1509,8 +1473,7 @@
         "type":"fer_resp_filing_shared_with_client",
 "value":"S661",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S662"}]
 }]
 		}
 		,{"stage":"patent",
@@ -1529,8 +1492,7 @@
         "type":"hn_received",
 "value":"S662",
 "color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S663"}]
 },
 {
         "stage":"ertoacceptancepatent",
@@ -1540,8 +1502,7 @@
         "type":"hn_shared_with_client",
 "value":"S663",
 "color":"red",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S664"}]
 },
 {
         "stage":"ertoacceptancepatent",
@@ -1551,8 +1512,7 @@
         "type":"client_go_ahead",
 "value":"S664",
 "color":"blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S665"}]
 },
 {
         "stage":"ertoacceptancepatent",
@@ -1562,8 +1522,7 @@
         "type":"ipm_go-ahead_to_luf",
 "value":"S665",
 "color":"purple",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S666"}]
 },
 {
         "stage":"ertoacceptancepatent",
@@ -1573,8 +1532,7 @@
         "type":"luf_attened_hearing",
 "value":"S666",
 "color":"yellow",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S667"}]
 },
 {
         "stage":"ertoacceptancepatent",
@@ -1584,8 +1542,7 @@
         "type":"hearing_attended_shared_with_client",
 "value":"S667",
 "color":"dark-green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S668"}]
 },
 {
         "stage":"ertoacceptancepatent",
@@ -1595,8 +1552,8 @@
         "type":"draft_written_submission_by_luf",
 "value":"S668",
 "color":"dark-blue",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"REF already filed","class":"btn btn-primary","title":"","value":"S649"},
+{"text":"REF already filed","class":"btn btn-primary","title":"","value":"S649"}]
 },
 {
         "stage":"ertoacceptancepatent",
@@ -1704,36 +1661,1013 @@
 ]
 		}]
 ,
- "copyright":[{
-        "stage":"copyright",
-        "tablename":"Misc Init",
-        "heading":"Misc Init",
-        "type":"misc_init",
-"value":"S170",
+ "copyright":[{"stage":"copyright",
+		"substage":"copyright_common_ip",
+        "tablename":"COMMON IP UPTO ER",
+		"formheader":"COMMON IP UPTO ER",
+        "heading":"COMMON IP UPTO ER",
+        "type":"",
+		"color":"purple",
+		"value":"copyright_common_ip",
+		"subchild":[
+		{
+        "stage":"copyright_common_ip",
+        "tablename":"IP Init",
+        "heading":"IP Init",
+        "type":"ip_init",
+"value":"S755",
+"color":"blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S756","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]}}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"IP EVALUATION ASSIGNED",
+        "heading":"IP EVALUATION ASSIGNED",
+        "type":"ip_evaluation_assigned",
+"value":"S756",
+"color":"yellow",
+"button":[{"text":"Change","class":"btn btn-primary","title":"","value":"S757"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S758","form":{"assign":true,"assignlabel":"Luf","assignarray":["LUF"]}}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Additional Info Needed",
+        "heading":"Additional Info Needed",
+        "type":"additional_info_needed",
+"value":"S757",
 "color":"green",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S756"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Application Draft Assigned To Luf",
+        "heading":"Application Draft Assigned To Luf",
+        "type":"application_draft_assigned_to_luf",
+"value":"S758",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S759"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Draft Uploaded By Luf",
+        "heading":"Draft Uploaded By Luf",
+        "type":"draft_uploaded_by_luf",
+"value":"S759",
+"color":"purple",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S760"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S761"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Draft Change Required By IPM",
+        "heading":"Draft Change Required By IPM",
+        "type":"draft_change_required_by_ipm",
+"value":"S760",
+"color":"dark-orange",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S759"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Draft Shared With Client",
+        "heading":"Draft Shared With Client",
+        "type":"draft_shared_with_client",
+"value":"S761",
+"color":"red",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S762"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S763"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Draft Change Required By Client",
+        "heading":"Draft Change Required By Client",
+        "type":"draft_change_required_by_client",
+"value":"S762",
+"color":"dark-green",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S760"},
+{"text":"Reject","class":"btn btn-danger","title":"","value":"S761"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Draft Approved By Client",
+        "heading":"Draft Approved By Client",
+        "type":"draft_approved_by_client",
+"value":"S763",
+"color":"dark-blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S764"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"Approved Draft Shared With Luf",
+        "heading":"Approved Draft Shared With Luf",
+        "type":"approved_draft_shared_with_luf",
+"value":"S764",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S765"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"IP Filed Shared with IPM",
+        "heading":"IP Filed Shared with IPM",
+        "type":"ip_filed_shared_with_ipm",
+"value":"S765",
+"color":"purple",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S766"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"ER Generated",
+        "heading":"ER Generated",
+        "type":"er-generated",
+"value":"S766",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S767"}]
+},{
+        "stage":"copyright_common_ip",
+        "tablename":"ER Shared With Client",
+        "heading":"ER Shared With Client",
+        "type":"er_shared_with_client",
+"value":"S767",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S768"},
+{"text":"Copyright Rejected","class":"btn btn-info","title":"","value":"S787"},
+{"text":"Copyright Granted","class":"btn btn-success","title":"","value":"S790"}]
+}
+
+]},{"stage":"copyright",
+		"substage":"copyright_er_er",
+        "tablename":"ER TO ER Responsefield",
+		"formheader":"ER TO ER Responsefield",
+        "heading":"ER TO ER Responsefield",
+        "type":"",
+		"color":"yellow",
+		"value":"copyright_er_er",
+		"subchild":[
+		{
+        "stage":"copyright_er_er",
+        "tablename":"Client Go Ahead For ER Resp",
+        "heading":"Client Go Ahead For ER Resp",
+        "type":"client_go_ahead_for_er_resp",
+"value":"S768",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S769"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"ER Resp Assigned To Luf",
+        "heading":"ER Resp Assigned To Luf",
+        "type":"er_resp_assigned_to_luf",
+"value":"S769",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S770"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"ER Resp Draft Uploaded By Luf",
+        "heading":"ER Resp Draft Uploaded By Luf",
+        "type":"er_resp_draft_uploaded_by_luf",
+"value":"S770",
+"color":"yellow",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S771"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S772"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"ER Resp Draft Change Req By IPM",
+        "heading":"ER Resp Draft Change Req By IPM",
+        "type":"er_resp_draft_change_req_by_ipm",
+"value":"S771",
+"color":"purple",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S770"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"ER Resp Draft Forwarded By IPM",
+        "heading":"ER Resp Draft Forwarded By IPM",
+        "type":"er_resp_draft_forwarded_by_ipm",
+"value":"S772",
+"color":"dark-pink",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S773"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S774"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"ER Resp Draft Change Req By Client",
+        "heading":"ER Resp Draft Change Req By Client",
+        "type":"er_resp_draft_change_req_by_client",
+"value":"S773",
+"color":"dark-orange",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S771"},
+{"text":"Reject","class":"btn btn-danger","title":"","value":"S772"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"ER Resp Approved By Client",
+        "heading":"ER Resp Approved By Client",
+        "type":"er_resp_approved_by_client",
+"value":"S774",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S775"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"Approved ER Resp Shared With Luf",
+        "heading":"Approved ER Resp Shared With Luf",
+        "type":"approved_er_resp_shared_with_luf",
+"value":"S775",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S776"}]
+},{
+        "stage":"copyright_er_er",
+        "tablename":"ER REsp Filed",
+        "heading":"ER Resp Filed",
+        "type":"er_resp_filed",
+"value":"S776",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S777"}]
+}]},{"stage":"copyright",
+		"substage":"copyright_er_accp",
+        "tablename":"ER Response To Acceptance",
+		"formheader":"ER Response To Acceptance",
+        "heading":"ER Response To Acceptance",
+        "type":"",
+		"color":"dark-orange",
+		"value":"copyright_er_accp",
+		"subchild":[
+		{
+        "stage":"copyright_er_accp",
+        "tablename":"HN Received",
+        "heading":"HN Received",
+        "type":"hn)received",
+"value":"S777",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S778"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"HN Shared With Client",
+        "heading":"HN Shared With Client",
+        "type":"hn_shared_with_client",
+"value":"S778",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S779"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Client Go Ahead",
+        "heading":"Client Go Ahead",
+        "type":"client_go_ahead",
+"value":"S779",
+"color":"purple",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S780"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"IPM Go Ahead To Luf",
+        "heading":"IPM Go Ahead To Luf",
+        "type":"ipm_go_ahead_to_luf",
+"value":"S780",
+"color":"blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S781"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Luf Attended Hearing",
+        "heading":"Luf Attended Hearing",
+        "type":"luf_attented_hearing",
+"value":"S781",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S782"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Hearing Attended Shared With Client",
+        "heading":"Hearing Attended Shared With Client",
+        "type":"hearing_attened_shared_with_client",
+"value":"S782",
+"color":"dark-pink",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S783"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Draft Written Submission By Luf",
+        "heading":"Draft Written Submission By Luf",
+        "type":"draft_wriiten_submission_by_luf",
+"value":"S783",
+"color":"red",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S784"},{"text":"Forward","class":"btn btn-success","title":"","value":"S785"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Draft Written Submission Change req IPM",
+        "heading":"Draft Written Submission Change req IPM",
+        "type":"draft_written_submission_change_req_ipm",
+"value":"S784",
+"color":"dark-blue",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S783"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Approval Written Submission Shared With Luf",
+        "heading":"Approval Written Submission Shared With Luf",
+        "type":"approval_written_submission_shared_with_luf",
+"value":"S785",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S786"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Wriiten Submission Filed",
+        "heading":"Wriiten Submission Filed",
+        "type":"written_submission_filed",
+"value":"S786",
+"color":"purple",
+"button":[{"text":"Copyright Rejected","class":"btn btn-primary","title":"","value":"S787"},
+{"text":"Copyright Granted","class":"btn btn-success","title":"","value":"S790"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Copyrignt Rejected",
+        "heading":"Copyrignt Rejected",
+        "type":"copyright_rejected",
+"value":"S787",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S788"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Rejection Shared With Client",
+        "heading":"Rejection Shared With Client",
+        "type":"rejection_shared_with_client",
+"value":"S788",
+"color":"red",
+"button":[]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Copyright Granted",
+        "heading":"Copyright Granted",
+        "type":"copyright_granted",
+"value":"S790",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S791"}]
+},{
+        "stage":"copyright_er_accp",
+        "tablename":"Acceptance Shared With Client",
+        "heading":"Acceptance Shared With Client",
+        "type":"acceptance_shared_with_client",
+"value":"S791",
+"color":"dark-pink",
+"button":[]
+}]}],
+ "design":[{"stage":"design",
+		"substage":"design_common_ip",
+        "tablename":"COMMON IP UPTO ER",
+		"formheader":"COMMON IP UPTO ER",
+        "heading":"COMMON IP UPTO ER",
+        "type":"",
+		"color":"purple",
+		"value":"design_common_ip",
+		"subchild":[
+		{
+        "stage":"design_common_ip",
+        "tablename":"IP Init",
+        "heading":"IP Init",
+        "type":"ip_init",
+"value":"S718",
+"color":"blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S719","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]}}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"IP EVALUATION ASSIGNED",
+        "heading":"IP EVALUATION ASSIGNED",
+        "type":"ip_evaluation_assigned",
+"value":"S719",
+"color":"yellow",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S720"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S721","form":{"assign":true,"assignlabel":"Luf","assignarray":["LUF"]}}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Additional Info Needed",
+        "heading":"Additional Info Needed",
+        "type":"additional_info_needed",
+"value":"S720",
+"color":"green",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S719"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Application Draft Assigned To Luf",
+        "heading":"Application Draft Assigned To Luf",
+        "type":"application_draft_assigned_to_luf",
+"value":"S721",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S722"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Draft Uploaded By Luf",
+        "heading":"Draft Uploaded By Luf",
+        "type":"draft_uploaded_by_luf",
+"value":"S722",
+"color":"purple",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S723"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S724"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Draft Change Required By IPM",
+        "heading":"Draft Change Required By IPM",
+        "type":"draft_change_required_by_ipm",
+"value":"S723",
+"color":"dark-orange",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S722"}
+]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Draft Shared With Client",
+        "heading":"Draft Shared With Client",
+        "type":"draft_shared_with_client",
+"value":"S724",
+"color":"red",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S725"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S726"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Draft Change Required By Client",
+        "heading":"Draft Change Required By Client",
+        "type":"draft_change_required_by_client",
+"value":"S725",
+"color":"dark-green",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S723"},
+{"text":"Reject","class":"btn btn-primary","title":"","value":"S724"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Draft Approved By Client",
+        "heading":"Draft Approved By Client",
+        "type":"draft_approved_by_client",
+"value":"S726",
+"color":"dark-blue",
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S727"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"Approved Draft Shared With Luf",
+        "heading":"Approved Draft Shared With Luf",
+        "type":"approved_draft_shared_with_luf",
+"value":"S727",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S728"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"IP Filed Shared with IPM",
+        "heading":"IP Filed Shared with IPM",
+        "type":"ip_filed_shared_with_ipm",
+"value":"S728",
+"color":"purple",
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S729"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"ER Generated",
+        "heading":"ER Generated",
+        "type":"er-generated",
+"value":"S729",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S730"}]
+},{
+        "stage":"design_common_ip",
+        "tablename":"ER Shared With Client",
+        "heading":"ER Shared With Client",
+        "type":"er_shared_with_client",
+"value":"S730",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S731"}]
+}
+]},{"stage":"design",
+		"substage":"design_er_er",
+        "tablename":"ER TO ER Responsefield",
+		"formheader":"ER TO ER Responsefield",
+        "heading":"ER TO ER Responsefield",
+        "type":"",
+		"color":"yellow",
+		"value":"design_er_er",
+		"subchild":[
+			{
+        "stage":"design_er_er",
+        "tablename":"Client Go Ahead For ER Resp",
+        "heading":"Client Go Ahead For ER Resp",
+        "type":"client_go_ahead_for_er_resp",
+"value":"S731",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S732"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"ER Resp Assigned To Luf",
+        "heading":"ER Resp Assigned To Luf",
+        "type":"er_resp_assigned_to_luf",
+"value":"S732",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S733"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"ER Resp Draft Uploaded By Luf",
+        "heading":"ER Resp Draft Uploaded By Luf",
+        "type":"er_resp_draft_uploaded_by_luf",
+"value":"S733",
+"color":"yellow",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S734"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S735"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"ER Resp Draft Change Req By IPM",
+        "heading":"ER Resp Draft Change Req By IPM",
+        "type":"er_resp_draft_change_req_by_ipm",
+"value":"S734",
+"color":"purple",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S733"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"ER Resp Draft Forwarded By IPM",
+        "heading":"ER Resp Draft Forwarded By IPM",
+        "type":"er_resp_draft_forwarded_by_ipm",
+"value":"S735",
+"color":"dark-pink",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S736"},
+{"text":"Forward","class":"btn btn-primary","title":"","value":"S737"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"ER Resp Draft Change Req By Client",
+        "heading":"ER Resp Draft Change Req By Client",
+        "type":"er_resp_draft_change_req_by_client",
+"value":"S736",
+"color":"dark-orange",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S734"},
+{"text":"Reject","class":"btn btn-primary","title":"","value":"S735"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"ER Resp Approved By Client",
+        "heading":"ER Resp Approved By Client",
+        "type":"er_resp_approved_by_client",
+"value":"S737",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S738"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"Approved ER Resp Shared With Luf",
+        "heading":"Approved ER Resp Shared With Luf",
+        "type":"approved_er_resp_shared_with_luf",
+"value":"S738",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S739"}]
+},{
+        "stage":"design_er_er",
+        "tablename":"ER Resp Filed",
+        "heading":"ER Resp Filed",
+        "type":"er_resp_filed",
+"value":"S739",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S740"},
+{"text":"Rejected","class":"btn btn-info","title":"","value":"S750"},
+{"text":"Granted","class":"btn btn-success","title":"","value":"S753"}]
+}]},{"stage":"design",
+		"substage":"design_er_accp",
+        "tablename":"ER Response To Acceptance",
+		"formheader":"ER Response To Acceptance",
+        "heading":"ER Response To Acceptance",
+        "type":"",
+		"color":"dark-orange",
+		"value":"design_er_accp",
+		"subchild":[
+		{
+        "stage":"design_er_accp",
+        "tablename":"HN Received",
+        "heading":"HN Received",
+        "type":"hn)received",
+"value":"S740",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S741"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"HN Shared With Client",
+        "heading":"HN Shared With Client",
+        "type":"hn_shared_with_client",
+"value":"S741",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S742"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Client Go Ahead",
+        "heading":"Client Go Ahead",
+        "type":"client_go_ahead",
+"value":"S742",
+"color":"purple",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S743"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"IPM Go Ahead To Luf",
+        "heading":"IPM Go Ahead To Luf",
+        "type":"ipm_go_ahead_to_luf",
+"value":"S743",
+"color":"blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S744"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Luf Attended Hearing",
+        "heading":"Luf Attended Hearing",
+        "type":"luf_attented_hearing",
+"value":"S744",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S745"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Hearing Attended Shared With Client",
+        "heading":"Hearing Attended Shared With Client",
+        "type":"hearing_attened_shared_with_client",
+"value":"S745",
+"color":"dark-pink",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S746"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Draft Written Submission By Luf",
+        "heading":"Draft Written Submission By Luf",
+        "type":"draft_wriiten_submission_by_luf",
+"value":"S746",
+"color":"red",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S747"},
+{"text":"Forward","class":"btn btn-primary","title":"","value":"S748"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Draft Written Submission Change req IPM",
+        "heading":"Draft Written Submission Change req IPM",
+        "type":"draft_written_submission_change_req_ipm",
+"value":"S747",
+"color":"dark-blue",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S746"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Approval Written Submission Shared With Luf",
+        "heading":"Approval Written Submission Shared With Luf",
+        "type":"approval_written_submission_shared_with_luf",
+"value":"S748",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S749"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Wriiten Submission Filed",
+        "heading":"Wriiten Submission Filed",
+        "type":"written_submission_filed",
+"value":"S749",
+"color":"purple",
+"button":[{"text":"Design Rejected","class":"btn btn-primary","title":"","value":"S750"},
+{"text":"Design Granted","class":"btn btn-primary","title":"","value":"S753"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Design Rejected",
+        "heading":"Design Rejected",
+        "type":"design_rejected",
+"value":"S750",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S750"}]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Rejection Shared With Client",
+        "heading":"Rejection Shared With Client",
+        "type":"rejection_shared_with_client",
+"value":"S751",
+"color":"red",
+"button":[]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Design Granted",
+        "heading":"Design Granted",
+        "type":"design_granted",
+"value":"S753",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S754"}
+]
+},{
+        "stage":"design_er_accp",
+        "tablename":"Acceptance Shared With Client",
+        "heading":"Acceptance Shared With Client",
+        "type":"acceptance_shared_with_client",
+"value":"S754",
+"color":"dark-pink",
+"button":[]
+}]}],
+ "trademark":[ {"stage":"trademark",
+		"substage":"trademark_common_ip",
+        "tablename":"COMMON IP UPTO ER",
+		"formheader":"COMMON IP UPTO ER",
+        "heading":"COMMON IP UPTO ER",
+        "type":"",
+		"color":"purple",
+		"value":"trademark_common_ip",
+		"subchild":[
+		{
+        "stage":"trademark_common_ip",
+        "tablename":"IP Init",
+        "heading":"IP Init",
+        "type":"ip_init",
+"value":"S680",
+"color":"blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S681","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]}}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"IP EVALUATION ASSIGNED",
+        "heading":"IP EVALUATION ASSIGNED",
+        "type":"ip_evaluation_assigned",
+"value":"S681",
+"color":"yellow",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S682"},
+{"text":"Forward","class":"btn btn-secondary","title":"","value":"S683","form":{"assign":true,"assignlabel":"Luf","assignarray":["LUF"]}}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Additional Info Needed",
+        "heading":"Additional Info Needed",
+        "type":"additional_info_needed",
+"value":"S682",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S781"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Application Draft Assigned To Luf",
+        "heading":"Application Draft Assigned To Luf",
+        "type":"application_draft_assigned_to_luf",
+"value":"S683",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S684"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Draft Uploaded By Luf",
+        "heading":"Draft Uploaded By Luf",
+        "type":"draft_uploaded_by_luf",
+"value":"S684",
+"color":"purple",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S685"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S686"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Draft Change Required By IPM",
+        "heading":"Draft Change Required By IPM",
+        "type":"draft_change_required_by_ipm",
+"value":"S685",
+"color":"dark-orange",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S684"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Draft Shared With Client",
+        "heading":"Draft Shared With Client",
+        "type":"draft_shared_with_client",
+"value":"S686",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S688"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Draft Change Required By Client",
+        "heading":"Draft Change Required By Client",
+        "type":"draft_change_required_by_client",
+"value":"S687",
+"color":"dark-green",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S685"},
+{"text":"Reject","class":"btn btn-success","title":"","value":"S686"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Draft Approved By Client",
+        "heading":"Draft Approved By Client",
+        "type":"draft_approved_by_client",
+"value":"S688",
+"color":"dark-blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S689"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"Approved Draft Shared With Luf",
+        "heading":"Approved Draft Shared With Luf",
+        "type":"approved_draft_shared_with_luf",
+"value":"S689",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S690"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"IP Filed Shared with IPM",
+        "heading":"IP Filed Shared with IPM",
+        "type":"ip_filed_shared_with_ipm",
+"value":"S690",
+"color":"purple",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S691"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"ER Generated",
+        "heading":"ER Generated",
+        "type":"er-generated",
+"value":"S691",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S692"}]
+},{
+        "stage":"trademark_common_ip",
+        "tablename":"ER Shared With Client",
+        "heading":"ER Shared With Client",
+        "type":"er_shared_with_client",
+"value":"S692",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S693"},
+{"text":"Rejected","class":"btn btn-info","title":"","value":"S712"},
+{"text":"Granted","class":"btn btn-success","title":"","value":"S715"}
+]
+}
+]},{"stage":"trademark",
+		"substage":"trademark_er_er",
+        "tablename":"ER TO ER Responsefield",
+		"formheader":"ER TO ER Responsefield",
+        "heading":"ER TO ER Responsefield",
+        "type":"",
+		"color":"yellow",
+		"value":"trademark_er_er",
+		"subchild":[
+			{
+        "stage":"trademark_er_er",
+        "tablename":"Client Go Ahead For ER Resp",
+        "heading":"Client Go Ahead For ER Resp",
+        "type":"client_go_ahead_for_er_resp",
+"value":"S693",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S694"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"ER Resp Assigned To Luf",
+        "heading":"ER Resp Assigned To Luf",
+        "type":"er_resp_assigned_to_luf",
+"value":"S694",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S695"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"ER Resp Draft Uploaded By Luf",
+        "heading":"ER Resp Draft Uploaded By Luf",
+        "type":"er_resp_draft_uploaded_by_luf",
+"value":"S695",
+"color":"yellow",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S696"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S697"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"ER Resp Draft Change Req By IPM",
+        "heading":"ER Resp Draft Change Req By IPM",
+        "type":"er_resp_draft_change_req_by_ipm",
+"value":"S696",
+"color":"purple",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S695"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"ER Resp Draft Forwarded By IPM",
+        "heading":"ER Resp Draft Forwarded By IPM",
+        "type":"er_resp_draft_forwarded_by_ipm",
+"value":"S697",
+"color":"dark-pink",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S698"},
+
+{"text":"Forward","class":"btn btn-success","title":"","value":"S699"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"ER Resp Draft Change Req By Client",
+        "heading":"ER Resp Draft Change Req By Client",
+        "type":"er_resp_draft_change_req_by_client",
+"value":"S698",
+"color":"dark-orange",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S696"},
+{"text":"Reject","class":"btn btn-danger","title":"","value":"S697"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"ER Resp Approved By Client",
+        "heading":"ER Resp Approved By Client",
+        "type":"er_resp_approved_by_client",
+"value":"S699",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S700"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"Approved ER Resp Shared With Luf",
+        "heading":"Approved ER Resp Shared With Luf",
+        "type":"approved_er_resp_shared_with_luf",
+"value":"S700",
+"color":"green",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S701"}]
+},{
+        "stage":"trademark_er_er",
+        "tablename":"ER Resp Filed",
+        "heading":"ER Resp Filed",
+        "type":"er_resp_filed",
+"value":"S701",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S702"}]
+}]},{"stage":"trademark",
+		"substage":"trademark_er_accp",
+        "tablename":"ER Response To Acceptance",
+		"formheader":"ER Response To Acceptance",
+        "heading":"ER Response To Acceptance",
+        "type":"",
+		"color":"dark-orange",
+		"value":"trademark_er_accp",
+		"subchild":[
+		{
+        "stage":"trademark_er_accp",
+        "tablename":"HN Received",
+        "heading":"HN Received",
+        "type":"hn_received",
+"value":"S702",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S703"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"HN Shared With Client",
+        "heading":"HN Shared With Client",
+        "type":"hn_shared_with_client",
+"value":"S703",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S704"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Client Go Ahead",
+        "heading":"Client Go Ahead",
+        "type":"client_go_ahead",
+"value":"S704",
+"color":"purple",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S705"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"IPM Go Ahead To Luf",
+        "heading":"IPM Go Ahead To Luf",
+        "type":"ipm_go_ahead_to_luf",
+"value":"S705",
+"color":"blue",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S705"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Luf Attended Hearing",
+        "heading":"Luf Attended Hearing",
+        "type":"luf_attented_hearing",
+"value":"S706",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S706"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Hearing Attended Shared With Client",
+        "heading":"Hearing Attended Shared With Client",
+        "type":"hearing_attened_shared_with_client",
+"value":"S707",
+"color":"dark-pink",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S707"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Draft Written Submission By Luf",
+        "heading":"Draft Written Submission By Luf",
+        "type":"draft_wriiten_submission_by_luf",
+"value":"S708",
+"color":"red",
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S709"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S710"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Draft Written Submission Change req IPM",
+        "heading":"Draft Written Submission Change req IPM",
+        "type":"draft_written_submission_change_req_ipm",
+"value":"S709",
+"color":"dark-blue",
+"button":[{"text":"Update","class":"btn btn-primary","title":"","value":"S708"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Approval Written Submission Shared With Luf",
+        "heading":"Approval Written Submission Shared With Luf",
+        "type":"approval_written_submission_shared_with_luf",
+"value":"S710",
+"color":"yellow",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S711"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Wriiten Submission Filed",
+        "heading":"Wriiten Submission Filed",
+        "type":"written_submission_filed",
+"value":"S711",
+"color":"purple",
+"button":[{"text":"TM Rejected","class":"btn btn-primary","title":"","value":"S712"},
+{"text":"TM Advertise","class":"btn btn-success","title":"","value":"S714"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Trademark Rejected",
+        "heading":"Trademark Rejected",
+        "type":"trademark_rejected",
+"value":"S712",
+"color":"green",
+"button":[{"text":"TM Rejected","class":"btn btn-primary","title":"","value":"S713"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Rejection Shared With Client",
+        "heading":"Rejection Shared With Client",
+        "type":"rejection_shared_with_client",
+"value":"S713",
+"color":"red",
+"button":[]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Trademark Advertised ",
+        "heading":"Trademark Advertised ",
+        "type":"trademark_advertised",
+"value":"S714",
+"color":"blue",
+"button":[{"text":"Granted","class":"btn btn-primary","title":"","value":"S715"},
+{"text":"Opposition Proceeding","class":"btn btn-primary","title":"","value":"S717"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Trademark Granted",
+        "heading":"Trademark Granted",
+        "type":"trademark_granted",
+"value":"S715",
+"color":"dark-orange",
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S716"}]
+},{
+        "stage":"trademark_er_accp",
+        "tablename":"Acceptance Shared With Client",
+        "heading":"Acceptance Shared With Client",
+        "type":"acceptance_shared_with_client",
+"value":"S716",
+"color":"dark-pink",
+"button":[{"text":"Granted","class":"btn btn-primary","title":"","value":"S715"},
+{"text":"Rejected","class":"btn btn-danger","title":"","value":"S712"}]
+}
+,{
+        "stage":"trademark_er_accp",
+        "tablename":"Opposition Proceedings",
+        "heading":"Opposition Proceedings",
+        "type":"opposition_proceeding",
+"value":"S717",
+"color":"dark-pink",
 "button":[{
     "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-}],
- "design":[{
-        "stage":"design",
-        "tablename":"Misc Init",
-        "heading":"Misc Init",
-        "type":"misc_init",
-"value":"S170",
-"color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-}],
- "trademark":[{
-        "stage":"trademark",
-        "tablename":"Misc Init",
-        "heading":"Misc Init",
-        "type":"misc_init",
-"value":"S170",
-"color":"green",
-"button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
-}],
+}]}],
  "plant_variety":[{
         "stage":"plant_variety",
         "tablename":"Misc Init",
@@ -1752,7 +2686,7 @@
 "value":"S170",
 "color":"green",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Forword","class":"btn btn-info","value":"S171","form":{"milestone":true}}]
 },
 {
     "stage":"mis",
@@ -1762,7 +2696,7 @@
 "value":"S171",
 "color":"dark-blue",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Forword","class":"btn btn-info","value":"S172","form":{"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
 },
 {
     "stage":"mis",
@@ -1772,7 +2706,8 @@
 "value":"S172",
 "color":"dark-orange",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"text":"Change Req","class":"btn btn-info","value":"S173"},
+{"text":"Forward","class":"btn btn-success","value":"S174"}]
 },
 {
     "stage":"mis",
@@ -1781,8 +2716,7 @@
     "type":"proposal_change_required_by_admin",
 "value":"S173",
 "color":"green",
-"button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Update","class":"btn btn-success","value":"S172"}]
 },
 {
     "stage":"mis",
@@ -1792,7 +2726,8 @@
 "value":"S174",
 "color":"blue",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"text":"Change Req","class":"btn btn-info","value":"S175"},
+{"text":"Forward","class":"btn btn-success","value":"S176"}]
 },
 {
     "stage":"mis",
@@ -1802,7 +2737,8 @@
 "value":"S175",
 "color":"red",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"text":"Change Req","class":"btn btn-info","value":"S173"},
+{"text":"Reject","class":"btn btn-success","value":"S176"}]
 },
 {
     "stage":"mis",
@@ -1812,7 +2748,7 @@
 "value":"S176",
 "color":"purple",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"text":"Forword","class":"btn btn-info","value":"S177"}]
 },
 {
     "stage":"mis",
@@ -1822,7 +2758,8 @@
 "value":"S177",
 "color":"dark-blue",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"text":"Change Req","class":"btn btn-info","value":"S178"},
+{"text":"Reject","class":"btn btn-success","value":"S179"}]
 },
 {
     "stage":"mis",
@@ -1832,7 +2769,7 @@
 "value":"S178",
 "color":"dark-orange",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"text":"Update","class":"btn btn-info","value":"S177"}]
 },
 {
     "stage":"mis",
@@ -1841,8 +2778,8 @@
     "type":"report_forward_by_admin",
 "value":"S179",
 "color":"yellow",
-"button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[
+{"text":"Forward","class":"btn btn-success","value":"S181"}]
 },
 {
     "stage":"mis",
@@ -1852,7 +2789,8 @@
 "value":"S180",
 "color":"blue",
 "button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"text":"Change Req","class":"btn btn-info","value":"S177"},
+{"text":"Reject","class":"btn btn-success","value":"S179"}]
 },
 {
     "stage":"mis",
@@ -1861,8 +2799,7 @@
     "type":"report_accepted_by_client",
 "value":"S181",
 "color":"red",
-"button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[{"text":"Forward","class":"btn btn-success","value":"S182"}]
 },
 {
     "stage":"mis",
@@ -1871,8 +2808,7 @@
     "type":"all_report_accepted_by_client",
 "value":"S182",
 "color":"blue",
-"button":[{
-"text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+"button":[]
 }
 ]
 }

@@ -30,6 +30,8 @@ export class CopyrightComponent implements OnInit {
   isSuperAdmin: boolean;
   isIPM:boolean;
   array={"tablename":"Create Activity"}
+
+createact:boolean=false;
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -49,6 +51,7 @@ export class CopyrightComponent implements OnInit {
    
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.createact=data?.tabheading?.find(y=>y.stage=='copyright')?.activity?.includes(this.userRoles[0]);
       this.route.queryParams.subscribe((params) => {
 let yy=["copyright_common_ip","copyright_er_er","copyright_er_accp"]
 if(yy.includes(params?.stage)){
@@ -87,9 +90,21 @@ else{
 }
 
   createactivity(){
-this.activity.showviewmodel('','S775');
+this.activity.showviewmodel('','S755');
   }
+  ngAfterViewInit() {
 
+    this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+  
+    // this.roleEditor.changesCancelledCallback = () => {
+    //   this.editedRole = null;
+    //   this.sourceRole = null;
+    //   this.editorModal.hide();
+    // };
+  }
   queryparam(data:any){
     this.router.navigate(data?.subchild?.length>0?['/bcil/copyright-dashboard']:['/bcil/bcil-copyright-table'],  { queryParams: {stage:data?.subchild?.length>0?data.substage:data.stage, type: data.type}});
   

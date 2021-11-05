@@ -49,12 +49,12 @@
 
                   </div>
                 </div>
-                <div class="form-group row" *ngIf="activebtn?.form?.assign">
+                <div class="form-group row" *ngIf="activebtn?.form?.organization || array?.organization">
                   <div class="col-sm-12">
-                    <label class="col-form-label">{{activebtn?.form?.assignlabel}}</label>
-                    <select type="text" class="form-control" name="assignto" formControlName="assignto" [(ngModel)]="selectassign">
+                    <label class="col-form-label">Organization</label>
+                    <select type="text"  class="form-control" name="organization" formControlName="organization" (change)="organizationchnage($event.target.value)">
                       <option value="" selected>--select--</option>
-                      <option *ngFor="let user of rowsassign" value="{{user.id}}">{{user.userName}}/{{user.roles[0]}}</option>
+                      <option  *ngFor="let org of organizations" [attr.data-message-id]="org.key" value="{{org.value}}">{{org.value}}</option>
                       <!-- <option value="MOU">MOU</option>
                       <option value="NDA">NDA</option>
                       <option value="Work Order">Work Order</option>
@@ -64,6 +64,23 @@
 
                   </div>
                 </div>
+              
+                <div class="form-group row" *ngIf="activebtn?.form?.assign ||viewassign">
+                  <div class="col-sm-12">
+                    <label class="col-form-label">{{activebtn?.form?.assignlabel ||array?.assignlabel}}</label>
+                    <select type="text" class="form-control" name="assignto" formControlName="assignto" [(ngModel)]="selectassign">
+                      <option value="" selected>--select--</option>
+                      <option *ngFor="let user of rowsassign" value="{{user.id}}">{{user.userName}} <span *ngIf="activebtn?.form?.assignarray?.length>1 || array?.assignarray?.length>1">({{user.roles[0]}})</span></option>
+                      <!-- <option value="MOU">MOU</option>
+                      <option value="NDA">NDA</option>
+                      <option value="Work Order">Work Order</option>
+                      <option value="Others">Others</option> -->
+                    </select>
+
+
+                  </div>
+                </div>
+
                 <div class="form-group row" *ngIf="activebtn?.form?.bdoassigned">
                     <div class="col-sm-12">
                       <label class="col-form-label">BDM</label>
@@ -79,6 +96,63 @@
   
                     </div>
                   </div>
+                  <ng-container *ngIf="activebtn?.form?.milestone">
+                  
+                  <div class="row">
+                    <div class="col-sm-12">
+
+                      <label class="col-form-label">Milestone</label>
+                      <div class="row">
+                        <div class="col-sm-1">
+                          </div>
+                    <div class="col-sm-3">
+                      <label>Milestone</label>
+                      </div>
+                      
+                        <div class="col-sm-3">
+                          <label>Payment term</label>
+                          </div>
+                          <div class="col-sm-3">
+                        <label>Timeline</label>
+                        </div>
+                        </div>
+                    </div>
+                      </div>
+                  <div formArrayName="milestonedata" *ngFor="let item of milestonedata.controls; let i = index" class="form-group">
+                    <div [formGroupName]="i">
+                     
+                        <input type="hidden" formControlName="ID" />
+                       
+                          <div class="row">
+                            <div class="col-sm-1">
+                              {{i+1}}
+                            </div>
+                            <div class="col-sm-3">
+<input type="text"  class="form-control"  formControlName="milestone" id="milestone+i"/>
+                              </div>
+                              <div class="col-sm-3">
+                                <input type="text"  class="form-control" formControlName="paymentterm" id="paymentterm+i"/>
+                                                              </div>
+                                                              <div class="col-sm-3">
+                                                                <input type="text"  class="form-control"  formControlName="timeline" id="timeline+i"/>
+                                                                                              </div>
+      <div class="col-md-1">
+ <button *ngIf="milestonedata.length>1" (click)="deleteitem(i)" class="btn btn-sm"><i class="fa fa-trash"></i></button>
+                                                                              
+                                                                                              </div>
+                              </div>
+                            
+                            </div>
+
+                              </div>
+                              <div class="row">
+                                <div class="col-md-2">
+                                  <button class="btn btn-success btn-sm" type="button" (click)="addItemButtonClick()" ><i class="fa fa-plus"></i></button>
+                    
+                    
+                                </div>
+                              </div>
+                            </ng-container>
                 <div class="form-group row">
                   <div class="col-sm-12">
                     <label class="col-form-label">Remarks</label>

@@ -53,11 +53,13 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Institute</th>
-            <th>Dept. Name</th>
-            <th>Phone No.</th>
-            <th>Director Name</th>
-            <th>Director Mobile</th>
+            <th  *ngIf="stage!='mou'">App No</th>
+            <th  *ngIf="stage!='mou'">Subject</th>
+            <th *ngIf="stage=='mou'">Institute</th>
+            <th  *ngIf="stage=='mou'">Dept. Name</th>
+            <th  *ngIf="stage=='mou'">Phone No.</th>
+            <th  *ngIf="stage=='mou'">Director Name</th>
+            <th  *ngIf="stage=='mou'">Director Mobile</th>
 
             <th>Action</th>
            
@@ -66,11 +68,13 @@
         <tbody>
           <tr *ngFor="let item of mouModel;let i=index;">
             <th scope="row">{{i+1}}</th>
-            <td>{{item.int_Uni_Name}}</td>
-            <td>{{item.dept_Name}}</td>
-            <td>{{item.phoneNo}}</td>
-            <td>{{item.dir_Head_Name}}</td>
-            <td>{{item.dir_Mobile_No}}</td>
+            <th  *ngIf="stage!='mou'">{{item?.appno}}</th>
+            <td  *ngIf="stage!='mou'">{{item?.subject}}</td>
+            <td  *ngIf="stage=='mou'">{{item.int_Uni_Name}}</td>
+            <td  *ngIf="stage=='mou'">{{item.dept_Name}}</td>
+            <td  *ngIf="stage=='mou'">{{item.phoneNo}}</td>
+            <td  *ngIf="stage=='mou'">{{item.dir_Head_Name}}</td>
+            <td  *ngIf="stage=='mou'">{{item.dir_Mobile_No}}</td>
             <td ><button class="btn btn-info" (click)="additionfile(item)">Additional file</button></td>
             <!-- <td>
               <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>

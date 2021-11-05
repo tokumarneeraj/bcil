@@ -1,10 +1,11 @@
 import { Component, Input, OnInit, ViewChild,ChangeDetectorRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { timeline } from 'console';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { commondata } from 'src/app/model/common';
 import { activeusermou } from 'src/app/model/mou.model';
-import { UploadFileViewModel } from 'src/app/model/uploadFile.model';
+import { milestones, UploadFileViewModel } from 'src/app/model/uploadFile.model';
 import { User } from 'src/app/model/user.model';
 import { AccountService } from 'src/app/services/account.service';
 import { AlertService } from 'src/app/services/alert.service';
@@ -38,7 +39,7 @@ export class ActivityComponent implements OnInit {
   customrem: boolean;
   @Input() array:any;
   activeusermou: activeusermou[];
-  
+  viewassign:boolean=false;
   activuser:activeusermou[];
   appref:string;
   rowslm:User[];
@@ -47,8 +48,11 @@ export class ActivityComponent implements OnInit {
   selectedbdm:string;
   selectedlm:string;
   selectassign:string;
+  organizations:any[];
+  scientistlist:any[];
   submitted:boolean=false;
   process:string;
+  milestone=new milestones();
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
@@ -81,11 +85,13 @@ export class ActivityComponent implements OnInit {
     subject: ['', Validators.required],
     remarks: [''],
     remindertype:['default',Validators.required],
+    organization:[''],
     type: [''],
     assigntobdo:[''],
     assigntolm:[''],
     assignto:[''],
-    files:['']
+    files:[''],
+    milestonedata:this.formbuilder.array([this.addItemFormGroup()])
   });
    
   }
@@ -116,6 +122,14 @@ export class ActivityComponent implements OnInit {
        this.rowslm=data.filter((x)=>x.roles.includes('LM'));
        this.rowsassign=data.filter((x)=>x.roles.find(t=>this.activebtn?.form?.assignarray?.includes(t)));
      })
+     
+     }
+     if(this.activebtn?.form?.organization==true || this.array?.organization==true){
+      this.Bdoservice.Getallorganization("").subscribe(data=>{
+this.organizations=data;
+      })
+      }
+    
      this.Bdoservice.GetActiveUserMoubyrefid(data?.refid).subscribe(data1=>{
       this.activuser=data1;
       this.selectedbdm=this.activuser?.find(x=>this.rowsbdm?.find(y=>y.id==x.userid))?.userid||"";
@@ -125,11 +139,49 @@ export class ActivityComponent implements OnInit {
      //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
       //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
                 });
-    }
+    
         this.editorModal.show();
         debugger;
       
        
+      }
+      addItemButtonClick(): void {
+        (<FormArray>this.ForwardForm.get('milestonedata')).push(this.addItemFormGroup());
+      }
+      addItemFormGroup(): FormGroup {
+        return this.formbuilder.group({
+          ID: [0],
+          milestone: [],
+          paymentterm: [],
+          timeline: [],
+         
+        });
+      }
+      get milestonedata(): FormArray {
+    return this.ForwardForm.get('milestonedata') as FormArray;
+  }
+  deleteitem(deleteitem: number) {
+    var item = this.milestonedata.at(deleteitem);
+    var items = item.get('ID').value;
+
+    var conf = confirm("Are you sure you want to delete this ?");
+    if (conf == true) {
+       (<FormArray>this.ForwardForm.get('milestonedata')).removeAt(deleteitem);
+      }
+      }
+      organizationchnage(el){
+     let nodalid= this.organizations.find(x=>x.value==el).key
+//console.log(data)
+  if(this.activebtn?.form?.getscientist==true || this.array?.getscientist==true){
+      //  this.Bdoservice.GetScientistbynodal_org(nodalid).subscribe(data=>{
+ // this.organizations=data;
+  this.viewassign=true;
+  this.accountService.getAllUser(0,0).subscribe(data=>{
+  this.rowsassign=data.filter((x)=>x.roles.find(t=>x.createdBy==nodalid && (this.activebtn?.form?.assignarray?.includes(t)||this.array?.assignarray?.includes(t))));
+//});
+  
+        })
+      }
       }
       uploadFile(){
         this.submitted = true;
@@ -144,6 +196,10 @@ export class ActivityComponent implements OnInit {
         if(this.activebtn?.form?.assign==true){
           this.ForwardForm.controls['assignto'].setValidators([Validators.required]);
           this.ForwardForm.controls['assignto'].updateValueAndValidity();
+        }
+        if(this.activebtn?.form?.organization==true ||this.array?.organization){
+          this.ForwardForm.controls['organization'].setValidators([Validators.required]);
+          this.ForwardForm.controls['organization'].updateValueAndValidity();
         }
         //if(this.type=="S113" ||this.type=="S115" ||this.type=="S124"||this.type=="S403"||this.type=="S405"){
           if(this.activebtn?.form?.fileuploadreq){
@@ -163,14 +219,22 @@ export class ActivityComponent implements OnInit {
         this.UploadFileViewModel.assigntolm = this.ForwardForm.get('assigntolm').value;
         this.UploadFileViewModel.assignto=this.ForwardForm.get('assignto').value;
         this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
+        this.UploadFileViewModel.organization = this.ForwardForm.get('organization').value;
+var tt=[];
+
+        for (let arr of  this.ForwardForm.get('milestonedata').value) {
+          tt.push({milestone:arr['milestone'],timelines:arr['timeline'],paymentterm:arr['paymentterm'],misref: this.UploadFileViewModel.app_ref_id,id:0});
+        }
+        this.UploadFileViewModel.milestones= tt;//this.ForwardForm.get('milestonedata').value;
     //     if(this.activuser?.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
     // {
     //     this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
     // }
-      
+    console.log( this.UploadFileViewModel,this.ForwardForm.get('milestonedata').value)
+     // return false;
     
         this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
-           this.loading=false;
+         //  this.loading=false;
            this.submitted=false;
     if(data.message=="success"){
           alert("Submitted Successfully")
@@ -182,7 +246,11 @@ export class ActivityComponent implements OnInit {
           //this.ngOnInit();
           this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
           this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
-          this.router.navigateByUrl('bcil/patent-dashboard')
+          this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
+          this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
+          this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):
+          this.process=="copyright"?this.router.navigateByUrl('bcil/copyright-dashboard'):
+          ''
           ;
          
     }

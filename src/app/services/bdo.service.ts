@@ -23,6 +23,8 @@ export class Bdoservice  extends EndpointBase
     get getallnotificationurl() { return  environment.baseUrl+'/api/bdo/getallnotification'; }
     get assignscientisturl(){return environment.baseUrl+'/api/bdo/assignscientist'}
 get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
+get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
+
     get getactiveusermouuseridurl() { return  environment.baseUrl+'/api/bdo/getactivebyuserid'; }
     get getmouuser() { return  environment.baseUrl+'/api/bdo/getmouuser'; }
     get getactiveusermouurl() { return  environment.baseUrl+'/api/bdo/getallactiveusermou'; }
@@ -31,6 +33,7 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
     get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
     get getorganization() { return environment.baseUrl+'/api/bdo/getorganization'; }
+    get getallorganization() { return environment.baseUrl+'/api/bdo/getallorganization'; }
     get getmisurl() { return environment.baseUrl+'/api/bdo/getotherservice'; }
     get getpatenturl() { return environment.baseUrl+'/api/bdo/getpatentservice'; }
     get getcopyrighturl() { return environment.baseUrl+'/api/bdo/getcopyright'; }
@@ -137,7 +140,17 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
              return this.handleError(error, () => this.GetScientistbynodal());
            }));
          }
+         public  GetScientistbynodal_org<T>(refid:string): Observable<any[]> {
         
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.getscientistbynodalorgurl}/${refid}`;
+         return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
+         
           
         public  GetActiveUserMoubyuserid<T>(): Observable<activeusermou[]> {
         
@@ -171,7 +184,15 @@ get getscientistbynodalurl(){return environment.baseUrl+'/api/bdo/getscibyno'}
 
         public  Getorganization<T>(refid:string): Observable<any[]> {
           const endpointUrl = `${this.getorganization}/${refid}`;
-          return this.http.get<any[]>(endpointUrl);
+          return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  Getallorganization<T>(refid:string): Observable<any[]> {
+          const endpointUrl = `${this.getallorganization}/${refid}`;
+          return this.http.get<any[]>(endpointUrl,this.requestHeaders);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

@@ -1,1 +1,93 @@
-<p>design-init works!</p>
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">design</h5>
+                        <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Design</a>
+                        </li>
+                        <!-- <li class="breadcrumb-item"><a href="#!">Assignments</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    
+                    <!-- Hover table card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>{{array?.tablename}}</h5>
+                            <!-- <span>use class <code>table-hover</code> inside table element</span> -->
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                    <li><i class="fa fa-trash close-card"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-block table-border-style">
+                          <div class="table-responsive">
+                            <table class="table table-hover" *ngIf="showpage">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>design No</th>
+                                  <th>Subject</th>
+                                  <th>Remarks</th>
+                               <th>Action</th>
+                               <th *ngIf="viewhistory">History</th>
+                                                
+                               <th *ngIf="viewadditionalfileright">Additional File</th>
+                               <th *ngIf="viewremark">Previous Remarks</th> 
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let design of designModel;let i=index">
+                                      <td>{{i+1}}</td>
+                                      <td>{{design?.appno}}</td>
+                                      <td>{{design?.subject}}</td>
+                                      <td>{{design?.remark}}</td>
+                                     
+                                      <td>
+                                          <ng-container *ngFor="let btn of array?.button">
+                                            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,design)">{{btn.text}}</button>
+                                                      
+                                          </ng-container>
+                                      </td>
+
+                                      <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'design',refid:design?.refid}">View</a></td>
+                                      <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+                                      <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(design)" class="stretched-link">View</a></td>
+                                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(design.remarks)">{{design?.remarks}}</p></td>
+                                  </tr>
+                                  </tbody>
+                                  </table>
+                          </div>
+                          </div>
+                          </div>
+                          <app-footer></app-footer>
+                          </div>
+            </div>
+            <app-addition-file></app-addition-file>
+            <app-activity [array]="array"></app-activity>

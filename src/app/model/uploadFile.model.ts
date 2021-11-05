@@ -5,6 +5,7 @@ export class UploadFileViewModel {
   public uploadType: string;
   public subject: string;
   public stage: string;
+  public organization:string;
   public file64: any;
  
   public fileFullName: string;
@@ -24,11 +25,18 @@ export class UploadFileViewModel {
  public assigntolm:string;
   public  remindertype:string;
   public createdon: string; 
+  public milestones:milestones[];
   public nodal:nodalOfficer;
   public emailsend:emailsend;
 }
 
-
+export class milestones{
+  public id:string;
+  public misref:string;
+  public milestone:string;
+  public timeline:string;
+  public paymentterm:string;
+}
 export class nodalOfficer{
 
   public nodal_name:string;

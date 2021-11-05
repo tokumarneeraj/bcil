@@ -124,7 +124,7 @@ fileaccess:['Internal',Validators.required],
     }
     }
   }
-  showmodel(data:mouModel,stage:any){
+  showmodel(data:any,stage:any){
     this.moudetails=data;
     this.UploadFileViewModel.stage=stage;
     this.UploadFileViewModel.app_Status=data.app_Status;
@@ -135,7 +135,7 @@ fileaccess:['Internal',Validators.required],
     this.alertService.showDialog(data,DialogType.alert);
 
   }
-  showviewmodel(data:mouModel,show:boolean,stage:any){
+  showviewmodel(data:any,show:boolean,stage:any){
     this.moudetails=data;
     this.stage=stage;
     this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{

@@ -31,6 +31,7 @@ designdata:any;
   isLM: boolean;
   isSuperAdmin: boolean;
   isIPM:boolean;
+  createact:boolean=false;
   array={"tablename":"Create Activity"}
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
@@ -52,6 +53,7 @@ designdata:any;
    
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.createact=data?.tabheading?.find(y=>y.stage=='design')?.activity?.includes(this.userRoles[0]);
       this.route.queryParams.subscribe((params) => {
 let yy=["design_common_ip","design_er_er","design_er_accp"]
 if(yy.includes(params?.stage)){
@@ -88,7 +90,19 @@ designlistfilter(data) {
   }
    
 }
+ngAfterViewInit() {
 
+  this.activity.changesSavedCallback = () => {
+    //this.addNewRoleToList();
+    this.ngOnInit();
+  };
+
+  // this.roleEditor.changesCancelledCallback = () => {
+  //   this.editedRole = null;
+  //   this.sourceRole = null;
+  //   this.editorModal.hide();
+  // };
+}
   createactivity(){
 this.activity.showviewmodel('','S718');
   }

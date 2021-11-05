@@ -31,6 +31,7 @@ trademarkdata:any;
   isLM: boolean;
   isSuperAdmin: boolean;
   isIPM:boolean;
+  createact:boolean=false;
   array={"tablename":"Create Activity"}
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
@@ -42,7 +43,19 @@ trademarkdata:any;
     this.isIPM = this.userRoles.includes('IPM');
   this.isSuperAdmin=this.userRoles.includes('Super Admin');
    }
+   ngAfterViewInit() {
 
+    this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+  
+    // this.roleEditor.changesCancelledCallback = () => {
+    //   this.editedRole = null;
+    //   this.sourceRole = null;
+    //   this.editorModal.hide();
+    // };
+  }
    ngOnInit(): void {
 
    
@@ -50,6 +63,7 @@ trademarkdata:any;
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
    
     this.Bdoservice.getdatapermission().subscribe(data=>{
+      this.createact=data?.tabheading?.find(y=>y.stage=='trademark')?.activity?.includes(this.userRoles[0]);
       console.log(data);
       this.route.queryParams.subscribe((params) => {
 let yy=["trademark_common_ip","trademark_er_er","trademark_er_accp"]

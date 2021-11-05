@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { commondata } from 'src/app/model/common';
 import { activeusermou } from 'src/app/model/mou.model';
@@ -50,6 +51,7 @@ export class MisInitComponent implements OnInit {
 
 
   }
+ 
   viewadditionalfile(data:any){
     this.AdditionFile.showviewmodel(data,true,"mis");
   }

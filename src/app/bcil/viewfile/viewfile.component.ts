@@ -48,19 +48,21 @@ export class ViewfileComponent implements OnInit {
       this.accountService.getAllUser(0,0).subscribe(data =>{
         this.rows=data;
           
-
+        this.Bdoservice.getdatapermission().subscribe(data1=>{
+          console.log(data1);
       this.Bdoservice.Getfile(this.refid).subscribe(data=>{console.log(data)
         data.map((x,i)=>{
 x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=>y.id==x.createdby)?.roles+")"
         })
 
-       data= this.stage=="mou"?data.filter(x=>this.moustatus.includes(x.status)):
-        data.filter(x=>this.ttostatus.includes(x.status));
-        debugger
+      //  data= this.stage=="mou"?data.filter(x=>this.moustatus.includes(x.status)):
+      //   data.filter(x=>this.ttostatus.includes(x.status));
+      //   debugger
 //      this.perm=;
 // this.perm=getotherpermissiondata;
         this.fileshistory=data.filter(x=>this.commondata.getotherpermissiondata('history').find(y=>y?.split('-')[1]==x.status))
         this.showpage=true;
+        })
         })
         console.log(data)
       })

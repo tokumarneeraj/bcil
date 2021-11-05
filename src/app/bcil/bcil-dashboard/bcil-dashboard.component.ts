@@ -19,6 +19,9 @@ export class BcilDashboardComponent implements OnInit {
   mouModel:mouModel[];
   misModel:any[];
   patentModel:any[];
+  trademarkModel:any[];
+copyrightModel:any[];
+designModel:any[];
   showpage=false;
   usertype:string;
   UserName: string;
@@ -134,6 +137,18 @@ else if(tab?.stage=="mis"){
   return this.mislist(rr);
   
 }
+else if(tab?.stage=="trademark"){
+  return this.trademarklist(rr);
+  
+}
+else if(tab?.stage=="design"){
+  return this.designlist(rr);
+  
+}
+else if(tab?.stage=="copyright"){
+  return this.copyrightlist(rr);
+  
+}
 else
 {
   return 0;
@@ -162,7 +177,20 @@ this.activeusermou=data1;
         this.misModel=datamis;
         this.Bdoservice.GetPatentModel().subscribe(datapatent=>{console.log(datapatent)
           this.patentModel=datapatent;
+          this.Bdoservice.GetTrademarkModel().subscribe(datatrademark=>{console.log(datatrademark)
+            this.trademarkModel=datatrademark;
+            this.Bdoservice.GetDesignModel().subscribe(datadesign=>{console.log(datadesign)
+              this.designModel=datadesign;
+              this.Bdoservice.GetCopyrightModel().subscribe(datacopyright=>{console.log(datacopyright)
+                this.copyrightModel=datacopyright;});
           this.showpage=true;
+            
+            });
+          
+          
+          });
+           
+             
         });
         //this.showpage=true;
       }
@@ -209,6 +237,33 @@ moulist(permission:any){
     }
     else{
     return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    
+  }}
+  trademarklist(permission:any){
+    if(this.isSuperAdmin){
+      return this.trademarkModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
+   
+    }
+    else{
+    return this.trademarkModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    
+  }}
+   designlist(permission:any){
+    if(this.isSuperAdmin){
+      return this.designModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
+   
+    }
+    else{
+    return this.designModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    
+  }}
+   copyrightlist(permission:any){
+    if(this.isSuperAdmin){
+      return this.copyrightModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
+   
+    }
+    else{
+    return this.copyrightModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
     
   }}
   patentlist(permission:any){

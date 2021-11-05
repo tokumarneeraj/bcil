@@ -13,7 +13,14 @@ import { AdditionFileComponent } from '../addition-file/addition-file.component'
 })
 export class MouApplicationComponent implements OnInit {
   activeusermou:activeusermou[];
-  mouModel:mouModel[]=[];
+//   mouModel:mouModel[]=[];
+//   misModel:any[];
+//   patentModel:any[];
+//   trademarkModel:any[];
+//   copyrightModel:any[];
+//   designModel:any[];
+// ttaModel:any[];
+mouModel:any[];
   showpage:boolean=false;
   isSuperAdmin:boolean=false;
   userRoles:string[];
@@ -28,13 +35,14 @@ export class MouApplicationComponent implements OnInit {
 this.stage=params.stage;
     });
   }
-  additionfile(data:mouModel){
+  additionfile(data:any){
     
     this.AdditionFile.showmodel(data,this.stage);
   }
   ngOnInit(): void {
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
+      if(this.stage=='mou'){
     this.Bdoservice.GetMou().subscribe(data => {
       if(this.isSuperAdmin){
         this.mouModel = data;
@@ -42,8 +50,70 @@ this.stage=params.stage;
         else{
       this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
       }
+    
       this.showpage=true;
   });
+  }
+  if(this.stage=='mis'){
+    this.Bdoservice.GetMis().subscribe(data => {
+      if(this.isSuperAdmin){
+        this.mouModel = data;
+        }
+        else{
+      this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
+      }
+    
+      this.showpage=true;
+  });
+  }
+  if(this.stage=='patent'){
+    this.Bdoservice.GetPatentModel().subscribe(data => {
+      if(this.isSuperAdmin){
+        this.mouModel = data;
+        }
+        else{
+      this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
+      }
+    
+      this.showpage=true;
+  });
+  }
+  if(this.stage=='copyright'){
+    this.Bdoservice.GetTrademarkModel().subscribe(data => {
+      if(this.isSuperAdmin){
+        this.mouModel = data;
+        }
+        else{
+      this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
+      }
+    
+      this.showpage=true;
+  });
+  }
+  if(this.stage=='design'){
+    this.Bdoservice.GetDesignModel().subscribe(data => {
+      if(this.isSuperAdmin){
+        this.mouModel = data;
+        }
+        else{
+      this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
+      }
+    
+      this.showpage=true;
+  });
+  }
+  if(this.stage=='trademark'){
+    this.Bdoservice.GetTrademarkModel().subscribe(data => {
+      if(this.isSuperAdmin){
+        this.mouModel = data;
+        }
+        else{
+      this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
+      }
+    
+      this.showpage=true;
+  });
+  }
 });
   }
 

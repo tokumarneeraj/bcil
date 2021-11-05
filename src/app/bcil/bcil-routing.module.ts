@@ -31,6 +31,9 @@ import { CopyrightComponent } from './copyright/copyright.component';
 import { TrademarkComponent } from './trademark/trademark.component';
 import { PlantVarityComponent } from './plant-varity/plant-varity.component';
 import { PatentInitComponent } from './patent-init/patent-init.component';
+import { DesignInitComponent } from './design-init/design-init.component';
+import { CopyrightInitComponent } from './copyright-init/copyright-init.component';
+import { TrademarkInitComponent } from './trademark-init/trademark-init.component';
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
   // {path:"Login",component:LoginComponent},
@@ -54,6 +57,9 @@ const routes: Routes = [
   { path: "plant-varity-dashboard", canActivate: [AuthGuard], component: PlantVarityComponent },
   { path: "mis-dashboard", canActivate: [AuthGuard], component: MisDashboardComponent },
   { path: "bcil-mis-table", canActivate: [AuthGuard], component: MisInitComponent },
+  { path: "bcil-design-table", canActivate: [AuthGuard], component: DesignInitComponent },
+  { path: "bcil-copyright-table", canActivate: [AuthGuard], component: CopyrightInitComponent },
+  { path: "bcil-trademark-table", canActivate: [AuthGuard], component: TrademarkInitComponent },
   { path: "bcil-tta-table", canActivate: [AuthGuard], component: TtaMainComponent },
  
   {path:"mou-application",canActivate:[AuthGuard],component:MouApplicationComponent},

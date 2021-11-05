@@ -32,7 +32,7 @@ export class MisDashboardComponent implements OnInit {
   isLM: boolean;
   isSuperAdmin: boolean;
   isIPM:boolean;
-  array={"tablename":"Create Activity"}
+  array={"tablename":"Create Activity","organization":true,"getscientist":true,"assignlabel":"Assign Scientist","assignarray":['Scientist']}
   constructor(private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -62,6 +62,19 @@ export class MisDashboardComponent implements OnInit {
       this.showpage = true;
     })
   });
+  }
+   ngAfterViewInit() {
+
+    this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+  
+    // this.roleEditor.changesCancelledCallback = () => {
+    //   this.editedRole = null;
+    //   this.sourceRole = null;
+    //   this.editorModal.hide();
+    // };
   }
   mislistfilter(data) {
    
