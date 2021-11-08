@@ -1,1 +1,104 @@
-<p>plant-varity works!</p>
+<div class="pcoded-content" >
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">MIS</h5>
+                        <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">MIS</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+              
+                <!-- Page body start -->
+                <div class="page-body">  
+                                                         
+                    <div class="row categoryList mouList">
+                        <div class="col-md-12 text-center">
+                            <div class="addMou">
+                                <a (click)="createactivity()">Create Activity</a>
+                            </div>                                            
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="addMou">
+                            <a routerLink="../mou-application" [queryParams]="{ stage: 'plant_variety'}" style="float:right" class="mb-5">View Plant Variety</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                        <!-- Basic Form Inputs card start -->
+                            <div class="row">
+
+                              
+                            <!-- task, page, download counter  start -->
+                                <div class="col-xl-3 col-md-6" *ngFor="let mis of plantdata;let index=i;">
+                                  
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <div class="row align-items-top">
+                                                    <div class="col-12">
+                                                      <h4 class="text-c-{{mis?.color}}">{{mis.heading}}</h4>
+                                                        <h6 class="text-muted m-b-0">{{plantlistfilter(mis.value)}}</h6>
+                                                    </div>
+                                                    <!-- <div class="col-4 text-right">
+                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <a (click)="queryparam(mis.type)" >
+                                            <div class="card-footer bg-c-{{mis?.color}}">
+                                                <div class="row align-items-center">
+                                                    <div class="col-9">
+                                                        <p class="text-white m-b-0">View</p>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <i class="fa fa-arrow-right text-white f-16"></i>                                                              
+                                                    </div>
+                                                </div>            
+                                            </div>
+                                          </a>
+                                        </div>
+                                                                                   
+                                </div>
+                             
+
+                              
+
+
+                            
+                                
+
+                           
+                              
+                                
+                              
+                              
+                                                                         
+                                                                          
+                            </div>
+                        <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+            <!-- Page body end -->
+            </div>
+        </div>
+<app-footer></app-footer>
+  </div>
+  <app-activity [array]="array"></app-activity>

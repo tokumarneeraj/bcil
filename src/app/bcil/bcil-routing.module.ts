@@ -54,7 +54,7 @@ const routes: Routes = [
   { path: "bcil-patent-table", canActivate: [AuthGuard], component: PatentInitComponent },
   { path: "copyright-dashboard", canActivate: [AuthGuard], component: CopyrightComponent },
   { path: "trademark-dashboard", canActivate: [AuthGuard], component: TrademarkComponent },
-  { path: "plant-varity-dashboard", canActivate: [AuthGuard], component: PlantVarityComponent },
+  { path: "plant-variety-dashboard", canActivate: [AuthGuard], component: PlantVarityComponent },
   { path: "mis-dashboard", canActivate: [AuthGuard], component: MisDashboardComponent },
   { path: "bcil-mis-table", canActivate: [AuthGuard], component: MisInitComponent },
   { path: "bcil-design-table", canActivate: [AuthGuard], component: DesignInitComponent },

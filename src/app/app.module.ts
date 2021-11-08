@@ -28,6 +28,7 @@ import { ToastaModule } from 'ngx-toasta';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppErrorHandler } from './app-error.handler';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { KeysPipe } from './pipes/keys.pipe';
 
 
 // import { HeaderComponent } from './header/header.component';
@@ -64,6 +65,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
   Bdoservice,
+  
     DatePipe,
     AlertService,
     ThemeManager,

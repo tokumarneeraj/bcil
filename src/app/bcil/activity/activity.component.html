@@ -153,6 +153,27 @@
                                 </div>
                               </div>
                             </ng-container>
+                            <ng-container *ngIf="fields?.length>0" >
+                            <form [formGroup]="dynamicForm" >
+                            <ng-container *ngFor="let controls of fields">
+                              <div class="form-group row">
+                                <div class="col-sm-12">
+                                  <label class="col-form-label"> {{controls.label}}</label>
+                             
+                              <input [type]="controls.type" class="form-control" [formControlName]="controls.label"/>
+                                <ng-container *ngFor="let validation of controls.validations">
+                                  <span *ngIf="dynamicForm.controls[controls.label].touched && dynamicForm.controls[controls.label].errors">
+                                    <p *ngIf="dynamicForm.controls[controls.label].errors[validation.name]">
+                                      {{validation.message}}
+                                    </p>
+                                  </span>
+                              </ng-container>
+                              </div>
+                              </div>
+                            </ng-container>
+                            {{dynamicForm.value|json}}
+                          </form>
+                            </ng-container>
                 <div class="form-group row">
                   <div class="col-sm-12">
                     <label class="col-form-label">Remarks</label>

@@ -12,4 +12,5 @@ export class filehistoryModel {
   public status: string;
   public active:boolean;
   public app_refid:string;
+  public jsondata:any;
 }

@@ -55,6 +55,7 @@ import { PatentInitComponent } from './patent-init/patent-init.component';
 import { CopyrightInitComponent } from './copyright-init/copyright-init.component';
 import { TrademarkInitComponent } from './trademark-init/trademark-init.component';
 import { DesignInitComponent } from './design-init/design-init.component';
+import { KeysPipe } from '../pipes/keys.pipe';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -90,13 +91,14 @@ import { DesignInitComponent } from './design-init/design-init.component';
     CopyrightInitComponent,
     TrademarkInitComponent,
     DesignInitComponent,
+    
      ],
 
   imports: [
     
     CommonModule,
     ToastaModule.forRoot(),
-  
+    
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
     NgSelectModule,

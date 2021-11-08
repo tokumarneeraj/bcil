@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild,ChangeDetectorRef } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { timeline } from 'console';
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -52,7 +52,9 @@ export class ActivityComponent implements OnInit {
   scientistlist:any[];
   submitted:boolean=false;
   process:string;
+  dynamicForm: FormGroup;
   milestone=new milestones();
+  fields = [];
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
@@ -77,9 +79,9 @@ export class ActivityComponent implements OnInit {
   this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
   this.Bdoservice.getdatapermission().subscribe(data=>{
     console.log(data);
-  
+ 
   })
-  
+ 
   this.ForwardForm = this.formbuilder.group({
 
     subject: ['', Validators.required],
@@ -91,8 +93,10 @@ export class ActivityComponent implements OnInit {
     assigntolm:[''],
     assignto:[''],
     files:[''],
+    
     milestonedata:this.formbuilder.array([this.addItemFormGroup()])
   });
+  
    
   }
   reminderchange(data){
@@ -107,12 +111,37 @@ export class ActivityComponent implements OnInit {
     }
       }
       showviewmodel(e?:string,value?:string,data?:any){
+        this.loading=false;
         this.process=e;
         this.UploadFileViewModel.app_no=data?.mis_no ||data?.mou_no;
         this.UploadFileViewModel.app_ref_id = data?.refid;
         this.appref=data?.refid;
         this.UploadFileViewModel.app_Status=value;
+
         this.activebtn=this.array?.button?.find(x=>x.value==value);
+this.fields=this.activebtn?.form?.jsondata||[];
+if(this.fields!=undefined){
+        const controls = {};
+        this.fields.forEach(res => {
+          const validationsArray = [];
+          res.validations.forEach(val => {
+            if (val.name === 'required') {
+              validationsArray.push(
+                Validators.required
+              );
+            }
+            if (val.name === 'pattern') {
+              validationsArray.push(
+                Validators.pattern(val.validator)
+              );
+            }
+          });
+          controls[res.label] = new FormControl('', validationsArray);
+        });
+        this.dynamicForm = new FormGroup(
+          controls
+        );
+}
  
     if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true||this.activebtn?.form?.assign==true){
      // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
@@ -220,6 +249,7 @@ this.organizations=data;
         this.UploadFileViewModel.assignto=this.ForwardForm.get('assignto').value;
         this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
         this.UploadFileViewModel.organization = this.ForwardForm.get('organization').value;
+        this.UploadFileViewModel.jsondata=JSON.stringify(this.dynamicForm.value);
 var tt=[];
 
         for (let arr of  this.ForwardForm.get('milestonedata').value) {
@@ -246,6 +276,7 @@ var tt=[];
           //this.ngOnInit();
           this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
           this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
+          this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
           this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
           this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
           this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):

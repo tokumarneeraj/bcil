@@ -1677,7 +1677,9 @@
         "type":"ip_init",
 "value":"S755",
 "color":"blue",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S756","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]}}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S756","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]
+
+	}}]
 },{
         "stage":"copyright_common_ip",
         "tablename":"IP EVALUATION ASSIGNED",
@@ -1761,7 +1763,38 @@
         "type":"ip_filed_shared_with_ipm",
 "value":"S765",
 "color":"purple",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S766"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S766","form":{
+"jsondata":[{
+"field":"grantnumber",
+      "type": "input",
+      "label": "Grant_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"grantdate",
+      "type": "date",
+      "label": "Grant_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant date Required"
+        }
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"copyright_common_ip",
         "tablename":"ER Generated",
@@ -2670,13 +2703,135 @@
 }]}],
  "plant_variety":[{
         "stage":"plant_variety",
-        "tablename":"Misc Init",
-        "heading":"Misc Init",
-        "type":"misc_init",
-"value":"S170",
+        "tablename":"Plant Variety Init",
+        "heading":"Plant Variety  Init",
+        "type":"plantvariety_init",
+"value":"S792",
 "color":"green",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Forword","class":"btn btn-info","value":"S792"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Plant Variety Activity Assigned",
+    "heading":"Plant Variety Activity Assigned",
+    "type":"activity_assigned",
+"value":"S793",
+"color":"dark-blue",
+"button":[{
+    "text":"Forword","class":"btn btn-info","value":"S794","form":{"milestone":true,"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Proposal Required",
+    "heading":"Proposal Required",
+    "type":"proposeal_require",
+"value":"S794",
+"color":"dark-orange",
+"button":[{
+"text":"Change Req","class":"btn btn-info","value":"S795"},
+{"text":"Forward","class":"btn btn-success","value":"S796"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Proposal Change Required By Admin",
+    "heading":"Proposal Change Required By Admin",
+    "type":"proposal_change_required_by_admin",
+"value":"S795",
+"color":"green",
+"button":[{"text":"Update","class":"btn btn-success","value":"S794"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Proposal Forwarded by Admin",
+    "heading":"Proposal Forwarded by Admin",
+    "type":"proposal_forward_by_admin",
+"value":"S796",
+"color":"blue",
+"button":[{
+"text":"Change Req","class":"btn btn-info","value":"S797"},
+{"text":"Forward","class":"btn btn-success","value":"S798"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Proposal change Required By Client",
+    "heading":"Proposal change Required By Client",
+    "type":"proposal_change_required_by_client",
+"value":"S797",
+"color":"red",
+"button":[{
+"text":"Change Req","class":"btn btn-info","value":"S795"},
+{"text":"Reject","class":"btn btn-success","value":"S796"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Proposal Accepted By Client",
+    "heading":"Proposal Accepted By Client",
+    "type":"proposal_accepted_by_client",
+"value":"S798",
+"color":"purple",
+"button":[{
+"text":"Forword","class":"btn btn-info","value":"S177"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Report Proposed",
+    "heading":"Report Proposed",
+    "type":"report_proposed",
+"value":"S799",
+"color":"dark-blue",
+"button":[{
+"text":"Change Req","class":"btn btn-info","value":"S800"},
+{"text":"Reject","class":"btn btn-success","value":"S801"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Report Change Required By Admin",
+    "heading":"Report Change Required by Admin",
+    "type":"report_chnage_req_by_admin",
+"value":"S800",
+"color":"dark-orange",
+"button":[{
+"text":"Update","class":"btn btn-info","value":"S799"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Report Forward By Admin",
+    "heading":"Report Forward By Admin",
+    "type":"report_forward_by_admin",
+"value":"S801",
+"color":"yellow",
+"button":[
+{"text":"Forward","class":"btn btn-success","value":"S802"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Report Change Required By Client",
+    "heading":"Report Change Required By Client",
+    "type":"report_change_required_by_client",
+"value":"S802",
+"color":"blue",
+"button":[{
+"text":"Change Req","class":"btn btn-info","value":"S800"},
+{"text":"Reject","class":"btn btn-success","value":"S801"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"Report Accepted By Client",
+    "heading":"Report Accepted By Client",
+    "type":"report_accepted_by_client",
+"value":"S803",
+"color":"red",
+"button":[{"text":"Forward","class":"btn btn-success","value":"S804"}]
+},
+{
+    "stage":"plant_variety",
+    "tablename":"All Report Accepted By Client",
+    "heading":"All Report Accepted By Client",
+    "type":"all_report_accepted_by_client",
+"value":"S804",
+"color":"blue",
+"button":[]
 }],
     "mis":[{
         "stage":"mis",
@@ -2686,7 +2841,7 @@
 "value":"S170",
 "color":"green",
 "button":[{
-    "text":"Forword","class":"btn btn-info","value":"S171","form":{"milestone":true}}]
+    "text":"Forword","class":"btn btn-info","value":"S171"}]
 },
 {
     "stage":"mis",
@@ -2696,7 +2851,7 @@
 "value":"S171",
 "color":"dark-blue",
 "button":[{
-    "text":"Forword","class":"btn btn-info","value":"S172","form":{"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
+    "text":"Forword","class":"btn btn-info","value":"S172","form":{"milestone":true,"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
 },
 {
     "stage":"mis",

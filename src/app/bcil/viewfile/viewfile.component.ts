@@ -39,6 +39,9 @@ export class ViewfileComponent implements OnInit {
     this.alertService.showDialog(data,DialogType.alert);
 
   }
+  public removeSlashes(side: string): string {
+    return side.replace("_", " ");
+}
   ngOnInit(): void {
     this.route.queryParams.subscribe((params)=>{
      
@@ -52,8 +55,10 @@ export class ViewfileComponent implements OnInit {
           console.log(data1);
       this.Bdoservice.Getfile(this.refid).subscribe(data=>{console.log(data)
         data.map((x,i)=>{
-x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=>y.id==x.createdby)?.roles+")"
+x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=>y.id==x.createdby)?.roles+")",
+x.jsondata=x.jsondata!=null?JSON.parse(x.jsondata):undefined
         })
+        console.log(data)
 
       //  data= this.stage=="mou"?data.filter(x=>this.moustatus.includes(x.status)):
       //   data.filter(x=>this.ttostatus.includes(x.status));

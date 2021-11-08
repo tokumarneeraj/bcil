@@ -3,6 +3,7 @@ import { NgModule} from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
+import { KeysPipe } from './pipes/keys.pipe';
 // import { ComplaintDetailsComponent } from './complaint-details/complaint-details.component';
 // import { RouterModule } from '@angular/router';
 // import { ReactiveFormsModule } from '@angular/forms';
@@ -23,12 +24,14 @@ import { GroupByPipe } from './pipes/group-by.pipe';
   //  NgxSpinnerModule
   ],
   declarations: [
+    KeysPipe,
     GroupByPipe,
     HeaderComponent,
     FooterComponent
   ],
   exports: [
     GroupByPipe,
+    KeysPipe,
     HeaderComponent,
    FooterComponent
     // ComplaintDetailsComponent,
