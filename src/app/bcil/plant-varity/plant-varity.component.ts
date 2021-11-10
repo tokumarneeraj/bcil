@@ -55,7 +55,7 @@ export class PlantVarityComponent implements OnInit {
     })
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
-    this.Bdoservice.GetPatentModel().subscribe(data => {
+    this.Bdoservice.GetPlantvarietyModel().subscribe(data => {
       console.log(data)
       this.plantModel = data;
       this.showpage = true;

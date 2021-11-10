@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {activeusermou, addusertomou, copyrightModel, designModel, misModel, mouModel, patentModel, plantvarietyModel, Reminder, StatusMaster, trademarkModel} from '../model/mou.model';
+import {activeusermou, addusertomou, copyrightModel, designModel, misModel, mouModel, patentModel, plantvarietyModel, Reminder, StatusMaster, trademarkModel, ttaModel} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
@@ -36,6 +36,9 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     get getallorganization() { return environment.baseUrl+'/api/bdo/getallorganization'; }
     get getmisurl() { return environment.baseUrl+'/api/bdo/getotherservice'; }
     get getpatenturl() { return environment.baseUrl+'/api/bdo/getpatentservice'; }
+    get getttaurl() { return environment.baseUrl+'/api/bdo/getttaservice'; }
+
+    
     get getcopyrighturl() { return environment.baseUrl+'/api/bdo/getcopyright'; }
     get gettrademarkurl() { return environment.baseUrl+'/api/bdo/gettrademark'; }
     get getdesignurl() { return environment.baseUrl+'/api/bdo/getdesign'; }
@@ -217,6 +220,14 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
         public  GetPatentModel<T>(): Observable<patentModel[]> {
         
           return this.http.get<patentModel[]>(this.getpatenturl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetTtaModel<T>(): Observable<ttaModel[]> {
+        
+          return this.http.get<ttaModel[]>(this.getttaurl,this.requestHeaders);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

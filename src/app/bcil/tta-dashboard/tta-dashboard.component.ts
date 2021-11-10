@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { activeusermou, mouModel } from 'src/app/model/mou.model';
 import { Bdoservice } from '../../services/bdo.service';
 import { AccountService } from '../../services/account.service';
@@ -6,6 +6,7 @@ import { Permission } from 'src/app/model/permission.model';
 import { commondata } from 'src/app/model/common';
 import { Role } from 'src/app/model/role.model';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivityComponent } from '../activity/activity.component';
 
 @Component({
   selector: 'app-tta-dashboard',
@@ -14,6 +15,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 })
 export class TtaDashboardComponent implements OnInit {
   mouModel: mouModel[];
+  ttaModel:any[];
   showpage = false;
   UserEmail: string;
   userRoles: string[];
@@ -40,6 +42,8 @@ export class TtaDashboardComponent implements OnInit {
    disabled: boolean = true;
    showaccordion:boolean=false;
   commondata=new commondata();
+  @ViewChild(ActivityComponent)
+  activity: ActivityComponent;
   ttaper:any[];
   tlpstatus = ['S130', 'S132', 'S133', 'S134', 'S135', 'S136', 'S137', 'S138', 'S139', 'S140', 'S141', 'S142', 'S143', 'S144', 'S145'];
   nttsastatus = ['S146', 'S147', 'S148', 'S149', 'S150', 'S151', 'S152', 'S153'];
@@ -48,6 +52,11 @@ export class TtaDashboardComponent implements OnInit {
   roles:Role[];
   viewtab:any;
   ttadata:any;
+  showactivity:boolean=true;
+  isNodel:boolean=false;
+  isScientist:boolean=false;
+  stagevalue='S113';
+  array={"tablename":"Upload Assignment/Tech. disclosure form","organization":true,"getscientist":true,"assignlabel":"Assign Scientist","assignarray":['Scientist']}
   constructor(private route: ActivatedRoute,private Bdoservice: Bdoservice, private accountService: AccountService,private router:Router) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
@@ -57,6 +66,7 @@ this.UserName=this.accountService.currentUser.userName;
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
+ 
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
     this.permission=JSON.parse(localStorage.getItem('user_permissions'));
     debugger;
@@ -258,26 +268,37 @@ console.log(this.ttadata,'uu')
     this.isNodal=this.userRoles.includes('Nodal');
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
-    this.Bdoservice.GetMou().subscribe(data => {
+      this.Bdoservice.GetMou().subscribe(moudata => {
+        this.mouModel=moudata;
+      });
+    this.Bdoservice.GetTtaModel().subscribe(data => {
       console.log(data)
-      this.mouModel = data;
+      this.ttaModel = data;
       this.showpage = true;
     })
   });
   }
 
+  ngAfterViewInit() {
 
-
+    this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+  }
+  createactivity(){
+    this.activity.showviewmodel('',this.stagevalue);
+      }
 
   
-  clientMouListFilter(data) {
+  ttaListFilter(data) {
    let yy=["tlp","nstta","tstl"]
     if(this.isSuperAdmin){
-      return this.mouModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) ).length;
+      return this.ttaModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) ).length;
     }
     
     else{
-      return this.mouModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
+      return this.ttaModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
     }
     // if (this.isNodal == true) {
     //   return this.mouModel?.filter(x => x.nodal_Name == this.UserName && x.app_Status == data).length;

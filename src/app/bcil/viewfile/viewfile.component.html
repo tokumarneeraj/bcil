@@ -65,8 +65,10 @@
                                                             <th scope="row">{{i+1}}</th>
                                                             <td><a href="{{getbaseurl}}/{{item.url}}" target="_blank">{{item.filename==''?'Not Available':item.filename}}</a>
                                                                 <br/>
-                                                                <div *ngFor="let item of item?.jsondata | keyvalue">
-                                                                    <b>{{item.key.replace('_',' ')}}</b>: <b>{{item.value}}</b>
+                                                                <div *ngFor="let items of item?.jsondata | keyvalue">
+<p *ngIf="items.key=='FILE'">{{item?.jsondata?.FEE_RECEIPT_FILE !=undefined ? 'FEE RECEIPT FILE':'NBA_FILE' |underscore}}: <a href="{{getbaseurl}}/{{items.value}}">{{item?.jsondata?.FILENAME}}</a></p>
+                                                                  
+<p *ngIf="items.key!='FILE' && items.key!='FEE_RECEIPT_FILE' && items.key!='NBA_FILE'&& items.key!='FILENAME'"> <b>{{items.key| underscore}}</b>: <b>{{items.value}}</b></p>
                                                                 </div>
                                                         </td>
                                                             <td>{{item.createdby}}</td>

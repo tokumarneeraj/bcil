@@ -52,6 +52,7 @@ export class ActivityComponent implements OnInit {
   scientistlist:any[];
   submitted:boolean=false;
   process:string;
+  UserId:string;
   dynamicForm: FormGroup;
   milestone=new milestones();
   fields = [];
@@ -59,6 +60,7 @@ export class ActivityComponent implements OnInit {
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
   constructor(private cdRef: ChangeDetectorRef,private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder,  private accountService: AccountService, private router: Router) { 
+    this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
   }
 
@@ -136,6 +138,10 @@ if(this.fields!=undefined){
               );
             }
           });
+        if(res.type=='file'){
+          controls["FILENAME"] = new FormControl('');
+          controls["FILE"] = new FormControl('');
+        }
           controls[res.label] = new FormControl('', validationsArray);
         });
         this.dynamicForm = new FormGroup(
@@ -291,6 +297,29 @@ var tt=[];
         })
 
   }
+  otherfileChangeEvent(event){
+    if (event.target.files && event.target.files[0]) {
+     // this.ForwardForm.get('files').setValue("vgv");
+      const fileUpload = event.target.files[0];
+      const filee = fileUpload.files;
+      if( fileUpload.size<=30*1024*1024){
+      this.dynamicForm.controls['FILENAME'].setValue(fileUpload.name);
+
+     // const sFileExtension = fileUpload.name
+       // .split('.')
+      //[fileUpload.name.split('.').length - 1].toLowerCase();
+      Utilities.getBase64(event.target.files[0]).then((data) => {
+        console.log(data);
+       // this.UploadFileViewModel.fileType = '.' + sFileExtension;
+
+        let data1: any = data;
+        let contentType = data1?.split(',')[1];
+        //this.dynamicForm.controls['FEE_RECEIPT_FILE'].setValue(contentType);
+        this.dynamicForm.controls['FILE'].setValue(contentType);
+      });
+  }
+}
+}
   fileChangeEvent(event){
     if (event.target.files && event.target.files[0]) {
       this.ForwardForm.get('files').setValue("vgv");

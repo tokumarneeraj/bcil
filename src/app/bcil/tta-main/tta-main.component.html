@@ -77,7 +77,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of mouModel;let i=index;">
+                    <tr *ngFor="let item of ttaModel;let i=index;">
                       <th scope="row">{{i+1}}</th>
                       <td>{{item.tto_no}}</td>
                       <td>{{item.int_Uni_Name}}</td>
@@ -275,40 +275,5 @@
     </div>
   </div>
 </div>
-<div class="modal fade" bsModal #editorModal3="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
-  <div class="modal-dialog modal-md" style="max-height: 600px;
-  overflow: auto;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Assign Scientist</h4>
-        <button type="button" class="close float-right" title="Close" (click)="editorModal3.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="AssignScientistForm">
-          <div class="form-group row p-5">
-            <label class="col-form-label">Scientist</label>
-            <select  class="form-control" formControlName="scientist" [ngClass]="{ 'is-invalid': submitted && f1.scientist.errors }" >
-              <option value="">Choose</option>
-              <option *ngFor="let sc of activeusermou" value="{{sc.userid}}">{{sc.mouref}}</option>
-              </select>
-
-              <p *ngIf="submitted1 && f1.scientist.errors" class="invalid-feedback">Please select Scientist</p>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-6">
-              <button type="submit"
-                      class="btn btn-success"
-                      (click)="saveassignscien()">
-                Save
-              </button>
-            </div>
-          </div>
-
-          </form>
-          </div>
-          </div>
-          </div>
-          </div>
+<app-add-scientist></app-add-scientist>
           <app-addition-file></app-addition-file>

@@ -166,17 +166,7 @@
 "button":[{
     "text":"Upload Additional Info","class":"btn btn-info","title":"Forward to Admin","value":"S113","form":{"fileuploadreq":true}}]
 },
-	{
-        "stage":"tta",
-        "tablename":"Upload Assignment/Tech. disclosure form",
-		"formheader":"Upload Assignment/Tech. disclosure form",
-        "heading":"Upload Assignment/Tech. disclosure form",
-        "type":"ViewMouAll",
-"value":"S108",
-"color":"dark-green",
-"button":[{
-    "text":"Create TTA","class":"btn btn-info","title":"Forward to Admin","value":"S113","form":{"fileuploadreq":true}}]
-},
+
 {
         "stage":"tta",
         "tablename":"TT Request and Disclosure",
@@ -963,14 +953,53 @@
 "button":[]
 },{
         "stage":"patentdraft",
-        "tablename":"Report Shared BY LUF",
-        "heading":"Report Shared BY LUF",
-		"formheader":"Report Shared BY LUF",
-        "type":"report_shared_by_luf",
+        "tablename":"Report Shared With LUF",
+        "heading":"Report Shared With LUF",
+		"formheader":"Report Shared With LUF",
+        "type":"report_shared_with_luf",
 "value":"S611",
 "color":"red",
-"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S607"},
-{"text":"Closure Request","class":"btn btn-success","title":"","value":"S608"}]
+"button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S612"},
+{"text":"Forward","class":"btn btn-success","title":"","value":"S613","form":{
+"jsondata":[{
+"field":"nba",
+      "type": "select",
+      "label": "NBA",
+      "inputType": "text",
+      "name": "name",
+	  "option":[{"key":"YES","value":"YES"},{"key":"NO","value":"NO"}],
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "NBA Required"
+        }
+      ]
+    
+    },
+	{
+"field":"remarks",
+      "type": "textarea",
+      "label": "NBA_REMARKS",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    },
+	{
+"field":"file",
+      "type": "file",
+      "label": "NBA_FILE",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"patentdraft",
         "tablename":"Report Change Required By LUF",
@@ -991,7 +1020,46 @@
 "value":"S613",
 "color":"blue",
 "button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S614"},
-{"text":"Forward","class":"btn btn-success","title":"","value":"S615"}]
+{"text":"Forward","class":"btn btn-success","title":"","value":"S615","form":{
+"jsondata":[{
+"field":"nba",
+      "type": "select",
+      "label": "NBA",
+      "inputType": "text",
+      "name": "name",
+	  "option":[{"key":"YES","value":"YES"},{"key":"NO","value":"NO"}],
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "NBA Required"
+        }
+      ]
+    
+    },
+	{
+"field":"remarks",
+      "type": "textarea",
+      "label": "NBA_REMARKS",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    },
+	{
+"field":"file",
+      "type": "file",
+      "label": "NBA_FILE",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"patentdraft",
         "tablename":"Patent Draft Change Required By IPM",
@@ -1010,7 +1078,46 @@
 "value":"S615",
 "color":"dark-blue",
 "button":[{"text":"Change Req","class":"btn btn-primary","title":"","value":"S616"},
-{"text":"Forward","class":"btn btn-success","title":"","value":"S617"}]
+{"text":"Forward","class":"btn btn-success","title":"","value":"S617","form":{
+"jsondata":[{
+"field":"nba",
+      "type": "select",
+      "label": "NBA",
+      "inputType": "text",
+      "name": "name",
+	  "option":[{"key":"YES","value":"YES"},{"key":"NO","value":"NO"}],
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "NBA Required"
+        }
+      ]
+    
+    },
+	{
+"field":"remarks",
+      "type": "textarea",
+      "label": "NBA_REMARKS",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    },
+	{
+"field":"file",
+      "type": "file",
+      "label": "NBA_FILE",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"patentdraft",
         "tablename":"Patent Draft Change Required by Client",
@@ -1057,7 +1164,42 @@
         "type":"final_filing_pending_atluf",
 "value":"S619",
 "color":"dark-orange",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S621"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S621",
+"form":{
+"jsondata":[{
+"field":"filingdate",
+      "type": "date",
+      "label": "FILING_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "FILING DATE Required"
+        }
+      ]
+    
+    },
+	{
+"field":"applicationno",
+      "type": "text",
+      "label": "APPLICATION_NO",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "APPLICATION NO Required"
+        }
+      ]
+    
+    }
+	
+	]}}]
 },	{
         "stage":"patentfinalfiling",
         "tablename":"Provisional Filing Done By Luf",
@@ -1076,7 +1218,99 @@
         "type":"final_patent_filing_done_atluf",
 "value":"S621",
 "color":"green",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S622"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S622","form":{
+"jsondata":[{
+"field":"priporitydate",
+      "type": "date",
+      "label": "PRIPORITY_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Pripority Date Required"
+        }
+      ]
+    
+    },
+	{
+"field":"filingdate",
+      "type": "date",
+      "label": "FILING_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Filing Date Required"
+        }
+      ]
+    
+    },
+	{
+"field":"applicationno",
+      "type": "text",
+      "label": "APPLICATION_NO",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Application No Required"
+        }
+      ]
+    
+    },
+	{
+"field":"file",
+      "type": "file",
+      "label": "FEE_RECEIPT_FILE",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    },
+	{
+"field":"request_forearly_publication",
+      "type": "select",
+      "label": "Request_For_Early_Publication",
+      "inputType": "text",
+      "name": "name",
+	   "option":[{"key":"YES","value":"YES"},{"key":"NO","value":"NO"}],
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Request For Early Publication  Required"
+        }
+      ]
+    
+    },
+	{
+"field":"request_for_examination_filed",
+      "type": "select",
+      "label": "Request_For_Examination_Filed",
+      "inputType": "text",
+      "name": "name",
+	   "option":[{"key":"YES","value":"YES"},{"key":"NO","value":"NO"}],
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Request for Examination Filed Required"
+        }
+      ]
+    
+    }
+	]}}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1086,7 +1320,26 @@
         "type":"final_patent_filing_done_with_luf",
 "value":"S622",
 "color":"blue",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S644"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S644",
+"form":{
+"jsondata":[{
+"field":"publicationdate",
+      "type": "date",
+      "label": "PUBLICATION_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "PUBLICATION DATE Required"
+        }
+      ]
+    
+    }
+	
+	]}}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1096,7 +1349,26 @@
         "type":"provisional_filing_shared_with_client",
 "value":"S624",
 "color":"purple",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S625"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S625","form":{
+"jsondata":[{
+"field":"postdate",
+      "type": "date",
+      "label": "POSTDATE_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "POST DATE Required"
+        }
+      ]
+    
+    }
+	
+	]}
+}]
 }
 ,	{
         "stage":"patentfinalfiling",
@@ -1335,7 +1607,25 @@
         "type":"rfe_go_ahead_shared_with_luf",
 "value":"S647",
 "color":"dark-green",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S648"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S648","form":{
+"jsondata":[{
+"field":"refdate",
+      "type": "date",
+      "label": "REF_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "REF DATE Required"
+        }
+      ]
+    
+    }
+	
+	]}}]
 },{
         "stage":"patentrequiredforexamination",
         "tablename":"RFE Filing Done By Luf",
@@ -1353,7 +1643,26 @@
         "type":"rfe_filing_shared_with_client",
 "value":"S649",
 "color":"dark-organge",
-"button":[{"text":"REF Received","class":"btn btn-primary","title":"","value":"S650"}]
+"button":[{"text":"REF Received","class":"btn btn-primary","title":"","value":"S650",
+"form":{
+"jsondata":[{
+"field":"ferdate",
+      "type": "date",
+      "label": "FER_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "FER DATE Required"
+        }
+      ]
+    
+    }
+	
+	]}}]
 }]
 		},{"stage":"patent",
 		"substage":"patentfirstexamreport",
@@ -1389,7 +1698,48 @@
         "type":"fer_resp_go_ahead_by_client",
 "value":"S652",
 "color":"green",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S653"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S653",
+"form":{
+"jsondata":[{
+"field":"nba",
+      "type": "select",
+      "label": "NBA",
+      "inputType": "text",
+      "name": "name",
+	  "option":[{"key":"YES","value":"YES"},{"key":"NO","value":"NO"}],
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "NBA Required"
+        }
+      ]
+    
+    },
+	{
+"field":"remarks",
+      "type": "textarea",
+      "label": "NBA_REMARKS",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    },
+	{
+"field":"file",
+      "type": "file",
+      "label": "NBA_FILE",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+
+      ]
+    
+    }
+	]}
+}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Go Ahead Shared With Luf",
@@ -1455,7 +1805,25 @@
         "type":"fer_resp_filing_pending_at_luf",
 "value":"S659",
 "color":"dark-blue",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S660"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S660",
+"form":{
+"jsondata":[{
+"field":"ferresponsedate",
+      "type": "date",
+      "label": "FER_RESPONSE_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "FER RESPONSE DATE Required"
+        }
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"patentfirstexamreport",
         "tablename":"FER Resp Filing Done By Luf",
@@ -1473,7 +1841,43 @@
         "type":"fer_resp_filing_shared_with_client",
 "value":"S661",
 "color":"red",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S662"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S662",
+"form":{
+"jsondata":[{
+"field":"hearing_notice_date",
+      "type": "date",
+      "label": "HEARING_NOTICE_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "HEARING NOTICE DATE Required"
+        }
+      ]
+    
+    },
+	{
+"field":"hearing_date",
+      "type": "date",
+      "label": "HEARING_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "HEARING DATE Required"
+        }
+      ]
+    
+    }
+	
+	]}
+}]
 }]
 		}
 		,{"stage":"patent",
@@ -1604,7 +2008,26 @@
 "value":"S673",
 "color":"red",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success",
+	"form":{
+"jsondata":[{
+"field":"written_submission_date",
+      "type": "date",
+      "label": "WRITTEN_SUBMISSION_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "WRITTEN SUBMISSION DATE Required"
+        }
+      ]
+    
+    }
+	
+	]}}]
 },{
         "stage":"ertoacceptancepatent",
         "tablename":"Written Submission Filed",
@@ -1765,36 +2188,37 @@
 "color":"purple",
 "button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S766","form":{
 "jsondata":[{
-"field":"grantnumber",
+"field":"dairyno",
       "type": "input",
-      "label": "Grant_Number",
+      "label": "Dairy_Number",
       "inputType": "text",
       "name": "name",
       "validations": [
         {
           "name": "required",
           "validator": "required",
-          "message": "Grant Number Required"
+          "message": "Dairy Number Required"
         }
       ]
     
     },
 	{
-"field":"grantdate",
+"field":"erdate",
       "type": "date",
-      "label": "Grant_Date",
+      "label": "ER_Date",
       "inputType": "text",
       "name": "name",
       "validations": [
         {
           "name": "required",
           "validator": "required",
-          "message": "Grant date Required"
+          "message": "ER Date Required"
         }
       ]
     
     }
-	]}}]
+	]
+	}}]
 },{
         "stage":"copyright_common_ip",
         "tablename":"ER Generated",
@@ -1810,9 +2234,8 @@
         "type":"er_shared_with_client",
 "value":"S767",
 "color":"dark-orange",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S768"},
-{"text":"Copyright Rejected","class":"btn btn-info","title":"","value":"S787"},
-{"text":"Copyright Granted","class":"btn btn-success","title":"","value":"S790"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S768"}
+]
 }
 
 ]},{"stage":"copyright",
@@ -1898,7 +2321,40 @@
         "type":"er_resp_filed",
 "value":"S776",
 "color":"yellow",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S777"}]
+"button":[{"text":"Copyright Rejected","class":"btn btn-info","title":"","value":"S787"},
+{"text":"Copyright Granted","class":"btn btn-success","title":"","value":"S790"},
+{"text":"Forward","class":"btn btn-primary","title":"","value":"S777","form":{
+"jsondata":[{
+"field":"grantnumber",
+      "type": "input",
+      "label": "Grant_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"grantdate",
+      "type": "date",
+      "label": "Grant_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant date Required"
+        }
+      ]
+    
+    }
+	]}}]
 }]},{"stage":"copyright",
 		"substage":"copyright_er_accp",
         "tablename":"ER Response To Acceptance",
@@ -1982,13 +2438,44 @@
 "button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S786"}]
 },{
         "stage":"copyright_er_accp",
-        "tablename":"Wriiten Submission Filed",
-        "heading":"Wriiten Submission Filed",
+        "tablename":"Wriiten Statement Filed",
+        "heading":"Wriiten Statement Filed",
         "type":"written_submission_filed",
 "value":"S786",
 "color":"purple",
 "button":[{"text":"Copyright Rejected","class":"btn btn-primary","title":"","value":"S787"},
-{"text":"Copyright Granted","class":"btn btn-success","title":"","value":"S790"}]
+{"text":"Copyright Granted","class":"btn btn-success","title":"","value":"S790","form":{
+"jsondata":[{
+"field":"grantnumber",
+      "type": "input",
+      "label": "Grant_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"grantdate",
+      "type": "date",
+      "label": "Grant_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant date Required"
+        }
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"copyright_er_accp",
         "tablename":"Copyrignt Rejected",
@@ -2123,7 +2610,38 @@
         "type":"ip_filed_shared_with_ipm",
 "value":"S728",
 "color":"purple",
-"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S729"}]
+"button":[{"text":"Forward","class":"btn btn-success","title":"","value":"S729","form":{
+"jsondata":[{
+"field":"applicationno",
+      "type": "input",
+      "label": "Application_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Application Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"erdate",
+      "type": "date",
+      "label": "ER_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "ER Date Required"
+        }
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"design_common_ip",
         "tablename":"ER Generated",
@@ -2224,7 +2742,37 @@
         "type":"er_resp_filed",
 "value":"S739",
 "color":"yellow",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S740"},
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S740","form":{"jsondata":[{
+"field":"grantnumber",
+      "type": "input",
+      "label": "Grant_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"grantdate",
+      "type": "date",
+      "label": "Grant_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant date Required"
+        }
+      ]
+    
+    }
+	]}},
 {"text":"Rejected","class":"btn btn-info","title":"","value":"S750"},
 {"text":"Granted","class":"btn btn-success","title":"","value":"S753"}]
 }]},{"stage":"design",
@@ -2311,13 +2859,44 @@
 "button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S749"}]
 },{
         "stage":"design_er_accp",
-        "tablename":"Wriiten Submission Filed",
-        "heading":"Wriiten Submission Filed",
+        "tablename":"Wriiten Statement Filed",
+        "heading":"Wriiten Statement Filed",
         "type":"written_submission_filed",
 "value":"S749",
 "color":"purple",
 "button":[{"text":"Design Rejected","class":"btn btn-primary","title":"","value":"S750"},
-{"text":"Design Granted","class":"btn btn-primary","title":"","value":"S753"}]
+{"text":"Design Granted","class":"btn btn-primary","title":"","value":"S753","form":{
+"jsondata":[{
+"field":"grantnumber",
+      "type": "input",
+      "label": "Grant_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"grantdate",
+      "type": "date",
+      "label": "Grant_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant date Required"
+        }
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"design_er_accp",
         "tablename":"Design Rejected",
@@ -2451,7 +3030,38 @@
         "type":"ip_filed_shared_with_ipm",
 "value":"S690",
 "color":"purple",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S691"}]
+"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S691","form":{
+"jsondata":[{
+"field":"applicationno",
+      "type": "input",
+      "label": "Application_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Application Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"erdate",
+      "type": "date",
+      "label": "ER_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "ER Date Required"
+        }
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"trademark_common_ip",
         "tablename":"ER Generated",
@@ -2641,13 +3251,29 @@
 "button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S711"}]
 },{
         "stage":"trademark_er_accp",
-        "tablename":"Wriiten Submission Filed",
-        "heading":"Wriiten Submission Filed",
+        "tablename":"Wriiten Statement Filed",
+        "heading":"Wriiten Statement Filed",
         "type":"written_submission_filed",
 "value":"S711",
 "color":"purple",
 "button":[{"text":"TM Rejected","class":"btn btn-primary","title":"","value":"S712"},
-{"text":"TM Advertise","class":"btn btn-success","title":"","value":"S714"}]
+{"text":"TM Advertise","class":"btn btn-success","title":"","value":"S714","form":{
+"jsondata":[{
+"field":"advertisementdate",
+      "type": "date",
+      "label": "Advertisement_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Advertisement is Required"
+        }
+      ]
+    
+    }
+	]}}]
 },{
         "stage":"trademark_er_accp",
         "tablename":"Trademark Rejected",
@@ -2671,7 +3297,38 @@
         "type":"trademark_advertised",
 "value":"S714",
 "color":"blue",
-"button":[{"text":"Granted","class":"btn btn-primary","title":"","value":"S715"},
+"button":[{"text":"Granted","class":"btn btn-primary","title":"","value":"S715","form":{
+"jsondata":[{
+"field":"grantnumber",
+      "type": "input",
+      "label": "Grant_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"grantdate",
+      "type": "date",
+      "label": "Grant_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant date Required"
+        }
+      ]
+    
+    }
+	]}},
 {"text":"Opposition Proceeding","class":"btn btn-primary","title":"","value":"S717"}]
 },{
         "stage":"trademark_er_accp",
@@ -2699,7 +3356,38 @@
 "value":"S717",
 "color":"dark-pink",
 "button":[{
-    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success"}]
+    "text":"Forword","class":"btn btn-info"},{"text":"approve","class":"btn btn-success","form":{
+	"jsondata":[{
+"field":"grantnumber",
+      "type": "input",
+      "label": "Grant_Number",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant Number Required"
+        }
+      ]
+    
+    },
+	{
+"field":"grantdate",
+      "type": "date",
+      "label": "Grant_Date",
+      "inputType": "text",
+      "name": "name",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Grant date Required"
+        }
+      ]
+    
+    }
+	]}}]
 }]}],
  "plant_variety":[{
         "stage":"plant_variety",

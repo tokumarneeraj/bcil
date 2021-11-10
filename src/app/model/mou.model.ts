@@ -59,6 +59,15 @@ export class patentModel{
   public institude_code:string;
   public app_Status:string;
 }
+export class ttaModel{
+  public refid:string;
+  public subject:string;
+  public mouref:string;
+  public remark:string;
+  public appno:string;
+  public institude_code:string;
+  public app_Status:string;
+}
 export class trademarkModel{
   public refid:string;
   public subject:string;

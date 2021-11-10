@@ -158,9 +158,15 @@
                             <ng-container *ngFor="let controls of fields">
                               <div class="form-group row">
                                 <div class="col-sm-12">
-                                  <label class="col-form-label"> {{controls.label}}</label>
+                                  <label class="col-form-label"> {{controls.label |underscore}}</label>
+                                  <select *ngIf="controls.type=='select'"  [formControlName]="controls.label" class="form-control">
+                                    <option value="">Choose</option>
+                                    <option *ngFor="let opt of controls.option" value="{{opt.key}}">{{opt.value}}</option>
+                                    </select>
+                                    <textarea type="text" class="form-control" *ngIf="controls.type=='textarea'"  [formControlName]="controls.label"
+                                    ></textarea>
                              
-                              <input [type]="controls.type" class="form-control" [formControlName]="controls.label"/>
+                              <input [type]="controls.type" class="form-control" *ngIf="controls.type=='text' || controls.type=='date' || controls.type=='file'" (change)="otherfileChangeEvent($event)" [formControlName]="controls.label"/>
                                 <ng-container *ngFor="let validation of controls.validations">
                                   <span *ngIf="dynamicForm.controls[controls.label].touched && dynamicForm.controls[controls.label].errors">
                                     <p *ngIf="dynamicForm.controls[controls.label].errors[validation.name]">

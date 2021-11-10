@@ -14,6 +14,7 @@ import { error } from 'jquery';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { User } from 'src/app/model/user.model';
+import { AddScientistComponent } from '../add-scientist/add-scientist.component';
 
 @Component({
   selector: 'app-tta-main',
@@ -22,7 +23,7 @@ import { User } from 'src/app/model/user.model';
 })
 
 export class TtaMainComponent implements OnInit {
-
+ttaModel:any[];
   mouModel: mouModel[];
   mouref:string;
   showpage = false;
@@ -38,6 +39,8 @@ export class TtaMainComponent implements OnInit {
   createdBy = "";
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
+  @ViewChild(AddScientistComponent)
+  addscientist: AddScientistComponent;
   UploadFileViewModel = new UploadFileViewModel();
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
@@ -120,16 +123,16 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
 
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
-    this.Bdoservice.GetMou().subscribe(data => {
+    this.Bdoservice.GetTtaModel().subscribe(data => {
       console.log(data)
       this.showClientPage = true;
 
       if(this.isSuperAdmin){
-        this.mouModel = data.filter(x=>x.app_Status==this.array?.value);
+        this.ttaModel = data.filter(x=>x.app_Status==this.array?.value);
       }
       
       else{
-        this.mouModel = data.filter(x=>x.app_Status==this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
+        this.ttaModel = data.filter(x=>x.app_Status==this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
       }
       this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.type);
       this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.type);
@@ -138,9 +141,7 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
     });
   })
 });
-    this.AssignScientistForm=this.formbuilder.group({
-      scientist:['',Validators.required]
-    });
+   
     this.ForwardForm = this.formbuilder.group({
 
       subject: ['', Validators.required],
@@ -253,32 +254,7 @@ this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
     
     }
       }
-      get f1() { return this.AssignScientistForm.controls; }
-      saveassignscien(){
-        
-        this.submitted1=true;
-        if (this.AssignScientistForm.invalid) {
-          return;
-        }
-        this.loading=true;
-        this.addusertomou.userid=this.AssignScientistForm.get("scientist").value;
-      // alert(this.addusertomou.userid)
-        this.Bdoservice.AddScientist(this.addusertomou).subscribe(data=>{
-          if(data.message=="success"){
-            this.submitted1=false;
-            this.editorModal3.hide();
-           
-alert("data save successfully")
-this.loading=false;
-this.ngOnInit();
-          }
-         
-          
-        },error=>{
-          this.loading=false;
-        })
-
-      }
+     
       assignscientist(mou:mouModel){
         this.Bdoservice.GetScientistbynodal().subscribe(data=>{
           this.activeusermou=data;

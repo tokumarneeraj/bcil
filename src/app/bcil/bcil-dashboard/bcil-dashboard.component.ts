@@ -18,6 +18,7 @@ export class BcilDashboardComponent implements OnInit {
 
   mouModel:mouModel[];
   misModel:any[];
+  ttaModel:any[];
   patentModel:any[];
   trademarkModel:any[];
 copyrightModel:any[];
@@ -123,7 +124,7 @@ designModel:any[];
     });
     console.log(rr,'pp')
     if(tab?.stage=="tta"){
-      return this.ttolist(rr);
+      return this.ttalist(rr);
     }
 else if(tab?.stage=="mou"){
   return this.moulist(rr);
@@ -172,7 +173,8 @@ this.activeusermou=data1;
     
     this.Bdoservice.GetMou().subscribe(data=>{console.log(data)
       this.mouModel=data;
-      
+      this.Bdoservice.GetTtaModel().subscribe(datatta=>{console.log(datatta)
+this.ttaModel=datatta;
       this.Bdoservice.GetMis().subscribe(datamis=>{console.log(datamis)
         this.misModel=datamis;
         this.Bdoservice.GetPatentModel().subscribe(datapatent=>{console.log(datapatent)
@@ -189,6 +191,7 @@ this.activeusermou=data1;
           
           
           });
+        });
            
              
         });
@@ -230,13 +233,13 @@ moulist(permission:any){
   }
   
   }
-  ttolist(permission:any){
+  ttalist(permission:any){
     if(this.isSuperAdmin){
-      return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
+      return this.ttaModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
    
     }
     else{
-    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    return this.ttaModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
     
   }}
   trademarklist(permission:any){

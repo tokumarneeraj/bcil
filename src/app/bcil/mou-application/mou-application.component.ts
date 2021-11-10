@@ -78,6 +78,18 @@ this.stage=params.stage;
       this.showpage=true;
   });
   }
+  if(this.stage=='plant_variety'){
+    this.Bdoservice.GetPlantvarietyModel().subscribe(data => {
+      if(this.isSuperAdmin){
+        this.mouModel = data;
+        }
+        else{
+      this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
+      }
+    
+      this.showpage=true;
+  });
+  }
   if(this.stage=='copyright'){
     this.Bdoservice.GetTrademarkModel().subscribe(data => {
       if(this.isSuperAdmin){

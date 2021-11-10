@@ -31,9 +31,9 @@
                 <div class="page-body">  
                                                          
                     <div class="row categoryList mouList">
-                        <div class="col-md-12 text-center">
+                        <div class="col-md-12 text-center" *ngIf="showactivity">
                             <div class="addMou">
-                                <a (click)="createactivity()">Create Activity</a>
+                                <a (click)="createactivity()">{{array.tablename}}</a>
                             </div>                                            
                         </div>
                         <div class="col-sm-12">

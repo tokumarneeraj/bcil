@@ -32,7 +32,11 @@
         <div class="page-body">
 
           <div class="row categoryList mouList ">
-            
+            <div class="col-md-12 text-center" *ngIf="showactivity">
+                            <div class="addMou">
+                                <a (click)="createactivity()">{{array.tablename}}</a>
+                            </div>                                            
+                        </div>
             <div class="col-sm-12">
               
               <div *ngIf="isSuperAdmin" class="ttDashAccod">
@@ -53,7 +57,7 @@
                           <div class="row align-items-top">
                             <div class="col-12">
                               <h4 class="text-c-blue">{{tta.tablename}}</h4>
-                              <h6 class="text-muted m-b-0">{{clientMouListFilter(tta.value)}}</h6>
+                              <h6 class="text-muted m-b-0">{{ttaListFilter(tta.value)}}</h6>
                             </div>
                             <!-- <div class="col-4 text-right">
                   <i class="fa fa-bar-chart f-28"></i>
@@ -181,7 +185,7 @@
                         <div class="row align-items-top">
                             <div class="col-12">
                               <h4 class="text-c-{{tta.color}}">{{tta.heading}}</h4>
-                                <h6 class="text-muted m-b-0">{{clientMouListFilter(tta.value)}}</h6>
+                                <h6 class="text-muted m-b-0">{{ttaListFilter(tta.value)}}</h6>
                             </div>
                             <!-- <div class="col-4 text-right">
                                 <i class="fa fa-bar-chart f-28"></i>
@@ -223,3 +227,4 @@
   </div>
   <app-footer></app-footer>
 </div>
+<app-activity [array]="array"></app-activity>

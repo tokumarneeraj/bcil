@@ -30,6 +30,8 @@ export class PatentComponent implements OnInit {
   isLM: boolean;
   isSuperAdmin: boolean;
   isIPM:boolean;
+  showactivity:boolean=true;
+  stagevalue='S601';
   array={"tablename":"Create Activity"}
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
@@ -51,11 +53,24 @@ export class PatentComponent implements OnInit {
       this.route.queryParams.subscribe((params) => {
 let yy=["patentdraft","patentfinalfiling","patentforeignfiling","patentrequiredforexamination","patentfirstexamreport","ertoacceptancepatent"]
 if(yy.includes(params?.stage)){
+  // if(params?.stage=='patentforeignfiling'){
+  //   this.showactivity=true;
+  //   this.stagevalue="S666";
+  // this.array={"tablename":"Create Foreign Filing"}
   
+  
+  // }
+  // else{
+  //   this.showactivity=false;
+  // }
+  this.showactivity=false;
   this.patentdata=data?.patent?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
 
 }
 else{
+  this.showactivity=true;
+  this.stagevalue="S601";
+  this.array={"tablename":"Create Activity"}
         this.patentdata=data?.patent?.filter(x=>this.viewtab.find(y=>y==x.value)|| x?.subchild?.some(t=>this.viewtab.find(y=>y==t.value)));
 }
 
@@ -88,7 +103,7 @@ else{
 }
 
   createactivity(){
-this.activity.showviewmodel('','S601');
+this.activity.showviewmodel('',this.stagevalue);
   }
   ngAfterViewInit() {
 
