@@ -33,6 +33,8 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
     get getorganization() { return environment.baseUrl+'/api/bdo/getorganization'; }
+    get getcountry() { return environment.baseUrl+'/api/bdo/getcountry'; }
+    get getorganizationuserid() { return environment.baseUrl+'/api/bdo/getorganizationbyuserid'; }
     get getallorganization() { return environment.baseUrl+'/api/bdo/getallorganization'; }
     get getmisurl() { return environment.baseUrl+'/api/bdo/getotherservice'; }
     get getpatenturl() { return environment.baseUrl+'/api/bdo/getpatentservice'; }
@@ -183,10 +185,26 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
         //       return this.handleError(error, () =>{});
         //     }));
         }
-
+        public  Getcountry<T>(): Observable<any[]> {
+          const endpointUrl = `${this.getcountry}`;
+          return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        
 
         public  Getorganization<T>(refid:string): Observable<any[]> {
           const endpointUrl = `${this.getorganization}/${refid}`;
+          return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  Getorganizationbyuserid<T>(): Observable<any[]> {
+          const endpointUrl = `${this.getorganizationuserid}`;
           return this.http.get<any[]>(endpointUrl,this.requestHeaders);
         //   .pipe<mouModel>(
         //     catchError(error => {

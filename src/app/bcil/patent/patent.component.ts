@@ -32,7 +32,7 @@ export class PatentComponent implements OnInit {
   isIPM:boolean;
   showactivity:boolean=true;
   stagevalue='S601';
-  array={"tablename":"Create Activity"}
+  array:any;//{"tablename":"Create Activity"}
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -50,6 +50,7 @@ export class PatentComponent implements OnInit {
    
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.array=data?.tabheading?.find(y=>y.stage=="patent")
       this.route.queryParams.subscribe((params) => {
 let yy=["patentdraft","patentfinalfiling","patentforeignfiling","patentrequiredforexamination","patentfirstexamreport","ertoacceptancepatent"]
 if(yy.includes(params?.stage)){

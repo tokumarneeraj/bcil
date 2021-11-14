@@ -56,6 +56,7 @@ import { CopyrightInitComponent } from './copyright-init/copyright-init.componen
 import { TrademarkInitComponent } from './trademark-init/trademark-init.component';
 import { DesignInitComponent } from './design-init/design-init.component';
 import { KeysPipe } from '../pipes/keys.pipe';
+import { PlantVarietyInitComponent } from './plant-variety-init/plant-variety-init.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -91,6 +92,7 @@ import { KeysPipe } from '../pipes/keys.pipe';
     CopyrightInitComponent,
     TrademarkInitComponent,
     DesignInitComponent,
+    PlantVarietyInitComponent,
     
      ],
 

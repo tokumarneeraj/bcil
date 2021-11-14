@@ -51,6 +51,8 @@ createact:boolean=false;
    
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.array=data?.tabheading?.find(y=>y.stage=="copyright")
+      
       this.createact=data?.tabheading?.find(y=>y.stage=='copyright')?.activity?.includes(this.userRoles[0]);
       this.route.queryParams.subscribe((params) => {
 let yy=["copyright_common_ip","copyright_er_er","copyright_er_accp"]

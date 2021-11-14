@@ -15,6 +15,7 @@ import { AdditionFileComponent } from '../addition-file/addition-file.component'
 import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { User } from 'src/app/model/user.model';
 import { AddScientistComponent } from '../add-scientist/add-scientist.component';
+import { ActivityComponent } from '../activity/activity.component';
 
 @Component({
   selector: 'app-tta-main',
@@ -37,6 +38,8 @@ ttaModel:any[];
   submitted = false;
   submitted1 = false;
   createdBy = "";
+  @ViewChild(ActivityComponent)
+  activity: ActivityComponent;
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
   @ViewChild(AddScientistComponent)
@@ -157,7 +160,13 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
 
   get f() { return this.ForwardForm.controls; }
 
+  ngAfterViewInit() {
 
+    this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+  }
   viewadditionalfile(data:mouModel){
     this.AdditionFile.showviewmodel(data,true,"tta");
   }

@@ -58,33 +58,24 @@
                     <tr>
                       <th>#</th>
                       <th>TTA No</th>
-                      <th>Institute</th>
-                      <th>Dept. Name</th>
-                      <th>Phone No.</th>
-                      <th>Director Name</th>
-                      <th>Director Mobile</th>
-
+                      <th>Subject</th>
+                      <th>Remark</th>
+                      
                       <th *ngIf="viewhistory">History</th>
                                                 
                       <th *ngIf="viewadditionalfileright">Additional File</th>
                       <th *ngIf="viewremark">Previous Remarks</th> 
                       <th>Action</th>
-                      <th *ngIf='isAdmin && (type=="S115" ||type=="S121" ||type=="S124")'></th>
-                      <th *ngIf='isAdmin && (type=="S115" ||type=="S121")'></th>
-                      <th *ngIf='isNodal && type=== "S117"|| type=="126"'></th>
-                   
+                    
 
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of ttaModel;let i=index;">
                       <th scope="row">{{i+1}}</th>
-                      <td>{{item.tto_no}}</td>
-                      <td>{{item.int_Uni_Name}}</td>
-                      <td>{{item.dept_Name}}</td>
-                      <td>{{item.phoneNo}}</td>
-                      <td>{{item.dir_Head_Name}}</td>
-                      <td>{{item.dir_Mobile_No}}</td>
+                      <td>{{item?.appno}}</td>
+                      <td>{{item?.subject}}</td>
+                      <td>{{item?.remark}}</td>
                       <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tta',refid:item.refid}">View</a></td>
                       <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
                       <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(item)" class="stretched-link">View</a></td>

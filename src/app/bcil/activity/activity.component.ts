@@ -41,10 +41,14 @@ export class ActivityComponent implements OnInit {
   activeusermou: activeusermou[];
   viewassign:boolean=false;
   activuser:activeusermou[];
+  countrys:any[];
   appref:string;
   rowslm:User[];
   rowsbdm:User[];
   rowsassign:User[];
+  rowcountry:any[];
+  selectcountry:string;
+  selectpct:string="PCT";
   selectedbdm:string;
   selectedlm:string;
   selectassign:string;
@@ -54,8 +58,12 @@ export class ActivityComponent implements OnInit {
   process:string;
   UserId:string;
   dynamicForm: FormGroup;
+  selectorg:string;
+  @ViewChild('country')
+  public country;
   milestone=new milestones();
   fields = [];
+  extrafield=['PCT'];
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
@@ -66,6 +74,7 @@ export class ActivityComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.selectpct='PCT';
 
       this.isAdmin = this.userRoles.includes('Admin');
       this.isBdm = this.userRoles.includes('BDM');
@@ -112,16 +121,39 @@ export class ActivityComponent implements OnInit {
     
     }
       }
-      showviewmodel(e?:string,value?:string,data?:any){
-        this.loading=false;
-        this.process=e;
-        this.UploadFileViewModel.app_no=data?.mis_no ||data?.mou_no;
-        this.UploadFileViewModel.app_ref_id = data?.refid;
-        this.appref=data?.refid;
-        this.UploadFileViewModel.app_Status=value;
+      onchangepct(event:any){
+     //   this.fields=[];
+       // this.dynamicafiledset();
+       // alert(event.target.value);
+       this.selectpct=event.target.value;
+      this.dynamicForm.controls['COUNTRY'].setValue("");
+        
 
-        this.activebtn=this.array?.button?.find(x=>x.value==value);
-this.fields=this.activebtn?.form?.jsondata||[];
+ this.fields=this.fields.map(obj=> ({ ...obj, hideshow:obj?.filter==undefined||obj?.filter==this.selectpct?.toLowerCase()?true:false }))
+// if(event.target.value=="PCT"){
+// this.fields=this.fields.map(obj=> ({ ...obj, hideshow:obj.filter=='pct'?true:false }))
+//  // this.fields.push(this.activebtn?.form?.jsondata?.find(e=>e.type=="countryselect")?.pct)
+// }
+// else{
+//   this.fields=this.fields.map(obj=> ({ ...obj, hideshow:obj.filter=='non_pct'?true:false }))
+//  //  this.fields.push(this.activebtn?.form?.jsondata?.find(e=>e.type=="countryselect")?.non_pct)
+// }
+
+//alert(this.fields);
+console.log(this.fields)
+       
+      }
+      selectedcountry(event: any[]){
+        //this.countrys.push(event);
+        //console.log(event[event.length-1]?.name);
+        // this.userEdit.roles=[];
+        // this.userEdit.roles.push(event[event.length-1]?.name);
+        // this.userEdit.roles=this.userEdit.roles.filter(x=>x!=null)
+          }
+
+
+          dynamicafiledset(){
+            this.fields=this.activebtn?.form?.jsondata||[];
 if(this.fields!=undefined){
         const controls = {};
         this.fields.forEach(res => {
@@ -142,12 +174,27 @@ if(this.fields!=undefined){
           controls["FILENAME"] = new FormControl('');
           controls["FILE"] = new FormControl('');
         }
+        if(res.type=="countryselect"){
+          controls["PCT"] = new FormControl('PCT');
+        }
           controls[res.label] = new FormControl('', validationsArray);
         });
         this.dynamicForm = new FormGroup(
           controls
         );
 }
+          }
+      showviewmodel(e?:string,value?:string,data?:any){
+        this.cdRef.detectChanges();
+        this.loading=false;
+        this.process=e;
+        this.UploadFileViewModel.app_no=data?.mis_no ||data?.mou_no;
+        this.UploadFileViewModel.app_ref_id = data?.refid;
+        this.appref=data?.refid;
+        this.UploadFileViewModel.app_Status=value;
+
+        this.activebtn=this.array?.button.find(x=>x.value==value);
+
  
     if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true||this.activebtn?.form?.assign==true){
      // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
@@ -156,17 +203,50 @@ if(this.fields!=undefined){
        this.rowsbdm=data.filter((x)=>x.roles.includes('BDM'));
        this.rowslm=data.filter((x)=>x.roles.includes('LM'));
        this.rowsassign=data.filter((x)=>x.roles.find(t=>this.activebtn?.form?.assignarray?.includes(t)));
+
      })
      
      }
-     if(this.activebtn?.form?.organization==true || this.array?.organization==true){
+     if(this.activebtn?.form?.organization==true){
       this.Bdoservice.Getallorganization("").subscribe(data=>{
-this.organizations=data;
+        this.organizations=data;
+        if(this.userRoles[0]=='Admin'){
+          
+        }
+        
+        else {
+          this.Bdoservice.Getorganizationbyuserid().subscribe(data1=>{
+            this.organizations=this.organizations.filter(y=>y.value==data1[0]?.value);
+           
+            this.selectorg=data1[0]?.value;
+            this.organizationchnage(this.selectorg);
+            if(this.userRoles[0]=='Scientist'){
+              this.activebtn.form.assign=false;
+              this.viewassign=false;
+              this.ForwardForm.controls['assignto'].setValue(this.UserId)
+             // this.ForwardForm.controls('assign').setValue()
+            }
+            console.log(data1)
+
+         // let nodalid= this.organizations.find(x=>x.value==this.UserId).key
+        })
+      }
+
+
       })
       }
-    
+      this.dynamicafiledset();
+      if(this.activebtn?.form?.jsondata?.some(x=>x.type=="countryselect")==true){
+        this.Bdoservice.Getcountry().subscribe(data1=>{
+          this.rowcountry=data1;
+
+          });
+
+      }
+      
      this.Bdoservice.GetActiveUserMoubyrefid(data?.refid).subscribe(data1=>{
       this.activuser=data1;
+      console.log(this.activuser);
       this.selectedbdm=this.activuser?.find(x=>this.rowsbdm?.find(y=>y.id==x.userid))?.userid||"";
       this.selectedlm=this.activuser?.find(x=>this.rowslm?.find(y=>y.id==x.userid))?.userid||"";
       this.selectassign=this.activuser?.find(x=>this.rowslm?.find(y=>y.id==x.userid))?.userid||"";
@@ -205,9 +285,10 @@ this.organizations=data;
       }
       }
       organizationchnage(el){
-     let nodalid= this.organizations.find(x=>x.value==el).key
+     let nodalid= this.organizations.find(x=>x.value==el)?.key
 //console.log(data)
-  if(this.activebtn?.form?.getscientist==true || this.array?.getscientist==true){
+if(nodalid!=""){
+  if(this.activebtn?.form?.getscientist==true){
       //  this.Bdoservice.GetScientistbynodal_org(nodalid).subscribe(data=>{
  // this.organizations=data;
   this.viewassign=true;
@@ -217,6 +298,11 @@ this.organizations=data;
   
         })
       }
+    }
+    else
+    {
+      this.rowsassign=[];
+    }
       }
       uploadFile(){
         this.submitted = true;
@@ -243,10 +329,8 @@ this.organizations=data;
         this.ForwardForm.controls["files"].clearValidators();              
       }
       this.ForwardForm.controls['files'].updateValueAndValidity();
-        if (this.ForwardForm.invalid) {
-          return;
-        }
-        this.loading=true;
+     
+       
         this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
         this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
         this.UploadFileViewModel.type = this.ForwardForm.get('type').value;
@@ -255,20 +339,34 @@ this.organizations=data;
         this.UploadFileViewModel.assignto=this.ForwardForm.get('assignto').value;
         this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
         this.UploadFileViewModel.organization = this.ForwardForm.get('organization').value;
+        alert(this.selectpct)
+       for(let control of this.fields){
+          if(control?.filter!=undefined && control?.filter!=this.selectpct?.toLowerCase()){
+
+          
+      this.dynamicForm.removeControl(control.label);
+      console.log(control.label);
+          }
+        }
         this.UploadFileViewModel.jsondata=JSON.stringify(this.dynamicForm.value);
 var tt=[];
 
         for (let arr of  this.ForwardForm.get('milestonedata').value) {
           tt.push({milestone:arr['milestone'],timelines:arr['timeline'],paymentterm:arr['paymentterm'],misref: this.UploadFileViewModel.app_ref_id,id:0});
         }
-        this.UploadFileViewModel.milestones= tt;//this.ForwardForm.get('milestonedata').value;
+        this.UploadFileViewModel.milestones= tt.filter(y=>y.milestone!=null);//this.ForwardForm.get('milestonedata').value;
     //     if(this.activuser?.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
     // {
     //     this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
     // }
     console.log( this.UploadFileViewModel,this.ForwardForm.get('milestonedata').value)
      // return false;
-    
+      
+     if (this.ForwardForm.invalid) {
+      return;
+    }
+
+    this.loading=true;
         this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
          //  this.loading=false;
            this.submitted=false;

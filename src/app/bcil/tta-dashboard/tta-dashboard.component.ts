@@ -56,7 +56,7 @@ export class TtaDashboardComponent implements OnInit {
   isNodel:boolean=false;
   isScientist:boolean=false;
   stagevalue='S113';
-  array={"tablename":"Upload Assignment/Tech. disclosure form","organization":true,"getscientist":true,"assignlabel":"Assign Scientist","assignarray":['Scientist']}
+  array:any;//{"tablename":"Upload Assignment/Tech. disclosure form","organization":true,"getscientist":true,}
   constructor(private route: ActivatedRoute,private Bdoservice: Bdoservice, private accountService: AccountService,private router:Router) {
     this.UserEmail = this.accountService.currentUser.email;
     this.userRoles = this.accountService.currentUser.roles;
@@ -230,6 +230,7 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
    
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.array=data?.tabheading?.find(y=>y.stage=="tta")
       this.route.queryParams.subscribe((params) => {
 let yy=["tlp","tstl","nttsa"]
 if(yy.includes(params?.stage)){

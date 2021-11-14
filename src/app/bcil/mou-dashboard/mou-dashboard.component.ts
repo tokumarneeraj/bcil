@@ -16,6 +16,7 @@ export class MouDashboardComponent implements OnInit {
   showpage = false;
   isLM: boolean;
   isAdmin:boolean;
+  isNodal:boolean=false;
   isBDM: boolean;
   isIPM:boolean;
   isSuperAdmin:boolean;
@@ -31,7 +32,7 @@ moudata:any;
 
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
-
+this.isNodal=this.userRoles.includes('Nodal');
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');

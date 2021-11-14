@@ -51,6 +51,14 @@ export class MisInitComponent implements OnInit {
 
 
   }
+  ngAfterViewInit() {
+
+    this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+  
+  }
  
   viewadditionalfile(data:any){
     this.AdditionFile.showviewmodel(data,true,"mis");

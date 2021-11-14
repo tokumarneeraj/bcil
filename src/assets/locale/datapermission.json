@@ -2,25 +2,39 @@
 
 "tabheading":[
 {"stage":"tta",
-"text":"TT Activity Initiation","color":"red","icon":"fa fa-bar-chart f-28","menuheading":"TT Activity Initiation","submenu":true,"url":"bcil/tta-dashboard"
+"text":"TT Activity Initiation","color":"red","icon":"fa fa-bar-chart f-28","menuheading":"TT Activity Initiation","submenu":true,"url":"bcil/tta-dashboard",
+"tablename":"Upload Assignment/Tech. disclosure form",
+"button":[{"value":"S113","form":{"organization":true,"assign":true,"assignlabel":"Assign Scientist","assignarray":["Scientist"],"getscientist":true}}]
 },
 {"stage":"patent",
-"text":"Patent","color":"dark-green","icon":"fa fa-file-text-o f-28","menuheading":"Patent","submenu":true,"url":"bcil/patent-dashboard","activity":""
+"text":"Patent","color":"dark-green","icon":"fa fa-file-text-o f-28","menuheading":"Patent","submenu":true,"url":"bcil/patent-dashboard","activity":"",
+"tablename":"Upload Assignment/Tech. disclosure form",
+"button":[{"value":"S601","form":{"organization":true,"assign":true,"assignlabel":"Assign Scientist","assignarray":["Scientist"],"getscientist":true}}]
 },
 {"stage":"design",
-"text":"Design","color":"purple","icon":"fa fa-paint-brush f-28","menuheading":"Design","submenu":true,"url":"bcil/design-dashboard","activity":["Scientist","Nodal"]
+"text":"Design","color":"purple","icon":"fa fa-paint-brush f-28","menuheading":"Design","submenu":true,"url":"bcil/design-dashboard","activity":["Scientist","Nodal"],
+"tablename":"Upload Assignment/Tech. disclosure form",
+"button":[{"value":"S718","form":{"organization":true,"assign":true,"assignlabel":"Assign Scientist","assignarray":["Scientist"],"getscientist":true}}]
 },
 {"stage":"copyright",
-"text":"Copyright","color":"dark-blue","icon":"fa fa-copyright f-28","menuheading":"Copyright","submenu":true,"url":"bcil/copyright-dashboard","activity":["Scientist","Nodal"]
+"text":"Copyright","color":"dark-blue","icon":"fa fa-copyright f-28","menuheading":"Copyright","submenu":true,"url":"bcil/copyright-dashboard","activity":["Scientist","Nodal"],
+"tablename":"Upload Assignment/Tech. disclosure form",
+"button":[{"value":"S755","form":{"organization":true,"assign":true,"assignlabel":"Assign Scientist","assignarray":["Scientist"],"getscientist":true}}]
 },
 {"stage":"trademark",
-"text":"Trademark","color":"green","icon":"fa fa-bar-chart f-28","menuheading":"Trademark","submenu":true,"url":"bcil/trademark-dashboard","activity":["Scientist","Nodal"]
+"text":"Trademark","color":"green","icon":"fa fa-bar-chart f-28","menuheading":"Trademark","submenu":true,"url":"bcil/trademark-dashboard","activity":["Scientist","Nodal"],
+"tablename":"Upload Assignment/Tech. disclosure form",
+"button":[{"value":"S680","form":{"organization":true,"assign":true,"assignlabel":"Assign Scientist","assignarray":["Scientist"],"getscientist":true}}]
 },
 {"stage":"plant_variety",
 "text":"Plant Variety","color":"blue","icon":"fa fa-pagelines f-28","menuheading":"Plant Variety","submenu":true,"url":"bcil/plant-variety-dashboard","activity":["Scientist","Nodal"]
-},
+,"tablename":"Upload Assignment/Tech. disclosure form",
+"button":[{"value":"S792","form":{"organization":true}}]},
 {"stage":"mis",
-"text":"Other Services","icon":"fa fa-cogs f-28","menuheading":"Other Services","submenu":true,"color":"yellow","url":"bcil/mis-dashboard","activity":"","organisation":true,"assignscientist":true
+"text":"Other Services","icon":"fa fa-cogs f-28","menuheading":"Other Services","submenu":true,"color":"yellow","url":"bcil/mis-dashboard","activity":"",
+
+"tablename":"Upload Assignment/Tech. disclosure form",
+"button":[{"value":"S170","form":{"organization":true}}]
 },
 {"stage":"report",
 "text":"Report","icon":"fa fa-file-excel-o f-28","menuheading":"Report","submenu":true,"color":"blue","url":"bcil/report-dashboard"
@@ -863,7 +877,8 @@
         "type":"ip_init",
 "value":"S601",
 "color":"green",
-"button":[{"text":"assign","class":"btn btn-success","title":"Admin assign to IPM","value":"S602","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]}}]
+"button":[{"text":"assign","class":"btn btn-success","title":"Admin assign to IPM","value":"S602","form":{"assign":true,"assignlabel":"IPM/IBM","assignarray":["IPM","BDM"]
+}}]
 },
 {
     "stage":"patentdraft",
@@ -1320,7 +1335,129 @@
         "type":"final_patent_filing_done_with_luf",
 "value":"S622",
 "color":"blue",
-"button":[{"text":"Forward","class":"btn btn-primary","title":"","value":"S644",
+"button":[{"text":"Create Foreign Filing","class":"btn btn-primary","title":"","value":"S632"
+,"form":{
+"jsondata":[{
+"field":"country",
+      "type": "countryselect",
+      "label": "COUNTRY",
+      "inputType": "text",
+      "name": "name",
+	 
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Conventional Appliction is Required"
+        }
+      ]
+    
+    },
+	{
+"field":"pctapplication",
+      "type": "text",
+      "label": "PCT_APPLICATION",
+      "inputType": "text",
+      "name": "name",
+	  "hideshow":true,
+	  "filter":"pct",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Country is Required"
+        }
+      ]
+    
+    },
+	{
+"field":"pctfilingdate",
+      "type": "date",
+      "label": "PCT_FILING_DATE",
+      "inputType": "text",
+      "name": "name",
+	  "hideshow":true,
+	  "filter":"pct",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Country is Required"
+        }
+      ]
+    
+    },
+	{
+"field":"conventionalapplication",
+      "type": "text",
+      "label": "CONVENTIONAL_APPLICATION",
+      "inputType": "text",
+      "name": "name",
+	  "filter":"non_pct",
+	  "hideshow":false,
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "CONVENTIONAL APPLICATION is Required"
+        }
+      ]
+    
+    },
+	{
+"field":"conventional_application_date",
+      "type": "date",
+      "label": "CONVENTIONAL_APPLICATION_DATE",
+      "inputType": "text",
+      "name": "name",
+	  "hideshow":false,
+	  "filter":"non_pct",
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Country is Required"
+        }
+      ]
+    
+    },
+	{
+"field":"priority_no",
+      "type": "text",
+      "label": "PRIORITY_NO",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Country is Required"
+        }
+      ]
+    
+    },
+	{
+"field":"priority_date",
+      "type": "date",
+      "label": "PRIORITY_DATE",
+      "inputType": "text",
+      "name": "name",
+	  
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Country is Required"
+        }
+      ]
+    
+    }
+	
+	
+	]
+	}},
+{"text":"Forward","class":"btn btn-primary","title":"","value":"S644",
 "form":{
 "jsondata":[{
 "field":"publicationdate",
@@ -3397,7 +3534,7 @@
 "value":"S792",
 "color":"green",
 "button":[{
-    "text":"Forword","class":"btn btn-info","value":"S792"}]
+    "text":"Forword","class":"btn btn-info","value":"S793","form":{"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
 },
 {
     "stage":"plant_variety",
@@ -3407,7 +3544,7 @@
 "value":"S793",
 "color":"dark-blue",
 "button":[{
-    "text":"Forword","class":"btn btn-info","value":"S794","form":{"milestone":true,"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
+    "text":"Forword","class":"btn btn-info","value":"S794","form":{"milestone":true}}]
 },
 {
     "stage":"plant_variety",
@@ -3529,7 +3666,7 @@
 "value":"S170",
 "color":"green",
 "button":[{
-    "text":"Forword","class":"btn btn-info","value":"S171"}]
+    "text":"Forword","class":"btn btn-info","value":"S171","form":{"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
 },
 {
     "stage":"mis",
@@ -3539,7 +3676,7 @@
 "value":"S171",
 "color":"dark-blue",
 "button":[{
-    "text":"Forword","class":"btn btn-info","value":"S172","form":{"milestone":true,"assign":true,"assignlabel":"IPM/IBM/LM","assignarray":["IPM","BDM","LM"]}}]
+    "text":"Forword","class":"btn btn-info","value":"S172","form":{"milestone":true}}]
 },
 {
     "stage":"mis",

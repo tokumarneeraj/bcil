@@ -32,7 +32,7 @@ export class MisDashboardComponent implements OnInit {
   isLM: boolean;
   isSuperAdmin: boolean;
   isIPM:boolean;
-  array={"tablename":"Create Activity","organization":true,"getscientist":true,"assignlabel":"Assign Scientist","assignarray":['Scientist']}
+  array:any;//{"tablename":"Create Activity","organization":true,"getscientist":true,"assignlabel":"Assign Scientist","assignarray":['Scientist']}
   constructor(private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -51,6 +51,7 @@ export class MisDashboardComponent implements OnInit {
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.array=data?.tabheading?.find(y=>y.stage=="mis")
       this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value));
 
     })

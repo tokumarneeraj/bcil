@@ -32,7 +32,7 @@ designdata:any;
   isSuperAdmin: boolean;
   isIPM:boolean;
   createact:boolean=false;
-  array={"tablename":"Create Activity"}
+  array:any;//{"tablename":"Create Activity"}
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -53,6 +53,7 @@ designdata:any;
    
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.array=data?.tabheading?.find(y=>y.stage=="design")
       this.createact=data?.tabheading?.find(y=>y.stage=='design')?.activity?.includes(this.userRoles[0]);
       this.route.queryParams.subscribe((params) => {
 let yy=["design_common_ip","design_er_er","design_er_accp"]

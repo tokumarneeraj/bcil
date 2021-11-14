@@ -20,6 +20,7 @@ export class BcilDashboardComponent implements OnInit {
   misModel:any[];
   ttaModel:any[];
   patentModel:any[];
+  plant_varietyModel:any[];
   trademarkModel:any[];
 copyrightModel:any[];
 designModel:any[];
@@ -148,6 +149,10 @@ else if(tab?.stage=="design"){
 }
 else if(tab?.stage=="copyright"){
   return this.copyrightlist(rr);
+  
+}
+else if(tab?.stage=="plant_variety"){
+  return this.plant_varietylist(rr);
   
 }
 else
@@ -287,6 +292,14 @@ moulist(permission:any){
     return this.misModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
     
   }}
-  
+  plant_varietylist(permission:any){
+    if(this.isSuperAdmin){
+      return this.plant_varietyModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
+   
+    }
+    else{
+    return this.plant_varietyModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    
+  }}
   
 }

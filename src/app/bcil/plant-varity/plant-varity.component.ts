@@ -50,6 +50,7 @@ export class PlantVarityComponent implements OnInit {
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.array=data?.tabheading?.find(y=>y.stage=="plant_variety")
       this.plantdata=data?.plant_variety?.filter(x=>this.viewtab.find(y=>y==x.value));
 
     })
@@ -93,8 +94,9 @@ this.activity.showviewmodel('','S792');
   }
 
   queryparam(data:any){
-    this.router.navigate(['./bcil/bcil-patent-table'], { queryParams: { type: data} });
+    this.router.navigate(['./bcil/bcil-plant-variety-table'], { queryParams: { type: data} });
   // return  '{type:'+data+'}'
   }
+  
 
 }
