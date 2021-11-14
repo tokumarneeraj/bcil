@@ -53,11 +53,16 @@ export class ViewfileComponent implements OnInit {
           
         this.Bdoservice.getdatapermission().subscribe(data1=>{
           console.log(data1);
+          this.Bdoservice.GetMilestone(this.refid).subscribe(milestone=>{
+            console.log(milestone)
+          
       this.Bdoservice.Getfile(this.refid).subscribe(data=>{console.log(data)
         data.map((x,i)=>{
 x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=>y.id==x.createdby)?.roles+")",
-x.jsondata=x.jsondata!=null?JSON.parse(x.jsondata):undefined
+x.jsondata=x.jsondata!=null?JSON.parse(x.jsondata):undefined,
+x.milestone=x.status=='S172' || x.status=='S794'? milestone:[]
         })
+       
         console.log(data)
 
       //  data= this.stage=="mou"?data.filter(x=>this.moustatus.includes(x.status)):
@@ -67,6 +72,7 @@ x.jsondata=x.jsondata!=null?JSON.parse(x.jsondata):undefined
 // this.perm=getotherpermissiondata;
         this.fileshistory=data.filter(x=>this.commondata.getotherpermissiondata('history').find(y=>y?.split('-')[1]==x.status))
         this.showpage=true;
+        })
         })
         })
         console.log(data)

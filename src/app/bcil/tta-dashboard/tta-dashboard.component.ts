@@ -66,7 +66,8 @@ this.UserName=this.accountService.currentUser.userName;
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
- 
+ this.isNodal=this.userRoles.includes('Nodal');
+ this.isScientist=this.userRoles.includes('Scientist');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
     this.permission=JSON.parse(localStorage.getItem('user_permissions'));
     debugger;

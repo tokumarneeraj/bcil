@@ -29,12 +29,12 @@
 {"stage":"plant_variety",
 "text":"Plant Variety","color":"blue","icon":"fa fa-pagelines f-28","menuheading":"Plant Variety","submenu":true,"url":"bcil/plant-variety-dashboard","activity":["Scientist","Nodal"]
 ,"tablename":"Upload Assignment/Tech. disclosure form",
-"button":[{"value":"S792","form":{"organization":true}}]},
+"button":[{"value":"S792","form":{"organization":true,"assign":true,"assignlabel":"Assign Scientist","assignarray":["Scientist"],"getscientist":true}}]},
 {"stage":"mis",
 "text":"Other Services","icon":"fa fa-cogs f-28","menuheading":"Other Services","submenu":true,"color":"yellow","url":"bcil/mis-dashboard","activity":"",
 
 "tablename":"Upload Assignment/Tech. disclosure form",
-"button":[{"value":"S170","form":{"organization":true}}]
+"button":[{"showactivity":["Admin"],"value":"S170","form":{"organization":true,"assign":true,"assignlabel":"Assign Scientist","assignarray":["Scientist"],"getscientist":true}}]
 },
 {"stage":"report",
 "text":"Report","icon":"fa fa-file-excel-o f-28","menuheading":"Report","submenu":true,"color":"blue","url":"bcil/report-dashboard"
@@ -3596,7 +3596,7 @@
 "value":"S798",
 "color":"purple",
 "button":[{
-"text":"Forword","class":"btn btn-info","value":"S177"}]
+"text":"Forword","class":"btn btn-info","value":"S799"}]
 },
 {
     "stage":"plant_variety",
@@ -3607,7 +3607,7 @@
 "color":"dark-blue",
 "button":[{
 "text":"Change Req","class":"btn btn-info","value":"S800"},
-{"text":"Reject","class":"btn btn-success","value":"S801"}]
+{"text":"Forward","class":"btn btn-success","value":"S801"}]
 },
 {
     "stage":"plant_variety",
@@ -3739,7 +3739,7 @@
 "color":"dark-blue",
 "button":[{
 "text":"Change Req","class":"btn btn-info","value":"S178"},
-{"text":"Reject","class":"btn btn-success","value":"S179"}]
+{"text":"Forward","class":"btn btn-success","value":"S179"}]
 },
 {
     "stage":"mis",

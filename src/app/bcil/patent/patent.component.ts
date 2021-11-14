@@ -39,7 +39,8 @@ export class PatentComponent implements OnInit {
 
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
-   
+   this.isNodal=this.userRoles.includes('Nodal');
+   this.isScientist=this.userRoles.includes('Scientist');
     this.isIPM = this.userRoles.includes('IPM');
   this.isSuperAdmin=this.userRoles.includes('Super Admin');
    }
@@ -71,7 +72,7 @@ if(yy.includes(params?.stage)){
 else{
   this.showactivity=true;
   this.stagevalue="S601";
-  this.array={"tablename":"Create Activity"}
+  //this.array={"tablename":"Create Activity"}
         this.patentdata=data?.patent?.filter(x=>this.viewtab.find(y=>y==x.value)|| x?.subchild?.some(t=>this.viewtab.find(y=>y==t.value)));
 }
 

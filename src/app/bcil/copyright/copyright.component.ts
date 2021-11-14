@@ -38,7 +38,8 @@ createact:boolean=false;
 
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
-   
+    this.isNodal=this.userRoles.includes('Nodal');
+   this.isScientist=this.userRoles.includes('Scientist');
     this.isIPM = this.userRoles.includes('IPM');
   this.isSuperAdmin=this.userRoles.includes('Super Admin');
    }

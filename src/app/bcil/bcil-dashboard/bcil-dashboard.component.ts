@@ -189,6 +189,9 @@ this.ttaModel=datatta;
             this.Bdoservice.GetDesignModel().subscribe(datadesign=>{console.log(datadesign)
               this.designModel=datadesign;
               this.Bdoservice.GetCopyrightModel().subscribe(datacopyright=>{console.log(datacopyright)
+                this.Bdoservice.GetPlantvarietyModel().subscribe(dataplant=>{console.log(dataplant)
+                  this.plant_varietyModel=dataplant;
+                });
                 this.copyrightModel=datacopyright;});
           this.showpage=true;
             

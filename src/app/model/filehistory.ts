@@ -13,4 +13,5 @@ export class filehistoryModel {
   public active:boolean;
   public app_refid:string;
   public jsondata:any;
+  public milestone:any[];
 }

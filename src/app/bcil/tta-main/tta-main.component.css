@@ -1,6 +1,13 @@
 .invalid-feedback {
     display: block;
 }
+
 .misbtn{
-    margin-right: 5px;;
+    margin-right: 5px !important;
+}
+.invalid-feedback {
+    display: block;
+}
+.table button {
+    margin-right: 10px !important;
 }
