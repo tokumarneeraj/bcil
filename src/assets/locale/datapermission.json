@@ -43,6 +43,7 @@
 "text":"Engagement with Organization","icon":"","menuheading":"Engagement with Organization","submenu":true,"url":"bcil/mou-dashboard","color":"dark-pink"
 }
 ],
+"milestones":[{"status":["S177","S178","S179","S180","S181"]}],
 "mou":[
 {
  "stage":"mou",
@@ -3732,6 +3733,16 @@
 },
 {
     "stage":"mis",
+	"substage":"milestones",
+    "tablename":"Milestones",
+    "heading":"Milestone",
+	
+    "type":"",
+"value":"milestones",
+"color":"purple",
+"button":[],
+"subchild":[{
+    "stage":"milestones",
     "tablename":"Report Proposed",
     "heading":"Report Proposed",
     "type":"report_proposed",
@@ -3742,7 +3753,7 @@
 {"text":"Forward","class":"btn btn-success","value":"S179"}]
 },
 {
-    "stage":"mis",
+    "stage":"milestones",
     "tablename":"Report Change Required By Admin",
     "heading":"Report Change Required by Admin",
     "type":"report_chnage_req_by_admin",
@@ -3752,7 +3763,7 @@
 "text":"Update","class":"btn btn-info","value":"S177"}]
 },
 {
-    "stage":"mis",
+    "stage":"milestones",
     "tablename":"Report Forward By Admin",
     "heading":"Report Forward By Admin",
     "type":"report_forward_by_admin",
@@ -3762,7 +3773,7 @@
 {"text":"Forward","class":"btn btn-success","value":"S181"}]
 },
 {
-    "stage":"mis",
+    "stage":"milestones",
     "tablename":"Report Change Required By Client",
     "heading":"Report Change Required By Client",
     "type":"report_change_required_by_client",
@@ -3773,14 +3784,16 @@
 {"text":"Reject","class":"btn btn-success","value":"S179"}]
 },
 {
-    "stage":"mis",
+    "stage":"milestones",
     "tablename":"Report Accepted By Client",
     "heading":"Report Accepted By Client",
     "type":"report_accepted_by_client",
 "value":"S181",
 "color":"red",
 "button":[{"text":"Forward","class":"btn btn-success","value":"S182"}]
+}]
 },
+
 {
     "stage":"mis",
     "tablename":"All Report Accepted By Client",

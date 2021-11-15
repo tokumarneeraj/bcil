@@ -339,7 +339,7 @@ if(nodalid!=""){
         this.UploadFileViewModel.assignto=this.ForwardForm.get('assignto').value;
         this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
         this.UploadFileViewModel.organization = this.ForwardForm.get('organization').value;
-        alert(this.selectpct)
+        
        for(let control of this.fields){
           if(control?.filter!=undefined && control?.filter!=this.selectpct?.toLowerCase()){
 

@@ -1,6 +1,6 @@
 import { analyzeAndValidateNgModules, ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { commondata } from 'src/app/model/common';
 import { activeusermou } from 'src/app/model/mou.model';
 import { AccountService } from 'src/app/services/account.service';
@@ -30,10 +30,12 @@ export class MisDashboardComponent implements OnInit {
   isScientist:boolean;
   isNodal: boolean;
   isLM: boolean;
+  milestonearray:any[];
+  milestonedata:any;
   isSuperAdmin: boolean;
   isIPM:boolean;
   array:any;//{"tablename":"Create Activity","organization":true,"getscientist":true,"assignlabel":"Assign Scientist","assignarray":['Scientist']}
-  constructor(private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
+  constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
 
@@ -51,13 +53,30 @@ export class MisDashboardComponent implements OnInit {
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
+      this.route.queryParams.subscribe((params) => {
+        let yy=["milestones"]
+        if(yy.includes(params?.stage)){
+          
+          this.misdata=data?.mis?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
+        
+        }
+        else{
+                this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value)|| x?.subchild?.some(t=>this.viewtab.find(y=>y==t.value)));
+        }
+        this.milestonedata=data?.milestones;
+        console.log(this.misdata,'uu')
+              });
+             
       this.array=data?.tabheading?.find(y=>y.stage=="mis")
-      this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value));
+      //this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value));
 
     })
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetMis().subscribe(data => {
+      this.Bdoservice.GetAllMilestone().subscribe(datamilestone=>{
+//this.milestonearray=datamilestone?.filter();
+      })
       console.log(data)
       this.misModel = data;
       this.showpage = true;
@@ -94,7 +113,9 @@ this.activity.showviewmodel('','S170');
   }
 
   queryparam(data:any){
-    this.router.navigate(['./bcil/bcil-mis-table'], { queryParams: { type: data} });
+    this.router.navigate(data?.subchild?.length>0?['/bcil/mis-dashboard']:['/bcil/bcil-mis-table'],  { queryParams: {stage:data?.subchild?.length>0?data.substage:data.stage, type: data.type}});
+   
+    //this.router.navigate(['./bcil/bcil-mis-table'], { queryParams: { type: data} });
   // return  '{type:'+data+'}'
   }
 

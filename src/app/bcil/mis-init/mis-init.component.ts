@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { commondata } from 'src/app/model/common';
 import { activeusermou } from 'src/app/model/mou.model';
 import { AccountService } from 'src/app/services/account.service';
@@ -42,6 +43,9 @@ export class MisInitComponent implements OnInit {
   managetab:any;
   viewhistory:any;
   viewremark:any;
+  milestones:any[];
+  @ViewChild('editorModal2', { static: true })
+  editorModal2: ModalDirective;
   viewadditionalfileright:boolean;
   constructor(private route: ActivatedRoute,private alertService: AlertService,private accountService: AccountService,private Bdoservice:Bdoservice,private router:Router
 
@@ -50,6 +54,13 @@ export class MisInitComponent implements OnInit {
     this.userRoles = this.accountService.currentUser.roles;
 
 
+  }
+  viewmilestone(data:any){
+this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
+  this.milestones=milestone;
+  this.editorModal2.show();
+  console.log(milestone)
+});
   }
   ngAfterViewInit() {
 
@@ -108,6 +119,7 @@ export class MisInitComponent implements OnInit {
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetMis().subscribe(data => {
+      
       if(this.isSuperAdmin){
         this.misModel = data.filter(x => x.app_Status == this.array?.value);
       }

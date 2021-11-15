@@ -44,6 +44,7 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     get getcopyrighturl() { return environment.baseUrl+'/api/bdo/getcopyright'; }
     get gettrademarkurl() { return environment.baseUrl+'/api/bdo/gettrademark'; }
     get getdesignurl() { return environment.baseUrl+'/api/bdo/getdesign'; }
+    get getallmilestoneurl(){return environment.baseUrl+'/api/bdo/getallmilestone';}
     get getmilestoneurl() { return environment.baseUrl+'/api/bdo/getmilestone'; }
     get getplantvarietyurl() { return environment.baseUrl+'/api/bdo/getplantvariety'; }
     get getstatusmasterurl() { return environment.baseUrl+'/api/bdo/getstatusmaster'; }
@@ -146,7 +147,16 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
              return this.handleError(error, () => this.GetScientistbynodal());
            }));
          }
-
+         public  GetAllMilestone<T>(): Observable<any[]> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.getallmilestoneurl}`;
+         return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
          
          public  GetMilestone<T>(refid:string): Observable<any[]> {
         
