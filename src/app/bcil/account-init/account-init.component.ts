@@ -1,24 +1,23 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalDirective } from 'ngx-bootstrap/modal';
-import { find } from 'rxjs/operators';
 import { commondata } from 'src/app/model/common';
 import { activeusermou } from 'src/app/model/mou.model';
 import { AccountService } from 'src/app/services/account.service';
 import { AlertService, DialogType } from 'src/app/services/alert.service';
-import { Bdoservice } from 'src/app/services/bdo.service';
 import { ActivityComponent } from '../activity/activity.component';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
+import { Bdoservice } from 'src/app/services/bdo.service';
+import { ClientInvoiceComponent } from '../client-invoice/client-invoice.component';
 
 @Component({
-  selector: 'app-mis-init',
-  templateUrl: './mis-init.component.html',
-  styleUrls: ['./mis-init.component.scss']
+  selector: 'app-account-init',
+  templateUrl: './account-init.component.html',
+  styleUrls: ['./account-init.component.scss']
 })
-export class MisInitComponent implements OnInit {
+export class AccountInitComponent implements OnInit {
+
   showpage:boolean;
-  misdata:any;
+  accountdata:any;
   type:string;
   UserId: string;
   userRoles: string[];
@@ -32,6 +31,8 @@ export class MisInitComponent implements OnInit {
   isIPM:boolean;
   @ViewChild(ActivityComponent)
   activity: ActivityComponent;
+  @ViewChild(ClientInvoiceComponent)
+  clientinvoice: ClientInvoiceComponent;
   array:any;
   activuser:activeusermou[];
   activebtn:any;
@@ -39,18 +40,13 @@ export class MisInitComponent implements OnInit {
   activeusermou:activeusermou[];
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
-  misModel:any[];
+  accountModel:any[];
   viewtab:any;
   managetab:any;
   viewhistory:any;
   viewremark:any;
-  milestones:any[];
-  milestonearray:any[];
-  milestonedata:any[];
-  @ViewChild('editorModal2', { static: true })
-  editorModal2: ModalDirective;
-  stage:string;
   viewadditionalfileright:boolean;
+  invoicetriggerModel:any[];
   constructor(private route: ActivatedRoute,private alertService: AlertService,private accountService: AccountService,private Bdoservice:Bdoservice,private router:Router
 
 
@@ -59,16 +55,12 @@ export class MisInitComponent implements OnInit {
 
 
   }
-  viewmilestone(data:any){
-this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
-  this.milestones=milestone;
-  this.editorModal2.show();
-  console.log(milestone)
-});
+  viewadditionalfile(data:any){
+    this.AdditionFile.showviewmodel(data,true,"account");
   }
-  checkmis(){
-  let yy= this.milestonedata[0]?.status?.some(y=>y==this.array?.value)
-  return yy;
+  remarksview(data:any){
+    this.alertService.showDialog(data,DialogType.alert);
+
   }
   ngAfterViewInit() {
 
@@ -77,17 +69,17 @@ this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
       this.ngOnInit();
     };
   
+    // this.roleEditor.changesCancelledCallback = () => {
+    //   this.editedRole = null;
+    //   this.sourceRole = null;
+    //   this.editorModal.hide();
+    // };
   }
- 
-  viewadditionalfile(data:any){
-    this.AdditionFile.showviewmodel(data,true,"mis");
-  }
-  remarksview(data:any){
-    this.alertService.showDialog(data,DialogType.alert);
-
-  }
+  clientinvoicepopup(data){
+    this.clientinvoice.showviewmodel('','S806',data);
+      }
   onmodalclick(e: string,value:any, data: any) {
-    this.activity.showviewmodel('mis',value,data);
+    this.activity.showviewmodel('account',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
   
@@ -108,27 +100,27 @@ this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
         this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
         this.Bdoservice.getdatapermission().subscribe(data=>{
           console.log(data);
-          this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value)|| x?.subchild?.some(t=>this.viewtab.find(y=>y==t.value)));
-     
-          this.milestonedata=data?.milestones;
-          //this.moudata=data?.mou?.filter(x=>this.managetab.find(y=>y==x.value));
-      this.route.queryParams.subscribe((params) => {
-
-        this.stage=params?.stage;
-        let yy=["milestones"]
-        if(yy.includes(params?.stage)){
           
-          this.array=this.misdata?.find(t=>t.substage==params?.stage)?.subchild?.find(x => x.type == params.type);
-        }
-        else{
-          this.array=this.misdata?.find(x => x.type == params.type);
-        }
-        //this.type=this.moudata.find(x => x.type == params.type).value;
-        
-       this.managetab.some(x=>x==this.array?.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
-        //this.showbutton=this.array?.button
-       
-      });
+          this.accountdata=data?.account?.filter(x=>this.viewtab.find(y=>y==x.value));
+          //this.moudata=data?.mou?.filter(x=>this.managetab.find(y=>y==x.value));
+          this.route.queryParams.subscribe((params) => {
+            let yy=["client_invoice","luf_invoice"]
+            if(yy.includes(params.stage)){
+      
+              this.accountdata=data?.account?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
+      
+            }
+            else{
+            this.accountdata=data?.account?.filter(x=>this.viewtab.find(y=>y==x.value));
+            }
+               this.array=this.accountdata.find(x => x.type == params.type);
+             this.managetab.some(x=>x==this.array.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
+           
+         
+      
+          })
+      
+      
           
     
         })
@@ -136,33 +128,18 @@ this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
    
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
-    this.Bdoservice.GetMis().subscribe(data => {
-      this.Bdoservice.GetAllMilestone().subscribe(datamilestone=>{
-        this.milestonearray=datamilestone.filter(t=>t.app_status!=null);
-             
-              
-      if(this.isSuperAdmin){
-        if(this.stage=="milestones"){
+      this.Bdoservice.GetAllInvoiceTrigger('all').subscribe(data => {
+this.invoicetriggerModel=data;
 
-          this.milestonearray=this.milestonearray?.filter(x=>x.app_status==this.array?.value);
-        }
-        else{
-        this.misModel = data.filter(x => x.app_Status == this.array?.value);
-        }
-        
+      });
+    this.Bdoservice.GetClientInvoice('all').subscribe(data => {
+      if(this.isSuperAdmin){
+        this.accountModel = data.filter(x => x.app_Status == this.array?.value);
       }
   
 
     else {
-      if(this.stage=="milestones"){
-
-        this.milestonearray= this.milestonearray?.filter(x=>(x.app_status==this.array?.value )&& this.activeusermou?.some(t=>t.appref==x.refid));
-      console.log(this.milestonearray,'k')
-      }
-      else{
-        this.misModel= data.filter(x=>x.app_Status== this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
-      }
-      
+       this.accountModel= data.filter(x=>x.app_Status== this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
        }
       
       
@@ -176,10 +153,10 @@ this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
 
     }
     );
-  })
     });
 
 
   }
+
 
 }

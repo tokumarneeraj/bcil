@@ -32,7 +32,7 @@
                 <div class="page-body">
                     
                     <!-- Hover table card start -->
-                    <div class="card">
+                    <div class="card" *ngIf="!checkmis()">
                         <div class="card-header">
                             <h5>{{array?.tablename}}</h5>
                             <!-- <span>use class <code>table-hover</code> inside table element</span> -->
@@ -68,7 +68,7 @@
                                       <td>{{i+1}}</td>
                                       <td>{{mis?.appno}}</td>
                                       <td>{{mis?.subject}}</td>
-                                      <td><button class="btn btn-primary btn-sm" (click)="viewmilestone(mis)">View Milestones</button><span class="btn-badge">3</span></td>
+                                      <td ><button class="btn btn-primary btn-sm" (click)="viewmilestone(mis)">View Milestones</button><span class="btn-badge"></span></td>
                                       <td>{{mis?.remark}}</td>
                                      
                                       <td>
@@ -88,6 +88,61 @@
                           </div>
                           </div>
                           </div>
+                          <div class="card" *ngIf="checkmis()">
+                            <div class="card-header">
+                                <h5>{{array?.tablename}}</h5>
+                                <!-- <span>use class <code>table-hover</code> inside table element</span> -->
+                                <div class="card-header-right">
+                                    <ul class="list-unstyled card-option">
+                                        <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                                        <li><i class="fa fa-minus minimize-card"></i></li>
+                                        <li><i class="fa fa-refresh reload-card"></i></li>
+                                        <li><i class="fa fa-trash close-card"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-block table-border-style">
+                              <div class="table-responsive">
+                                <table class="table table-hover" *ngIf="showpage">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>MILESTONE No</th>
+                                      <th>Subject</th>
+                                      
+                                      <th>Remarks</th>
+                                   <th>Action</th>
+                                   <th *ngIf="viewhistory">History</th>
+                                                    
+                                   <th *ngIf="viewadditionalfileright">Additional File</th>
+                                   <th *ngIf="viewremark">Previous Remarks</th> 
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let mis of milestonearray;let i=index">
+                                          <td>{{i+1}}</td>
+                                          <td>{{mis?.appno}}</td>
+                                          <td>{{mis?.subject}}</td>
+                                         <td>{{mis?.remark}}</td>
+                                         
+                                          <td>
+                                              <ng-container *ngFor="let btn of array?.button">
+                                                <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,mis)">{{btn.text}}</button>
+                                                          
+                                              </ng-container>
+                                          </td>
+    
+                                          <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mil',refid:mis?.refid}">View</a></td>
+                                          <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+                                          <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(mis)" class="stretched-link">View</a></td>
+                                          <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(mis.remarks)">{{mis?.remarks}}</p></td>
+                                      </tr>
+                                      </tbody>
+                                      </table>
+                              </div>
+                              </div>
+                              </div>
                           <app-footer></app-footer>
                           </div>
             </div>
@@ -119,9 +174,9 @@
 <tr *ngFor="let mil of milestones;let i=index">
     <td>{{i+1}}</td>
     <td>{{mil.milestone}}</td>
-    <td>{{mil.timelines}}</td>
+    <td>{{mil.timelines |date:'fullDate'}}</td>
     <td>{{mil.paymentterm}}</td>
-    <td><button class="btn btn-success btn-sm" (click)="onmodalclick($event.target.value,'S177',mil)" >Forward</button></td>
+    <td *ngIf="milestonedata[0]?.forward?.includes(array?.value) && mil?.appno==null"><button class="btn btn-success btn-sm" (click)="onmodalclick($event.target.value,'S177',mil)" >Forward</button></td>
 </tr>
                             </tbody>
                         </table>

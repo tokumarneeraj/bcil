@@ -107,16 +107,19 @@
                       <div class="row">
                         <div class="col-sm-1">
                           </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                       <label>Milestone</label>
                       </div>
                       
                         <div class="col-sm-3">
                           <label>Payment term</label>
                           </div>
-                          <div class="col-sm-3">
+                          <div class="col-sm-2">
                         <label>Timeline</label>
                         </div>
+                        <div class="col-sm-2">
+                          <label>Payment Type</label>
+                          </div>
                         </div>
                     </div>
                       </div>
@@ -129,15 +132,25 @@
                             <div class="col-sm-1">
                               {{i+1}}
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
 <input type="text"  class="form-control"  formControlName="milestone" id="milestone+i"/>
+<p *ngIf="submitted && f.milestone?.errors" class="invalid-feedback">Milestone is required</p>
                               </div>
                               <div class="col-sm-3">
                                 <input type="text"  class="form-control" formControlName="paymentterm" id="paymentterm+i"/>
+                                <p *ngIf="submitted && f.paymentterm?.errors" class="invalid-feedback">Milestone is required</p>
                                                               </div>
-                                                              <div class="col-sm-3">
-                                                                <input type="text"  class="form-control"  formControlName="timeline" id="timeline+i"/>
-                                                                                              </div>
+                                                              <div class="col-sm-2">
+                                                                <input type="date"  class="form-control"  formControlName="timeline" id="timeline+i"/>
+                                                                <p *ngIf="submitted && f.timeline?.errors" class="invalid-feedback">Milestone is required</p> 
+                                                              </div>
+                                                              <div class="col-sm-2">
+                                                                <select   class="form-control"  formControlName="paymenttype" id="paymenttype+i">
+                                                                  <option value="YES">YES</option>
+                                                                  <option value="NO">NO</option>
+                                                                </select>
+                                                                <p *ngIf="submitted && f.paymenttype?.errors" class="invalid-feedback">payment Type is required</p> 
+                                                              </div>
       <div class="col-md-1">
  <button *ngIf="milestonedata.length>1" (click)="deleteitem(i)" class="btn btn-sm"><i class="fa fa-trash"></i></button>
                                                                               

@@ -35,13 +35,16 @@ import { DesignInitComponent } from './design-init/design-init.component';
 import { CopyrightInitComponent } from './copyright-init/copyright-init.component';
 import { TrademarkInitComponent } from './trademark-init/trademark-init.component';
 import { PlantVarietyInitComponent } from './plant-variety-init/plant-variety-init.component';
+import { AccountComponent } from './account/account.component';
+import { AccountInitComponent } from './account-init/account-init.component';
 const routes: Routes = [
   //{ path: '',redirectTo: 'Login', pathMatch: 'full', component: BcilComponent },
   // {path:"Login",component:LoginComponent},
   {path:"users",canActivate:[AuthGuard],component:UsermanagementComponent},
   {path:"roles",canActivate:[AuthGuard],component:RolemanagementComponent},
   {path:"reminder",canActivate:[AuthGuard],component:ReminderComponent},
-  
+  {path:"account-dashboard",canActivate:[AuthGuard],component:AccountComponent},
+  {path:"bcil-account-table",canActivate:[AuthGuard],component:AccountInitComponent},
   {path:"dashboard",canActivate:[AuthGuard],component:DashboardComponent},
   {path:"bcil-dashboard",canActivate:[AuthGuard],component:BcilDashboardComponent},
   {path:"mou-add",canActivate:[AuthGuard],component:MouAddComponent},

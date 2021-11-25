@@ -1,0 +1,90 @@
+<div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1">
+    <div class="modal-dialog modal-lg" style="max-height: 600px;
+    overflow: auto;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Create Invoice</h4>
+          <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+      
+            <form [formGroup]="ForwardForm">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                      <label class="col-form-label">Invoice Number</label>
+                      <input type="text" class="form-control" formControlName="invoiceno" [ngClass]="{ 'is-invalid': submitted && f.invoiceno.errors }" />
+                      <p *ngIf="submitted && f.invoiceno.errors" class="invalid-feedback">Invoice Number is required</p>
+                              
+        
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="col-form-label">Invoice Date</label>
+                      <input type="date" class="form-control" formControlName="invoicedate" [ngClass]="{ 'is-invalid': submitted && f.invoicedate.errors }" />
+                      <p *ngIf="submitted && f.invoicedate.errors" class="invalid-feedback">Invoice Date is required</p>
+                              
+        
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <div class="col-sm-12">
+                          <label class="col-form-label">Client Name</label>
+                          <select type="text" [(ngModel)]="selectedorg" class="form-control" formControlName="clientname" [ngClass]="{ 'is-invalid': submitted && f.clientname.errors }" >
+                              <option *ngFor="let org of Organization" value="{{org.value}}}">{{org.value}}</option>
+                          </select>
+                          <p *ngIf="submitted && f.clientname.errors" class="invalid-feedback">Client Name is required</p>
+                           
+                          </div>
+                          </div>
+                          <div class="form-group row">
+                      <div class="col-sm-12">
+                          <label class="col-form-label">Application No</label>
+                          <input type="text" class="form-control" formControlName="applicationno" [ngClass]="{ 'is-invalid': submitted && f.applicationno.errors }" />
+                          <p *ngIf="submitted && f.applicationno.errors" class="invalid-feedback">Application No is required</p>
+                           
+                          </div>
+                          </div>
+                  <div class="form-group row">
+                      <div class="col-sm-12">
+                      <label class="col-form-label">Activity</label>
+                      <ng-select  size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
+                      placeholder="Select Activity"   class="form-control left-status pill-items" required>
+             <ng-template ng-label-tmp let-item="item" let-clear="clear">
+               <span title='{{item.refid}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+             </ng-template>
+   
+             <ng-template ng-option-tmp let-item="item">
+               <span title='{{item.refid}}' class='badge badge-pill badge-secondary'>{{item.name}}</span>
+               <i class="fa fa-check d-none"></i>
+             </ng-template>
+           </ng-select>         
+        
+                    </div>
+                      </div>
+                      
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                      <label class="col-form-label">Upload</label>
+                      <input type="file"  accept="*" class="form-control"  (change)="fileChangeEvent($event)" />
+                      <input type="hidden" name="files" formControlName="files" /> 
+                      <p *ngIf="submitted && f.files.errors" class="invalid-feedback">File is required</p>
+                    
+                      <span class="text-danger float-right">*For multiple files, please compress and upload.(zip format)</span>
+        
+        
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6">
+                     
+                      <button type="submit" class="btn btn-success" (click)="uploadClientFile()" [disabled]="loading">
+                        <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
+                      </button>
+                    </div>
+                  </div>
+        
+            </form>
+        </div>
+    </div>
+</div>

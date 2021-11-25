@@ -266,9 +266,10 @@ if(this.fields!=undefined){
       addItemFormGroup(): FormGroup {
         return this.formbuilder.group({
           ID: [0],
-          milestone: [],
-          paymentterm: [],
-          timeline: [],
+          milestone: [''],
+          paymentterm: [''],
+          timeline: [''],
+          paymenttype:['']
          
         });
       }
@@ -352,9 +353,9 @@ if(nodalid!=""){
 var tt=[];
 
         for (let arr of  this.ForwardForm.get('milestonedata').value) {
-          tt.push({milestone:arr['milestone'],timelines:arr['timeline'],paymentterm:arr['paymentterm'],misref: this.UploadFileViewModel.app_ref_id,id:0});
+          tt.push({milestone:arr['milestone'],timelines:arr['timeline'],paymentterm:arr['paymentterm'],misref: this.UploadFileViewModel.app_ref_id,id:0,paymenttype:arr['paymenttype']});
         }
-        this.UploadFileViewModel.milestones= tt.filter(y=>y.milestone!=null);//this.ForwardForm.get('milestonedata').value;
+        this.UploadFileViewModel.milestones= tt.filter(y=> y.milestone!="");//this.ForwardForm.get('milestonedata').value;
     //     if(this.activuser?.find(x=>this.rows?.find(y=>y.id==x.userid))?.userid!=this.ForwardForm.get('assigntobdo').value && this.ForwardForm.get('assigntobdo').value!="")
     // {
     //     this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;

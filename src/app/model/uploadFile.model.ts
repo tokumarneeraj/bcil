@@ -34,9 +34,13 @@ export class UploadFileViewModel {
 export class milestones{
   public id:string;
   public misref:string;
+  public refid:string;
+  public appno:string;
+  public app_status:string;
   public milestone:string;
-  public timeline:string;
+  public timeline:Date;
   public paymentterm:string;
+  public paymenttype:string;
 }
 export class nodalOfficer{
 

@@ -34,6 +34,7 @@ export class MisDashboardComponent implements OnInit {
   milestonedata:any;
   isSuperAdmin: boolean;
   isIPM:boolean;
+  stage:string;
   array:any;//{"tablename":"Create Activity","organization":true,"getscientist":true,"assignlabel":"Assign Scientist","assignarray":['Scientist']}
   constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
@@ -54,6 +55,7 @@ export class MisDashboardComponent implements OnInit {
     this.Bdoservice.getdatapermission().subscribe(data=>{
       console.log(data);
       this.route.queryParams.subscribe((params) => {
+        this.stage=params?.stage;
         let yy=["milestones"]
         if(yy.includes(params?.stage)){
           
@@ -75,7 +77,7 @@ export class MisDashboardComponent implements OnInit {
       this.activeusermou=data1;
     this.Bdoservice.GetMis().subscribe(data => {
       this.Bdoservice.GetAllMilestone().subscribe(datamilestone=>{
-//this.milestonearray=datamilestone?.filter();
+this.milestonearray=datamilestone;
       })
       console.log(data)
       this.misModel = data;
@@ -97,15 +99,34 @@ export class MisDashboardComponent implements OnInit {
     // };
   }
   mislistfilter(data) {
-   
+   if(data=="milestones"){
     if(this.isSuperAdmin){
-      return this.misModel?.filter(x=>x.app_Status==data).length;
+      return this.milestonearray?.filter(x=>this.milestonedata[0]?.status.find(t=>t==x.app_status)).length;
     }
    
     else{
-      return this.misModel?.filter(x=>(x.app_Status==data )&& this.activeusermou?.some(t=>t.appref==x.refid)).length;
+      return this.milestonearray?.filter(x=>(this.milestonedata[0]?.status.find(t=>t==x.app_status))&& this.activeusermou?.some(t=>t.appref==x.refid)).length;
+    }
+   }
+   else{
+    if(this.isSuperAdmin){
+      if(this.stage=="milestones"){
+
+        return this.milestonearray?.filter(x=>x.app_status==data).length;
+      }
+      else{
+      return this.misModel?.filter(x=>x.app_Status==data).length;
+      }
     }
    
+    else{
+      if(this.stage=="milestones"){
+        return this.milestonearray?.filter(x=>(x.app_status==data )&& this.activeusermou?.some(t=>t.appref==x.refid)).length;
+      }else{
+      return this.misModel?.filter(x=>(x.app_Status==data )&& this.activeusermou?.some(t=>t.appref==x.refid)).length;
+      }
+    }
+  }
 }
 
   createactivity(){

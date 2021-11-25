@@ -57,6 +57,10 @@ import { TrademarkInitComponent } from './trademark-init/trademark-init.componen
 import { DesignInitComponent } from './design-init/design-init.component';
 import { KeysPipe } from '../pipes/keys.pipe';
 import { PlantVarietyInitComponent } from './plant-variety-init/plant-variety-init.component';
+import { AccountComponent } from './account/account.component';
+import { AccountInitComponent } from './account-init/account-init.component';
+import { LufInvoiceComponent } from './luf-invoice/luf-invoice.component';
+import { ClientInvoiceComponent } from './client-invoice/client-invoice.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -93,6 +97,10 @@ import { PlantVarietyInitComponent } from './plant-variety-init/plant-variety-in
     TrademarkInitComponent,
     DesignInitComponent,
     PlantVarietyInitComponent,
+    AccountComponent,
+    AccountInitComponent,
+    LufInvoiceComponent,
+    ClientInvoiceComponent,
     
      ],
 

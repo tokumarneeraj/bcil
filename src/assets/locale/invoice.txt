@@ -1,0 +1,29 @@
+
+client invoice-
+client id
+client name
+
+activity
+application no
+
+
+invoice no
+
+luf one ore more invoice of client linked
+
+
+excel
+date,client name,address,profession,dispersment,offical
+
+
+luf excel
+
+lufinvoiceno,invoicedate,law firm name
+activity-[date,discription,price]
+
+total
+
+
+invoice no,
+pdf  manatory
+remark

@@ -104,7 +104,7 @@ export class CopyrightInitComponent implements OnInit {
       
             }
             else{
-            this.copyrightdata=data?.design?.filter(x=>this.viewtab.find(y=>y==x.value));
+            this.copyrightdata=data?.copyright?.filter(x=>this.viewtab.find(y=>y==x.value));
             }
                this.array=this.copyrightdata.find(x => x.type == params.type);
              this.managetab.some(x=>x==this.array.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 

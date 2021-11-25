@@ -4,6 +4,7 @@ import { Observable,of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {activeusermou, addusertomou, copyrightModel, designModel, misModel, mouModel, patentModel, plantvarietyModel, Reminder, StatusMaster, trademarkModel, ttaModel} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
+import {clientInvoiceModel} from '../model/mou.model'
 import {environment} from '../../environments/environment'
 import { filehistoryModel } from '../model/filehistory';
 import { AccountService } from './account.service';
@@ -16,7 +17,7 @@ export class Bdoservice  extends EndpointBase
 {
     get addmouurl() { return  environment.baseUrl+'/api/bdo/addmou'; }
 
-
+get getdashboardata(){return  environment.baseUrl+'/api/bdo/getdashboarddata'}
     get notificationseenurl(){return  environment.baseUrl+'/api/bdo/notificationseen';}
     get addreminderurl() { return  environment.baseUrl+'/api/bdo/addreminder'; }
     get editreminderurl() { return  environment.baseUrl+'/api/bdo/editreminder'; }
@@ -27,12 +28,14 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
 
     get getactiveusermouuseridurl() { return  environment.baseUrl+'/api/bdo/getactivebyuserid'; }
     get getmouuser() { return  environment.baseUrl+'/api/bdo/getmouuser'; }
+    get getallactivity() { return  environment.baseUrl+'/api/bdo/getallactivity'; }
+    get getallinvoicetrigger() { return  environment.baseUrl+'/api/bdo/getinvtrg'; }
     get getactiveusermouurl() { return  environment.baseUrl+'/api/bdo/getallactiveusermou'; }
     get getreminderurl() { return  environment.baseUrl+'/api/bdo/getallreminder'; }
 
     get getcustomreminderbystage(){ return  environment.baseUrl+'/api/bdo/getcustomreminder';}
     get getmouurl() { return environment.baseUrl+'/api/bdo/getmou'; }
-    get getorganization() { return environment.baseUrl+'/api/bdo/getorganization'; }
+    get getorganization() { return environment.baseUrl+'/api/bdo/getorg'; }
     get getcountry() { return environment.baseUrl+'/api/bdo/getcountry'; }
     get getorganizationuserid() { return environment.baseUrl+'/api/bdo/getorganizationbyuserid'; }
     get getallorganization() { return environment.baseUrl+'/api/bdo/getallorganization'; }
@@ -53,6 +56,8 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     get removeadditionalfile() { return environment.baseUrl + '/api/FileUploads/removeaddifile'; }
     get additionalfileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddAdditionFile'; }
     get fileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddFile'; }
+    get clientinvoiceurl() { return environment.baseUrl + '/api/bdo/clientinvoice'; }
+    get getclientinvoiceurl() { return environment.baseUrl + '/api/bdo/getclientinvoice'; }
     get filehistory() { return environment.baseUrl + '/api/bdo/getfile'; }
 
     get datapermission(){return environment.baseUrl + '../../';}
@@ -112,6 +117,21 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
       }));
   //   .pipe<mouModel>(
    }
+   public clientinvoice<T>(upload:clientInvoiceModel):Observable<result>{
+    // const headers = new HttpHeaders({
+            
+    //   'Content-Type': 'application/json',
+    //   Accept: 'application/json, text/plain, */*'
+    // });
+
+   // return this.http.post<UploadFileViewModel>(this.fileuploadurl, JSON.stringify(upload),{headers:headers});
+    return this.http.post(this.clientinvoiceurl, JSON.stringify(upload), this.requestHeaders).pipe<result>(
+      catchError(error => {
+        return this.handleError(error, () => this.clientinvoice(upload));
+      }));
+  //   .pipe<mouModel>(
+   }
+
 
 
     public  AddMou<T>(mou:mouModel): Observable<result> {
@@ -157,7 +177,46 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
          const endpointUrl = `${this.getallmilestoneurl}`;
          return this.http.get<any[]>(endpointUrl,this.requestHeaders);
          }
-         
+         public  GetDashboardData<T>(): Observable<any[]> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.getdashboardata}`;
+         return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
+         public  GetAllActitvity<T>(refid:string): Observable<any[]> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.getallactivity}`;
+         return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
+          public  GetAllInvoiceTrigger<T>(refid:string): Observable<any[]> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.getallinvoicetrigger}/${refid}`;
+         return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
+         public  GetClientInvoice<T>(refid:string): Observable<any[]> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.getclientinvoiceurl}/${refid}`;
+         return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
          public  GetMilestone<T>(refid:string): Observable<any[]> {
         
           // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);

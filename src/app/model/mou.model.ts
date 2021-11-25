@@ -128,6 +128,21 @@ export class addusertomou{
   public userrole:string;
   
 }
+
+//invoice
+export class clientInvoiceModel{
+  public refid:string;
+  public appno:string;
+  public organization:string;
+  public app_status:string;
+  public invoiceno:string;
+  public invoicedate:Date;
+  public url:string;
+  public filename:string;
+
+  public applicationno:string;
+  public  activity:any[];
+}
 export class Reminder{
 
   public stage:string;

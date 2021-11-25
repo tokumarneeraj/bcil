@@ -1,0 +1,113 @@
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Account</h5>
+                        <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Account</a>
+                        </li>
+                        <!-- <li class="breadcrumb-item"><a href="#!">Assignments</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                   
+                    
+                    <!-- Hover table card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>{{array?.tablename}}</h5>
+                            <!-- <span>use class <code>table-hover</code> inside table element</span> -->
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                    <li><i class="fa fa-window-maximize full-card"></i></li>
+                                    <li><i class="fa fa-minus minimize-card"></i></li>
+                                    <li><i class="fa fa-refresh reload-card"></i></li>
+                                    <li><i class="fa fa-trash close-card"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-block table-border-style">
+                          <div class="table-responsive">
+                              <table class="table table-hover" *ngIf="array?.value=='S805'">
+                                <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>Application</th>
+                                      <th>Organization</th>
+                                      <th>Activity</th>
+                                    <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let trigger of invoicetriggerModel;let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{trigger?.appno}}</td>
+                                        <td>{{trigger?.organization}}</td>
+                                        <td>{{trigger?.activityref}}({{trigger?.milestoneref}})</td>
+                                       <td><button (click)="clientinvoicepopup(trigger)" >Create Invoice</button></td>
+                                    </tr>
+                                </tbody>
+                                
+                              </table>
+                            <table class="table table-hover" *ngIf="array?.value=='S806'">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Account No</th>
+                                  <th>Invoice No</th>
+                                  <th>Invoice Date</th>
+                                  <th>Application No</th>
+                               <th>Action</th>
+                              
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let account of accountModel;let i=index">
+                                      <td>{{i+1}}</td>
+                                      <td>{{account?.appno}}</td>
+                                      <td>{{account?.invoiceno}}</td>
+                                      <td>{{account?.invoicedate}}</td>
+                                      <td>{{account?.applicationno}}</td>
+                                     
+                                      <td>
+                                          <ng-container *ngFor="let btn of array?.button">
+                                            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,account)">{{btn.text}}</button>
+                                                      
+                                          </ng-container>
+                                      </td>
+
+                                      <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'account',refid:account?.refid}">View</a></td>
+                                      <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
+                                      <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(account)" class="stretched-link">View</a></td>
+                                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(account.remarks)">{{account?.remarks}}</p></td>
+                                  </tr>
+                                  </tbody>
+                                  </table>
+                          </div>
+                          </div>
+                          </div>
+                          <app-footer></app-footer>
+                          </div>
+            </div>
+            <app-client-invoice></app-client-invoice>

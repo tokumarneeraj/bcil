@@ -15,10 +15,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./bcil-dashboard.component.css']
 })
 export class BcilDashboardComponent implements OnInit {
-
+dashboardModel:any;
   mouModel:mouModel[];
   misModel:any[];
   ttaModel:any[];
+  accountModel:any[];
   patentModel:any[];
   plant_varietyModel:any[];
   trademarkModel:any[];
@@ -106,53 +107,39 @@ designModel:any[];
    // this.permission[0].link= this.accountService.permissions;
    }
    counttotal(tab:any){
-    let data= this.jsondata?.[tab?.stage];
-    let rr=[];
     
-    data?.forEach(y => {
-      if(this.viewtab?.some(w=>w==y.value)){
-        rr.push(y.value);
-      }
-     
-        y?.subchild?.forEach(x => {
-         if(this.viewtab?.some(w=>w==x.value)){
-          rr.push(x.value);
-         }
-        });
-       
-      
-      
-    });
-    console.log(rr,'pp')
     if(tab?.stage=="tta"){
-      return this.ttalist(rr);
+      return this.dashboardModel?.ttacount;
     }
 else if(tab?.stage=="mou"){
-  return this.moulist(rr);
+  return this.dashboardModel?.moucount;
   
 }
 else if(tab?.stage=="patent"){
-  return this.patentlist(rr);
+  return this.dashboardModel?.patentcount;
   
 }
 else if(tab?.stage=="mis"){
-  return this.mislist(rr);
+  return this.dashboardModel?.miscount;
   
 }
 else if(tab?.stage=="trademark"){
-  return this.trademarklist(rr);
+  return this.dashboardModel?.trademarkcount;
   
 }
 else if(tab?.stage=="design"){
-  return this.designlist(rr);
+  return this.dashboardModel?.designcount;
   
 }
 else if(tab?.stage=="copyright"){
-  return this.copyrightlist(rr);
+  return this.dashboardModel?.copyrightcount;
   
 }
 else if(tab?.stage=="plant_variety"){
-  return this.plant_varietylist(rr);
+  return this.dashboardModel?.plantvarietycount;
+  
+}else if(tab?.stage=="account"){
+  return this.dashboardModel?.accountcount;
   
 }
 else
@@ -167,44 +154,18 @@ else
     this.Bdoservice.getdatapermission().subscribe(data=>{
  this.jsondata=data;
      
-this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
-  console.log(data1,'mouref');
-this.activeusermou=data1;
+
+
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBDM = this.userRoles.includes('BDM');
     this.isIPM = this.userRoles.includes('IPM');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
     
-    this.Bdoservice.GetMou().subscribe(data=>{console.log(data)
-      this.mouModel=data;
-      this.Bdoservice.GetTtaModel().subscribe(datatta=>{console.log(datatta)
-this.ttaModel=datatta;
-      this.Bdoservice.GetMis().subscribe(datamis=>{console.log(datamis)
-        this.misModel=datamis;
-        this.Bdoservice.GetPatentModel().subscribe(datapatent=>{console.log(datapatent)
-          this.patentModel=datapatent;
-          this.Bdoservice.GetTrademarkModel().subscribe(datatrademark=>{console.log(datatrademark)
-            this.trademarkModel=datatrademark;
-            this.Bdoservice.GetDesignModel().subscribe(datadesign=>{console.log(datadesign)
-              this.designModel=datadesign;
-              this.Bdoservice.GetCopyrightModel().subscribe(datacopyright=>{console.log(datacopyright)
-                this.Bdoservice.GetPlantvarietyModel().subscribe(dataplant=>{console.log(dataplant)
-                  this.plant_varietyModel=dataplant;
-                });
-                this.copyrightModel=datacopyright;});
-          this.showpage=true;
-            
-            });
-          
-          
-          });
-        });
-           
-             
-        });
-        //this.showpage=true;
-      }
+    this.Bdoservice.GetDashboardData().subscribe(data=>{console.log(data)
+    this.dashboardModel=data;
+        this.showpage=true;
+      
      
       // this.Bdoservice.GetPatentModel().subscribe(datamis=>{console.log(datamis)
       //   this.patentModel=datamis;
@@ -213,8 +174,6 @@ this.ttaModel=datatta;
   
    
   
-    );
-  });
 });
     });
   }
@@ -228,81 +187,6 @@ this.router.navigate([url]);
      return menu;
     
      }
-moulist(permission:any){
-  if(this.isSuperAdmin){
-    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108")).length;
-  }
-  else if(this.isAdmin){
-  return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && (x.app_Status=="S101" || this.activeusermou?.some(t=>t.appref==x.refid))).length;
-  }
-  else{
-    return this.mouModel?.filter(x=>permission.find(p=>p==x.app_Status || x.tto_approved=="S108") && this.activeusermou?.some(t=>t.appref==x.refid)).length;
- 
-  }
-  
-  }
-  ttalist(permission:any){
-    if(this.isSuperAdmin){
-      return this.ttaModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
-   
-    }
-    else{
-    return this.ttaModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
-    
-  }}
-  trademarklist(permission:any){
-    if(this.isSuperAdmin){
-      return this.trademarkModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
-   
-    }
-    else{
-    return this.trademarkModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
-    
-  }}
-   designlist(permission:any){
-    if(this.isSuperAdmin){
-      return this.designModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
-   
-    }
-    else{
-    return this.designModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
-    
-  }}
-   copyrightlist(permission:any){
-    if(this.isSuperAdmin){
-      return this.copyrightModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
-   
-    }
-    else{
-    return this.copyrightModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
-    
-  }}
-  patentlist(permission:any){
-    if(this.isSuperAdmin){
-      return this.patentModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
-   
-    }
-    else{
-    return this.patentModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
-    
-  }}
-  mislist(permission:any){
-    if(this.isSuperAdmin){
-      return this.misModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
-   
-    }
-    else{
-    return this.misModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
-    
-  }}
-  plant_varietylist(permission:any){
-    if(this.isSuperAdmin){
-      return this.plant_varietyModel?.filter(x=>permission.find(p=>p==x.app_Status)).length;
-   
-    }
-    else{
-    return this.plant_varietyModel?.filter(x=>permission.find(p=>p==x.app_Status) &&  this.activeusermou?.some(t=>t.appref==x.refid)).length;
-    
-  }}
+
   
 }
