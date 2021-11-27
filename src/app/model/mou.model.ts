@@ -143,6 +143,28 @@ export class clientInvoiceModel{
   public applicationno:string;
   public  activity:any[];
 }
+export class LufInvoiceModel{
+  public refid:string;
+  public appno:string;
+  public organization:string;
+  public app_status:string;
+  public invoiceno:string;
+  public invoicedate:Date;
+  public url:string;
+  public filename:string;
+
+  public applicationno:string;
+  public  activity:any[];
+  public  luffeeinvoice:any;
+}
+export class LuffeeInvoiceModel{
+  public refid:string;
+  public lufref:string;
+  public date:Date;
+  public description:string;
+  public price:string;
+  
+}
 export class Reminder{
 
   public stage:string;

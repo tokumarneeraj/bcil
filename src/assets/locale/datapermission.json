@@ -5520,7 +5520,8 @@
 				"form": {
 					"assign": true,
 					"assignlabel": "IPM/IBM/LM",
-					"assignarray": ["IPM", "BDM", "LM"]
+					"assignarray": ["IPM", "BDM", "LM"],
+					"toggle":true
 				}
 			}]
 		},
@@ -5849,7 +5850,7 @@
 					"text": "Forward",
 					"class": "btn btn-primary",
 					"title": "",
-					"value": "S812"
+					"value": "S813"
 				}
 				]
 			}
@@ -5865,7 +5866,13 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S813"
+				"value": "S815","form":{"mappedinvocie":true}
+			},
+			{
+				"text": "Reject",
+				"class": "btn btn-danger",
+				"title": "",
+				"value": "S814"
 			}]
 
 
@@ -5876,12 +5883,7 @@
 			"type": "luf_invoice_rejected",
 			"value": "S814",
 			"color": "red",
-			"button": [{
-				"text": "Forward",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S814"
-			}]
+			"button": []
 
 
 		}, {
@@ -5895,7 +5897,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S815"
+				"value": "S816"
 			}]
 
 

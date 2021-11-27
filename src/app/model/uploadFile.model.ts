@@ -6,6 +6,8 @@ export class UploadFileViewModel {
   public subject: string;
   public stage: string;
   public organization:string;
+  public booleancheck:boolean;
+  public jsontwo:string;
   public file64: any;
  
   public fileFullName: string;

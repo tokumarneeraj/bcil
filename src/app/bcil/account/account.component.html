@@ -31,14 +31,19 @@
                 <div class="page-body">  
                                                          
                     <div class="row categoryList mouList">
-                        <div class="col-md-12 text-center">
+                        <div class="col-md-12 text-center" *ngIf="stage=='luf_invoice'">
                             <div class="addMou">
                                 <a (click)="createactivity()">Create Invoice</a>
                             </div>                                            
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" *ngIf="stage=='client_invoice'">
                             <div class="addMou">
-                            <a routerLink="../mou-application" [queryParams]="{ stage: 'account'}" style="float:right" class="mb-5">View Account</a>
+                            <a routerLink="../mou-application" [queryParams]="{ stage: 'client_invoice'}" style="float:right" class="mb-5">View Client Invoice</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" *ngIf="stage=='luf_invoice'">
+                            <div class="addMou">
+                            <a routerLink="../mou-application" [queryParams]="{ stage: 'luf_invoice'}" style="float:right" class="mb-5">View Luf Invocie</a>
                             </div>
                         </div>
                         <div class="col-sm-12">

@@ -40,6 +40,20 @@
               "./node_modules/bootstrap-toggle/js/bootstrap-toggle.js"]
           },
           "configurations": {
+            "dev":{
+              "optimization": false,
+          "outputHashing": "none",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "showCircularDependencies": false,
+          "aot": true,
+          "extractLicenses": false,
+          "statsJson": false,
+          "progress": false,
+          "vendorChunk": true,
+          "buildOptimizer": false
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -72,13 +86,19 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "disableHostCheck": true,
           "options": {
             "browserTarget": "bcilAngular:build"
           },
           "configurations": {
+            
             "production": {
               "browserTarget": "bcilAngular:build:production"
+            },
+            "dev": {
+              "browserTarget": "bcilAngular:build:development"
             }
+           
           }
         },
         "extract-i18n": {

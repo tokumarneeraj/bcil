@@ -18,6 +18,7 @@ export class AccountInitComponent implements OnInit {
 
   showpage:boolean;
   accountdata:any;
+  lufInvocie:any[];
   type:string;
   UserId: string;
   userRoles: string[];
@@ -45,8 +46,12 @@ export class AccountInitComponent implements OnInit {
   managetab:any;
   viewhistory:any;
   viewremark:any;
+  stage:string;
   viewadditionalfileright:boolean;
   invoicetriggerModel:any[];
+  public changesSavedCallback: () => void;
+  public changesFailedCallback: () => void;
+  public changesCancelledCallback: () => void;
   constructor(private route: ActivatedRoute,private alertService: AlertService,private accountService: AccountService,private Bdoservice:Bdoservice,private router:Router
 
 
@@ -55,6 +60,7 @@ export class AccountInitComponent implements OnInit {
 
 
   }
+
   viewadditionalfile(data:any){
     this.AdditionFile.showviewmodel(data,true,"account");
   }
@@ -79,6 +85,7 @@ export class AccountInitComponent implements OnInit {
     this.clientinvoice.showviewmodel('','S806',data);
       }
   onmodalclick(e: string,value:any, data: any) {
+    data=data.map(item=>({...item,lufinvoice:this.lufInvocie,clientinvoice:this.clientinvoice}))
     this.activity.showviewmodel('account',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
@@ -105,6 +112,7 @@ export class AccountInitComponent implements OnInit {
           //this.moudata=data?.mou?.filter(x=>this.managetab.find(y=>y==x.value));
           this.route.queryParams.subscribe((params) => {
             let yy=["client_invoice","luf_invoice"]
+            this.stage=params.stage;
             if(yy.includes(params.stage)){
       
               this.accountdata=data?.account?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
@@ -114,6 +122,7 @@ export class AccountInitComponent implements OnInit {
             this.accountdata=data?.account?.filter(x=>this.viewtab.find(y=>y==x.value));
             }
                this.array=this.accountdata.find(x => x.type == params.type);
+               console.log(this.array,'arr')
              this.managetab.some(x=>x==this.array.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
            
          
@@ -123,25 +132,53 @@ export class AccountInitComponent implements OnInit {
       
           
     
-        })
+       
     
    
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
+   //  if(this.array?.value=="S805"){
       this.Bdoservice.GetAllInvoiceTrigger('all').subscribe(data => {
 this.invoicetriggerModel=data;
-
       });
+  //  }
+//if(this.array?.value=="S112"){
+this.Bdoservice.GetLufInvoice('all').subscribe(data => {
+     this.lufInvocie=data;
+     if(this.isSuperAdmin){
+      this.lufInvocie = data.filter(x => x.app_status == this.array?.value);
+    }
+
+
+  else {
+     this.lufInvocie= data.filter(x=>x.app_status== this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));;
+
+     }
+    console.log(this.lufInvocie,'lu')
+    
+  this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.array?.value);
+     this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.array?.value);
+     //this.emailpermission=this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
+   // this.viewadditionfile= this.commondata.getotherpermissiondata('addfile').some(x=>x?.split('-')[1]==this.type);
+    
+      this.showpage = true;
+
+
+     
+    });
+  //}
+  //if(this.array?.value=="S806"){
     this.Bdoservice.GetClientInvoice('all').subscribe(data => {
       if(this.isSuperAdmin){
-        this.accountModel = data.filter(x => x.app_Status == this.array?.value);
+        this.accountModel = data.filter(x => x.app_status == this.array?.value);
       }
   
 
     else {
-       this.accountModel= data.filter(x=>x.app_Status== this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
+       this.accountModel= data.filter(x=>x.app_status== this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
+
        }
-      
+      console.log(this.accountModel)
       
     this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.array?.value);
        this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.array?.value);
@@ -153,10 +190,15 @@ this.invoicetriggerModel=data;
 
     }
     );
-    });
+  
+  
+
+     // }
+      });
+    })
+    }
+  
+    }
 
 
-  }
 
-
-}

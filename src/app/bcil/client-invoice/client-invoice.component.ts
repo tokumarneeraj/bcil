@@ -53,6 +53,7 @@ export class ClientInvoiceComponent implements OnInit {
       this.triggerinvoice=data.filter(x=>x.organization==this.Organization[0]?.value);
 
       this.rowactivity=this.triggerinvoice.map(u=>({id:u.refid,name:u.appno+"("+u.activityref+")"  + (u.milestoneref==null?"":"("+u.milestoneref+")")}))
+   console.log(this.rowactivity)
     })
     this.editorModal.show();
       }
@@ -62,7 +63,7 @@ export class ClientInvoiceComponent implements OnInit {
           const fileUpload = event.target.files[0];
           const filee = fileUpload.files;
           if( fileUpload.size<=30*1024*1024){
-         // this.UploadFileViewModel.fileFullName = fileUpload.name;
+          this.invoice.filename = fileUpload.name;
     
           const sFileExtension = fileUpload.name
             .split('.')
@@ -90,9 +91,16 @@ export class ClientInvoiceComponent implements OnInit {
         this.invoice.invoiceno= this.ForwardForm.get('invoiceno').value;
         this.invoice.invoicedate= this.ForwardForm.get('invoicedate').value;
         this.invoice.applicationno= this.ForwardForm.get('applicationno').value;
-        this.invoice.activity= this.ForwardForm.get('activity').value;
+      
+        let act=[];//this.ForwardForm.get('activity').value?.map(t=>({id==t.name}));
+        for(let rr of this.ForwardForm.get('activity').value){
+          act.push(this.rowactivity.find(r=>r.name==rr)?.id);
+        }
+        this.invoice.activity= act;//this.ForwardForm.get('activity').value;//this.triggerinvoice.map(t=>({t.name==this.ForwardForm.get('activity').value});
+        this.invoice.organization=this.ForwardForm.get('clientname').value;
        // this.invoice.invoiceno= this.ForwardForm.get('subject').value;
         //this.invoice.invoiceno= this.ForwardForm.get('subject').value;
+       
           if (this.ForwardForm.invalid) {
       return;
     }
@@ -105,7 +113,12 @@ export class ClientInvoiceComponent implements OnInit {
           alert("Submitted Successfully")
          
           this.editorModal.hide();
+          this.router.navigateByUrl('bcil/account-dashboard')
     }
+  },error=>{
+    this.loading=true;
+    this.submitted=false;
+    this.editorModal.hide();
   });
 
       }

@@ -31,7 +31,7 @@
                       <div class="col-sm-12">
                           <label class="col-form-label">Client Name</label>
                           <select type="text" [(ngModel)]="selectedorg" class="form-control" formControlName="clientname" [ngClass]="{ 'is-invalid': submitted && f.clientname.errors }" >
-                              <option *ngFor="let org of Organization" value="{{org.value}}}">{{org.value}}</option>
+                              <option *ngFor="let org of Organization" value="{{org.value}}">{{org.value}}</option>
                           </select>
                           <p *ngIf="submitted && f.clientname.errors" class="invalid-feedback">Client Name is required</p>
                            
@@ -51,11 +51,11 @@
                       <ng-select  size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
                       placeholder="Select Activity"   class="form-control left-status pill-items" required>
              <ng-template ng-label-tmp let-item="item" let-clear="clear">
-               <span title='{{item.refid}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+               <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
              </ng-template>
    
              <ng-template ng-option-tmp let-item="item">
-               <span title='{{item.refid}}' class='badge badge-pill badge-secondary'>{{item.name}}</span>
+               <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}</span>
                <i class="fa fa-check d-none"></i>
              </ng-template>
            </ng-select>         

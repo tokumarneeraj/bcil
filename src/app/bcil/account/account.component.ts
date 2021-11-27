@@ -17,6 +17,7 @@ export class AccountComponent implements OnInit {
 
   accountdata:any;
   viewtab:any;
+  triggerinvoiceModel:any[];
   commondata=new commondata();
   @ViewChild(ActivityComponent)
   activity: ActivityComponent;
@@ -25,6 +26,7 @@ export class AccountComponent implements OnInit {
   lufinvoice: LufInvoiceComponent;
   activeusermou:activeusermou[];
   accountModel:any[];
+  lufModel:any[];
   showpage:boolean=false;
   UserId: string;
   userRoles: string[];
@@ -36,9 +38,13 @@ export class AccountComponent implements OnInit {
   isLM: boolean;
   isSuperAdmin: boolean;
   isIPM:boolean;
+  stage:string;
   array={"tablename":"Create Activity"}
 
 createact:boolean=false;
+public changesSavedCallback: () => void;
+public changesFailedCallback: () => void;
+public changesCancelledCallback: () => void;
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
@@ -63,6 +69,7 @@ createact:boolean=false;
       
       this.createact=data?.tabheading?.find(y=>y.stage=='account')?.activity?.includes(this.userRoles[0]);
       this.route.queryParams.subscribe((params) => {
+        this.stage=params?.stage;
 let yy=["client_invoice","luf_invoice"]
 if(yy.includes(params?.stage)){
   
@@ -79,9 +86,17 @@ else{
     })
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
+      this.Bdoservice.GetClientInvoice("all").subscribe(data => {
+        this.accountModel = data;
+      });
+
+      this.Bdoservice.GetLufInvoice("all").subscribe(data => {
+        this.lufModel = data;
+      });
     this.Bdoservice.GetAllInvoiceTrigger("all").subscribe(data => {
       console.log(data)
-      this.accountModel = data;
+      this.triggerinvoiceModel=data.filter(tt=>tt.active==true);
+    
       this.showpage = true;
     })
   });
@@ -89,19 +104,31 @@ else{
   accountlistfilter(data) {
    
     let yy=["client_invoice","luf_invoice"]
+
   if(this.isSuperAdmin){
-    return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) ).length;
+    return this.accountModel?.length +this.lufModel.length+ this.triggerinvoiceModel?.length;
   }
   
   else{
-    return this.accountModel;
-  //  return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
+   if(this.stage=="luf_invoice"){
+    return this.lufModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==this.stage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
+  
+   }
+   else if(this.stage=="client_invoice"){
+    return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==this.stage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
+  
+   }
+   else{
+    //return this.accountModel.length + this.triggerinvoiceModel?.length;
+   return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length +(data=="client_invoice"?this.triggerinvoiceModel?.length:0)
+   +this.lufModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length ;
   }
+}
    
 }
 
   createactivity(){
-this.lufinvoice.showviewmodel('','S755');
+this.lufinvoice.showviewmodel('','S812');
   }
   ngAfterViewInit() {
 

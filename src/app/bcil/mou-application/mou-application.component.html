@@ -60,9 +60,10 @@
             <th  *ngIf="stage=='mou'">Phone No.</th>
             <th  *ngIf="stage=='mou'">Director Name</th>
             <th  *ngIf="stage=='mou'">Director Mobile</th>
-
+<th *ngIf="isSuperAdmin">Active Users</th>
             <th>Action</th>
-           
+           <th *ngIf="stage=='client_invoice' || stage=='luf_invoice'">View</th>
+           <th>Stage Toggle</th>
           </tr>
         </thead>
         <tbody>
@@ -75,7 +76,10 @@
             <td  *ngIf="stage=='mou'">{{item.phoneNo}}</td>
             <td  *ngIf="stage=='mou'">{{item.dir_Head_Name}}</td>
             <td  *ngIf="stage=='mou'">{{item.dir_Mobile_No}}</td>
+            <td *ngIf="isSuperAdmin"> <button class="btn btn-info" (click)="activeuser(item)">Active Users</button></td>
             <td ><button class="btn btn-info" (click)="additionfile(item)">Additional file</button></td>
+            <td *ngIf="stage=='client_invoice' || stage=='luf_invoice'"><button class="btn btn-info" (click)="viewform(item)">View</button></td>
+           <td></td>
             <!-- <td>
               <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
               <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
@@ -100,3 +104,74 @@
   <app-footer></app-footer>
   </div>
   <app-addition-file></app-addition-file>
+   <app-luf-invoice></app-luf-invoice>
+    <app-client-invoice></app-client-invoice>
+
+    <div class="modal fade" bsModal #editorModal3="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+        <div class="modal-dialog modal-lg" style="max-height: 600px;
+        overflow: auto;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Active User</h4>
+                    <button type="button" class="close float-right" title="Close" (click)="editorModal3.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover" *ngIf="showpage">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Active User</th>
+                            <th>UserRole</th>
+                            <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of activeuserModel;let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{user?.username}}</td>
+                                    <td>{{user?.userrole}}</td>
+                                    <td *ngIf="user?.active==true"><button class="btn btn-sm btn-success">Active</button></td>
+                                    <td *ngIf="user?.active==false"><button class="btn btn-sm btn-danger">Disable</button></td>
+                                </tr>
+                            </tbody>
+                            </table>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="modal fade" bsModal #editorModal4="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+                        <div class="modal-dialog modal-lg" style="max-height: 600px;
+                        overflow: auto;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4>Boolean Check</h4>
+                                    <button type="button" class="close float-right" title="Close" (click)="editorModal4.hide()">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-hover" *ngIf="showpage">
+                                        <thead>
+                                          <tr>
+                                            <th>#</th>
+                                            <th>Stage</th>
+                                            <th>Action</th>
+                                           
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let bl of booleanlist;let i=index">
+                                                    <td>{{i+1}}</td>
+                                                    <td>{{bl?.stage}}</td>
+                                                    <td><button class="btn btn-sm btn-success">Submit</button></td>
+                                                     </tr>
+                                            </tbody>
+                                            </table>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+
