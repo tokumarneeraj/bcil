@@ -19,6 +19,7 @@ export class AccountInitComponent implements OnInit {
   showpage:boolean;
   accountdata:any;
   lufInvocie:any[];
+  ClientInvoiceModel:any[];
   type:string;
   UserId: string;
   userRoles: string[];
@@ -85,8 +86,19 @@ export class AccountInitComponent implements OnInit {
     this.clientinvoice.showviewmodel('','S806',data);
       }
   onmodalclick(e: string,value:any, data: any) {
-    data=data.map(item=>({...item,lufinvoice:this.lufInvocie,clientinvoice:this.clientinvoice}))
+    if(value=="S815"){
+    var clientin=[];
+    this.Bdoservice.GetClientInvoice('all').subscribe(data1 => {
+      clientin=data1.filter(y=>y.app_status=='S809' && y.active==true && y.lufmapped==null);
+      data={...data,clientinvoice:clientin};
+      this.activity.showviewmodel('account',value,data);
+    });
+  }
+  else{
+  
     this.activity.showviewmodel('account',value,data);
+  }
+  console.log(data,'pp')
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
   
@@ -178,7 +190,7 @@ this.Bdoservice.GetLufInvoice('all').subscribe(data => {
        this.accountModel= data.filter(x=>x.app_status== this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
 
        }
-      console.log(this.accountModel)
+      console.log(this.accountModel,'acc')
       
     this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.array?.value);
        this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.array?.value);

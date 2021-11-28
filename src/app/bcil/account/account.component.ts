@@ -115,7 +115,7 @@ else{
   
    }
    else if(this.stage=="client_invoice"){
-    return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==this.stage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
+    return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==this.stage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length + (data=="S805" ?this.triggerinvoiceModel?.length:0);
   
    }
    else{

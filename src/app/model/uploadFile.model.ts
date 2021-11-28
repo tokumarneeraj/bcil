@@ -9,7 +9,7 @@ export class UploadFileViewModel {
   public booleancheck:boolean;
   public jsontwo:string;
   public file64: any;
- 
+ public arraytype:any[];
   public fileFullName: string;
   public remarks: string;
   public app_Status: string;

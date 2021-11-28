@@ -5520,8 +5520,8 @@
 				"form": {
 					"assign": true,
 					"assignlabel": "IPM/IBM/LM",
-					"assignarray": ["IPM", "BDM", "LM"],
-					"toggle":true
+					"assignarray": ["IPM", "BDM", "LM"]
+					
 				}
 			}]
 		},
@@ -5556,7 +5556,10 @@
 				{
 					"text": "Forward",
 					"class": "btn btn-success",
-					"value": "S174"
+					"value": "S174",
+					"form":{"toggle":true
+					
+					}
 				}
 			]
 		},
@@ -5751,6 +5754,12 @@
 						"text": "Forward",
 						"class": "btn btn-primary",
 						"title": "",
+						"value": "S808"
+					},
+					{
+						"text": "Reject",
+						"class": "btn btn-danger",
+						"title": "",
 						"value": "S807"
 					}]
 				},
@@ -5761,13 +5770,7 @@
 					"type": "client_invoice_rejected",
 					"value": "S807",
 					"color": "blue",
-					"button": [{
-						"text": "Forward",
-						"class": "btn btn-primary",
-						"title": "",
-						"value": "S681"
-						
-					}]
+					"button": []
 				},
 				{
 					"stage": "client_invoice",
@@ -5777,10 +5780,16 @@
 					"value": "S808",
 					"color": "dark-orange",
 					"button": [{
-						"text": "Forward",
+						"text": "No Mapped Invoice",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S681"
+						"value": "S810"
+					},
+					{
+						"text": "Luf Invoice Pending",
+						"class": "btn btn-secondary",
+						"title": "",
+						"value": "S809"
 					}]
 				},
 				{
@@ -5790,12 +5799,7 @@
 					"type": "client_paid_luf_invoice_pending",
 					"value": "S809",
 					"color": "purple",
-					"button": [{
-						"text": "Forward",
-						"class": "btn btn-primary",
-						"title": "",
-						"value": "S681"
-					}]
+					"button": []
 				},
 				{
 					"stage": "client_invoice",
@@ -5804,12 +5808,7 @@
 					"type": "client_paid_no_mapped_invoice",
 					"value": "S810",
 					"color": "dark-blue",
-					"button": [{
-						"text": "Forward",
-						"class": "btn btn-primary",
-						"title": "",
-						"value": "S681"
-					}]
+					"button": []
 				}, {
 					"stage": "client_invoice",
 					"tablename": "Client Paid Mapped Luf Invoice Paid",
@@ -5817,12 +5816,7 @@
 					"type": "client_paid_mapped_luf_invoice_paid",
 					"value": "S811",
 					"color": "dark-green",
-					"button": [{
-						"text": "Forward",
-						"class": "btn btn-primary",
-						"title": "",
-						"value": "S681"
-					}]
+					"button": []
 				}
 
 
@@ -5866,7 +5860,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S815","form":{"mappedinvocie":true}
+				"value": "S815","form":{"mappedinvoice":true}
 			},
 			{
 				"text": "Reject",

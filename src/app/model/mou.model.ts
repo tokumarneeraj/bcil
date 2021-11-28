@@ -165,6 +165,14 @@ export class LuffeeInvoiceModel{
   public price:string;
   
 }
+
+export class booleanvalue{
+  public refid:string;
+  public stagevalue:string;
+  public name:string;
+  public stageboolvalue:boolean;
+  public boolvalue?:boolean;
+}
 export class Reminder{
 
   public stage:string;

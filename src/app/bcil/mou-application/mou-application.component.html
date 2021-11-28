@@ -54,32 +54,36 @@
           <tr>
             <th>#</th>
             <th  *ngIf="stage!='mou'">App No</th>
-            <th  *ngIf="stage!='mou'">Subject</th>
+            <th  *ngIf="stage!='mou' && stage!='client_invoice' && stage!='luf_invoice' ">Subject</th>
             <th *ngIf="stage=='mou'">Institute</th>
             <th  *ngIf="stage=='mou'">Dept. Name</th>
             <th  *ngIf="stage=='mou'">Phone No.</th>
             <th  *ngIf="stage=='mou'">Director Name</th>
             <th  *ngIf="stage=='mou'">Director Mobile</th>
+            <th  *ngIf="stage=='client_invoice' || stage=='luf_invoice'">Invocie No</th>
+            <th  *ngIf="stage=='client_invoice' || stage=='luf_invoice'">Invoice Date</th>
 <th *ngIf="isSuperAdmin">Active Users</th>
             <th>Action</th>
            <th *ngIf="stage=='client_invoice' || stage=='luf_invoice'">View</th>
-           <th>Stage Toggle</th>
+           <th *ngIf="isAdmin || isIPM">Stage Toggle</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of mouModel;let i=index;">
             <th scope="row">{{i+1}}</th>
             <th  *ngIf="stage!='mou'">{{item?.appno}}</th>
-            <td  *ngIf="stage!='mou'">{{item?.subject}}</td>
+            <td  *ngIf="stage!='mou' && stage!='client_invoice' && stage!='luf_invoice'">{{item?.subject}}</td>
             <td  *ngIf="stage=='mou'">{{item.int_Uni_Name}}</td>
             <td  *ngIf="stage=='mou'">{{item.dept_Name}}</td>
             <td  *ngIf="stage=='mou'">{{item.phoneNo}}</td>
             <td  *ngIf="stage=='mou'">{{item.dir_Head_Name}}</td>
             <td  *ngIf="stage=='mou'">{{item.dir_Mobile_No}}</td>
+            <td   *ngIf="stage=='client_invoice' || stage=='luf_invoice'">{{item.invoiceno}}</td>
+            <td *ngIf="stage=='client_invoice' || stage=='luf_invoice'">{{item.invoicedate}}</td>
             <td *ngIf="isSuperAdmin"> <button class="btn btn-info" (click)="activeuser(item)">Active Users</button></td>
             <td ><button class="btn btn-info" (click)="additionfile(item)">Additional file</button></td>
             <td *ngIf="stage=='client_invoice' || stage=='luf_invoice'"><button class="btn btn-info" (click)="viewform(item)">View</button></td>
-           <td></td>
+           <td *ngIf="isAdmin || isIPM"><button class="btn btn-info" (click)="boolvalues(item)">Toggle values</button></td>
             <!-- <td>
               <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
               <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
@@ -165,8 +169,9 @@
                                             <tbody>
                                                 <tr *ngFor="let bl of booleanlist;let i=index">
                                                     <td>{{i+1}}</td>
-                                                    <td>{{bl?.stage}}</td>
-                                                    <td><button class="btn btn-sm btn-success">Submit</button></td>
+                                                    <td>{{bl?.name}}</td>
+                                                 
+                                                    <td><input *ngIf="bl?.boolvalue==true && bl?.stageboolvalue==false" type="checkbox"   (change)="checkboolean($event,bl)" >
                                                      </tr>
                                             </tbody>
                                             </table>

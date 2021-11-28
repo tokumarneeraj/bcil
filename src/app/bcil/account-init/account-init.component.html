@@ -65,12 +65,12 @@
                                         <td>{{trigger?.appno}}</td>
                                         <td>{{trigger?.organization}}</td>
                                         <td>{{trigger?.activityref}}({{trigger?.milestoneref}})</td>
-                                       <td><button *ngIf="trigger?.active==true" (click)="clientinvoicepopup(trigger)" class="btn -btn-sm btn-sucess">Create Invoice</button></td>
+                                       <td><button *ngIf="trigger?.active==true" (click)="clientinvoicepopup(trigger)" class="btn btn-sm btn-success">Create Invoice</button></td>
                                     </tr>
                                 </tbody>
                                 
                               </table>
-                            <table class="table table-hover" *ngIf="array?.value=='S806'">
+                            <table class="table table-hover" *ngIf="array?.value!='S805' && stage=='client_invoice'">
                               <thead>
                                 <tr>
                                   <th>#</th>

@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { GroupByPipe } from './pipes/group-by.pipe';
 import { KeysPipe } from './pipes/keys.pipe';
 import { UnderscorePipe } from './pipes/underscore.pipe';
+import { dateFormatPipe } from './pipes/dateformate';
 // import { ComplaintDetailsComponent } from './complaint-details/complaint-details.component';
 // import { RouterModule } from '@angular/router';
 // import { ReactiveFormsModule } from '@angular/forms';
@@ -26,12 +27,14 @@ import { UnderscorePipe } from './pipes/underscore.pipe';
   ],
   declarations: [
     KeysPipe,
+    dateFormatPipe,
     GroupByPipe,
     HeaderComponent,
     FooterComponent,
     UnderscorePipe
   ],
   exports: [
+    dateFormatPipe,
     GroupByPipe,
     KeysPipe,
     HeaderComponent,

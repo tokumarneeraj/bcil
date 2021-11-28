@@ -220,15 +220,10 @@
                             </ng-container>
 
                             <div class="form-group row" *ngIf="activebtn?.form?.mappedinvoice">
-                              <div class="col-sm-6">
-                                <label class="col-form-label">Select Luf Invocie</label>
-                                <select  class="form-control" >
-                                  <option value="">Choose</option>
-                                  <option *ngFor="let opt of lufinvoice" value="{{opt.refid}}">{{opt.appno}}</option>
-                                  </select> 
-                              </div>
-                              <div class="col-sm-6">
-                                <ng-select  size="1" id="roles-user-info" name="clientinvocie"  (change)="selectedcountry($event)" [items]="clientinvoice" bindLabel="appno" bindValue="refid" [multiple]="true" [closeOnSelect]="false"
+                             
+                              <div class="col-sm-12">
+                                <label class="col-form-label">Select Client Invoice</label>
+                                <ng-select  size="1" id="roles-user-info" formControlName="clientinvocie" name="clientinvocie"  (change)="selectedclient($event)" [items]="clientinvoice" bindLabel="appno" bindValue="aapno" [multiple]="true" [closeOnSelect]="false"
                                 placeholder="Select Client Invoice"   class="form-control left-status pill-items" required>
                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
                          <span title='{{item.appno}}' class='badge badge-pill badge-secondary'>{{item.appno}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>

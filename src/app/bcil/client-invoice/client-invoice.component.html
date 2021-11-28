@@ -14,14 +14,17 @@
                 <div class="form-group row">
                     <div class="col-sm-6">
                       <label class="col-form-label">Invoice Number</label>
-                      <input type="text" class="form-control" formControlName="invoiceno" [ngClass]="{ 'is-invalid': submitted && f.invoiceno.errors }" />
+                      <label class="col-form-label" *ngIf="mode=='view'"> :  {{f.invoiceno.value}}</label>
+                      <input  *ngIf="mode!='view' " type="text" class="form-control" formControlName="invoiceno" [ngClass]="{ 'is-invalid': submitted && f.invoiceno.errors }" />
+                     
                       <p *ngIf="submitted && f.invoiceno.errors" class="invalid-feedback">Invoice Number is required</p>
                               
         
                     </div>
                     <div class="col-sm-6">
                       <label class="col-form-label">Invoice Date</label>
-                      <input type="date" class="form-control" formControlName="invoicedate" [ngClass]="{ 'is-invalid': submitted && f.invoicedate.errors }" />
+                      <label class="col-form-label" *ngIf="mode=='view'">:   {{f.invoicedate.value}}</label>
+                      <input  *ngIf="mode!='view'" type="date" class="form-control" formControlName="invoicedate" [ngClass]="{ 'is-invalid': submitted && f.invoicedate.errors }" />
                       <p *ngIf="submitted && f.invoicedate.errors" class="invalid-feedback">Invoice Date is required</p>
                               
         
@@ -30,7 +33,8 @@
                   <div class="form-group row">
                       <div class="col-sm-12">
                           <label class="col-form-label">Client Name</label>
-                          <select type="text" [(ngModel)]="selectedorg" class="form-control" formControlName="clientname" [ngClass]="{ 'is-invalid': submitted && f.clientname.errors }" >
+                          <label class="col-form-label" *ngIf="mode=='view' || mode=='edit'">:   {{selectedorg}}</label>
+                          <select  *ngIf="mode!='view' && mode!='edit'" type="text" [(ngModel)]="selectedorg" class="form-control" formControlName="clientname" [ngClass]="{ 'is-invalid': submitted && f.clientname.errors }" >
                               <option *ngFor="let org of Organization" value="{{org.value}}">{{org.value}}</option>
                           </select>
                           <p *ngIf="submitted && f.clientname.errors" class="invalid-feedback">Client Name is required</p>
@@ -40,7 +44,8 @@
                           <div class="form-group row">
                       <div class="col-sm-12">
                           <label class="col-form-label">Application No</label>
-                          <input type="text" class="form-control" formControlName="applicationno" [ngClass]="{ 'is-invalid': submitted && f.applicationno.errors }" />
+                          <label class="col-form-label" *ngIf="mode=='view'"> :  {{f.applicationno.value}}</label>
+                          <input  *ngIf="mode!='view'" type="text" class="form-control" formControlName="applicationno" [ngClass]="{ 'is-invalid': submitted && f.applicationno.errors }" />
                           <p *ngIf="submitted && f.applicationno.errors" class="invalid-feedback">Application No is required</p>
                            
                           </div>
@@ -48,7 +53,12 @@
                   <div class="form-group row">
                       <div class="col-sm-12">
                       <label class="col-form-label">Activity</label>
-                      <ng-select  size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
+                      <ng-container *ngIf="mode=='view' || mode=='edit'">
+                        <p *ngFor="let tt of rowactivity">
+                           {{tt.name}}                
+                        </p>
+                      </ng-container>
+                      <ng-select  *ngIf="mode!='view' && mode!='edit'" size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
                       placeholder="Select Activity"   class="form-control left-status pill-items" required>
              <ng-template ng-label-tmp let-item="item" let-clear="clear">
                <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
@@ -63,7 +73,7 @@
                     </div>
                       </div>
                       
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="mode!='view'">
                     <div class="col-sm-12">
                       <label class="col-form-label">Upload</label>
                       <input type="file"  accept="*" class="form-control"  (change)="fileChangeEvent($event)" />
@@ -75,10 +85,21 @@
         
                     </div>
                   </div>
-                  <div class="form-group row">
+                  <div class="form-group row" *ngIf="mode=='view'">
+                    <div class="col-sm-12">
+                      <label class="col-form-label">Upload</label>
+                      <p><a target="_bliank" href="{{getbaseurl}}/{{fileurl}}">File</a></p>
+                      </div>
+                      </div>
+                  <div class="form-group row" >
                     <div class="col-sm-6">
-                     
-                      <button type="submit" class="btn btn-success" (click)="uploadClientFile()" [disabled]="loading">
+                      <button *ngIf="mode=='edit'" type="submit" class="btn btn-success" (click)="Updateupload()" [disabled]="loading">
+                        <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Updating...' : 'Update'}}
+                      </button>
+                      <button *ngIf="mode=='view'" type="submit" class="btn btn-success" (click)="Editupload()" [disabled]="loading">
+                        <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Edit'}}
+                      </button>
+                      <button *ngIf="mode!='view' && mode!='edit'" type="submit" class="btn btn-success" (click)="uploadClientFile()" [disabled]="loading">
                         <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
                       </button>
                     </div>

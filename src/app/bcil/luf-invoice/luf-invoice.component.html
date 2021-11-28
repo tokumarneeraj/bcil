@@ -14,14 +14,16 @@
                 <div class="form-group row">
                   <div class="col-sm-6">
                     <label class="col-form-label">Invoice Number</label>
-                    <input type="text" class="form-control" formControlName="invoiceno" [ngClass]="{ 'is-invalid': submitted && f.invoiceno.errors }" />
+                    <label class="col-form-label" *ngIf="mode=='view'"> :  {{f.invoiceno.value}}</label>
+                    <input  *ngIf="mode!='view'" type="text" class="form-control" formControlName="invoiceno" [ngClass]="{ 'is-invalid': submitted && f.invoiceno.errors }" />
                     <p *ngIf="submitted && f.invoiceno.errors" class="invalid-feedback">Invoice Number is required</p>
                             
       
                   </div>
                   <div class="col-sm-6">
                     <label class="col-form-label">Invoice Date</label>
-                    <input type="date" class="form-control" formControlName="invoicedate" [ngClass]="{ 'is-invalid': submitted && f.invoicedate.errors }" />
+                    <label class="col-form-label" *ngIf="mode=='view'">:   {{f.invoicedate.value}}</label>
+                    <input *ngIf="mode!='view'" type="date" class="form-control" formControlName="invoicedate" [ngClass]="{ 'is-invalid': submitted && f.invoicedate.errors }" />
                     <p *ngIf="submitted && f.invoicedate.errors" class="invalid-feedback">Invoice Date is required</p>
                             
       
@@ -30,7 +32,9 @@
                 <div class="form-group row">
                 <div class="col-sm-12">
                   <label class="col-form-label">Application No</label>
-                  <input type="text" class="form-control" formControlName="applicationno" [ngClass]="{ 'is-invalid': submitted && f.applicationno.errors }" />
+                  <label class="col-form-label" *ngIf="mode=='view'"> :  {{f.applicationno.value}}</label>
+               
+                  <input *ngIf="mode!='view'" type="text" class="form-control" formControlName="applicationno" [ngClass]="{ 'is-invalid': submitted && f.applicationno.errors }" />
                   <p *ngIf="submitted && f.applicationno.errors" class="invalid-feedback">Application No is required</p>
                    
                   </div>
@@ -38,7 +42,8 @@
                 <div class="form-group row">
                     <div class="col-sm-12">
                         <label class="col-form-label">Client Name</label>
-                        <select type="text" [(ngModel)]="selectedorg" class="form-control" formControlName="clientname" [ngClass]="{ 'is-invalid': submitted && f.clientname.errors }" >
+                        <label class="col-form-label" *ngIf="mode=='view' || mode=='edit'">:   {{selectedorg}}</label>
+                        <select *ngIf="mode!='view' && mode!='edit'" type="text" [(ngModel)]="selectedorg" class="form-control" formControlName="clientname" [ngClass]="{ 'is-invalid': submitted && f.clientname.errors }" >
                           <option *ngFor="let org of Organization" value="{{org.value}}">{{org.value}}</option>
                       </select>
                       <p *ngIf="submitted && f.clientname.errors" class="invalid-feedback">Client Name is required</p>
@@ -48,7 +53,10 @@
                 <div class="form-group row">
                     <div class="col-sm-12">
                     <label class="col-form-label">Activity</label>
-                    <ng-select  size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
+                   <ng-container *ngFor="let tt of rowactivity">
+                    <p>{{tt.name}}</p>
+                  </ng-container>
+                    <ng-select *ngIf="mode!='view' && mode!='edit'"   size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
                     placeholder="Select Activity"   class="form-control left-status pill-items" required>
            <ng-template ng-label-tmp let-item="item" let-clear="clear">
              <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
@@ -62,8 +70,113 @@
       
                   </div>
                     </div>
+                    <ng-container>
+                      <ng-container >
+                      <div class="row">
+                        <div class="col-sm-12">
+    
+                          <h5>Official Fees</h5>
+                          <div class="row">
+                            <div class="col-sm-1">
+                              </div>
+                        <div class="col-sm-3">
+                          <label>Date</label>
+                          </div>
+                          
+                            <div class="col-sm-3">
+                              <label>Description</label>
+                              </div>
+                              <div class="col-sm-3">
+                            <label>INR</label>
+                            </div>
+                            </div>
+                        
+                          <div class="row" *ngFor="let off of filters(jsonarray,'off');let i=index">
+<div class="col-sm-1">{{i+1}}</div>
+<div class="col-sm-3">{{off.date}}</div>
+<div class="col-sm-3">{{off.description}}</div>
+<div class="col-sm-3">{{off.price}}</div>
+                          </div>
+                          <div class="row mt-3">
+                            <div class="col-sm-6">Total Offical Fess</div>
+                            <div class="col-sm-3">{{totalsub('off')}}</div>
+                          </div>
+                          </div>
+                          </div>
+                          </ng-container>
+                          <ng-container  >
+                          <div class="row mt-5">
+                            <div class="col-sm-12">
+        
+                              <h5>Professional Fees</h5>
+                              <div class="row">
+                                <div class="col-sm-1">
+                                  </div>
+                            <div class="col-sm-3">
+                              <label>Date</label>
+                              </div>
+                              
+                                <div class="col-sm-3">
+                                  <label>Description</label>
+                                  </div>
+                                  <div class="col-sm-3">
+                                <label>INR</label>
+                                </div>
+                                </div>
+                              
+                              <div class="row mt-5" *ngFor="let off of filters(jsonarray,'pro');let i=index">
+    <div class="col-sm-1">{{i+1}}</div>
+    <div class="col-sm-3">{{off.date}}</div>
+    <div class="col-sm-3">{{off.description}}</div>
+    <div class="col-sm-3">{{off.price}}</div>
+                              </div>
+                              <div class="row mt-3">
+                                <div class="col-sm-6">Total Professional Fess</div>
+                                <div class="col-sm-3">{{totalsub('pro')}}</div>
+                              </div>
+                              </div>
+                              </div>
+                          </ng-container>
+                              <ng-container >
+                              <div class="row mt-5">
+                                <div class="col-sm-12">
+            
+                                  <h5>Disbursement Fees</h5>
+                                  <div class="row">
+                                    <div class="col-sm-1">
+                                      </div>
+                                <div class="col-sm-3">
+                                  <label>Date</label>
+                                  </div>
+                                  
+                                    <div class="col-sm-3">
+                                      <label>Description</label>
+                                      </div>
+                                      <div class="col-sm-3">
+                                    <label>INR</label>
+                                    </div>
+                                    </div>
+                              
+                                  <div class="row" *ngFor="let off of filters(jsonarray,'dis');let i=index">
+        <div class="col-sm-1">{{i+1}}</div>
+        <div class="col-sm-3">{{off.date}}</div>
+        <div class="col-sm-3">{{off.description}}</div>
+        <div class="col-sm-3">{{off.price}}</div>
+                                  </div>
+                                  <div class="row mt-3">
+                                    <div class="col-sm-6">Total Disbursement Fess</div>
+                                    <div class="col-sm-3">{{totalsub('dis')}}</div>
+                                  </div>
+                                </div>
+                              </div>
+                                </ng-container>
+                                <div class="row mt-5">
+                                  <div class="col-md-6"><b>Total Fee</b></div>
+                                  <div class="col-md-6"><b>{{totalsub('tot')}}</b></div>
+                                </div>
+                    </ng-container>
 
-                <ng-container >
+                <ng-container *ngIf="mode!='view' && mode!='edit'">
                   
                     <div class="row">
                       <div class="col-sm-12">
@@ -103,7 +216,7 @@
                                   <p *ngIf="submitted && f.description?.errors" class="invalid-feedback">Description is required</p>
                                                                 </div>
                                                                 <div class="col-sm-3">
-                                                                  <input type="number"  class="form-control"  formControlName="price" id="timeline+i"/>
+                                                                  <input type="number"  class="form-control"  formControlName="price" id="timeline+i" (keyup)="officalvalue($event.target.value)"/>
                                                                   <p *ngIf="submitted && f.price?.errors" class="invalid-feedback">Price is required</p> 
                                                                 </div>
         <div class="col-md-1">
@@ -129,12 +242,13 @@
                         
                                     </div>
                                     <div class="col-2">
-                                        <b>31,700.00</b>
+                                        <b>{{offsum}}</b>
                                     </div>
                                   </div>
+                                  <hr/>
                               </ng-container>
-              <hr/>
-                              <ng-container style="margin-bottom:5px;">
+           
+                              <ng-container  *ngIf="mode!='view' && mode!='edit'" style="margin-bottom:5px;">
                   
                                 <div class="row">
                                   <div class="col-sm-12">
@@ -174,7 +288,7 @@
                                               <p *ngIf="submitted && f.description?.errors" class="invalid-feedback">Description is required</p>
                                                                             </div>
                                                                             <div class="col-sm-3">
-                                                                              <input type="number"  class="form-control"  formControlName="price" id="timeline+i"/>
+                                                                              <input type="number"  class="form-control"  formControlName="price" id="price+i" (keyup)="provalue($event.target.value)"/>
                                                                               <p *ngIf="submitted && f.price?.errors" class="invalid-feedback">Price is required</p> 
                                                                             </div>
                     <div class="col-md-1">
@@ -200,12 +314,13 @@
                                     
                                                 </div>
                                                 <div class="col-2">
-                                                    <b>31,700.00</b>
+                                                    <b>{{prosum}}</b>
                                                 </div>
                                               </div>
+                                              <hr/>
                                           </ng-container>
-              <hr/>
-                                          <ng-container  style="margin-bottom:5px;">
+            
+                                          <ng-container  *ngIf="mode!='view' && mode!='edit'" style="margin-bottom:5px;">
                   
                                             <div class="row">
                                               <div class="col-sm-12">
@@ -245,7 +360,7 @@
                                                           <p *ngIf="submitted && f.description?.errors" class="invalid-feedback">Description is required</p>
                                                                                         </div>
                                                                                         <div class="col-sm-3">
-                                                                                          <input type="number"  class="form-control"  formControlName="price" id="timeline+i"/>
+                                                                                          <input type="number"  class="form-control"  formControlName="price" id="timeline+i" (keyup)="disvalue($event.target.value)"/>
                                                                                           <p *ngIf="submitted && f.price?.errors" class="invalid-feedback">Price is required</p> 
                                                                                         </div>
                                 <div class="col-md-1">
@@ -271,7 +386,7 @@
                                                 
                                                             </div>
                                                             <div class="col-2">
-                                                                <b>31,700.00</b>
+                                                                <b>{{dissum}}</b>
                                                             </div>
                                                           </div>
                                                           <hr/>
@@ -281,7 +396,7 @@
                                                 
                                                             </div>
                                                             <div class="col-4">
-                                                                <h6><b>INR : 112,700.00</b></h6>
+                                                                <h6><b>INR : {{totalsum}}</b></h6>
                                                             </div>
                                                           </div>
                                                       </ng-container>
@@ -290,8 +405,13 @@
       
                
       
-                
-                <div class="form-group row">
+                                                      <div class="form-group row" *ngIf="mode=='view'">
+                                                        <div class="col-sm-12">
+                                                          <label class="col-form-label">Upload</label>
+                                                          <p><a target="_bliank" href="{{getbaseurl}}/{{fileurl}}">File</a></p>
+                                                          </div>
+                                                          </div>
+                <div class="form-group row" *ngIf="mode!='view'">
                   <div class="col-sm-12">
                     <label class="col-form-label">Upload</label>
                     <input type="file"  accept="*" class="form-control"  (change)="fileChangeEvent($event)" />
@@ -306,7 +426,13 @@
                 <div class="form-group row">
                   <div class="col-sm-6">
                    
-                    <button type="submit" class="btn btn-success" (click)="uploadClientFile()" [disabled]="loading">
+                    <button *ngIf="mode=='edit'" type="submit" class="btn btn-success" (click)="Updateupload()" [disabled]="loading">
+                      <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Updating...' : 'Update'}}
+                    </button>
+                    <button *ngIf="mode=='view'" type="submit" class="btn btn-success" (click)="Editupload()" [disabled]="loading">
+                      <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Edit'}}
+                    </button>
+                    <button *ngIf="mode!='view' && mode!='edit'" type="submit" class="btn btn-success" (click)="uploadClientFile()" [disabled]="loading">
                       <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
                     </button>
                   </div>

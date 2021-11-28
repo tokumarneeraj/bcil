@@ -1,3 +1,4 @@
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { Utilities } from 'src/app/services/utilities';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-client-invoice',
@@ -28,6 +30,9 @@ export class ClientInvoiceComponent implements OnInit {
   submitted:boolean=false;
   selectedorg:string;
   rowactivity:any[]=[];
+  mode:string;
+  fileurl:string;
+  getbaseurl=environment.baseUrl;
   constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder,  private accountService: AccountService, private router: Router) { 
   }
 
@@ -38,24 +43,96 @@ export class ClientInvoiceComponent implements OnInit {
       invoicedate: ['', Validators.required],
       applicationno: ['', Validators.required],
       clientname:[],
-      files:[''],
+      files:['',Validators.required],
       activity:[''],
      
     });
   }
-  showviewmodel(e?:string,value?:string,data?:any){
-    this.invoice.app_status=value;
-    this.Bdoservice.Getorganization(data?.appref).subscribe(data=>{
-      this.Organization=data;
-      this.selectedorg=this.Organization[0]?.value;
-    })
-    this.Bdoservice.GetAllInvoiceTrigger('all').subscribe(data=>{
-      this.triggerinvoice=data.filter(x=>x.organization==this.Organization[0]?.value);
+  dateformat(d:any){
+    if(d!=null && d!=undefined){
+     
+  d=d.split('/');
+    return d[2]+'-'+d[1]+'-'+d[0];
+    }
+   
+  }
+  Editupload(){
+this.mode="edit";
+  }
+  Updateupload(){
+    this.invoice.invoiceno= this.ForwardForm.get('invoiceno').value;
+    this.invoice.invoicedate= this.ForwardForm.get('invoicedate').value;
+    this.invoice.applicationno= this.ForwardForm.get('applicationno').value;
+    
+    let act=[];//this.ForwardForm.get('activity').value?.map(t=>({id==t.name}));
+    
+    this.invoice.activity= act;
+    //this.ForwardForm.get('activity').value;//this.triggerinvoice.map(t=>({t.name==this.ForwardForm.get('activity').value});
+    this.invoice.organization=this.ForwardForm.get('clientname').value;
+   
+      if (this.ForwardForm.invalid) {
+  return;
+}
 
-      this.rowactivity=this.triggerinvoice.map(u=>({id:u.refid,name:u.appno+"("+u.activityref+")"  + (u.milestoneref==null?"":"("+u.milestoneref+")")}))
-   console.log(this.rowactivity)
+this.loading=true;
+    this.Bdoservice.updateclientinvoice(this.invoice).subscribe((data) => {
+     //  this.loading=false;
+       this.submitted=false;
+if(data.message=="success"){
+      alert("Submitted Successfully")
+      this.editorModal.hide();
+}
+    });
+  }
+  showviewmodel(e?:string,value?:string,data?:any){
+    this.loading=false;
+    this.invoice.app_status=value;
+    this.invoice.refid=data?.refid;
+    let datePipe = new DatePipe('en-US');
+    // this.Bdoservice.Getorganization('all').subscribe(data1=>{
+    //   this.Bdoservice.GetAllActitvity('all').subscribe(data2=>{
+    //     this.rowactivity=data2;
+    //   });
+    //   this.Organization=data1;
+    e=="view"?this.mode='view':null;
+    this.Bdoservice.Getorganization(e=="view"?data?.organization:data?.appref).subscribe(dataorg=>{
+      this.Bdoservice.GetAllInvoiceTrigger('all').subscribe(datatrigger=>{
+        this.Organization=dataorg;
+        this.selectedorg=this.Organization[0]?.value;
+        if(e=="view" || e=="edit"){
+          this.triggerinvoice=datatrigger.filter(x=>data?.activity?.some(t=>t==x.refid )) ;
+        }
+        else{
+        this.triggerinvoice=datatrigger.filter(x=>x.organization==this.Organization[0]?.value && x.active==true) ;
+        }
+        this.rowactivity=this.triggerinvoice.map(u=>({id:u.refid,name:u.appno+"("+u.activityref+")"  + (u.milestoneref==null?"":"("+u.milestoneref+")")}))
+     console.log(this.rowactivity)
+    
+    if(e=="view"){
+      
+     this.ForwardForm.controls['invoicedate'].setValue(data?.invoicedate==null?'':formatDate(this.dateformat(data?.invoicedate),'yyyy-MM-dd', 'en-US'));
+      this.ForwardForm.get('invoiceno').setValue(data?.invoiceno)
+      this.fileurl=data?.url;
+      let act=[];
+      for(let rr of this.rowactivity){
+        act.push(rr?.id);
+      }
+      this.ForwardForm.get('activity').setValue(act);
+     // this.ForwardForm.get('clientname').setValue(data?.organization)
+     //   this.ForwardForm.get('invoicedate').setValue(data?.invoicedate)
+        this.ForwardForm.get('applicationno').setValue(data?.applicationno)
+
+    }
+    
+     
+    
+    
+   this.editorModal.show();
     })
-    this.editorModal.show();
+  //})
+
+});
+  
       }
       fileChangeEvent(event){
         if (event.target.files && event.target.files[0]) {

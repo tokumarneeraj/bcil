@@ -106,6 +106,7 @@ export class ActivityComponent implements OnInit {
     assigntolm:[''],
     assignto:[''],
     files:[''],
+    clientinvocie:[''],
     booleanvalue:[false],
     milestonedata:this.formbuilder.array([this.addItemFormGroup()])
   });
@@ -186,6 +187,9 @@ if(this.fields!=undefined){
         );
 }
           }
+          selectedclient(data){
+
+          }
       showviewmodel(e?:string,value?:string,data?:any){
         this.cdRef.detectChanges();
         this.loading=false;
@@ -196,7 +200,7 @@ if(this.fields!=undefined){
         this.UploadFileViewModel.app_Status=value;
         this.lufinvoice=data?.lufinvoice;
         this.clientinvoice=data?.clientinvoice;
-
+console.log(data,'luf')
         this.activebtn=this.array?.button.find(x=>x.value==value);
 
  
@@ -311,6 +315,8 @@ if(nodalid!=""){
       }
       uploadFile(){
         this.submitted = true;
+
+        
         if(this.activebtn?.form?.bdoassigned==true){
           this.ForwardForm.controls['assigntobdo'].setValidators([Validators.required]);
           this.ForwardForm.controls['assigntobdo'].updateValueAndValidity();
@@ -335,8 +341,12 @@ if(nodalid!=""){
       }
       this.ForwardForm.controls['files'].updateValueAndValidity();
      
-       if(this.activebtn?.form?.mappedinvocie){
-        this.UploadFileViewModel.jsontwo="";
+       if(this.activebtn?.form?.mappedinvoice){
+        let act=[];//this.ForwardForm.get('activity').value?.map(t=>({id==t.name}));
+        for(let rr of this.ForwardForm.get('clientinvocie').value){
+          act.push(this.clientinvoice.find(r=>r.appno==rr)?.refid);
+        }
+        this.UploadFileViewModel.arraytype=act;
        }
         this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
         this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
@@ -346,7 +356,9 @@ if(nodalid!=""){
         this.UploadFileViewModel.assignto=this.ForwardForm.get('assignto').value;
         this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
         this.UploadFileViewModel.organization = this.ForwardForm.get('organization').value;
+        if(this.activebtn?.form?.toggle){
         this.UploadFileViewModel.booleancheck = this.ForwardForm.get('booleanvalue').value;
+        }
        for(let control of this.fields){
           if(control?.filter!=undefined && control?.filter!=this.selectpct?.toLowerCase()){
 

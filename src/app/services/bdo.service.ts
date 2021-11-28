@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import {activeusermou, addusertomou, copyrightModel, designModel, LufInvoiceModel, misModel, mouModel, patentModel, plantvarietyModel, Reminder, StatusMaster, trademarkModel, ttaModel} from '../model/mou.model';
+import {activeusermou, addusertomou, booleanvalue, copyrightModel, designModel, LufInvoiceModel, misModel, mouModel, patentModel, plantvarietyModel, Reminder, StatusMaster, trademarkModel, ttaModel} from '../model/mou.model';
 import {UploadFileViewModel} from '../model/uploadFile.model';
 import {clientInvoiceModel} from '../model/mou.model'
 import {environment} from '../../environments/environment'
@@ -57,11 +57,15 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     get additionalfileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddAdditionFile'; }
     get fileuploadurl() { return environment.baseUrl + '/api/FileUploads/AddFile'; }
     get clientinvoiceurl() { return environment.baseUrl + '/api/bdo/clientinvoice'; }
+    get updateclientinvoiceurl(){ return environment.baseUrl + '/api/bdo/updateinvoice';}
     get lufinvoiceurl() { return environment.baseUrl + '/api/bdo/lufinvoice'; }
+    get updatelufinvoiceurl() { return environment.baseUrl + '/api/bdo/updatelufinvoice'; }
+
     get getlufinvoiceurl() { return environment.baseUrl + '/api/bdo/getlufinvoice'; }
     get getclientinvoiceurl() { return environment.baseUrl + '/api/bdo/getclientinvoice'; }
     get filehistory() { return environment.baseUrl + '/api/bdo/getfile'; }
-
+ get getboolvalueurl(){ return environment.baseUrl + '/api/bdo/getboolvalues';}
+ get updateboolvalueurl(){ return environment.baseUrl + '/api/bdo/updatebooleanvalue';}
     get datapermission(){return environment.baseUrl + '../../';}
     UserId:string;
     constructor(http: HttpClient ,private accountService: AccountService, authService: AuthService){
@@ -105,6 +109,23 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
       }));
   //   .pipe<mouModel>(
    }
+   //update bool value
+
+
+   public updatebooleanvalue<T>(upload:booleanvalue):Observable<result>{
+    // const headers = new HttpHeaders({
+            
+    //   'Content-Type': 'application/json',
+    //   Accept: 'application/json, text/plain, */*'
+    // });
+
+   // return this.http.post<UploadFileViewModel>(this.fileuploadurl, JSON.stringify(upload),{headers:headers});
+    return this.http.post(this.updateboolvalueurl, JSON.stringify(upload), this.requestHeaders).pipe<result>(
+      catchError(error => {
+        return this.handleError(error, () => this.updatebooleanvalue(upload));
+      }));
+  //   .pipe<mouModel>(
+   }
    public uploadfile<T>(upload:UploadFileViewModel):Observable<result>{
     // const headers = new HttpHeaders({
             
@@ -116,6 +137,35 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     return this.http.post(this.fileuploadurl, JSON.stringify(upload), this.requestHeaders).pipe<result>(
       catchError(error => {
         return this.handleError(error, () => this.uploadfile(upload));
+      }));
+  //   .pipe<mouModel>(
+   }
+   public updatelufinvoice<T>(upload:LufInvoiceModel):Observable<result>{
+    // const headers = new HttpHeaders({
+            
+    //   'Content-Type': 'application/json',
+    //   Accept: 'application/json, text/plain, */*'
+    // });
+
+   // return this.http.post<UploadFileViewModel>(this.fileuploadurl, JSON.stringify(upload),{headers:headers});
+    return this.http.post(this.updatelufinvoiceurl, JSON.stringify(upload), this.requestHeaders).pipe<result>(
+      catchError(error => {
+        return this.handleError(error, () => this.updatelufinvoice(upload));
+      }));
+  //   .pipe<mouModel>(
+   }
+   
+   public updateclientinvoice<T>(upload:clientInvoiceModel):Observable<result>{
+    // const headers = new HttpHeaders({
+            
+    //   'Content-Type': 'application/json',
+    //   Accept: 'application/json, text/plain, */*'
+    // });
+
+   // return this.http.post<UploadFileViewModel>(this.fileuploadurl, JSON.stringify(upload),{headers:headers});
+    return this.http.post(this.updateclientinvoiceurl, JSON.stringify(upload), this.requestHeaders).pipe<result>(
+      catchError(error => {
+        return this.handleError(error, () => this.updateclientinvoice(upload));
       }));
   //   .pipe<mouModel>(
    }
@@ -211,6 +261,16 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
          //       return this.handleError(error, () =>{});
          //     }));
          const endpointUrl = `${this.getallactivity}`;
+         return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
+         public  GetBoolvalues<T>(refid:string): Observable<any[]> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.getboolvalueurl}/${refid}`;
          return this.http.get<any[]>(endpointUrl,this.requestHeaders);
          }
           public  GetAllInvoiceTrigger<T>(refid:string): Observable<any[]> {

@@ -73,6 +73,7 @@ export class MisDashboardComponent implements OnInit {
       //this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value));
 
     })
+    
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
     this.Bdoservice.GetMis().subscribe(data => {
