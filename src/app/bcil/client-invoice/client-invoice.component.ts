@@ -33,6 +33,9 @@ export class ClientInvoiceComponent implements OnInit {
   mode:string;
   fileurl:string;
   getbaseurl=environment.baseUrl;
+  public changesSavedCallback: () => void;
+  public changesFailedCallback: () => void;
+  public changesCancelledCallback: () => void;
   constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder,  private accountService: AccountService, private router: Router) { 
   }
 
@@ -60,6 +63,7 @@ export class ClientInvoiceComponent implements OnInit {
 this.mode="edit";
   }
   Updateupload(){
+    this.submitted=true;
     this.invoice.invoiceno= this.ForwardForm.get('invoiceno').value;
     this.invoice.invoicedate= this.ForwardForm.get('invoicedate').value;
     this.invoice.applicationno= this.ForwardForm.get('applicationno').value;
@@ -181,7 +185,7 @@ if(data.message=="success"){
           if (this.ForwardForm.invalid) {
       return;
     }
-
+this.submitted=true;
     this.loading=true;
         this.Bdoservice.clientinvoice(this.invoice).subscribe((data) => {
          //  this.loading=false;

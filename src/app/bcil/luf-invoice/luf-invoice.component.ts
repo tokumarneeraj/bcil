@@ -34,6 +34,9 @@ export class LufInvoiceComponent implements OnInit {
   Organization:any[];
   mode:string;
   fileurl:string;
+  public changesSavedCallback: () => void;
+  public changesFailedCallback: () => void;
+  public changesCancelledCallback: () => void;
   getbaseurl=environment.baseUrl;
   jsonarray:any[];
   rowactivity:any[]  ;//=[{name:'activity 1'},{name:'activity 2'},{name:'activity 3'},{name:'activity 4'},{name:'activity 5'}]
@@ -45,9 +48,9 @@ export class LufInvoiceComponent implements OnInit {
 
       invoiceno: ['', Validators.required],
       invoicedate: ['', Validators.required],
-      clientname:[],
+      clientname:['', Validators.required],
       files:[''],
-      applicationno:[''],
+      applicationno:['',Validators.required],
       activity:[''],
       officialdata:this.formbuilder.array([this.officialFormGroup()]),
       professionaldata:this.formbuilder.array([this.ProfessionFormGroup()]),
@@ -108,6 +111,9 @@ this.totalsum=this.offsum+this.dissum+this.prosum;
         }
             });
       }
+      countsub(type:string){
+       return  this.jsonarray?.filter(y=>y.type==type).length;
+      }
       totalsub(type:string){
         let rr=null;
         if(type=='tot'){
@@ -134,7 +140,7 @@ this.totalsum=this.offsum+this.dissum+this.prosum;
       this.Organization=dataorg;
         this.selectedorg=this.Organization[0]?.value;
       this.Bdoservice.GetAllActitvity('all').subscribe(data2=>{
-        this.rowactivity=data2;
+        this.rowactivity=data2.map(u=>({...u,'name':u.name+"("+u.category+")"}));
    
      e=="view"?this.mode="view":null;
      
@@ -317,6 +323,7 @@ if (conf == true) {
    this.invoice.luffeeinvoice= JSON.stringify(tt.filter(t=>t.description!=""));
 
    console.log(this.invoice,'pp');
+   this.submitted=true;
     //this.invoice.invoiceno= this.ForwardForm.get('subject').value;
       if (this.ForwardForm.invalid) {
   return;
@@ -330,8 +337,12 @@ if(data.message=="success"){
       alert("Submitted Successfully")
      
       this.editorModal.hide();
+      if (this.changesSavedCallback) {
+        this.changesSavedCallback();
+      }
 }
 });
 
   }
+  
 }

@@ -32,24 +32,7 @@ debugger;
       //  })
      }
 
-    //  getpermission(){
-       
-    //   this.datapermission==this.bdoService.getdatapermission();
-
-    //   console.log(this.datapermission,"dd")
-    //  }
-    // constructor( private _accountService: AccountService){
-    //   this.accountService=_accountService
-    // }
-    // private authService: AuthService,
-    // private accountEndpoint: AccountEndpoint
-    // AuthService() {
-    //   return new AuthService();
-    // }
-    // AccountEndpoint() {
-    //   return new AccountEndpoint();
-    // }
-    //moubutton
+    
      getotherpermissiondata(data:any){
      let permi= JSON.parse(localStorage.getItem('user_otherpermissions'));
      return permi?.filter(s => s.includes(data));

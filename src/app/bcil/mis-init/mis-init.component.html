@@ -109,9 +109,11 @@
                                     <tr>
                                       <th>#</th>
                                       <th>MILESTONE No</th>
-                                      <th>Subject</th>
+                                      <th>MIS REF</th>
                                       
-                                      <th>Remarks</th>
+                                      <th>Milestones</th>
+                                      <th>Payment Term</th>
+                                      <th>Timelines</th>
                                    <th>Action</th>
                                    <th *ngIf="viewhistory">History</th>
                                                     
@@ -123,8 +125,10 @@
                                       <tr *ngFor="let mis of milestonearray;let i=index">
                                           <td>{{i+1}}</td>
                                           <td>{{mis?.appno}}</td>
-                                          <td>{{mis?.subject}}</td>
-                                         <td>{{mis?.remark}}</td>
+                                          <td>{{mis?.misref}}</td>
+                                         <td>{{mis?.milestone}}</td>
+                                         <td>{{mis?.paymentterm}}</td>
+                                         <td>{{mis?.timelines |date}}</td>
                                          
                                           <td>
                                               <ng-container *ngFor="let btn of array?.button">

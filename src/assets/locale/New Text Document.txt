@@ -1,2 +1,394 @@
 insert into status_master(status_name,status_code,active,stagetype,id)
 values('TECHNOLOGY_DOCKET_SHARED_WITH_INDUSTRY','S164',true,'tstl', uuid_generate_v4()::text)
+
+
+
+
+-- FUNCTION: public.forwardfile1(text, text, text, character varying[], text, text, text, text, text, text, text, text, text, text, text, text, text, boolean, text, timestamp without time zone)
+
+-- DROP FUNCTION public.forwardfile1(text, text, text, character varying[], text, text, text, text, text, text, text, text, text, text, text, text, text, boolean, text, timestamp without time zone);
+
+CREATE OR REPLACE FUNCTION public.forwardfile1(
+	p_refid text DEFAULT NULL::text,
+	p_subject text DEFAULT NULL::text,
+	p_jsondata text DEFAULT NULL::text,
+	p_arraytype character varying[] DEFAULT NULL::character varying[],
+	p_remarks text DEFAULT NULL::text,
+	p_fileused text DEFAULT NULL::text,
+	p_fileaccess text DEFAULT NULL::text,
+	p_filename text DEFAULT NULL::text,
+	p_fileext text DEFAULT NULL::text,
+	p_url text DEFAULT NULL::text,
+	p_organization text DEFAULT NULL::text,
+	p_status text DEFAULT NULL::text,
+	p_createdby text DEFAULT NULL::text,
+	p_assignto text DEFAULT NULL::text,
+	p_assigntobdo text DEFAULT NULL::text,
+	p_assigntolm text DEFAULT NULL::text,
+	p_assigntoluf text DEFAULT NULL::text,
+	p_booleancheck boolean DEFAULT NULL::boolean,
+	p_jsontwo text DEFAULT NULL::text,
+	p_createdon timestamp without time zone DEFAULT NULL::timestamp without time zone)
+    RETURNS text
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+AS $BODY$
+declare _item text;_count1 int;_nodalid text;
+_bdouserid text;_lmuserid text;_lufuserid text;_assignuser text;_userrole text;_tablename text;
+_guid text;maxid text;_org text;_refid text;_old_refid text; _r record;_arraytype text;
+begin
+
+--create mis ref
+		
+if(p_status='S113')then
+		  p_refid=uuid_generate_v4()::text  ;
+insert into ttatable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)
+		RETURNING id into maxid;
+	_refid=(select refid from moutable where int_uni_name=trim(p_organization) limit 1);
+	_org=(select int_uni_code   from moutable where int_uni_name=trim(p_organization) limit 1);
+		update ttatable set appno='TTA_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url
+		,mouref=_refid
+		where refid=p_refid;
+		 
+		perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+		perform addinactiveuserbymouref('Admin',_refid,p_refid);
+		perform addinactiveuserbymouref('BDM',_refid,p_refid);
+		perform addinactiveuserbymouref('IPM',_refid,p_refid);
+		
+		
+		end if;	
+if(p_status='S170')then
+		  p_refid=uuid_generate_v4()::text  ;
+insert into mistable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)RETURNING id into maxid;
+	_refid=(select refid      from moutable where int_uni_name=p_organization limit 1);
+	_org=(select int_uni_code      from moutable where int_uni_name=p_organization limit 1);
+		update mistable set appno='MIS_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url
+		,mouref=_refid
+		where refid=p_refid;
+		 
+		perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+		perform addinactiveuserbymouref('Admin',_refid,p_refid);
+		end if;
+		if(p_status='S177')then
+		  
+--insert into mistable(refid,app_status,active,createdby,createdon,subject,remark)
+		--values(p_refid,p_status,true,p_createdby,p_createdon,p_subject,p_remarks)RETURNING id into maxid;
+	_refid=(select misref     from mis_milestone where refid=p_refid limit 1);
+	maxid=(select id       from mis_milestone where refid=p_refid );
+	_org=(select SUBSTRING(appno,5,3)   from mistable where refid=_refid limit 1);
+		update mis_milestone set appno='MILE_'||_org||'_'||lpad(maxid::text,4, '0')
+		  where refid=p_refid;
+		 
+			insert into activeuser(userid,userrole,appref,active)
+		select userid,userrole,p_refid,true from activeuser where appref=_refid;
+
+		end if;
+		if(p_status='S792')then
+		  p_refid=uuid_generate_v4()::text  ;
+insert into plantvarietytable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)RETURNING id into maxid;
+	_refid=(select refid      from moutable where int_uni_name=p_organization limit 1);
+	_org=(select int_uni_code      from moutable where int_uni_name=p_organization limit 1);
+		update plantvarietytable set appno='PLA_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url
+		,mouref=_refid
+		where refid=p_refid;
+	perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+	perform addinactiveuserbymouref('Admin',_refid,p_refid);
+		end if;
+		if(p_status='S755')then
+		  p_refid=uuid_generate_v4()::text  ;
+insert into copyrighttable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)RETURNING id into maxid;
+		_refid=(select refid      from moutable where int_uni_name=p_organization limit 1);
+	_org=(select int_uni_code      from moutable where int_uni_name=p_organization limit 1);
+		update copyrighttable set appno='COPY_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url,
+		mouref=_refid
+		
+		where refid=p_refid;
+		
+		perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+		perform addinactiveuserbymouref('Admin',_refid,p_refid);
+		end if;
+		if(p_status='S718')then
+		  p_refid=uuid_generate_v4()::text  ;
+insert into designtable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)RETURNING id into maxid;
+		_refid=(select refid      from moutable where int_uni_name=p_organization limit 1);
+	_org=(select int_uni_code      from moutable where int_uni_name=p_organization limit 1);
+	
+		update designtable set appno='DES_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url,
+		mouref=_refid
+		
+		where refid=p_refid;
+		perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+		perform addinactiveuserbymouref('Admin',_refid,p_refid);
+		end if;
+		if(p_status='S680')then
+		  p_refid=uuid_generate_v4()::text  ;
+insert into trademarktable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)RETURNING id into maxid;
+		_refid=(select refid      from moutable where int_uni_name=p_organization limit 1);
+	_org=(select int_uni_code      from moutable where int_uni_name=p_organization limit 1);
+	
+		update trademarktable set appno='TRA_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url,
+		mouref=_refid
+		
+		where refid=p_refid;
+		
+		perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+	perform addinactiveuserbymouref('Admin',_refid,p_refid);
+		end if;
+		if(p_status='S601')then
+		  p_refid=uuid_generate_v4()::text  ;
+insert into patenttable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)RETURNING id into maxid;
+		_refid=(select refid      from moutable where int_uni_name=p_organization limit 1);
+	_org=(select int_uni_code      from moutable where int_uni_name=p_organization limit 1);
+		update patenttable set appno='PAT_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url,
+		mouref=_refid
+		
+		where refid=p_refid;
+	--	perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+		perform addinactiveuserbymouref('Admin',_refid,p_refid);
+		end if;
+		if(p_status='S632')then
+		_old_refid=p_refid;
+		  p_refid=uuid_generate_v4()::text  ;
+insert into patenttable(refid,app_status,active,createdby,createdon,subject,remark)
+		values(p_refid,p_status,true,p_createdby,Now(),p_subject,p_remarks)
+		RETURNING id into maxid;
+		_refid=(select refid      from patenttable where refid=_old_refid limit 1);
+	_org=(select SUBSTRING(appno,5,3)   from patenttable where refid=_old_refid limit 1);
+		update patenttable set appno='PAT_F_'||_org||'_'||lpad(maxid::text,4, '0'),url=p_url,
+		mouref=_refid
+		
+		where refid=p_refid;
+		 
+		insert into activeuser(userid,userrole,appref,active)
+		select userid,userrole,p_refid,true from activeuser where appref=_old_refid;
+
+		
+		end if;
+		if(p_status='S808')then
+		select appref into _refid from invoice_triggers where clientinvoicemapped=p_refid;
+		select organization into _refid from clientinvoice where refid=p_refid;
+		
+		  perform addinactiveuserbymouref('Nodal',_refid,p_refid);
+		
+		 perform addinactiveuserbymouref('Scientist',_refid,p_refid);
+		--update clientinvoice set lufmapped=false where refid=p_refid;
+		end if;
+		if(p_status='S810')then
+		if((select lufmapped from clientinvoice where refid=p_refid)=true) then
+		update clientinvoice set app_status='S811' where refid=p_refid;
+		end if;
+		if((select lufmapped from clientinvoice where refid=p_refid)=true) then
+		null;
+		end if;
+		update clientinvoice set lufmapped=false where refid=p_refid;
+		end if;
+		if(p_status='S815')then
+		_arraytype:= array_to_string(p_arraytype,',');
+		
+		update lufinvoice set clientinvoiceref=_arraytype where refid=p_refid;
+		update clientinvoice set lufmapped=true,lufinvoicerefid=p_refid where refid=any(p_arraytype);
+		end if;
+		
+		--end 
+		--forward system
+		
+ insert into forwardfile (refid,subject,remarks,fileused,fileaccess,filename,fileext,url,status,createdby,assignto,createdon,jsondata,booleancheck)
+ values(p_refid,p_subject,p_remarks,p_fileused,p_fileaccess,p_filename,p_fileext,
+		p_url,p_status,p_createdby,p_assignto,p_createdon,p_jsondata,p_booleancheck);
+		
+	select tablename into _tablename from
+	(select 'mou' tablename from moutable where refid=p_refid
+	 union select 'tta' tablename from ttatable where refid=p_refid
+	union select 'mis' tablename from mistable where refid=p_refid
+	union select 'pat' tablename from patenttable where refid=p_refid
+	 union select 'copy' tablename from copyrighttable where refid=p_refid
+	 union select 'des' tablename from designtable where refid=p_refid
+	 union select 'tra' tablename from trademarktable where refid=p_refid
+	  union select 'pla' tablename from plantvarietytable where refid=p_refid
+	  union select 'mil' tablename from mis_milestone where refid=p_refid
+	  union select 'cli' tablename from clientinvoice where refid=p_refid
+	  union select 'luf' tablename from lufinvoice where refid=p_refid
+	 
+	) as dd;
+	if(_tablename='mou') then
+		update moutable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='tta') then
+		update moutable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='pat') then
+		update patenttable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='mis') then
+		update mistable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='luf') then
+		update lufinvoice set app_status=p_status
+		
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='cli') then
+		update clientinvoice set app_status=p_status
+		
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='mil') then
+		update mis_milestone set app_status=p_status
+		
+		
+		where refid=p_refid;
+		_refid=(select misref  from mis_milestone where refid=p_refid);
+		if((select count(*) from mis_milestone where misref=_refid)=(select count(*) from mis_milestone where misref=_refid and app_status='S181')) then
+		
+		update mis_milestone set app_status='S182' where misref=_refid;
+		update mistable set app_status='S182' where refid=_refid;
+		
+		--'tigger update'
+		insert into invoice_triggers(refid,appref,activityref,milestoneref,active,createdby,createdon)
+		 
+		 values(uuid_generate_v4()::text,p_refid,(select refid from activitytable where value='S182'),
+			   '',true,p_createdby,Now());
+			   insert into activeuser(userid,userrole,appref,active)
+ values('7829a506-6972-45fb-bb64-2b98366424ba','',p_refid,true);
+		--'trugger update end'
+		
+		
+		insert into forwardfile (refid,subject,remarks,fileused,fileaccess,filename,fileext,url,status,createdby,assignto,createdon,jsondata,booleancheck)
+ values(p_refid,'auto_trigger','','','','','',
+		'','S182',p_createdby,'',p_createdon,'',false);
+		end if;
+		end if;
+		if(_tablename='copy') then
+		update copyrighttable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='des') then
+		update designtable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='tra') then
+		update trademarktable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(_tablename='pla') then
+		update plantvarietytable set app_status=p_status,
+		url=p_url
+		
+		where refid=p_refid;
+		end if;
+		if(p_assignto!='')then
+		
+		_userrole=userrole(p_assignto);
+	_assignuser=rolenamebyid(_userrole,p_refid);
+		update activeuser set active=false
+		where userid=_assignuser and appref=p_refid and _assignuser is not null;
+		insert into activeuser(userid,userrole,appref,active)
+ values(p_assignto,'',p_refid,true);
+		
+		end if;
+		if(p_assigntobdo!='')then
+	_bdouserid=rolenamebyid('BDM',p_refid);
+		update activeuser set active=false
+		where userid=_bdouserid and appref=p_refid;
+		
+		insert into activeuser(userid,userrole,appref,active)
+ values(p_assigntobdo,'',p_refid,true);
+ end if;
+ 	if(p_assigntolm!='')then
+	_lmuserid=rolenamebyid('LM',p_refid);
+		update activeuser set active=false
+		where userid=_lmuserid and appref=p_refid;
+		
+		insert into activeuser(userid,userrole,appref,active)
+ values(p_assigntolm,'',p_refid,true);
+		end if;
+		
+	
+		if(p_status='S108')then
+		
+		/*select mou_no into _nodalid from moutable where  refid=p_refid;
+		update moutable set tto_approved=p_status,
+		tto_no=replace(_nodalid,'MOU','TTO')
+		where refid=p_refid;
+		*/
+		
+		
+		end if;
+select count(*) into _count1 from activeuser where userid=p_createdby and active=true and appref=p_refid;
+		if(_count1=0) then
+		insert into activeuser(userid,userrole,appref,active)
+ values(p_createdby,'',p_refid,true);
+		end if;
+		
+		--trigger
+		/*if(p_status='S172') then
+		--_refid=(select misref  from mis_milestone where refid=p_refid limit 1);
+		 for _r in (select * from mis_milestone where misref=p_refid and paymenttype='YES') loop 
+		 insert into invoice_triggers(refid,appref,activityref,milestoneref,active)
+		 
+		 values(uuid_generate_v4()::text,p_refid,(select refid from activitytable where value='S172'),
+			   _r.refid,true);
+			   insert into activeuser(userid,userrole,appref,active)
+ values('7829a506-6972-45fb-bb64-2b98366424ba','',p_refid,true);
+			   
+    --update temp_table set amount='complicated calculated values' where id = _r.id; 
+  end loop; 
+		
+		
+		end if;*/
+		if(p_status = any(Array['S176','S181','S606','S610','S615','S622','S624','S634','S642','S643'])) then
+		insert into invoice_triggers(refid,appref,activityref,milestoneref,active,createdon,createdby)
+		 
+		 values(uuid_generate_v4()::text,p_refid,(select refid from activitytable where value=p_status),
+			   '',true,Now(),p_createdby);
+			   insert into activeuser(userid,userrole,appref,active)
+ values('7829a506-6972-45fb-bb64-2b98366424ba','',p_refid,true);
+		end if;
+		
+		--trigger end;
+		_item='success';
+		--commit;
+		return _item;
+exception 
+    when others then
+        RAISE INFO 'Error Name:%',SQLERRM;
+        RAISE INFO 'Error State:%', SQLSTATE;
+		--rollback;
+        return SQLERRM;
+	
+ 
+
+--end forward system
+end;
+$BODY$;
+
+ALTER FUNCTION public.forwardfile1(text, text, text, character varying[], text, text, text, text, text, text, text, text, text, text, text, text, text, boolean, text, timestamp without time zone)
+    OWNER TO postgres;

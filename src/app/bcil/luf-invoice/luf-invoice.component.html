@@ -53,10 +53,10 @@
                 <div class="form-group row">
                     <div class="col-sm-12">
                     <label class="col-form-label">Activity</label>
-                   <ng-container *ngFor="let tt of rowactivity">
-                    <p>{{tt.name}}</p>
+                   <ng-container *ngIf="mode=='view' || mode=='edit'" >
+                    <p *ngFor="let tt of rowactivity">{{tt.name}}</p>
                   </ng-container>
-                    <ng-select *ngIf="mode!='view' && mode!='edit'"   size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
+                    <ng-select *ngIf="mode!='view' "   size="1" id="roles-user-info" name="activity" formControlName="activity"  [items]="rowactivity" bindLabel="name" bindValue="name" [multiple]="true" [closeOnSelect]="false"
                     placeholder="Select Activity"   class="form-control left-status pill-items" required>
            <ng-template ng-label-tmp let-item="item" let-clear="clear">
              <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
@@ -71,7 +71,7 @@
                   </div>
                     </div>
                     <ng-container>
-                      <ng-container >
+                      <ng-container *ngIf="countsub('off')>0">
                       <div class="row">
                         <div class="col-sm-12">
     
@@ -99,12 +99,12 @@
                           </div>
                           <div class="row mt-3">
                             <div class="col-sm-6">Total Offical Fess</div>
-                            <div class="col-sm-3">{{totalsub('off')}}</div>
+                            <div class="col-sm-3">INR {{totalsub('off')}}</div>
                           </div>
                           </div>
                           </div>
                           </ng-container>
-                          <ng-container  >
+                          <ng-container  *ngIf="countsub('pro')>0">
                           <div class="row mt-5">
                             <div class="col-sm-12">
         
@@ -132,12 +132,12 @@
                               </div>
                               <div class="row mt-3">
                                 <div class="col-sm-6">Total Professional Fess</div>
-                                <div class="col-sm-3">{{totalsub('pro')}}</div>
+                                <div class="col-sm-3">INR {{totalsub('pro')}}</div>
                               </div>
                               </div>
                               </div>
                           </ng-container>
-                              <ng-container >
+                              <ng-container *ngIf="countsub('dis')>0">
                               <div class="row mt-5">
                                 <div class="col-sm-12">
             
@@ -169,11 +169,12 @@
                                   </div>
                                 </div>
                               </div>
+                              <div class="row mt-5">
+                                <div class="col-md-6"><b>Total Fee</b></div>
+                                <div class="col-md-6"><b>INR {{totalsub('tot')}}</b></div>
+                              </div>
                                 </ng-container>
-                                <div class="row mt-5">
-                                  <div class="col-md-6"><b>Total Fee</b></div>
-                                  <div class="col-md-6"><b>{{totalsub('tot')}}</b></div>
-                                </div>
+                               
                     </ng-container>
 
                 <ng-container *ngIf="mode!='view' && mode!='edit'">

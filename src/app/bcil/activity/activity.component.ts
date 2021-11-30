@@ -216,7 +216,7 @@ console.log(data,'luf')
      
      }
      if(this.activebtn?.form?.organization==true){
-      this.Bdoservice.Getallorganization("").subscribe(data=>{
+      this.Bdoservice.Getorganization("all").subscribe(data=>{
         this.organizations=data;
         if(this.userRoles[0]=='Admin'){
           
@@ -224,6 +224,7 @@ console.log(data,'luf')
         
         else {
           this.Bdoservice.Getorganizationbyuserid().subscribe(data1=>{
+            
             this.organizations=this.organizations.filter(y=>y.value==data1[0]?.value);
            
             this.selectorg=data1[0]?.value;
@@ -277,7 +278,7 @@ console.log(data,'luf')
           milestone: [''],
           paymentterm: [''],
           timeline: [''],
-          paymenttype:['']
+          paymenttype:['YES']
          
         });
       }
@@ -294,7 +295,8 @@ console.log(data,'luf')
       }
       }
       organizationchnage(el){
-     let nodalid= this.organizations.find(x=>x.value==el)?.key
+    
+         let nodalid= this.organizations.find(r=>r.value==el)?.nodalid;
 //console.log(data)
 if(nodalid!=""){
   if(this.activebtn?.form?.getscientist==true){
@@ -391,8 +393,9 @@ var tt=[];
            this.submitted=false;
     if(data.message=="success"){
           alert("Submitted Successfully")
-         
+       
           this.editorModal.hide();
+          this.cdRef.detectChanges();
           if (this.changesSavedCallback) {
             this.changesSavedCallback();
           }

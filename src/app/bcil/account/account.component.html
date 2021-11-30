@@ -52,6 +52,7 @@
 
                               
                             <!-- task, page, download counter  start -->
+                            <ng-container *ngIf="!isNodal && !isScientist" >
                                 <div class="col-xl-3 col-md-6" *ngFor="let account of accountdata;let index=i;">
                                   
                                         <div class="card">
@@ -81,6 +82,66 @@
                                         </div>
                                                                                    
                                 </div>
+                            </ng-container>
+                                <div class="col-xl-3 col-md-6" *ngIf="isNodal || isScientist">
+                                  
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <div class="row align-items-top">
+                                                <div class="col-12">
+                                                  <h4 class="text-c-yellow">Invoice Pending</h4>
+                                                    <h6 class="text-muted m-b-0">{{clientlistfilter('pending')}}</h6>
+                                                </div>
+                                                <!-- <div class="col-4 text-right">
+                                                    <i class="fa fa-bar-chart f-28"></i>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                        <a (click)="queryparamclient('pending')" >
+                                        <div class="card-footer bg-c-yellow">
+                                            <div class="row align-items-center">
+                                                <div class="col-9">
+                                                    <p class="text-white m-b-0">View</p>
+                                                </div>
+                                                <div class="col-3 text-right">
+                                                    <i class="fa fa-arrow-right text-white f-16"></i>                                                              
+                                                </div>
+                                            </div>            
+                                        </div>
+                                      </a>
+                                    </div>
+                                                                               
+                            </div>
+                            <div class="col-xl-3 col-md-6" *ngIf="isNodal || isScientist" >
+                                  
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row align-items-top">
+                                            <div class="col-12">
+                                              <h4 class="text-c-red">Invoice Paid</h4>
+                                                <h6 class="text-muted m-b-0">{{clientlistfilter('paid')}}</h6>
+                                            </div>
+                                            <!-- <div class="col-4 text-right">
+                                                <i class="fa fa-bar-chart f-28"></i>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <a (click)="queryparamclient('paid')" >
+                                    <div class="card-footer bg-c-red">
+                                        <div class="row align-items-center">
+                                            <div class="col-9">
+                                                <p class="text-white m-b-0">View</p>
+                                            </div>
+                                            <div class="col-3 text-right">
+                                                <i class="fa fa-arrow-right text-white f-16"></i>                                                              
+                                            </div>
+                                        </div>            
+                                    </div>
+                                  </a>
+                                </div>
+                                                                           
+                        </div>
+                                
                              
 
                               

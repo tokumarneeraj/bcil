@@ -53,6 +53,9 @@ export class BcilComponent implements OnInit {
   jsondata:any;
   showmenu:boolean=false;
   menulist:any;
+  isNodal:boolean;
+  isScientist:boolean;
+  userRoles:string[];
   constructor(private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -72,6 +75,11 @@ export class BcilComponent implements OnInit {
     this.UserName = this.accountService.currentUser.userName;
     this.UserId = this.accountService.currentUser.id;
     this.userimg=this.accountService.currentUser?.imgUrl?.replace(/\//g,"/");
+    this.userRoles = this.accountService.currentUser.roles;
+
+    this.isNodal=this.userRoles.includes('Nodal');
+    this.isScientist=this.userRoles.includes('Scientist');
+  
     console.log(this.userimg)
     this.userimg==undefined?this.userimg="":this.userimg;
   }
@@ -172,8 +180,13 @@ debugger;
 //return this.router.navigate[[],{queryParams="{type:'tta_additional_info_needed'}"}]
 }
 submenus(stage:string){
-let submenu=  this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value)));
+  let submenu=null;
+  if(stage=='account' && (this.isNodal || this.isScientist)){
 
+  }
+  else{
+ submenu=  this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value)));
+  }
 return submenu;
 }
 subchildmenus(stage:string,childstage:string){

@@ -114,7 +114,7 @@
                         <div class="col-sm-3">
                           <label>Payment term</label>
                           </div>
-                          <div class="col-sm-2">
+                          <div class="col-sm-3">
                         <label>Timeline</label>
                         </div>
                         <div class="col-sm-2">
@@ -140,13 +140,13 @@
                                 <input type="text"  class="form-control" formControlName="paymentterm" id="paymentterm+i"/>
                                 <p *ngIf="submitted && f.paymentterm?.errors" class="invalid-feedback">Milestone is required</p>
                                                               </div>
-                                                              <div class="col-sm-2">
+                                                              <div class="col-sm-3">
                                                                 <input type="date"  class="form-control"  formControlName="timeline" id="timeline+i"/>
                                                                 <p *ngIf="submitted && f.timeline?.errors" class="invalid-feedback">Milestone is required</p> 
                                                               </div>
                                                               <div class="col-sm-2">
                                                                 <select   class="form-control"  formControlName="paymenttype" id="paymenttype+i">
-                                                                  <option value="YES">YES</option>
+                                                                  <option value="YES" selected>YES</option>
                                                                   <option value="NO">NO</option>
                                                                 </select>
                                                                 <p *ngIf="submitted && f.paymenttype?.errors" class="invalid-feedback">payment Type is required</p> 
@@ -215,7 +215,7 @@
                               </div>
                               </div>
                             </ng-container>
-                            {{dynamicForm.value|json}}
+                            <!-- {{dynamicForm.value|json}} -->
                           </form>
                             </ng-container>
 
@@ -223,7 +223,7 @@
                              
                               <div class="col-sm-12">
                                 <label class="col-form-label">Select Client Invoice</label>
-                                <ng-select  size="1" id="roles-user-info" formControlName="clientinvocie" name="clientinvocie"  (change)="selectedclient($event)" [items]="clientinvoice" bindLabel="appno" bindValue="aapno" [multiple]="true" [closeOnSelect]="false"
+                                <ng-select  size="1" id="roles-user-info" formControlName="clientinvocie" name="clientinvocie"  (change)="selectedclient($event)" [items]="clientinvoice" bindLabel="appno" bindValue="appno" [multiple]="true" [closeOnSelect]="false"
                                 placeholder="Select Client Invoice"   class="form-control left-status pill-items" required>
                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
                          <span title='{{item.appno}}' class='badge badge-pill badge-secondary'>{{item.appno}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>

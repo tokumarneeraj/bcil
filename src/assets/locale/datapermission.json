@@ -5743,6 +5743,7 @@
 						"value": "S806"
 					}]
 				},
+				
 				{
 					"stage": "client_invoice",
 					"tablename": "Client Invoice Prepared",
@@ -5751,7 +5752,7 @@
 					"value": "S806",
 					"color": "red",
 					"button": [{
-						"text": "Forward",
+						"text": "Shared With Client",
 						"class": "btn btn-primary",
 						"title": "",
 						"value": "S808"
@@ -5772,6 +5773,7 @@
 					"color": "blue",
 					"button": []
 				},
+				
 				{
 					"stage": "client_invoice",
 					"tablename": "Client Invoice Shared",
@@ -5780,16 +5782,10 @@
 					"value": "S808",
 					"color": "dark-orange",
 					"button": [{
-						"text": "No Mapped Invoice",
+						"text": "Client Paid",
 						"class": "btn btn-primary",
 						"title": "",
 						"value": "S810"
-					},
-					{
-						"text": "Luf Invoice Pending",
-						"class": "btn btn-secondary",
-						"title": "",
-						"value": "S809"
 					}]
 				},
 				{
@@ -5902,12 +5898,7 @@
 			"type": "luf_invoice_paid",
 			"value": "S816",
 			"color": "purple",
-			"button": [{
-				"text": "Forward",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S816"
-			}]
+			"button": []
 
 		}]
 

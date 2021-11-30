@@ -101,29 +101,34 @@ else{
     })
   });
   }
+  queryparamclient(data:any){
+
+    this.router.navigate(['/bcil/bcil-account-table'],  { queryParams: {stage:'client_invoice', type: data}});
+  
+  }
+  clientlistfilter(data){
+    return this.accountModel?.filter(x=>(data=='pending')?x.app_status=='S808':(data=='paid')?(x.app_status=='S809' ||x.app_status=='S810' || x.app_status=='S811'):null).length;
+  
+  }
   accountlistfilter(data) {
    
     let yy=["client_invoice","luf_invoice"]
 
-  if(this.isSuperAdmin){
-    return this.accountModel?.length +this.lufModel.length+ this.triggerinvoiceModel?.length;
-  }
   
-  else{
    if(this.stage=="luf_invoice"){
     return this.lufModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==this.stage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
   
    }
    else if(this.stage=="client_invoice"){
-    return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==this.stage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length + (data=="S805" ?this.triggerinvoiceModel?.length:0);
+    return this.accountModel?.filter(x=>x.app_status==data)?.length+ (data=="S805" ?this.triggerinvoiceModel?.length:0);
   
    }
    else{
     //return this.accountModel.length + this.triggerinvoiceModel?.length;
-   return this.accountModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length +(data=="client_invoice"?this.triggerinvoiceModel?.length:0)
+   return  (data=="client_invoice"? this.accountModel?.length+this.triggerinvoiceModel?.length:0)
    +this.lufModel?.filter(x=>(yy.includes(data)?this.accountdata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_status):x.app_status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length ;
   }
-}
+
    
 }
 
@@ -133,6 +138,10 @@ this.lufinvoice.showviewmodel('','S812');
   ngAfterViewInit() {
 
     this.activity.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+    this.lufinvoice.changesSavedCallback = () => {
       //this.addNewRoleToList();
       this.ngOnInit();
     };

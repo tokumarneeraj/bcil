@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "watch":"ng build --watch --configuration dev",
+    "watch": "ng build --watch --configuration dev",
     "build": "ng build --watch --configuration dev",
     "test": "ng test",
     "lint": "ng lint",
@@ -28,6 +28,7 @@
     "bootstrap": "^5.0.2",
     "bootstrap-toggle": "^2.2.2",
     "bootswatch": "^5.0.2",
+    "file-saver": "^2.0.5",
     "jquery": "^3.6.0",
     "ngx-accordion": "0.0.17",
     "ngx-bootstrap": "^6.2.0",
@@ -38,6 +39,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "xlsx": "^0.17.4",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

@@ -8,6 +8,12 @@ import { ActivityComponent } from '../activity/activity.component';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { ClientInvoiceComponent } from '../client-invoice/client-invoice.component';
+import * as XLSX from 'xlsx'; 
+import * as fileSaver from 'file-saver';
+import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
 
 @Component({
   selector: 'app-account-init',
@@ -45,11 +51,13 @@ export class AccountInitComponent implements OnInit {
   accountModel:any[];
   viewtab:any;
   managetab:any;
+  getbaseurl=environment.baseUrl;
   viewhistory:any;
   viewremark:any;
   stage:string;
   viewadditionalfileright:boolean;
   invoicetriggerModel:any[];
+  querytype:string;
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
@@ -61,7 +69,22 @@ export class AccountInitComponent implements OnInit {
 
 
   }
+//export
 
+public exportAsExcelFile(json: any[], excelFileName: string): void {
+  const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+  const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+  const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  this.saveAsExcelFile(excelBuffer, excelFileName);
+}
+private saveAsExcelFile(buffer: any, fileName: string): void {
+   const data: Blob = new Blob([buffer], {type: EXCEL_TYPE});
+   fileSaver.saveAs(data, fileName + '_export_' + new  Date().getTime() + EXCEL_EXTENSION);
+}
+ExportTOExcel(){
+  this.exportAsExcelFile(this.invoicetriggerModel.filter(x=>x.active==true).map(u=>({"Application No":u.appno,"Organization":u.organization,"Activtity":u.activity})),'sheet1')
+}
+//end export
   viewadditionalfile(data:any){
     this.AdditionFile.showviewmodel(data,true,"account");
   }
@@ -75,6 +98,11 @@ export class AccountInitComponent implements OnInit {
       //this.addNewRoleToList();
       this.ngOnInit();
     };
+    this.clientinvoice.changesSavedCallback = () => {
+      //this.addNewRoleToList();
+      this.ngOnInit();
+    };
+    
   
     // this.roleEditor.changesCancelledCallback = () => {
     //   this.editedRole = null;
@@ -89,7 +117,7 @@ export class AccountInitComponent implements OnInit {
     if(value=="S815"){
     var clientin=[];
     this.Bdoservice.GetClientInvoice('all').subscribe(data1 => {
-      clientin=data1.filter(y=>y.app_status=='S809' && y.active==true && y.lufmapped==null);
+      clientin=data1.filter(y=>(y.app_status=='S805'|| y.app_status=='S806') && y.active==true && y.lufmapped==false);
       data={...data,clientinvoice:clientin};
       this.activity.showviewmodel('account',value,data);
     });
@@ -104,12 +132,14 @@ export class AccountInitComponent implements OnInit {
   
    
   }
+  
   ngOnInit(): void {
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
     this.isBdm = this.userRoles.includes('BDM');
     this.isNodal = this.userRoles.includes('Nodal'); 
-    
+    let datepipe=new DatePipe('en-US');
+    //data=data?.map((item,i)=>({...item,invoicedate:datepipe.transform(item?.invoicedate,'dd/MM/yyyy')}));
     this.isScientist=this.userRoles.includes('Scientist');
   this.isIPM=this.userRoles.includes('IPM');
   this.isSuperAdmin=this.userRoles.includes('Super Admin');
@@ -125,6 +155,7 @@ export class AccountInitComponent implements OnInit {
           this.route.queryParams.subscribe((params) => {
             let yy=["client_invoice","luf_invoice"]
             this.stage=params.stage;
+            this.querytype=params?.type;
             if(yy.includes(params.stage)){
       
               this.accountdata=data?.account?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
@@ -135,7 +166,7 @@ export class AccountInitComponent implements OnInit {
             }
                this.array=this.accountdata.find(x => x.type == params.type);
                console.log(this.array,'arr')
-             this.managetab.some(x=>x==this.array.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
+             this.managetab.some(x=>x==this.array?.value)?null:this.array={...this.array,button:[]};//this.array?.find(x=>this.managetab?.find(y=>y==x.value)); 
            
          
       
@@ -151,12 +182,14 @@ export class AccountInitComponent implements OnInit {
       this.activeusermou=data1;
    //  if(this.array?.value=="S805"){
       this.Bdoservice.GetAllInvoiceTrigger('all').subscribe(data => {
-this.invoicetriggerModel=data;
+this.invoicetriggerModel=data.map(u=>({...u,activity:u.activityref+(u.milestoneref!=null?"("+u.milestoneref+")":'')}));
       });
   //  }
 //if(this.array?.value=="S112"){
 this.Bdoservice.GetLufInvoice('all').subscribe(data => {
+  data?.map((item,i)=>({...item,invoicedate:datepipe.transform(item?.invoicedate,'dd/MM/yyyy')}))
      this.lufInvocie=data;
+     //data=data.map(u=>({...u,organization:this.Org}))
      if(this.isSuperAdmin){
       this.lufInvocie = data.filter(x => x.app_status == this.array?.value);
     }
@@ -181,21 +214,14 @@ this.Bdoservice.GetLufInvoice('all').subscribe(data => {
   //}
   //if(this.array?.value=="S806"){
     this.Bdoservice.GetClientInvoice('all').subscribe(data => {
-      if(this.isSuperAdmin){
-        this.accountModel = data.filter(x => x.app_status == this.array?.value);
-      }
-  
-
-    else {
-       this.accountModel= data.filter(x=>x.app_status== this.array?.value && this.activeusermou?.some(t=>t.appref==x.refid));
-
-       }
-      console.log(this.accountModel,'acc')
+      data?.map((item,i)=>({...item,invoicedate:datepipe.transform(item?.invoicedate,'dd/MM/yyyy')}))
+    
+        this.accountModel = data.filter(x => ( this.querytype=='pending'? (x.app_status =="S808"):
+        this.querytype=="paid"?(x.app_status =="S809" || x.app_status =="S810"|| x.app_status =="S811"):x.app_status ==this.array?.value));
+     
       
     this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.array?.value);
        this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.array?.value);
-       //this.emailpermission=this.commondata.getotherpermissiondata('email').some(x=>x?.split('-')[1]==this.type);
-     // this.viewadditionfile= this.commondata.getotherpermissiondata('addfile').some(x=>x?.split('-')[1]==this.type);
       
         this.showpage = true;
 
