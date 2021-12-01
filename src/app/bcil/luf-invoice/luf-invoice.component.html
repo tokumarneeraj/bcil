@@ -179,10 +179,10 @@
 
                 <ng-container *ngIf="mode!='view' && mode!='edit'">
                   
-                    <div class="row">
+                    <div class="row"  >
                       <div class="col-sm-12">
   
-                        <h5>Official Fees</h5>
+                        <h5 class="mb-3">Official Fees</h5>
                         <div class="row">
                           <div class="col-sm-1">
                             </div>
@@ -236,8 +236,8 @@
                       
                                   </div>
                                 </div>
-                                <hr/>
-                                <div class="row mt-5">
+                                <hr />
+                                <div class="row mt-2">
                                     <div class="col-md-8">
                                      <b>Total Offical Fees</b>
                         
@@ -246,15 +246,15 @@
                                         <b>{{offsum}}</b>
                                     </div>
                                   </div>
-                                  <hr/>
+                                  <hr class="mt-5"/>
                               </ng-container>
            
-                              <ng-container  *ngIf="mode!='view' && mode!='edit'" style="margin-bottom:5px;">
+                              <ng-container  *ngIf="mode!='view' && mode!='edit'">
                   
-                                <div class="row">
+                                <div class="row"  >
                                   <div class="col-sm-12">
               
-                                    <h5>Proffesional Fees</h5>
+                                    <h5 class="mb-3">Professional Fees</h5>
                                     <div class="row">
                                       <div class="col-sm-1">
                                         </div>
@@ -309,7 +309,7 @@
                                               </div>
                                             </div>
                                             <hr/>
-                                            <div class="row mt-5">
+                                            <div class="row mt-2">
                                                 <div class="col-md-8">
                                                 <b>Total Professional Fees</b>
                                     
@@ -318,15 +318,15 @@
                                                     <b>{{prosum}}</b>
                                                 </div>
                                               </div>
-                                              <hr/>
+                                              <hr class="mt-5"/>
                                           </ng-container>
             
-                                          <ng-container  *ngIf="mode!='view' && mode!='edit'" style="margin-bottom:5px;">
+                                          <ng-container  *ngIf="mode!='view' && mode!='edit'">
                   
-                                            <div class="row">
+                                            <div class="row" >
                                               <div class="col-sm-12">
                           
-                                                <h5>Disbursements</h5>
+                                                <h5 class="mb-3">Disbursements</h5>
                                                 <div class="row">
                                                   <div class="col-sm-1">
                                                     </div>
@@ -381,7 +381,7 @@
                                                           </div>
                                                         </div>
                                                         <hr/>
-                                                        <div class="row mt-5">
+                                                        <div class="row mt-2">
                                                             <div class="col-md-8">
                                                             <b>Total Disbursement Fees</b>
                                                 
@@ -390,7 +390,7 @@
                                                                 <b>{{dissum}}</b>
                                                             </div>
                                                           </div>
-                                                          <hr/>
+                                                          <hr class="mt-5"/>
                                                           <div class="row">
                                                             <div class="col-md-8">
                                                             <h6><b>Total  Fees</b></h6>
@@ -400,6 +400,7 @@
                                                                 <h6><b>INR : {{totalsum}}</b></h6>
                                                             </div>
                                                           </div>
+                                                          <hr class="mt-5"/>
                                                       </ng-container>
                                       
                   

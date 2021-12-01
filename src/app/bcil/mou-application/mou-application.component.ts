@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { activeusermou, booleanvalue, mouModel } from 'src/app/model/mou.model';
 import { AccountService } from 'src/app/services/account.service';
@@ -52,7 +52,7 @@ lufinvoiceModel:any[];
   lufinvoice: LufInvoiceComponent;
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
-  constructor(private route: ActivatedRoute, private Bdoservice: Bdoservice,private accountService:AccountService, private formbuilder: FormBuilder) { 
+  constructor(private route: ActivatedRoute,private router:Router, private Bdoservice: Bdoservice,private accountService:AccountService, private formbuilder: FormBuilder) { 
     this.userRoles = this.accountService.currentUser.roles;
 
     this.isLM = this.userRoles.includes('LM');
@@ -75,6 +75,11 @@ this.Bdoservice.GetActiveUserMoubyrefid(data?.refid).subscribe(data=>{
   this.editorModal3.show();
   console.log(data);
 })
+  }
+  queryparam(data:any){
+    this.router.navigate(['/bcil/file-history'],  { queryParams: {stage:this.stage, refid: data.refid}});
+  
+  
   }
   viewform(data:any){
     if(this.stage=="luf_invoice"){

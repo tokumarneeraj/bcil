@@ -223,14 +223,14 @@
                              
                               <div class="col-sm-12">
                                 <label class="col-form-label">Select Client Invoice</label>
-                                <ng-select  size="1" id="roles-user-info" formControlName="clientinvocie" name="clientinvocie"  (change)="selectedclient($event)" [items]="clientinvoice" bindLabel="appno" bindValue="appno" [multiple]="true" [closeOnSelect]="false"
+                                <ng-select  size="1" id="roles-user-info" formControlName="clientinvocie" name="clientinvocie"  (change)="selectedclient($event)" [items]="clientinvoice" bindLabel="invoiceno" bindValue="appno" [multiple]="true" [closeOnSelect]="false"
                                 placeholder="Select Client Invoice"   class="form-control left-status pill-items" required>
                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                         <span title='{{item.appno}}' class='badge badge-pill badge-secondary'>{{item.appno}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+                         <span title='{{item.invoiceno}}' class='badge badge-pill badge-secondary'>{{item.invoiceno}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
                        </ng-template>
              
                        <ng-template ng-option-tmp let-item="item">
-                         <span title='{{item.appno}}' class='badge badge-pill badge-secondary'>{{item.appno}}</span>
+                         <span title='{{item.invoiceno}}' class='badge badge-pill badge-secondary'>{{item.invoiceno}}</span>
                          <i class="fa fa-check d-none"></i>
                        </ng-template>
                      </ng-select>

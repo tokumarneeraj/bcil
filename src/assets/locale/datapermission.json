@@ -270,7 +270,13 @@
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "S106"
+				"value": "S106",
+				"form":{
+				"organization": true,
+					"assign": true,
+					"assignlabel": "Assign Scientist",
+					"assignarray": ["Scientist"],
+					"getscientist": true}
 			}]
 		}, {
 			"stage": "mou",
@@ -300,7 +306,7 @@
 				"title": "",
 				"value": "S107",
 				"form": {
-					"bdoassigned": true,
+					
 					"fileuploadreq": true
 				}
 			}]
@@ -316,7 +322,11 @@
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "S108"
+				"value": "S108",
+				"form": {
+					"bdoassigned": true
+					
+				}
 			}]
 		}, {
 			"stage": "mou",
@@ -1548,7 +1558,13 @@
 					"text": "Forward",
 					"class": "btn btn-info",
 					"title": "",
-					"value": "S611"
+					"value": "S611",
+					"form": {
+					"assign": true,
+					"assignlabel": "LUF",
+					"assignarray": ["LUF"]
+					
+				}
 				}]
 			}, {
 				"stage": "patentdraft",
@@ -1872,21 +1888,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S623"
-			}]
-		}, {
-			"stage": "patentfinalfiling",
-			"tablename": "Final Filing Pending At Luf",
-			"heading": "Final Filing Pending At Luf",
-			"formheader": "Final Filing Pending At Luf",
-			"type": "final_filing_pending_atluf",
-			"value": "S619",
-			"color": "dark-orange",
-			"button": [{
-				"text": "Forward",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S621",
+				"value": "S623",
 				"form": {
 					"jsondata": [{
 							"field": "filingdate",
@@ -1919,6 +1921,21 @@
 
 					]
 				}
+				
+			}]
+		}, {
+			"stage": "patentfinalfiling",
+			"tablename": "Final Filing Pending At Luf",
+			"heading": "Final Filing Pending At Luf",
+			"formheader": "Final Filing Pending At Luf",
+			"type": "final_filing_pending_atluf",
+			"value": "S619",
+			"color": "dark-orange",
+			"button": [{
+				"text": "Forward",
+				"class": "btn btn-primary",
+				"title": "",
+				"value": "S621"
 			}]
 		}, {
 			"stage": "patentfinalfiling",
@@ -2235,7 +2252,14 @@
 				"class": "btn btn-primary",
 				"title": "",
 				"value": "S626"
-			}]
+			},
+			{
+				"text": "Closure",
+				"class": "btn btn-success",
+				"title": "",
+				"value": "S608"
+			}
+			]
 		}, {
 			"stage": "patentfinalfiling",
 			"tablename": "FP Go Ahead Shared With Luf ",
@@ -2314,11 +2338,23 @@
 			"type": "fp_draft_shared_with_client",
 			"value": "S629",
 			"color": "green",
-			"button": [{
+			"button": [
+			{
+				"text": "Change Request",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S630"
+			},{
 				"text": "approve",
 				"class": "btn btn-primary",
 				"title": "",
 				"value": "S631"
+			}
+			,{
+				"text": "Closure",
+				"class": "btn btn-success",
+				"title": "",
+				"value": "S608"
 			}]
 		}, {
 			"stage": "patentfinalfiling",
@@ -2329,7 +2365,7 @@
 			"value": "S631",
 			"color": "yellow",
 			"button": [{
-				"text": "approve",
+				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
 				"value": "S619"
@@ -5556,10 +5592,8 @@
 				{
 					"text": "Forward",
 					"class": "btn btn-success",
-					"value": "S174",
-					"form":{"toggle":true
+					"value": "S174"
 					
-					}
 				}
 			]
 		},
@@ -5609,8 +5643,8 @@
 				},
 				{
 					"text": "Reject",
-					"class": "btn btn-success",
-					"value": "S176"
+					"class": "btn btn-danger",
+					"value": "S174"
 				}
 			]
 		},
@@ -5673,6 +5707,10 @@
 					"value": "S179",
 					"color": "yellow",
 					"button": [{
+						"text": "Change Request",
+						"class": "btn btn-info",
+						"value": "S180"
+					},{
 						"text": "Forward",
 						"class": "btn btn-success",
 						"value": "S181"
@@ -5692,7 +5730,7 @@
 						},
 						{
 							"text": "Reject",
-							"class": "btn btn-success",
+							"class": "btn btn-danger",
 							"value": "S179"
 						}
 					]

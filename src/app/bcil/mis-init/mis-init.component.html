@@ -128,7 +128,7 @@
                                           <td>{{mis?.misref}}</td>
                                          <td>{{mis?.milestone}}</td>
                                          <td>{{mis?.paymentterm}}</td>
-                                         <td>{{mis?.timelines |date}}</td>
+                                         <td>{{mis?.timelines |date:'medium'}}</td>
                                          
                                           <td>
                                               <ng-container *ngFor="let btn of array?.button">
@@ -178,7 +178,7 @@
 <tr *ngFor="let mil of milestones;let i=index">
     <td>{{i+1}}</td>
     <td>{{mil.milestone}}</td>
-    <td>{{mil.timelines |date:'fullDate'}}</td>
+    <td>{{mil.timelines |date:'medium'}}</td>
     <td>{{mil.paymentterm}}</td>
     <td *ngIf="milestonedata[0]?.forward?.includes(array?.value) && mil?.appno==null"><button class="btn btn-success btn-sm" (click)="onmodalclick($event.target.value,'S177',mil)" >Forward</button></td>
 </tr>

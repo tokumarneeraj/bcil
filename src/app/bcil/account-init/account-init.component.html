@@ -32,7 +32,7 @@
                 <div class="page-body">
                    <div class="row" *ngIf="array?.value=='S805'">
                     <div class="col-sm-12 mb-5">  
-                        <button style="float:right" (click)="ExportTOExcel()" class="btn btn-success">Excel</button> 
+                        <button style="float:right" (click)="ExportTOExcel()" class="btn btn-success"> Export Excel</button> 
                     </div>
                 </div>
                     <!-- Hover table card start -->
@@ -92,7 +92,7 @@
                                       <td>{{i+1}}</td>
                                       <td>{{account?.appno}}</td>
                                       <td>{{account?.invoiceno}}</td>
-                                      <td>{{account?.invoicedate |date}}</td>
+                                      <td>{{account?.invoicedate |date:'medium'}}</td>
                                       <td>{{account?.applicationno}}</td>
                                       <td> <p><a target="_bliank" href="{{getbaseurl}}/{{account?.url}}"> Invoice File</a></p></td>
                                      
@@ -136,7 +136,7 @@
                                             </td>
                                             <td>{{account?.appno}}</td>
                                             <td>{{account?.invoiceno}}</td>
-                                            <td>{{account?.invoicedate |date}}</td>
+                                            <td>{{account?.invoicedate |date:'medium'}}</td>
                                             <td>{{account?.applicationno}}</td>
                                             <td>{{account?.organization}}</td>
                                             <td><ng-container *ngFor="let act of account?.activity;let i=index;">

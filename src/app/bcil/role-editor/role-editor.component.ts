@@ -43,7 +43,7 @@ editmode=true;
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
-
+  loading:boolean=false;
 
   @ViewChild('f')
   private form;
@@ -63,6 +63,7 @@ editmode=true;
     });
   }
   otherpermission(){
+    this.loading=true;
     this.bdoService.GetStatusMaster().subscribe(data=>{
 
       this.StatusMaster=data;
@@ -77,7 +78,7 @@ editmode=true;
             $("[name="+element.permission+"]").trigger('click');
             //this.myForm.controls.permission.value
           });
-
+this.loading=false;
           this.editorModal3.show();
         })
    

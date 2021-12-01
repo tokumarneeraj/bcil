@@ -71,9 +71,10 @@
 <p *ngIf="items.key!='FILE' && items.key!='FEE_RECEIPT_FILE' && items.key!='NBA_FILE'&& items.key!='FILENAME'"> <b>{{items.key| underscore}}</b>: <b>{{items.value}}</b></p>
                                                                 </div>
                                                                 <ng-container *ngIf="item?.milestone?.length>0">
-                                                                <div *ngFor="let items of item?.milestone">
                                                                     <h4>Milestones</h4>
-<p><b>Milestone-</b><span class='mr-3'>{{items.milestone}}</span>  <b>Timeline-</b><span class='mr-3'>{{items.timelines}}</span>    <b>Payment term-</b><span class='mr-3'>{{items.paymentterm}}</span></p>
+                                                                <div *ngFor="let items of item?.milestone">
+                                                                   
+<p><b>Milestone-</b><span class='mr-3'>{{items.milestone}}</span>  <b>Timeline-</b><span class='mr-3'>{{items.timelines}}</span>    <b>Payment term-</b><span class='mr-3'>{{items.paymentterm}}</span> </p>
                                                                 </div>
                                                                 </ng-container>
                                                         </td>

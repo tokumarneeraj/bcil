@@ -68,11 +68,13 @@
             </div>
         </div>
 
-
+        <!-- <button type="submit" class="btn btn-success"  (click)="uploadFile()" [disabled]="loading">
+            <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
+          </button> -->
         <div class="form-group row">
             <div class="col-sm-7">
                 <div  class="float-left">
-                    <a (click)="otherpermission()" href="javascript:;" class="p-3 btn-link">Other Permission</a>|  <a (click)="selectAll()" href="javascript:;" class="p-3 btn-link">SelectAll</a>|<a (click)="selectNone()" href="javascript:;" class="p-3 btn-link">SelectNone</a>
+                    <a (click)="otherpermission()" href="javascript:;" class="p-3 btn-link"> <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'loading...' : 'Other Permission'}}</a>|  <a (click)="selectAll()" href="javascript:;" class="p-3 btn-link">SelectAll</a>|<a (click)="selectNone()" href="javascript:;" class="p-3 btn-link">SelectNone</a>
                 </div>
             </div>
 
@@ -143,12 +145,12 @@
                           <td>{{sta.status_name}}</td>
                           <td>{{sta.stagetype}}</td>
                           <td>
-                            View<input type="checkbox" (change)="onChange('view',sta.status_code, $event.target.checked)" name="view-{{sta.status_code}}" checked="{{sta.check}}"/>
+                            View <input type="checkbox" (change)="onChange('view',sta.status_code, $event.target.checked)" name="view-{{sta.status_code}}" checked="{{sta.check}}"/>
                              
-                            Manage button<input type="checkbox" (change)="onChange('manage',sta.status_code, $event.target.checked)" name="manage-{{sta.status_code}}" checked="{{sta.check}}"/>
+                            Manage button <input type="checkbox" (change)="onChange('manage',sta.status_code, $event.target.checked)" name="manage-{{sta.status_code}}" checked="{{sta.check}}"/>
                              
-                              History<input type="checkbox" (change)="onChange('history',sta.status_code, $event.target.checked)" name="history-{{sta.status_code}}" checked="{{sta.check}}"/>
-                              Remarks<input type="checkbox" (change)="onChange('remark',sta.status_code, $event.target.checked)" name="remark-{{sta.status_code}}" value="remark-{{sta.status_code}}" checked="{{sta.check}}"/>
+                              History <input type="checkbox" (change)="onChange('history',sta.status_code, $event.target.checked)" name="history-{{sta.status_code}}" checked="{{sta.check}}"/>
+                              Remarks <input type="checkbox" (change)="onChange('remark',sta.status_code, $event.target.checked)" name="remark-{{sta.status_code}}" value="remark-{{sta.status_code}}" checked="{{sta.check}}"/>
                               <!-- Email<input type="checkbox" (change)="onChange('email',sta.status_code, $event.target.checked)" name="email-{{sta.status_code}}" value="email-{{sta.status_code}}" checked="{{sta.check}}"/>
                             -->
                               <!-- Additionfile<input type="checkbox" (change)="onChange('addfile',sta.status_code, $event.target.checked)" name="addfile-{{sta.status_code}}" value="addfile-{{sta.status_code}}" checked="{{sta.check}}"/>

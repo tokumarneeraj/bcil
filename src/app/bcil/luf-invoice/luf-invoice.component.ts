@@ -239,8 +239,7 @@ var items = item.get('ID').value;
 var conf = confirm("Are you sure you want to delete this ?");
 if (conf == true) {
    (<FormArray>this.ForwardForm.get('officialdata')).removeAt(deleteitem);
-   $('#price0').trigger('keyup')
-  // document.getElementById('price0').onkeyup();
+   this.officalvalue(0);
   }
   }
   //end offical
@@ -267,6 +266,8 @@ var items = item.get('ID').value;
 var conf = confirm("Are you sure you want to delete this ?");
 if (conf == true) {
    (<FormArray>this.ForwardForm.get('professionaldata')).removeAt(deleteitem);
+
+   this.provalue(0);
   }
   }
   //end professional
@@ -293,6 +294,7 @@ var items = item.get('ID').value;
 var conf = confirm("Are you sure you want to delete this ?");
 if (conf == true) {
    (<FormArray>this.ForwardForm.get('disbursementdata')).removeAt(deleteitem);
+   this.disvalue(0);
   }
   }
 
