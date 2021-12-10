@@ -36,6 +36,12 @@
                                 <a (click)="createactivity()">{{array.tablename}}</a>
                             </div>                                            
                         </div>
+                        <div class="col-md-12 text-center" *ngIf="(isAdmin && stage=='patentforeignfiling')">
+                            <div class="addMou">
+                                <a (click)="createforignactivity()">Create Foreign Filing</a>
+                            </div>                                            
+                        </div>
+                       
                         <div class="col-sm-12">
                             <div class="addMou">
                             <a routerLink="../mou-application" [queryParams]="{ stage: 'patent'}" style="float:right" class="mb-5">View Patent</a>

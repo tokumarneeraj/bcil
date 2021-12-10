@@ -93,6 +93,7 @@ else{
       this.Bdoservice.GetLufInvoice("all").subscribe(data => {
         this.lufModel = data;
       });
+      
     this.Bdoservice.GetAllInvoiceTrigger("all").subscribe(data => {
       console.log(data)
       this.triggerinvoiceModel=data.filter(tt=>tt.active==true);

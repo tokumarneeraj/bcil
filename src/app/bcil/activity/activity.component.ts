@@ -36,6 +36,7 @@ export class ActivityComponent implements OnInit {
   commondata=new commondata();
   ForwardForm: FormGroup;
   activebtn:any;
+   applicationno:string;
   UploadFileViewModel = new UploadFileViewModel();
   loading:boolean=false;
   customrem: boolean;
@@ -61,6 +62,7 @@ export class ActivityComponent implements OnInit {
   UserId:string;
   dynamicForm: FormGroup;
   selectorg:string;
+  foreignlist:any[];
   @ViewChild('country')
   public country;
   milestone=new milestones();
@@ -107,6 +109,7 @@ export class ActivityComponent implements OnInit {
     assignto:[''],
     files:[''],
     clientinvocie:[''],
+    foreign:[''],
     booleanvalue:[false],
     milestonedata:this.formbuilder.array([this.addItemFormGroup()])
   });
@@ -195,11 +198,15 @@ if(this.fields!=undefined){
         this.loading=false;
         this.process=e;
         this.UploadFileViewModel.app_no=data?.mis_no ||data?.mou_no;
+
+        this.ForwardForm.controls['subject'].setValue(data?.forwardsubject)
         this.UploadFileViewModel.app_ref_id = data?.refid;
+        this.applicationno=data?.applicationno;
         this.appref=data?.refid;
         this.UploadFileViewModel.app_Status=value;
         this.lufinvoice=data?.lufinvoice;
         this.clientinvoice=data?.clientinvoice;
+        this.foreignlist=data?.foreign;
 console.log(data,'luf')
         this.activebtn=this.array?.button.find(x=>x.value==value);
 
@@ -342,7 +349,9 @@ if(nodalid!=""){
         this.ForwardForm.controls["files"].clearValidators();              
       }
       this.ForwardForm.controls['files'].updateValueAndValidity();
-     
+     if(this.array?.foreignlabel==true){
+      this.UploadFileViewModel.app_ref_id=this.ForwardForm.get('foreign').value;
+     }
        if(this.activebtn?.form?.mappedinvoice){
         let act=[];//this.ForwardForm.get('activity').value?.map(t=>({id==t.name}));
         for(let rr of this.ForwardForm.get('clientinvocie').value){
@@ -382,10 +391,13 @@ var tt=[];
     // }
     console.log( this.UploadFileViewModel,this.ForwardForm.get('milestonedata').value)
      // return false;
-      
+     if (this.dynamicForm.invalid) {
+      return;
+    }
      if (this.ForwardForm.invalid) {
       return;
     }
+  
 
     this.loading=true;
         this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
@@ -401,6 +413,7 @@ var tt=[];
           }
           //this.ngOnInit();
           this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
+          this.process=="tta"?this.router.navigateByUrl('bcil/tta-dashboard'):
           this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
           this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
           this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):

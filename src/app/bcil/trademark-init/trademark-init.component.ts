@@ -71,7 +71,7 @@ export class TrademarkInitComponent implements OnInit {
     // };
   }
   onmodalclick(e: string,value:any, data: any) {
-    this.activity.showviewmodel('design',value,data);
+    this.activity.showviewmodel('trademark',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
   

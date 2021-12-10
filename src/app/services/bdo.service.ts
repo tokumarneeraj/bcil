@@ -41,6 +41,9 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     get getallorganization() { return environment.baseUrl+'/api/bdo/getallorganization'; }
     get getmisurl() { return environment.baseUrl+'/api/bdo/getotherservice'; }
     get getpatenturl() { return environment.baseUrl+'/api/bdo/getpatentservice'; }
+    get getcheckforiegnurl() { return environment.baseUrl+'/api/bdo/checkforiegnfiling'; }
+
+    
     get getttaurl() { return environment.baseUrl+'/api/bdo/getttaservice'; }
 
     
@@ -406,6 +409,14 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
         public  GetPatentModel<T>(): Observable<patentModel[]> {
         
           return this.http.get<patentModel[]>(this.getpatenturl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        public  GetForignFilingModel<T>(): Observable<patentModel[]> {
+        
+          return this.http.get<patentModel[]>(this.getcheckforiegnurl,this.requestHeaders);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

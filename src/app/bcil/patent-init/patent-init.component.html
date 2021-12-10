@@ -42,7 +42,7 @@
                                     <li><i class="fa fa-window-maximize full-card"></i></li>
                                     <li><i class="fa fa-minus minimize-card"></i></li>
                                     <li><i class="fa fa-refresh reload-card"></i></li>
-                                    <li><i class="fa fa-trash close-card"></i></li>
+                                    <!-- <li><i class="fa fa-trash close-card"></i></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -71,6 +71,8 @@
                                      
                                       <td>
                                           <ng-container *ngFor="let btn of array?.button">
+                                           
+                                            
                                             <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,patent)">{{btn.text}}</button>
                                                       
                                           </ng-container>

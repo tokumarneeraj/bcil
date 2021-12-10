@@ -175,33 +175,34 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
 
   }
 
-  onmodalclick(e: string,value:any, data: mouModel) {
+  onmodalclick(e: string,value:any, data: any) {
     this.loading=false;
     this.submitted=false;
-    this.UploadFileViewModel.app_no=data.mou_no;
-    this.UploadFileViewModel.app_ref_id = data.refid;
-    this.mouref=data.refid;
-    this.UploadFileViewModel.app_Status=value;
-    debugger;
-    this.activebtn=this.array?.button?.find(x=>x.value==value);
+    this.activity.showviewmodel('tta',value,data);
+    // this.UploadFileViewModel.app_no=data.mou_no;
+    // this.UploadFileViewModel.app_ref_id = data.refid;
+    // this.mouref=data.refid;
+    // this.UploadFileViewModel.app_Status=value;
+    // debugger;
+    // this.activebtn=this.array?.button?.find(x=>x.value==value);
  
-    if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true){
-     // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
+    // if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true){
+    //  // this.accountService.getUsersandRolesForDropdown().subscribe(results => this.onDataLoadSuccessful(results[0], results[1]), error => this.onDataLoadFailed(error));
   
-     this.accountService.getAllUser(0,0).subscribe(data=>{
-       this.rows1=data.filter((x)=>x.roles.includes('BDM'));
-       this.rows=data.filter((x)=>x.roles.includes('LM'));
-     })
+    //  this.accountService.getAllUser(0,0).subscribe(data=>{
+    //    this.rows1=data.filter((x)=>x.roles.includes('BDM'));
+    //    this.rows=data.filter((x)=>x.roles.includes('LM'));
+    //  })
  
-    }
-    this.editorModal2.show();
-    this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
-      this.activuser=data1;
-      this.selected=this.activuser.find(x=>this.rows1?.find(y=>y.id==x.userid))?.userid;
-      //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
-     //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
-      //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
-                });
+    // }
+    // this.editorModal2.show();
+    // this.Bdoservice.GetActiveUserMoubyrefid(data.refid).subscribe(data1=>{
+    //   this.activuser=data1;
+    //   this.selected=this.activuser.find(x=>this.rows1?.find(y=>y.id==x.userid))?.userid;
+    //   //$("[name='assignbdo'] option[value='"+this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid).id)?.userid+"']").prop('selected',true);
+    //  //this.ForwardForm.get('assigntobdo').setValue("bdmuser")
+    //   //this.activuser.find(x=>this.rows?.find(y=>y.id==x.userid)?.userName
+    //             });
   }
     
   //for client start

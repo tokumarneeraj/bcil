@@ -31,6 +31,7 @@ export class UploadFileViewModel {
   public nodal:nodalOfficer;
   public emailsend:emailsend;
   public jsondata:any;
+  
 }
 
 export class milestones{

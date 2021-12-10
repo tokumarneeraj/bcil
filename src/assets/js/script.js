@@ -202,7 +202,7 @@ $(document).ready(function() {
         $(".theme-loader").remove();
     }, 800);
 });
-
+ 
 // toggle full screen
 function toggleFullScreen() {
     var a = $(window).height() - 10;

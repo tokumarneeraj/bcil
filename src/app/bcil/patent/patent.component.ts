@@ -31,6 +31,7 @@ export class PatentComponent implements OnInit {
   isSuperAdmin: boolean;
   isIPM:boolean;
   showactivity:boolean=true;
+  stage:string;
   stagevalue='S601';
   array:any;//{"tablename":"Create Activity"}
   constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice,private router:Router, private accountService: AccountService,) {
@@ -53,6 +54,13 @@ export class PatentComponent implements OnInit {
       console.log(data);
       this.array=data?.tabheading?.find(y=>y.stage=="patent")
       this.route.queryParams.subscribe((params) => {
+        this.stage=params?.stage;
+        if(this.stage=="patentforeignfiling" && this.isAdmin){
+          this.array=this.array?.foreign
+        }
+        else{
+          this.array=data?.tabheading?.find(y=>y.stage=="patent")
+        }
 let yy=["patentdraft","patentfinalfiling","patentforeignfiling","patentrequiredforexamination","patentfirstexamreport","ertoacceptancepatent"]
 if(yy.includes(params?.stage)){
   // if(params?.stage=='patentforeignfiling'){
@@ -103,7 +111,15 @@ else{
     }
    
 }
+createforignactivity(){
+  
+       // public  GetForignFilingModel<T>(): Observable<patentModel[]> {
+  this.Bdoservice.GetForignFilingModel().subscribe(data1 => {
+    var fore={foreign:data1};
+  this.activity.showviewmodel('','S632',fore);
 
+  });
+}
   createactivity(){
 this.activity.showviewmodel('',this.stagevalue);
   }

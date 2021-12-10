@@ -1,6 +1,14 @@
 {
 
 	"tabheading": [{
+			"stage": "mou",
+			"text": "Engagement with Organization",
+			"icon": "",
+			"menuheading": "Engagement with Organization",
+			"submenu": true,
+			"url": "bcil/mou-dashboard",
+			"color": "dark-pink"
+		},{
 			"stage": "tta",
 			"text": "TT Activity Initiation",
 			"color": "red",
@@ -19,7 +27,8 @@
 					"getscientist": true
 				}
 			}]
-		},
+		}
+		,
 		{
 			"stage": "patent",
 			"text": "Patent",
@@ -39,7 +48,126 @@
 					"assignarray": ["Scientist"],
 					"getscientist": true
 				}
-			}]
+			}],
+			"foreign":{
+			"tablename": "Create Foreign Filing",
+			"foreignlabel": true,
+			"button":[
+			{ "value": "S632",	"form": {
+					"assign": true,
+						"assignlabel": "IPM/IBM",
+						"assignarray": ["IPM", "BDM"],
+						"jsondata": [
+						{
+								"field": "country",
+								"type": "countryselect",
+								"label": "COUNTRY",
+								"inputType": "text",
+								"name": "name",
+
+								"validations": [{
+									"name": "required",
+									"validator": "required",
+									"message": "Conventional Appliction is Required"
+								}]
+
+							},
+							{
+								"field": "pctapplication",
+								"type": "text",
+								"label": "PCT_APPLICATION",
+								"inputType": "text",
+								"name": "name",
+								"hideshow": true,
+								"filter": "pct",
+								"validations": [{
+									"name": "required",
+									"validator": "required",
+									"message": "Country is Required"
+								}]
+
+							},
+							{
+								"field": "pctfilingdate",
+								"type": "date",
+								"label": "PCT_FILING_DATE",
+								"inputType": "text",
+								"name": "name",
+								"hideshow": true,
+								"filter": "pct",
+								"validations": [{
+									"name": "required",
+									"validator": "required",
+									"message": "Country is Required"
+								}]
+
+							},
+							{
+								"field": "conventionalapplication",
+								"type": "text",
+								"label": "CONVENTIONAL_APPLICATION",
+								"inputType": "text",
+								"name": "name",
+								"filter": "non_pct",
+								"hideshow": false,
+								"validations": [{
+									"name": "required",
+									"validator": "required",
+									"message": "CONVENTIONAL APPLICATION is Required"
+								}]
+
+							},
+							{
+								"field": "conventional_application_date",
+								"type": "date",
+								"label": "CONVENTIONAL_APPLICATION_DATE",
+								"inputType": "text",
+								"name": "name",
+								"hideshow": false,
+								"filter": "non_pct",
+								"validations": [{
+									"name": "required",
+									"validator": "required",
+									"message": "Country is Required"
+								}]
+
+							},
+							{
+								"field": "priority_no",
+								"type": "text",
+								"label": "PRIORITY_NO",
+								"inputType": "text",
+								"name": "name",
+
+								"validations": [{
+									"name": "required",
+									"validator": "required",
+									"message": "Country is Required"
+								}]
+
+							},
+							{
+								"field": "priority_date",
+								"type": "date",
+								"label": "PRIORITY_DATE",
+								"inputType": "text",
+								"name": "name",
+
+								"validations": [{
+									"name": "required",
+									"validator": "required",
+									"message": "Country is Required"
+								}]
+
+							}
+
+
+						]
+					}
+				}]
+			
+			
+			}
 		},
 		{
 			"stage": "design",
@@ -157,15 +285,7 @@
 			"color": "blue",
 			"url": "bcil/report-dashboard"
 		},
-		{
-			"stage": "mou",
-			"text": "Engagement with Organization",
-			"icon": "",
-			"menuheading": "Engagement with Organization",
-			"submenu": true,
-			"url": "bcil/mou-dashboard",
-			"color": "dark-pink"
-		},
+		
 		{
 			"stage": "account",
 			"text": "Acount",
@@ -1622,11 +1742,7 @@
 										"key": "NO",
 										"value": "NO"
 									}],
-									"validations": [{
-										"name": "required",
-										"validator": "required",
-										"message": "NBA Required"
-									}]
+									"validations": []
 
 								},
 								{
@@ -1710,11 +1826,7 @@
 										"key": "NO",
 										"value": "NO"
 									}],
-									"validations": [{
-										"name": "required",
-										"validator": "required",
-										"message": "NBA Required"
-									}]
+									"validations": []
 
 								},
 								{
@@ -1790,11 +1902,7 @@
 										"key": "NO",
 										"value": "NO"
 									}],
-									"validations": [{
-										"name": "required",
-										"validator": "required",
-										"message": "NBA Required"
-									}]
+									"validations": []
 
 								},
 								{
@@ -1935,35 +2043,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S621"
-			}]
-		}, {
-			"stage": "patentfinalfiling",
-			"tablename": "Provisional Filing Done By Luf",
-			"heading": "Provisional Filing Done By Luf",
-			"formheader": "Provisional Filing Done By Luf",
-			"type": "provisional_filing_done_atluf",
-			"value": "S623",
-			"color": "red",
-			"button": [{
-				"text": "Forward",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S624"
-			}]
-		}, {
-			"stage": "patentfinalfiling",
-			"tablename": "Final Patent Filing Done By Luf",
-			"heading": "Final Patent Filing Done By Luf",
-			"formheader": "Final Patent Filing Done By Luf",
-			"type": "final_patent_filing_done_atluf",
-			"value": "S621",
-			"color": "green",
-			"button": [{
-				"text": "Forward",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S622",
+				"value": "S621",
 				"form": {
 					"jsondata": [{
 							"field": "priporitydate",
@@ -2063,125 +2143,43 @@
 			}]
 		}, {
 			"stage": "patentfinalfiling",
+			"tablename": "Provisional Filing Done By Luf",
+			"heading": "Provisional Filing Done By Luf",
+			"formheader": "Provisional Filing Done By Luf",
+			"type": "provisional_filing_done_atluf",
+			"value": "S623",
+			"color": "red",
+			"button": [{
+				"text": "Forward",
+				"class": "btn btn-primary",
+				"title": "",
+				"value": "S624" 
+				
+			}]
+		}, {
+			"stage": "patentfinalfiling",
+			"tablename": "Final Patent Filing Done By Luf",
+			"heading": "Final Patent Filing Done By Luf",
+			"formheader": "Final Patent Filing Done By Luf",
+			"type": "final_patent_filing_done_atluf",
+			"value": "S621",
+			"color": "green",
+			"button": [
+			{
+				"text": "Forward Request For Examination",
+				"class": "btn btn-primary",
+				"title": "",
+				"value": "S644"
+			}]
+		}, {
+			"stage": "patentfinalfiling",
 			"tablename": "Final Patent Filing Shared With Client",
 			"heading": "Final Patent Filing Shared With Client",
 			"formheader": "Final Patent Filing Shared With Client",
 			"type": "final_patent_filing_done_with_luf",
 			"value": "S622",
 			"color": "blue",
-			"button": [{
-					"text": "Create Foreign Filing",
-					"class": "btn btn-primary",
-					"title": "",
-					"value": "S632",
-					"form": {
-						"jsondata": [{
-								"field": "country",
-								"type": "countryselect",
-								"label": "COUNTRY",
-								"inputType": "text",
-								"name": "name",
-
-								"validations": [{
-									"name": "required",
-									"validator": "required",
-									"message": "Conventional Appliction is Required"
-								}]
-
-							},
-							{
-								"field": "pctapplication",
-								"type": "text",
-								"label": "PCT_APPLICATION",
-								"inputType": "text",
-								"name": "name",
-								"hideshow": true,
-								"filter": "pct",
-								"validations": [{
-									"name": "required",
-									"validator": "required",
-									"message": "Country is Required"
-								}]
-
-							},
-							{
-								"field": "pctfilingdate",
-								"type": "date",
-								"label": "PCT_FILING_DATE",
-								"inputType": "text",
-								"name": "name",
-								"hideshow": true,
-								"filter": "pct",
-								"validations": [{
-									"name": "required",
-									"validator": "required",
-									"message": "Country is Required"
-								}]
-
-							},
-							{
-								"field": "conventionalapplication",
-								"type": "text",
-								"label": "CONVENTIONAL_APPLICATION",
-								"inputType": "text",
-								"name": "name",
-								"filter": "non_pct",
-								"hideshow": false,
-								"validations": [{
-									"name": "required",
-									"validator": "required",
-									"message": "CONVENTIONAL APPLICATION is Required"
-								}]
-
-							},
-							{
-								"field": "conventional_application_date",
-								"type": "date",
-								"label": "CONVENTIONAL_APPLICATION_DATE",
-								"inputType": "text",
-								"name": "name",
-								"hideshow": false,
-								"filter": "non_pct",
-								"validations": [{
-									"name": "required",
-									"validator": "required",
-									"message": "Country is Required"
-								}]
-
-							},
-							{
-								"field": "priority_no",
-								"type": "text",
-								"label": "PRIORITY_NO",
-								"inputType": "text",
-								"name": "name",
-
-								"validations": [{
-									"name": "required",
-									"validator": "required",
-									"message": "Country is Required"
-								}]
-
-							},
-							{
-								"field": "priority_date",
-								"type": "date",
-								"label": "PRIORITY_DATE",
-								"inputType": "text",
-								"name": "name",
-
-								"validations": [{
-									"name": "required",
-									"validator": "required",
-									"message": "Country is Required"
-								}]
-
-							}
-
-
-						]
-					}
-				},
+			"button": [
 				{
 					"text": "Forward",
 					"class": "btn btn-primary",
@@ -2254,7 +2252,7 @@
 				"value": "S626"
 			},
 			{
-				"text": "Closure",
+				"text": "Closure Request",
 				"class": "btn btn-success",
 				"title": "",
 				"value": "S608"
@@ -2392,7 +2390,13 @@
 				"text": "forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S633"
+				"value": "S633",
+				"form": {
+					"assign": true,
+					"assignlabel": "LUF",
+					"assignarray": ["LUF"]
+					
+				}
 			}]
 		}, {
 			"stage": "patentforeignfiling",
@@ -2462,6 +2466,13 @@
 					"class": "btn btn-primary",
 					"title": "",
 					"value": "S638"
+				},
+				
+				{
+					"text": "Closure",
+					"class": "btn btn-primary",
+					"title": "",
+					"value": "S608"
 				}
 			]
 		}, {
@@ -2589,7 +2600,19 @@
 				"class": "btn btn-primary",
 				"title": "",
 				"value": "S645"
-			}]
+			}
+			,{
+					"text": "REF already filed",
+					"class": "btn btn-primary",
+					"title": "",
+					"value": "S649"
+				},
+				{
+					"text": "Go head Directly",
+					"class": "btn btn-primary",
+					"title": "",
+					"value": "S647"
+				}]
 		}, {
 			"stage": "patentrequiredforexamination",
 			"tablename": "Published In Journels Shared With Client",
@@ -2598,23 +2621,13 @@
 			"type": "published_in_journels_shared_with_client",
 			"value": "S645",
 			"color": "yellow",
-			"button": [{
-					"text": "REF already filed",
-					"class": "btn btn-primary",
-					"title": "",
-					"value": "S649"
-				},
+			"button": [
+				
 				{
 					"text": "Client Give Go ahead",
 					"class": "btn btn-info",
 					"title": "",
 					"value": "S646"
-				},
-				{
-					"text": "Go head Directly",
-					"class": "btn btn-primary",
-					"title": "",
-					"value": "S647"
 				}
 			]
 		}, {
@@ -2656,11 +2669,10 @@
 								"name": "required",
 								"validator": "required",
 								"message": "REF DATE Required"
-							}]
+							}]}
+							]
 
-						}
-
-					]
+						
 				}
 			}]
 		}, {
@@ -2675,23 +2687,9 @@
 				"text": "forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S649"
-			}]
-		}, {
-			"stage": "patentrequiredforexamination",
-			"tablename": "RFE Filing Shared With Client",
-			"heading": "RFE Filing Shared With Client",
-			"formheader": "RFE Filing Shared With Client",
-			"type": "rfe_filing_shared_with_client",
-			"value": "S649",
-			"color": "dark-organge",
-			"button": [{
-				"text": "REF Received",
-				"class": "btn btn-primary",
-				"title": "",
 				"value": "S650",
-				"form": {
-					"jsondata": [{
+				"form":{"jsondata":[
+				{
 							"field": "ferdate",
 							"type": "date",
 							"label": "FER_DATE",
@@ -2704,10 +2702,7 @@
 								"message": "FER DATE Required"
 							}]
 
-						}
-
-					]
-				}
+						}]}
 			}]
 		}]
 	}, {
@@ -2953,22 +2948,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S661"
-			}]
-		}, {
-			"stage": "patentfirstexamreport",
-			"tablename": "FER Resp Filing Shared With Client",
-			"heading": "FER Resp Filing Shared With Client",
-			"formheader": "FER Resp Filing Shared With Client",
-			"type": "fer_resp_filing_shared_with_client",
-			"value": "S661",
-			"color": "red",
-			"button": [{
-				"text": "Forward",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S662",
-				"form": {
+				"value": "S662","form": {
 					"jsondata": [{
 							"field": "hearing_notice_date",
 							"type": "date",
@@ -2982,24 +2962,25 @@
 								"message": "HEARING NOTICE DATE Required"
 							}]
 
-						},
-						{
-							"field": "hearing_date",
-							"type": "date",
-							"label": "HEARING_DATE",
-							"inputType": "text",
-							"name": "name",
-
-							"validations": [{
-								"name": "required",
-								"validator": "required",
-								"message": "HEARING DATE Required"
-							}]
-
 						}
 
 					]
 				}
+			}]
+		}, {
+			"stage": "patentfirstexamreport",
+			"tablename": "FER Resp Filing Shared With Client",
+			"heading": "FER Resp Filing Shared With Client",
+			"formheader": "FER Resp Filing Shared With Client",
+			"type": "fer_resp_filing_shared_with_client",
+			"value": "S661",
+			"color": "red",
+			"button": [{
+				"text": "Forward",
+				"class": "btn btn-primary",
+				"title": "",
+				"value": "S662"
+				
 			}]
 		}]
 	}, {
@@ -3110,16 +3091,16 @@
 				"value": "S668",
 				"color": "dark-blue",
 				"button": [{
-						"text": "REF already filed",
-						"class": "btn btn-primary",
+						"text": "Change Req",
+						"class": "btn btn-info",
 						"title": "",
-						"value": "S649"
+						"value": "S669"
 					},
 					{
-						"text": "REF already filed",
+						"text": "Forward",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S649"
+						"value": "S670"
 					}
 				]
 			},
@@ -3132,11 +3113,9 @@
 				"value": "S669",
 				"color": "dark-orange",
 				"button": [{
-					"text": "Forword",
-					"class": "btn btn-info"
-				}, {
-					"text": "approve",
-					"class": "btn btn-success"
+					"text": "Update",
+					"class": "btn btn-info","title": "",
+						"value": "S668"
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
@@ -3147,26 +3126,30 @@
 				"value": "S670",
 				"color": "green",
 				"button": [{
-					"text": "Forword",
-					"class": "btn btn-info"
+					"text": "Change Req",
+					"class": "btn btn-info","title": "",
+						"value": "S671"
 				}, {
-					"text": "approve",
-					"class": "btn btn-success"
+					"text": "Forward",
+					"class": "btn btn-success","title": "",
+						"value": "S672"
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
-				"tablename": "Draft Written Submission Chnage Required By Client",
+				"tablename": "Draft Written Submission Change Required By Client",
 				"heading": "Draft Written Submission Chnage Required By Client",
 				"formheader": "Draft Written Submission Chnage Required By Client",
 				"type": "draft_written_submission_change_required_by_client",
 				"value": "S671",
 				"color": "red",
 				"button": [{
-					"text": "Forword",
-					"class": "btn btn-info"
+					"text": "Change Req",
+					"class": "btn btn-info","title": "",
+						"value": "S669"
 				}, {
-					"text": "approve",
-					"class": "btn btn-success"
+					"text": "Reject",
+					"class": "btn btn-danger","title": "",
+						"value": "S670"
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
@@ -3178,10 +3161,8 @@
 				"color": "yellow",
 				"button": [{
 					"text": "Forword",
-					"class": "btn btn-info"
-				}, {
-					"text": "approve",
-					"class": "btn btn-success"
+					"class": "btn btn-info","title": "",
+						"value": "S673"
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
@@ -3191,12 +3172,10 @@
 				"type": "approved_written-submission_shared_by_luf",
 				"value": "S673",
 				"color": "red",
-				"button": [{
-					"text": "Forword",
-					"class": "btn btn-info"
-				}, {
-					"text": "approve",
-					"class": "btn btn-success",
+				"button": [ {
+					"text": "Forward",
+					"class": "btn btn-success","title": "",
+						"value": "S674",
 					"form": {
 						"jsondata": [{
 								"field": "written_submission_date",
@@ -3225,11 +3204,13 @@
 				"value": "S674",
 				"color": "purple",
 				"button": [{
-					"text": "Forword",
-					"class": "btn btn-info"
+					"text": "Patent Granted",
+					"class": "btn btn-info","title": "",
+						"value": "S677"
 				}, {
-					"text": "approve",
-					"class": "btn btn-success"
+					"text": "Patent Rejected",
+					"class": "btn btn-danger","title": "",
+						"value": "S676"
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
@@ -3239,13 +3220,7 @@
 				"type": "rejection_shared_with_client",
 				"value": "S675",
 				"color": "blue",
-				"button": [{
-					"text": "Forword",
-					"class": "btn btn-info"
-				}, {
-					"text": "approve",
-					"class": "btn btn-success"
-				}]
+				"button": []
 			}, {
 				"stage": "ertoacceptancepatent",
 				"tablename": "Patent Rejected",
@@ -3256,10 +3231,8 @@
 				"color": "green",
 				"button": [{
 					"text": "Forword",
-					"class": "btn btn-info"
-				}, {
-					"text": "approve",
-					"class": "btn btn-success"
+					"class": "btn btn-info","title": "",
+						"value": "S675"
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
@@ -3271,10 +3244,8 @@
 				"color": "red",
 				"button": [{
 					"text": "Forword",
-					"class": "btn btn-info"
-				}, {
-					"text": "approve",
-					"class": "btn btn-success"
+					"class": "btn btn-info","title": "",
+						"value": "S678"
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
@@ -3284,13 +3255,7 @@
 				"type": "appectance_shared_with_client",
 				"value": "S678",
 				"color": "yellow",
-				"button": [{
-					"text": "Forword",
-					"class": "btn btn-info"
-				}, {
-					"text": "approve",
-					"class": "btn btn-success"
-				}]
+				"button": []
 			}
 
 
@@ -4866,10 +4831,10 @@
 					"value": "S712"
 				},
 				{
-					"text": "Granted",
+					"text": "Advertise",
 					"class": "btn btn-success",
 					"title": "",
-					"value": "S715"
+					"value": "S714"
 				}
 			]
 		}]
@@ -4893,7 +4858,12 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S694"
+				"value": "S694",
+				"form": {
+					"assign": true,
+					"assignlabel": "LUF",
+					"assignarray": ["LUF"]
+				}
 			}]
 		}, {
 			"stage": "trademark_er_er",
@@ -5081,7 +5051,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S705"
+				"value": "S706"
 			}]
 		}, {
 			"stage": "trademark_er_accp",
@@ -5094,7 +5064,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S706"
+				"value": "S707"
 			}]
 		}, {
 			"stage": "trademark_er_accp",
@@ -5107,7 +5077,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S707"
+				"value": "S708"
 			}]
 		}, {
 			"stage": "trademark_er_accp",
@@ -5301,11 +5271,13 @@
 			"value": "S717",
 			"color": "dark-pink",
 			"button": [{
-				"text": "Forword",
-				"class": "btn btn-info"
+				"text": "Reject",
+				"class": "btn btn-danger","title": "",
+					"value": "S712"
 			}, {
-				"text": "approve",
+				"text": "Granted",
 				"class": "btn btn-success",
+				"value":"S715",
 				"form": {
 					"jsondata": [{
 							"field": "grantnumber",
