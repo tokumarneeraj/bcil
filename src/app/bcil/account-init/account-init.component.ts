@@ -113,6 +113,19 @@ ExportTOExcel(){
   clientinvoicepopup(data){
     this.clientinvoice.showviewmodel('','S806',data);
       }
+      deletetrigger(data) {
+ 
+        this.alertService.showDialog('Are you sure you want to delete the \"' + data?.appno+'-'+data?.activity + '" ?', DialogType.confirm, () => this.deleteinvoicepopup(data));
+      }
+      
+      deleteinvoicepopup(data){
+        this.Bdoservice.DeleteTrigger(data?.refid).subscribe(data=>{
+          this.alertService.showDialog('Data Updated Successfully', DialogType.alert);
+    
+this.ngOnInit();
+
+        })
+      }
   onmodalclick(e: string,value:any, data: any) {
     if(value=="S815"){
     var clientin=[];

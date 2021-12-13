@@ -10,10 +10,10 @@
 			"color": "dark-pink"
 		},{
 			"stage": "tta",
-			"text": "TT Activity Initiation",
+			"text": "TT Activity",
 			"color": "red",
 			"icon": "fa fa-bar-chart f-28",
-			"menuheading": "TT Activity Initiation",
+			"menuheading": "TT Activity",
 			"submenu": true,
 			"url": "bcil/tta-dashboard",
 			"tablename": "Upload Assignment/Tech. disclosure form",
@@ -55,7 +55,7 @@
 			"button":[
 			{ "value": "S632",	"form": {
 					"assign": true,
-						"assignlabel": "IPM/IBM",
+						"assignlabel": "IPM/BDM",
 						"assignarray": ["IPM", "BDM"],
 						"jsondata": [
 						{
@@ -68,7 +68,7 @@
 								"validations": [{
 									"name": "required",
 									"validator": "required",
-									"message": "Conventional Appliction is Required"
+									"message": "COUNTRY is Required"
 								}]
 
 							},
@@ -83,7 +83,7 @@
 								"validations": [{
 									"name": "required",
 									"validator": "required",
-									"message": "Country is Required"
+									"message": "PCT APPLICATION is Required"
 								}]
 
 							},
@@ -98,7 +98,7 @@
 								"validations": [{
 									"name": "required",
 									"validator": "required",
-									"message": "Country is Required"
+									"message": "PCT FILING DATE is Required"
 								}]
 
 							},
@@ -108,7 +108,7 @@
 								"label": "CONVENTIONAL_APPLICATION",
 								"inputType": "text",
 								"name": "name",
-								"filter": "non_pct",
+								"filter": "conventional",
 								"hideshow": false,
 								"validations": [{
 									"name": "required",
@@ -124,11 +124,11 @@
 								"inputType": "text",
 								"name": "name",
 								"hideshow": false,
-								"filter": "non_pct",
+								"filter": "conventional",
 								"validations": [{
 									"name": "required",
 									"validator": "required",
-									"message": "Country is Required"
+									"message": "CONVENTIONAL APPLICATION Date is Required"
 								}]
 
 							},
@@ -142,7 +142,7 @@
 								"validations": [{
 									"name": "required",
 									"validator": "required",
-									"message": "Country is Required"
+									"message": "PRIORITY NO is Required"
 								}]
 
 							},
@@ -156,7 +156,7 @@
 								"validations": [{
 									"name": "required",
 									"validator": "required",
-									"message": "Country is Required"
+									"message": "PRIORITY DATE is Required"
 								}]
 
 							}
@@ -1543,7 +1543,7 @@
 					"value": "S602",
 					"form": {
 						"assign": true,
-						"assignlabel": "IPM/IBM",
+						"assignlabel": "IPM/BDM",
 						"assignarray": ["IPM", "BDM"]
 					}
 				}]
@@ -1752,7 +1752,11 @@
 									"inputType": "text",
 									"name": "name",
 									"validations": [
-
+{
+								"name": "required",
+								"validator": "required",
+								"message": "NBA REMARKS Required"
+							}
 									]
 
 								},
@@ -1762,7 +1766,11 @@
 									"label": "NBA_FILE",
 									"inputType": "text",
 									"name": "name",
-									"validations": [
+									"validations": [{
+								"name": "required",
+								"validator": "required",
+								"message": "NBA FILE Required"
+							}
 
 									]
 
@@ -1836,7 +1844,11 @@
 									"inputType": "text",
 									"name": "name",
 									"validations": [
-
+{
+								"name": "required",
+								"validator": "required",
+								"message": "NBA REMARKS Required"
+							}
 									]
 
 								},
@@ -1846,7 +1858,11 @@
 									"label": "NBA_FILE",
 									"inputType": "text",
 									"name": "name",
-									"validations": [
+									"validations": [{
+								"name": "required",
+								"validator": "required",
+								"message": "NBA FILE Required"
+							}
 
 									]
 
@@ -1912,7 +1928,11 @@
 									"inputType": "text",
 									"name": "name",
 									"validations": [
-
+{
+								"name": "required",
+								"validator": "required",
+								"message": "NBA REMARKS Required"
+							}
 									]
 
 								},
@@ -1922,7 +1942,11 @@
 									"label": "NBA_FILE",
 									"inputType": "text",
 									"name": "name",
-									"validations": [
+									"validations": [{
+								"name": "required",
+								"validator": "required",
+								"message": "NBA FILE Required"
+							}
 
 									]
 
@@ -2219,6 +2243,7 @@
 				"title": "",
 				"value": "S625",
 				"form": {
+				"prioritydate":true,
 					"jsondata": [{
 							"field": "postdate",
 							"type": "date",
@@ -2226,11 +2251,7 @@
 							"inputType": "text",
 							"name": "name",
 
-							"validations": [{
-								"name": "required",
-								"validator": "required",
-								"message": "POST DATE Required"
-							}]
+							"validations": []
 
 						}
 

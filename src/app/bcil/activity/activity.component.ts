@@ -8,7 +8,7 @@ import { activeusermou } from 'src/app/model/mou.model';
 import { milestones, UploadFileViewModel } from 'src/app/model/uploadFile.model';
 import { User } from 'src/app/model/user.model';
 import { AccountService } from 'src/app/services/account.service';
-import { AlertService } from 'src/app/services/alert.service';
+import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { Utilities } from 'src/app/services/utilities';
 
@@ -37,6 +37,7 @@ export class ActivityComponent implements OnInit {
   ForwardForm: FormGroup;
   activebtn:any;
    applicationno:string;
+   prioritydate:string;
   UploadFileViewModel = new UploadFileViewModel();
   loading:boolean=false;
   customrem: boolean;
@@ -68,6 +69,7 @@ export class ActivityComponent implements OnInit {
   milestone=new milestones();
   fields = [];
   extrafield=['PCT'];
+
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
@@ -202,6 +204,7 @@ if(this.fields!=undefined){
         this.ForwardForm.controls['subject'].setValue(data?.forwardsubject)
         this.UploadFileViewModel.app_ref_id = data?.refid;
         this.applicationno=data?.applicationno;
+        this.prioritydate=data?.prioritydate;
         this.appref=data?.refid;
         this.UploadFileViewModel.app_Status=value;
         this.lufinvoice=data?.lufinvoice;
@@ -349,6 +352,15 @@ if(nodalid!=""){
         this.ForwardForm.controls["files"].clearValidators();              
       }
       this.ForwardForm.controls['files'].updateValueAndValidity();
+
+      if(this.array?.foreignlabel==true){
+        this.ForwardForm.controls['foreign'].setValidators([Validators.required]);
+        this.ForwardForm.controls['foreign'].updateValueAndValidity();
+      }
+      else{
+        this.ForwardForm.controls['foreign'].clearValidators();
+        this.ForwardForm.controls['foreign'].updateValueAndValidity();
+      }
      if(this.array?.foreignlabel==true){
       this.UploadFileViewModel.app_ref_id=this.ForwardForm.get('foreign').value;
      }
@@ -371,6 +383,24 @@ if(nodalid!=""){
         this.UploadFileViewModel.booleancheck = this.ForwardForm.get('booleanvalue').value;
         }
        for(let control of this.fields){
+         if(control?.label=='NBA'){
+          console.log(this.dynamicForm?.value)
+           if(this.dynamicForm?.value?.NBA=="YES"){
+            
+            this.dynamicForm?.controls['NBA_FILE'].setValidators([Validators.required]);
+        
+            this.dynamicForm?.controls['NBA_REMARKS'].setValidators([Validators.required]);
+        
+           }
+           else{
+            this.dynamicForm?.controls["NBA_REMARKS"].clearValidators();  
+            this.dynamicForm?.controls["NBA_FILE"].clearValidators();  
+           }
+           this.dynamicForm?.controls['NBA_REMARKS'].updateValueAndValidity();
+           this.dynamicForm?.controls['NBA_FILE'].updateValueAndValidity();
+           
+         // alert(this.dynamicForm?.value?.get('NBA').value)
+         }
           if(control?.filter!=undefined && control?.filter!=this.selectpct?.toLowerCase()){
 
           
@@ -398,38 +428,48 @@ var tt=[];
       return;
     }
   
+    this.alertService.showDialog("Are you sure you want to update?", DialogType.confirm, () => this.updatedata());
+    
+   
+  }
 
+  updatedata(){
     this.loading=true;
-        this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
-         //  this.loading=false;
-           this.submitted=false;
-    if(data.message=="success"){
-          alert("Submitted Successfully")
-       
-          this.editorModal.hide();
-          this.cdRef.detectChanges();
-          if (this.changesSavedCallback) {
-            this.changesSavedCallback();
-          }
-          //this.ngOnInit();
-          this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
-          this.process=="tta"?this.router.navigateByUrl('bcil/tta-dashboard'):
-          this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
-          this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
-          this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
-          this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
-          this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):
-          this.process=="copyright"?this.router.navigateByUrl('bcil/copyright-dashboard'):
-          this.process=="account"?this.router.navigateByUrl('bcil/account-dashboard'):
-         // this.process=="lufinvocie"?this.router.navigateByUrl('bcil/account-dashboard'):
-          ''
-          ;
-         
-    }
-          else{
-            alert(data.reason)
-          }
-        })
+    this.Bdoservice.uploadfile(this.UploadFileViewModel).subscribe((data) => {
+     //  this.loading=false;
+       this.submitted=false;
+if(data.message=="success"){
+      //alert("")
+     
+    
+      this.editorModal.hide();
+      this.cdRef.detectChanges();
+      if (this.changesSavedCallback) {
+        this.changesSavedCallback();
+      }
+      if(this.alertService.showDialog("Submitted Successfully", DialogType.confirm)){
+        
+      
+      //this.ngOnInit();
+      this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
+      this.process=="tta"?this.router.navigateByUrl('bcil/tta-dashboard'):
+      this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
+      this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
+      this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
+      this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
+      this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):
+      this.process=="copyright"?this.router.navigateByUrl('bcil/copyright-dashboard'):
+      this.process=="account"?this.router.navigateByUrl('bcil/account-dashboard'):
+     // this.process=="lufinvocie"?this.router.navigateByUrl('bcil/account-dashboard'):
+      ''
+      ;
+      }
+     
+}
+      else{
+        alert(data.reason)
+      }
+    })
 
   }
   otherfileChangeEvent(event){

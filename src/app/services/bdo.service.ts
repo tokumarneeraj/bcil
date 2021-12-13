@@ -30,6 +30,8 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
     get getmouuser() { return  environment.baseUrl+'/api/bdo/getmouuser'; }
     get getallactivity() { return  environment.baseUrl+'/api/bdo/getallactivity'; }
     get getallinvoicetrigger() { return  environment.baseUrl+'/api/bdo/getinvtrg'; }
+    get deleteinvoicetrigger() { return  environment.baseUrl+'/api/bdo/deletetrigger'; }
+    
     get getactiveusermouurl() { return  environment.baseUrl+'/api/bdo/getallactiveusermou'; }
     get getreminderurl() { return  environment.baseUrl+'/api/bdo/getallreminder'; }
 
@@ -374,6 +376,16 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
         //       return this.handleError(error, () =>{});
         //     }));
         }
+
+        public  DeleteTrigger<T>(refid:string): Observable<string> {
+          const endpointUrl = `${this.deleteinvoicetrigger}/${refid}`;
+          return this.http.get<string>(endpointUrl,this.requestHeaders);
+        //   .pipe<mouModel>(
+        //     catchError(error => {
+        //       return this.handleError(error, () =>{});
+        //     }));
+        }
+        
         public  Getorganizationbyuserid<T>(): Observable<any[]> {
           const endpointUrl = `${this.getorganizationuserid}`;
           return this.http.get<any[]>(endpointUrl,this.requestHeaders);
@@ -422,9 +434,9 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
         //       return this.handleError(error, () =>{});
         //     }));
         }
-        public  GetTtaModel<T>(): Observable<ttaModel[]> {
-        
-          return this.http.get<ttaModel[]>(this.getttaurl,this.requestHeaders);
+        public  GetTtaModel<T>(role?:any): Observable<ttaModel[]> {
+          const endpointUrl = `${this.getttaurl}/${role}`;
+          return this.http.get<ttaModel[]>(endpointUrl,this.requestHeaders);
         //   .pipe<mouModel>(
         //     catchError(error => {
         //       return this.handleError(error, () =>{});

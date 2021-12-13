@@ -79,6 +79,35 @@ this.UserName=this.accountService.currentUser.userName;
     this.userperntts=this.commondata.ttaarray()?.filter(x=>x.stage=="ntts").filter(r=>this.permission?.includes(r.permission));
     this.userpertstl=this.commondata.ttaarray()?.filter(x=>x.stage=="tstl").filter(r=>this.permission?.includes(r.permission));
   }
+  rolesclick(roledata){
+    console.log(roledata);
+    this.Bdoservice.getdatapermission().subscribe(datapermission=>{
+    this.accountService.getOtherpermissionbyrolename(roledata?.name).subscribe(data=>{
+
+      this.viewtab=data.map((ss)=>(ss.permission)).filter(s => s.includes("view")).map((item)=>(item.split('-')[1]));
+      this.route.queryParams.subscribe((params) => {
+        let yy=["tlp","tstl","nttsa"]
+        if(yy.includes(params?.stage)){
+          
+          this.ttadata=datapermission?.tta?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
+        
+        }
+        else{
+                this.ttadata=datapermission?.tta?.filter(x=>this.viewtab.find(y=>y==x.value)|| x?.subchild?.some(t=>this.viewtab.find(y=>y==t.value)));
+        }
+        console.log(this.ttadata,'uu')
+              });
+             
+        
+          
+      console.log(this.viewtab)
+    this.Bdoservice.GetTtaModel(roledata?.id).subscribe(ttodata => {
+      console.log(ttodata)
+      this.ttaModel = ttodata;
+      });
+    });
+    })
+  }
   checkdiv(i,data){
     debugger;
 return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);

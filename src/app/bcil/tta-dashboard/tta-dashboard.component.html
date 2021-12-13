@@ -37,17 +37,21 @@
                                 <a (click)="createactivity()">{{array.tablename}}</a>
                             </div>                                            
                         </div>
+                     
             <div class="col-sm-12">
               
-              <div *ngIf="isSuperAdmin" class="ttDashAccod mb-5">
+              <div *ngIf="isSuperAdmin">
                 <div class="col-sm-12">
                   <div class="addMou">
-                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right" class="mb-5">View TTA</a>
+                  <a routerLink="../mou-application" [queryParams]="{ stage: 'tta'}" style="float:right">View TTA</a>
                   </div>
               </div>
-              <accordion  [closeOthers]="oneAtATime" [isAnimated]="true">
+            </div>
+          </div>
+          <div class="col-sm-12">
+              <accordion  [closeOthers]="oneAtATime" [isAnimated]="true"  *ngIf="isSuperAdmin">
                
-                <accordion-group *ngFor="let row of roles;let i=index;" heading="{{row.name}}" >
+                <accordion-group *ngFor="let row of roles;let i=index;" heading="{{row.name}}" (click)="rolesclick(row)">
                   <div class="row" >
                     <ng-container *ngFor="let tta of ttadata;let index=i;">
                       <div class="col-xl-3 col-md-6" >
@@ -88,7 +92,7 @@
               
                 </accordion-group>
              </accordion>
-            </div>
+            
               <!-- Basic Form Inputs card start -->
               <div class="row" *ngIf="!isSuperAdmin">
                 <div class="col-sm-12">
@@ -135,6 +139,8 @@
               <!-- Basic Form Inputs card end -->
             </div>
           </div>
+        
+          </div>
         </div>
         <!-- Page body end -->
       </div>
@@ -143,7 +149,7 @@
     <!-- <div id="styleSelector">
 
     </div> -->
-  </div>
+  
   <app-footer></app-footer>
 </div>
 <app-activity [array]="array"></app-activity>

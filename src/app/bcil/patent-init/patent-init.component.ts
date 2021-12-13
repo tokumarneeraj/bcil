@@ -72,6 +72,7 @@ export class PatentInitComponent implements OnInit {
     // };
   }
   onmodalclick(e: string,value:any, data: any) {
+    data={...data,message:this.array?.tablename+'-->'}
     this.activity.showviewmodel('patent',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 

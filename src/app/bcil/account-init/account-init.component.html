@@ -69,7 +69,8 @@
                                         <td>{{trigger?.appno}}</td>
                                         <td>{{trigger?.organization}}</td>
                                         <td>{{trigger?.activity}}</td>
-                                       <td><button *ngIf="trigger?.active==true" (click)="clientinvoicepopup(trigger)" class="btn btn-sm btn-success">Create Invoice</button></td>
+                                       <td><i class="fa fa-plus" aria-hidden="true" *ngIf="trigger?.active==true" (click)="clientinvoicepopup(trigger)" ></i> 
+                                        <i class="fa fa-trash ml-3"  *ngIf="trigger?.active==true" (click)="deletetrigger(trigger)" ></i></td>
                                     </tr>
                                 </tbody>
                                 
