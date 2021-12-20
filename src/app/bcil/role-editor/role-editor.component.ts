@@ -71,15 +71,17 @@ editmode=true;
       check:false
 
       }))
+     
       this.accountService.getOtherpermission(this.roleEdit.id).subscribe(data=>
         {
           console.log(data)
+          this.editorModal3.show();
           data.forEach(element => {
             $("[name="+element.permission+"]").trigger('click');
             //this.myForm.controls.permission.value
           });
 this.loading=false;
-          this.editorModal3.show();
+          
         })
    
     });

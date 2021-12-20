@@ -56,6 +56,7 @@ export class TtaDashboardComponent implements OnInit {
   isNodel:boolean=false;
   isScientist:boolean=false;
   stagevalue='S113';
+  activetab:string=null;
   array:any;//{"tablename":"Upload Assignment/Tech. disclosure form","organization":true,"getscientist":true,}
   constructor(private route: ActivatedRoute,private Bdoservice: Bdoservice, private accountService: AccountService,private router:Router) {
     this.UserEmail = this.accountService.currentUser.email;
@@ -81,6 +82,7 @@ this.UserName=this.accountService.currentUser.userName;
   }
   rolesclick(roledata){
     console.log(roledata);
+    this.activetab=roledata?.id;
     this.Bdoservice.getdatapermission().subscribe(datapermission=>{
     this.accountService.getOtherpermissionbyrolename(roledata?.name).subscribe(data=>{
 
@@ -104,6 +106,8 @@ this.UserName=this.accountService.currentUser.userName;
     this.Bdoservice.GetTtaModel(roledata?.id).subscribe(ttodata => {
       console.log(ttodata)
       this.ttaModel = ttodata;
+      this.showpage = true;
+      
       });
     });
     })
@@ -241,7 +245,7 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
     // let navigationExtras:NavigationExtras={
     //   queryParams: {'type':data}
     // }
-    this.router.navigate(data?.subchild?.length>0?['/bcil/tta-dashboard']:['/bcil/bcil-tta-table'],  { queryParams: {stage:data?.subchild?.length>0?data.substage:data.stage, type: data.type}});
+    this.router.navigate(data?.subchild?.length>0?['/bcil/tta-dashboard']:['/bcil/bcil-tta-table'],  { queryParams: {stage:data?.subchild?.length>0?data.substage:data.stage, type: data.type,activetab:this.activetab}});
    // this.router.navigate(['/bcil/bcil-tta-table'],navigationExtras)
    // return data;
   }
@@ -281,7 +285,7 @@ console.log(this.ttadata,'uu')
 
    
     
-      this.roles= results[0];
+      this.roles= results[0].filter(x=>x.name!='Super Admin');
       if(this.roles.length>0){
       for(let r=0;r<=this.roles.length-1;r++){
 

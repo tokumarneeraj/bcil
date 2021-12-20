@@ -30,8 +30,20 @@
 		}
 		,
 		{
+		"stage": "patentact",
+			"text": "Patent Activity",
+			"color": "purple",
+			"icon": "fa fa-bar-chart f-28",
+			"menuheading": "Patent Activity",
+			"submenu": true,
+			"url": "bcil/bcil-dashboard",
+			"tablename": "Upload Assignment/Tech. disclosure form"
+			
+		},
+		{
 			"stage": "patent",
 			"text": "Patent",
+			"parent":"patentact",
 			"color": "dark-green",
 			"icon": "fa fa-file-text-o f-28",
 			"menuheading": "Patent",
@@ -172,6 +184,7 @@
 		{
 			"stage": "design",
 			"text": "Design",
+			"parent":"patentact",
 			"color": "purple",
 			"icon": "fa fa-paint-brush f-28",
 			"menuheading": "Design",
@@ -193,6 +206,7 @@
 		{
 			"stage": "copyright",
 			"text": "Copyright",
+			"parent":"patentact",
 			"color": "dark-blue",
 			"icon": "fa fa-copyright f-28",
 			"menuheading": "Copyright",
@@ -214,6 +228,7 @@
 		{
 			"stage": "trademark",
 			"text": "Trademark",
+			"parent":"patentact",
 			"color": "green",
 			"icon": "fa fa-bar-chart f-28",
 			"menuheading": "Trademark",

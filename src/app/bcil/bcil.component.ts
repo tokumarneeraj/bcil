@@ -166,16 +166,34 @@ this.ngOnInit();
 }
 menus(){
   debugger;
- let menu=  this.jsondata?.tabheading.filter(x=>
-  this.jsondata?.[x.stage]?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
- this.jsondata?.[x.stage]?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value))));
+  let menu=  this.jsondata?.tabheading.filter(x=>
+    x.stage=='patentact'? (this.jsondata?.patent?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
+    this.jsondata?.trademark?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
+    this.jsondata?.copyright?.some(t=>this.viewtab?.find(r=>r==t.value))||
+    this.jsondata?.design?.some(t=>this.viewtab?.find(r=>r==t.value))||
+    this.jsondata?.patent?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
+    this.jsondata?.trademark?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
+    this.jsondata?.copyright?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
+    this.jsondata?.design?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))
+    ):
+    this.jsondata?.[x.stage]?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
+   this.jsondata?.[x.stage]?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value))));
  this.showmenu=true;
- return menu;
+ return menu.filter(y=>y.parent==undefined);
 
 }
 menuurl(url:string,stage:string,type:string){
 debugger;
-  return   this.router.navigate([url],  { queryParams: {type:type,stage:stage}});
+  return   this.router.navigate([stage=='mou'?"bcil/bcil-table":
+  stage=="tta"?"bcil/bcil-tta-table":
+  stage=="patent"?"bcil/bcil-patent-table":
+  stage=="trademark"?"bcil/bcil-trademark-table":
+  stage=="design"?"bcil/bcil-design-table":
+  stage=="copyright"?"bcil/bcil-copyright-table":
+  stage=="mis"?"bcil/bcil-mis-table":
+  stage=="account"?"bcil/bcil-account-table":
+  stage=="lufinvoice"?"bcil/account-table":
+  url],  { queryParams: {type:type,stage:stage}});
   
 //return this.router.navigate[[],{queryParams="{type:'tta_additional_info_needed'}"}]
 }
@@ -185,13 +203,20 @@ submenus(stage:string){
 
   }
   else{
- submenu=  this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value)));
+ submenu= stage=="patentact"?this.jsondata?.tabheading.filter(x=>x.parent==stage).map(t=>({...t,menu:true}))
+ :this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}));
   }
+  
 return submenu;
 }
-subchildmenus(stage:string,childstage:string){
-  let submenu=  this.jsondata[stage]?.[childstage]?.filter(x=>this.viewtab?.find(y=>y==x.value));
+submenuurl(submenu){
 
+}
+subchildmenus(stage:string,childstage:string){
+  let submenu= stage=="patent"?this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) 
+  ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}))
+  :this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value));
+console.log('submenu:'+stage+JSON.stringify(submenu));
 return submenu;
 }
   ngOnInit(): void {
@@ -497,24 +522,24 @@ this.notificationdiv=!this.notificationdiv;
       // './assets/js/jquery/jquery.min.js',
       // './assets/js/SmoothScroll.js',
       // './assets/js/jquery.mCustomScrollbar.concat.min.js ',
-      // './assets/js/pcoded.min.js',
+      './assets/js/pcoded.min.js',
       // './assets/js/vertical-layout.min.js',
       // './assets/pages/dashboard/custom-dashboard.js',
 
-      //'./assets/js/jquery-slimscroll/jquery.slimscroll.js',
-      //'./assets/js/modernizr/modernizr.js',
-      //'./assets/js/SmoothScroll.js',
-      //'./assets/js/jquery.mCustomScrollbar.concat.min.js ',
-      // './assets/pages/waves/js/waves.min.js',
       // './assets/js/jquery-slimscroll/jquery.slimscroll.js',
       // './assets/js/modernizr/modernizr.js',
       // './assets/js/SmoothScroll.js',
       // './assets/js/jquery.mCustomScrollbar.concat.min.js ',
-      // './assets/js/pcoded.min.js',
-      // './assets/js/vertical-layout.min.js',
-      // './assets/pages/dashboard/custom-dashboard.js',
+      './assets/pages/waves/js/waves.min.js',
+      './assets/js/jquery-slimscroll/jquery.slimscroll.js',
+      './assets/js/modernizr/modernizr.js',
+      './assets/js/SmoothScroll.js',
+      './assets/js/jquery.mCustomScrollbar.concat.min.js ',
+      './assets/js/pcoded.min.js',
+      './assets/js/vertical-layout.min.js',
+      './assets/pages/dashboard/custom-dashboard.js',
 
-   //  './assets/js/script.js'
+    './assets/js/script.js'
 
 
 

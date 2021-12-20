@@ -57,9 +57,9 @@
             <th  *ngIf="stage!='mou' && stage!='client_invoice' && stage!='luf_invoice' ">Subject</th>
             <th *ngIf="stage=='mou'">Institute</th>
             <th  *ngIf="stage=='mou'">Dept. Name</th>
-            <th  *ngIf="stage=='mou'">Phone No.</th>
+            
             <th  *ngIf="stage=='mou'">Director Name</th>
-            <th  *ngIf="stage=='mou'">Director Mobile</th>
+           
             <th  *ngIf="stage=='client_invoice' || stage=='luf_invoice'">Invocie No</th>
             <th  *ngIf="stage=='client_invoice' || stage=='luf_invoice'">Invoice Date</th>
 <th *ngIf="isSuperAdmin">Active Users</th>
@@ -72,13 +72,13 @@
         <tbody>
           <tr *ngFor="let item of mouModel;let i=index;">
             <th scope="row">{{i+1}}</th>
-            <th  >{{item?.appno}}</th>
+            <th  >{{item?.mou_no=='undefined'?item?.appno:item?.mou_no}}</th>
             <td  *ngIf="stage!='mou' && stage!='client_invoice' && stage!='luf_invoice'">{{item?.subject}}</td>
             <td  *ngIf="stage=='mou'">{{item.int_Uni_Name}}</td>
             <td  *ngIf="stage=='mou'">{{item.dept_Name}}</td>
-            <td  *ngIf="stage=='mou'">{{item.phoneNo}}</td>
+            
             <td  *ngIf="stage=='mou'">{{item.dir_Head_Name}}</td>
-            <td  *ngIf="stage=='mou'">{{item.dir_Mobile_No}}</td>
+          
             <td   *ngIf="stage=='client_invoice' || stage=='luf_invoice'">{{item.invoiceno}}</td>
             <td *ngIf="stage=='client_invoice' || stage=='luf_invoice'">{{item.invoicedate}}</td>
             <td *ngIf="isSuperAdmin"> <button class="btn btn-info" (click)="activeuser(item)">Active Users</button></td>

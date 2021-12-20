@@ -435,6 +435,7 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
         //     }));
         }
         public  GetTtaModel<T>(role?:any): Observable<ttaModel[]> {
+          
           const endpointUrl = `${this.getttaurl}/${role}`;
           return this.http.get<ttaModel[]>(endpointUrl,this.requestHeaders);
         //   .pipe<mouModel>(

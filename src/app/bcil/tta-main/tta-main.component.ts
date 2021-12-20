@@ -81,6 +81,7 @@ viewremark:boolean;
 emailpermission:boolean;
 viewadditionalfileright:boolean;
 viewtab:any;
+activetab:string;
 managetab:any;
 ttadata:any;
 activebtn:any;
@@ -103,11 +104,13 @@ this.isScientist=this.userRoles.includes('Scientist');
 this.viewadditionalfileright=this.commondata.CanviewadditionalfilesPermission;
 this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
 this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
+//this.accountService.getOtherpermissionbyrolename(roledata?.name).subscribe(data=>{
 this.Bdoservice.getdatapermission().subscribe(data=>{
   console.log(data);
  
     this.route.queryParams.subscribe((params) => {
       let yy=["tlp","nttsa","tstl"];
+      this.activetab=params?.activetab;
       if(yy.includes(params.stage)){
 
         this.ttadata=data?.tta?.find(r=>r.substage==params?.stage)?.subchild?.filter(x=>this.viewtab.find(y=>y==x.value));
@@ -121,12 +124,13 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
      
    
 
-    })
+    //})
+  });
 
 
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
-    this.Bdoservice.GetTtaModel().subscribe(data => {
+    this.Bdoservice.GetTtaModel(this.activetab).subscribe(data => {
       console.log(data)
       this.showClientPage = true;
 

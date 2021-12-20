@@ -447,30 +447,36 @@ if(data.message=="success"){
       if (this.changesSavedCallback) {
         this.changesSavedCallback();
       }
-      if(this.alertService.showDialog("Submitted Successfully", DialogType.confirm)){
+      this.alertService.showDialog("Submitted Successfully", DialogType.confirm,()=>{this.redirectlink()})
         
       
-      //this.ngOnInit();
-      this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
-      this.process=="tta"?this.router.navigateByUrl('bcil/tta-dashboard'):
-      this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
-      this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
-      this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
-      this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
-      this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):
-      this.process=="copyright"?this.router.navigateByUrl('bcil/copyright-dashboard'):
-      this.process=="account"?this.router.navigateByUrl('bcil/account-dashboard'):
-     // this.process=="lufinvocie"?this.router.navigateByUrl('bcil/account-dashboard'):
-      ''
-      ;
-      }
+    
+      
      
 }
       else{
         alert(data.reason)
+        this.loading=false;
+        this.submitted=false;
       }
     })
 
+  }
+
+  redirectlink(){
+  //this.ngOnInit();
+  this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
+  this.process=="tta"?this.router.navigateByUrl('bcil/tta-dashboard'):
+  this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
+  this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
+  this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
+  this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
+  this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):
+  this.process=="copyright"?this.router.navigateByUrl('bcil/copyright-dashboard'):
+  this.process=="account"?this.router.navigateByUrl('bcil/account-dashboard'):
+ // this.process=="lufinvocie"?this.router.navigateByUrl('bcil/account-dashboard'):
+  ''
+  ;
   }
   otherfileChangeEvent(event){
     if (event.target.files && event.target.files[0]) {

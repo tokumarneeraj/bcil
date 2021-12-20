@@ -56,9 +56,9 @@
                                                   <th>MoU No</th>
                                                   <th>Institute</th>
                                                   <th>Dept. Name</th>
-                                                  <th>Phone No.</th>
+                                                  
                                                   <th>Director Name</th>
-                                                  <th>Director Mobile</th>
+                                                  <th>Director Phone</th>
                                                
                                                   <th >Action</th>
                                                   <th *ngIf="viewhistory">History</th>
@@ -73,9 +73,9 @@
                                                   <td>{{item.mou_no}}</td>
                                                   <td>{{item.int_Uni_Name}}</td>
                                                   <td>{{item.dept_Name}}</td>
-                                                  <td>{{item.phoneNo}}</td>
+                                                  
                                                   <td>{{item.dir_Head_Name}}</td>
-                                                  <td>{{item.dir_Mobile_No}} <span  class="badge badge-info" *ngIf="(isScientist==true || isNodal==true) && (item.app_Status=='S101'||item.app_Status=='S102'||item.app_Status=='S103'||item.app_Status=='S104')">Document in process</span></td>
+                                                  <td>{{item.dir_Phone_No}} <span  class="badge badge-info" *ngIf="(isScientist==true || isNodal==true) && (item.app_Status=='S101'||item.app_Status=='S102'||item.app_Status=='S103'||item.app_Status=='S104')">Document in process</span></td>
                                                       <!-- <td *ngIf="(app_status=='S101'||item.app_status=='S102'||item.app_status=='S103'||item.app_status=='S104')?showitem=true:showitem=false">Under Process</td>
                                                       --> 
                                                       <td> 

@@ -7,7 +7,7 @@ import {commondata} from '../../model/common'
 import { AccountService } from 'src/app/services/account.service';
 import { Permission, PermissionValues } from 'src/app/model/permission.model';
 import { ComponentFactoryResolver } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 //import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-bcil-dashboard',
@@ -29,6 +29,7 @@ designModel:any[];
   usertype:string;
   UserName: string;
   mouModelFinal: mouModel[];
+  activetab:string;
   viewtab:any;
   jsondata:any;
   permission:string[];
@@ -96,7 +97,7 @@ designModel:any[];
   activeusermou:activeusermou[];
   viewadditionalfile:boolean=false;
   //permission:PermissionValues[];
-  constructor(private Bdoservice:Bdoservice, private accountService: AccountService,private router:Router) {
+  constructor(private route: ActivatedRoute,private Bdoservice:Bdoservice, private accountService: AccountService,private router:Router) {
     // this.usertype=this._cookieService.get("UserType");
     // this.UserName=this._cookieService.get("UserName");
     this.userRoles = this.accountService.currentUser.roles;
@@ -121,6 +122,10 @@ else if(tab?.stage=="patent"){
 }
 else if(tab?.stage=="mis"){
   return this.dashboardModel?.miscount;
+  
+}
+else if(tab?.stage=="patentact"){
+  return   this.dashboardModel?.patentcount+this.dashboardModel?.trademarkcount+this.dashboardModel?.copyrightcount+this.dashboardModel?.designcount;
   
 }
 else if(tab?.stage=="trademark"){
@@ -153,8 +158,9 @@ else
     // this.notify_call();
     this.Bdoservice.getdatapermission().subscribe(data=>{
  this.jsondata=data;
-     
+ this.route.queryParams.subscribe((params) => {
 
+this.activetab=params?.type;
 
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');
@@ -172,19 +178,34 @@ else
       //   this.showpage=true;
       // });
   
-   
+    });
   
 });
     });
   }
-  taburl(url:any){
-this.router.navigate([url]);
+  taburl(tab:any){
+    //this.router.navigate(data?.subchild?.length>0?['/bcil/tta-dashboard']:['/bcil/bcil-tta-table'],  { queryParams: {stage:data?.subchild?.length>0?data.substage:data.stage, type: data.type,activetab:this.activetab}});
+   
+ tab.stage=="patentact"?this.router.navigate([tab?.url] ,{queryParams:{type:tab?.stage}}):
+this.router.navigate([tab?.url]);
   }
   checktab(){
     let menu=  this.jsondata?.tabheading.filter(x=>
+      x.stage=='patentact'? (this.jsondata?.patent?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
+      this.jsondata?.trademark?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
+      this.jsondata?.copyright?.some(t=>this.viewtab?.find(r=>r==t.value))||
+      this.jsondata?.design?.some(t=>this.viewtab?.find(r=>r==t.value))||
+      this.jsondata?.patent?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
+      this.jsondata?.trademark?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
+      this.jsondata?.copyright?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
+      this.jsondata?.design?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))
+      ):
       this.jsondata?.[x.stage]?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
      this.jsondata?.[x.stage]?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value))));
-     return menu;
+
+     console.log(menu)
+     console.log(this.activetab)
+     return menu.filter(u=>u.parent==this.activetab);
     
      }
 
