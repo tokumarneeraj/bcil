@@ -67,6 +67,7 @@
             <th>View History</th>
            <th *ngIf="stage=='client_invoice' || stage=='luf_invoice'">View</th>
            <th *ngIf="isAdmin || isIPM">Stage Toggle</th>
+           <th *ngIf="isSuperAdmin">Reject</th>
           </tr>
         </thead>
         <tbody>
@@ -86,6 +87,7 @@
             <td ><button class="btn btn-secondary" (click)="queryparam(item)" >View History</button></td>
             <td *ngIf="stage=='client_invoice' || stage=='luf_invoice'"><button class="btn btn-info" (click)="viewform(item)">View</button></td>
            <td *ngIf="isAdmin || isIPM"><button class="btn btn-info" (click)="boolvalues(item)">Toggle values</button></td>
+           <td *ngIf="isSuperAdmin"><button class="btn btn-danger" (click)="rejectapp(item)">Reject</button></td>
             <!-- <td>
               <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
               <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
@@ -181,4 +183,40 @@
                             </div>
                             </div>
                             </div>
+
+                            <div class="modal fade" bsModal #editorModal5="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+                                <div class="modal-dialog modal-lg" style="max-height: 600px;
+                                overflow: auto;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4>Application Rejected</h4>
+                                            <button type="button" class="close float-right" title="Close" (click)="editorModal5.hide()">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form [formGroup]="ForwardForm">
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                  <label class="col-form-label">Title</label>
+                                                  <input type="text" class="form-control" formControlName="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
+                                                  <p *ngIf="submitted && f.subject.errors" class="invalid-feedback">Title is required</p>
+                                                         
+                              
+                                                </div>
+                                              </div>
+                                              <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                  <label class="col-form-label">Remarks</label>
+                                                  <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
+                                                              </textarea>
+                              
+                                                </div>
+                                              </div>
+                                            </form>
+
+                                            </div>
+                                            </div>
+                                            </div>
+                                            </div>
 

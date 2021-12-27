@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { activeusermou, booleanvalue, mouModel } from 'src/app/model/mou.model';
@@ -27,15 +27,19 @@ export class MouApplicationComponent implements OnInit {
 // ttaModel:any[];
 booleanlist:any[];
 Checkbox:any[];
+submitted:boolean=false;
 booleanvalue=new booleanvalue();
 activeuserModel:any[];
 @ViewChild('editorModal3', { static: true })
   editorModal3: ModalDirective;
   @ViewChild('editorModal4', { static: true })
   editorModal4: ModalDirective;
+  @ViewChild('editorModal5', { static: true })
+  editorModal5: ModalDirective;
 mouModel:any[];
 clientinvoiceModel:any[];
 lufinvoiceModel:any[];
+ForwardForm: FormGroup;
   showpage:boolean=false;
   isSuperAdmin:boolean=false;
   isAdmin:boolean;
@@ -64,6 +68,13 @@ lufinvoiceModel:any[];
 this.stage=params.stage;
     });
   }
+  rejectapp(data:any){
+    this.Bdoservice.RejectApp(data?.refid).subscribe(data=>{
+
+      
+    });
+  }
+  get f() { return this.ForwardForm.controls; }
   additionfile(data:any){
     
     this.AdditionFile.showmodel(data,this.stage);
@@ -116,6 +127,11 @@ if(e.target.checked==true){
 }
   }
   ngOnInit(): void {
+    this.ForwardForm = this.formbuilder.group({
+
+      subject: ['', Validators.required],
+      remarks: ['', Validators.required]
+    });
     this.Bdoservice.GetActiveUserMoubyuserid().subscribe(data1=>{
       this.activeusermou=data1;
       if(this.stage=='mou'){

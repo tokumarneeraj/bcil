@@ -67,6 +67,7 @@ export class ActivityComponent implements OnInit {
   @ViewChild('country')
   public country;
   milestone=new milestones();
+  message:string="";
   fields = [];
   extrafield=['PCT'];
 
@@ -199,6 +200,7 @@ if(this.fields!=undefined){
         this.cdRef.detectChanges();
         this.loading=false;
         this.process=e;
+        this.message=data?.message;
         this.UploadFileViewModel.app_no=data?.mis_no ||data?.mou_no;
 
         this.ForwardForm.controls['subject'].setValue(data?.forwardsubject)
@@ -428,7 +430,7 @@ var tt=[];
       return;
     }
   
-    this.alertService.showDialog("Are you sure you want to update?", DialogType.confirm, () => this.updatedata());
+    this.alertService.showDialog(this.message==undefined?"Are you sure You Want To Submit":"Are you sure you want to move from "+this.message, DialogType.confirm, () => this.updatedata());
     
    
   }

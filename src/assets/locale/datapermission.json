@@ -514,6 +514,16 @@
 				"title": "",
 				"value": "S103"
 			}]
+		},
+		 {
+			"stage": "mou",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S410",
+			"color": "red",
+			"button": []
 		}
 
 	],
@@ -826,12 +836,12 @@
 			"button": [{
 					"text": "Change Request",
 					"class": "btn btn-info",
-					"value": "S127"
+					"value": "S128"
 				},
 				{
 					"text": "Approve",
 					"class": "btn btn-success",
-					"value": "S128"
+					"value": "S127"
 				}
 			]
 		},
@@ -898,12 +908,10 @@
 			"value": "S130",
 			"color": "dark-green",
 			"button": [{
-				"text": "Forword",
-				"class": "btn btn-info"
-			}, {
-				"text": "approve",
-				"class": "btn btn-success"
-			}]
+						"text": "Enter Company Profile",
+						"class": "btn btn-info",
+						"value": "S133"
+					}]
 		},
 		{
 			"stage": "tta",
@@ -978,20 +986,6 @@
 			"heading": "Industry Due-Diligence and Information Sharing",
 			"type": "",
 			"subchild": [{
-					"stage": "tlp",
-
-					"tablename": "Industry Interest",
-					"formheader": "Industry Interest",
-					"heading": "Industry Interest",
-					"type": "lead_entered_by_bdm",
-					"value": "S130",
-					"color": "dark-blue",
-					"button": [{
-						"text": "Enter Company Profile",
-						"class": "btn btn-info",
-						"value": "S133"
-					}]
-				}, {
 					"stage": "tlp",
 
 					"tablename": "Industry Due-Diligence",
@@ -1530,6 +1524,18 @@
 			"color": "red",
 			"button": []
 		}
+		,
+		 {
+			"stage": "tta",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S411",
+			"color": "red",
+			"button": []
+		}
+
 
 
 
@@ -2012,7 +2018,19 @@
 						"value": "S619"
 					}
 				]
-			}
+			},
+			
+		 {
+			"stage": "patentdraft",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S412",
+			"color": "red",
+			"button": []
+		}
+
 		]
 	}, {
 		"stage": "patent",
@@ -3543,7 +3561,18 @@
 					"title": "",
 					"value": "S768"
 				}]
-			}
+			},
+			 {
+			"stage": "copyright_common_ip",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S415",
+			"color": "red",
+			"button": []
+		}
+			
 
 		]
 	}, {
@@ -4205,7 +4234,17 @@
 				"title": "",
 				"value": "S731"
 			}]
-		}]
+		}, {
+			"stage": "design_common_ip",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S414",
+			"color": "red",
+			"button": []
+		}
+		]
 	}, {
 		"stage": "design",
 		"substage": "design_er_er",
@@ -4873,6 +4912,15 @@
 					"value": "S714"
 				}
 			]
+		}, {
+			"stage": "trademark_common_ip",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S413",
+			"color": "red",
+			"button": []
 		}]
 	}, {
 		"stage": "trademark",
@@ -5763,6 +5811,16 @@
 			"value": "S182",
 			"color": "blue",
 			"button": []
+		},
+		 {
+			"stage": "mis",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S416",
+			"color": "red",
+			"button": []
 		}
 	],
 	"account": [
@@ -5859,7 +5917,17 @@
 					"value": "S811",
 					"color": "dark-green",
 					"button": []
-				}
+				},
+				 {
+			"stage": "client_invoice",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S417",
+			"color": "red",
+			"button": []
+		}
 
 
 
@@ -5946,6 +6014,16 @@
 			"color": "purple",
 			"button": []
 
+		},
+		 {
+			"stage": "luf_invoice",
+			"tablename": "Rejected",
+			"heading": "Rejected",
+			"formheader": "Rejected",
+			"type": "rejected",
+			"value": "S418",
+			"color": "red",
+			"button": []
 		}]
 
 		}

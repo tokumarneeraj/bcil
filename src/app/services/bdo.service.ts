@@ -72,6 +72,8 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
  get getboolvalueurl(){ return environment.baseUrl + '/api/bdo/getboolvalues';}
  get updateboolvalueurl(){ return environment.baseUrl + '/api/bdo/updatebooleanvalue';}
     get datapermission(){return environment.baseUrl + '../../';}
+
+    get rejectappurl(){return environment.baseUrl + '/api/bdo/rejectapp';}
     UserId:string;
     constructor(http: HttpClient ,private accountService: AccountService, authService: AuthService){
      super(http, authService);
@@ -287,6 +289,16 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
          //     }));
          const endpointUrl = `${this.getallinvoicetrigger}/${refid}`;
          return this.http.get<any[]>(endpointUrl,this.requestHeaders);
+         }
+         public  RejectApp<T>(refid:string): Observable<string> {
+        
+          // return this.http.get<activeusermou[]>(this.getactiveusermouuseridurl);
+         //   .pipe<mouModel>(
+         //     catchError(error => {
+         //       return this.handleError(error, () =>{});
+         //     }));
+         const endpointUrl = `${this.rejectappurl}/${refid}`;
+         return this.http.get<string>(endpointUrl,this.requestHeaders);
          }
          public  GetLufInvoice<T>(refid:string): Observable<any[]> {
         

@@ -43,6 +43,8 @@ export class PatentInitComponent implements OnInit {
   viewhistory:any;
   viewremark:any;
   viewadditionalfileright:boolean;
+  stage:string="";
+  datapermission:any;
   constructor(private route: ActivatedRoute,private alertService: AlertService,private accountService: AccountService,private Bdoservice:Bdoservice,private router:Router
 
 
@@ -72,7 +74,19 @@ export class PatentInitComponent implements OnInit {
     // };
   }
   onmodalclick(e: string,value:any, data: any) {
-    data={...data,message:this.array?.tablename+'-->'}
+let yy="";
+this.datapermission?.patent?.forEach(element => {
+  if(yy==undefined ||yy==""){
+  yy=element?.subchild?.find(x=>x.value==value)?.tablename;
+   if(yy!=undefined) 
+      return true;
+  }
+  
+
+})
+    console.log("patent:"+value+yy)
+    //(r=>r.substage==this.stage)?.subchild))//?.subchild?.filter(x=>x.value==value)) //?.filter(y=>y.subchild?.filter(t=>t.value==value)));
+    data={...data,message:this.array?.tablename+' To '+yy}
     this.activity.showviewmodel('patent',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
@@ -94,9 +108,11 @@ export class PatentInitComponent implements OnInit {
         this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
         this.Bdoservice.getdatapermission().subscribe(data=>{
           console.log(data);
-          this.patentdata=data?.patent?.filter(x=>this.viewtab.find(y=>y==x.value));
+          this.datapermission=data;
+         // this.patentdata=data?.patent?.filter(x=>this.viewtab.find(y=>y==x.value));
           //this.moudata=data?.mou?.filter(x=>this.managetab.find(y=>y==x.value));
           this.route.queryParams.subscribe((params) => {
+            this.stage=params.stage;
             let yy=["patentdraft","patentfinalfiling","patentforeignfiling","patentrequiredforexamination","patentfirstexamreport","ertoacceptancepatent"]
 
             if(yy.includes(params.stage)){

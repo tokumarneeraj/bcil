@@ -216,7 +216,7 @@ subchildmenus(stage:string,childstage:string){
   let submenu= stage=="patent"?this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) 
   ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}))
   :this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value));
-console.log('submenu:'+stage+JSON.stringify(submenu));
+//console.log('submenu:'+stage+JSON.stringify(submenu));
 return submenu;
 }
   ngOnInit(): void {

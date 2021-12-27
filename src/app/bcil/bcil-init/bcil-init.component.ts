@@ -93,6 +93,7 @@ showbutton:any;
 moudata:any;
 activebtn:any;
 array:any;
+datapermission:any;
  // array:any[];
  // activearray = this.commondata.moustatus()[0];
 
@@ -139,6 +140,7 @@ else if(data=="custom"){
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
         this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
         this.Bdoservice.getdatapermission().subscribe(data=>{
+          this.datapermission=data;
           console.log(data);
           this.moudata=data?.mou?.filter(x=>this.viewtab.find(y=>y==x.value));
           //this.moudata=data?.mou?.filter(x=>this.managetab.find(y=>y==x.value));
@@ -289,7 +291,18 @@ else{
 
   }
 
-  onmodalclick(e: string,value:any, data: mouModel) {
+  onmodalclick(e: string,value:any, data: any) {
+    let yy="";
+    this.datapermission?.mou?.forEach(element => {
+      if(yy==undefined ||yy==""){
+      yy=(element.value==value)==true?element?.tablename:undefined||element?.subchild?.find(x=>x.value==value)?.tablename;
+       if(yy!=undefined) 
+          return true;
+      }
+      
+    
+    })
+    data={...data,message:this.array?.tablename+' To '+yy}
     this.activity.showviewmodel('mou',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 

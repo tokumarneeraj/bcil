@@ -43,6 +43,7 @@ export class DesignInitComponent implements OnInit {
   viewhistory:any;
   viewremark:any;
   viewadditionalfileright:boolean;
+  datapermission:any;
   constructor(private route: ActivatedRoute,private alertService: AlertService,private accountService: AccountService,private Bdoservice:Bdoservice,private router:Router
 
 
@@ -72,6 +73,17 @@ export class DesignInitComponent implements OnInit {
     // };
   }
   onmodalclick(e: string,value:any, data: any) {
+    let yy="";
+    this.datapermission?.design?.forEach(element => {
+      if(yy==undefined ||yy==""){
+      yy=element?.subchild?.find(x=>x.value==value)?.tablename;
+       if(yy!=undefined) 
+          return true;
+      }
+      
+    
+    })
+    data={...data,message:this.array?.tablename+' To '+yy}
     this.activity.showviewmodel('design',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
@@ -92,7 +104,7 @@ export class DesignInitComponent implements OnInit {
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
         this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
         this.Bdoservice.getdatapermission().subscribe(data=>{
-          console.log(data);
+          this.datapermission=data;
           
           this.designdata=data?.design?.filter(x=>this.viewtab.find(y=>y==x.value));
           //this.moudata=data?.mou?.filter(x=>this.managetab.find(y=>y==x.value));

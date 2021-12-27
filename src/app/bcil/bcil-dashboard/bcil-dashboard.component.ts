@@ -203,8 +203,7 @@ this.router.navigate([tab?.url]);
       this.jsondata?.[x.stage]?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
      this.jsondata?.[x.stage]?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value))));
 
-     console.log(menu)
-     console.log(this.activetab)
+    
      return menu.filter(u=>u.parent==this.activetab);
     
      }

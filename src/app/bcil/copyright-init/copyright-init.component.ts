@@ -43,6 +43,7 @@ export class CopyrightInitComponent implements OnInit {
   viewhistory:any;
   viewremark:any;
   viewadditionalfileright:boolean;
+  datapermission:any;
   constructor(private route: ActivatedRoute,private alertService: AlertService,private accountService: AccountService,private Bdoservice:Bdoservice,private router:Router
 
 
@@ -72,6 +73,17 @@ export class CopyrightInitComponent implements OnInit {
     // };
   }
   onmodalclick(e: string,value:any, data: any) {
+    let yy="";
+    this.datapermission?.copyright?.forEach(element => {
+      if(yy==undefined ||yy==""){
+      yy=element?.subchild?.find(x=>x.value==value)?.tablename;
+       if(yy!=undefined) 
+          return true;
+      }
+      
+    
+    })
+    data={...data,message:this.array?.tablename+' To '+yy}
     this.activity.showviewmodel('copyright',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
@@ -92,6 +104,7 @@ export class CopyrightInitComponent implements OnInit {
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
         this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
         this.Bdoservice.getdatapermission().subscribe(data=>{
+          this.datapermission=data;
           console.log(data);
           
           this.copyrightdata=data?.copyright?.filter(x=>this.viewtab.find(y=>y==x.value));

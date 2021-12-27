@@ -50,6 +50,7 @@ export class MisInitComponent implements OnInit {
   @ViewChild('editorModal2', { static: true })
   editorModal2: ModalDirective;
   stage:string;
+  datapermission:any;
   viewadditionalfileright:boolean;
   constructor(private route: ActivatedRoute,private alertService: AlertService,private accountService: AccountService,private Bdoservice:Bdoservice,private router:Router
 
@@ -87,6 +88,17 @@ this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
 
   }
   onmodalclick(e: string,value:any, data: any) {
+    let yy="";
+    this.datapermission?.mis?.forEach(element => {
+      if(yy==undefined ||yy==""){
+      yy=(element.value==value)==true?element?.tablename:undefined||element?.subchild?.find(x=>x.value==value)?.tablename;
+       if(yy!=undefined) 
+          return true;
+      }
+      
+    
+    })
+    data={...data,message:this.array?.tablename+' To '+yy}
     this.activity.showviewmodel('mis',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
@@ -107,6 +119,7 @@ this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
         this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
         this.Bdoservice.getdatapermission().subscribe(data=>{
+          this.datapermission=data;
           console.log(data);
           this.misdata=data?.mis?.filter(x=>this.viewtab.find(y=>y==x.value)|| x?.subchild?.some(t=>this.viewtab.find(y=>y==t.value)));
      
