@@ -68,8 +68,15 @@
                                                                 <div *ngFor="let items of item?.jsondata | keyvalue">
 <p *ngIf="items.key=='FILE'">{{item?.jsondata?.FEE_RECEIPT_FILE !=undefined ? 'FEE RECEIPT FILE':'NBA_FILE' |underscore}}: <a href="{{getbaseurl}}/{{items.value}}">{{item?.jsondata?.FILENAME}}</a></p>
                                                                   
-<p *ngIf="items.key!='FILE' && items.key!='FEE_RECEIPT_FILE' && items.key!='NBA_FILE'&& items.key!='FILENAME'"> <b>{{items.key| underscore}}</b>: <b>{{items.value}}</b></p>
-                                                                </div>
+<p *ngIf="items.key!='NEXTACTION' && items.key!='FILE' && items.key!='FEE_RECEIPT_FILE' && items.key!='NBA_FILE'&& items.key!='FILENAME'"> <b>{{items.key| underscore}}</b>: <b>{{items.value}}</b></p>
+     <p *ngIf="items.key=='NEXTACTION'" >
+<ng-container  *ngFor="let next of items.value">
+    <p><b>NextAction-</b><span class='mr-3'>{{next.nextaction}}</span>  <b>Deadline-</b><span class='mr-3'>{{next.deadline}}</span>    <b>Remarks-</b><span class='mr-3'>{{next.remarks}}</span> </p>
+
+
+      </ng-container>      
+    </p>                                                   
+</div>
                                                                 <ng-container *ngIf="item?.milestone?.length>0">
                                                                     <h4>Milestones</h4>
                                                                 <div *ngFor="let items of item?.milestone">

@@ -114,7 +114,8 @@ export class ActivityComponent implements OnInit {
     clientinvocie:[''],
     foreign:[''],
     booleanvalue:[false],
-    milestonedata:this.formbuilder.array([this.addItemFormGroup()])
+    milestonedata:this.formbuilder.array([this.addItemFormGroup()]),
+    nextactiondata:this.formbuilder.array([this.addNextActionItemFormGroup()])
   });
   
    
@@ -183,6 +184,10 @@ if(this.fields!=undefined){
           controls["FILENAME"] = new FormControl('');
           controls["FILE"] = new FormControl('');
         }
+        // if(this.activebtn?.form?.nextaction==true){
+        //   controls["NEXTACTION"] = new FormControl('');
+        //   //this.dynamicForm.addControl['NEXTACTION'];
+        // }
         if(res.type=="countryselect"){
           controls["PCT"] = new FormControl('PCT');
         }
@@ -297,6 +302,33 @@ console.log(data,'luf')
       get milestonedata(): FormArray {
     return this.ForwardForm.get('milestonedata') as FormArray;
   }
+
+  addNextActionItemButtonClick(): void {
+    (<FormArray>this.ForwardForm.get('nextactiondata')).push(this.addNextActionItemFormGroup());
+  }
+  addNextActionItemFormGroup(): FormGroup {
+    return this.formbuilder.group({
+      ID: [0],
+      nextaction: ['',Validators.required],
+      deadline: ['',Validators.required],
+      remarks: ['',Validators.required],
+     
+     
+    });
+  }
+  get nextactiondata(): FormArray {
+return this.ForwardForm.get('nextactiondata') as FormArray;
+}
+deletenextactionitem(deleteitem: number){
+
+  var item = this.nextactiondata.at(deleteitem);
+    var items = item.get('ID').value;
+
+    var conf = confirm("Are you sure you want to delete this ?");
+    if (conf == true) {
+       (<FormArray>this.ForwardForm.get('nextactiondata')).removeAt(deleteitem);
+      }
+}
   deleteitem(deleteitem: number) {
     var item = this.milestonedata.at(deleteitem);
     var items = item.get('ID').value;
@@ -354,6 +386,12 @@ if(nodalid!=""){
         this.ForwardForm.controls["files"].clearValidators();              
       }
       this.ForwardForm.controls['files'].updateValueAndValidity();
+      if(this.activebtn?.form?.remarks){
+        this.ForwardForm.controls['remarks'].setValidators([Validators.required]);              
+    } else {                
+      this.ForwardForm.controls["remarks"].clearValidators();              
+    }
+    this.ForwardForm.controls['remarks'].updateValueAndValidity();
 
       if(this.array?.foreignlabel==true){
         this.ForwardForm.controls['foreign'].setValidators([Validators.required]);
@@ -410,6 +448,18 @@ if(nodalid!=""){
       console.log(control.label);
           }
         }
+        if(this.activebtn?.form?.nextaction==true){
+          const controls = {};
+          controls["NEXTACTION"] = new FormControl('')
+          this.dynamicForm = new FormGroup(
+controls
+            
+          );
+        //this.dynamicForm.addControl['NEXTACTION'];
+        this.dynamicForm.controls['NEXTACTION'].setValue(this.ForwardForm.get('nextactiondata').value)
+
+        }
+        
         this.UploadFileViewModel.jsondata=JSON.stringify(this.dynamicForm.value);
 var tt=[];
 

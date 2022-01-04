@@ -73,7 +73,7 @@
         <tbody>
           <tr *ngFor="let item of mouModel;let i=index;">
             <th scope="row">{{i+1}}</th>
-            <th  >{{item?.mou_no=='undefined'?item?.appno:item?.mou_no}}</th>
+            <th  >{{item?.appno!='undefined'?item?.appno:item?.mou_no}}</th>
             <td  *ngIf="stage!='mou' && stage!='client_invoice' && stage!='luf_invoice'">{{item?.subject}}</td>
             <td  *ngIf="stage=='mou'">{{item.int_Uni_Name}}</td>
             <td  *ngIf="stage=='mou'">{{item.dept_Name}}</td>
@@ -87,7 +87,13 @@
             <td ><button class="btn btn-secondary" (click)="queryparam(item)" >View History</button></td>
             <td *ngIf="stage=='client_invoice' || stage=='luf_invoice'"><button class="btn btn-info" (click)="viewform(item)">View</button></td>
            <td *ngIf="isAdmin || isIPM"><button class="btn btn-info" (click)="boolvalues(item)">Toggle values</button></td>
-           <td *ngIf="isSuperAdmin"><button class="btn btn-danger" (click)="rejectapp(item)">Reject</button></td>
+
+            
+           <td *ngIf="isSuperAdmin"> <ng-container *ngFor="let btn of array?.button">
+            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,item)">{{btn.text}}</button>
+                                                      </ng-container>
+               <!-- <button class="btn btn-danger" (click)="rejectapp(item)">Reject</button> -->
+            </td>
             <!-- <td>
               <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
               <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
@@ -183,8 +189,9 @@
                             </div>
                             </div>
                             </div>
+                            <app-activity [array]="array"></app-activity>
 
-                            <div class="modal fade" bsModal #editorModal5="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
+                            <!-- <div class="modal fade" bsModal #editorModal5="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" >
                                 <div class="modal-dialog modal-lg" style="max-height: 600px;
                                 overflow: auto;">
                                     <div class="modal-content">
@@ -218,5 +225,5 @@
                                             </div>
                                             </div>
                                             </div>
-                                            </div>
+                                            </div> -->
 

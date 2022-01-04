@@ -117,6 +117,58 @@
   
                     </div>
                   </div>
+                  <ng-container *ngIf="activebtn?.form?.nextaction">
+                    <div class="row">
+                      <div class="col-sm-1">
+                        </div>
+                  <div class="col-sm-3">
+                    <label>Next Action</label>
+                    </div>
+                    
+                      <div class="col-sm-3">
+                        <label>DeadLine</label>
+                        </div>
+                        <div class="col-sm-3">
+                      <label>Remarks</label>
+                      </div>
+                      
+                      </div>
+                      <div formArrayName="nextactiondata" *ngFor="let item of nextactiondata.controls; let i = index" class="form-group">
+                        <div [formGroupName]="i">
+                         
+                            <input type="hidden" formControlName="ID" />
+                           
+                              <div class="row">
+                                <div class="col-sm-1">
+                                  {{i+1}}
+                                </div>
+                                <div class="col-sm-3">
+                                  <input type="text"  class="form-control"  formControlName="nextaction" id="nextaction+i"/>
+                                  <p *ngIf="submitted && f.nextaction?.errors" class="invalid-feedback">Next Action is required</p>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                  <input type="date"  class="form-control"  formControlName="deadline" id="deadline+i"/>
+                                                                  <p *ngIf="submitted && f.deadline?.errors" class="invalid-feedback">Deadline is required</p>
+                                                                                                </div>
+                                                                                                <div class="col-sm-3">
+                                                                                                  <input type="text"  class="form-control"  formControlName="remarks" id="rmarks+i"/>
+                                                                                                 
+                                                                                                                                </div>
+                                                                                                                                <div class="col-md-1">
+                                                                                                                                  <button *ngIf="nextactiondata.length>1" (click)="deletenextactionitem(i)" class="btn btn-sm"><i class="fa fa-trash"></i></button>
+                                                                                                                                                                                                               
+                                                                                                                                                                                                                               </div>
+                                </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-2">
+                                    <button class="btn btn-success btn-sm" type="button" (click)="addNextActionItemButtonClick()" ><i class="fa fa-plus"></i></button>
+                      
+                      
+                                  </div>
+                                </div>
+                  </ng-container>
                   <ng-container *ngIf="activebtn?.form?.milestone">
                   
                   <div class="row">
@@ -260,6 +312,8 @@
                     <label class="col-form-label">Remarks</label>
                     <textarea type="text" class="form-control" formControlName="remarks" [ngClass]="{ 'is-invalid': submitted && f.remarks.errors }">
                                 </textarea>
+                                 <p *ngIf="submitted && f.remarks?.errors" class="invalid-feedback">Remarks is required</p> 
+                                                              
 
                   </div>
                 </div>

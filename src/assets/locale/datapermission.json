@@ -523,7 +523,16 @@
 			"type": "rejected",
 			"value": "S410",
 			"color": "red",
-			"button": []
+			"button": [{
+				"text": "Rejected",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S410",
+				"form": {
+					"remarks": true
+					
+				}
+			}]
 		}
 
 	],
@@ -2519,7 +2528,10 @@
 					"text": "forward",
 					"class": "btn btn-primary",
 					"title": "",
-					"value": "S638"
+					"value": "S638",
+					"form":{
+					"nextaction":true
+					}
 				},
 				
 				{

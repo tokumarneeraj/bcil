@@ -7,6 +7,7 @@ import { activeusermou, booleanvalue, mouModel } from 'src/app/model/mou.model';
 import { AccountService } from 'src/app/services/account.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { environment } from 'src/environments/environment';
+import { ActivityComponent } from '../activity/activity.component';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { ClientInvoiceComponent } from '../client-invoice/client-invoice.component';
 import { LufInvoiceComponent } from '../luf-invoice/luf-invoice.component';
@@ -18,6 +19,9 @@ import { LufInvoiceComponent } from '../luf-invoice/luf-invoice.component';
 })
 export class MouApplicationComponent implements OnInit {
   activeusermou:activeusermou[];
+  @ViewChild(ActivityComponent)
+  activity: ActivityComponent;
+  array:any;
 //   mouModel:mouModel[]=[];
 //   misModel:any[];
 //   patentModel:any[];
@@ -56,6 +60,8 @@ ForwardForm: FormGroup;
   lufinvoice: LufInvoiceComponent;
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
+  datapermission:any;
+  tabdata:any;
   constructor(private route: ActivatedRoute,private router:Router, private Bdoservice: Bdoservice,private accountService:AccountService, private formbuilder: FormBuilder) { 
     this.userRoles = this.accountService.currentUser.roles;
 
@@ -66,13 +72,24 @@ ForwardForm: FormGroup;
     this.isSuperAdmin=this.userRoles.includes('Super Admin');
     this.route.queryParams.subscribe((params) => {
 this.stage=params.stage;
+this.Bdoservice.getdatapermission().subscribe(data=>{
+          this.datapermission=data;
+this.array=data?.[this.stage].find(x=>x.type=='rejected');
+ });
     });
   }
-  rejectapp(data:any){
-    this.Bdoservice.RejectApp(data?.refid).subscribe(data=>{
+  onmodalclick(e,value,data:any){
+     
+          console.log(data);
+       
+         
+    this.activity.showviewmodel(this.stage, value,data);
+    //this.activebtn=this.array?.button?.find(x=>x.value==value);
+
+    // this.Bdoservice.RejectApp(data?.refid).subscribe(data=>{
 
       
-    });
+    
   }
   get f() { return this.ForwardForm.controls; }
   additionfile(data:any){
