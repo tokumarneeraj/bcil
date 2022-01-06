@@ -73,17 +73,19 @@ export class DesignInitComponent implements OnInit {
     // };
   }
   onmodalclick(e: string,value:any, data: any) {
-    let yy="";
+    let yy="",querystring="";
     this.datapermission?.design?.forEach(element => {
       if(yy==undefined ||yy==""){
       yy=element?.subchild?.find(x=>x.value==value)?.tablename;
+      querystring="bcil/bcil-design-table?stage="+element?.subchild?.find(x=>x.value==value)?.stage+"&type="+element?.subchild?.find(x=>x.value==value)?.type+"";
+ 
        if(yy!=undefined) 
           return true;
       }
       
     
     })
-    data={...data,message:this.array?.tablename+' To '+yy}
+    data={...data,message:this.array?.tablename+' To '+yy,querystring:querystring}
     this.activity.showviewmodel('design',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 

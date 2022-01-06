@@ -80,7 +80,7 @@
                                                       --> 
                                                       <td> 
                                                         <ng-container *ngFor="let btn of array?.button">
-                                                            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,item)">{{btn.text}}</button>
+                                                            <button  type="submit" class="misbtn {{btn?.class}}" *ngIf="btn.value=='assign'?isNodal:true" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,item)">{{btn.text}}</button>
                                                                                                       </ng-container>
                                                     <!-- <button value="back" *ngIf="activearray?.back && permissionbutton1" title="{{activearray?.backtitle}}" class="btn btn-primary" (click)="onmodalclick($event.target.value,item)">{{activearray?.backbuttonText}}</button>
                                                     <button value="forword" *ngIf="activearray?.forwardCheck && permission" title="{{activearray?.forwordtitle}}" class="btn btn-success ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.forwardText}}</button>
@@ -122,18 +122,5 @@
 
   <app-addition-file></app-addition-file>
   <app-activity [array]="array"></app-activity>
-  <!-- <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" style="min-height:600px">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Application Forward</h4>
-                <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-            </div>
-            <div class="modal-body"> -->
+  <app-add-scientist></app-add-scientist>
  
-            <!-- </div>
-  </div>
-  </div>
-  </div> -->

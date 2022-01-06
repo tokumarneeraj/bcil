@@ -4,16 +4,19 @@
 // =============================
 
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, CanLoad, Route } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, CanLoad, Route, ActivatedRoute } from '@angular/router';
 import { AuthService } from './auth.service';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private route1: ActivatedRoute,private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {   
     const url: string = state.url;
+    // this.route1.queryParams.subscribe((params) => {
+    // alert(params?.url)
+    // });
     return this.checkLogin(url);
   }
 

@@ -21,14 +21,37 @@ export class AddScientistComponent implements OnInit {
   editorModal2: ModalDirective;
   activeusermiu:activeusermou;
   addusertomou=new addusertomou();
-  constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) { }
+  organizations:any[];
+  rowssci:any[];
+  UserId:any;
+  constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
+
+    this.UserId = this.accountService.currentUser.id;
+    
+
+   }
 
   ngOnInit(): void {
+   
     this.AssignScientistForm=this.formbuilder.group({
       scientist:['',Validators.required]
     });
   }
   get f1() { return this.AssignScientistForm.controls; }
+
+  onmodalshow(data:any){
+     this.addusertomou.mouref=data?.refid;
+    this.accountService.getAllUser(0,0).subscribe(data=>{
+      this.rowssci=data.filter((x)=>x.createdBy==this.UserId && x.roles.includes('Scientist'));
+      console.log(this.rowssci)
+      // this.organizations=this.organizations.filter(y=>y.value==data1[0]?.value);
+      // this.accountService.getAllUser(0,0).subscribe(data=>{
+        
+      // });
+      this.editorModal2.show();
+    })
+    
+  }
   saveassignscien(){
     
     this.submitted=true;
@@ -54,4 +77,5 @@ this.loading=false;
     })
 
   }
+  get f() { return this.AssignScientistForm.controls; }
 }

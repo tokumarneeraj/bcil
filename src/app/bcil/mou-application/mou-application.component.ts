@@ -163,6 +163,18 @@ if(e.target.checked==true){
       this.showpage=true;
   });
   }
+  if(this.stage=='tta'){
+    this.Bdoservice.GetTtaModel().subscribe(data => {
+      if(this.isSuperAdmin){
+        this.mouModel = data;
+        }
+        else{
+      this.mouModel = data.filter(x=>this.activeusermou?.find(t=>t.appref==x.refid))
+      }
+    
+      this.showpage=true;
+  });
+  }
   if(this.stage=='luf_invoice'){
     this.Bdoservice.GetLufInvoice('all').subscribe(data => {
       let datepipe=new DatePipe('en-US');

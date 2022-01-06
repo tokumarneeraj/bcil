@@ -206,7 +206,8 @@ if(this.fields!=undefined){
         this.loading=false;
         this.process=e;
         this.message=data?.message;
-        this.UploadFileViewModel.app_no=data?.mis_no ||data?.mou_no;
+        this.UploadFileViewModel.app_no=data?.appno ||data?.mou_no;
+        this.UploadFileViewModel.querystring=data?.querystring;
 
         this.ForwardForm.controls['subject'].setValue(data?.forwardsubject)
         this.UploadFileViewModel.app_ref_id = data?.refid;
@@ -309,9 +310,9 @@ console.log(data,'luf')
   addNextActionItemFormGroup(): FormGroup {
     return this.formbuilder.group({
       ID: [0],
-      nextaction: ['',Validators.required],
-      deadline: ['',Validators.required],
-      remarks: ['',Validators.required],
+      nextaction: [''],
+      deadline: [''],
+      remarks: [''],
      
      
     });
@@ -459,6 +460,11 @@ controls
         this.dynamicForm.controls['NEXTACTION'].setValue(this.ForwardForm.get('nextactiondata').value)
 
         }
+        else{
+          this.ForwardForm.get('nextactiondata').clearValidators();
+          this.ForwardForm.get('nextactiondata').updateValueAndValidity();
+
+        }
         
         this.UploadFileViewModel.jsondata=JSON.stringify(this.dynamicForm.value);
 var tt=[];
@@ -480,7 +486,7 @@ var tt=[];
       return;
     }
   
-    this.alertService.showDialog(this.message==undefined?"Are you sure You Want To Submit":"Are you sure you want to move from "+this.message, DialogType.confirm, () => this.updatedata());
+    this.alertService.showDialog(this.message==undefined?"Are you sure You Want To Submit":"Are you sure you want to move from <b style='font-weight: 800'>"+this.message+"</b>", DialogType.confirm, () => this.updatedata());
     
    
   }

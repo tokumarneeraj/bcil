@@ -182,18 +182,21 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
   onmodalclick(e: string,value:any, data: any) {
     this.loading=false;
     this.submitted=false;
-    let yy="";
+    let yy="",querystring="";
 this.datapermission?.tta?.forEach(element => {
   if(yy==undefined ||yy==""){
   yy=(element.value==value)==true?element?.tablename:undefined||element?.subchild?.find(x=>x.value==value)?.tablename;
+   querystring=(element.value==value)==true?"bcil/bcil-tta-table?stage="+element?.stage+"&type="+element?.type:undefined ||
+      "bcil/bcil-tta-table?stage="+element?.subchild?.find(x=>x.value==value)?.stage+"&type="+element?.subchild?.find(x=>x.value==value)?.type+"";
+ 
    if(yy!=undefined) 
       return true;
   }
   
-
+  data={...data,message:this.array?.tablename+' To '+yy,querystring:querystring}
+  this.activity.showviewmodel('tta',value,data);
 })
-data={...data,message:this.array?.tablename+' To '+yy}
-    this.activity.showviewmodel('tta',value,data);
+
     // this.UploadFileViewModel.app_no=data.mou_no;
     // this.UploadFileViewModel.app_ref_id = data.refid;
     // this.mouref=data.refid;

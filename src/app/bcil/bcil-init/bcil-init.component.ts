@@ -19,6 +19,7 @@ import { StringDecoder } from 'string_decoder';
 import {commondata} from '../../model/common'
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { ActivityComponent } from '../activity/activity.component';
+import { AddScientistComponent } from '../add-scientist/add-scientist.component';
 @Component({
   selector: 'app-bcil-init',
   templateUrl: './bcil-init.component.html',
@@ -40,6 +41,9 @@ export class BcilInitComponent implements OnInit {
   editorModal1: ModalDirective;
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
+
+  @ViewChild(AddScientistComponent)
+  assignscientist: AddScientistComponent;
   @ViewChild(ActivityComponent)
   activity: ActivityComponent;
   usertype: string;
@@ -292,23 +296,33 @@ else{
   }
 
   onmodalclick(e: string,value:any, data: any) {
-    let yy="";
+    if(value!='assign'){
+    let yy="",querystring="";
     this.datapermission?.mou?.forEach(element => {
       if(yy==undefined ||yy==""){
       yy=(element.value==value)==true?element?.tablename:undefined||element?.subchild?.find(x=>x.value==value)?.tablename;
+      querystring=(element.value==value)==true?"bcil/bcil-table?stage="+element?.stage+"&type="+element?.type:undefined ||
+      "bcil/bcil-table?stage="+element?.subchild?.find(x=>x.value==value)?.stage+"&type="+element?.subchild?.find(x=>x.value==value)?.type+"";
+ 
        if(yy!=undefined) 
           return true;
       }
       
     
-    })
-    data={...data,message:this.array?.tablename+' To '+yy}
+    }) 
+    data={...data,message:this.array?.tablename+' To '+yy,querystring:querystring}
     this.activity.showviewmodel('mou',value,data);
    this.activebtn=this.array?.button?.find(x=>x.value==value);
 
   
    
   }
+  else
+{
+  this.assignscientist.onmodalshow(data);
+}
+}
+
 
   
 }

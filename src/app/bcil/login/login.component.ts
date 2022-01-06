@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserLogin } from 'src/app/model/user-login.model';
 import { AccountService } from 'src/app/services/account.service';
@@ -20,9 +20,10 @@ export class LoginComponent implements OnInit {
   LoginForm: FormGroup;
   userLogin = new UserLogin();
   isLoading = false;
+  querstring:any;
   @Input()
   isModal = false;
-  constructor(private accountService: AccountService, private localStorage: LocalStoreManager,private alertService: AlertService, private authService: AuthService, private configurations: ConfigurationService,private forms: FormBuilder,private _cookieService: CookieService, private router: Router) {
+  constructor(private route: ActivatedRoute,private accountService: AccountService, private localStorage: LocalStoreManager,private alertService: AlertService, private authService: AuthService, private configurations: ConfigurationService,private forms: FormBuilder,private _cookieService: CookieService, private router: Router) {
   this.LoginForm = this.forms.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
@@ -33,6 +34,25 @@ get f() {
   return this.LoginForm.controls;
 }
   ngOnInit(): void {
+    //this.querstring="";
+   this.route.queryParams.subscribe((params) => {
+    this.querstring=params?.url;
+    if (this.authService.isLoggedIn) {
+     
+       if( this.querstring!=undefined){
+      this.router.navigateByUrl(this.querstring)
+       }
+      return true;
+    }
+    else{
+
+    }
+    //  alert(params?.url)
+    //  this.querstring=params?.url;
+    //  if( this.querstring!=undefined){
+    //  this.router.navigateByUrl(this.querstring)
+    //  }
+   });
   }
   loginSubmit() {
     this.submitted = true;
@@ -76,7 +96,18 @@ data.forEach(function(item) {
   arrNames.push(val);
 });
             this.localStorage.savePermanentData(arrNames, DBkeys.USER_OTHERPERMISSIONS);
+            // if( this.querstring==undefined){
+            // this.router.navigateByUrl('bcil/bcil-dashboard')
+            // }
+            // else{
+            //   this.router.navigateByUrl(this.querstring)
+            // }
+            if( this.querstring!=undefined){
+              this.router.navigateByUrl(this.querstring)
+               }
+               else{
             this.router.navigateByUrl('bcil/bcil-dashboard')
+               }
           })
         },
         error => {

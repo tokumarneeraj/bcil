@@ -1,1 +1,47 @@
-<p>add-scientist works!</p>
+ <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" style="min-height:600px">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Assign Scientist</h4>
+                <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body"> 
+                <form [formGroup]="AssignScientistForm">
+
+                    <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label class="col-form-label">Scientist</label>
+    
+                        <select type="text" class="form-control" formControlName="scientist" [ngClass]="{ 'is-invalid': submitted && f.scientist.errors }"  >
+                          <option value="" selected>--select--</option>
+                          <option *ngFor="let data of rowssci" value="{{data.id}}">{{data.userName}}</option>
+    
+                        </select>
+                        <p *ngIf="submitted && f.scientist.errors" class="invalid-feedback">Scientist is required</p>
+               
+    
+                      </div>
+                      </div>
+                      
+                      <div class="form-group row">
+                        <div class="col-sm-6">
+                          <!-- <button type="submit"
+                                  class="btn btn-success"
+                                  (click)="uploadFile()">
+                            Upload File
+                          </button> -->
+                          <button type="submit" class="btn btn-success"  (click)="saveassignscien()" [disabled]="loading">
+                              <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
+                            </button>
+                        </div>
+                        
+      
+                      </div>
+      
+                    </form>
+             </div>
+  </div>
+  </div>
+  </div>

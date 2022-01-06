@@ -22,11 +22,11 @@ export class AppErrorHandler extends ErrorHandler {
         // this.alertService.showStickyMessage("Fatal Error!", "An unresolved error has occured. Please reload the page to correct this error", MessageSeverity.warn);
         // this.alertService.showStickyMessage("Unhandled Error", error.message || error, MessageSeverity.error, error);
 
-        if (confirm('Fatal Error!\nAn unresolved error has occured.\n\nError: ' + error.message)) {
-            //window.location.reload();
-        }
-        // this.authService.logout();
-        // this.authService.redirectLogoutUser();
+        // if (confirm('Fatal Error!\nAn unresolved error has occured.\n\nError: ' + error.message)) {
+        //     //window.location.reload();
+        // }
+         this.authService.logout();
+        this.authService.redirectLogoutUser();
         this.alertService.stopLoadingMessage();
         super.handleError(error);
     }

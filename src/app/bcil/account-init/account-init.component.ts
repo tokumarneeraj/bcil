@@ -55,6 +55,7 @@ export class AccountInitComponent implements OnInit {
   viewhistory:any;
   viewremark:any;
   stage:string;
+  datapermission:any;
   viewadditionalfileright:boolean;
   invoicetriggerModel:any[];
   querytype:string;
@@ -127,16 +128,29 @@ this.ngOnInit();
         })
       }
   onmodalclick(e: string,value:any, data: any) {
+    let yy="";let querystring="";
+    this.datapermission?.account?.forEach(element => {
+      if(yy==undefined ||yy==""){
+      yy=(element.value==value)==true?element?.tablename:undefined||element?.subchild?.find(x=>x.value==value)?.tablename;
+       querystring=(element.value==value)==true?"bcil/bcil-account-table?stage="+element?.stage+"&type="+element?.type:undefined ||
+          "bcil/bcil-account-table?stage="+element?.subchild?.find(x=>x.value==value)?.stage+"&type="+element?.subchild?.find(x=>x.value==value)?.type+"";
+     
+       if(yy!=undefined) 
+          return true;
+      }
+      
+    
+    })
     if(value=="S815"){
     var clientin=[];
     this.Bdoservice.GetClientInvoice('all').subscribe(data1 => {
       clientin=data1.filter(y=>(y.app_status=='S805'|| y.app_status=='S806') && y.active==true && y.lufmapped==false);
-      data={...data,clientinvoice:clientin};
+      data={...data,clientinvoice:clientin,message:this.array?.tablename+' To '+yy,querystring:querystring};
       this.activity.showviewmodel('account',value,data);
     });
   }
   else{
-  
+  data={...data,message:this.array?.tablename+' To '+yy,querystring:querystring}
     this.activity.showviewmodel('account',value,data);
   }
   console.log(data,'pp')
@@ -161,6 +175,7 @@ this.ngOnInit();
     this.viewtab=this.commondata.getotherpermissiondata('view').map((item)=>(item.split('-')[1]));
         this.managetab=this.commondata.getotherpermissiondata('manage').map((item)=>(item.split('-')[1]));
         this.Bdoservice.getdatapermission().subscribe(data=>{
+          this.datapermission=data;
           console.log(data);
           
           this.accountdata=data?.account?.filter(x=>this.viewtab.find(y=>y==x.value));
