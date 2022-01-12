@@ -1,5 +1,8 @@
 "use strict";
 $(document).ready(function() {
+	
+  //  $('.table').dataTable();
+
     // card js start
     $(".card-header-right .close-card").on('click', function() {
         var $this = $(this);

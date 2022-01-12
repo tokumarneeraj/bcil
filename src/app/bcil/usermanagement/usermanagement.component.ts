@@ -14,6 +14,7 @@ import { DBkeys } from 'src/app/services/db-keys';
 import { LocalStoreManager } from 'src/app/services/local-store-manager.service';
 import { Utilities } from 'src/app/services/utilities';
 import { UserInfoComponent } from '../user-info/user-info.component';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'app-usermanagement',
@@ -207,6 +208,8 @@ export class UsermanagementComponent implements OnInit {
       this.rows = users;
     }
     console.log(this.rows);
+    
+    
 
 
      

@@ -17,6 +17,7 @@ import { ReminderInfoComponent } from '../reminder-info/reminder-info.component'
 })
 export class ReminderComponent implements OnInit {
   StatusMaster:StatusMaster[];
+  NextStatusMaster:StatusMaster[];
   @ViewChild('editorModal', { static: true })
   editorModal: ModalDirective;
 Role:Role[];
@@ -26,6 +27,8 @@ editedReminder:Reminder;
 editmode=false;
 @Input()
 type:any;
+@Input()
+reminderfilter:any[];
 @Input()
 customrem:boolean;
 @Input()
@@ -75,6 +78,7 @@ deleteRoleHelper(row: Reminder) {
     this.bdoService.GetStatusMaster().subscribe(data=>{
 
       this.StatusMaster=data;
+      this.NextStatusMaster=data;
 
       if(this.appref!=undefined){
         this.bdoService.GetCustomremiderbystage(this.appref).subscribe(data=>{
@@ -101,8 +105,10 @@ deleteRoleHelper(row: Reminder) {
       }
    
     this.bdoService.GetReminder().subscribe(data=>{
+
       this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
-       }))?.filter(x=>this.type?.form?.reminderfilter?.includes(x.stagetype))
+       }))?.filter(x=>this.type?.form?.reminderfilter.includes(x.stagetype))
+       console.log("reminder",data,this.type)
       // if(this.type==undefined){
       //   this.Reminder=data.map(obj=> ({ ...obj,  stagename:this.StatusMaster?.find(x=>x.status_code==obj.stage)?.status_name ,
       //   }))

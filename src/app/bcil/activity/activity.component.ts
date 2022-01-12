@@ -69,6 +69,7 @@ export class ActivityComponent implements OnInit {
   milestone=new milestones();
   message:string="";
   fields = [];
+  reminderfilter=[];
   extrafield=['PCT'];
 
   public changesSavedCallback: () => void;
@@ -219,7 +220,9 @@ if(this.fields!=undefined){
         this.clientinvoice=data?.clientinvoice;
         this.foreignlist=data?.foreign;
 console.log(data,'luf')
+this.type=this.array?.button.find(x=>x.value==value);
         this.activebtn=this.array?.button.find(x=>x.value==value);
+        this.reminderfilter=this.activebtn?.form?.reminderfilter;
 
  
     if(this.activebtn?.form?.bdoassigned==true || this.activebtn?.form?.lmassigned==true||this.activebtn?.form?.assign==true){
@@ -310,9 +313,9 @@ console.log(data,'luf')
   addNextActionItemFormGroup(): FormGroup {
     return this.formbuilder.group({
       ID: [0],
-      nextaction: [''],
-      deadline: [''],
-      remarks: [''],
+      nextaction: ['',Validators.required],
+      deadline: ['',Validators.required],
+      remarks: ['',Validators.required],
      
      
     });
@@ -368,6 +371,8 @@ if(nodalid!=""){
           this.ForwardForm.controls['assigntobdo'].setValidators([Validators.required]);
           this.ForwardForm.controls['assigntobdo'].updateValueAndValidity();
         }
+        
+
         if(this.activebtn?.form?.lmassigned==true){
           this.ForwardForm.controls['assigntolm'].setValidators([Validators.required]);
           this.ForwardForm.controls['assigntolm'].updateValueAndValidity();
@@ -418,7 +423,11 @@ if(nodalid!=""){
         this.UploadFileViewModel.assigntobdo = this.ForwardForm.get('assigntobdo').value;
         this.UploadFileViewModel.assigntolm = this.ForwardForm.get('assigntolm').value;
         this.UploadFileViewModel.assignto=this.ForwardForm.get('assignto').value;
-        this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
+        if(this.activebtn?.form?.reminder==true){
+          this.UploadFileViewModel.remindertype = this.ForwardForm.get('remindertype').value;
+        }
+     
+       
         this.UploadFileViewModel.organization = this.ForwardForm.get('organization').value;
         if(this.activebtn?.form?.toggle){
         this.UploadFileViewModel.booleancheck = this.ForwardForm.get('booleanvalue').value;
@@ -461,8 +470,10 @@ controls
 
         }
         else{
-          this.ForwardForm.get('nextactiondata').clearValidators();
-          this.ForwardForm.get('nextactiondata').updateValueAndValidity();
+         
+          let frmArray = this.ForwardForm.get('nextactiondata') as FormArray;
+frmArray.clear();
+         
 
         }
         

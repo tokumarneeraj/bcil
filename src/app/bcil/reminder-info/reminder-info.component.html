@@ -16,6 +16,29 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                  <label class="col-form-label col-md-3" for="roleName">Next Stage Name</label>
+                  
+                  <div class="col-md-9">
+                    <label *ngIf="editmode" class="col-form-label col-md-3" for="roleName">{{nextstagetext}}</label>
+                      <!-- <select *ngIf="!editmode"  class="form-control"  formControlName="nextstage" >
+                        <option value=''>Choose</option>
+                        <option *ngFor="let st of NextStatusMaster" value="{{st.status_code}}">{{st.status_name}}--{{st.stagetype}}</option>
+                      </select> -->
+                      <ng-select *ngIf="!editmode"  size="1" id="roles-user-info" name="nextstage" formControlName="nextstage"  [items]="NextStatusMaster" bindLabel="status_code" bindValue="status_code" [multiple]="true" [closeOnSelect]="false"
+                      placeholder="Select "   class="form-control left-status pill-items" >
+             <ng-template ng-label-tmp let-item="item" let-clear="clear">
+               <span title='{{item.status_name}}' class='badge badge-pill badge-secondary'>{{item.status_name}}--{{item.stagetype}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+             </ng-template>
+   
+             <ng-template ng-option-tmp let-item="item">
+               <span title='{{item.status_name}}' class='badge badge-pill badge-secondary'>{{item.status_name}}--{{item.stagetype}}</span>
+               <i class="fa fa-check d-none"></i>
+             </ng-template>
+           </ng-select>
+                      <p   *ngIf="submitted && f.nextstage.errors && !editmode ||customrem==false" class="invalid-feedback">required</p>
+                  </div>
+              </div>
+                <div class="form-group row">
                   <label class="col-form-label col-md-3" for="roleName">Deadline</label>
                   <div class="col-md-9">
                     <input type="text" value=""  class="form-control" formControlName="deadlineinputtime"/>
@@ -31,10 +54,21 @@
                 <label class="col-form-label col-md-3" for="roleName">Owner</label>
                 <div class="col-md-9">
                   <label *ngIf="customrem==true" class="col-form-label col-md-3" for="roleName">{{userRoles}}</label>
-                    <select  *ngIf="customrem==false"  class="form-control" formControlName="owner">
+                    <!-- <select  *ngIf="customrem==false"  class="form-control" formControlName="owner">
                       <option value="">Choose</option>
                       <option *ngFor="let rol of Role" value="{{rol.id}}">{{rol.name}}</option>
-                    </select>
+                    </select> -->
+                    <ng-select  size="1"  name="owner" formControlName="owner" (change)="selectedowner($event)" [items]="Role" bindLabel="name" bindValue="id" [multiple]="true" [closeOnSelect]="false"
+                    placeholder="Select "   class="form-control left-status pill-items" required>
+           <ng-template ng-label-tmp let-item="item" let-clear="clear">
+             <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+           </ng-template>
+ 
+           <ng-template ng-option-tmp let-item="item">
+             <span title='{{item.name}}' class='badge badge-pill badge-secondary'>{{item.name}}</span>
+             <i class="fa fa-check d-none"></i>
+           </ng-template>
+         </ng-select>
                     <p *ngIf="submitted && f.owner.errors" class="invalid-feedback">required</p>
                 </div>
             </div>

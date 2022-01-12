@@ -3354,7 +3354,12 @@
 						"assignlabel": "IPM/IBM",
 						"assignarray": ["IPM", "BDM"]
 
-					}
+					}},{
+					"text": "Closure",
+					"class": "btn btn-info",
+					"title": "",
+					"value": "S426"
+					
 				}]
 			}, {
 				"stage": "copyright_common_ip",
@@ -3560,6 +3565,12 @@
 					"class": "btn btn-primary",
 					"title": "",
 					"value": "S767"
+				},{
+					"text": "Closure",
+					"class": "btn btn-info",
+					"title": "",
+					"value": "S425"
+					
 				}]
 			}, {
 				"stage": "copyright_common_ip",
@@ -3573,6 +3584,12 @@
 					"class": "btn btn-primary",
 					"title": "",
 					"value": "S768"
+				},{
+					"text": "Closure",
+					"class": "btn btn-info",
+					"title": "",
+					"value": "S426"
+					
 				}]
 			},
 			 {
@@ -4065,6 +4082,12 @@
 					"assignlabel": "IPM/IBM",
 					"assignarray": ["IPM", "BDM"]
 				}
+			},{
+				"text": "Closure",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S423"
+				
 			}]
 		}, {
 			"stage": "design_common_ip",
@@ -4270,6 +4293,12 @@
 				"class": "btn btn-success",
 				"title": "",
 				"value": "S730"
+			},{
+				"text": "Closure",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S422"
+				
 			}]
 		}, {
 			"stage": "design_common_ip",
@@ -4283,6 +4312,12 @@
 				"class": "btn btn-success",
 				"title": "",
 				"value": "S731"
+			},{
+				"text": "Closure",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S423"
+				
 			}]
 		}, 
 		 {
@@ -5756,9 +5791,10 @@
 				"value": "S171",
 				"form": {
 					"assign": true,
-					"assignlabel": "IPM/IBM/LM",
-					"assignarray": ["IPM", "BDM", "LM"]
-					
+					"assignlabel": "IPM/BDM/LM",
+					"assignarray": ["IPM", "BDM", "LM"],
+					"reminder": true,
+					"reminderfilter": ["mis"]
 				}
 			}]
 		},

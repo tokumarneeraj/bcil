@@ -21,8 +21,9 @@ scripts:string;
         const dynamicScripts = [
           './assets/js/jquery/jquery.min.js',
           './assets/js/jquery-ui/jquery-ui.min.js',
-          './assets/js/popper.js/popper.min.js',
+         
           './assets/js/bootstrap/js/bootstrap.min.js',
+          './assets/js/popper.js/popper.min.js',
           './assets/pages/widget/excanvas.js',
           './assets/pages/waves/js/waves.min.js',
           './assets/js/jquery-slimscroll/jquery.slimscroll.js',

@@ -62,6 +62,7 @@
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Name</th>
+                                                               
                                                                 <th>Deadline</th>
                                                                 <th></th>
                                                                 <th >Lapse Reminder</th>
@@ -75,6 +76,7 @@
                                                             <tr >
                                                                 <td   rowspan="3" scope="row">{{i+1}}</td>
                                                                 <td  rowspan="3">{{row.stagename}}</td>
+                                                              
                                                                 <td  rowspan="3">{{row.deadlineinputtime}}-{{row.deadlinetimetype}}</td>
                                                                 <td>Low</td>
                                                                 <td>{{row.lapselowreminputtime}}-{{row.lapselowremtypetime}}</td>
@@ -196,7 +198,7 @@
         </button>
             </div>
             <div class="modal-body">
-              <app-reminder-info #reminderEditor [isGeneralEditor]="true" [StatusMaster]="StatusMaster" [customrem]="customrem" [Role]="Role" [mouref]="appref" [editmode]="editmode"></app-reminder-info>
+              <app-reminder-info #reminderEditor [isGeneralEditor]="true" [StatusMaster]="StatusMaster" [NextStatusMaster]="NextStatusMaster"  [customrem]="customrem" [Role]="Role" [mouref]="appref" [editmode]="editmode"></app-reminder-info>
             </div>
         </div>
     </div>

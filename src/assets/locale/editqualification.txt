@@ -1,0 +1,420 @@
+import React, { useState, useEffect } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
+import ClockLoader from "react-spinners/ClockLoader";
+import NavBarDashBoard from "./NavBarDashBoard";
+import { css } from "@emotion/react";
+import SideBarDashBoard from "./SideBarDashBoard";
+import AxiosApi from "../../AxiosApi";
+import { yupResolver } from "@hookform/resolvers/yup";
+import classNames from "classnames";
+import { EditQualificationValidation } from "../HomePage/ValidationForm";
+import Select from "react-select";
+import e from "cors";
+//import { handleInputChange } from "react-select/dist/declarations/src/utils";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  color: red;
+`;
+const gradeOptions = [
+  { value: "10", label: "A+" },
+  { value: "9", label: "A" },
+  { value: "8", label: "B+" },
+  { value: "7", label: "B" },
+  { value: "6", label: "C+" },
+  { value: "5", label: "C" },
+];
+
+const selectedOptions = [
+  { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
+  { value: "blue", label: "Blue", color: "#0052CC", isDisabledd: true },
+  { value: "purple", label: "Purple", color: "#5243AA" },
+  { value: "red", label: "Red", color: "#FF5630", isFixed: true },
+  { value: "orange", label: "Orange", color: "#FF8B00" },
+  { value: "yellow", label: "Yellow", color: "#FFC400" },
+  { value: "green", label: "Green", color: "#36B37E" },
+  { value: "forest", label: "Forest", color: "#00875A" },
+  { value: "slate", label: "Slate", color: "#253858" },
+  { value: "silver", label: "Silver", color: "#666666" },
+];
+const EditQualification = () => {
+  const LocalStorageData = JSON.parse(localStorage.getItem("loggedin"));
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode: "onTouched",
+    resolver: yupResolver(EditQualificationValidation),
+  });
+  const [loading, setLoading] = useState(false);
+  const [color] = useState("#047edf");
+  const [PrintQualification, setPrintQualification] = useState([]);
+  const [updatedData, setUpdatedData] = useState([]);
+  const [selectData, setSelectData] =  useState([]);
+  const [qualificationData, setQualificationData] = useState([]);
+  const [subjectsResp, setSubjectsResp] = useState([]);
+  const [selectedOption, setSelectedOption] = useState([]);
+  
+  const inputEvent = (event) => {
+    const { name, value } = event.target;
+    setUpdatedData((preValue) => {
+      return {
+        ...preValue,
+        [name]: value,
+      };
+    });
+  };
+
+  
+  useEffect(() => {
+    async function fetchData() {
+      //Get Qualification Details ====================>
+      const PrintQualificationResult = await AxiosApi.get(
+        `/Candidate/PrintQualification?rid=${LocalStorageData.rid}`
+      );
+      const PrintQualificationResp = PrintQualificationResult.data;
+      setPrintQualification(PrintQualificationResp);
+      //Get Qualification DropDown Details ====================>
+
+      const GetQualificationResult = await AxiosApi.get(
+        "/Home/Get_Qualification"
+      );
+      const GetQualificationResp = GetQualificationResult.data;
+      const Qualifiacation = GetQualificationResp.map((val) => ({
+        value: val.id,
+        label: val.name,
+      }));
+
+      setQualificationData(Qualifiacation);
+      //Get Subjects DropDown Details ====================>
+      const GetSubjectsResult = await AxiosApi.get("/Home/Get_Subject");
+      const GetSubjectsResp = GetSubjectsResult.data;
+      const Subjects = GetSubjectsResp.map((val) => ({
+        value: val.id,
+        label: val.name,
+      }));
+      setSubjectsResp(Subjects);
+      // Loading ====================>
+      //console.warn("GetData", qualificationData[0]);
+      setLoading(false);
+    }
+    
+    fetchData();
+  }, [updatedData, selectData]);
+
+  const onSubmit = () => {
+   
+     alert("")
+    let json = {
+      id: 0,
+      rId: LocalStorageData.rid,
+      qtype: selectData.qtype,
+      universityBoard: updatedData.universityBoard,
+      yearofPassing: updatedData.yearofPassing,
+      maxMarks: updatedData.maxMarks,
+      marksObtained: updatedData.marksObtained,
+      grade: updatedData.grade,
+      majorStream: "355",
+      idMajorStream: "string",
+      subData: "string",
+      subjects: selectedOption.subjects,
+      idSubjects: "string",
+      cdate: "string",
+    };
+    console.log("result", json);
+    async function fetchDatas() {
+      const result = await AxiosApi.post(`/Candidate/AddQualification`, json);
+      if (result.data == "Success") {
+        
+        setUpdatedData({ universityBoard: "", yearofPassing : "" ,maxMarks : "" , marksObtained:"",grade :""});
+        //setSelectedOption({subjects: []})
+        //fetchData();
+        reset();
+        //setUpdatedData({qtype:null});
+      }
+     // console.log("result", result);
+    }
+    fetchDatas();
+  };
+  console.log("watch", watch());
+  const test = () => {    
+    setSelectData((preValue) => {
+      return {
+        ...preValue,
+        qtype: null,
+      };
+    });
+    console.log("err", selectData.qtype, selectData)
+  };
+  
+
+  return (
+    <body>
+      <div className="container-scroller">
+        <NavBarDashBoard />
+        <div className="container-fluid page-body-wrapper">
+          <SideBarDashBoard />
+          <div className="main-panel">
+            <div className="content-wrapper">
+              <div className="page-header">
+                <h3 className="page-title">
+                  <span className="page-title-icon bg-gradient-primary text-white mr-2">
+                    <i className="mdi mdi-tooltip-edit"></i>
+                  </span>
+                  Qualifications
+                </h3>
+                <nav aria-label="breadcrumb">
+                  <ul className="breadcrumb">
+                    <li className="breadcrumb-item" aria-current="page">
+                      <span></span>
+                      {/* <button onClick={() => append({})}>Add User</button> */}
+                      <i className="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+              {loading ? (
+                // Loading Spinner
+                <ClockLoader
+                  color={color}
+                  loading={loading}
+                  css={override}
+                  size={150}
+                />
+              ) : (
+                <>
+                  <div className="row">
+                    <div className="col-12 grid-margin">
+                      <div className="card">
+                        <div
+                          className="card-body"
+                          style={{ background: "#ffffff" }}
+                        >
+                          <h4 className="card-title text-info ">
+                            Add/delete Qualification
+                          </h4>
+                          <div className="table-responsive">
+                            <table className="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th> Qualification </th>
+                                  <th> University/Board </th>
+                                  <th> Year of Passing </th>
+                                  <th> Max Marks</th>
+                                  <th>Marks Obtained </th>
+                                  <th> Grade </th>
+                                  <th>Major/Stream </th>
+                                  <th>Subjects</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {PrintQualification.map((value, index) => {
+                                  return (
+                                    <>
+                                      <tr key={index}>
+                                        <td>{value.qtype}</td>
+                                        <td>{value.universityBoard}</td>
+                                        <td>{value.yearofPassing}</td>
+                                        <td>{value.maxMarks}</td>
+                                        <td>{value.marksObtained}</td>
+                                        <td>{value.grade}</td>
+                                        <td>{value.majorStream}</td>
+                                        <td>{value.subjects}</td>
+                                        <td>{value.cdate}</td>
+                                      </tr>
+                                      
+                                    </>
+                                  );
+                                })}
+                                <tr>
+                                  <td>
+                                    <Select
+                                         
+                                      isSearchable   
+                                      isClearable 
+                                      //defaultInputValue={updatedData.qtype }
+                                      //defaultValue={updatedData.qtype}                   
+                                      onChange={(e) => {
+                                        //console.log("2", e)
+                                        setSelectData((preValue) => {
+                                          return {
+                                            ...preValue,
+                                            qtype: e==null?e:e.value,
+                                          };
+                                        });
+                                         
+                                      }}
+                                     
+                                      options={
+                                        qualificationData.map((item) => ({
+                                          ...item,
+                                          isDisabled: PrintQualification.map((value, index) => {return (value.qtype)}) .includes(
+                                            item.label
+                                          ),
+                                        }))}
+                                       
+                                    />
+                                    
+                                  </td>
+                                  <td>
+                                    <input
+                                      className={classNames("form-control", {
+                                        "is-invalid": errors.universityBoard,
+                                      })}
+                                      {...register("universityBoard")}
+                                      onChange={inputEvent}
+                                      value={updatedData.universityBoard}
+                                    />
+                                    <small className="invalid-feedback">
+                                      {errors.universityBoard?.message}
+                                    </small>
+                                  </td>
+                                  <td>
+                                    <input
+                                      className={classNames("form-control", {
+                                        "is-invalid": errors.yearofPassing,
+                                      })}
+                                      {...register("yearofPassing")}
+                                      type="text"
+                                      onChange={inputEvent}
+                                      value={updatedData.yearofPassing}
+                                      maxLength={4}
+                                    />
+                                     <small className="invalid-feedback">
+                                      {errors.yearofPassing?.message}
+                                    </small>
+                                    
+                                  </td>
+                                  <td>
+                                    <input
+                                      className={classNames("form-control", {
+                                        "is-invalid": errors.maxMarks,
+                                      })}
+                                      {...register("maxMarks")}
+                                      type="text"
+                                      onChange={inputEvent}
+                                      value={updatedData.maxMarks}
+                                      maxLength={4}
+                                    />
+                                    
+                                     <small className="invalid-feedback">
+                                      {errors.maxMarks?.message}
+                                    </small>
+                                  </td>
+                                  <td>
+                                    <input
+                                      className={classNames("form-control", {
+                                        "is-invalid": errors.marksObtained,
+                                      })}
+                                      {...register("marksObtained")}
+                                      type="text"
+                                      onChange={inputEvent}
+                                      value={updatedData.marksObtained}
+                                      maxLength={4}
+                                    />
+                                     <small className="invalid-feedback">
+                                      {errors.marksObtained?.message}
+                                    </small>
+                                  </td>
+                                  <td>
+                                    <input
+                                      className={classNames("form-control", {
+                                        "is-invalid": errors.grade,
+                                      })}
+                                      {...register("grade")}
+                                      onChange={inputEvent}
+                                      value={updatedData.grade}
+                                      maxLength={2}
+                                    />
+                                     <small className="invalid-feedback">
+                                      {errors.grade?.message}
+                                    </small>
+                                  </td>
+                                  <td>
+                                    <input
+                                      className= "form-control" 
+                                      {...register("majorStream")}
+                                      onChange={inputEvent}
+                                      value={updatedData.majorStream}
+                                    />
+                                  </td>
+                                  <td>
+                                    <Select
+                                      isMulti
+                                      options={subjectsResp}
+                                      {...register("subjects")}
+                                      onChange={(e) => {
+                                        console.log(e);
+                                        let rr = e;
+                                        setSelectedOption({
+                                          ...selectedOption,
+                                          subjects: e.map((item) => {
+                                            return item.value;
+                                          }),
+                                        });
+                                      }}
+                                    />
+                                    {/* {subjectsResp.map((val, ind) => {
+                                          return (
+                                            <option key={ind}>
+                                              {val.name}
+                                              {val.value}
+                                            </option>
+                                          );
+                                        })} */}
+                                  </td>
+                                  <td>
+                                    <form
+                                      className="pt-2 forms-sample"
+                                      onSubmit={handleSubmit(onSubmit)}
+                                      autoComplete="off"
+                                    >
+                                      <button
+                                        className="btn btn-gradient-success  btn-sm"
+                                        type="submit"
+                                        
+                                      >
+                                        Add +
+                                      </button>
+                                       <button onClick={test}>reset</button>
+                                     
+                                    </form>
+                                   
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 grid-margin">
+                      <div className="card">
+                        <div
+                          className="card-body"
+                          style={{ background: "#ffffff" }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            {/* <FooterDashBoard /> */}
+          </div>
+        </div>
+      </div>
+    </body>
+  );
+};
+
+export default EditQualification;

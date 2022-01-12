@@ -17,6 +17,8 @@ export class ReminderInfoComponent implements OnInit {
   userRoles:string;
   constructor(private forms: FormBuilder,private alertService: AlertService,private bdoservice:Bdoservice,private accountService: AccountService) {
     this.userRoles = this.accountService.currentUser.roles.join(',');
+    this.NextStatusMaster=this.StatusMaster;
+    console.log(this.StatusMaster)
 
    }
   public formResetToggle = true;
@@ -41,6 +43,8 @@ ReminderInfoForm: FormGroup;
   editmode = false;
   @Input()
   StatusMaster:StatusMaster[];
+  @Input()
+  NextStatusMaster:StatusMaster[];
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
   @Input()
@@ -50,6 +54,7 @@ ReminderInfoForm: FormGroup;
   @ViewChild('f')
   public form;
 stagetext:string;
+nextstagetext:string;
 tempsection:string;
   // ViewChilds Required because ngIf hides template variables from global scope
   @ViewChild('stateName')
@@ -146,6 +151,7 @@ tempsection:string;
     
     this.ReminderInfoForm = this.forms.group({
       stage: ['', Validators.required],
+      nextstage: ['', Validators.required],
       typereminder:['1',Validators.required],
       deadlineinputtime: ['0', Validators.required],
       deadlinetimetype:['NA',Validators.required],
@@ -204,6 +210,8 @@ tempsection:string;
   //  this.ReminderInfoForm.get('deadlineinputtime').setValue(reminder.mouref);
 this.ReminderInfoForm.get('deadlineinputtime').setValue(reminder.deadlineinputtime);
 this.ReminderInfoForm.get('stage').setValue(reminder.stage);
+this.ReminderInfoForm.get('nextstage').setValue(reminder.nextstage);
+this.nextstagetext=this.NextStatusMaster?.find(x=>x.status_code==reminder.nextstage)?.status_name;
 this.stagetext=this.StatusMaster?.find(x=>x.status_code==reminder.stage)?.status_name;
 this.ReminderInfoForm.get('deadlinetimetype').setValue(reminder.deadlinetimetype);
 this.ReminderInfoForm.get('owner').setValue(reminder.owner);
@@ -238,9 +246,10 @@ return reminder;
     // if (this.ReminderInfoForm.invalid) {
     //       return;
     //   }
+    
     this.isLoading = true;
     this.alertService.startLoadingMessage('Saving changes...');
-
+    
     this.bdoservice.EditReminder(this.ReminderInfoForm.value,this.mouref).subscribe(data=>{
       this.alertService.stopLoadingMessage();
 
@@ -253,9 +262,12 @@ return reminder;
     });
     //this.editorModal1.hide();
   }
+  selectedowner(data){
+
+  }
   save(){
     this.submitted = true;
-
+console.log(this.ReminderInfoForm.value)
     if (this.ReminderInfoForm.invalid) {
           return;
       }

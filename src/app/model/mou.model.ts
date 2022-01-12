@@ -176,6 +176,7 @@ export class booleanvalue{
 export class Reminder{
 
   public stage:string;
+  public nextstage:string;
   public stagetype:string;
   public typereminder:string;
 
