@@ -73,6 +73,9 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
  get updateboolvalueurl(){ return environment.baseUrl + '/api/bdo/updatebooleanvalue';}
     get datapermission(){return environment.baseUrl + '../../';}
 
+ get snoozenotificationurl(){ return environment.baseUrl + '/api/bdo/snoozenotification';}
+ get urlallnotificationurl(){ return environment.baseUrl + '/api/bdo/getallnotification';}
+
     get rejectappurl(){return environment.baseUrl + '/api/bdo/rejectapp';}
     UserId:string;
     constructor(http: HttpClient ,private accountService: AccountService, authService: AuthService){
@@ -539,7 +542,16 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
             //       return this.handleError(error, () =>{});
             //     }));
             }
-
+  public  SnoozeNotification<T>(notification :notificationmodel): Observable<any> {
+        
+              const headers = new HttpHeaders({
+                    
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json, text/plain, */*'
+                  });
+              
+                  return this.http.post<any>(this.snoozenotificationurl, JSON.stringify(notification),{headers:headers});
+            }
             public  GetNotification<T>(): Observable<notificationmodel[]> {
         
               const endpointUrl = `${this.getallnotificationurl}/${this.UserId}`;
@@ -549,7 +561,16 @@ get getscientistbynodalorgurl(){return environment.baseUrl+'/api/bdo/scibyorg'}
             //       return this.handleError(error, () =>{});
             //     }));
             }
-
+            public  AllNotification<T>(): Observable<notificationmodel[]> {
+        
+              const endpointUrl = `${this.urlallnotificationurl}`
+            
+              return this.http.get<notificationmodel[]>(endpointUrl);
+            //   .pipe<mouModel>(
+            //     catchError(error => {
+            //       return this.handleError(error, () =>{});
+            //     }));
+            }
             public  Notificationseen<T>(data:string): Observable<notificationmodel[]> {
         
               const endpointUrl = `${this.notificationseenurl}/${data}`;

@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppErrorHandler } from './app-error.handler';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { KeysPipe } from './pipes/keys.pipe';
+import { NavService } from './services/nav.service';
 
 
 // import { HeaderComponent } from './header/header.component';
@@ -48,6 +49,7 @@ import { KeysPipe } from './pipes/keys.pipe';
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+   
    
     ToastaModule.forRoot(),
     TooltipModule.forRoot(),
@@ -76,6 +78,7 @@ import { KeysPipe } from './pipes/keys.pipe';
     AccountService,
     AccountEndpoint,
     LocalStoreManager,
+    NavService,
    
     OidcHelperService,],
   bootstrap: [AppComponent]

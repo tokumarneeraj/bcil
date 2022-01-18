@@ -12,8 +12,7 @@ import { Bdoservice } from "../services/bdo.service";
 import { DBkeys } from "../services/db-keys";
 import { LocalStoreManager } from "../services/local-store-manager.service";
 import { Permission, PermissionValues } from "./permission.model";
-import { otherpermission } from "./role.model";
-import { Observable, Subject, of } from 'rxjs';
+
 
 
 

@@ -578,6 +578,7 @@
 					"value": "S114",
 					"form": {
 						"reminder": true,
+						"reminderfilter":["tta","tlp","nttsa","tstl"],
 						"bdoassigned": true,
 						"fileuploadreq": true
 					}
@@ -750,9 +751,9 @@
 
 		{
 			"stage": "tta",
-			"tablename": "TTA Strategy Change Request by Admin",
-			"formheader": "TTA Strategy Change Request by Admin",
-			"heading": "TTA Strategy Change Request by Admin",
+			"tablename": "TT Revised Strategy required",
+			"formheader": "TT Revised Strategy required",
+			"heading": "TT Revised Strategy required",
 			"type": "tta_strategy_change_req_by_admin",
 			"value": "S125",
 			"color": "dark-blue",
@@ -1402,7 +1403,7 @@
 					"heading": "Change request by Admin",
 					"type": "la_change_req_by_admin",
 					"value": "S156",
-					"color": "orange",
+					"color": "red",
 					"button": [{
 						"text": "Update license agreement",
 						"class": "btn btn-primary",
@@ -1574,6 +1575,8 @@
 					"value": "S602",
 					"form": {
 						"assign": true,
+						"reminder": true,
+						"reminderfilter":["pfer","pera","pfp","pda","prfe"],
 						"assignlabel": "IPM/BDM",
 						"assignarray": ["IPM", "BDM"]
 					}
@@ -2137,6 +2140,11 @@
 								"name": "required",
 								"validator": "required",
 								"message": "Filing Date Required"
+							},
+							{
+								"name": "comparefilingdate",
+								"validator": "invalidDate",
+								"message": "Filing Date Required"
 							}]
 
 						},
@@ -2207,6 +2215,12 @@
 						}
 					]
 				}
+			},
+			{
+				"text": "Forward Request For Examination",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S644"
 			}]
 		}, {
 			"stage": "patentfinalfiling",
@@ -2216,13 +2230,7 @@
 			"type": "provisional_filing_done_atluf",
 			"value": "S623",
 			"color": "red",
-			"button": [{
-				"text": "Forward",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S624" 
-				
-			}]
+			"button": []
 		}, {
 			"stage": "patentfinalfiling",
 			"tablename": "Final Patent Filing Done By Luf",
@@ -2232,12 +2240,7 @@
 			"value": "S621",
 			"color": "green",
 			"button": [
-			{
-				"text": "Forward Request For Examination",
-				"class": "btn btn-primary",
-				"title": "",
-				"value": "S644"
-			}]
+			]
 		}, {
 			"stage": "patentfinalfiling",
 			"tablename": "Final Patent Filing Shared With Client",
@@ -2456,6 +2459,8 @@
 				"title": "",
 				"value": "S633",
 				"form": {
+				"reminder": true,
+						"reminderfilter":["pff"],
 					"assign": true,
 					"assignlabel": "LUF",
 					"assignarray": ["LUF"]
@@ -3351,7 +3356,9 @@
 					"value": "S756",
 					"form": {
 						"assign": true,
-						"assignlabel": "IPM/IBM",
+						"reminder": true,
+					"reminderfilter":["copyright_coip","copyright_er_er","copyright_er_accp"],
+						"assignlabel": "IPM/BDM",
 						"assignarray": ["IPM", "BDM"]
 
 					}},{
@@ -4079,7 +4086,9 @@
 				"value": "S719",
 				"form": {
 					"assign": true,
-					"assignlabel": "IPM/IBM",
+					"assignlabel": "IPM/BDM",
+					"reminder": true,
+					"reminderfilter":["design_coip","design_er_er","design_er_accp"],
 					"assignarray": ["IPM", "BDM"]
 				}
 			},{
@@ -4806,7 +4815,9 @@
 				"value": "S681",
 				"form": {
 					"assign": true,
-					"assignlabel": "IPM/IBM",
+					"reminder": true,
+						"reminderfilter":["trade_coip","trade_er_er","trade_er_accp"],
+					"assignlabel": "IPM/BDM",
 					"assignarray": ["IPM", "BDM"]
 				}
 			},{
@@ -5587,7 +5598,7 @@
 				"value": "S793",
 				"form": {
 					"assign": true,
-					"assignlabel": "IPM/IBM/LM",
+					"assignlabel": "IPM/BDM/LM",
 					"assignarray": ["IPM", "BDM", "LM"]
 				}
 			}]
@@ -6135,7 +6146,7 @@
 					"text": "Forward",
 					"class": "btn btn-primary",
 					"title": "",
-					"value": "S813"
+					"value": "S813","form":{"mappedinvoice":true}
 				}
 				]
 			}
@@ -6151,7 +6162,7 @@
 				"text": "Forward",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S815","form":{"mappedinvoice":true}
+				"value": "S815"
 			},
 			{
 				"text": "Reject",

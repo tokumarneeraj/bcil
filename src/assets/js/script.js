@@ -188,7 +188,7 @@ $(document).ready(function() {
     });
     // /*chatbar js end*/
 
-    $('[data-toggle="tooltip"]').tooltip();
+   // $('[data-toggle="tooltip"]').tooltip();
 
     // wave effect js
     Waves.init();
@@ -197,14 +197,14 @@ $(document).ready(function() {
     Waves.attach('.float-button-light', ['waves-button', 'waves-float', 'waves-light']);
     Waves.attach('.flat-buttons', ['waves-button', 'waves-float', 'waves-light', 'flat-buttons']);
 });
-$(document).ready(function() {
-    $(".theme-loader").animate({
-        opacity: "0"
-    },1000);
-    setTimeout(function() {
-        $(".theme-loader").remove();
-    }, 800);
-});
+// $(document).ready(function() {
+//     $(".theme-loader").animate({
+//         opacity: "0"
+//     },1000);
+//     setTimeout(function() {
+//         $(".theme-loader").remove();
+//     }, 800);
+// });
  
 // toggle full screen
 function toggleFullScreen() {

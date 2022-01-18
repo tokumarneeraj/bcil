@@ -26,6 +26,7 @@ export class UploadFileViewModel {
  public assigntobdo:string;
  public assigntolm:string;
   public  remindertype:string;
+  public clientinvoice:string;
   public createdon: string; 
   public milestones:milestones[];
   public nodal:nodalOfficer;
