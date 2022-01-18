@@ -327,13 +327,13 @@ console.log(this.ttadata,'uu')
 
   
   ttaListFilter(data) {
-   let yy=["tlp","nstta","tstl"]
+   let yy=["tlp","nttsa","tstl"]
     if(this.isSuperAdmin){
-      return this.ttaModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) ).length;
+      return this.ttaModel?.filter(x=>(yy.includes(data?.substage)?this.ttadata?.find(t=>t.substage==data?.substage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data?.value) ).length;
     }
     
     else{
-      return this.ttaModel?.filter(x=>(yy.includes(data)?this.ttadata?.find(t=>t.substage==data)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
+      return this.ttaModel?.filter(x=>(yy.includes(data?.substage)?this.ttadata?.find(t=>t.substage==data?.substage)?.subchild?.filter(r=>this.viewtab.includes(r.value)).some(e=>e.value==x.app_Status):x.app_Status==data?.value) && this.activeusermou?.some(t=>t.appref==x.refid) ).length;
     }
     // if (this.isNodal == true) {
     //   return this.mouModel?.filter(x => x.nodal_Name == this.UserName && x.app_Status == data).length;

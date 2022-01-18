@@ -9,7 +9,7 @@ import { activeusermou, clientInvoiceModel } from 'src/app/model/mou.model';
 import { milestones, UploadFileViewModel } from 'src/app/model/uploadFile.model';
 import { User } from 'src/app/model/user.model';
 import { AccountService } from 'src/app/services/account.service';
-import { AlertService } from 'src/app/services/alert.service';
+import { AlertService, DialogType,MessageSeverity } from 'src/app/services/alert.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { Utilities } from 'src/app/services/utilities';
 import { environment } from 'src/environments/environment';
@@ -181,18 +181,19 @@ if(data.message=="success"){
         this.invoice.organization=this.ForwardForm.get('clientname').value;
        // this.invoice.invoiceno= this.ForwardForm.get('subject').value;
         //this.invoice.invoiceno= this.ForwardForm.get('subject').value;
-       
+       this.submitted=true;
           if (this.ForwardForm.invalid) {
       return;
     }
-this.submitted=true;
+
     this.loading=true;
         this.Bdoservice.clientinvoice(this.invoice).subscribe((data) => {
          //  this.loading=false;
            this.submitted=false;
     if(data.message=="success"){
-          alert("Submitted Successfully")
-         
+        //  alert("Submitted Successfully")
+         this.alertService.showMessage('Data', `Submitted Successfully`, MessageSeverity.success);
+  
           this.editorModal.hide();
           this.router.navigateByUrl('bcil/account-dashboard')
     }

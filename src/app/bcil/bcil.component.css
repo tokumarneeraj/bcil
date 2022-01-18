@@ -6,3 +6,9 @@
 .disabled{
     background-color:#f1f1f1;
 }
+.matapp{
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    width: 100%;
+}

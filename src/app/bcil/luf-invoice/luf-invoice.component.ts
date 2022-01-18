@@ -8,7 +8,7 @@ import { activeusermou, LufInvoiceModel } from 'src/app/model/mou.model';
 import { milestones, UploadFileViewModel } from 'src/app/model/uploadFile.model';
 import { User } from 'src/app/model/user.model';
 import { AccountService } from 'src/app/services/account.service';
-import { AlertService } from 'src/app/services/alert.service';
+import { AlertService, DialogType,MessageSeverity } from 'src/app/services/alert.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { Utilities } from 'src/app/services/utilities';
 import * as $ from 'jquery'
@@ -106,7 +106,9 @@ this.totalsum=this.offsum+this.dissum+this.prosum;
              //  this.loading=false;
                this.submitted=false;
         if(data.message=="success"){
-              alert("Submitted Successfully")
+            this.alertService.showMessage('Data', `Submitted Successfully`, MessageSeverity.success);
+  
+             // alert("Submitted Successfully")
               this.editorModal.hide();
         }
             });
@@ -336,8 +338,9 @@ this.loading=true;
      //  this.loading=false;
        this.submitted=false;
 if(data.message=="success"){
-      alert("Submitted Successfully")
-     
+     // alert("Submitted Successfully")
+       this.alertService.showMessage('Data', `Submitted Successfully`, MessageSeverity.success);
+  
       this.editorModal.hide();
       if (this.changesSavedCallback) {
         this.changesSavedCallback();

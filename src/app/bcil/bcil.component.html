@@ -1,5 +1,56 @@
 <!-- <p>bcil works!</p> -->
-
+<div class="theme-loader">
+  <div class="loader-track">
+      <div class="preloader-wrapper">
+          <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left">
+                  <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                  <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                  <div class="circle"></div>
+              </div>
+          </div>
+          <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left">
+                  <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                  <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                  <div class="circle"></div>
+              </div>
+          </div>
+        
+          <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left">
+                  <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                  <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                  <div class="circle"></div>
+              </div>
+          </div>
+        
+          <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left">
+                  <div class="circle"></div>
+              </div>
+              <div class="gap-patch">
+                  <div class="circle"></div>
+              </div>
+              <div class="circle-clipper right">
+                  <div class="circle"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 <app-header></app-header>
 
 <div id="pcoded" class="pcoded">
@@ -63,21 +114,29 @@
                   <label class="label label-danger">New <span class="badge badge-light">{{notificationcount}}</span></label>
                 </li>
 
-                <li class="waves-effect waves-light" *ngFor="let n of noticfy_class;" [ngClass]="{'disabled':n.active==false}">
-                 <a routerLink="./{{n.url}}"> <div class="media" (click)="notificationseen(n.refid)">
+                <li class="waves-effect waves-light" *ngFor="let n of noticfy_class;let i=index" [ngClass]="{'disabled':n.active==false}">
+                <div class="media" >
                     <img class="d-flex align-self-center img-radius" src="assets/images/avatar-4.jpg" alt="Generic placeholder image">
                     <div class="media-body">
                       <h5 class="notification-user">{{n.user}}<span *ngIf="n.active" class="float-right badge badge-light">{{n.remindercategory}}</span></h5>
-                      <p class="notification-msg">{{n.message}}</p>
-                      <span class="notification-time">{{n.createdon}}</span>
+                      <p class="notification-msg" [innerHtml]="n.message"></p>
+                      <p><a (click)="urlclick(n)">Click Here</a>  <span class="notification-time">{{n.createdOn  |date:'medium'}}</span></p>
+                     
+                      
+                    
+                   
                     </div>
 
-                  </div>
-                </a>
+                
+                </div>
+                <!-- <a (click)="otherpermission()" href="javascript:;" class="p-3 btn-link"> <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'loading...' : 'Other Permission'}}</a>|  <a (click)="selectAll()" href="javascript:;" class="p-3 btn-link">SelectAll</a>|<a (click)="selectNone()" href="javascript:;" class="p-3 btn-link">SelectNone</a>
+              -->
+             
                 </li>
-
+               
+                     
               </ul>
-
+            
             </li>
             <li class="user-profile header-notification" (click)="toggle()">
               <a href="javascript:{}" class="userName">
@@ -91,6 +150,11 @@
                 <li class="waves-effect waves-light">
                   <a routerLink="./user-profile">
                     <i class="ti-user"></i> Profile
+                  </a>
+                </li>
+                <li class="waves-effect waves-light" *ngIf="isAdmin">
+                  <a routerLink="../bcil/bcil-notification-table">
+                    <i class="ti-bell"></i>All Notification
                   </a>
                 </li>
 
@@ -143,7 +207,7 @@
             <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
             <ul class="pcoded-item pcoded-left-item" >
               <li class="active index.html">
-                <a href="index.html" class="waves-effect waves-dark">
+                <a routerLink="../bcil/bcil-dashboard" class="waves-effect waves-dark">
                   <span class="pcoded-micon"><i class="ti-home"></i></span>
                   <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Dashboard</span>
                   <span class="pcoded-mcaret"></span>
@@ -183,7 +247,7 @@
                 </a>
               </li>
               <li class="pcoded-hasmenu" *ngIf="menu?.submenu==true" >
-                <a href="javascript:void(0)"  class="waves-effect waves-dark" (click)="loadscript()">
+                <a href="javascript:void(0)"  class="waves-effect waves-dark">
                   <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
                   <span class="pcoded-mtext" data-i18n="nav.dash.main">{{menu.menuheading}}</span>
                   <span class="pcoded-mcaret"></span>
@@ -200,19 +264,39 @@
                     </a>
                   </li>
                   <li class="pcoded-hasmenu" *ngIf="submenu?.menu==true"  >
-                    <a href="javascript:void(0)"  class="waves-effect waves-dark" (click)="loadscript()">
+                    <a href="javascript:void(0)"  class="waves-effect waves-dark" >
                       <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
                       <span class="pcoded-mtext"  data-i18n="nav.dash.main">{{submenu?.heading==undefined?submenu?.menuheading:submenu?.heading}}</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
-                    <ul class="pcoded-submenu fontWeight"  *ngIf="submenu?.menu==true">
-                      <li class=" " *ngFor="let submenu of subchildmenus(submenu?.stage,submenu?.substage)">
+                    <ul class="pcoded-submenu fontWeight" >
+                      <ng-container  *ngFor="let submenu of subchildmenus(submenu?.stage,submenu?.substage,'')">
+                      <li class="" *ngIf="submenu?.menu==false">
                         <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_additional_info_needed'}">
                           <span class="pcoded-micon"><i class="ti-layers"></i></span>
                           <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">{{submenu?.heading}}</span>
                           <span class="pcoded-mcaret"></span>
                         </a>
                       </li>
+                      <li class="pcoded-hasmenu" *ngIf="submenu?.menu==true"  >
+                        <a href="javascript:void(0)"  class="waves-effect waves-dark" >
+                          <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>D</b></span>
+                          <span class="pcoded-mtext"  data-i18n="nav.dash.main">{{submenu?.heading}}</span>
+                          <span class="pcoded-mcaret"></span>
+                        </a>
+                        <ul class="pcoded-submenu fontWeight"  >
+                          <ng-container  *ngFor="let submenu1 of subchildmenus(submenu?.stage,submenu?.substage,'child')">
+                          <li class="" >
+                            <a class="waves-effect waves-dark" routerLink='bcil-tta-table' [queryParams]="{type:'tta_additional_info_needed'}">
+                              <span class="pcoded-micon"><i class="ti-layers"></i></span>
+                              <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">{{submenu1?.heading}}</span>
+                              <span class="pcoded-mcaret"></span>
+                            </a>
+                          </li>
+                        </ng-container>
+                        </ul>
+                      </li>
+                    </ng-container>
                     </ul>
                   </li>
                 

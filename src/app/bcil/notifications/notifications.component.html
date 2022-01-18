@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-md-8">
                     <div class="page-header-title">
-                        <h5 class="m-b-10">{{array?.tablename}}</h5>
+                        <h5 class="m-b-10">Notifications</h5>
                         <p class="m-b-0">Welcome to Technology Transfer Office at BCIL</p>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
                         <li class="breadcrumb-item">
                             <a href="index.html"> <i class="fa fa-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#!">{{array?.tablename}}</a>
+                        <li class="breadcrumb-item"><a href="#!">Notifications</a>
                         </li>
                         <!-- <li class="breadcrumb-item"><a href="#!">Assignments</a>
                         </li> -->
@@ -34,7 +34,7 @@
                     <!-- Hover table card start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>{{array?.tablename}}</h5>
+                            <h5>Notifications</h5>
                             <!-- <span>use class <code>table-hover</code> inside table element</span> -->
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
@@ -52,37 +52,40 @@
                               <thead>
                                 <tr>
                                   <th>#</th>
-                                  <th>Patent No</th>
-                                  <th>Title</th>
-                                  <th>Remarks</th>
-                               <th>Action</th>
-                               <th *ngIf="viewhistory">History</th>
+                                  <th>Action</th>
+                              
+                                  <th>App No</th>
+                                  <th>Stage</th>
+                                  <th>User</th>
+                                  <th>Message</th>
+                                  <th>Reminder Type</th>
+                                  <th>Reminder Category</th>
+                              
                                                 
-                               <th *ngIf="viewadditionalfileright">Additional File</th>
-                               <th *ngIf="viewremark">Previous Remarks</th> 
+                              
                                 </tr>
                               </thead>
                               <tbody>
-                                  <tr *ngFor="let patent of patentModel;let i=index">
+                                  <tr *ngFor="let noti of noticfy_class;let i=index">
                                       <td>{{i+1}}</td>
-                                      <td>{{patent?.appno}}</td>
-                                      <td>{{patent?.subject}}</td>
-                                      <td>{{patent?.remark}}</td>
-                                     
                                       <td>
-                                          <ng-container *ngFor="let btn of array?.button">
-                                           
-                                            
-                                            <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,patent)">{{btn.text}}</button>
-                                                      
-                                          </ng-container>
-                                      </td>
+                                        <p>
+                                            <a *ngIf="noti.snoozecheck!='off'"   (click)="snoozebtn(noti,i)"><i *ngIf="noti.loading" class='fa fa-circle-o-notch fa-spin'></i>{{noti.loading? 'submitting...' : 'Snooze On'}}</a>
+                                            <a *ngIf="noti.snoozecheck=='off'"   (click)="snoozebtn(noti,i)"><i *ngIf="noti.loading" class='fa fa-circle-o-notch fa-spin'></i>{{noti.loading ? 'submitting...' : 'Snooze off'}}</a>
+                                            </p>
+                                     </td>
+                                      <td>{{noti?.mouref}}</td>
+                                      <td>{{noti?.stageon}}</td>
+                                      <td>{{noti?.userid}}</td>
+                                      <td  class="spandots" (click)="remarksview(noti.message)" [innerHtml]="noti.message"></td>
+                                      <td>{{noti?.remindertype=='1'?'Laspse Reminder':'DeadLine Line Reminder'}}</td>
+                                      <td>{{noti?.remindercategory}}</td>
+                                     
+                                
 
-                                      <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'patent',refid:patent?.refid}">View</a></td>
+                                      
                                       <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
-                                      <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(patent)" class="stretched-link">View</a></td>
-                                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(patent.forwardremark)">{{patent?.forwardremark}}</p></td>
-                                  </tr>
+                                    </tr>
                                   </tbody>
                                   </table>
                           </div>
@@ -91,5 +94,4 @@
                           <app-footer></app-footer>
                           </div>
             </div>
-            <app-addition-file></app-addition-file>
-            <app-activity [array]="array"></app-activity>
+          

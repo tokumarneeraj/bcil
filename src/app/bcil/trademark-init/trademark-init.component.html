@@ -79,7 +79,7 @@
                                       <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'trademark',refid:trademark?.refid}">View</a></td>
                                       <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
                                       <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(trademark)" class="stretched-link">View</a></td>
-                                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(trademark.remarks)">{{trademark?.remarks}}</p></td>
+                                      <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(trademark.forwardremark)">{{trademark?.forwardremark}}</p></td>
                                   </tr>
                                   </tbody>
                                   </table>

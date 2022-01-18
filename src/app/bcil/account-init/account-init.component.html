@@ -117,6 +117,7 @@
                                         <th>#</th>
                                         <th>Action</th>
                                         <th>Luf No</th>
+                                        <th  *ngIf="querytype!='luf_invoice'">Client Mapped</th>
                                         <th>Invoice No</th>
                                         <th>Invoice Date</th>
                                         <th>Application No</th>
@@ -136,6 +137,7 @@
                                                 </ng-container>
                                             </td>
                                             <td>{{account?.appno}}</td>
+                                            <td *ngIf="querytype!='luf_invoice'">{{account?.clientinvoice}}</td>
                                             <td>{{account?.invoiceno}}</td>
                                             <td>{{account?.invoicedate |date:'medium'}}</td>
                                             <td>{{account?.applicationno}}</td>
@@ -147,7 +149,7 @@
                                            
                                             
       
-                                            <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'account',refid:account?.refid}">View</a></td>
+                                            <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'account',refid:account?.refid}">View History</a></td>
                                             <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
                                             <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(account)" class="stretched-link">View</a></td>
                                             <td *ngIf="viewremark"><p class="spandots" (click)="remarksview(account.remarks)">{{account?.remarks}}</p></td>

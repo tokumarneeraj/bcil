@@ -141,11 +141,11 @@ this.ngOnInit();
       
     
     })
-    if(value=="S815"){
+    if(value=="S813"){
     var clientin=[];
     this.Bdoservice.GetClientInvoice('all').subscribe(data1 => {
       clientin=data1.filter(y=>(y.app_status=='S805'|| y.app_status=='S806') && y.active==true && y.lufmapped==false);
-      data={...data,clientinvoice:clientin,message:this.array?.tablename+' To '+yy,querystring:querystring};
+      data={...data,lufinvoice:this.lufInvocie,clientinvoice:clientin,message:this.array?.tablename+' To '+yy,querystring:querystring};
       this.activity.showviewmodel('account',value,data);
     });
   }

@@ -69,7 +69,8 @@
                <i class="fa fa-check d-none"></i>
              </ng-template>
            </ng-select>         
-        
+           <p *ngIf="submitted && f.activity.errors" class="invalid-feedback">Activity is required</p>
+                         
                     </div>
                       </div>
                       

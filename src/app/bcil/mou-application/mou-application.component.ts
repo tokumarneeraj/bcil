@@ -74,7 +74,7 @@ ForwardForm: FormGroup;
 this.stage=params.stage;
 this.Bdoservice.getdatapermission().subscribe(data=>{
           this.datapermission=data;
-this.array=data?.[this.stage].find(x=>x.type=='rejected');
+this.array=data?.[this.stage]?.find(x=>x.type=='rejected');
  });
     });
   }

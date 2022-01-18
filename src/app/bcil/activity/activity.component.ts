@@ -1,6 +1,8 @@
+import { formatDate } from '@angular/common';
 import { Component, Input, OnInit, ViewChild,ChangeDetectorRef } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common'
 import { timeline } from 'console';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { commondata } from 'src/app/model/common';
@@ -8,7 +10,8 @@ import { activeusermou } from 'src/app/model/mou.model';
 import { milestones, UploadFileViewModel } from 'src/app/model/uploadFile.model';
 import { User } from 'src/app/model/user.model';
 import { AccountService } from 'src/app/services/account.service';
-import { AlertService, DialogType } from 'src/app/services/alert.service';
+import { AlertService, DialogType,MessageSeverity } from 'src/app/services/alert.service';
+//import { AlertService,  } from 'src/app/services/alert.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { Utilities } from 'src/app/services/utilities';
 
@@ -30,8 +33,10 @@ export class ActivityComponent implements OnInit {
   userRoles:string[];
   viewtab:any;
   managetab:any;
+  priortydate:any;
   lufinvoice:any[];
   clientinvoice:any[];
+  
   viewadditionalfileright:any;
   commondata=new commondata();
   ForwardForm: FormGroup;
@@ -71,11 +76,12 @@ export class ActivityComponent implements OnInit {
   fields = [];
   reminderfilter=[];
   extrafield=['PCT'];
+  lufinvoicelist:any[];
 
   public changesSavedCallback: () => void;
   public changesFailedCallback: () => void;
   public changesCancelledCallback: () => void;
-  constructor(private cdRef: ChangeDetectorRef,private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder,  private accountService: AccountService, private router: Router) { 
+  constructor(public datepipe: DatePipe,private cdRef: ChangeDetectorRef,private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder,  private accountService: AccountService, private router: Router) { 
     this.UserId = this.accountService.currentUser.id;
     this.userRoles = this.accountService.currentUser.roles;
   }
@@ -113,6 +119,7 @@ export class ActivityComponent implements OnInit {
     assignto:[''],
     files:[''],
     clientinvocie:[''],
+    lufinvocie:[''],
     foreign:[''],
     booleanvalue:[false],
     milestonedata:this.formbuilder.array([this.addItemFormGroup()]),
@@ -154,6 +161,21 @@ export class ActivityComponent implements OnInit {
 console.log(this.fields)
        
       }
+       dateValidator(): ValidatorFn {
+     let  date1=new Date( this.dynamicForm?.value?.PRIPORITY_DATE);
+     let  date2=new Date(  this.dynamicForm?.value?.FILING_DATE);
+       
+        
+        return (control: AbstractControl): {[key: string]: any} | null => {
+          
+      
+          // return null if there's no errors
+          if(date2!=null && date1!=null)
+          return date1< date2 
+            ? {invalidDate: true } 
+            : null;
+        }
+      }
       selectedcountry(event: any[]){
         //this.countrys.push(event);
         //console.log(event[event.length-1]?.name);
@@ -173,6 +195,11 @@ if(this.fields!=undefined){
             if (val.name === 'required') {
               validationsArray.push(
                 Validators.required
+              );
+            }
+            if (val.name === 'comparefilingdate') {
+              validationsArray.push(
+                this.dateValidator()
               );
             }
             if (val.name === 'pattern') {
@@ -198,15 +225,27 @@ if(this.fields!=undefined){
           controls
         );
 }
+if(this.dynamicForm?.value?.PRIPORITY_DATE!==undefined && this.prioritydate!=undefined){
+  let dat= this.datepipe.transform(this.prioritydate, 'MM-dd-yyyy')
+   this.dynamicForm.controls["PRIPORITY_DATE"].setValue(formatDate(this.dateformat(this.prioritydate),'yyyy-MM-dd', 'en-US'));
+ }
           }
           selectedclient(data){
 
+          }
+          dateformat(d:any){
+            if(d!=null && d!=undefined){
+          d=d.split('-');
+            return d[1]+'/'+d[2]+'/'+d[0];
+            }
+           
           }
       showviewmodel(e?:string,value?:string,data?:any){
         this.cdRef.detectChanges();
         this.loading=false;
         this.process=e;
         this.message=data?.message;
+     this.prioritydate=data?.prioritydate;
         this.UploadFileViewModel.app_no=data?.appno ||data?.mou_no;
         this.UploadFileViewModel.querystring=data?.querystring;
 
@@ -217,6 +256,7 @@ if(this.fields!=undefined){
         this.appref=data?.refid;
         this.UploadFileViewModel.app_Status=value;
         this.lufinvoice=data?.lufinvoice;
+        this.lufinvoicelist=data?.lufinvoice?.filter(w=>w.organization==data?.organization);
         this.clientinvoice=data?.clientinvoice;
         this.foreignlist=data?.foreign;
 console.log(data,'luf')
@@ -412,10 +452,11 @@ if(nodalid!=""){
      }
        if(this.activebtn?.form?.mappedinvoice){
         let act=[];//this.ForwardForm.get('activity').value?.map(t=>({id==t.name}));
-        for(let rr of this.ForwardForm.get('clientinvocie').value){
-          act.push(this.clientinvoice.find(r=>r.appno==rr)?.refid);
+        for(let rr of this.ForwardForm.get('lufinvocie').value){
+          act.push(this.lufinvoicelist.find(r=>r.appno==rr)?.refid);
         }
         this.UploadFileViewModel.arraytype=act;
+        this.UploadFileViewModel.clientinvoice= this.ForwardForm.get('clientinvocie').value
        }
         this.UploadFileViewModel.subject = this.ForwardForm.get('subject').value;
         this.UploadFileViewModel.remarks = this.ForwardForm.get('remarks').value;
@@ -490,6 +531,12 @@ var tt=[];
     // }
     console.log( this.UploadFileViewModel,this.ForwardForm.get('milestonedata').value)
      // return false;
+     let  date1=new Date( this.dynamicForm?.value?.PRIPORITY_DATE);
+     let  date2=new Date(  this.dynamicForm?.value?.FILING_DATE);
+       if(date2<date1){
+         alert(" Filing Date Should be Greater Than Priority Date");
+         return false;
+       }
      if (this.dynamicForm.invalid) {
       return;
     }
@@ -516,7 +563,21 @@ if(data.message=="success"){
       if (this.changesSavedCallback) {
         this.changesSavedCallback();
       }
-      this.alertService.showDialog("Submitted Successfully", DialogType.confirm,()=>{this.redirectlink()})
+      this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
+  this.process=="tta"?this.router.navigateByUrl('bcil/tta-dashboard'):
+  this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
+  this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
+  this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
+  this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
+  this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):
+  this.process=="copyright"?this.router.navigateByUrl('bcil/copyright-dashboard'):
+  this.process=="account"?this.router.navigateByUrl('bcil/account-dashboard'):
+ // this.process=="lufinvocie"?this.router.navigateByUrl('bcil/account-dashboard'):
+  ''
+  ;
+  this.alertService.showMessage('Data', `Submitted Successfully`, MessageSeverity.success);
+              
+      //this.alertService.showDialog("Submitted Successfully", DialogType.confirm,()=>{this.redirectlink()})
         
       
     
@@ -534,18 +595,7 @@ if(data.message=="success"){
 
   redirectlink(){
   //this.ngOnInit();
-  this.process=="mou"? this.router.navigateByUrl('bcil/mou-dashboard'): 
-  this.process=="tta"?this.router.navigateByUrl('bcil/tta-dashboard'):
-  this.process=="mis"?this.router.navigateByUrl('bcil/mis-dashboard'):
-  this.process=="plant_varity"?this.router.navigateByUrl('bcil/plant-variety-dashboard'):
-  this.process=="patent"?this.router.navigateByUrl('bcil/patent-dashboard'):
-  this.process=="trademark"?this.router.navigateByUrl('bcil/trademark-dashboard'):
-  this.process=="design"?this.router.navigateByUrl('bcil/design-dashboard'):
-  this.process=="copyright"?this.router.navigateByUrl('bcil/copyright-dashboard'):
-  this.process=="account"?this.router.navigateByUrl('bcil/account-dashboard'):
- // this.process=="lufinvocie"?this.router.navigateByUrl('bcil/account-dashboard'):
-  ''
-  ;
+  
   }
   otherfileChangeEvent(event){
     if (event.target.files && event.target.files[0]) {

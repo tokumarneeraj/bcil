@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                   <input type="text"  class="form-control"  formControlName="nextaction" id="nextaction+i"/>
-                                  <p *ngIf="submitted && f.nextaction?.errors" class="invalid-feedback">Next Action is required</p>
+                                  <p *ngIf="submitted && nextactiondata.controls[i].get('nextaction').hasError('required')" class="invalid-feedback">Next Action is required</p>
                                                                 </div>
                                                                 <div class="col-sm-3">
                                                                   <input type="date"  class="form-control"  formControlName="deadline" id="deadline+i"/>
@@ -279,8 +279,8 @@
                              
                               <input [type]="controls.type" class="form-control" *ngIf="(controls.type=='text' || controls.type=='date' || controls.type=='file') && (controls?.hideshow!=false)" (change)="otherfileChangeEvent($event)" [formControlName]="controls.label"/>
                                 <ng-container *ngFor="let validation of controls.validations">
-                                  <span *ngIf="submitted && dynamicForm.controls[controls.label]?.errors && controls?.hideshow!=false">
-                                    <p *ngIf="dynamicForm.controls[controls.label]?.errors[validation.name]" class="invalid-feedback">
+                                  <span *ngIf="submitted && dynamicForm.controls[controls.label]?.errors  && controls?.hideshow!=false">
+                                    <p *ngIf="dynamicForm.controls[controls.label]?.errors[validation.name] " class="invalid-feedback">
                                       {{validation.message}}
                                     </p>
                                   </span>
@@ -292,11 +292,12 @@
                           </form>
                             </ng-container>
                            
+                            
                             <div class="form-group row" *ngIf="activebtn?.form?.mappedinvoice">
                              
                               <div class="col-sm-12">
                                 <label class="col-form-label">Select Client Invoice</label>
-                                <ng-select  size="1" id="roles-user-info" formControlName="clientinvocie" name="clientinvocie"  (change)="selectedclient($event)" [items]="clientinvoice" bindLabel="invoiceno" bindValue="appno" [multiple]="true" [closeOnSelect]="false"
+                                <!-- <ng-select  size="1" id="roles-user-info" multiple='false' formControlName="clientinvocie" name="clientinvocie"  (change)="selectedclient($event)" [items]="clientinvoice" bindLabel="invoiceno" bindValue="appno" [multiple]="true" [closeOnSelect]="false"
                                 placeholder="Select Client Invoice"   class="form-control left-status pill-items" required>
                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
                          <span title='{{item.invoiceno}}' class='badge badge-pill badge-secondary'>{{item.invoiceno}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
@@ -306,8 +307,30 @@
                          <span title='{{item.invoiceno}}' class='badge badge-pill badge-secondary'>{{item.invoiceno}}</span>
                          <i class="fa fa-check d-none"></i>
                        </ng-template>
-                     </ng-select>
+                     </ng-select> -->
+                     <select   formControlName="clientinvocie" class="form-control" >
+                      <option value="" selected>Choose</option>
+                      <option *ngFor="let opt of clientinvoice" value="{{opt.refid}}">{{opt.invoiceno}}-{{opt.appno}}</option>
+                      </select> 
                      <p *ngIf="submitted && f.clientinvocie?.errors" class="invalid-feedback">Client Invoice is required</p> 
+                              </div>
+                            </div>
+                            <div class="form-group row" *ngIf="activebtn?.form?.mappedinvoice">
+                             
+                              <div class="col-sm-12">
+                                <label class="col-form-label">Select Luf Invoice</label>
+                                <ng-select  size="1" id="roles-user-info" formControlName="lufinvocie" name="lufinvocie"  (change)="selectedclient($event)" [items]="lufinvoicelist" bindLabel="refid" bindValue="appno" [multiple]="true" [closeOnSelect]="false"
+                                placeholder="Select Client Invoice"   class="form-control left-status pill-items" required>
+                       <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                         <span title='{{item.refid}}' class='badge badge-pill badge-secondary'>{{item.appno}}<span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span></span>
+                       </ng-template>
+             
+                       <ng-template ng-option-tmp let-item="item">
+                         <span title='{{item.refid}}' class='badge badge-pill badge-secondary'>{{item.appno}}</span>
+                         <i class="fa fa-check d-none"></i>
+                       </ng-template>
+                     </ng-select>
+                     <p *ngIf="submitted && f.lufinvocie?.errors" class="invalid-feedback">Client Invoice is required</p> 
                               </div>
                             </div>
                 <div class="form-group row">

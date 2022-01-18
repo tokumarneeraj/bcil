@@ -61,6 +61,8 @@ import { AccountComponent } from './account/account.component';
 import { AccountInitComponent } from './account-init/account-init.component';
 import { LufInvoiceComponent } from './luf-invoice/luf-invoice.component';
 import { ClientInvoiceComponent } from './client-invoice/client-invoice.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
 
 @NgModule({
   declarations: [BcilComponent, BcilDashboardComponent, MouAddComponent, BcilInitComponent, DashboardComponent, ViewfileComponent,
@@ -101,6 +103,8 @@ import { ClientInvoiceComponent } from './client-invoice/client-invoice.componen
     AccountInitComponent,
     LufInvoiceComponent,
     ClientInvoiceComponent,
+    NotificationsComponent,
+    MenuListItemComponent,
     
      ],
 
