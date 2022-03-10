@@ -53,13 +53,13 @@
 </div>
 <app-header></app-header>
 
-<div id="pcoded" class="pcoded">
+<div id="pcoded" class="pcoded" >
   <div class="pcoded-overlay-box"></div>
   <div class="pcoded-container navbar-wrapper">
     <nav class="navbar header-navbar pcoded-header">
       <div class="navbar-wrapper">
         <div class="navbar-logo">
-          <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+          <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="javascript:void(0)">
             <i class="ti-menu blackMenu"></i>
           </a>
           <div class="mobile-search waves-effect waves-light">
@@ -96,7 +96,7 @@
                 </div>
             </li> -->
             <li>
-              <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+              <a href="javascript:toggleFullScreen()" class="waves-effect waves-light">
                 <i class="ti-fullscreen blackMenu" ></i>
               </a>
             </li>
@@ -205,7 +205,7 @@
                 </form>
             </div> -->
             <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
-            <ul class="pcoded-item pcoded-left-item" >
+            <!-- <ul class="pcoded-item pcoded-left-item" >
               <li class="active index.html">
                 <a routerLink="../bcil/bcil-dashboard" class="waves-effect waves-dark">
                   <span class="pcoded-micon"><i class="ti-home"></i></span>
@@ -306,7 +306,41 @@
             </ul>
                   </li>
                 </ng-container>
-            </ul>
+            </ul> -->
+            <ul class="pcoded-item pcoded-left-item" >
+              <li class="active index.html">
+                <a routerLink="../bcil/bcil-dashboard" class="waves-effect waves-dark">
+                  <span class="pcoded-micon"><i class="ti-home"></i></span>
+                  <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Dashboard</span>
+                  <span class="pcoded-mcaret"></span>
+                </a>
+              </li>
+             
+              <li class="" *ngIf="canViewRoles">
+                <a routerLink="./roles" class="waves-effect waves-dark">
+                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                  <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Roles</span>
+                  <span class="pcoded-mcaret"></span>
+                </a>
+              </li>
+
+              <li class="" *ngIf="canViewusers">
+                <a routerLink="./users" class="waves-effect waves-dark">
+                  <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                  <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Users</span>
+                  <span class="pcoded-mcaret"></span>
+                </a>
+              </li>
+              <li class="" *ngIf="canViewReminder">
+                  <a routerLink="./reminder" class="waves-effect waves-dark">
+                      <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                      <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Reminder</span>
+                      <span class="pcoded-mcaret"></span>
+                  </a>
+              </li>
+             
+            <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+          </ul>
             <div class="dummyHeight"></div>
           </div>
         </nav>

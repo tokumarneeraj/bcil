@@ -24,7 +24,7 @@ import { error } from 'jquery';
 export class RoleEditorComponent {
   @ViewChild('editorModal3', { static: true })
   editorModal3: ModalDirective;
-  StatusMaster:StatusMaster[];
+  StatusMaster:any[];
   ViewuserpermissiontoaddUserList: ViewuserpermissiontoaddUser[] = [];
   ViewuserpermissiontoaddUser = new ViewuserpermissiontoaddUser();
   private isNewRole = false;
@@ -35,6 +35,7 @@ export class RoleEditorComponent {
   public allPermissions: Permission[] = [];
   public selectedValues: { [key: string]: boolean; } = {};
   public selectedValues1: { [key: string]: boolean; } = {};
+  public selectedValues2: { [key: string]: boolean; } = {};
 
   private editingRoleName: string;
 editmode=true;
@@ -47,7 +48,7 @@ editmode=true;
 
   @ViewChild('f')
   private form;
-
+permissionchange:any;
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
   rows: Role[] = [];
@@ -58,33 +59,60 @@ editmode=true;
     this.editmode=false;
   }
   ngOnInit() {
-    this.myForm = this.fb.group({
-      permission: this.fb.array([])
-    });
+    // this.myForm = this.fb.group({
+    //   permission: this.fb.array([])
+    // });
   }
   otherpermission(){
     this.loading=true;
     this.bdoService.GetStatusMaster().subscribe(data=>{
 
-      this.StatusMaster=data;
-      this.StatusMaster.map((item)=>({...item,
-      check:false
+    
+     this.StatusMaster =data?.map((item)=>({...item,
+      check:false,viewcode:"view-"+item?.status_code,
+      managecode:"manage-"+item?.status_code,
+      historycode:"history-"+item?.status_code,
+      remarkcode:"remark-"+item?.status_code
 
       }))
+
+this.StatusMaster.forEach(element=>{
+  this.selectedValues2[element.viewcode] = false
+   this.selectedValues2[element.managecode] = false
+    this.selectedValues2[element.historycode] = false
+     this.selectedValues2[element.remarkcode] = false
+})
+      console.log(this.StatusMaster,this.selectedValues2,"st")
      
       this.accountService.getOtherpermission(this.roleEdit.id).subscribe(data=>
         {
           console.log(data)
           this.editorModal3.show();
-          data.forEach(element => {
-            $("[name="+element.permission+"]").trigger('click');
-            //this.myForm.controls.permission.value
-          });
+          // data.forEach(element => {
+          //   $("[name="+element.permission+"]").trigger('click');
+          //   //this.myForm.controls.permission.value
+          // });
+          this.otherpermissions=data;
+          let rr = data;
+
+          for (let t = 0; t < rr.length; t++) {
+            this.selectedValues2[rr[t]?.permission] = true
+          }
+          // else{
+          //   this.selectedValues2[rr[t]?.permission] = false
+          // }
+          console.log(rr,'permission')
+          if(rr.length===0){
+            this.selectedValues2={};
+          }
 this.loading=false;
           
         })
    
     });
+  }
+  selcted(event){
+    console.log( event.target.value,this.selectedValues2)
   }
 
   showErrorAlert(caption: string, message: string) {
@@ -156,7 +184,16 @@ this.loading=false;
       });
 
   }
+  selectedValuesfun(type,value,checked?){
+    //console.log(this.selectedValues2[type+"-"+value],type+"-"+value)
+    if(checked)
+    return this.selectedValues2[type+"-"+value]=checked
+    else if(checked==undefined)
+    return this.selectedValues2[type+"-"+value]
+    else
+    return this.selectedValues2[type+"-"+value] = false
 
+  }
   save() {
     this.isSaving = true;
     this.alertService.startLoadingMessage('Saving changes...');
@@ -244,24 +281,38 @@ this.loading=false;
     }
   }
   onChange(name:string,value:string, isChecked: boolean) {
-    let newvalue=name+'-'+value;
-    const emailFormArray = <FormArray>this.myForm.controls.permission;
+    // let newvalue=name+'-'+value;
+    // this.permissionchange=[];
+    // this.permissionchange = <FormArray>this.myForm.controls.permission;
   
-    if(isChecked) {
-      emailFormArray.push(new FormControl(newvalue));
-    } else {
-      let index = emailFormArray.controls.findIndex(x => x.value == newvalue)
-      emailFormArray.removeAt(index);
-    }
+    // if(isChecked) {
+    //   this.permissionchange.push(new FormControl(newvalue));
+    // } else {
+    //   let index = this.permissionchange.controls.findIndex(x => x.value == newvalue)
+    //  this.permissionchange.removeAt(index);
+    // }
+    // console.log(this.permissionchange?.length,"count")
   }
   permissionsubmit(){
-    this.isSaving=true;
-    let permission1= <FormArray>this.myForm.controls.permission;
-    for(let per of permission1.value){
-    this.otherpermissions.push({roleid:this.roleEdit.id,permission:per,status:true})
-    }
+    //this.isSaving=true;
+    // let permission1= this.permissionchange;
+   // for(let per of this.StatusMaster){
+   // this.otherpermissions.push({roleid:this.roleEdit.id,permission:per,status:true})
+    
+  //  }
+   // let rolesused=this.otherpermissions;
+   // let rolesused = this.otherpermissions.filter(p => this.selectedValues2[p.permission] === true);
+   // console.log(permission1.value,"permis")
 
-    this.accountService.AddOtherpermission(this.otherpermissions).subscribe(data=>{
+   //console.log(rolesused?.length,rolesused,'len')
+   let rolesused = []
+   for(let key in this.selectedValues2){
+    if(this.selectedValues2[key] == true)
+    //rpermissions.push()
+    
+    rolesused.push({roleid:this.roleEdit.id,permission:key,status:true})
+   };
+    this.accountService.AddOtherpermission(rolesused).subscribe(data=>{
       console.log(data)
       this.otherpermissions=[];
       this.isSaving=false;

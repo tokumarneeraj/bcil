@@ -1,5 +1,5 @@
-import { Component, OnInit ,ChangeDetectorRef ,DoCheck} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit ,ChangeDetectorRef ,DoCheck, HostListener} from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastaConfig, ToastaService, ToastData, ToastOptions } from 'ngx-toasta';
 import { Permission } from '../model/permission.model';
@@ -20,6 +20,8 @@ import { environment } from 'src/environments/environment';
 import * as $ from 'jquery';
 import { NavService } from '../services/nav.service';
 import { NavItem } from '../model/nav-item';
+import { filter } from 'rxjs/operators';
+import { DBkeys } from '../services/db-keys';
 const alertify: any = require('../../assets/scripts/alertify.js');
 declare var jQuery:any;
 @Component({
@@ -64,6 +66,8 @@ export class BcilComponent implements OnInit ,DoCheck{
   userRoles:string[];
   datapermission:any;
   querystring:string;
+  capsOn:any;
+  navItems: NavItem[]=[];
   constructor(private navService: NavService, private changeDetection: ChangeDetectorRef,private _cookieService: CookieService, storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
@@ -75,6 +79,7 @@ export class BcilComponent implements OnInit ,DoCheck{
     private translationService: AppTranslationService,
     public configurations: ConfigurationService,
     public router: Router,
+    private localStorage: LocalStoreManager,
     private Bdoservice: Bdoservice,
     private datePipe: DatePipe) {
    
@@ -90,7 +95,9 @@ export class BcilComponent implements OnInit ,DoCheck{
   
     console.log(this.userimg)
     this.userimg==undefined?this.userimg="":this.userimg;
+    
   }
+  
   ngDoCheck(): void {
     console.log('Method not implemented.');
   }
@@ -223,19 +230,20 @@ submenuurl(submenu){
 
 }
 
-subchildmenus(stage:string,childstage:string,child:string){
+subchildmenus(stage:string,childstage?:string,child?:string){
   let submenu=null;
   if(child!=""){
 
-    this.jsondata[stage]?.find(u=>u.substage==childstage)?.subchild?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}));
+    submenu= this.jsondata[stage]?.find(u=>u.substage==childstage)?.subchild?.filter(x=>this.viewtab?.find(y=>y==x.value)).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}));
   }
   else{
   
    submenu= stage=="patent" || stage=="design"|| stage=="copyright"||stage=="trademark"?this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) 
-  ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}))
+  ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false),substage:t?.subchild[0].stage}))
  
-  :this.jsondata[stage]?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}));
+  :this.jsondata[stage].find(u=>u.substage==childstage)?.subchild?.filter(x=>this.viewtab?.find(y=>y==x.value) ||x?.subchild?.find(t=>this.viewtab?.find(y=>y==t.value))).map(t=>({...t,menu:(t.subchild?.length>0?true:false)}));
   }
+  console.log(submenu,"submenu")
 //console.log('submenu:'+stage+JSON.stringify(submenu));
 return submenu;
 }
@@ -359,12 +367,67 @@ encodeURIComponent(str) {
    this.Bdoservice.getdatapermission().subscribe(data=>{
 this.jsondata=data;
 this.menulist=this.menus();
+this.menulist.map((item,i)=>{ return this.navItems.push({"stage":item.stage,"substage":item?.substage,"id":i,"displayName":item.menuheading,"route":this.urlgenerate(item.value),
+"children":[],
+"disabled":false,"iconName":""})});
+
+this.navItems.map((item)=>{
+  
+  this.submenus(item.stage)?.map((it,y)=>{ return item.children.push(
+    {"stage":it.stage,"substage":it?.substage,"id":y,"displayName":it.heading ||it.menuheading,"route":this.urlgenerate(it?.value),
+    children:[],"disabled":false,"iconName":""}
+  )});
+})
+setTimeout(()=>{
+  this.navItems.map((item)=>{
+    item.children.map((it)=>{
+    this.subchildmenus(it.stage,it.substage,"")?.map((p,y)=>{
+      return it?.children.push({
+        "stage":p.stage,"substage":p?.substage,"id":y,"displayName":p.heading ||p.menuheading,"route":this.urlgenerate(p?.value),"disabled":false,"iconName":"",
+        children:[]
+      })
+    })
+    })
+    })
+},2000)
+setTimeout(()=>{
+  this.navItems.map((item)=>{
+    item.children.map((it1)=>{
+      it1.children.map((it)=>{
+    this.subchildmenus(it.stage,it.substage,"df")?.map((p,y)=>{
+      return it?.children.push({
+        "stage":p.stage,"substage":it?.substage,"id":y,"displayName":p.heading ||p.menuheading,"route":this.urlgenerate(p?.value),"disabled":false,"iconName":"",
+        children:[]
+      })
+    })
+  })
+    })
+    })
+},3000)
+
+  console.log("menu",this.navItems,this.submenus("tta"))
      });
    
     this.getnotification();
 
   }
 
+  @HostListener('document:keydown.capslock', ['$event']) onKeydownHandler1(event: 
+    KeyboardEvent) {
+      this.capsOn = !!(event.getModifierState && event.getModifierState('CapsLock'));
+     
+      if(this.capsOn ){
+        this.alertService.showMessage('', `CapLock On`, MessageSeverity.error);
+      }
+    ///this.closeBlade();
+   }
+
+   @HostListener('document:keypress', ['$event']) savePageInfo($event : any) {
+  
+  }
+  @HostListener('window:popstate', ['$event']) onPopState($event:any) {}
+  
+ 
   getnotification(){
      this.Bdoservice.GetNotification().subscribe(data=>{
       console.log(data,'not')
@@ -757,354 +820,94 @@ this.notificationdiv=!this.notificationdiv;
          document.getElementsByTagName('body')[0].appendChild(node);
         }
       }
-      navItems: NavItem[] = [
-        {
-          displayName: 'DevFestFL',
-          iconName: 'recent_actors',
-          route: 'devfestfl',
-          children: [
-            {
-              displayName: 'Speakers',
-              iconName: 'group',
-              route: 'devfestfl/speakers',
-              children: [
-                {
-                  displayName: 'Michael Prentice',
-                  iconName: 'person',
-                  route: 'devfestfl/speakers/michael-prentice',
-                  children: [
-                    {
-                      displayName: 'Create Enterprise UIs',
-                      iconName: 'star_rate',
-                      route: 'devfestfl/speakers/michael-prentice/material-design'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Stephen Fluin',
-                  iconName: 'person',
-                  route: 'devfestfl/speakers/stephen-fluin',
-                  children: [
-                    {
-                      displayName: 'What\'s up with the Web?',
-                      iconName: 'star_rate',
-                      route: 'devfestfl/speakers/stephen-fluin/what-up-web'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Mike Brocchi',
-                  iconName: 'person',
-                  route: 'devfestfl/speakers/mike-brocchi',
-                  children: [
-                    {
-                      displayName: 'My ally, the CLI',
-                      iconName: 'star_rate',
-                      route: 'devfestfl/speakers/mike-brocchi/my-ally-cli'
-                    },
-                    {
-                      displayName: 'Become an Angular Tailor',
-                      iconName: 'star_rate',
-                      route: 'devfestfl/speakers/mike-brocchi/become-angular-tailor'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              displayName: 'Sessions',
-              iconName: 'speaker_notes',
-              route: 'devfestfl/sessions',
-              children: [
-                {
-                  displayName: 'Create Enterprise UIs',
-                  iconName: 'star_rate',
-                  route: 'devfestfl/sessions/material-design'
-                },
-                {
-                  displayName: 'What\'s up with the Web?',
-                  iconName: 'star_rate',
-                  route: 'devfestfl/sessions/what-up-web'
-                },
-                {
-                  displayName: 'My ally, the CLI',
-                  iconName: 'star_rate',
-                  route: 'devfestfl/sessions/my-ally-cli'
-                },
-                {
-                  displayName: 'Become an Angular Tailor',
-                  iconName: 'star_rate',
-                  route: 'devfestfl/sessions/become-angular-tailor'
-                }
-              ]
-            },
-            {
-              displayName: 'Feedback',
-              iconName: 'feedback',
-              route: 'devfestfl/feedback'
-            }
-          ]
-        },
-        {
-          displayName: 'Disney',
-          iconName: 'videocam',
-          route: 'disney',
-          children: [
-            {
-              displayName: 'Speakers',
-              iconName: 'group',
-              route: 'disney/speakers',
-              children: [
-                {
-                  displayName: 'Michael Prentice',
-                  iconName: 'person',
-                  route: 'disney/speakers/michael-prentice',
-                  children: [
-                    {
-                      displayName: 'Create Enterprise UIs',
-                      iconName: 'star_rate',
-                      route: 'disney/speakers/michael-prentice/material-design'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Stephen Fluin',
-                  iconName: 'person',
-                  route: 'disney/speakers/stephen-fluin',
-                  children: [
-                    {
-                      displayName: 'What\'s up with the Web?',
-                      iconName: 'star_rate',
-                      route: 'disney/speakers/stephen-fluin/what-up-web'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Mike Brocchi',
-                  iconName: 'person',
-                  route: 'disney/speakers/mike-brocchi',
-                  children: [
-                    {
-                      displayName: 'My ally, the CLI',
-                      iconName: 'star_rate',
-                      route: 'disney/speakers/mike-brocchi/my-ally-cli'
-                    },
-                    {
-                      displayName: 'Become an Angular Tailor',
-                      iconName: 'star_rate',
-                      route: 'disney/speakers/mike-brocchi/become-angular-tailor'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              displayName: 'Sessions',
-              iconName: 'speaker_notes',
-              route: 'disney/sessions',
-              children: [
-                {
-                  displayName: 'Create Enterprise UIs',
-                  iconName: 'star_rate',
-                  route: 'disney/sessions/material-design'
-                },
-                {
-                  displayName: 'What\'s up with the Web?',
-                  iconName: 'star_rate',
-                  route: 'disney/sessionswhat-up-web'
-                },
-                {
-                  displayName: 'My ally, the CLI',
-                  iconName: 'star_rate',
-                  route: 'disney/sessionsmy-ally-cli'
-                },
-                {
-                  displayName: 'Become an Angular Tailor',
-                  iconName: 'star_rate',
-                  route: 'disney/sessionsbecome-angular-tailor'
-                }
-              ]
-            },
-            {
-              displayName: 'Feedback',
-              iconName: 'feedback',
-              route: 'disney/feedback'
-            }
-          ]
-        },
-        {
-          displayName: 'Orlando',
-          iconName: 'videocam',
-          route: 'orlando',
-          children: [
-            {
-              displayName: 'Speakers',
-              iconName: 'group',
-              route: 'orlando/speakers',
-              children: [
-                {
-                  displayName: 'Michael Prentice',
-                  iconName: 'person',
-                  route: 'orlando/speakers/michael-prentice',
-                  children: [
-                    {
-                      displayName: 'Create Enterprise UIs',
-                      iconName: 'star_rate',
-                      route: 'orlando/speakers/michael-prentice/material-design'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Stephen Fluin',
-                  iconName: 'person',
-                  route: 'orlando/speakers/stephen-fluin',
-                  children: [
-                    {
-                      displayName: 'What\'s up with the Web?',
-                      iconName: 'star_rate',
-                      route: 'orlando/speakers/stephen-fluin/what-up-web'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Mike Brocchi',
-                  iconName: 'person',
-                  route: 'orlando/speakers/mike-brocchi',
-                  children: [
-                    {
-                      displayName: 'My ally, the CLI',
-                      iconName: 'star_rate',
-                      route: 'orlando/speakers/mike-brocchi/my-ally-cli'
-                    },
-                    {
-                      displayName: 'Become an Angular Tailor',
-                      iconName: 'star_rate',
-                      route: 'orlando/speakers/mike-brocchi/become-angular-tailor'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              displayName: 'Sessions',
-              iconName: 'speaker_notes',
-              route: 'orlando/sessions',
-              children: [
-                {
-                  displayName: 'Create Enterprise UIs',
-                  iconName: 'star_rate',
-                  route: 'orlando/sessions/material-design'
-                },
-                {
-                  displayName: 'What\'s up with the Web?',
-                  iconName: 'star_rate',
-                  route: 'orlando/sessions/what-up-web'
-                },
-                {
-                  displayName: 'My ally, the CLI',
-                  iconName: 'star_rate',
-                  route: 'orlando/sessions/my-ally-cli'
-                },
-                {
-                  displayName: 'Become an Angular Tailor',
-                  iconName: 'star_rate',
-                  route: 'orlando/sessions/become-angular-tailor'
-                }
-              ]
-            },
-            {
-              displayName: 'Feedback',
-              iconName: 'feedback',
-              route: 'orlando/feedback'
-            }
-          ]
-        },
-        {
-          displayName: 'Maleficent',
-          iconName: 'videocam',
-          route: 'maleficent',
-          children: [
-            {
-              displayName: 'Speakers',
-              iconName: 'group',
-              route: 'maleficent/speakers',
-              children: [
-                {
-                  displayName: 'Michael Prentice',
-                  iconName: 'person',
-                  route: 'maleficent/speakers/michael-prentice',
-                  children: [
-                    {
-                      displayName: 'Create Enterprise UIs',
-                      iconName: 'star_rate',
-                      route: 'maleficent/speakers/michael-prentice/material-design'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Stephen Fluin',
-                  iconName: 'person',
-                  route: 'maleficent/speakers/stephen-fluin',
-                  children: [
-                    {
-                      displayName: 'What\'s up with the Web?',
-                      iconName: 'star_rate',
-                      route: 'maleficent/speakers/stephen-fluin/what-up-web'
-                    }
-                  ]
-                },
-                {
-                  displayName: 'Mike Brocchi',
-                  iconName: 'person',
-                  route: 'maleficent/speakers/mike-brocchi',
-                  children: [
-                    {
-                      displayName: 'My ally, the CLI',
-                      iconName: 'star_rate',
-                      route: 'maleficent/speakers/mike-brocchi/my-ally-cli'
-                    },
-                    {
-                      displayName: 'Become an Angular Tailor',
-                      iconName: 'star_rate',
-                      route: 'maleficent/speakers/mike-brocchi/become-angular-tailor'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              displayName: 'Sessions',
-              iconName: 'speaker_notes',
-              route: 'maleficent/sessions',
-              children: [
-                {
-                  displayName: 'Create Enterprise UIs',
-                  iconName: 'star_rate',
-                  route: 'maleficent/sessions/material-design'
-                },
-                {
-                  displayName: 'What\'s up with the Web?',
-                  iconName: 'star_rate',
-                  route: 'maleficent/sessions/what-up-web'
-                },
-                {
-                  displayName: 'My ally, the CLI',
-                  iconName: 'star_rate',
-                  route: 'maleficent/sessions/my-ally-cli'
-                },
-                {
-                  displayName: 'Become an Angular Tailor',
-                  iconName: 'star_rate',
-                  route: 'maleficent/sessions/become-angular-tailor'
-                }
-              ]
-            },
-            {
-              displayName: 'Feedback',
-              iconName: 'feedback',
-              route: 'maleficent/feedback'
-            }
-          ]
-        },
-      ];
+      // navItems: NavItem[] = [
+      //   {
+      //     displayName: 'DevFestFL',
+      //     iconName: 'recent_actors',
+      //     route: 'devfestfl',
+      //     children: [
+      //       {
+      //         displayName: 'Speakers',
+      //         iconName: 'group',
+      //         route: 'devfestfl/speakers',
+      //         children: [
+      //           {
+      //             displayName: 'Michael Prentice',
+      //             iconName: 'person',
+      //             route: 'devfestfl/speakers/michael-prentice',
+      //             children: [
+      //               {
+      //                 displayName: 'Create Enterprise UIs',
+      //                 iconName: 'star_rate',
+      //                 route: 'devfestfl/speakers/michael-prentice/material-design'
+      //               }
+      //             ]
+      //           },
+      //           {
+      //             displayName: 'Stephen Fluin',
+      //             iconName: 'person',
+      //             route: 'devfestfl/speakers/stephen-fluin',
+      //             children: [
+      //               {
+      //                 displayName: 'What\'s up with the Web?',
+      //                 iconName: 'star_rate',
+      //                 route: 'devfestfl/speakers/stephen-fluin/what-up-web'
+      //               }
+      //             ]
+      //           },
+      //           {
+      //             displayName: 'Mike Brocchi',
+      //             iconName: 'person',
+      //             route: 'devfestfl/speakers/mike-brocchi',
+      //             children: [
+      //               {
+      //                 displayName: 'My ally, the CLI',
+      //                 iconName: 'star_rate',
+      //                 route: 'devfestfl/speakers/mike-brocchi/my-ally-cli'
+      //               },
+      //               {
+      //                 displayName: 'Become an Angular Tailor',
+      //                 iconName: 'star_rate',
+      //                 route: 'devfestfl/speakers/mike-brocchi/become-angular-tailor'
+      //               }
+      //             ]
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         displayName: 'Sessions',
+      //         iconName: 'speaker_notes',
+      //         route: 'devfestfl/sessions',
+      //         children: [
+      //           {
+      //             displayName: 'Create Enterprise UIs',
+      //             iconName: 'star_rate',
+      //             route: 'devfestfl/sessions/material-design'
+      //           },
+      //           {
+      //             displayName: 'What\'s up with the Web?',
+      //             iconName: 'star_rate',
+      //             route: 'devfestfl/sessions/what-up-web'
+      //           },
+      //           {
+      //             displayName: 'My ally, the CLI',
+      //             iconName: 'star_rate',
+      //             route: 'devfestfl/sessions/my-ally-cli'
+      //           },
+      //           {
+      //             displayName: 'Become an Angular Tailor',
+      //             iconName: 'star_rate',
+      //             route: 'devfestfl/sessions/become-angular-tailor'
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         displayName: 'Feedback',
+      //         iconName: 'feedback',
+      //         route: 'devfestfl/feedback'
+      //       }
+      //     ]
+      //   }
+       
+      // ];
 }

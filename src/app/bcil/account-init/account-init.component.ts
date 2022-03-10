@@ -144,7 +144,7 @@ this.ngOnInit();
     if(value=="S813"){
     var clientin=[];
     this.Bdoservice.GetClientInvoice('all').subscribe(data1 => {
-      clientin=data1.filter(y=>(y.app_status=='S805'|| y.app_status=='S806') && y.active==true && y.lufmapped==false);
+      clientin=data1.filter(y=>(y.app_status=='S808'|| y.app_status=='S806') && y.active==true && y.lufmapped==false);
       data={...data,lufinvoice:this.lufInvocie,clientinvoice:clientin,message:this.array?.tablename+' To '+yy,querystring:querystring};
       this.activity.showviewmodel('account',value,data);
     });

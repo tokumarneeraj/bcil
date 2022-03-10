@@ -14,7 +14,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
       state('expanded', style({transform: 'rotate(180deg)'})),
       transition('expanded <=> collapsed',
         animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
-      ),
+      )
     ])
   ]
 })
@@ -23,6 +23,7 @@ export class MenuListItemComponent implements OnInit {
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: NavItem;
   @Input() depth: number;
+icon="fa fa-plus";
 
   constructor(public navService: NavService,
               public router: Router) {
@@ -43,12 +44,13 @@ export class MenuListItemComponent implements OnInit {
   }
 
   onItemSelected(item: NavItem) {
-    if (!item.children || !item.children.length) {
-      this.router.navigate([item.route]);
+    if (!item?.children || !item?.children.length) {
+      this.router.navigateByUrl(item?.route);
       this.navService.closeNav();
     }
-    if (item.children && item.children.length) {
+    if (item?.children && item?.children.length) {
       this.expanded = !this.expanded;
+      this.icon=this.expanded==true?"fa fa-minus":"fa fa-plus";
     }
   }
 }

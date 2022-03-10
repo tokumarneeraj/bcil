@@ -28,19 +28,23 @@ export class MouAddComponent implements OnInit {
       int_Uni_Code:['',[Validators.required,Validators.minLength(2),Validators.maxLength(8), Validators.pattern('^[a-zA-Z \-\']+')]],
       dept_Name: ['', Validators.required],
       address: ['', Validators.required],
-      phoneNo: ['', Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")],
+      phoneNo: [''],
       email: ['', [Validators.required, Validators.email]],
       gstNo: ['', Validators.required],
       dir_Head_Name: ['', Validators.required],
-      dir_Phone_No: [''],
+      dir_Phone_Code: [''],
+      dir_Phone_No: ['', Validators.pattern("^[0-9_-]{7,14}")],
       dir_Mobile_No: ['', Validators.required],
       dir_Email: ['', [Validators.required, Validators.email]],
       nodal_Name: ['', Validators.required],
-      nodal_Phone_No: [''],
+      nodal_Phone_Code: [''],
+      nodal_Phone_No: ['', Validators.pattern("^[0-9_-]{7,12}")],
       nodal_Mobile_No: ['', Validators.required],
       nodal_Email: ['', [Validators.required, Validators.email]],
       nodal_Designation: [''],
+      nodal_Title: ['', Validators.required],
       dir_Designation: [''],
+      dir_Title: ['', Validators.required],
       int_Uni_Drop: ['', Validators.required],
       dir_Designation_Drop: ['', Validators.required],
       nodal_Designation_Drop: ['', Validators.required]
@@ -54,8 +58,9 @@ export class MouAddComponent implements OnInit {
   eventCheck(event) {
     if (event.checked == true) {
       this.AddMouForm.patchValue({
-
+        nodal_Title: this.AddMouForm.value.dir_Title,
         nodal_Name: this.AddMouForm.value.dir_Head_Name,
+        nodal_Phone_Code: this.AddMouForm.value.dir_Phone_Code,
         nodal_Phone_No: this.AddMouForm.value.dir_Phone_No,
         nodal_Mobile_No: this.AddMouForm.value.dir_Mobile_No,
         nodal_Email: this.AddMouForm.value.dir_Email,
@@ -63,8 +68,9 @@ export class MouAddComponent implements OnInit {
         nodal_Designation: this.AddMouForm.value.dir_Designation
 
       });
-
+      this.AddMouForm.controls.nodal_Title.disable();
       this.AddMouForm.controls.nodal_Name.disable();
+      this.AddMouForm.controls.nodal_Phone_Code.disable();
       this.AddMouForm.controls.nodal_Phone_No.disable();
       this.AddMouForm.controls.nodal_Mobile_No.disable();
       this.AddMouForm.controls.nodal_Email.disable();
@@ -73,8 +79,9 @@ export class MouAddComponent implements OnInit {
     }
     else {
       this.AddMouForm.patchValue({
-
+        nodal_Title: '',
         nodal_Name: '',
+        nodal_Phone_Code:'',
         nodal_Phone_No: '',
         nodal_Mobile_No: '',
         nodal_Email: '',
@@ -82,7 +89,9 @@ export class MouAddComponent implements OnInit {
         nodal_Designation: ''
 
       });
+      this.AddMouForm.controls.nodal_Title.enable();
       this.AddMouForm.controls.nodal_Name.enable();
+      this.AddMouForm.controls.nodal_Phone_Code.enable();
       this.AddMouForm.controls.nodal_Phone_No.enable();
       this.AddMouForm.controls.nodal_Mobile_No.enable();
       this.AddMouForm.controls.nodal_Email.enable();
@@ -96,8 +105,9 @@ export class MouAddComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-
+    this.AddMouForm.controls.nodal_Title.enable();
     this.AddMouForm.controls.nodal_Name.enable();
+    this.AddMouForm.controls.nodal_Phone_Code.enable();
     this.AddMouForm.controls.nodal_Phone_No.enable();
     this.AddMouForm.controls.nodal_Mobile_No.enable();
     this.AddMouForm.controls.nodal_Email.enable();

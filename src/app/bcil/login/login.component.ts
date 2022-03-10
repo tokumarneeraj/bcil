@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   querstring:any;
   @Input()
   isModal = false;
+  capsOn:any;
   constructor(private route: ActivatedRoute,private accountService: AccountService, private localStorage: LocalStoreManager,private alertService: AlertService, private authService: AuthService, private configurations: ConfigurationService,private forms: FormBuilder,private _cookieService: CookieService, private router: Router) {
   this.LoginForm = this.forms.group({
     email: ['', Validators.required],
@@ -33,6 +34,17 @@ export class LoginComponent implements OnInit {
 get f() {
   return this.LoginForm.controls;
 }
+//@HostListener('window:click', ['$event'])
+//@HostListener('window:keydown', ['$event'])
+@HostListener('document:keydown.capslock', ['$event']) onKeydownHandler1(event: 
+  KeyboardEvent) {
+    this.capsOn = !!(event.getModifierState && event.getModifierState('CapsLock'));
+   
+    if(this.capsOn ){
+      this.alertService.showMessage('', `CapLock On`, MessageSeverity.error);
+    }
+  ///this.closeBlade();
+ }
   ngOnInit(): void {
     //this.querstring="";
    this.route.queryParams.subscribe((params) => {

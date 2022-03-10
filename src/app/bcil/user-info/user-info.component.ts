@@ -87,6 +87,8 @@ this.imageurl=imageurl;
   public roles;
   @ViewChild('department')
   public department;
+  @ViewChild('title')
+  public title;
   user1: any;
   isNodal: boolean;
   userRoles: string[];
@@ -96,6 +98,8 @@ rolename:string;
     this.user1 = this.localStorage.getDataObject<User>(DBkeys.CURRENT_USER);
     this.userRoles = this.accountService.currentUser.roles;
     this.isNodal = this.userRoles.includes('Nodal'); 
+    //this.userEdit.designation="";
+   
   //  this.Imageupload.imageSrc="vayy";
   if(this.accountService.currentUser?.imgUrl!=undefined){
     this.imageurl='';

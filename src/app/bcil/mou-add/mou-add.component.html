@@ -104,7 +104,7 @@
                             <div class="form-group row">
 
                               <div class="col-sm-6">
-                                <label class="col-form-label">Phone No.</label>
+                                <label class="col-form-label">Mobile No.</label>
                                 <input type="text" class="form-control" formControlName="phoneNo" [pattern]="mobNumberPattern" [ngClass]="{ 'is-invalid': submitted && f.phoneNo.errors }"
                                        placeholder="">
                                 <p *ngIf="submitted && f.phoneNo.errors" class="invalid-feedback">Enter valid Phone No.</p>
@@ -156,15 +156,30 @@
                            
                             <div class="form-group row">
 
+                              <div class="col-sm-6">
+                                <label class="col-form-label">Director  Title</label>
 
+                                <select class="form-control" formControlName="dir_Title" [ngClass]="{ 'is-invalid': submitted && f.dir_Title.errors }"> >
+                                  <option value="">--Select--</option>
+                                  <option value="Mr.">Mr.</option>
+                                  <option value="Ms.">Ms.</option>
+                                  <option value="Dr.">Dr.</option>
+                                  <option value="Prof.">Prof.</option>
+                                  <option value="Mrs.">Mrs.</option>
+                        
+                                </select>
+                              
+                                <p *ngIf="submitted && f.dir_Title.errors" class="invalid-feedback">Director / Head Name Title is required</p>
+                              </div>
                               <div class="col-sm-6">
                                 <label class="col-form-label">Name</label>
                                 <input type="text" class="form-control" formControlName="dir_Head_Name" [ngClass]="{ 'is-invalid': submitted && f.dir_Head_Name.errors }">
                                 <p *ngIf="submitted && f.dir_Head_Name.errors" class="invalid-feedback">Director / Head Name is required</p>
                               </div>
-                              <div class="col-sm-6">
+                             
+                              <div class="col-sm-4">
                                 <label class="col-form-label">Phone No.</label>
-                                <input type="text" class="form-control" formControlName="dir_Phone_No" [pattern]="mobNumberPattern"  [ngClass]="{ 'is-invalid': submitted && f.dir_Phone_No.errors }"
+                                <input type="text" class="form-control" formControlName="dir_Phone_No"  [ngClass]="{ 'is-invalid': submitted && f.dir_Phone_No.errors }"
                                        placeholder="">
                                 <p *ngIf="submitted && f.dir_Phone_No.errors" class="invalid-feedback">Enter valid Phone No </p>
                                 
@@ -234,14 +249,29 @@
                             </div>
                             <div class="form-group row">
                               <div class="col-sm-6">
+                                <label class="col-form-label">Nodal Title</label>
+
+                                <select class="form-control" formControlName="nodal_Title" [ngClass]="{ 'is-invalid': submitted && f.nodal_Title.errors }"> >
+                                  <option value="">--Select--</option>
+                                  <option value="Mr.">Mr.</option>
+                                  <option value="Ms.">Ms.</option>
+                                  <option value="Dr.">Dr.</option>
+                                  <option value="Prof.">Prof.</option>
+                                  <option value="Mrs.">Mrs.</option>
+                        
+                                </select>
+                              
+                                <p *ngIf="submitted && f.nodal_Title.errors" class="invalid-feedback">Nodal Title is required</p>
+                              </div>
+                              <div class="col-sm-6">
                                 <label class="col-form-label">Nodal Officer Name</label>
                                 <input type="text" class="form-control" formControlName="nodal_Name" [ngClass]="{ 'is-invalid': submitted && f.nodal_Name.errors }">
                                 <p *ngIf="submitted && f.nodal_Name.errors" class="invalid-feedback">Nodal Officer Name is required</p>
                               </div>
-
+                             
                               <div class="col-sm-6">
                                 <label class="col-form-label">Phone No.</label>
-                                <input type="text" class="form-control" [pattern]="mobNumberPattern" formControlName="nodal_Phone_No" [ngClass]="{ 'is-invalid': submitted && f.nodal_Phone_No.errors }"
+                                <input type="text" class="form-control" formControlName="nodal_Phone_No" [ngClass]="{ 'is-invalid': submitted && f.nodal_Phone_No.errors }"
                                        placeholder="">
                                 <p *ngIf="submitted && f.nodal_Phone_No.errors" class="invalid-feedback">Enter valid Phone No</p>
                               </div>

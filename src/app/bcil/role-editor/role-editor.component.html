@@ -131,7 +131,7 @@
               </div> -->
               <div class="card-block table-border-style">
                 <div class="table-responsive">
-                    <form [formGroup]="myForm">
+                
                     <table class="table table-hover">
                   <thead>
                       <tr>
@@ -145,12 +145,12 @@
                           <td>{{sta.status_name}}</td>
                           <td>{{sta.stagetype}}</td>
                           <td>
-                            View <input type="checkbox" (change)="onChange('view',sta.status_code, $event.target.checked)" name="view-{{sta.status_code}}" checked="{{sta.check}}"/>
+                            View <input type="checkbox"  name="view-{{sta.status_code}}" id="view-{{sta.status_code}}" [(ngModel)]="selectedValues2[sta.viewcode]" (change)="selcted($event)" />
                              
-                            Manage button <input type="checkbox" (change)="onChange('manage',sta.status_code, $event.target.checked)" name="manage-{{sta.status_code}}" checked="{{sta.check}}"/>
-                             
-                              History <input type="checkbox" (change)="onChange('history',sta.status_code, $event.target.checked)" name="history-{{sta.status_code}}" checked="{{sta.check}}"/>
-                              Remarks <input type="checkbox" (change)="onChange('remark',sta.status_code, $event.target.checked)" name="remark-{{sta.status_code}}" value="remark-{{sta.status_code}}" checked="{{sta.check}}"/>
+                            Manage button <input type="checkbox"  name="manage-{{sta.status_code}}" id="manage-{{sta.status_code}}"  [(ngModel)]="selectedValues2[sta.managecode]" />
+                            
+                              History <input type="checkbox" name="history-{{sta.status_code}}" id="history-{{sta.status_code}}"  [(ngModel)]="selectedValues2[sta.historycode]"   />
+                              Remarks <input type="checkbox"  name="remark-{{sta.status_code}}" id="remark-{{sta.status_code}}" [(ngModel)]="selectedValues2[sta.remarkcode]"  />
                               <!-- Email<input type="checkbox" (change)="onChange('email',sta.status_code, $event.target.checked)" name="email-{{sta.status_code}}" value="email-{{sta.status_code}}" checked="{{sta.check}}"/>
                             -->
                               <!-- Additionfile<input type="checkbox" (change)="onChange('addfile',sta.status_code, $event.target.checked)" name="addfile-{{sta.status_code}}" value="addfile-{{sta.status_code}}" checked="{{sta.check}}"/>
@@ -163,7 +163,7 @@
               <button  type="submit" class="btn btn-primary" [disabled]="isSaving" (click)="permissionsubmit()">
                 <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('Saving' ) : ('Save' )}}
               </button>
-            </form>
+            
               </div></div>
             </div>
           </div>

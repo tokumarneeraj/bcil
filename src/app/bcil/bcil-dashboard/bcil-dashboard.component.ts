@@ -103,8 +103,8 @@ designModel:any[];
     this.userRoles = this.accountService.currentUser.roles;
 
     this.UserId = this.accountService.currentUser.id;
-    this.permission=JSON.parse(localStorage.getItem('user_permissions'));
-    console.log(this.permission)
+    
+  
    // this.permission[0].link= this.accountService.permissions;
    }
    counttotal(tab:any){
@@ -154,6 +154,9 @@ else
    //return this.mouModel?.filter(x=>data?.find(y=>y.value==x.app_Status)).length;
    }
   ngOnInit(): void {
+    
+    // this.permission=JSON.parse(localStorage.getItem('user_permissions'));
+    // console.log(this.permission)
     this.viewtab=this.commondata.getotherpermissiondata('view')?.map((item)=>(item?.split('-')[1]));
     // this.notify_call();
     this.Bdoservice.getdatapermission().subscribe(data=>{
