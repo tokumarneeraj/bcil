@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ToastaConfig, ToastaService, ToastData, ToastOptions } from 'ngx-toasta';
+import { filter } from 'rxjs/operators';
 import { AccountService } from './services/account.service';
 import { AlertCommand, AlertDialog, AlertService, DialogType, MessageSeverity } from './services/alert.service';
 import { AppTranslationService } from './services/app-translation.service';
 import { AuthService } from './services/auth.service';
 import { ConfigurationService } from './services/configuration.service';
+import { DBkeys } from './services/db-keys';
 import { LocalStoreManager } from './services/local-store-manager.service';
 
 const alertify: any = require('../assets/scripts/alertify.js');
@@ -18,16 +20,18 @@ export class AppComponent implements OnInit {
   title = 'bcilAngular';
   isUserLoggedIn: boolean;
   stickyToasties: number[] = [];
+  userRoles:string[];
   constructor( storageManager: LocalStoreManager,
     private toastaService: ToastaService,
     private toastaConfig: ToastaConfig,
     private accountService: AccountService,
     private alertService: AlertService,
-  
+    private localStorage: LocalStoreManager,
     private authService: AuthService,
     private translationService: AppTranslationService,
     public configurations: ConfigurationService,
     public router: Router){
+      this.userRoles = this.accountService?.currentUser?.roles;
     storageManager.initialiseStorageSyncListener();
 
     this.toastaConfig.theme = 'bootstrap';
@@ -35,8 +39,38 @@ export class AppComponent implements OnInit {
     this.toastaConfig.limit = 100;
     this.toastaConfig.showClose = true;
     this.toastaConfig.showDuration = false;
+    if(this.userRoles!=undefined)
+    this.loadpermission()
+    // this.router.events
+    // .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
+    // .subscribe(event => {
+    //   if (
+    //     event.id === 1 &&
+    //     event.url === event.urlAfterRedirects 
+    //   ) {
+       
+    //  this.loadpermission()
+    //   }
+    // })
 
   }
+  loadpermission(){
+    this.accountService.getOtherpermissionbyrolename(this.userRoles[0]).subscribe(data=>{
+     var arrNames = [];
+ //iterate through object keys
+ data?.forEach(function(item) {
+ //get the value of name
+ var val = item.permission
+ //push the name string in the array
+ arrNames.push(val);
+ });
+ //this.localStorage.s
+ //this.localStorage
+ //localStorage.setItem("user_otherpermissions",arrNames?.join(","))
+ 
+    this.localStorage.savePermanentData(arrNames, DBkeys.USER_OTHERPERMISSIONS);
+ });
+ }
   get userName(): string {
     return this.authService.currentUser ? this.authService.currentUser.userName : '';
   }
@@ -59,6 +93,11 @@ export class AppComponent implements OnInit {
     this.alertService.getMessageEvent().subscribe(message => this.showToast(message));
 
   }
+  @HostListener('window:beforeunload', ['$event'])
+unloadHandler(event: Event) {
+  alert("d")
+    // Your logic on beforeunload
+}
   showDialog(dialog: AlertDialog) {
 
     alertify.set({

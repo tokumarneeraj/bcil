@@ -31,10 +31,10 @@
 		,
 		{
 		"stage": "patentact",
-			"text": "Patent Activity",
+			"text": "IP Activity",
 			"color": "purple",
-			"icon": "fa fa-bar-chart f-28",
-			"menuheading": "Patent Activity",
+			"icon": "fa fa-usb f-28",
+			"menuheading": "IP Activity",
 			"submenu": true,
 			"url": "bcil/bcil-dashboard",
 			"tablename": "Upload Assignment/Tech. disclosure form"
@@ -305,7 +305,7 @@
 			"stage": "account",
 			"text": "Acount",
 			"icon": "",
-			"menuheading": "Account",
+			"menuheading": "Accounts",
 			"submenu": true,
 			"url": "bcil/account-dashboard",
 			"color": "dark-orange"
@@ -382,8 +382,8 @@
 					"value": "S103"
 				},
 				{
-					"text": "Approved",
-					"class": "btn btn-info",
+					"text": "Approve",
+					"class": "btn btn-success",
 					"title": "",
 					"value": "S110"
 				}
@@ -483,7 +483,7 @@
 			"tablename": "TT Assignment",
 			"heading": "TT Assignment",
 			"formheader": "TT Assignment",
-			"type": "tto_req_approved",
+			"type": "tto_req_Approve",
 			"value": "S108",
 			"color": "dark-pink",
 			"button": []
@@ -614,7 +614,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"value": "S117",
 					"form": {
 						"fileuploadreq": true
@@ -622,7 +622,7 @@
 				},
 				{
 					"text": "Change Request",
-					"class": "btn btn-info",
+					"class": "btn btn-primary",
 					"value": "S118"
 				}
 			]
@@ -665,7 +665,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Close",
-				"class": "btn btn-info",
+				"class": "btn btn-danger",
 				"value": "S120"
 			}]
 		},
@@ -689,7 +689,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Change Request",
-				"class": "btn btn-info",
+				"class": "btn btn-primary",
 				"value": "S118"
 			}, {
 				"text": "Reject",
@@ -702,7 +702,7 @@
 			"tablename": "Evaluation Report for Review",
 			"formheader": "Evaluation Report for Review",
 			"heading": "Evaluation Report for Review",
-			"type": "tta_evaluation_approved_by_admin",
+			"type": "tta_evaluation_Approve_by_admin",
 			"value": "S117",
 			"color": "dark-green",
 			"button": [{
@@ -711,16 +711,16 @@
 				"value": "S122"
 			}, {
 				"text": "Change Request",
-				"class": "btn btn-info",
+				"class": "btn btn-primary",
 				"value": "S121"
 			}]
 		},
 
 		{
 			"stage": "tta",
-			"tablename": "Evaluation Report Approved",
-			"formheader": "Evaluation Report Approved",
-			"heading": "Evaluation Report Approved",
+			"tablename": "Evaluation Report Approve",
+			"formheader": "Evaluation Report Approve",
+			"heading": "Evaluation Report Approve",
 			"type": "tta_evaluation_accepted_by_client",
 			"value": "S122",
 			"color": "dark-green",
@@ -760,7 +760,7 @@
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-info",
-				"value": "S125"
+				"value": "S124"
 			}]
 		},
 		{
@@ -787,10 +787,10 @@
 
 		{
 			"stage": "tta",
-			"tablename": "TT Strategy Approved",
-			"formheader": "TT Strategy Approved",
-			"heading": "TT Strategy Approved",
-			"type": "tta_strategy_approved",
+			"tablename": "TT Strategy Approve",
+			"formheader": "TT Strategy Approve",
+			"heading": "TT Strategy Approve",
+			"type": "tta_strategy_Approve",
 			"value": "S402",
 			"color": "yellow",
 			"button": [{
@@ -809,7 +809,7 @@
 			"color": "dark-green",
 			"button": [{
 				"text": "Change Request",
-				"class": "btn btn-info",
+				"class": "btn btn-primary",
 				"value": "S407"
 			}, {
 				"text": "Approve",
@@ -841,12 +841,12 @@
 			"tablename": "Tech Brief for Review",
 			"formheader": "Tech Brief for Review",
 			"heading": "Tech Brief for Review",
-			"type": "tta_techb_and_flier_approved_by_admin",
+			"type": "tta_techb_and_flier_Approve_by_admin",
 			"value": "S126",
 			"color": "green",
 			"button": [{
 					"text": "Change Request",
-					"class": "btn btn-info",
+					"class": "btn btn-primary",
 					"value": "S128"
 				},
 				{
@@ -858,10 +858,10 @@
 		},
 		{
 			"stage": "tta",
-			"tablename": "Tech Brief Approved",
-			"formheader": "Tech Brief Approved",
-			"heading": "Tech Brief Approved",
-			"type": "tta_techb_and_flier_approved_by_scientist",
+			"tablename": "Tech Brief Approve",
+			"formheader": "Tech Brief Approve",
+			"heading": "Tech Brief Approve",
+			"type": "tta_techb_and_flier_Approve_by_scientist",
 			"value": "S127",
 			"color": "yellow",
 			"button": [{
@@ -880,7 +880,7 @@
 			"color": "dark-orange",
 			"button": [{
 					"text": "Change Request",
-					"class": "btn btn-info",
+					"class": "btn btn-primary",
 					"value": "S407"
 				},
 				{
@@ -934,12 +934,12 @@
 			"color": "dark-blue",
 			"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"value": "S404"
 				},
 				{
 					"text": "Close",
-					"class": "btn btn-info",
+					"class": "btn btn-danger",
 					"value": "S116"
 				}
 			]
@@ -977,10 +977,10 @@
 		},
 		{
 			"stage": "tta",
-			"tablename": "TT Revised Strategy Approved",
-			"formheader": "TT Revised Strategy Approved",
-			"heading": "TT Revised Strategy Approved",
-			"type": "tta_strategy_update_approved",
+			"tablename": "TT Revised Strategy Approve",
+			"formheader": "TT Revised Strategy Approve",
+			"heading": "TT Revised Strategy Approve",
+			"type": "tta_strategy_update_Approve",
 			"value": "S406",
 			"color": "dark-orange",
 			"button": [{
@@ -1007,7 +1007,7 @@
 					"color": "dark-green",
 					"button": [{
 							"text": "Change Request",
-							"class": "btn btn-info",
+							"class": "btn btn-primary",
 							"value": "S134"
 						}, {
 							"text": "Approve",
@@ -1037,10 +1037,10 @@
 				}, {
 					"stage": "tlp",
 
-					"tablename": "Industry Approved",
-					"formheader": "Industry Approved",
-					"heading": "Industry Approved",
-					"type": "lead_approved_by_admin",
+					"tablename": "Industry Approve",
+					"formheader": "Industry Approve",
+					"heading": "Industry Approve",
+					"type": "lead_Approve_by_admin",
 					"value": "S135",
 					"color": "purple",
 					"button": [{
@@ -1100,7 +1100,7 @@
 					"tablename": "Draft NDA for Review",
 					"formheader": "Draft NDA for Review",
 					"heading": "Draft NDA for Review",
-					"type": "nda_approved_by_Admin",
+					"type": "nda_Approve_by_Admin",
 					"value": "S139",
 					"color": "red",
 					"button": [{
@@ -1109,7 +1109,7 @@
 						"value": "S140"
 					}, {
 						"text": "Approve",
-						"class": "btn btn-info",
+						"class": "btn btn-success",
 						"value": "S141"
 					}]
 				}, {
@@ -1132,7 +1132,7 @@
 					"tablename": "Draft NDA for Review",
 					"formheader": "Draft NDA for Review",
 					"heading": "Draft NDA for Review By Nodal",
-					"type": "nda_approved_by_no",
+					"type": "nda_Approve_by_no",
 					"value": "S141",
 					"color": "green",
 					"button": [{
@@ -1141,16 +1141,16 @@
 						"value": "S138"
 					}, {
 						"text": "Approve",
-						"class": "btn btn-info",
+						"class": "btn btn-success",
 						"value": "S142"
 					}]
 				}, {
 					"stage": "tlp",
 
-					"tablename": "NDA Approved",
-					"formheader": "NDA Approved",
-					"heading": "NDA Approved",
-					"type": "nda_approved_by_company",
+					"tablename": "NDA Approve",
+					"formheader": "NDA Approve",
+					"heading": "NDA Approve",
+					"type": "nda_Approve_by_company",
 					"value": "S142",
 					"color": "dark-blue",
 					"button": [{
@@ -1235,7 +1235,7 @@
 						"value": "S147"
 					}, {
 						"text": "Approve",
-						"class": "btn btn-info",
+						"class": "btn btn-success",
 						"value": "S148"
 					}]
 				}, {
@@ -1259,7 +1259,7 @@
 					"tablename": "Draft TS for Review",
 					"formheader": "Draft TS for Review",
 					"heading": "Draft TS for Review",
-					"type": "ts_approved_by_admin",
+					"type": "ts_Approve_by_admin",
 					"value": "S148",
 					"color": "dark-blue",
 					"button": [{
@@ -1268,7 +1268,7 @@
 						"value": "S149"
 					}, {
 						"text": "Approve",
-						"class": "btn btn-info",
+						"class": "btn btn-success",
 						"value": "S150"
 					}]
 				},
@@ -1289,15 +1289,15 @@
 				}, {
 					"stage": "nttsa",
 
-					"tablename": "TS Approved",
-					"formheader": "TS Approved",
-					"heading": "TS Approved",
-					"type": "ts_approved_by_client",
+					"tablename": "TS Approve",
+					"formheader": "TS Approve",
+					"heading": "TS Approve",
+					"type": "ts_Approve_by_client",
 					"value": "S150",
 					"color": "dark-orange",
 					"button": [{
 						"text": "Forward",
-						"class": "btn btn-primary",
+						"class": "btn btn-info",
 						"value": "S151"
 					}]
 				},
@@ -1316,7 +1316,7 @@
 						"value": "S152"
 					}, {
 						"text": "Approve",
-						"class": "btn btn-info",
+						"class": "btn btn-success",
 						"value": "S153"
 					}]
 				}, {
@@ -1336,10 +1336,10 @@
 				}, {
 					"stage": "nttsa",
 
-					"tablename": "Final approved TS",
-					"formheader": "Final approved TS",
-					"heading": "Final approved TS",
-					"type": "ts_approved_by_company",
+					"tablename": "Final Approve TS",
+					"formheader": "Final Approve TS",
+					"heading": "Final Approve TS",
+					"type": "ts_Approve_by_company",
 					"value": "S153",
 					"color": "red",
 					"button": [{
@@ -1415,7 +1415,7 @@
 					"tablename": "Draft LA for Review",
 					"formheader": "Draft LA for Review",
 					"heading": "Draft LA for Review",
-					"type": "la_approved_by_admin",
+					"type": "la_Approve_by_admin",
 					"value": "S157",
 					"color": "blue",
 					"button": [{
@@ -1425,7 +1425,7 @@
 						},
 						{
 							"text": "Approve",
-							"class": "btn btn-primary",
+							"class": "btn btn-success",
 							"value": "S159"
 						}
 					]
@@ -1446,10 +1446,10 @@
 				}, {
 					"stage": "tstl",
 
-					"tablename": "Draft LA approved",
-					"formheader": "Draft LA approved",
-					"heading": "Draft LA approved ",
-					"type": "la_approved_by_client",
+					"tablename": "Draft LA Approve",
+					"formheader": "Draft LA Approve",
+					"heading": "Draft LA Approve ",
+					"type": "la_Approve_by_client",
 					"value": "S159",
 					"color": "dark-blue",
 					"button": [{
@@ -1483,12 +1483,12 @@
 					"tablename": "LA Agreed by Industry",
 					"formheader": "LA Agreed by Industry",
 					"heading": "LA Agreed by Industry",
-					"type": "la_approved_by_company",
+					"type": "la_Approve_by_company",
 					"value": "S161",
 					"color": "dark-green",
 					"button": [{
 						"text": "Forward",
-						"class": "btn btn-primary",
+						"class": "btn btn-info",
 						"value": "S162"
 					}]
 				}, {
@@ -1598,7 +1598,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S604"
 					}
@@ -1613,7 +1613,7 @@
 				"color": "dark-blue",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S602"
 				}]
@@ -1627,7 +1627,7 @@
 				"color": "green",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S604"
 				}]
@@ -1647,7 +1647,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S606"
 					}
@@ -1702,10 +1702,10 @@
 				]
 			}, {
 				"stage": "patentdraft",
-				"tablename": "Report Approved By Client",
-				"formheader": "Report Approved By Client",
-				"heading": "Report Approved By Client",
-				"type": "report_approved_by_client",
+				"tablename": "Report Approve By Client",
+				"formheader": "Report Approve By Client",
+				"heading": "Report Approve By Client",
+				"type": "report_Approve_by_client",
 				"value": "S609",
 				"color": "dark-pink",
 				"button": [{
@@ -1759,7 +1759,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S613",
 						"form": {
@@ -1851,7 +1851,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S615",
 						"form": {
@@ -1935,7 +1935,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S617",
 						"form": {
@@ -2012,10 +2012,10 @@
 				]
 			}, {
 				"stage": "patentdraft",
-				"tablename": "Patent Draft Approved By Client",
-				"heading": "Patent Draft Approved By Client",
-				"formheader": "Patent Draft Approved By Client",
-				"type": "patent_draft_approved_by_client",
+				"tablename": "Patent Draft Approve By Client",
+				"heading": "Patent Draft Approve By Client",
+				"formheader": "Patent Draft Approve By Client",
+				"type": "patent_draft_Approve_by_client",
 				"value": "S617",
 				"color": "purple",
 				"button": [{
@@ -2064,7 +2064,7 @@
 			"color": "dark-blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S623",
 				"form": {
@@ -2111,7 +2111,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S621",
 				"form": {
@@ -2252,7 +2252,7 @@
 			"button": [
 				{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S644",
 					"form": {
@@ -2285,7 +2285,7 @@
 			"color": "purple",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S625",
 				"form": {
@@ -2314,7 +2314,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S626"
 			},
@@ -2335,7 +2335,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S627"
 			}]
@@ -2355,7 +2355,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S629"
 				}
@@ -2406,32 +2406,32 @@
 			"button": [
 			{
 				"text": "Change Request",
-				"class": "btn btn-info",
+				"class": "btn btn-primary",
 				"title": "",
 				"value": "S630"
 			},{
 				"text": "approve",
-				"class": "btn btn-primary",
+				"class": "btn btn-success",
 				"title": "",
 				"value": "S631"
 			}
 			,{
 				"text": "Closure",
-				"class": "btn btn-success",
+				"class": "btn btn-danger",
 				"title": "",
 				"value": "S608"
 			}]
 		}, {
 			"stage": "patentfinalfiling",
-			"tablename": "FP Draft Approved By Client",
-			"heading": "FP Draft Approved By Client",
-			"formheader": "FP Draft Approved By Client",
-			"type": "fp_draft_approved_by_client",
+			"tablename": "FP Draft Approve By Client",
+			"heading": "FP Draft Approve By Client",
+			"formheader": "FP Draft Approve By Client",
+			"type": "fp_draft_Approve_by_client",
 			"value": "S631",
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S619"
 			}]
@@ -2455,7 +2455,7 @@
 			"color": "green",
 			"button": [{
 				"text": "forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S633",
 				"form": {
@@ -2476,8 +2476,8 @@
 			"value": "S633",
 			"color": "blue",
 			"button": [{
-				"text": "forward",
-				"class": "btn btn-primary",
+				"text": "Forward",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S634"
 			}]
@@ -2497,7 +2497,7 @@
 				},
 				{
 					"text": "forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S636"
 				}
@@ -2518,10 +2518,10 @@
 			}]
 		}, {
 			"stage": "patentforeignfiling",
-			"tablename": "Ff Draft Approved By IPM",
-			"heading": "Ff Draft Approved By IPM",
-			"formheader": "Ff Draft Approved By IPM",
-			"type": "ff_draft_approved_by_ipm",
+			"tablename": "Ff Draft Approve By IPM",
+			"heading": "Ff Draft Approve By IPM",
+			"formheader": "Ff Draft Approve By IPM",
+			"type": "ff_draft_Approve_by_ipm",
 			"value": "S636",
 			"color": "purple",
 			"button": [{
@@ -2532,7 +2532,7 @@
 				},
 				{
 					"text": "forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S638",
 					"form":{
@@ -2542,7 +2542,7 @@
 				
 				{
 					"text": "Closure",
-					"class": "btn btn-primary",
+					"class": "btn btn-danger",
 					"title": "",
 					"value": "S608"
 				}
@@ -2563,22 +2563,22 @@
 				},
 				{
 					"text": "forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S636"
 				}
 			]
 		}, {
 			"stage": "patentforeignfiling",
-			"tablename": "Ff Draft Approved By Client",
-			"heading": "Ff Draft Approved By Client",
-			"formheader": "Ff Draft Approved By Client",
-			"type": "ff_draft_approved_by_client",
+			"tablename": "Ff Draft Approve By Client",
+			"heading": "Ff Draft Approve By Client",
+			"formheader": "Ff Draft Approve By Client",
+			"type": "ff_draft_Approve_by_client",
 			"value": "S638",
 			"color": "green",
 			"button": [{
 				"text": "forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S639"
 			}]
@@ -2613,7 +2613,7 @@
 			"color": "blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S642"
 			}]
@@ -2627,7 +2627,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S643"
 			}]
@@ -2669,7 +2669,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S645"
 			}
@@ -2712,7 +2712,7 @@
 			"color": "blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S647"
 			}]
@@ -2726,7 +2726,7 @@
 			"color": "dark-green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S648",
 				"form": {
@@ -2756,8 +2756,8 @@
 			"value": "S648",
 			"color": "purple",
 			"button": [{
-				"text": "forward",
-				"class": "btn btn-primary",
+				"text": "Forward",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S650",
 				"form":{"jsondata":[
@@ -2796,7 +2796,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S651"
 			}]
@@ -2810,7 +2810,7 @@
 			"color": "purple",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S652"
 			}]
@@ -2824,7 +2824,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S653",
 				"form": {
@@ -2883,7 +2883,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S654"
 			}]
@@ -2903,7 +2903,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S656"
 				}
@@ -2938,7 +2938,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S658"
 				}
@@ -2966,15 +2966,15 @@
 			]
 		}, {
 			"stage": "patentfirstexamreport",
-			"tablename": "FER Resp Draft Approved By Client",
-			"heading": "FER Resp Draft Approved By Client",
-			"formheader": "FER Resp Draft Approved By Client",
-			"type": "fer_resp_draft_approved_by_client",
+			"tablename": "FER Resp Draft Approve By Client",
+			"heading": "FER Resp Draft Approve By Client",
+			"formheader": "FER Resp Draft Approve By Client",
+			"type": "fer_resp_draft_Approve_by_client",
 			"value": "S658",
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S659"
 			}]
@@ -2988,7 +2988,7 @@
 			"color": "dark-blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S660",
 				"form": {
@@ -3049,7 +3049,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S662"
 				
@@ -3074,7 +3074,7 @@
 				"color": "green",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S663"
 				}]
@@ -3089,7 +3089,7 @@
 				"color": "red",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S664"
 				}]
@@ -3104,7 +3104,7 @@
 				"color": "blue",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S665"
 				}]
@@ -3119,7 +3119,7 @@
 				"color": "purple",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S666"
 				}]
@@ -3134,7 +3134,7 @@
 				"color": "yellow",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S667"
 				}]
@@ -3149,7 +3149,7 @@
 				"color": "dark-green",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S668"
 				}]
@@ -3170,7 +3170,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-primary",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S670"
 					}
@@ -3186,7 +3186,7 @@
 				"color": "dark-orange",
 				"button": [{
 					"text": "Update",
-					"class": "btn btn-info","title": "",
+					"class": "btn btn-primary","title": "",
 						"value": "S668"
 				}]
 			}, {
@@ -3199,11 +3199,11 @@
 				"color": "green",
 				"button": [{
 					"text": "Change Req",
-					"class": "btn btn-info","title": "",
+					"class": "btn btn-primary","title": "",
 						"value": "S671"
 				}, {
 					"text": "Forward",
-					"class": "btn btn-success","title": "",
+					"class": "btn btn-info","title": "",
 						"value": "S672"
 				}]
 			}, {
@@ -3225,10 +3225,10 @@
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
-				"tablename": "Draft Written Submission Approved By Client",
-				"heading": "Draft Written Submission Approved By Client",
-				"formheader": "Draft Written Submission Approved By Client",
-				"type": "draft_written_submission_approved_by_client",
+				"tablename": "Draft Written Submission Approve By Client",
+				"heading": "Draft Written Submission Approve By Client",
+				"formheader": "Draft Written Submission Approve By Client",
+				"type": "draft_written_submission_Approve_by_client",
 				"value": "S672",
 				"color": "yellow",
 				"button": [{
@@ -3238,15 +3238,15 @@
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
-				"tablename": "Approved Written Submission Shared by Luf",
-				"heading": "Approved Written Submission Shared by Luf",
-				"formheader": "Approved Written Submission Shared by Luf",
-				"type": "approved_written-submission_shared_by_luf",
+				"tablename": "Approve Written Submission Shared by Luf",
+				"heading": "Approve Written Submission Shared by Luf",
+				"formheader": "Approve Written Submission Shared by Luf",
+				"type": "Approve_written-submission_shared_by_luf",
 				"value": "S673",
 				"color": "red",
 				"button": [ {
 					"text": "Forward",
-					"class": "btn btn-success","title": "",
+					"class": "btn btn-info","title": "",
 						"value": "S674",
 					"form": {
 						"jsondata": [{
@@ -3351,7 +3351,7 @@
 				"color": "blue",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S756",
 					"form": {
@@ -3363,7 +3363,7 @@
 
 					}},{
 					"text": "Closure",
-					"class": "btn btn-info",
+					"class": "btn btn-danger",
 					"title": "",
 					"value": "S426"
 					
@@ -3383,7 +3383,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S758",
 						"form": {
@@ -3415,7 +3415,7 @@
 				"color": "red",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S759"
 				}]
@@ -3434,7 +3434,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S761"
 					}
@@ -3467,7 +3467,7 @@
 					},
 					{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S763"
 					}
@@ -3494,27 +3494,27 @@
 				]
 			}, {
 				"stage": "copyright_common_ip",
-				"tablename": "Draft Approved By Client",
-				"heading": "Draft Approved By Client",
-				"type": "draft_approved_by_client",
+				"tablename": "Draft Approve By Client",
+				"heading": "Draft Approve By Client",
+				"type": "draft_Approve_by_client",
 				"value": "S763",
 				"color": "dark-blue",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S764"
 				}]
 			}, {
 				"stage": "copyright_common_ip",
-				"tablename": "Approved Draft Shared With Luf",
-				"heading": "Approved Draft Shared With Luf",
-				"type": "approved_draft_shared_with_luf",
+				"tablename": "Approve Draft Shared With Luf",
+				"heading": "Approve Draft Shared With Luf",
+				"type": "Approve_draft_shared_with_luf",
 				"value": "S764",
 				"color": "yellow",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S765"
 				}]
@@ -3527,7 +3527,7 @@
 				"color": "purple",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S766",
 					"form": {
@@ -3569,12 +3569,12 @@
 				"color": "green",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S767"
 				},{
 					"text": "Closure",
-					"class": "btn btn-info",
+					"class": "btn btn-danger",
 					"title": "",
 					"value": "S425"
 					
@@ -3593,7 +3593,7 @@
 					"value": "S768"
 				},{
 					"text": "Closure",
-					"class": "btn btn-info",
+					"class": "btn btn-danger",
 					"title": "",
 					"value": "S426"
 					
@@ -3608,7 +3608,7 @@
 				"color": "yellow",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S426"
 				}]
@@ -3622,7 +3622,7 @@
 				"color": "red",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S427"
 				}]
@@ -3667,7 +3667,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S769"
 			}]
@@ -3680,7 +3680,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S770"
 			}]
@@ -3699,7 +3699,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S772"
 				}
@@ -3732,7 +3732,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S774"
 				}
@@ -3759,27 +3759,27 @@
 			]
 		}, {
 			"stage": "copyright_er_er",
-			"tablename": "ER Resp Approved By Client",
-			"heading": "ER Resp Approved By Client",
-			"type": "er_resp_approved_by_client",
+			"tablename": "ER Resp Approve By Client",
+			"heading": "ER Resp Approve By Client",
+			"type": "er_resp_Approve_by_client",
 			"value": "S774",
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S775"
 			}]
 		}, {
 			"stage": "copyright_er_er",
-			"tablename": "Approved ER Resp Shared With Luf",
-			"heading": "Approved ER Resp Shared With Luf",
-			"type": "approved_er_resp_shared_with_luf",
+			"tablename": "Approve ER Resp Shared With Luf",
+			"heading": "Approve ER Resp Shared With Luf",
+			"type": "Approve_er_resp_shared_with_luf",
 			"value": "S775",
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S776"
 			}]
@@ -3804,7 +3804,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S777",
 					"form": {
@@ -3857,7 +3857,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S778"
 			}]
@@ -3870,7 +3870,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S779"
 			}]
@@ -3883,7 +3883,7 @@
 			"color": "purple",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S780"
 			}]
@@ -3896,7 +3896,7 @@
 			"color": "blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S781"
 			}]
@@ -3909,7 +3909,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S782"
 			}]
@@ -3922,7 +3922,7 @@
 			"color": "dark-pink",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S783"
 			}]
@@ -3940,7 +3940,7 @@
 				"value": "S784"
 			}, {
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S785"
 			}]
@@ -3966,7 +3966,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S786"
 			}]
@@ -4028,7 +4028,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S788"
 			}]
@@ -4049,7 +4049,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S791"
 			}]
@@ -4081,7 +4081,7 @@
 			"color": "blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S719",
 				"form": {
@@ -4093,7 +4093,7 @@
 				}
 			},{
 				"text": "Closure",
-				"class": "btn btn-info",
+				"class": "btn btn-danger",
 				"title": "",
 				"value": "S423"
 				
@@ -4113,7 +4113,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S721",
 					"form": {
@@ -4145,7 +4145,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S722"
 			}]
@@ -4197,7 +4197,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S726"
 				}
@@ -4224,27 +4224,27 @@
 			]
 		}, {
 			"stage": "design_common_ip",
-			"tablename": "Draft Approved By Client",
-			"heading": "Draft Approved By Client",
-			"type": "draft_approved_by_client",
+			"tablename": "Draft Approve By Client",
+			"heading": "Draft Approve By Client",
+			"type": "draft_Approve_by_client",
 			"value": "S726",
 			"color": "dark-blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S727"
 			}]
 		}, {
 			"stage": "design_common_ip",
-			"tablename": "Approved Draft Shared With Luf",
-			"heading": "Approved Draft Shared With Luf",
-			"type": "approved_draft_shared_with_luf",
+			"tablename": "Approve Draft Shared With Luf",
+			"heading": "Approve Draft Shared With Luf",
+			"type": "Approve_draft_shared_with_luf",
 			"value": "S727",
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S728"
 			}]
@@ -4257,7 +4257,7 @@
 			"color": "purple",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S729",
 				"form": {
@@ -4299,12 +4299,12 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S730"
 			},{
 				"text": "Closure",
-				"class": "btn btn-info",
+				"class": "btn btn-danger",
 				"title": "",
 				"value": "S422"
 				
@@ -4323,7 +4323,7 @@
 				"value": "S731"
 			},{
 				"text": "Closure",
-				"class": "btn btn-info",
+				"class": "btn btn-danger",
 				"title": "",
 				"value": "S423"
 				
@@ -4338,7 +4338,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S423"
 			}]
@@ -4352,7 +4352,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S424"
 			}]
@@ -4394,7 +4394,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S732"
 			}]
@@ -4407,7 +4407,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S733"
 			}]
@@ -4426,7 +4426,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S735"
 				}
@@ -4459,7 +4459,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S737"
 				}
@@ -4486,27 +4486,27 @@
 			]
 		}, {
 			"stage": "design_er_er",
-			"tablename": "ER Resp Approved By Client",
-			"heading": "ER Resp Approved By Client",
-			"type": "er_resp_approved_by_client",
+			"tablename": "ER Resp Approve By Client",
+			"heading": "ER Resp Approve By Client",
+			"type": "er_resp_Approve_by_client",
 			"value": "S737",
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S738"
 			}]
 		}, {
 			"stage": "design_er_er",
-			"tablename": "Approved ER Resp Shared With Luf",
-			"heading": "Approved ER Resp Shared With Luf",
-			"type": "approved_er_resp_shared_with_luf",
+			"tablename": "Approve ER Resp Shared With Luf",
+			"heading": "Approve ER Resp Shared With Luf",
+			"type": "Approve_er_resp_shared_with_luf",
 			"value": "S738",
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S739"
 			}]
@@ -4519,7 +4519,7 @@
 			"color": "yellow",
 			"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S740",
 					"form": {
@@ -4584,7 +4584,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S741"
 			}]
@@ -4597,7 +4597,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S742"
 			}]
@@ -4610,7 +4610,7 @@
 			"color": "purple",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S743"
 			}]
@@ -4623,7 +4623,7 @@
 			"color": "blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S744"
 			}]
@@ -4636,7 +4636,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S745"
 			}]
@@ -4649,7 +4649,7 @@
 			"color": "dark-pink",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S746"
 			}]
@@ -4668,7 +4668,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S748"
 				}
@@ -4695,7 +4695,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S749"
 			}]
@@ -4757,7 +4757,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S750"
 			}]
@@ -4778,7 +4778,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S754"
 			}]
@@ -4810,7 +4810,7 @@
 			"color": "blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S681",
 				"form": {
@@ -4822,7 +4822,7 @@
 				}
 			},{
 				"text": "Closure",
-				"class": "btn btn-info",
+				"class": "btn btn-danger",
 				"title": "",
 				"value": "S420"
 				
@@ -4842,7 +4842,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-secondary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S683",
 					"form": {
@@ -4861,9 +4861,9 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
-				"value": "S781"
+				"value": "S681"
 			}]
 		}, {
 			"stage": "trademark_common_ip",
@@ -4874,7 +4874,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S684"
 			}]
@@ -4893,7 +4893,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S686"
 				}
@@ -4920,7 +4920,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S688"
 			}]
@@ -4946,27 +4946,27 @@
 			]
 		}, {
 			"stage": "trademark_common_ip",
-			"tablename": "Draft Approved By Client",
-			"heading": "Draft Approved By Client",
-			"type": "draft_approved_by_client",
+			"tablename": "Draft Approve By Client",
+			"heading": "Draft Approve By Client",
+			"type": "draft_Approve_by_client",
 			"value": "S688",
 			"color": "dark-blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S689"
 			}]
 		}, {
 			"stage": "trademark_common_ip",
-			"tablename": "Approved Draft Shared With Luf",
-			"heading": "Approved Draft Shared With Luf",
-			"type": "approved_draft_shared_with_luf",
+			"tablename": "Approve Draft Shared With Luf",
+			"heading": "Approve Draft Shared With Luf",
+			"type": "Approve_draft_shared_with_luf",
 			"value": "S689",
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S690"
 			}]
@@ -4979,7 +4979,7 @@
 			"color": "purple",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S691",
 				"form": {
@@ -5021,12 +5021,12 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S692"
 			},{
 				"text": "Closure",
-				"class": "btn btn-info",
+				"class": "btn btn-danger",
 				"title": "",
 				"value": "S421"
 				
@@ -5046,7 +5046,7 @@
 				},
 				{
 					"text": "Closure",
-					"class": "btn btn-info",
+					"class": "btn btn-danger",
 					"title": "",
 					"value": "S420"
 				}
@@ -5062,7 +5062,7 @@
 			"color": "green",
 			"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S420"
 				}]
@@ -5077,7 +5077,7 @@
 			"color": "yellow",
 			"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S419"
 				}]
@@ -5119,7 +5119,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S694",
 				"form": {
@@ -5137,7 +5137,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S695"
 			}]
@@ -5156,7 +5156,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S697"
 				}
@@ -5190,7 +5190,7 @@
 
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S699"
 				}
@@ -5217,27 +5217,27 @@
 			]
 		}, {
 			"stage": "trademark_er_er",
-			"tablename": "ER Resp Approved By Client",
-			"heading": "ER Resp Approved By Client",
-			"type": "er_resp_approved_by_client",
+			"tablename": "ER Resp Approve By Client",
+			"heading": "ER Resp Approve By Client",
+			"type": "er_resp_Approve_by_client",
 			"value": "S699",
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S700"
 			}]
 		}, {
 			"stage": "trademark_er_er",
-			"tablename": "Approved ER Resp Shared With Luf",
-			"heading": "Approved ER Resp Shared With Luf",
-			"type": "approved_er_resp_shared_with_luf",
+			"tablename": "Approve ER Resp Shared With Luf",
+			"heading": "Approve ER Resp Shared With Luf",
+			"type": "Approve_er_resp_shared_with_luf",
 			"value": "S700",
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S701"
 			}]
@@ -5250,7 +5250,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S702"
 			},
@@ -5285,7 +5285,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S703"
 			}]
@@ -5298,7 +5298,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S704"
 			}]
@@ -5311,7 +5311,7 @@
 			"color": "purple",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S705"
 			}]
@@ -5324,7 +5324,7 @@
 			"color": "blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S706"
 			}]
@@ -5337,7 +5337,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S707"
 			}]
@@ -5350,7 +5350,7 @@
 			"color": "dark-pink",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S708"
 			}]
@@ -5369,7 +5369,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S710"
 				}
@@ -5396,7 +5396,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S711"
 			}]
@@ -5514,7 +5514,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S716"
 			}]
@@ -5633,7 +5633,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"value": "S796"
 				}
 			]
@@ -5647,7 +5647,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Update",
-				"class": "btn btn-success",
+				"class": "btn btn-primary",
 				"value": "S794"
 			}]
 		},
@@ -5665,7 +5665,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"value": "S798"
 				}
 			]
@@ -5716,7 +5716,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"value": "S801"
 				}
 			]
@@ -5730,7 +5730,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Update",
-				"class": "btn btn-info",
+				"class": "btn btn-primary",
 				"value": "S799"
 			}]
 		},
@@ -5743,7 +5743,7 @@
 			"color": "yellow",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"value": "S802"
 			}]
 		},
@@ -5775,7 +5775,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"value": "S804"
 			}]
 		},
@@ -5839,7 +5839,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"value": "S174"
 					
 				}
@@ -5854,7 +5854,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Update",
-				"class": "btn btn-success",
+				"class": "btn btn-primary",
 				"value": "S172"
 			}]
 		},
@@ -5872,7 +5872,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"value": "S176"
 				}
 			]
@@ -5929,7 +5929,7 @@
 						},
 						{
 							"text": "Forward",
-							"class": "btn btn-success",
+							"class": "btn btn-info",
 							"value": "S179"
 						}
 					]
@@ -5943,7 +5943,7 @@
 					"color": "dark-orange",
 					"button": [{
 						"text": "Update",
-						"class": "btn btn-info",
+						"class": "btn btn-primary",
 						"value": "S177"
 					}]
 				},
@@ -5956,11 +5956,11 @@
 					"color": "yellow",
 					"button": [{
 						"text": "Change Request",
-						"class": "btn btn-info",
+						"class": "btn btn-primary",
 						"value": "S180"
 					},{
 						"text": "Forward",
-						"class": "btn btn-success",
+						"class": "btn btn-info",
 						"value": "S181"
 					}]
 				},
@@ -6034,7 +6034,7 @@
 					"color": "green",
 					"button": [{
 						"text": "Forward",
-						"class": "btn btn-primary",
+						"class": "btn btn-info",
 						"title": "",
 						"value": "S806"
 					}]
@@ -6144,7 +6144,7 @@
 				"color": "green",
 				"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S813","form":{"mappedinvoice":true}
 				}
@@ -6160,7 +6160,7 @@
 			"color": "dark-blue",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S815"
 			},

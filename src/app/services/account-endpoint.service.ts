@@ -124,6 +124,12 @@ export class AccountEndpoint extends EndpointBase {
           return this.handleError(error, () => this.getOtherpermissionbyrolenameEndpoint(role));
         }));
       }
+
+      getOtherpermissionbyrolenameEndpointpromise<T>(role:string) {
+        const endpointUrl = `${this.getotherpermissionbyrolenameUrl}/${role}`;
+    
+        return this.http.get(endpointUrl, this.requestHeaders).toPromise();
+        }
     
   
   getDepartmentsEndpoint<T>(page?: number, pageSize?: number): Observable<T> {

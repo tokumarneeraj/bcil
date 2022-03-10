@@ -20,6 +20,7 @@ import {commondata} from '../../model/common'
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { ActivityComponent } from '../activity/activity.component';
 import { AddScientistComponent } from '../add-scientist/add-scientist.component';
+import { DocumentviewComponent } from '../documentview/documentview.component';
 @Component({
   selector: 'app-bcil-init',
   templateUrl: './bcil-init.component.html',
@@ -41,6 +42,10 @@ export class BcilInitComponent implements OnInit {
   editorModal1: ModalDirective;
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
+
+
+  @ViewChild(DocumentviewComponent)
+  Document: DocumentviewComponent;
 
   @ViewChild(AddScientistComponent)
   assignscientist: AddScientistComponent;
@@ -111,6 +116,9 @@ datapermission:any;
 
    this.customrem=false;
     
+  }
+  viewdocumentfile(data){
+    this.Document.onmodalshow(data,"mou");
   }
   reminderchange(data){
 if(data=="default"){

@@ -7,13 +7,23 @@ import { Bdoservice } from 'src/app/services/bdo.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { activeusermou, addusertomou } from 'src/app/model/mou.model';
+import { environment } from 'src/environments/environment';
+import { filehistoryModel } from 'src/app/model/filehistory';
+import { User } from 'src/app/model/user.model';
+import { commondata } from 'src/app/model/common';
 @Component({
   selector: 'app-documentview',
   templateUrl: './documentview.component.html',
   styleUrls: ['./documentview.component.scss']
 })
 export class DocumentviewComponent implements OnInit {
-
+  refid: string;
+  stage:string;
+  perm:any[]=[];
+  fileshistory:filehistoryModel[];
+  showpage= false;
+  rows: User[] = [];
+  commondata=new commondata();
   DocumentForm:FormGroup;
   submitted = false;
   loading=false;
@@ -24,12 +34,13 @@ export class DocumentviewComponent implements OnInit {
   organizations:any[];
   rowssci:any[];
   UserId:any;
-  constructor(private route: ActivatedRoute,private alertService: AlertService, private Bdoservice: Bdoservice, private formbuilder: FormBuilder, private _cookieService: CookieService, private accountService: AccountService, private router: Router) {
-
-    this.UserId = this.accountService.currentUser.id;
-    
-
-   }
+  getbaseurl=environment.baseUrl;
+  userRoles: string[];
+    isBDM: boolean;
+  constructor(private route:ActivatedRoute,private Bdoservice:Bdoservice, private accountService: AccountService,private alertService: AlertService) { 
+    this.userRoles = this.accountService.currentUser.roles;
+    this.isBDM = this.userRoles.includes('BDM');
+  }
 
   ngOnInit(): void {
    
@@ -39,7 +50,7 @@ export class DocumentviewComponent implements OnInit {
   }
  // get f1() { return this.AssignScientistForm.controls; }
 
-  onmodalshow(data:any){
+  onmodalshow(data:any,stage:any){
     //  this.addusertomou.mouref=data?.refid;
     // this.accountService.getAllUser(0,0).subscribe(data=>{
     //   this.rowssci=data.filter((x)=>x.createdBy==this.UserId && x.roles.includes('Scientist'));
@@ -49,34 +60,48 @@ export class DocumentviewComponent implements OnInit {
         
       // });
       this.editorModal2.show();
+      this.refid=data?.refid;
+      this.stage=stage;
+      // this.route.queryParams.subscribe((params)=>{
+     
+      //   this.refid=params.refid;
+      //   this.stage=params.stage;
+      //   })
+        this.accountService.getAllUser(0,0).subscribe(data =>{
+          this.rows=data;
+            
+          this.Bdoservice.getdatapermission().subscribe(data1=>{
+            console.log(data1);
+            this.Bdoservice.GetMilestone(this.refid).subscribe(milestone=>{
+              console.log(milestone)
+            
+        this.Bdoservice.Getfile(this.refid).subscribe(data=>{console.log(data)
+          data.map((x,i)=>{
+  x.createdby=this.rows.find(y=>y.id==x.createdby)?.userName+"("+this.rows.find(y=>y.id==x.createdby)?.roles+")",
+  x.jsondata=x.jsondata!=null?JSON.parse(x.jsondata):undefined,
+  x.milestone=x.status=='S172' || x.status=='S794'? milestone:[]
+          })
+         
+          console.log(data)
+  
+        //  data= this.stage=="mou"?data.filter(x=>this.moustatus.includes(x.status)):
+        //   data.filter(x=>this.ttostatus.includes(x.status));
+        //   debugger
+  //      this.perm=;
+  // this.perm=getotherpermissiondata;
+          this.fileshistory=data.filter(x=>this.commondata.getotherpermissiondata('history').find(y=>y?.split('-')[1]==x.status))
+         // this.showpage=true;
+          })
+          })
+          })
+          console.log(data)
+        })
+    }
     //})
     
-  }
-  saveassignscien(){
-    
-//     this.submitted=true;
-//     if (this.AssignScientistForm.invalid) {
-//       return;
-//     }
-//     this.loading=true;
-//     this.addusertomou.userid=this.AssignScientistForm.get("scientist").value;
-//   // alert(this.addusertomou.userid)
-//     this.Bdoservice.AddScientist(this.addusertomou).subscribe(data=>{
-//       if(data.message=="success"){
-//         this.submitted=false;
-//         this.editorModal2.hide();
-       
-// alert("data save successfully")
-// this.loading=false;
-// //this.ngOnInit();
-//       }
-     
-      
-//     },error=>{
-//       this.loading=false;
-//     })
+  
 
-  }
+ 
  // get f() { return this.AssignScientistForm.controls; }
 
 }

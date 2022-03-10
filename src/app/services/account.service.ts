@@ -57,6 +57,12 @@ static instance:AccountService;
 
     return this.accountEndpoint.getOtherpermissionbyrolenameEndpoint<any>(role);
   }
+  getOtherpermissionbyrolenamepromise(role?: string){
+
+    return this.accountEndpoint.getOtherpermissionbyrolenameEndpointpromise(role);
+  }
+
+  
   GetUserpermissiontoAdduserbyrole(role: string) {
     return this.accountEndpoint.GetUserpermissiontoAdduserbyrole<any>(role);
   }

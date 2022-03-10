@@ -6,6 +6,7 @@ import { GroupByPipe } from './pipes/group-by.pipe';
 import { KeysPipe } from './pipes/keys.pipe';
 import { UnderscorePipe } from './pipes/underscore.pipe';
 import { dateFormatPipe } from './pipes/dateformate';
+import { TrackCapsDirective } from './directives/capslock';
 // import { ComplaintDetailsComponent } from './complaint-details/complaint-details.component';
 // import { RouterModule } from '@angular/router';
 // import { ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +32,8 @@ import { dateFormatPipe } from './pipes/dateformate';
     GroupByPipe,
     HeaderComponent,
     FooterComponent,
-    UnderscorePipe
+    UnderscorePipe,
+    TrackCapsDirective
   ],
   exports: [
     dateFormatPipe,

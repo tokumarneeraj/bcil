@@ -127,6 +127,7 @@ debugger;
     const jwtHelper = new JwtHelper();
     const decodedAccessToken = jwtHelper.decodeToken(accessToken) as AccessToken;
 
+    console.log(decodedAccessToken,"decode")
     const permissions: PermissionValues[] = Array.isArray(decodedAccessToken.permission) ? decodedAccessToken.permission : [decodedAccessToken.permission];
 
     if (!this.isLoggedIn) {
@@ -144,7 +145,7 @@ debugger;
       Array.isArray(decodedAccessToken.role) ? decodedAccessToken.role : [decodedAccessToken.role]
       , decodedAccessToken.isApproved, decodedAccessToken.department,
       decodedAccessToken.imgurl,
-      decodedAccessToken.img,
+      decodedAccessToken.img,"",decodedAccessToken.title
       //decodedAccessToken.isLastPasswordChanged
     );
     user.isEnabled = true;

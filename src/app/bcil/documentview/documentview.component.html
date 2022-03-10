@@ -1,1 +1,95 @@
-<p>documentview works!</p>
+<div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" style="min-height:600px">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>View Documents</h4>
+                <button type="button" class="close float-right" title="Close" (click)="editorModal2.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="card-block table-border-style">
+                <div class="table-responsive">
+                    <table class="table table-hover" *ngIf="showpage">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>File Name</th>
+                                <th>From</th>
+                                <th>Created On</th>
+                                <th>Remarks</th>
+
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of fileshistory;let i=index;">
+                                <th scope="row">{{i+1}}</th>
+                                <td><a href="{{getbaseurl}}/{{item.url}}" *ngIf="item.filename!=''" target="_blank">View File</a>
+                                    <br/>
+                                    <div *ngFor="let items of item?.jsondata | keyvalue">
+<p *ngIf="items.key=='FILE'">{{item?.jsondata?.FEE_RECEIPT_FILE !=undefined ? 'FEE RECEIPT FILE':'NBA_FILE' |underscore}}: <a href="{{getbaseurl}}/{{items.value}}">{{item?.jsondata?.FILENAME}}</a></p>
+                                      
+<p *ngIf="items.key!='NEXTACTION' && items.key!='FILE' && items.key!='FEE_RECEIPT_FILE' && items.key!='NBA_FILE'&& items.key!='FILENAME'"> <b>{{items.key| underscore}}</b>: <b>{{items.value}}</b></p>
+<p *ngIf="items.key=='NEXTACTION'" >
+<ng-container  *ngFor="let next of items.value">
+<p><b>NextAction-</b><span class='mr-3'>{{next.nextaction}}</span>  <b>Deadline-</b><span class='mr-3'>{{next.deadline}}</span>    <b>Remarks-</b><span class='mr-3'>{{next.remarks}}</span> </p>
+
+
+</ng-container>      
+</p>                                                   
+</div>
+                                    <ng-container *ngIf="item?.milestone?.length>0">
+                                        <h4>Milestones</h4>
+                                    <div *ngFor="let items of item?.milestone">
+                                       
+<p><b>Milestone-</b><span class='mr-3'>{{items.milestone}}</span>  <b>Timeline-</b><span class='mr-3'>{{items.timelines}}</span>    <b>Payment term-</b><span class='mr-3'>{{items.paymentterm}}</span> </p>
+                                    </div>
+                                    </ng-container>
+                            </td>
+                                <td>{{item.createdby}}</td>
+                                <td>{{item.createdondate }}</td>
+                                <td><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
+                                
+                         </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- <div class="modal-body"> 
+                <form [formGroup]="AssignScientistForm">
+
+                    <div class="form-group row">
+                    <div class="col-sm-12">
+                        <label class="col-form-label">Scientist</label>
+    
+                        <select type="text" class="form-control" formControlName="scientist" [ngClass]="{ 'is-invalid': submitted && f.scientist.errors }"  >
+                          <option value="" selected>--select--</option>
+                          <option *ngFor="let data of rowssci" value="{{data.id}}">{{data.userName}}</option>
+    
+                        </select>
+                        <p *ngIf="submitted && f.scientist.errors" class="invalid-feedback">Scientist is required</p>
+               
+    
+                      </div>
+                      </div>
+                      
+                      <div class="form-group row">
+                        <div class="col-sm-6">
+                         <button type="submit"
+                                  class="btn btn-success"
+                                  (click)="uploadFile()">
+                            Upload File
+                          </button> 
+                          <button type="submit" class="btn btn-success"  (click)="saveassignscien()" [disabled]="loading">
+                              <i *ngIf="loading" class='fa fa-circle-o-notch fa-spin'></i> {{loading ? 'Saving...' : 'Save'}}
+                            </button>
+                        </div>
+                        
+      
+                      </div>
+      
+                    </form>
+             </div> -->
+  </div>
+  </div>
+  </div>
