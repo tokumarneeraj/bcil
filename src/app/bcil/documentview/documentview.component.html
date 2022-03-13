@@ -16,15 +16,15 @@
                                 <th>File Name</th>
                                 <th>From</th>
                                 <th>Created On</th>
-                                <th>Remarks</th>
-
+                              
                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of fileshistory;let i=index;">
-                                <th scope="row">{{i+1}}</th>
-                                <td><a href="{{getbaseurl}}/{{item.url}}" *ngIf="item.filename!=''" target="_blank">View File</a>
+                            <ng-container *ngFor="let item of fileshistory;let i=index;">
+                            <tr *ngIf="item.filename!=''" >
+                                <th scope="row"></th>
+                                <td><a href="{{getbaseurl}}/{{item.url}}"  target="_blank">View File</a>
                                     <br/>
                                     <div *ngFor="let items of item?.jsondata | keyvalue">
 <p *ngIf="items.key=='FILE'">{{item?.jsondata?.FEE_RECEIPT_FILE !=undefined ? 'FEE RECEIPT FILE':'NBA_FILE' |underscore}}: <a href="{{getbaseurl}}/{{items.value}}">{{item?.jsondata?.FILENAME}}</a></p>
@@ -48,9 +48,10 @@
                             </td>
                                 <td>{{item.createdby}}</td>
                                 <td>{{item.createdondate }}</td>
-                                <td><p class="spandots" (click)="remarksview(item.remarks)">{{item.remarks}}</p></td>
+                            
                                 
                          </tr>
+                        </ng-container>
                         </tbody>
                     </table>
                 </div>

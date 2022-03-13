@@ -93,10 +93,17 @@ export class AppComponent implements OnInit {
     this.alertService.getMessageEvent().subscribe(message => this.showToast(message));
 
   }
-  @HostListener('window:beforeunload', ['$event'])
-unloadHandler(event: Event) {
-  alert("d")
-    // Your logic on beforeunload
+  logout() {
+    this.authService.logout();
+    this.authService.redirectLogoutUser();
+  }
+  @HostListener('window:unload ', ['$event'])
+unloadHandler(event: any) {
+  //alert()
+  
+
+       /// this.logout();
+    
 }
   showDialog(dialog: AlertDialog) {
 

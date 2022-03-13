@@ -122,7 +122,7 @@ return data;
     //   }
 
     // });
-    debugger;
+   
 
     if (!this.isGeneralEditor) {
       console.log(this.roleArray);
@@ -211,7 +211,7 @@ this.userEdit.roles.push(event[event.length-1]?.name);
 this.userEdit.roles=this.userEdit.roles.filter(x=>x!=null)
   }
   edit() {
-    debugger;
+    
     
     if (!this.isGeneralEditor) {
       this.isEditingSelf = true;
@@ -364,7 +364,7 @@ this.allDepartment=this.allDepartment1;
 
 
   private refreshLoggedInUser() {
-    debugger;
+   
     this.accountService.refreshLoggedInUser()
       .subscribe(user => {
         this.loadCurrentUserData();

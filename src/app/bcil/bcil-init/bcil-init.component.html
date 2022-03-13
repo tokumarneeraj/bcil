@@ -61,6 +61,7 @@
                                                   <th>Director Phone</th>
                                                
                                                   <th >Action</th>
+                                                  <th *ngIf="isNodal || isScientist">Documents View</th>
                                                   <th *ngIf="viewhistory">History</th>
                                                 
                                                  <th *ngIf="viewadditionalfileright">Additional File</th>
@@ -87,7 +88,7 @@
                                                     <button value="approve" *ngIf="activearray?.approved && permission" title="{{activearray?.approvetitle}}"   approvetitle class="btn btn-info ml-2" (click)="onmodalclick($event.target.value,item)">{{activearray?.approvedText}}</button> -->
 
                                                   </td>
-                                                  <td><a (click)="viewdocumentfile(item)">View Document</a></td>
+                                                  <td *ngIf="isNodal || isScientist"><a (click)="viewdocumentfile(item)">View Documents</a></td>
                                                   <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mou',refid:item.refid}">View</a></td>
 <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
 <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(item)" class="stretched-link">View</a></td>

@@ -6323,7 +6323,7 @@ table tbody .border-bottom-info td {
   display: block;
   list-style: none;
   margin: 0;
-  padding: 0 0 20px 0;
+  padding: 0 0px 0px 0px;
   position: relative; }
   .pcoded .pcoded-navbar .pcoded-item:after {
     content: "";
@@ -6675,7 +6675,7 @@ table tbody .border-bottom-info td {
 
 .pcoded[theme-layout="vertical"] .pcoded-navbar .pcoded-item > li > a {
   text-align: left;
-  padding: 5px 10px;
+  padding: 5px 0px;
   margin: 0 10px;
   border-radius: 5px; }
 .pcoded[theme-layout="vertical"] .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu {
@@ -9251,7 +9251,7 @@ body.menu-bottom #collapse-menu {
   border-radius: 2px;
   border: 1px solid #cccccc; }
   .form-control:focus {
-    border: 1px solid #448aff; }
+    border: 1px solid #e4e4e4; }
   .form-control.form-control-normal {
     font-weight: 400; }
   .form-control.form-control-bold {
@@ -16457,4 +16457,16 @@ body.dark {
 .fixed-button.active {
   bottom: 50px;
   opacity: 1;
+}
+a.dashboardMenu{
+    display:block;
+    padding:10px 15px;
+    padding-left: 15px !important;
+}
+a.dashboardMenu span i{
+  float:right;
+}
+a.dashboardMenu i{
+ 
+  font-size: 16px;
 }

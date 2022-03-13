@@ -20,6 +20,7 @@ export class ViewfileComponent implements OnInit {
   fileshistory:filehistoryModel[];
   showpage= false;
   rows: User[] = [];
+  heading:string;
   commondata=new commondata();
   moustatus=['S101','S102','S103','S104','S105','S106','S107','S108','S109','S110','S111','S112'];
   ttostatus =
@@ -53,6 +54,7 @@ export class ViewfileComponent implements OnInit {
           
         this.Bdoservice.getdatapermission().subscribe(data1=>{
           console.log(data1);
+         this.heading= data1?.tabheading?.find(e=>e.stage==(this.stage=="mil"?"mis":this.stage))?.text;
           this.Bdoservice.GetMilestone(this.refid).subscribe(milestone=>{
             console.log(milestone)
           

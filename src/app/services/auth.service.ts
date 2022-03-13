@@ -169,21 +169,21 @@ debugger;
 
   private saveUserDetails(user: User, permissions: PermissionValues[], accessToken: string, refreshToken: string, expiresIn: Date, rememberMe: boolean) {
 
-    if (rememberMe) {
-      this.localStorage.savePermanentData(accessToken, DBkeys.ACCESS_TOKEN);
-      this.localStorage.savePermanentData(refreshToken, DBkeys.REFRESH_TOKEN);
-      this.localStorage.savePermanentData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
-      this.localStorage.savePermanentData(permissions, DBkeys.USER_PERMISSIONS);
-      this.localStorage.savePermanentData(user, DBkeys.CURRENT_USER);
-    } else {
+    // if (rememberMe) {
+    //   this.localStorage.savePermanentData(accessToken, DBkeys.ACCESS_TOKEN);
+    //   this.localStorage.savePermanentData(refreshToken, DBkeys.REFRESH_TOKEN);
+    //   this.localStorage.savePermanentData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
+    //   this.localStorage.savePermanentData(permissions, DBkeys.USER_PERMISSIONS);
+    //   this.localStorage.savePermanentData(user, DBkeys.CURRENT_USER);
+    // } else {
       this.localStorage.saveSyncedSessionData(accessToken, DBkeys.ACCESS_TOKEN);
       this.localStorage.saveSyncedSessionData(refreshToken, DBkeys.REFRESH_TOKEN);
       this.localStorage.saveSyncedSessionData(expiresIn, DBkeys.TOKEN_EXPIRES_IN);
       this.localStorage.saveSyncedSessionData(permissions, DBkeys.USER_PERMISSIONS);
       this.localStorage.saveSyncedSessionData(user, DBkeys.CURRENT_USER);
-    }
+    //}
 
-    this.localStorage.savePermanentData(rememberMe, DBkeys.REMEMBER_ME);
+    //this.localStorage.savePermanentData(rememberMe, DBkeys.REMEMBER_ME);
   }
 
   logout(): void {

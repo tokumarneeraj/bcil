@@ -54,7 +54,7 @@ fileaccess:['Internal',Validators.required],
     const files: File[] = control.value;
     let errors: string[] = [];
     if (files.length == 0) {
-      debugger;
+     
       errors.push(`File is Required`);
       return  errors.length >= 1 ? { invalid_type: errors } : null;
     }

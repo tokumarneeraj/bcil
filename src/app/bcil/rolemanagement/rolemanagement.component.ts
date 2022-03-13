@@ -159,7 +159,7 @@ loadData() {
 
 
 
-      debugger;
+    
       console.log(roles, this.roleview)
       let row = this;
       let roles1 = roles;

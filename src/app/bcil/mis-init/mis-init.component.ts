@@ -10,6 +10,7 @@ import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { Bdoservice } from 'src/app/services/bdo.service';
 import { ActivityComponent } from '../activity/activity.component';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
+import { DocumentviewComponent } from '../documentview/documentview.component';
 
 @Component({
   selector: 'app-mis-init',
@@ -39,6 +40,8 @@ export class MisInitComponent implements OnInit {
   activeusermou:activeusermou[];
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
+  @ViewChild(DocumentviewComponent)
+  Document: DocumentviewComponent;
   misModel:any[];
   viewtab:any;
   managetab:any;
@@ -79,7 +82,11 @@ this.Bdoservice.GetMilestone(data?.refid).subscribe(milestone=>{
     };
   
   }
- 
+  viewdocumentfile(data){
+    this.route.queryParams.subscribe((params)=>{
+     this.Document.onmodalshow(data,params?.stage);
+     })
+   }
   viewadditionalfile(data:any){
     this.AdditionFile.showviewmodel(data,true,"mis");
   }

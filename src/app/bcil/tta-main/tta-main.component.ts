@@ -16,6 +16,7 @@ import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { User } from 'src/app/model/user.model';
 import { AddScientistComponent } from '../add-scientist/add-scientist.component';
 import { ActivityComponent } from '../activity/activity.component';
+import { DocumentviewComponent } from '../documentview/documentview.component';
 
 @Component({
   selector: 'app-tta-main',
@@ -44,6 +45,8 @@ ttaModel:any[];
   AdditionFile: AdditionFileComponent;
   @ViewChild(AddScientistComponent)
   addscientist: AddScientistComponent;
+  @ViewChild(DocumentviewComponent)
+  Document: DocumentviewComponent;
   UploadFileViewModel = new UploadFileViewModel();
   @ViewChild('editorModal1', { static: true })
   editorModal1: ModalDirective;
@@ -179,6 +182,11 @@ this.Bdoservice.getdatapermission().subscribe(data=>{
 
   }
 
+ viewdocumentfile(data){
+    this.route.queryParams.subscribe((params)=>{
+    this.Document.onmodalshow(data,params?.stage);
+    });
+  }
   onmodalclick(e: string,value:any, data: any) {
     this.loading=false;
     this.submitted=false;

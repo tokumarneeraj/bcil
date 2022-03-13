@@ -1,6 +1,6 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, HostBinding, Input, OnInit} from '@angular/core';
 import {NavItem} from '../../model/nav-item';
-import {Router} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {NavService} from '../../services/nav.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -18,7 +18,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ])
   ]
 })
-export class MenuListItemComponent implements OnInit {
+export class MenuListItemComponent implements OnInit,AfterViewInit {
   expanded: boolean=false;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: NavItem;
@@ -27,11 +27,30 @@ icon="fa fa-plus";
 
   constructor(public navService: NavService,
               public router: Router) {
+              //  this.expanded=false;
+              router.events.subscribe((val) => {
+               setTimeout(()=>{
+                this.expanded=false;
+                this.icon="fa fa-plus";
+                this.navService.closeNav();
+               },1000) //alert();
+               
+                // see also 
+               // console.log(val instanceof NavigationEnd) 
+            });
     if (this.depth === undefined) {
       this.depth = 0;
     }
   }
-
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+    
+      this.expanded=false;
+      this.icon="fa fa-plus";
+      this.navService.closeNav();
+     },3000)
+  }
+ 
   ngOnInit() {
     this.navService.currentUrl.subscribe((url: string) => {
       if (this.item.route && url) {

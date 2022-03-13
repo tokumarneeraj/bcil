@@ -29,7 +29,7 @@ declare var jQuery:any;
   templateUrl: './bcil.component.html',
   styleUrls: ['./bcil.component.css']
 })
-export class BcilComponent implements OnInit ,DoCheck{
+export class BcilComponent implements OnInit {
 
   usertype: string;
   UserName: string;
@@ -98,9 +98,6 @@ export class BcilComponent implements OnInit ,DoCheck{
     
   }
   
-  ngDoCheck(): void {
-    console.log('Method not implemented.');
-  }
 
   imageurl(){
     return this.userimg ==""||"undefined"?this.getbaseurl+"/assets/images/avatar-4.jpg":this.getbaseurl+"/"+this.userimg;
@@ -181,12 +178,13 @@ notificationseen(data){
  
 }
 menus(){
-  debugger;
+  
   let menu=  this.jsondata?.tabheading.filter(x=>
     x.stage=='patentact'? (this.jsondata?.patent?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
     this.jsondata?.trademark?.some(t=>this.viewtab?.find(r=>r==t.value)) ||
     this.jsondata?.copyright?.some(t=>this.viewtab?.find(r=>r==t.value))||
     this.jsondata?.design?.some(t=>this.viewtab?.find(r=>r==t.value))||
+    this.jsondata?.account?.some(t=>this.viewtab?.find(r=>r==t.value))||
     this.jsondata?.patent?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
     this.jsondata?.trademark?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
     this.jsondata?.copyright?.some(y=>y.subchild?.some(t=>this.viewtab?.find(r=>r==t.value)))||
@@ -200,17 +198,17 @@ menus(){
 
 }
 menuurl(url:string,stage:string,type:string){
-debugger;
-  return   this.router.navigate([stage=='mou'?"bcil/bcil-table":
+
+  return   stage=='mou'?"bcil/bcil-table":
   stage=="tta"?"bcil/bcil-tta-table":
   stage=="patent"?"bcil/bcil-patent-table":
   stage=="trademark"?"bcil/bcil-trademark-table":
   stage=="design"?"bcil/bcil-design-table":
   stage=="copyright"?"bcil/bcil-copyright-table":
   stage=="mis"?"bcil/bcil-mis-table":
-  stage=="account"?"bcil/bcil-account-table":
+  stage=="account"?"bcil/account-dashboard":
   stage=="lufinvoice"?"bcil/account-table":
-  url],  { queryParams: {type:type,stage:stage}});
+  "";
   
 //return this.router.navigate[[],{queryParams="{type:'tta_additional_info_needed'}"}]
 }
@@ -341,6 +339,7 @@ urlgenerate(value){
       
       })
       this.datapermission?.account?.forEach(element => {
+        
       if(yy==undefined ||yy==""){
       yy=(element.value==value)==true?element?.tablename:undefined||element?.subchild?.find(x=>x.value==value)?.tablename;
        this.querystring=(element.value==value)==true?"bcil/bcil-account-table?stage="+element?.stage+"&type="+element?.type:undefined ||
@@ -367,7 +366,7 @@ encodeURIComponent(str) {
    this.Bdoservice.getdatapermission().subscribe(data=>{
 this.jsondata=data;
 this.menulist=this.menus();
-this.menulist.map((item,i)=>{ return this.navItems.push({"stage":item.stage,"substage":item?.substage,"id":i,"displayName":item.menuheading,"route":this.urlgenerate(item.value),
+this.menulist.map((item,i)=>{ return this.navItems.push({"stage":item.stage,"substage":item?.substage,"id":i,"displayName":item.menuheading,"route":this.menuurl("",item.stage,""),
 "children":[],
 "disabled":false,"iconName":""})});
 

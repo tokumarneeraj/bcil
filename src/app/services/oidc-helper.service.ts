@@ -38,7 +38,7 @@ export class OidcHelperService {
     this.oauthService.requireHttps = false;
     // this.oauthService.strictDiscoveryDocumentValidation = false;
    // this.oauthService.skipIssuerCheck = true;
-    debugger;
+    
     return from(this.oauthService.loadDiscoveryDocument())
       .pipe(mergeMap(() => {
         return this.http.post<LoginResponse>(this.oauthService.tokenEndpoint, params, { headers: header });

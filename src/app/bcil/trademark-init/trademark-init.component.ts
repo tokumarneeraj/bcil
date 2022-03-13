@@ -7,6 +7,7 @@ import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { ActivityComponent } from '../activity/activity.component';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { Bdoservice } from 'src/app/services/bdo.service';
+import { DocumentviewComponent } from '../documentview/documentview.component';
 @Component({
   selector: 'app-trademark-init',
   templateUrl: './trademark-init.component.html',
@@ -29,6 +30,8 @@ export class TrademarkInitComponent implements OnInit {
   isIPM:boolean;
   @ViewChild(ActivityComponent)
   activity: ActivityComponent;
+  @ViewChild(DocumentviewComponent)
+  Document: DocumentviewComponent;
   array:any;
   activuser:activeusermou[];
   activebtn:any;
@@ -50,6 +53,12 @@ export class TrademarkInitComponent implements OnInit {
     this.userRoles = this.accountService.currentUser.roles;
 
 
+  }
+  
+ viewdocumentfile(data){
+   this.route.queryParams.subscribe((params)=>{
+    this.Document.onmodalshow(data,params?.stage);
+    })
   }
   viewadditionalfile(data:any){
     this.AdditionFile.showviewmodel(data,true,"design");

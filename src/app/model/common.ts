@@ -24,7 +24,7 @@ import { Permission, PermissionValues } from "./permission.model";
      datapermission:any="";
       
      constructor(){
-debugger;
+
      
       //  this.bdoService.getdatapermission().subscribe(data=>{
       //    console.log(data)
@@ -75,13 +75,13 @@ view=true;
       return this.userHasPermission(Permission.viewmanageadditobalfilePermission);
     }
     get Canviewagreement_not_needed_forword_buttonPermission() {
-      debugger;
+     
       return this.userHasPermission(Permission.viewagreement_not_needed_forword_buttonPermission);
     }
     
     
   get CanviewMou_init_forword_button_Permission() {
-    debugger;
+    
     return this.userHasPermission(Permission.viewMou_init_forword_button_Permission);
   }
   get CanviewMou_pending_forword_buttonPermission() {

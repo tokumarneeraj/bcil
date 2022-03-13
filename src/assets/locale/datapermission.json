@@ -332,7 +332,7 @@
 				},
 				{
 					"text": "Forward",
-					"class": "btn btn-success",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S102",
 					"form": {
@@ -359,7 +359,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S104",
 				"form": {
@@ -651,7 +651,7 @@
 			"color": "red",
 			"button": [{
 				"text": "Closure Report",
-				"class": "btn btn-info",
+				"class": "btn btn-danger",
 				"value": "S119"
 			}]
 		},
@@ -1689,7 +1689,7 @@
 					},
 					{
 						"text": "Closure Request",
-						"class": "btn btn-success",
+						"class": "btn btn-danger",
 						"title": "",
 						"value": "S608"
 					},
@@ -2320,7 +2320,7 @@
 			},
 			{
 				"text": "Closure Request",
-				"class": "btn btn-success",
+				"class": "btn btn-danger",
 				"title": "",
 				"value": "S608"
 			}
@@ -3018,7 +3018,7 @@
 			"color": "green",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-primary",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S662","form": {
 					"jsondata": [{
@@ -4318,7 +4318,7 @@
 			"color": "dark-orange",
 			"button": [{
 				"text": "Forward",
-				"class": "btn btn-success",
+				"class": "btn btn-info",
 				"title": "",
 				"value": "S731"
 			},{
@@ -4863,7 +4863,7 @@
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "S681"
+				"value": "S684"
 			}]
 		}, {
 			"stage": "trademark_common_ip",
@@ -5040,7 +5040,7 @@
 			"color": "dark-orange",
 			"button": [{
 					"text": "Forward",
-					"class": "btn btn-primary",
+					"class": "btn btn-info",
 					"title": "",
 					"value": "S693"
 				},
@@ -5924,7 +5924,7 @@
 					"color": "dark-blue",
 					"button": [{
 							"text": "Change Req",
-							"class": "btn btn-info",
+							"class": "btn btn-primary",
 							"value": "S178"
 						},
 						{
@@ -5973,7 +5973,7 @@
 					"color": "blue",
 					"button": [{
 							"text": "Change Req",
-							"class": "btn btn-info",
+							"class": "btn btn-primary",
 							"value": "S177"
 						},
 						{

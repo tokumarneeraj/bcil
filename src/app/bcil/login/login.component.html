@@ -77,8 +77,8 @@
                                 <label>Password</label>
                                 <div class="input-group">
                                     <i class="fa fa-key"></i>
-                                    <input class="form-control" id="pwd" type="password" maxLength="15" formControlName="password" size="12" name="pwd" runat="server" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                                    
+                                    <input class="form-control" id="pwd" [type]="show ? 'text' : 'password'" maxLength="15" formControlName="password" size="12" name="pwd" runat="server" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                    <i class="fa fa-eye pass-Show-Hide" (click)="password()" aria-hidden="true"></i>
                                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                 </div>
                                 

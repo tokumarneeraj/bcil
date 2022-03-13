@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   @Input()
   isModal = false;
   capsOn:any;
+  show:boolean=false;
   constructor(private route: ActivatedRoute,private accountService: AccountService, private localStorage: LocalStoreManager,private alertService: AlertService, private authService: AuthService, private configurations: ConfigurationService,private forms: FormBuilder,private _cookieService: CookieService, private router: Router) {
   this.LoginForm = this.forms.group({
     email: ['', Validators.required],
@@ -45,6 +46,9 @@ get f() {
     }
   ///this.closeBlade();
  }
+ password() {
+  this.show = !this.show;
+}
   ngOnInit(): void {
     //this.querstring="";
    this.route.queryParams.subscribe((params) => {

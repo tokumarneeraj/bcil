@@ -118,7 +118,9 @@ datapermission:any;
     
   }
   viewdocumentfile(data){
-    this.Document.onmodalshow(data,"mou");
+    this.route.queryParams.subscribe((params)=>{
+    this.Document.onmodalshow(data,params?.stage);
+    });
   }
   reminderchange(data){
 if(data=="default"){
@@ -174,7 +176,7 @@ else if(data=="custom"){
       this.activeusermou=data1;
     this.Bdoservice.GetMou().subscribe(data => {
       console.log(data)
-      debugger
+     
       if(this.isSuperAdmin){
         this.mouModel = data.filter(x => x.app_Status == this.array?.value || x.tto_approved==this.array?.value);
       }
@@ -186,7 +188,7 @@ else if(data=="custom"){
        else{
           this.mouModel=data.filter(x=>(x.app_Status== this.array?.value || x.tto_approved==this.array?.value) && this.activeusermou?.some(t=>t.appref==x.refid));
        }
-       debugger;
+     
        console.log( this.commondata.getotherpermissiondata('history'),'his')
     this.viewhistory=this.commondata.getotherpermissiondata('history').some(x=>x?.split('-')[1]==this.array?.value);
        this.viewremark= this.commondata.getotherpermissiondata('remark').some(x=>x?.split('-')[1]==this.array?.value);

@@ -60,7 +60,7 @@
                       <th>TTA No</th>
                       <th>Title</th>
                       <th>Remark</th>
-                      
+                      <th *ngIf="isNodal || isScientist">Documents View</th>
                       <th *ngIf="viewhistory">History</th>
                                                 
                       <th *ngIf="viewadditionalfileright">Additional File</th>
@@ -76,6 +76,8 @@
                       <td>{{item?.appno}}</td>
                       <td>{{item?.subject}}</td>
                       <td>{{item?.remark}}</td>
+                       
+                          <td *ngIf="isNodal || isScientist"><a (click)="viewdocumentfile(item)">View Documents</a></td>
                       <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'tta',refid:item.refid}">View</a></td>
                       <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
                       <td *ngIf="viewadditionalfileright" ><a (click)="viewadditionalfile(item)" class="stretched-link">View</a></td>
@@ -266,6 +268,7 @@
     </div>
   </div>
 </div>
+<app-documentview></app-documentview>
 <app-add-scientist></app-add-scientist>
           <app-addition-file></app-addition-file>
           <app-activity [array]="array"></app-activity>

@@ -196,6 +196,19 @@ app-user-info img{
     color: #fff;
     font-size: 16px;
 }
+.loginCard .input-group i.pass-Show-Hide{
+    position: absolute;
+    background: transparent;
+    width: 44px;
+    height: 43px;
+    right: 0px;
+    text-align: center;
+    z-index: 9;
+    line-height: 42px;
+    border-radius: 0.25rem 0 0 0.25rem;
+    color: #d2d2d2;
+    font-size: 16px;
+}
 .loginCard input, 
 .loginCard select {
     box-shadow: inherit !important;
@@ -563,4 +576,7 @@ footer.footerElement.dashFooter {
 .ttDashAccod .panel{
     border: none;
     box-shadow: none;
+}
+.input-group .form-control{
+    outline: hidden;
 }

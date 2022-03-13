@@ -152,7 +152,7 @@ this.loading=false;
 
   }
   Addrolepermission(value, description) {
-    debugger;
+   
     //  this.selectedValues1={};
     this.accountService.GetUserpermissiontoAdduser(this.roleEdit.id, value)
       .subscribe(data1 => {

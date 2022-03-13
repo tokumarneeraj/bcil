@@ -71,7 +71,7 @@ this.UserName=this.accountService.currentUser.userName;
  this.isScientist=this.userRoles.includes('Scientist');
     this.isSuperAdmin = this.userRoles.includes('Super Admin');
     this.permission=JSON.parse(localStorage.getItem('user_permissions'));
-    debugger;
+   
     this.userperttaall=this.commondata.ttaarray()?.filter(x=>x.stage=="tta");
     this.userpertlpall=this.commondata.ttaarray()?.filter(x=>x.stage=="tlp");
     this.userpernttsall=this.commondata.ttaarray()?.filter(x=>x.stage=="ntts");
@@ -113,7 +113,7 @@ this.UserName=this.accountService.currentUser.userName;
     })
   }
   checkdiv(i,data){
-    debugger;
+   
 return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
   }
   cardname(data){
@@ -250,7 +250,7 @@ return this.roles.find(e=>e.id==i.id).permissions.some(p=>p.value==data);
    // return data;
   }
   log(row:Role){
-    debugger;
+   
     for(let t=0;t<this.icon.length;t++){
   this.icon[t].value=false;
   }   

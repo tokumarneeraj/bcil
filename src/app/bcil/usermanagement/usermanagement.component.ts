@@ -167,7 +167,7 @@ export class UsermanagementComponent implements OnInit {
       // this.allRoles = roles;
       let rol = [];
       let rol1 = [];
-      debugger;
+     
 
       // for (let e = 0; e < roles.length; e++) {
       //   if (this.userview.find(x => x.rolepermission == roles[e].id) != undefined) {
@@ -243,7 +243,7 @@ export class UsermanagementComponent implements OnInit {
 
 
   deleteUser(row: UserEdit) {
-  debugger;
+  
     this.alertService.showDialog('Are you sure you want to delete \"' + row.userName + '\"?', DialogType.confirm, () => this.deleteUserHelper(row));
   }
 

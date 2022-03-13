@@ -90,7 +90,7 @@ export class DocumentviewComponent implements OnInit {
   //      this.perm=;
   // this.perm=getotherpermissiondata;
           this.fileshistory=data.filter(x=>this.commondata.getotherpermissiondata('history').find(y=>y?.split('-')[1]==x.status))
-         // this.showpage=true;
+        this.showpage=true;
           })
           })
           })

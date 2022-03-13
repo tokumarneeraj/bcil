@@ -326,7 +326,7 @@ this.type=this.array?.button.find(x=>x.value==value);
                 });
     
         this.editorModal.show();
-        debugger;
+        
       
        
       }
@@ -542,9 +542,20 @@ var tt=[];
     }
      if (this.ForwardForm.invalid) {
       return;
-    }
+    }   
+    let messagetext="";
+     if(this.activebtn?.form?.lmassigned==true){
+      messagetext ="   (Assign LM: "+ this.rowslm.find(r=>r.id==this.ForwardForm.get('assigntolm')?.value)?.userName+")";
+     }
+    else if(this.activebtn?.form?.bdoassigned==true){
+      messagetext ="  (Assign BDM: "+this.rowsbdm.find(r=>r.id==this.ForwardForm.get('assigntolm')?.value)?.userName+")";
+     }
+    else if(this.activebtn?.form?.assign==true){
+
+      messagetext ="   (Assign : "+this.rowsassign.find(r=>r.id==this.ForwardForm.get('assignto')?.value)?.userName+")";
+     }
   
-    this.alertService.showDialog(this.message==undefined?"Are you sure You Want To Submit":"Are you sure you want to move from <b style='font-weight: 800'>"+this.message+"</b>", DialogType.confirm, () => this.updatedata());
+    this.alertService.showDialog(this.message==undefined?"Are you sure You Want To Submit":"Are you sure you want to move from <b style='font-weight: 800'>"+this.message+"</b> "+ messagetext, DialogType.confirm, () => this.updatedata());
     
    
   }

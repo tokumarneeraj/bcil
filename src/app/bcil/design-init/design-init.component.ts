@@ -7,6 +7,7 @@ import { AlertService, DialogType } from 'src/app/services/alert.service';
 import { ActivityComponent } from '../activity/activity.component';
 import { AdditionFileComponent } from '../addition-file/addition-file.component';
 import { Bdoservice } from 'src/app/services/bdo.service';
+import { DocumentviewComponent } from '../documentview/documentview.component';
 
 @Component({
   selector: 'app-design-init',
@@ -37,6 +38,8 @@ export class DesignInitComponent implements OnInit {
   activeusermou:activeusermou[];
   @ViewChild(AdditionFileComponent)
   AdditionFile: AdditionFileComponent;
+   @ViewChild(DocumentviewComponent)
+  Document: DocumentviewComponent;
   designModel:any[];
   viewtab:any;
   managetab:any;
@@ -92,6 +95,11 @@ export class DesignInitComponent implements OnInit {
   
    
   }
+  viewdocumentfile(data){
+    this.route.queryParams.subscribe((params)=>{
+     this.Document.onmodalshow(data,params?.stage);
+     })
+   }
   ngOnInit(): void {
     this.isLM = this.userRoles.includes('LM');
     this.isAdmin = this.userRoles.includes('Admin');

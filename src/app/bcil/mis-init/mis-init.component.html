@@ -56,11 +56,13 @@
                                   <th>Title</th>
                                   <th>Milestones</th>
                                   <th>Remarks</th>
+                                  <th *ngIf="isNodal || isScientist">Documents View</th>
                                <th>Action</th>
                                <th *ngIf="viewhistory">History</th>
                                                 
                                <th *ngIf="viewadditionalfileright">Additional File</th>
                                <th *ngIf="viewremark">Previous Remarks</th> 
+                               
                                 </tr>
                               </thead>
                               <tbody>
@@ -70,13 +72,17 @@
                                       <td>{{mis?.subject}}</td>
                                       <td ><button class="btn btn-primary btn-sm" (click)="viewmilestone(mis)">View Milestones</button><span class="btn-badge"></span></td>
                                       <td>{{mis?.remark}}</td>
+                                      <td *ngIf="isNodal || isScientist"><a (click)="viewdocumentfile(mis)">View Documents</a></td>
+                                         
                                      
                                       <td>
                                           <ng-container *ngFor="let btn of array?.button">
                                             <button  type="submit" class="misbtn {{btn?.class}}" title="{{btn.title}}" (click)="onmodalclick($event.target.value,btn.value,mis)">{{btn.text}}</button>
                                                       
                                           </ng-container>
+                                          <button class="btn btn-info btn-sm" *ngIf="array?.value=='S176' && (isNodal || isScientist)" (click)="viewmilestone(mis)">Forward</button>
                                       </td>
+                                      
 
                                       <td *ngIf="viewhistory"><a class="btn btn-secondary" routerLink='../file-history' [queryParams]="{stage:'mis',refid:mis?.refid}">View</a></td>
                                       <!-- <td *ngIf="viewremark"><button class="btn btn-info">Remarks</button></td><span class="badge badge-light">{{item.additionalfilecount}}</span> -->
@@ -114,7 +120,9 @@
                                       <th>Milestones</th>
                                       <th>Payment Term</th>
                                       <th>Timelines</th>
+                                      <th *ngIf="isNodal || isScientist">Documents View</th>
                                    <th>Action</th>
+                                   
                                    <th *ngIf="viewhistory">History</th>
                                                     
                                    <th *ngIf="viewadditionalfileright">Additional File</th>
@@ -129,6 +137,7 @@
                                          <td>{{mis?.milestone}}</td>
                                          <td>{{mis?.paymentterm}}</td>
                                          <td>{{mis?.timelines |date:'medium'}}</td>
+                                         <td *ngIf="isNodal || isScientist"><a (click)="viewdocumentfile(mis)">View Documents</a></td>
                                          
                                           <td>
                                               <ng-container *ngFor="let btn of array?.button">
@@ -150,6 +159,7 @@
                           <app-footer></app-footer>
                           </div>
             </div>
+            <app-documentview></app-documentview>
             <app-addition-file></app-addition-file>
             <app-activity [array]="array"></app-activity>
             <div class="modal fade" bsModal #editorModal2="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" style="z-index:1050;">
@@ -180,7 +190,7 @@
     <td>{{mil.milestone}}</td>
     <td>{{mil.timelines |date:'medium'}}</td>
     <td>{{mil.paymentterm}}</td>
-    <td *ngIf="milestonedata[0]?.forward?.includes(array?.value) && mil?.appno==null"><button class="btn btn-success btn-sm" (click)="onmodalclick($event.target.value,'S177',mil)" >Forward</button></td>
+    <td *ngIf="milestonedata[0]?.forward?.includes(array?.value) && mil?.appno==null && (isNodal || isScientist)"><button class="btn btn-info btn-sm" (click)="onmodalclick($event.target.value,'S177',mil)" >Forward</button></td>
 </tr>
                             </tbody>
                         </table>
@@ -188,4 +198,6 @@
                   </div>
                   </div>
                   </div>
+
+               
                  

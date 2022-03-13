@@ -16,7 +16,9 @@
 //     }
 //   }
  }
-
+ .pcoded-item a{
+   color:red  !important;
+ }
 .mat-list-item {
   padding: 8px 0;
   display: flex;
@@ -26,3 +28,11 @@
     margin-right: 40px;
   }
 }
+
+// .ng-star-inserted {
+//   a{
+//     display:block;
+//     padding:10px 0px;
+//     background:red;
+//   }
+// }
