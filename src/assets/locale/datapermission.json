@@ -3,7 +3,7 @@
 	"tabheading": [{
 			"stage": "mou",
 			"text": "Engagement with Organization",
-			"icon": "",
+			"icon": "fa fa-university f-28",
 			"menuheading": "Engagement with Organization",
 			"submenu": true,
 			"url": "bcil/mou-dashboard",
@@ -303,8 +303,8 @@
 		
 		{
 			"stage": "account",
-			"text": "Acount",
-			"icon": "",
+			"text": "Acounts",
+			"icon": "fa fa-calculator f-28",
 			"menuheading": "Accounts",
 			"submenu": true,
 			"url": "bcil/account-dashboard",
