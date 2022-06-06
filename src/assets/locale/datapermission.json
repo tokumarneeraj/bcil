@@ -303,7 +303,7 @@
 		
 		{
 			"stage": "account",
-			"text": "Acounts",
+			"text": "Accounts",
 			"icon": "fa fa-calculator f-28",
 			"menuheading": "Accounts",
 			"submenu": true,
@@ -379,13 +379,17 @@
 					"text": "Change req",
 					"class": "btn btn-primary",
 					"title": "",
-					"value": "S103"
+					"value": "S103","form": {
+					"fileuploadreq": true
+				}
 				},
 				{
 					"text": "Approve",
 					"class": "btn btn-success",
 					"title": "",
-					"value": "S110"
+					"value": "S110","form": {
+					"fileuploadreq": true
+				}
 				}
 			]
 		}, {
@@ -400,18 +404,23 @@
 				"text": "Assign Scientist",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "assign"
+				"value": "assign","form": {
+					"fileuploadreq": true
+				}
 			}, {
 				"text": "Mou Change By Client",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S111"
+				"value": "S111","form": {
+					"fileuploadreq": true
+				}
 			}, {
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
 				"value": "S106",
-				"form":{
+				"form": {
+					"fileuploadreq": true
 				}
 			}]
 		}, {
@@ -426,7 +435,10 @@
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "S105"
+				"value": "S105",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		}, {
 			"stage": "mou",
@@ -460,9 +472,11 @@
 				"title": "",
 				"value": "S108",
 				"form": {
-					"bdoassigned": true
+					"bdoassigned": true,
+					"fileuploadreq": true
 					
 				}
+				
 			}]
 		}, {
 			"stage": "mou",
@@ -476,7 +490,11 @@
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "S108"
+				"value": "S108",
+				"form": {
+					
+					"fileuploadreq": true
+				}
 			}]
 		}, {
 			"stage": "mou",
@@ -499,7 +517,11 @@
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "S104"
+				"value": "S104",
+				"form": {
+					
+					"fileuploadreq": true
+				}
 			}]
 		}, {
 			"stage": "mou",
@@ -513,7 +535,11 @@
 				"text": "Forward",
 				"class": "btn btn-info",
 				"title": "",
-				"value": "S103"
+				"value": "S103",
+				"form": {
+					
+					"fileuploadreq": true
+				}
 			}]
 		},
 		 {
@@ -530,7 +556,8 @@
 				"title": "",
 				"value": "S410",
 				"form": {
-					"remarks": true
+					"remarks": true,
+					"fileuploadreq": true
 					
 				}
 			}]
@@ -569,7 +596,10 @@
 					"text": "Additional Info Needed",
 					"class": "btn btn-info",
 					"title": "Forward to No/Scientist",
-					"value": "S401"
+					"value": "S401",
+					"form": {
+					"fileuploadreq": true
+				}
 				},
 				{
 					"text": "Assign",
@@ -596,7 +626,10 @@
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-info",
-				"value": "S115"
+				"value": "S115",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -610,7 +643,10 @@
 			"button": [{
 					"text": "Close",
 					"class": "btn btn-danger",
-					"value": "S116"
+					"value": "S116",
+					"form": {
+					"fileuploadreq": true
+				}
 				},
 				{
 					"text": "Forward",
@@ -623,7 +659,11 @@
 				{
 					"text": "Change Request",
 					"class": "btn btn-primary",
-					"value": "S118"
+					"value": "S118",
+					
+					"form": {
+					"fileuploadreq": true
+				}
 				}
 			]
 		},
@@ -638,7 +678,10 @@
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-info",
-				"value": "S115"
+				"value": "S115",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -652,7 +695,10 @@
 			"button": [{
 				"text": "Closure Report",
 				"class": "btn btn-danger",
-				"value": "S119"
+				"value": "S119",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -666,7 +712,10 @@
 			"button": [{
 				"text": "Close",
 				"class": "btn btn-danger",
-				"value": "S120"
+				"value": "S120",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -690,11 +739,17 @@
 			"button": [{
 				"text": "Change Request",
 				"class": "btn btn-primary",
-				"value": "S118"
+				"value": "S118",
+				"form": {
+					"fileuploadreq": true
+				}
 			}, {
 				"text": "Reject",
 				"class": "btn btn-danger",
-				"value": "S117"
+				"value": "S117",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -708,19 +763,25 @@
 			"button": [{
 				"text": "Accept",
 				"class": "btn btn-primary",
-				"value": "S122"
+				"value": "S122",
+				"form": {
+					"fileuploadreq": true
+				}
 			}, {
 				"text": "Change Request",
 				"class": "btn btn-primary",
-				"value": "S121"
+				"value": "S121",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 
 		{
 			"stage": "tta",
-			"tablename": "Evaluation Report Approve",
-			"formheader": "Evaluation Report Approve",
-			"heading": "Evaluation Report Approve",
+			"tablename": "Evaluation Report Approved",
+			"formheader": "Evaluation Report Approved",
+			"heading": "Evaluation Report Approved",
 			"type": "tta_evaluation_accepted_by_client",
 			"value": "S122",
 			"color": "dark-green",
@@ -729,7 +790,8 @@
 				"class": "btn btn-primary",
 				"value": "S123",
 				"form": {
-					"bdoassigned": true
+					"bdoassigned": true,
+					"fileuploadreq": true
 				}
 			}]
 		},
@@ -745,7 +807,10 @@
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-primary",
-				"value": "S124"
+				"value": "S124",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 
@@ -760,7 +825,10 @@
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-info",
-				"value": "S124"
+				"value": "S124",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -781,22 +849,28 @@
 			}, {
 				"text": "Change Request",
 				"class": "btn btn-primary",
-				"value": "S125"
+				"value": "S125",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 
 		{
 			"stage": "tta",
-			"tablename": "TT Strategy Approve",
-			"formheader": "TT Strategy Approve",
-			"heading": "TT Strategy Approve",
+			"tablename": "TT Strategy Approved",
+			"formheader": "TT Strategy Approved",
+			"heading": "TT Strategy Approved",
 			"type": "tta_strategy_Approve",
 			"value": "S402",
 			"color": "yellow",
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-info",
-				"value": "S403"
+				"value": "S403",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -810,7 +884,10 @@
 			"button": [{
 				"text": "Change Request",
 				"class": "btn btn-primary",
-				"value": "S407"
+				"value": "S407",
+				"form": {
+					"fileuploadreq": true
+				}
 			}, {
 				"text": "Approve",
 				"class": "btn btn-success",
@@ -833,7 +910,10 @@
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-info",
-				"value": "S403"
+				"value": "S403",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -847,27 +927,36 @@
 			"button": [{
 					"text": "Change Request",
 					"class": "btn btn-primary",
-					"value": "S128"
+					"value": "S128",
+					"form": {
+					"fileuploadreq": true
+				}
 				},
 				{
 					"text": "Approve",
 					"class": "btn btn-success",
-					"value": "S127"
+					"value": "S127",
+					"form": {
+					"fileuploadreq": true
+				}
 				}
 			]
 		},
 		{
 			"stage": "tta",
-			"tablename": "Tech Brief Approve",
-			"formheader": "Tech Brief Approve",
-			"heading": "Tech Brief Approve",
+			"tablename": "Tech Brief Approved",
+			"formheader": "Tech Brief Approved",
+			"heading": "Tech Brief Approved",
 			"type": "tta_techb_and_flier_Approve_by_scientist",
 			"value": "S127",
 			"color": "yellow",
 			"button": [{
 				"text": "Submit",
 				"class": "btn btn-info",
-				"value": "S129"
+				"value": "S129",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -881,12 +970,18 @@
 			"button": [{
 					"text": "Change Request",
 					"class": "btn btn-primary",
-					"value": "S407"
+					"value": "S407",
+					"form": {
+					"fileuploadreq": true
+				}
 				},
 				{
 					"text": "Reject",
 					"class": "btn btn-danger",
-					"value": "S126"
+					"value": "S126",
+					"form": {
+					"fileuploadreq": true
+				}
 				}
 			]
 		},
@@ -901,12 +996,18 @@
 			"button": [{
 					"text": "Interests Received",
 					"class": "btn btn-primary",
-					"value": "S130"
+					"value": "S130",
+					"form": {
+					"fileuploadreq": true
+				}
 				},
 				{
 					"text": "No Interests Received",
 					"class": "btn btn-info",
-					"value": "S131"
+					"value": "S131",
+					"form": {
+					"fileuploadreq": true
+				}
 				}
 			]
 		},
@@ -921,7 +1022,10 @@
 			"button": [{
 						"text": "Enter Company Profile",
 						"class": "btn btn-info",
-						"value": "S133"
+						"value": "S133",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 		},
 		{
@@ -935,12 +1039,18 @@
 			"button": [{
 					"text": "Forward",
 					"class": "btn btn-info",
-					"value": "S404"
+					"value": "S404",
+					"form": {
+					"fileuploadreq": true
+				}
 				},
 				{
 					"text": "Close",
 					"class": "btn btn-danger",
-					"value": "S116"
+					"value": "S116",
+					"form": {
+					"fileuploadreq": true
+				}
 				}
 			]
 		},
@@ -955,7 +1065,10 @@
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-primary",
-				"value": "S405"
+				"value": "S405",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -977,16 +1090,19 @@
 		},
 		{
 			"stage": "tta",
-			"tablename": "TT Revised Strategy Approve",
-			"formheader": "TT Revised Strategy Approve",
-			"heading": "TT Revised Strategy Approve",
+			"tablename": "TT Revised Strategy Approved",
+			"formheader": "TT Revised Strategy Approved",
+			"heading": "TT Revised Strategy Approved",
 			"type": "tta_strategy_update_Approve",
 			"value": "S406",
 			"color": "dark-orange",
 			"button": [{
 				"text": "Upload",
 				"class": "btn btn-success",
-				"value": "S129"
+				"value": "S129",
+				"form": {
+					"fileuploadreq": true
+				}
 			}]
 		},
 		{
@@ -1008,16 +1124,25 @@
 					"button": [{
 							"text": "Change Request",
 							"class": "btn btn-primary",
-							"value": "S134"
+							"value": "S134",
+							"form": {
+					"fileuploadreq": true
+				}
 						}, {
 							"text": "Approve",
 							"class": "btn btn-success",
-							"value": "S135"
+							"value": "S135",
+							"form": {
+					"fileuploadreq": true
+				}
 						},
 						{
 							"text": "Share NCP",
 							"class": "btn btn-primary",
-							"value": "S136"
+							"value": "S136",
+							"form": {
+					"fileuploadreq": true
+				}
 						}
 					]
 				}, {
@@ -1032,21 +1157,27 @@
 					"button": [{
 						"text": "Update Due Deligence",
 						"class": "btn btn-primary",
-						"value": "S133"
+						"value": "S133",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
 
-					"tablename": "Industry Approve",
-					"formheader": "Industry Approve",
-					"heading": "Industry Approve",
+					"tablename": "Industry Approved",
+					"formheader": "Industry Approved",
+					"heading": "Industry Approved",
 					"type": "lead_Approve_by_admin",
 					"value": "S135",
 					"color": "purple",
 					"button": [{
 						"text": "Draft for NDA/PEA/MTA",
 						"class": "btn btn-primary",
-						"value": "S137"
+						"value": "S137",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1060,7 +1191,10 @@
 					"button": [{
 						"text": "Enter Termsheet",
 						"class": "btn btn-primary",
-						"value": "S146"
+						"value": "S146",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1074,11 +1208,17 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S138"
+						"value": "S138",
+						"form": {
+					"fileuploadreq": true
+				}
 					}, {
 						"text": "Aprrove",
 						"class": "btn btn-info",
-						"value": "S139"
+						"value": "S139",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1092,7 +1232,10 @@
 					"button": [{
 						"text": "Update NDA/PEA",
 						"class": "btn btn-primary",
-						"value": "S137"
+						"value": "S137",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1106,11 +1249,17 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S140"
+						"value": "S140",
+						"form": {
+					"fileuploadreq": true
+				}
 					}, {
 						"text": "Approve",
 						"class": "btn btn-success",
-						"value": "S141"
+						"value": "S141",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1124,7 +1273,10 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S138"
+						"value": "S138",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1138,25 +1290,34 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S138"
+						"value": "S138",
+						"form": {
+					"fileuploadreq": true
+				}
 					}, {
 						"text": "Approve",
 						"class": "btn btn-success",
-						"value": "S142"
+						"value": "S142",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
 
-					"tablename": "NDA Approve",
-					"formheader": "NDA Approve",
-					"heading": "NDA Approve",
+					"tablename": "NDA Approved",
+					"formheader": "NDA Approved",
+					"heading": "NDA Approved",
 					"type": "nda_Approve_by_company",
 					"value": "S142",
 					"color": "dark-blue",
 					"button": [{
 						"text": "Upload Agreement",
 						"class": "btn btn-primary",
-						"value": "S143"
+						"value": "S143",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1170,12 +1331,18 @@
 					"button": [{
 							"text": "Share NCP & CIP",
 							"class": "btn btn-primary",
-							"value": "S144"
+							"value": "S144",
+							"form": {
+					"fileuploadreq": true
+				}
 						},
 						{
 							"text": "Share CIP",
 							"class": "btn btn-primary",
-							"value": "S145"
+							"value": "S145",
+							"form": {
+					"fileuploadreq": true
+				}
 						}
 					]
 				}, {
@@ -1190,7 +1357,10 @@
 					"button": [{
 						"text": "Share CIP",
 						"class": "btn btn-primary",
-						"value": "S145"
+						"value": "S145",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tlp",
@@ -1204,7 +1374,10 @@
 					"button": [{
 						"text": "Enter Termsheet",
 						"class": "btn btn-primary",
-						"value": "S146"
+						"value": "S146",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}
 
@@ -1232,11 +1405,17 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S147"
+						"value": "S147",
+						"form": {
+					"fileuploadreq": true
+				}
 					}, {
 						"text": "Approve",
 						"class": "btn btn-success",
-						"value": "S148"
+						"value": "S148",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "nttsa",
@@ -1250,7 +1429,10 @@
 					"button": [{
 						"text": "Update Termsheet",
 						"class": "btn btn-primary",
-						"value": "S146"
+						"value": "S146",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				},
 				{
@@ -1265,11 +1447,17 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S149"
+						"value": "S149",
+						"form": {
+					"fileuploadreq": true
+				}
 					}, {
 						"text": "Approve",
 						"class": "btn btn-success",
-						"value": "S150"
+						"value": "S150",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				},
 				{
@@ -1284,21 +1472,27 @@
 					"button": [{
 						"text": "Approve Change Request in Termsheet",
 						"class": "btn btn-primary",
-						"value": "S147"
+						"value": "S147",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "nttsa",
 
-					"tablename": "TS Approve",
-					"formheader": "TS Approve",
-					"heading": "TS Approve",
+					"tablename": "TS Approved",
+					"formheader": "TS Approved",
+					"heading": "TS Approved",
 					"type": "ts_Approve_by_client",
 					"value": "S150",
 					"color": "dark-orange",
 					"button": [{
 						"text": "Forward",
 						"class": "btn btn-info",
-						"value": "S151"
+						"value": "S151",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				},
 				{
@@ -1313,11 +1507,17 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S152"
+						"value": "S152",
+						"form": {
+					"fileuploadreq": true
+				}
 					}, {
 						"text": "Approve",
 						"class": "btn btn-success",
-						"value": "S153"
+						"value": "S153",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "nttsa",
@@ -1331,21 +1531,27 @@
 					"button": [{
 						"text": "Approve Change Request in Termsheet",
 						"class": "btn btn-primary",
-						"value": "S147"
+						"value": "S147",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "nttsa",
 
-					"tablename": "Final Approve TS",
-					"formheader": "Final Approve TS",
-					"heading": "Final Approve TS",
+					"tablename": "Final Approved TS",
+					"formheader": "Final Approved TS",
+					"heading": "Final Approved TS",
 					"type": "ts_Approve_by_company",
 					"value": "S153",
 					"color": "red",
 					"button": [{
 						"text": "Upload Signed Termsheet",
 						"class": "btn btn-primary",
-						"value": "S154"
+						"value": "S154",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}
 			],
@@ -1372,7 +1578,10 @@
 					"button": [{
 						"text": "Draft license agreement",
 						"class": "btn btn-primary",
-						"value": "S155"
+						"value": "S155",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				},
 				{
@@ -1387,12 +1596,18 @@
 					"button": [{
 							"text": "Change Request",
 							"class": "btn btn-primary",
-							"value": "S156"
+							"value": "S156",
+							"form": {
+					"fileuploadreq": true
+				}
 						},
 						{
 							"text": "Approve",
 							"class": "btn btn-success",
-							"value": "S157"
+							"value": "S157",
+							"form": {
+					"fileuploadreq": true
+				}
 						}
 					]
 				}, {
@@ -1407,7 +1622,10 @@
 					"button": [{
 						"text": "Update license agreement",
 						"class": "btn btn-primary",
-						"value": "S156"
+						"value": "S156",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tstl",
@@ -1421,12 +1639,18 @@
 					"button": [{
 							"text": "Change Request",
 							"class": "btn btn-primary",
-							"value": "S158"
+							"value": "S158",
+							"form": {
+					"fileuploadreq": true
+				}
 						},
 						{
 							"text": "Approve",
 							"class": "btn btn-success",
-							"value": "S159"
+							"value": "S159",
+							"form": {
+					"fileuploadreq": true
+				}
 						}
 					]
 				}, {
@@ -1441,21 +1665,26 @@
 					"button": [{
 						"text": "Change Request",
 						"class": "btn btn-primary",
-						"value": "S156"
+						"value": "S156",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tstl",
 
-					"tablename": "Draft LA Approve",
-					"formheader": "Draft LA Approve",
-					"heading": "Draft LA Approve ",
+					"tablename": "Draft LA Approved",
+					"formheader": "Draft LA Approved",
+					"heading": "Draft LA Approved ",
 					"type": "la_Approve_by_client",
 					"value": "S159",
 					"color": "dark-blue",
 					"button": [{
 						"text": "Share license agreement",
 						"class": "btn btn-primary",
-						"value": "S160"
+						"value": "S160","form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tstl",
@@ -1469,12 +1698,18 @@
 					"button": [{
 							"text": "Change Request",
 							"class": "btn btn-primary",
-							"value": "S156"
+							"value": "S156",
+							"form": {
+					"fileuploadreq": true
+				}
 						},
 						{
 							"text": "Approve",
 							"class": "btn btn-success",
-							"value": "S161"
+							"value": "S161",
+							"form": {
+					"fileuploadreq": true
+				}
 						}
 					]
 				}, {
@@ -1489,7 +1724,10 @@
 					"button": [{
 						"text": "Forward",
 						"class": "btn btn-info",
-						"value": "S162"
+						"value": "S162",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tstl",
@@ -1503,7 +1741,10 @@
 					"button": [{
 						"text": "Submit TT Docket",
 						"class": "btn btn-primary",
-						"value": "S163"
+						"value": "S163",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tstl",
@@ -1517,7 +1758,10 @@
 					"button": [{
 						"text": "Share TT Docket",
 						"class": "btn btn-primary",
-						"value": "S164"
+						"value": "S164",
+						"form": {
+					"fileuploadreq": true
+				}
 					}]
 				}, {
 					"stage": "tstl",
@@ -1576,6 +1820,7 @@
 					"form": {
 						"assign": true,
 						"reminder": true,
+						"fileuploadreq": true,
 						"reminderfilter":["pfer","pera","pfp","pda","prfe"],
 						"assignlabel": "IPM/BDM",
 						"assignarray": ["IPM", "BDM"]
@@ -1594,13 +1839,19 @@
 						"text": "Addition Info needed",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S603"
+						"value": "S603",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Forward",
 						"class": "btn btn-info",
 						"title": "",
-						"value": "S604"
+						"value": "S604",
+						"form": {
+					"fileuploadreq": true
+				}
 					}
 				]
 			}, {
@@ -1615,7 +1866,10 @@
 					"text": "Forward",
 					"class": "btn btn-info",
 					"title": "",
-					"value": "S602"
+					"value": "S602",
+					"form": {
+					"fileuploadreq": true
+				}
 				}]
 			}, {
 				"stage": "patentdraft",
@@ -1629,7 +1883,10 @@
 					"text": "Forward",
 					"class": "btn btn-info",
 					"title": "",
-					"value": "S604"
+					"value": "S604",
+					"form": {
+					"fileuploadreq": true
+				}
 				}]
 			}, {
 				"stage": "patentdraft",
@@ -1643,13 +1900,19 @@
 						"text": "Change Req",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S605"
+						"value": "S605",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Forward",
 						"class": "btn btn-info",
 						"title": "",
-						"value": "S606"
+						"value": "S606",
+						"form": {
+					"fileuploadreq": true
+				}
 					}
 				]
 			}, {
@@ -1664,13 +1927,19 @@
 						"text": "Change Req",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S605"
+						"value": "S605",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "reject",
 						"class": "btn btn-danger",
 						"title": "",
-						"value": "S606"
+						"value": "S606",
+						"form": {
+					"fileuploadreq": true
+				}
 					}
 				]
 			}, {
@@ -1685,26 +1954,35 @@
 						"text": "Change Req",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S607"
+						"value": "S607",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Closure Request",
 						"class": "btn btn-danger",
 						"title": "",
-						"value": "S608"
+						"value": "S608",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Forward",
 						"class": "btn btn-info",
 						"title": "",
-						"value": "S609"
+						"value": "S609",
+						"form": {
+					"fileuploadreq": true
+				}
 					}
 				]
 			}, {
 				"stage": "patentdraft",
-				"tablename": "Report Approve By Client",
-				"formheader": "Report Approve By Client",
-				"heading": "Report Approve By Client",
+				"tablename": "Report Approved By Client",
+				"formheader": "Report Approved By Client",
+				"heading": "Report Approved By Client",
 				"type": "report_Approve_by_client",
 				"value": "S609",
 				"color": "dark-pink",
@@ -1714,6 +1992,7 @@
 					"title": "",
 					"value": "S611",
 					"form": {
+					"fileuploadreq": true,
 					"assign": true,
 					"assignlabel": "LUF",
 					"assignarray": ["LUF"]
@@ -1732,7 +2011,10 @@
 					"text": "Forward",
 					"class": "btn btn-info",
 					"title": "",
-					"value": "S610"
+					"value": "S610",
+					"form": {
+					"fileuploadreq": true
+				}
 				}]
 			}, {
 				"stage": "patentdraft",
@@ -1755,7 +2037,10 @@
 						"text": "Change Req",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S612"
+						"value": "S612",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Forward",
@@ -1763,6 +2048,7 @@
 						"title": "",
 						"value": "S613",
 						"form": {
+						"fileuploadreq": true,
 							"jsondata": [{
 									"field": "nba",
 									"type": "select",
@@ -1825,13 +2111,19 @@
 						"text": "Change Req",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S605"
+						"value": "S605",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Reject",
 						"class": "btn btn-danger",
 						"title": "",
-						"value": "S611"
+						"value": "S611",
+						"form": {
+					"fileuploadreq": true
+				}
 					}
 				]
 			},
@@ -1847,7 +2139,10 @@
 						"text": "Change Req",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S614"
+						"value": "S614",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Forward",
@@ -1855,6 +2150,7 @@
 						"title": "",
 						"value": "S615",
 						"form": {
+						"fileuploadreq": true,
 							"jsondata": [{
 									"field": "nba",
 									"type": "select",
@@ -1917,7 +2213,10 @@
 					"text": "Update",
 					"class": "btn btn-primary",
 					"title": "",
-					"value": "S613"
+					"value": "S613",
+					"form": {
+					"fileuploadreq": true
+				}
 				}]
 			}, {
 				"stage": "patentdraft",
@@ -1931,7 +2230,10 @@
 						"text": "Change Req",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S616"
+						"value": "S616",
+						"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Forward",
@@ -1939,6 +2241,7 @@
 						"title": "",
 						"value": "S617",
 						"form": {
+						"fileuploadreq": true,
 							"jsondata": [{
 									"field": "nba",
 									"type": "select",
@@ -2001,20 +2304,26 @@
 						"text": "endorse",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S614"
+						"value": "S614",
+							"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Reject",
 						"class": "btn btn-success",
 						"title": "",
-						"value": "S615"
+						"value": "S615",
+							"form": {
+					"fileuploadreq": true
+				}
 					}
 				]
 			}, {
 				"stage": "patentdraft",
-				"tablename": "Patent Draft Approve By Client",
-				"heading": "Patent Draft Approve By Client",
-				"formheader": "Patent Draft Approve By Client",
+				"tablename": "Patent Draft Approved By Client",
+				"heading": "Patent Draft Approved By Client",
+				"formheader": "Patent Draft Approved By Client",
 				"type": "patent_draft_Approve_by_client",
 				"value": "S617",
 				"color": "purple",
@@ -2022,13 +2331,19 @@
 						"text": "Provisional Filing",
 						"class": "btn btn-primary",
 						"title": "",
-						"value": "S620"
+						"value": "S620",
+							"form": {
+					"fileuploadreq": true
+				}
 					},
 					{
 						"text": "Final Filing",
 						"class": "btn btn-success",
 						"title": "",
-						"value": "S619"
+						"value": "S619",
+							"form": {
+					"fileuploadreq": true
+				}
 					}
 				]
 			},
@@ -2215,12 +2530,6 @@
 						}
 					]
 				}
-			},
-			{
-				"text": "Forward Request For Examination",
-				"class": "btn btn-info",
-				"title": "",
-				"value": "S644"
 			}]
 		}, {
 			"stage": "patentfinalfiling",
@@ -2230,7 +2539,12 @@
 			"type": "provisional_filing_done_atluf",
 			"value": "S623",
 			"color": "red",
-			"button": []
+			"button": [{
+				"text": "Forward",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S624"
+			}]
 		}, {
 			"stage": "patentfinalfiling",
 			"tablename": "Final Patent Filing Done By Luf",
@@ -2240,6 +2554,12 @@
 			"value": "S621",
 			"color": "green",
 			"button": [
+			{
+				"text": "Initiation For Publication",
+				"class": "btn btn-info",
+				"title": "",
+				"value": "S644"
+			}
 			]
 		}, {
 			"stage": "patentfinalfiling",
@@ -2423,9 +2743,9 @@
 			}]
 		}, {
 			"stage": "patentfinalfiling",
-			"tablename": "FP Draft Approve By Client",
-			"heading": "FP Draft Approve By Client",
-			"formheader": "FP Draft Approve By Client",
+			"tablename": "FP Draft Approved By Client",
+			"heading": "FP Draft Approved By Client",
+			"formheader": "FP Draft Approved By Client",
 			"type": "fp_draft_Approve_by_client",
 			"value": "S631",
 			"color": "yellow",
@@ -2518,9 +2838,9 @@
 			}]
 		}, {
 			"stage": "patentforeignfiling",
-			"tablename": "Ff Draft Approve By IPM",
-			"heading": "Ff Draft Approve By IPM",
-			"formheader": "Ff Draft Approve By IPM",
+			"tablename": "Ff Draft Approved By IPM",
+			"heading": "Ff Draft Approved By IPM",
+			"formheader": "Ff Draft Approved By IPM",
 			"type": "ff_draft_Approve_by_ipm",
 			"value": "S636",
 			"color": "purple",
@@ -2570,9 +2890,9 @@
 			]
 		}, {
 			"stage": "patentforeignfiling",
-			"tablename": "Ff Draft Approve By Client",
-			"heading": "Ff Draft Approve By Client",
-			"formheader": "Ff Draft Approve By Client",
+			"tablename": "Ff Draft Approved By Client",
+			"heading": "Ff Draft Approved By Client",
+			"formheader": "Ff Draft Approved By Client",
 			"type": "ff_draft_Approve_by_client",
 			"value": "S638",
 			"color": "green",
@@ -2677,7 +2997,7 @@
 					"text": "REF already filed",
 					"class": "btn btn-primary",
 					"title": "",
-					"value": "S649"
+					"value": "S648"
 				},
 				{
 					"text": "Go head Directly",
@@ -2781,8 +3101,8 @@
 		"stage": "patent",
 		"substage": "patentfirstexamreport",
 		"tablename": "Patent First Exam Report",
-		"formheader": "Patent Draft Approval",
-		"heading": "Patent Draft Approval",
+		"formheader": "Patent First Exam Report",
+		"heading": "Patent First Exam Report",
 		"type": "",
 		"color": "yellow",
 		"value": "patentfirstexamreport",
@@ -2966,9 +3286,9 @@
 			]
 		}, {
 			"stage": "patentfirstexamreport",
-			"tablename": "FER Resp Draft Approve By Client",
-			"heading": "FER Resp Draft Approve By Client",
-			"formheader": "FER Resp Draft Approve By Client",
+			"tablename": "FER Resp Draft Approved By Client",
+			"heading": "FER Resp Draft Approved By Client",
+			"formheader": "FER Resp Draft Approved By Client",
 			"type": "fer_resp_draft_Approve_by_client",
 			"value": "S658",
 			"color": "dark-orange",
@@ -3059,8 +3379,8 @@
 		"stage": "patent",
 		"substage": "ertoacceptancepatent",
 		"tablename": "ER To Acceptance Patent",
-		"formheader": "Patent Draft Approval",
-		"heading": "Patent Draft Approval",
+		"formheader": "ER To Acceptance Patent",
+		"heading": "ER To Acceptance Patent",
 		"type": "",
 		"color": "dark-orange",
 		"value": "ertoacceptancepatent",
@@ -3225,9 +3545,9 @@
 				}]
 			}, {
 				"stage": "ertoacceptancepatent",
-				"tablename": "Draft Written Submission Approve By Client",
-				"heading": "Draft Written Submission Approve By Client",
-				"formheader": "Draft Written Submission Approve By Client",
+				"tablename": "Draft Written Submission Approved By Client",
+				"heading": "Draft Written Submission Approved By Client",
+				"formheader": "Draft Written Submission Approved By Client",
 				"type": "draft_written_submission_Approve_by_client",
 				"value": "S672",
 				"color": "yellow",
@@ -3404,7 +3724,7 @@
 					"text": "Update",
 					"class": "btn btn-primary",
 					"title": "",
-					"value": "S756"
+					"value": "S759"
 				}]
 			}, {
 				"stage": "copyright_common_ip",
@@ -4134,7 +4454,7 @@
 				"text": "Update",
 				"class": "btn btn-primary",
 				"title": "",
-				"value": "S719"
+				"value": "S722"
 			}]
 		}, {
 			"stage": "design_common_ip",

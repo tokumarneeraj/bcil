@@ -426,11 +426,11 @@ if(nodalid!=""){
           this.ForwardForm.controls['organization'].updateValueAndValidity();
         }
         //if(this.type=="S113" ||this.type=="S115" ||this.type=="S124"||this.type=="S403"||this.type=="S405"){
-          if(this.activebtn?.form?.fileuploadreq){
+       //   if(this.activebtn?.form?.fileuploadreq){
           this.ForwardForm.controls['files'].setValidators([Validators.required]);              
-      } else {                
-        this.ForwardForm.controls["files"].clearValidators();              
-      }
+    //  } else {                
+      //  this.ForwardForm.controls["files"].clearValidators();              
+     // }
       this.ForwardForm.controls['files'].updateValueAndValidity();
       if(this.activebtn?.form?.remarks){
         this.ForwardForm.controls['remarks'].setValidators([Validators.required]);              
